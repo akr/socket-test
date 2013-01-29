@@ -26,8 +26,6 @@
 
 #include "sockettest.h"
 
-#define FIELD_SIZE(struct_name, field_name) sizeof(((struct_name *)0)->field_name)
-
 static int opt_g = 0;
 static int opt_f = '\0';
 static int opt_e = 0;

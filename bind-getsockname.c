@@ -26,7 +26,6 @@
 
 #include "sockettest.h"
 
-#define FIELD_SIZE(struct_name, field_name) sizeof(((struct_name *)0)->field_name)
 static char *unix_path_str;
 static size_t unix_path_len = 0;
 
