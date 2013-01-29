@@ -1,0 +1,64 @@
+= socket test commands
+
+= Result
+
+Debian GNU/Linux 7.0 (wheezy) x86_64
+  Linux 3.2.0-4-amd64
+  libc6:amd64 2.13-37
+
+  % ./size
+  sizeof(struct sockaddr_un) = 110
+  sizeof(struct sockaddr_un.sun_family) = 2
+  sizeof(struct sockaddr_un.sun_path) = 108
+  offsetof(struct sockaddr_un, sun_family) = 0
+  offsetof(struct sockaddr_un, sun_path) = 2
+  % ./bind-getsockname abc
+  sizeof(sun_path) = 108
+  bind        : "abc" (3 bytes)
+  getsockname : "abc\0" (4 bytes)
+  % ./bind-getsockname 'abc\0'
+  sizeof(sun_path) = 108
+  bind        : "abc\0" (4 bytes)
+  getsockname : "abc\0" (4 bytes)
+  % ./bind-getsockname 'abc\0def'
+  sizeof(sun_path) = 108
+  bind        : "abc\0def" (7 bytes)
+  getsockname : "abc\0" (4 bytes)
+  % ./bind-getsockname 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567 
+  sizeof(sun_path) = 108
+  bind        : "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567" (108 bytes)
+  getsockname : "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567"... (109 bytes)
+  % ./bind-getsockname -g 1 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567
+  sizeof(sun_path) = 108
+  bind        : "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567" (108 bytes)
+  getsockname : "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567\0" (109 bytes)
+  % ./bind-getsockname 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678
+  sizeof(sun_path) = 108
+  bind        : "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" (109 bytes)
+  bind: Invalid argument
+
+
+FreeBSD 9.1-RELEASE
+  % ./size
+  sizeof(struct sockaddr_un) = 106
+  sizeof(struct sockaddr_un.sun_family) = 1
+  sizeof(struct sockaddr_un.sun_path) = 104
+  offsetof(struct sockaddr_un, sun_family) = 1
+  offsetof(struct sockaddr_un, sun_path) = 2
+  % ./bind-getsockname abc 
+  sizeof(sun_path) = 104
+  bind        : "abc" (3 bytes)
+  getsockname : "abc" (3 bytes)
+  % ./bind-getsockname 'abc\0'
+  sizeof(sun_path) = 104
+  bind        : "abc\0" (4 bytes)
+  getsockname : "abc\0" (4 bytes)
+  % ./bind-getsockname 'abc\0def'
+  sizeof(sun_path) = 104
+  bind        : "abc\0def" (7 bytes)
+  getsockname : "abc\0def" (7 bytes)
+  % ./bind-getsockname 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234
+  sizeof(sun_path) = 104
+  bind        : "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234" (105 bytes)
+  bind: Invalid argument
+
