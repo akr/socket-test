@@ -5,6 +5,8 @@ static char *unix_path_str;
 static size_t unix_path_len = 0;
 
 static int opt_g = 0;
+static int opt_f = '\0';
+static int opt_e = 0;
 
 void usage(int status)
 {
@@ -12,6 +14,8 @@ void usage(int status)
       "usage: bind-getsockname unix-socket-path\n"
       "option: -h : show this help message\n"
       "        -g N : increase buffer size of getsockname (negative to decrease)\n"
+      "        -f N : ASCII code to fill for getsockname buffer\n"
+      "        -e N : number of extra bytes for getsockname buffer\n"
       , stdout);
   exit(status);
 }
@@ -22,7 +26,7 @@ static void parse_args(int argc, char *argv[])
   char *escaped_unix_socket_path, *unescaped_unix_socket_path;
   size_t unescaped_unix_socket_path_len;
 
-  while ((opt = getopt(argc, argv, "hg:")) != -1) {
+  while ((opt = getopt(argc, argv, "hg:f:e:")) != -1) {
     switch (opt) {
       case 'h':
         usage(EXIT_SUCCESS);
@@ -30,6 +34,14 @@ static void parse_args(int argc, char *argv[])
 
       case 'g':
         opt_g = atoi(optarg);
+        break;
+
+      case 'f':
+        opt_f = atoi(optarg);
+        break;
+
+      case 'e':
+        opt_e = atoi(optarg);
         break;
 
       default:
@@ -82,13 +94,15 @@ static void test_bind_getsockname(void)
     perror("malloc");
     exit(EXIT_FAILURE);
   }
+  memset((void *)a1, '\0', alen1);
 
   alen2 = sizeof(struct sockaddr_un) + opt_g;
-  a2 = malloc(alen2);
+  a2 = malloc(alen2 + opt_e);
   if (a1 == NULL) {
     perror("malloc");
     exit(EXIT_FAILURE);
   }
+  memset((void *)a2, opt_f, alen2 + opt_e);
 
   unlink_socket(unix_path_str);
 
@@ -98,7 +112,6 @@ static void test_bind_getsockname(void)
     exit(EXIT_FAILURE);
   }
 
-  memset((void *)a1, '\0', alen1);
   a1->sun_family = AF_UNIX;
   memcpy(a1->sun_path, unix_path_str, unix_path_len);
 
