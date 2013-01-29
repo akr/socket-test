@@ -24,11 +24,12 @@
 
 CFLAGS = -g -Wall
 
-all: size bind-getsockname
+all: size bind-getsockname unix-connection
 
 size: size.c
-
 bind-getsockname: bind-getsockname.o util.o
+unix-connection: unix-connection.o util.o
 
 bind-getsockname.o: bind-getsockname.c sockettest.h
+unix-connection.o: unix-connection.c sockettest.h
 util.o: util.c sockettest.h

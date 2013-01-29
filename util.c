@@ -196,3 +196,22 @@ void unlink_socket(char *path)
     unlink(path);
 }
 
+void *xmalloc(size_t size)
+{
+  void *p;
+  p = malloc(size);
+  if (p == NULL) {
+    perror("malloc");
+    exit(EXIT_FAILURE);
+  }
+  return p;
+}
+
+void *xfalloc(size_t size, int ch)
+{
+  void *p;
+  p = xmalloc(size);
+  memset(p, ch, size);
+  return p;
+}
+
