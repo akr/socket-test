@@ -37,3 +37,4 @@
 char *escape_string(size_t *escaped_len_ret, char *unescaped_ptr, size_t unescaped_len);
 char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escaped_len);
 
+void unlink_socket(char *path);

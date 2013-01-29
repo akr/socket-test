@@ -179,3 +179,20 @@ char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escap
   *unescaped_len_ret = (size_t)len;
   return result;
 }
+
+void unlink_socket(char *path)
+{
+  int ret;
+  struct stat statbuf;
+
+  if (path[0] == '\0')
+    return;
+
+  ret = stat(path, &statbuf);
+  if (ret == -1)
+    return;
+
+  if (S_ISSOCK(statbuf.st_mode))
+    unlink(path);
+}
+

@@ -85,22 +85,6 @@ static void parse_args(int argc, char *argv[])
   unix_path_len = unescaped_unix_socket_path_len;
 }
 
-static void unlink_socket(char *path)
-{
-  int ret;
-  struct stat statbuf;
-
-  if (path[0] == '\0')
-    return;
-
-  ret = stat(path, &statbuf);
-  if (ret == -1)
-    return;
-
-  if (S_ISSOCK(statbuf.st_mode))
-    unlink(path);
-}
-
 static void test_bind_getsockname(void)
 {
   int s, ret;
