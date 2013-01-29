@@ -112,7 +112,7 @@ static void report_path(char *key, char *path_ptr, size_t path_len)
 {
   char *escaped_path;
   escaped_path = escape_string(NULL, path_ptr, path_len);
-  printf("%-20s : \"%s\" (%d bytes)\n", key, escaped_path, (int)path_len);
+  printf("%-21s : \"%s\" (%d bytes)\n", key, escaped_path, (int)path_len);
   free(escaped_path);
 }
 
@@ -132,7 +132,7 @@ static void report_path_gotten(char *key, size_t buf_len, struct sockaddr_un *so
   }
 
   escaped_path = escape_string(NULL, sockaddr_ptr->sun_path, len);
-  printf("%-20s : \"%s\"%s (%d bytes)\n",
+  printf("%-21s : \"%s\"%s (%d bytes)\n",
       key, escaped_path,
       truncated ? "..." : "",
       (int)(sockaddr_len - offsetof(struct sockaddr_un, sun_path)));
