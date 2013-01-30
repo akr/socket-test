@@ -1,0 +1,10 @@
+*.o
+Makefile
+autom4te.cache/
+config.h
+config.log
+config.status
+configure
+bind-getsockname
+size
+unix-connection
