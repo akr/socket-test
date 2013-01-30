@@ -28,6 +28,16 @@
 
 int main(int argc, char *argv[])
 {
+  printf("sizeof(sockaddr) = %d\n", (int)sizeof(struct sockaddr_storage));
+  printf("sizeof(sockaddr.sa_family) = %d\n", (int)FIELD_SIZE(struct sockaddr, sa_family));
+  printf("offsetof(sockaddr.sa_family) = %d\n", (int)offsetof(struct sockaddr, sa_family));
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+  printf("sizeof(sockaddr.sa_len) = %d\n", (int)FIELD_SIZE(struct sockaddr, sa_len));
+  printf("offsetof(sockaddr.sa_len) = %d\n", (int)offsetof(struct sockaddr, sa_len));
+#endif
+  printf("sizeof(sockaddr.sa_data) = %d\n", (int)FIELD_SIZE(struct sockaddr, sa_data));
+  printf("offsetof(sockaddr.sa_data) = %d\n", (int)offsetof(struct sockaddr, sa_data));
+
   printf("sizeof(sockaddr_un) = %d\n", (int)sizeof(struct sockaddr_un));
   printf("sizeof(sockaddr_un.sun_family) = %d\n", (int)FIELD_SIZE(struct sockaddr_un, sun_family));
   printf("sizeof(sockaddr_un.sun_path) = %d\n", (int)FIELD_SIZE(struct sockaddr_un, sun_path));
@@ -36,7 +46,7 @@ int main(int argc, char *argv[])
 
   printf("sizeof(sockaddr_storage) = %d\n", (int)sizeof(struct sockaddr_storage));
   printf("sizeof(sockaddr_storage.ss_family) = %d\n", (int)FIELD_SIZE(struct sockaddr_storage, ss_family));
-  printf("offsetof(sockaddr_storage.sun_family) = %d\n", (int)offsetof(struct sockaddr_storage, ss_family));
+  printf("offsetof(sockaddr_storage.ss_family) = %d\n", (int)offsetof(struct sockaddr_storage, ss_family));
 
   return EXIT_SUCCESS;
 }
