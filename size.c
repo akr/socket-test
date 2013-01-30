@@ -24,23 +24,19 @@
  * OF SUCH DAMAGE.
  */
 
-#include <stddef.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <sys/un.h>
+#include "sockettest.h"
 
 int main(int argc, char *argv[])
 {
-  struct sockaddr_un sun;
-
   printf("sizeof(struct sockaddr_un) = %d\n", sizeof(struct sockaddr_un));
-  printf("sizeof(struct sockaddr_un.sun_family) = %d\n", sizeof(sun.sun_family));
-  printf("sizeof(struct sockaddr_un.sun_path) = %d\n", sizeof(sun.sun_path));
-  printf("offsetof(struct sockaddr_un, sun_family) = %d\n", offsetof(struct sockaddr_un, sun_family));
-  printf("offsetof(struct sockaddr_un, sun_path) = %d\n", offsetof(struct sockaddr_un, sun_path));
+  printf("sizeof(struct sockaddr_un.sun_family) = %d\n", FIELD_SIZE(struct sockaddr_un, sun_family));
+  printf("sizeof(struct sockaddr_un.sun_path) = %d\n", FIELD_SIZE(struct sockaddr_un, sun_path));
+  printf("offsetof(struct sockaddr_un.sun_family) = %d\n", offsetof(struct sockaddr_un, sun_family));
+  printf("offsetof(struct sockaddr_un.sun_path) = %d\n", offsetof(struct sockaddr_un, sun_path));
+
+  printf("sizeof(struct sockaddr_storage) = %d\n", sizeof(struct sockaddr_storage));
+  printf("sizeof(struct sockaddr_storage.ss_family) = %d\n", FIELD_SIZE(struct sockaddr_storage, ss_family));
+  printf("offsetof(struct sockaddr_storage.sun_family) = %d\n", offsetof(struct sockaddr_storage, ss_family));
 
   return EXIT_SUCCESS;
 }
