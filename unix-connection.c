@@ -122,6 +122,11 @@ static void report_path_gotten(char *key, size_t buf_len, struct sockaddr_un *so
   size_t len;
   char *escaped_path;
 
+  if (sockaddr_len <= offsetof(struct sockaddr_un, sun_path)) {
+    printf("%-21s : too short sockaddr_un (%d bytes)\n", key, (int)sockaddr_len);
+    return;
+  }
+
   if (sockaddr_len <= buf_len) {
     truncated = 0;
     len = sockaddr_len - offsetof(struct sockaddr_un, sun_path);
