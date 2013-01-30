@@ -1,5 +1,13 @@
 = socket test commands
 
+== Build
+
+  % git clone git://github.com/akr/socket-test.git
+  % cd socket-test
+  % autoconf
+  % ./configure
+  % make
+
 == Result
 
 Debian GNU/Linux 7.0 (wheezy) x86_64
