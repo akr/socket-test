@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# generate configure and config.h.in
+
+autoconf
+autoheader
