@@ -177,62 +177,62 @@ static void test_unix_connection(void)
     unlink_socket(client_path_str);
 
   s = socket(AF_UNIX, SOCK_STREAM, 0);
-  if (s == -1) { perror("socket(server)"); exit(EXIT_FAILURE); }
+  if (s == -1) { perror2("socket(server)"); exit(EXIT_FAILURE); }
 
   report_path("bind(server)", server_path_str, server_path_len);
   ret = bind(s, (const struct sockaddr *)server_sockaddr_ptr, server_sockaddr_len);
-  if (ret == -1) { perror("bind(server)"); exit(EXIT_FAILURE); }
+  if (ret == -1) { perror2("bind(server)"); exit(EXIT_FAILURE); }
 
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
   len = get_sockaddr_len;
   ret = getsockname(s, (struct sockaddr *)get_sockaddr_ptr, &len);
-  if (ret == -1) { perror("getsockname(server)"); exit(EXIT_FAILURE); }
+  if (ret == -1) { perror2("getsockname(server)"); exit(EXIT_FAILURE); }
   report_path_gotten("getsockname(server)", get_sockaddr_len, get_sockaddr_ptr, len);
 
   ret = listen(s, SOMAXCONN);
-  if (ret == -1) { perror("listen"); exit(EXIT_FAILURE); }
+  if (ret == -1) { perror2("listen"); exit(EXIT_FAILURE); }
 
   c = socket(AF_UNIX, SOCK_STREAM, 0);
-  if (c == -1) { perror("socket(client)"); exit(EXIT_FAILURE); }
+  if (c == -1) { perror2("socket(client)"); exit(EXIT_FAILURE); }
 
   if (client_path_str) {
     report_path("bind(client)", client_path_str, client_path_len);
     ret = bind(c, (const struct sockaddr *)client_sockaddr_ptr, client_sockaddr_len);
-    if (ret == -1) { perror("bind(client)"); exit(EXIT_FAILURE); }
+    if (ret == -1) { perror2("bind(client)"); exit(EXIT_FAILURE); }
   }
 
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
   len = get_sockaddr_len;
   ret = getsockname(c, (struct sockaddr *)get_sockaddr_ptr, &len);
-  if (ret == -1) { perror("getsockname(client)"); exit(EXIT_FAILURE); }
+  if (ret == -1) { perror2("getsockname(client)"); exit(EXIT_FAILURE); }
   report_path_gotten("getsockname(client)", get_sockaddr_len, get_sockaddr_ptr, len);
 
   report_path("connect", connect_path_str, connect_path_len);
   ret = connect(c, (struct sockaddr *)connect_sockaddr_ptr, connect_sockaddr_len);
-  if (ret == -1) { perror("connect"); exit(EXIT_FAILURE); }
+  if (ret == -1) { perror2("connect"); exit(EXIT_FAILURE); }
 
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
   len = get_sockaddr_len;
   ret = getpeername(c, (struct sockaddr *)get_sockaddr_ptr, &len);
-  if (ret == -1) { perror("getpeername(client)"); exit(EXIT_FAILURE); }
+  if (ret == -1) { perror2("getpeername(client)"); exit(EXIT_FAILURE); }
   report_path_gotten("getpeername(client)", get_sockaddr_len, get_sockaddr_ptr, len);
 
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
   len = get_sockaddr_len;
   sc = accept(s, (struct sockaddr *)get_sockaddr_ptr, &len);
-  if (sc == -1) { perror("accept"); exit(EXIT_FAILURE); }
+  if (sc == -1) { perror2("accept"); exit(EXIT_FAILURE); }
   report_path_gotten("accept", get_sockaddr_len, get_sockaddr_ptr, len);
 
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
   len = get_sockaddr_len;
   ret = getsockname(sc, (struct sockaddr *)get_sockaddr_ptr, &len);
-  if (ret == -1) { perror("getsockname(accepted)"); exit(EXIT_FAILURE); }
+  if (ret == -1) { perror2("getsockname(accepted)"); exit(EXIT_FAILURE); }
   report_path_gotten("getsockname(accepted)", get_sockaddr_len, get_sockaddr_ptr, len);
 
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
   len = get_sockaddr_len;
   ret = getpeername(sc, (struct sockaddr *)get_sockaddr_ptr, &len);
-  if (ret == -1) { perror("getpeername(accepted)"); exit(EXIT_FAILURE); }
+  if (ret == -1) { perror2("getpeername(accepted)"); exit(EXIT_FAILURE); }
   report_path_gotten("getpeername(accepted)", get_sockaddr_len, get_sockaddr_ptr, len);
 
   unlink_socket(server_path_str);

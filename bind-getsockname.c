@@ -98,7 +98,7 @@ static void test_bind_getsockname(void)
   alen1 = offsetof(struct sockaddr_un, sun_path) + unix_path_len;
   a1 = malloc(alen1);
   if (a1 == NULL) {
-    perror("malloc");
+    perror2("malloc");
     exit(EXIT_FAILURE);
   }
   memset((void *)a1, '\0', alen1);
@@ -106,7 +106,7 @@ static void test_bind_getsockname(void)
   alen2 = sizeof(struct sockaddr_un) + opt_g;
   a2 = malloc(alen2 + opt_e);
   if (a1 == NULL) {
-    perror("malloc");
+    perror2("malloc");
     exit(EXIT_FAILURE);
   }
   memset((void *)a2, opt_f, alen2 + opt_e);
@@ -115,7 +115,7 @@ static void test_bind_getsockname(void)
 
   s = socket(AF_UNIX, SOCK_STREAM, 0);
   if (s == -1) {
-    perror("socket");
+    perror2("socket");
     exit(EXIT_FAILURE);
   }
 
@@ -128,14 +128,14 @@ static void test_bind_getsockname(void)
 
   ret = bind(s, (const struct sockaddr *)a1, alen1);
   if (ret == -1) {
-    perror("bind");
+    perror2("bind");
     exit(EXIT_FAILURE);
   }
 
   alen = alen2;
   ret = getsockname(s, (struct sockaddr *)a2, &alen);
   if (ret == -1) {
-    perror("getsockname");
+    perror2("getsockname");
     exit(EXIT_FAILURE);
   }
 

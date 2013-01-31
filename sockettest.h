@@ -36,6 +36,7 @@
 #include <sys/un.h>
 #include <netinet/in.h>
 #include <sys/stat.h>
+#include <errno.h>
 
 #define FIELD_SIZE(struct_name, field_name) sizeof(((struct_name *)0)->field_name)
 
@@ -60,3 +61,4 @@ char *escape_string(size_t *escaped_len_ret, char *unescaped_ptr, size_t unescap
 char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escaped_len);
 
 void unlink_socket(char *path);
+void perror2(const char *s);
