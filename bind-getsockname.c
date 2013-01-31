@@ -123,7 +123,7 @@ static void test_bind_getsockname(void)
   memcpy(a1->sun_path, unix_path_str, unix_path_len);
 
   escaped_unix_socket_path = escape_string(NULL, unix_path_str, unix_path_len);
-  printf("bind        : \"%s\" (%d bytes)\n", escaped_unix_socket_path, (int)unix_path_len);
+  printf("bind        <- \"%s\" (%d bytes)\n", escaped_unix_socket_path, (int)unix_path_len);
   free(escaped_unix_socket_path);
 
   ret = bind(s, (const struct sockaddr *)a1, alen1);
@@ -150,7 +150,7 @@ static void test_bind_getsockname(void)
   }
 
   escaped_unix_socket_path = escape_string(NULL, a2->sun_path, len);
-  printf("getsockname : \"%s\"%s (%d bytes)\n", escaped_unix_socket_path, truncated ? "..." : "", (int)(alen - offsetof(struct sockaddr_un, sun_path)));
+  printf("getsockname -> \"%s\"%s (%d bytes)\n", escaped_unix_socket_path, truncated ? "..." : "", (int)(alen - offsetof(struct sockaddr_un, sun_path)));
   free(escaped_unix_socket_path);
 
   unlink_socket(unix_path_str);
