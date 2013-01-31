@@ -51,3 +51,7 @@ unix-connection: unix-connection.o util.o
 bind-getsockname.o: bind-getsockname.c sockettest.h config.h
 unix-connection.o: unix-connection.c sockettest.h config.h
 util.o: util.c sockettest.h config.h
+
+gen:
+	erb errmsg.erb > errmsg.h
+

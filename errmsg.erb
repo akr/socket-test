@@ -1,0 +1,5 @@
+% File.foreach('errno.txt') {|sym| sym.chomp!
+#ifdef <%= sym %>
+  case <%= sym %>: return "<%= sym %>";
+#endif
+% }
