@@ -31,6 +31,7 @@ AC_CONFIG_HEADERS([config.h])
 AC_PROG_CC
 
 # Checks for libraries.
+AC_CHECK_LIB([xnet], [socketpair]) # Solaris
 
 # Checks for header files.
 AC_HEADER_STDC
