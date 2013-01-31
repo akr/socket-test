@@ -62,3 +62,4 @@ char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escap
 
 void unlink_socket(char *path);
 void perror2(const char *s);
+char *errsym(int err);

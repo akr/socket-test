@@ -29,6 +29,7 @@ LDFLAGS = @LDFLAGS@
 LDLIBS = @LIBS@
 
 TARGETS = size bind-getsockname unix-connection
+UTILOBJS = util.o errsym.o
 
 all: $(TARGETS)
 
@@ -38,20 +39,20 @@ clean:
 size: size.o
 	$(CC) $(LDFLAGS) size.o $(LDLIBS) -o $@
 
-bind-getsockname: bind-getsockname.o util.o
-	$(CC) $(LDFLAGS) bind-getsockname.o util.o $(LDLIBS) -o $@
+bind-getsockname: bind-getsockname.o $(UTILOBJS)
+	$(CC) $(LDFLAGS) bind-getsockname.o $(UTILOBJS) $(LDLIBS) -o $@
 
-unix-connection: unix-connection.o util.o
-	$(CC) $(LDFLAGS) unix-connection.o util.o $(LDLIBS) -o $@
+unix-connection: unix-connection.o $(UTILOBJS)
+	$(CC) $(LDFLAGS) unix-connection.o $(UTILOBJS) $(LDLIBS) -o $@
 
 size: size.c
-bind-getsockname: bind-getsockname.o util.o
-unix-connection: unix-connection.o util.o
+bind-getsockname: bind-getsockname.o $(UTILOBJS)
+unix-connection: unix-connection.o $(UTILOBJS)
 
 bind-getsockname.o: bind-getsockname.c sockettest.h config.h
 unix-connection.o: unix-connection.c sockettest.h config.h
 util.o: util.c sockettest.h config.h
 
-gen:
-	erb errsym.erb > errsym.h
-
+errsym.o: errsym.c
+errsym.c: errsym.erb
+	erb errsym.erb > errsym.c

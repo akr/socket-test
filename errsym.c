@@ -1,3 +1,12 @@
+#include "sockettest.h"
+
+char *errsym(int err)
+{
+  if (err == EAGAIN) return "EAGAIN"; /* may be equal to EWOULDBLOCK */
+  if (err == ENOTSUP) return "ENOTSUP"; /* may be equal to EOPNOTSUPP */
+
+  switch (err) {
+
 #ifdef E2BIG
   case E2BIG: return "E2BIG";
 #endif
@@ -235,3 +244,8 @@
 #ifdef EXDEV
   case EXDEV: return "EXDEV";
 #endif
+
+  }
+  return NULL;
+}
+

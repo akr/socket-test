@@ -1,5 +1,19 @@
+#include "sockettest.h"
+
+char *errsym(int err)
+{
+  if (err == EAGAIN) return "EAGAIN"; /* may be equal to EWOULDBLOCK */
+  if (err == ENOTSUP) return "ENOTSUP"; /* may be equal to EOPNOTSUPP */
+
+  switch (err) {
+
 % File.foreach('errno.txt') {|sym| sym.chomp!
 #ifdef <%= sym %>
   case <%= sym %>: return "<%= sym %>";
 #endif
 % }
+
+  }
+  return NULL;
+}
+

@@ -234,17 +234,6 @@ void unlink_socket(char *path)
     unlink(path);
 }
 
-static char *errsym(int err)
-{
-  if (err == EAGAIN) return "EAGAIN"; /* may be equal to EWOULDBLOCK */
-  if (err == ENOTSUP) return "ENOTSUP"; /* may be equal to EOPNOTSUPP */
-
-  switch (err) {
-#include "errsym.h"
-  }
-  return NULL;
-}
-
 void perror2(const char *s)
 {
   int err = errno;
