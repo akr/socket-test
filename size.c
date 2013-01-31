@@ -30,7 +30,7 @@
   printf("sizeof(%s)=%d\n", \
       #struct_name, (int)sizeof(struct struct_name))
 #define SHOW_FIELD(struct_name, field_name) \
-  printf("  offsetof(%s)=%d%*s sizeof(%s)=%d\n", \
+  printf("  offsetof(%s)=%-4d%*s sizeof(%s)=%d\n", \
       #field_name, (int)offsetof(struct struct_name, field_name), \
       20-(int)sizeof(#field_name), "", \
       #field_name, (int)FIELD_SIZE(struct struct_name, field_name))
