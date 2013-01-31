@@ -10,65 +10,247 @@
 
 == Result
 
-Debian GNU/Linux 7.0 (wheezy) x86_64
-  Linux 3.2.0-4-amd64
-  libc6:amd64 2.13-37
+Debian GNU/Linux 7.0 (wheezy) :
 
-  % ./size
-  sizeof(struct sockaddr_un) = 110
-  sizeof(struct sockaddr_un.sun_family) = 2
-  sizeof(struct sockaddr_un.sun_path) = 108
-  offsetof(struct sockaddr_un, sun_family) = 0
-  offsetof(struct sockaddr_un, sun_path) = 2
-  % ./bind-getsockname abc
-  sizeof(sun_path) = 108
-  bind        : "abc" (3 bytes)
-  getsockname : "abc\0" (4 bytes)
-  % ./bind-getsockname 'abc\0'
-  sizeof(sun_path) = 108
-  bind        : "abc\0" (4 bytes)
-  getsockname : "abc\0" (4 bytes)
-  % ./bind-getsockname 'abc\0def'
-  sizeof(sun_path) = 108
-  bind        : "abc\0def" (7 bytes)
-  getsockname : "abc\0" (4 bytes)
-  % ./bind-getsockname 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567 
-  sizeof(sun_path) = 108
-  bind        : "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567" (108 bytes)
-  getsockname : "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567"... (109 bytes)
-  % ./bind-getsockname -g 1 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567
-  sizeof(sun_path) = 108
-  bind        : "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567" (108 bytes)
-  getsockname : "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567\0" (109 bytes)
-  % ./bind-getsockname 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678
-  sizeof(sun_path) = 108
-  bind        : "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" (109 bytes)
+  linux% uname -mrsv
+  Linux 3.2.0-4-amd64 #1 SMP Debian 3.2.35-2 x86_64
+  linux% ./size
+  sizeof(sockaddr)=16
+    offsetof(sa_family)=0              sizeof(sa_family)=2
+    offsetof(sa_data)=2                sizeof(sa_data)=14
+  sizeof(sockaddr_un)=110
+    offsetof(sun_family)=0             sizeof(sun_family)=2
+    offsetof(sun_path)=2               sizeof(sun_path)=108
+  sizeof(sockaddr_in)=16
+    offsetof(sin_family)=0             sizeof(sin_family)=2
+    offsetof(sin_port)=2               sizeof(sin_port)=2
+    offsetof(sin_addr)=4               sizeof(sin_addr)=4
+  sizeof(sockaddr_in6)=28
+    offsetof(sin6_family)=0            sizeof(sin6_family)=2
+    offsetof(sin6_port)=2              sizeof(sin6_port)=2
+    offsetof(sin6_flowinfo)=4          sizeof(sin6_flowinfo)=4
+    offsetof(sin6_addr)=8              sizeof(sin6_addr)=16
+    offsetof(sin6_scope_id)=24         sizeof(sin6_scope_id)=4
+  sizeof(sockaddr_storage)=128
+    offsetof(ss_family)=0              sizeof(ss_family)=2
+  linux% ./unix-connection 'foo' './foo'
+  bind(server)          <- "foo" (3 bytes)
+  getsockname(server)   -> "foo\0" (4 bytes)    # Linux complements a NUL.
+  getsockname(client)   -> "" (0 bytes)         # sun_family only sockaddr_un for anonymous Unix domain socket.
+  connect               <- "./foo" (5 bytes)
+  getpeername(client)   -> "foo\0" (4 bytes)    # getpeername returns the name given for bind().
+  accept                -> "" (0 bytes)
+  getsockname(accepted) -> "foo\0" (4 bytes)
+  getpeername(accepted) -> "" (0 bytes)
+  linux% ./bind-getsockname 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456
+  bind        <- "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456" (107 bytes)
+  getsockname -> "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456\0" (108 bytes)
+  linux% ./bind-getsockname 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567
+  bind        <- "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567" (108 bytes)
+  getsockname -> "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567"... (109 bytes)
+  linux% ./bind-getsockname 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678
+  bind        <- "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" (109 bytes)
   bind: Invalid argument
 
 
-FreeBSD 9.1-RELEASE
-  % ./size
-  sizeof(struct sockaddr_un) = 106
-  sizeof(struct sockaddr_un.sun_family) = 1
-  sizeof(struct sockaddr_un.sun_path) = 104
-  offsetof(struct sockaddr_un, sun_family) = 1
-  offsetof(struct sockaddr_un, sun_path) = 2
-  % ./bind-getsockname abc 
-  sizeof(sun_path) = 104
-  bind        : "abc" (3 bytes)
-  getsockname : "abc" (3 bytes)
-  % ./bind-getsockname 'abc\0'
-  sizeof(sun_path) = 104
-  bind        : "abc\0" (4 bytes)
-  getsockname : "abc\0" (4 bytes)
-  % ./bind-getsockname 'abc\0def'
-  sizeof(sun_path) = 104
-  bind        : "abc\0def" (7 bytes)
-  getsockname : "abc\0def" (7 bytes)
-  % ./bind-getsockname 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234
-  sizeof(sun_path) = 104
-  bind        : "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234" (105 bytes)
+FreeBSD 9.1 :
+
+  freebsd% uname -mrsv
+  FreeBSD 9.1-RELEASE FreeBSD 9.1-RELEASE #0 r243825: Tue Dec  4 09:23:10 UTC 2012     root@farrell.cse.buffalo.edu:/usr/obj/usr/src/sys/GENERIC  amd64
+  freebsd% ./size
+  sizeof(sockaddr)=16
+    offsetof(sa_len)=0                 sizeof(sa_len)=1         # 4.4BSD has sXXX_len field.
+    offsetof(sa_family)=1              sizeof(sa_family)=1
+    offsetof(sa_data)=2                sizeof(sa_data)=14
+  sizeof(sockaddr_un)=106
+    offsetof(sun_len)=0                sizeof(sun_len)=1
+    offsetof(sun_family)=1             sizeof(sun_family)=1
+    offsetof(sun_path)=2               sizeof(sun_path)=104
+  sizeof(sockaddr_in)=16
+    offsetof(sin_len)=0                sizeof(sin_len)=1
+    offsetof(sin_family)=1             sizeof(sin_family)=1
+    offsetof(sin_port)=2               sizeof(sin_port)=2
+    offsetof(sin_addr)=4               sizeof(sin_addr)=4
+  sizeof(sockaddr_in6)=28
+    offsetof(sin6_len)=0               sizeof(sin6_len)=1
+    offsetof(sin6_family)=1            sizeof(sin6_family)=1
+    offsetof(sin6_port)=2              sizeof(sin6_port)=2
+    offsetof(sin6_flowinfo)=4          sizeof(sin6_flowinfo)=4
+    offsetof(sin6_addr)=8              sizeof(sin6_addr)=16
+    offsetof(sin6_scope_id)=24         sizeof(sin6_scope_id)=4
+  sizeof(sockaddr_storage)=128
+    offsetof(ss_len)=0                 sizeof(ss_len)=1
+    offsetof(ss_family)=1              sizeof(ss_family)=1
+  freebsd% ./unix-connection foo ./foo
+  bind(server)          <- "foo" (3 bytes)
+  getsockname(server)   -> "foo" (3 bytes)      # FreeBSD doesn't complement a NUL.
+  getsockname(client)   -> "\0\0\0\0\0\0\0\0\0\0\0\0\0\0" (14 bytes)    # 14 NULs returned for anonymous Unix domain socket.
+  connect               <- "./foo" (5 bytes)
+  getpeername(client)   -> "foo" (3 bytes)      # getpeername returns the name given for bind().
+  accept                -> "\0\0\0\0\0\0\0\0\0\0\0\0\0\0" (14 bytes)
+  getsockname(accepted) -> "foo" (3 bytes)
+  getpeername(accepted) -> "\0\0\0\0\0\0\0\0\0\0\0\0\0\0" (14 bytes)
+  freebsd% ./bind-getsockname 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012
+  bind        <- "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012" (103 bytes)
+  getsockname -> "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012" (103 bytes)
+  freebsd% ./bind-getsockname 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123
+  bind        <- "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123" (104 bytes)
+  getsockname -> "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123" (104 bytes)
+  freebsd% ./bind-getsockname 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234
+  bind        <- "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234" (105 bytes)
   bind: Invalid argument
+
+
+NetBSD 5.1 :
+
+  netbsd% uname -mrsv
+  NetBSD 5.1 NetBSD 5.1 (GENERIC) #0: Sat Nov  6 13:19:33 UTC 2010  builds@b6.netbsd.org:/home/builds/ab/netbsd-5-1-RELEASE/amd64/201011061943Z-obj/home/builds/ab/netbsd-5-1-RELEASE/src/sys/arch/amd64/compile/GENERIC amd64
+  netbsd% ./size
+  sizeof(sockaddr)=16
+    offsetof(sa_len)=0                 sizeof(sa_len)=1         # 4.4BSD has sXXX_len field.
+    offsetof(sa_family)=1              sizeof(sa_family)=1
+    offsetof(sa_data)=2                sizeof(sa_data)=14
+  sizeof(sockaddr_un)=106
+    offsetof(sun_len)=0                sizeof(sun_len)=1
+    offsetof(sun_family)=1             sizeof(sun_family)=1
+    offsetof(sun_path)=2               sizeof(sun_path)=104
+  sizeof(sockaddr_in)=16
+    offsetof(sin_len)=0                sizeof(sin_len)=1
+    offsetof(sin_family)=1             sizeof(sin_family)=1
+    offsetof(sin_port)=2               sizeof(sin_port)=2
+    offsetof(sin_addr)=4               sizeof(sin_addr)=4
+  sizeof(sockaddr_in6)=28
+    offsetof(sin6_len)=0               sizeof(sin6_len)=1
+    offsetof(sin6_family)=1            sizeof(sin6_family)=1
+    offsetof(sin6_port)=2              sizeof(sin6_port)=2
+    offsetof(sin6_flowinfo)=4          sizeof(sin6_flowinfo)=4
+    offsetof(sin6_addr)=8              sizeof(sin6_addr)=16
+    offsetof(sin6_scope_id)=24         sizeof(sin6_scope_id)=4
+  sizeof(sockaddr_storage)=128
+    offsetof(ss_len)=0                 sizeof(ss_len)=1
+    offsetof(ss_family)=1              sizeof(ss_family)=1
+  netbsd% ./unix-connection foo ./foo
+  bind(server)          <- "foo" (3 bytes)
+  getsockname(server)   -> "foo" (3 bytes)      # FreeBSD doesn't complement a NUL.
+  getsockname(client)   -> "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0" (104 bytes)       # 104 NULs returned for anonymous Unix domain socket.
+  connect               <- "./foo" (5 bytes)
+  getpeername(client)   -> "foo" (3 bytes)      # getpeername returns the name given for bind().
+  accept                -> "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0" (104 bytes)
+  getsockname(accepted) -> "foo" (3 bytes)
+  getpeername(accepted) -> "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0" (104 bytes)
+  netbsd% ./bind-getsockname 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012
+  bind        <- "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012" (103 bytes)
+  getsockname -> "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012" (103 bytes)
+  netbsd% ./bind-getsockname 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123
+  bind        <- "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123" (104 bytes)
+  getsockname -> "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123" (104 bytes)
+  netbsd% ./bind-getsockname 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234
+  bind        <- "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234" (105 bytes)
+  getsockname -> "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123" (104 bytes)
+  netbsd% ./bind-getsockname 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
+  bind        <- "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789" (110 bytes)
+  getsockname -> "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123" (104 bytes)
+
+
+OpenBSD 5.1 :
+
+  openbsd% uname -mrsv
+  OpenBSD 5.1 GENERIC#0 sparc64
+  openbsd% ./size
+  sizeof(sockaddr)=16
+    offsetof(sa_len)=0                 sizeof(sa_len)=1         # 4.4BSD has sXXX_len field.
+    offsetof(sa_family)=1              sizeof(sa_family)=1
+    offsetof(sa_data)=2                sizeof(sa_data)=14
+  sizeof(sockaddr_un)=106
+    offsetof(sun_len)=0                sizeof(sun_len)=1
+    offsetof(sun_family)=1             sizeof(sun_family)=1
+    offsetof(sun_path)=2               sizeof(sun_path)=104
+  sizeof(sockaddr_in)=16
+    offsetof(sin_len)=0                sizeof(sin_len)=1
+    offsetof(sin_family)=1             sizeof(sin_family)=1
+    offsetof(sin_port)=2               sizeof(sin_port)=2
+    offsetof(sin_addr)=4               sizeof(sin_addr)=4
+  sizeof(sockaddr_in6)=28
+    offsetof(sin6_len)=0               sizeof(sin6_len)=1
+    offsetof(sin6_family)=1            sizeof(sin6_family)=1
+    offsetof(sin6_port)=2              sizeof(sin6_port)=2
+    offsetof(sin6_flowinfo)=4          sizeof(sin6_flowinfo)=4
+    offsetof(sin6_addr)=8              sizeof(sin6_addr)=16
+    offsetof(sin6_scope_id)=24         sizeof(sin6_scope_id)=4
+  sizeof(sockaddr_storage)=256
+    offsetof(ss_len)=0                 sizeof(ss_len)=1
+    offsetof(ss_family)=1              sizeof(ss_family)=1
+  openbsd% ./unix-connection foo ./foo
+  bind(server)          <- "foo" (3 bytes)
+  getsockname(server)   -> "foo" (3 bytes)      # OpenBSD doesn't complement a NUL.
+  getsockname(client)   -> too short sockaddr_un (0 bytes)      # empty sockaddr_un (no sun_len and sun_family) returned by getsockname for anonymous Unix domain socket.
+  connect               <- "./foo" (5 bytes)
+  getpeername(client)   -> "foo" (3 bytes)      # getpeername returns the name given for bind().
+  accept                -> "\0\0\0\0\0\0\0\0\0\0\0\0\0\0" (14 bytes)    # 14 NULs returned by accept for anonymous Unix domain socket.
+  getsockname(accepted) -> "foo" (3 bytes)
+  getpeername(accepted) -> too short sockaddr_un (0 bytes)      # empty sockaddr_un returned by getpeername for anonymous Unix domain socket.
+  openbsd% ./bind-getsockname 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012
+  bind        <- "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012" (103 bytes)
+  getsockname -> "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012" (103 bytes)
+  openbsd% ./bind-getsockname 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123
+  bind        <- "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123" (104 bytes)
+  bind: Invalid argument
+  openbsd% ./bind-getsockname 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234
+  bind        <- "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234" (105 bytes)
+  bind: Invalid argument
+
+
+SunOS 5.11 :
+
+  sunos% uname -mrsv
+  SunOS 5.11 snv_111b i86pc
+  sunos% ./size                     
+  sizeof(sockaddr)=16
+    offsetof(sa_family)=0              sizeof(sa_family)=2
+    offsetof(sa_data)=2                sizeof(sa_data)=14
+  sizeof(sockaddr_un)=110
+    offsetof(sun_family)=0             sizeof(sun_family)=2
+    offsetof(sun_path)=2               sizeof(sun_path)=108
+  sizeof(sockaddr_in)=16
+    offsetof(sin_family)=0             sizeof(sin_family)=2
+    offsetof(sin_port)=2               sizeof(sin_port)=2
+    offsetof(sin_addr)=4               sizeof(sin_addr)=4
+  sizeof(sockaddr_in6)=32
+    offsetof(sin6_family)=0            sizeof(sin6_family)=2
+    offsetof(sin6_port)=2              sizeof(sin6_port)=2
+    offsetof(sin6_flowinfo)=4          sizeof(sin6_flowinfo)=4
+    offsetof(sin6_addr)=8              sizeof(sin6_addr)=16
+    offsetof(sin6_scope_id)=24         sizeof(sin6_scope_id)=4
+  sizeof(sockaddr_storage)=256
+    offsetof(ss_family)=0              sizeof(ss_family)=2
+  sunos% ./unix-connection foo ./foo
+  bind(server)          <- "foo" (3 bytes)
+  getsockname(server)   -> "foo\0" (4 bytes)    # Solaris complements a NUL.
+  getsockname(client)   -> too short sockaddr_un (0 bytes)      # empty sockaddr_un (no sun_family) returned by getsockname for anonymous Unix domain socket.
+  connect               <- "./foo" (5 bytes)
+  getpeername(client)   -> "./foo\0" (6 bytes)  # getpeername returns the name given for connect().
+  accept                -> "\0\0\0\0\0\0\0\0\0\0\0\0\0\0" (14 bytes)    # 14 NULs returned by accept (and getpeername) for anonymous Unix domain socket.
+  getsockname(accepted) -> "foo\0" (4 bytes)
+  getpeername(accepted) -> "\0\0\0\0\0\0\0\0\0\0\0\0\0\0" (14 bytes)
+  sunos% ./bind-getsockname 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456 
+  bind        <- "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456" (107 bytes)
+  getsockname -> "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456\0" (108 bytes)
+  sunos% ./bind-getsockname 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567
+  bind        <- "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567" (108 bytes)
+  getsockname -> "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567"... (109 bytes)
+  sunos% ./bind-getsockname 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678
+  bind        <- "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" (109 bytes)
+  getsockname -> "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567"... (110 bytes)
+  sunos% ./bind-getsockname 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234
+  bind        <- "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234" (255 bytes)
+  getsockname -> "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567"... (256 bytes)
+  sunos% ./bind-getsockname 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345
+  bind        <- "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345" (256 bytes)
+  bind: File name too long
+  sunos% ./bind-getsockname ././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././a
+  bind        <- "././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././a" (501 bytes)
+  getsockname -> "././././././././././././././././././././././././././././././././././././././././././././././././././././././"... (502 bytes)
+
 
 == License
 
