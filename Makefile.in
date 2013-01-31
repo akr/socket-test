@@ -25,7 +25,8 @@
 CC = @CC@
 CFLAGS = @CFLAGS@
 CPPFLAGS = @CPPFLAGS@
-LDFLAGS = @LDFLAGS@ @LIBS@
+LDFLAGS = @LDFLAGS@
+LDLIBS = @LIBS@
 
 TARGETS = size bind-getsockname unix-connection
 
@@ -33,6 +34,15 @@ all: $(TARGETS)
 
 clean:
 	rm -f $(TARGETS) *.o
+
+size: size.o
+	$(CC) $(LDFLAGS) size.o $(LDLIBS) -o $@
+
+bind-getsockname: bind-getsockname.o util.o
+	$(CC) $(LDFLAGS) bind-getsockname.o util.o $(LDLIBS) -o $@
+
+unix-connection: unix-connection.o util.o
+	$(CC) $(LDFLAGS) unix-connection.o util.o $(LDLIBS) -o $@
 
 size: size.c
 bind-getsockname: bind-getsockname.o util.o
