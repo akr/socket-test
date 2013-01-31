@@ -236,19 +236,26 @@ void unlink_socket(char *path)
 
 static char *errsym(int err)
 {
-  static char msgbuf[6+sizeof(int)*3+1];
-
   if (err == EAGAIN) return "EAGAIN"; /* may be equal to EWOULDBLOCK */
   if (err == ENOTSUP) return "ENOTSUP"; /* may be equal to EOPNOTSUPP */
 
   switch (err) {
 #include "errmsg.h"
   }
-  snprintf(msgbuf, sizeof(msgbuf), "errno=%d", err);
-  return msgbuf;
+  return NULL;
 }
 
 void perror2(const char *s)
 {
-  fprintf(stderr, "%s: %s (%s)\n", s, strerror(errno), errsym(errno));
+  int err = errno;
+  char *sep, *sym;
+  if (s)
+    sep = ": ";
+  else
+    s = sep = "";
+  sym = errsym(err);
+  if (sym)
+    fprintf(stderr, "%s%s%s (%s)\n", s, sep, strerror(err), sym);
+  else
+    fprintf(stderr, "%s%s%s (errno=%d)\n", s, sep, strerror(err), err);
 }
