@@ -1,5 +1,35 @@
 #include "sockettest.h"
 
+void *xmalloc(size_t size)
+{
+  void *p;
+  p = malloc(size);
+  if (p == NULL) {
+    perror("malloc");
+    exit(EXIT_FAILURE);
+  }
+  return p;
+}
+
+void *xfalloc(size_t size, int ch)
+{
+  void *p;
+  p = xmalloc(size);
+  memset(p, ch, size);
+  return p;
+}
+
+void *xrealloc(void *ptr, size_t size)
+{
+  void *p;
+  p = realloc(ptr, size);
+  if (p == NULL) {
+    perror("realloc");
+    exit(EXIT_FAILURE);
+  }
+  return p;
+}
+
 buffer_t *buffer_new(size_t initial_bufsize)
 {
   buffer_t *buf;
@@ -202,34 +232,4 @@ void unlink_socket(char *path)
 
   if (S_ISSOCK(statbuf.st_mode))
     unlink(path);
-}
-
-void *xmalloc(size_t size)
-{
-  void *p;
-  p = malloc(size);
-  if (p == NULL) {
-    perror("malloc");
-    exit(EXIT_FAILURE);
-  }
-  return p;
-}
-
-void *xfalloc(size_t size, int ch)
-{
-  void *p;
-  p = xmalloc(size);
-  memset(p, ch, size);
-  return p;
-}
-
-void *xrealloc(void *ptr, size_t size)
-{
-  void *p;
-  p = realloc(ptr, size);
-  if (p == NULL) {
-    perror("realloc");
-    exit(EXIT_FAILURE);
-  }
-  return p;
 }
