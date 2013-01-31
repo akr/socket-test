@@ -33,6 +33,6 @@ size: size.c
 bind-getsockname: bind-getsockname.o util.o
 unix-connection: unix-connection.o util.o
 
-bind-getsockname.o: bind-getsockname.c sockettest.h
-unix-connection.o: unix-connection.c sockettest.h
-util.o: util.c sockettest.h
+bind-getsockname.o: bind-getsockname.c sockettest.h config.h
+unix-connection.o: unix-connection.c sockettest.h config.h
+util.o: util.c sockettest.h config.h
