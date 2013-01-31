@@ -249,7 +249,9 @@ static char *errsym(int err)
     case EAFNOSUPPORT: return "EAFNOSUPPORT";
     case EALREADY: return "EALREADY";
     case EBADF: return "EBADF";
+#ifdef EBADMSG
     case EBADMSG: return "EBADMSG";
+#endif
     case EBUSY: return "EBUSY";
     case ECANCELED: return "ECANCELED";
     case ECHILD: return "ECHILD";
@@ -276,7 +278,9 @@ static char *errsym(int err)
     case EMFILE: return "EMFILE";
     case EMLINK: return "EMLINK";
     case EMSGSIZE: return "EMSGSIZE";
+#ifdef EMULTIHOP
     case EMULTIHOP: return "EMULTIHOP";
+#endif
     case ENAMETOOLONG: return "ENAMETOOLONG";
     case ENETDOWN: return "ENETDOWN";
     case ENETRESET: return "ENETRESET";
@@ -290,7 +294,9 @@ static char *errsym(int err)
     case ENOENT: return "ENOENT";
     case ENOEXEC: return "ENOEXEC";
     case ENOLCK: return "ENOLCK";
+#ifdef ENOLINK
     case ENOLINK: return "ENOLINK";
+#endif
     case ENOMEM: return "ENOMEM";
     case ENOMSG: return "ENOMSG";
     case ENOPROTOOPT: return "ENOPROTOOPT";
@@ -318,7 +324,9 @@ static char *errsym(int err)
 #endif
     case EPERM: return "EPERM";
     case EPIPE: return "EPIPE";
+#ifdef EPROTO
     case EPROTO: return "EPROTO";
+#endif
     case EPROTONOSUPPORT: return "EPROTONOSUPPORT";
     case EPROTOTYPE: return "EPROTOTYPE";
     case ERANGE: return "ERANGE";
@@ -334,7 +342,7 @@ static char *errsym(int err)
     case EWOULDBLOCK: return "EWOULDBLOCK";
     case EXDEV: return "EXDEV";
   }
-  sprintf(msgbuf, "errno=%d", err);
+  snprintf(msgbuf, sizeof(msgbuf), "errno=%d", err);
   return msgbuf;
 }
 
