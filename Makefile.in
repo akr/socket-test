@@ -27,7 +27,12 @@ CFLAGS = @CFLAGS@
 CPPFLAGS = @CPPFLAGS@
 LDFLAGS = @LDFLAGS@ @LIBS@
 
-all: size bind-getsockname unix-connection
+TARGETS = size bind-getsockname unix-connection
+
+all: $(TARGETS)
+
+clean:
+	rm -f $(TARGETS) *.o
 
 size: size.c
 bind-getsockname: bind-getsockname.o util.o
