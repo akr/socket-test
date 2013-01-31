@@ -152,8 +152,6 @@ static void test_unix_connection(void)
   int s, c, sc;
   int ret;
 
-  printf("sizeof(sun_path) = %d\n", (int)FIELD_SIZE(struct sockaddr_un, sun_path));
-
   server_sockaddr_len = offsetof(struct sockaddr_un, sun_path) + server_path_len;
   server_sockaddr_ptr = xfalloc(server_sockaddr_len, '\0');
   server_sockaddr_ptr->sun_family = AF_UNIX;
