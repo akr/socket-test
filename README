@@ -12,7 +12,7 @@
   % ./configure CFLAGS='-g -Wall'     # -Wall assumes gcc.
   % make
 
-== Result
+== Example
 
 Debian GNU/Linux 7.0 (wheezy) :
 
