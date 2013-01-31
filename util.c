@@ -240,7 +240,7 @@ static char *errsym(int err)
   if (err == ENOTSUP) return "ENOTSUP"; /* may be equal to EOPNOTSUPP */
 
   switch (err) {
-#include "errmsg.h"
+#include "errsym.h"
   }
   return NULL;
 }

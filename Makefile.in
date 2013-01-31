@@ -53,5 +53,5 @@ unix-connection.o: unix-connection.c sockettest.h config.h
 util.o: util.c sockettest.h config.h
 
 gen:
-	erb errmsg.erb > errmsg.h
+	erb errsym.erb > errsym.h
 
