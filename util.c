@@ -1,5 +1,58 @@
 #include "sockettest.h"
 
+buffer_t *buffer_new(size_t initial_bufsize)
+{
+  buffer_t *buf;
+
+  if (initial_bufsize == 0)
+    initial_bufsize = 16;
+
+  buf = xmalloc(sizeof(buffer_t));
+  buf->ptr = xmalloc(initial_bufsize);
+  buf->len = 0;
+  buf->bufsize = initial_bufsize;
+
+  return buf;
+}
+
+void buffer_add_mem(buffer_t *buf, void *mem, size_t size)
+{
+  if (buf->bufsize - buf->len < size) {
+    while (buf->bufsize - buf->len < size) {
+      buf->bufsize *= 2;
+    }
+    buf->ptr = xrealloc(buf->ptr, buf->bufsize);
+  }
+
+  memcpy(buf->ptr + buf->len, mem, size);
+  buf->len += size;
+  return;
+}
+
+void buffer_add_str(buffer_t *buf, char *str)
+{
+  buffer_add_mem(buf, str, strlen(str));
+}
+
+void buffer_add_byte(buffer_t *buf, int byte)
+{
+  char ch = byte;
+  buffer_add_mem(buf, &ch, 1);
+}
+
+void *buffer_unwrap(buffer_t *buf)
+{
+  void *ptr = buf->ptr;
+  free(buf);
+  return ptr;
+}
+
+void buffer_free(buffer_t *buf)
+{
+  free(buf->ptr);
+  free(buf);
+}
+
 #define ESCAPED_SINGLE_CHAR_MAXLEN 4
 
 static size_t escape_sequence(char *buf, size_t bufsize, int ch)
@@ -77,36 +130,6 @@ static int unescape_sequence(size_t *used_len_ret, char *escaped_ptr, size_t esc
   return -1;
 }
 
-size_t measure_escaped_string(char *unescaped_ptr, size_t unescaped_len)
-{
-  size_t i;
-  size_t len = 0;
-  for (i = 0; i < unescaped_len; i++) {
-    int ch = (unsigned char)unescaped_ptr[i];
-    char buf[ESCAPED_SINGLE_CHAR_MAXLEN];
-    len += escape_sequence(buf, sizeof(buf), ch);
-  }
-  return len;
-}
-
-/* return -1 on error */
-ssize_t measure_unescaped_string(char *escaped_ptr, size_t escaped_len)
-{
-  ssize_t len = 0;
-  char *p, *pend;
-  p = escaped_ptr;
-  pend = escaped_ptr + escaped_len;
-  while (p < pend) {
-    size_t used_len;
-    int ch = unescape_sequence(&used_len, p, pend - p);
-    if (ch == -1)
-      return -1;
-    p += used_len;
-    len++;
-  }
-  return len;
-}
-
 /*
  * Escape a string (TAB to \t, etc.) pointed by _unescaped_ptr_ with length _unescaped_len_.
  * The result (NUL-terminated string) is stored in a buffer newly allcated by malloc.
@@ -117,28 +140,21 @@ ssize_t measure_unescaped_string(char *escaped_ptr, size_t escaped_len)
  */
 char *escape_string(size_t *escaped_len_ret, char *unescaped_ptr, size_t unescaped_len)
 {
-  size_t len;
-  char *ptr, *p;
+  buffer_t *buf = buffer_new(unescaped_len+1);
   size_t i;
 
-  len = measure_escaped_string(unescaped_ptr, unescaped_len);
-  ptr = malloc(len+1);
-  if (ptr == NULL) {
-    return NULL;
-  }
-
-  p = ptr;
   for (i = 0; i < unescaped_len; i++) {
     int ch = (unsigned char)unescaped_ptr[i];
+    char chbuf[ESCAPED_SINGLE_CHAR_MAXLEN];
     size_t chsize;
-    chsize = escape_sequence(p, ptr + len - p, ch);
-    p += chsize;
+    chsize = escape_sequence(chbuf, ESCAPED_SINGLE_CHAR_MAXLEN, ch);
+    buffer_add_mem(buf, chbuf, chsize);
   }
-  ptr[len] = '\0';
   if (escaped_len_ret) {
-    *escaped_len_ret = len;
+    *escaped_len_ret = buf->len;
   }
-  return ptr;
+  buffer_add_byte(buf, '\0');
+  return buffer_unwrap(buf);
 }
 
 /*
@@ -152,32 +168,24 @@ char *escape_string(size_t *escaped_len_ret, char *unescaped_ptr, size_t unescap
  */
 char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escaped_len)
 {
-  ssize_t len;
+  buffer_t *buf = buffer_new(escaped_len+1);
   char *p, *pend;
-  char *result, *rp;
-
-  len = measure_unescaped_string(escaped_ptr, escaped_len);
-  result = malloc(len+1);
-  if (result == NULL) {
-    return NULL;
-  }
 
   p = escaped_ptr;
   pend = escaped_ptr + escaped_len;
-  rp = result;
   while (p < pend) {
     size_t used_len;
     int ch = unescape_sequence(&used_len, p, pend - p);
     if (ch == -1) {
-      free(result);
+      buffer_free(buf);
       return NULL;
     }
     p += used_len;
-    *rp++ = ch;
+    buffer_add_byte(buf, ch);
   }
-  result[len] = '\0';
-  *unescaped_len_ret = (size_t)len;
-  return result;
+  *unescaped_len_ret = (size_t)buf->len;
+  buffer_add_byte(buf, '\0');
+  return buffer_unwrap(buf);
 }
 
 void unlink_socket(char *path)
@@ -215,3 +223,13 @@ void *xfalloc(size_t size, int ch)
   return p;
 }
 
+void *xrealloc(void *ptr, size_t size)
+{
+  void *p;
+  p = realloc(ptr, size);
+  if (p == NULL) {
+    perror("realloc");
+    exit(EXIT_FAILURE);
+  }
+  return p;
+}

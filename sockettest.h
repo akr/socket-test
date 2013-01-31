@@ -39,6 +39,19 @@
 
 #define FIELD_SIZE(struct_name, field_name) sizeof(((struct_name *)0)->field_name)
 
+typedef struct {
+  void *ptr;
+  size_t len;
+  size_t bufsize;
+} buffer_t;
+
+buffer_t *buffer_new(size_t initial_bufsize);
+void buffer_add_mem(buffer_t *buf, void *mem, size_t size);
+void buffer_add_str(buffer_t *buf, char *str);
+void buffer_add_byte(buffer_t *buf, int byte);
+void *buffer_unwrap(buffer_t *buf);
+void buffer_free(buffer_t *buf);
+
 char *escape_string(size_t *escaped_len_ret, char *unescaped_ptr, size_t unescaped_len);
 char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escaped_len);
 
@@ -47,3 +60,4 @@ void unlink_socket(char *path);
 void *xmalloc(size_t size);
 void *xfalloc(size_t size, int ch);
 
+void *xrealloc(void *ptr, size_t size);
