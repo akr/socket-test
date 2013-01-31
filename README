@@ -1,5 +1,9 @@
 = socket test commands
 
+== Home Page
+
+  https://github.com/akr/socket-test
+
 == Build
 
   % git clone git://github.com/akr/socket-test.git
