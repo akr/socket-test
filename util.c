@@ -236,7 +236,7 @@ void unlink_socket(char *path)
 
 static char *errsym(int err)
 {
-  static char msgbuf[sizeof(int)*3+1];
+  static char msgbuf[6+sizeof(int)*3+1];
 
   if (err == EAGAIN) return "EAGAIN"; /* may be equal to EWOULDBLOCK */
   if (err == ENOTSUP) return "ENOTSUP"; /* may be equal to EOPNOTSUPP */
