@@ -63,7 +63,7 @@ FreeBSD 9.1 :
   FreeBSD 9.1-RELEASE FreeBSD 9.1-RELEASE #0 r243825: Tue Dec  4 09:23:10 UTC 2012     root@farrell.cse.buffalo.edu:/usr/obj/usr/src/sys/GENERIC  amd64
   freebsd% ./size
   sizeof(sockaddr)=16
-    offsetof(sa_len)=0                 sizeof(sa_len)=1         # 4.4BSD has sXXX_len field.
+    offsetof(sa_len)=0                 sizeof(sa_len)=1         # 4.4BSD has s*_len field.
     offsetof(sa_family)=1              sizeof(sa_family)=1
     offsetof(sa_data)=2                sizeof(sa_data)=14
   sizeof(sockaddr_un)=106
@@ -111,7 +111,7 @@ NetBSD 5.1 :
   NetBSD 5.1 NetBSD 5.1 (GENERIC) #0: Sat Nov  6 13:19:33 UTC 2010  builds@b6.netbsd.org:/home/builds/ab/netbsd-5-1-RELEASE/amd64/201011061943Z-obj/home/builds/ab/netbsd-5-1-RELEASE/src/sys/arch/amd64/compile/GENERIC amd64
   netbsd% ./size
   sizeof(sockaddr)=16
-    offsetof(sa_len)=0                 sizeof(sa_len)=1         # 4.4BSD has sXXX_len field.
+    offsetof(sa_len)=0                 sizeof(sa_len)=1         # 4.4BSD has s*_len field.
     offsetof(sa_family)=1              sizeof(sa_family)=1
     offsetof(sa_data)=2                sizeof(sa_data)=14
   sizeof(sockaddr_un)=106
@@ -162,7 +162,7 @@ OpenBSD 5.1 :
   OpenBSD 5.1 GENERIC#0 sparc64
   openbsd% ./size
   sizeof(sockaddr)=16
-    offsetof(sa_len)=0                 sizeof(sa_len)=1         # 4.4BSD has sXXX_len field.
+    offsetof(sa_len)=0                 sizeof(sa_len)=1         # 4.4BSD has s*_len field.
     offsetof(sa_family)=1              sizeof(sa_family)=1
     offsetof(sa_data)=2                sizeof(sa_data)=14
   sizeof(sockaddr_un)=106
