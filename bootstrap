@@ -2,5 +2,7 @@
 
 # generate configure and config.h.in
 
+# autoreconf may be usable instead.
+
 autoconf
 autoheader
