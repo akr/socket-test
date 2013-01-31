@@ -95,8 +95,6 @@ static void test_bind_getsockname(void)
   char *escaped_unix_socket_path;
   int truncated;
 
-  printf("sizeof(sun_path) = %d\n", (int)FIELD_SIZE(struct sockaddr_un, sun_path));
-
   alen1 = offsetof(struct sockaddr_un, sun_path) + unix_path_len;
   a1 = malloc(alen1);
   if (a1 == NULL) {
