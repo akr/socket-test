@@ -283,7 +283,9 @@ static char *errsym(int err)
     case ENETUNREACH: return "ENETUNREACH";
     case ENFILE: return "ENFILE";
     case ENOBUFS: return "ENOBUFS";
+#ifdef ENODATA
     case ENODATA: return "ENODATA";
+#endif
     case ENODEV: return "ENODEV";
     case ENOENT: return "ENOENT";
     case ENOEXEC: return "ENOEXEC";
@@ -293,19 +295,27 @@ static char *errsym(int err)
     case ENOMSG: return "ENOMSG";
     case ENOPROTOOPT: return "ENOPROTOOPT";
     case ENOSPC: return "ENOSPC";
+#ifdef ENOSR
     case ENOSR: return "ENOSR";
+#endif
+#ifdef ENOSTR
     case ENOSTR: return "ENOSTR";
+#endif
     case ENOSYS: return "ENOSYS";
     case ENOTCONN: return "ENOTCONN";
     case ENOTDIR: return "ENOTDIR";
     case ENOTEMPTY: return "ENOTEMPTY";
+#ifdef ENOTRECOVERABLE
     case ENOTRECOVERABLE: return "ENOTRECOVERABLE";
+#endif
     case ENOTSOCK: return "ENOTSOCK";
     case ENOTTY: return "ENOTTY";
     case ENXIO: return "ENXIO";
     case EOPNOTSUPP: return "EOPNOTSUPP";
     case EOVERFLOW: return "EOVERFLOW";
+#ifdef EOWNERDEAD
     case EOWNERDEAD: return "EOWNERDEAD";
+#endif
     case EPERM: return "EPERM";
     case EPIPE: return "EPIPE";
     case EPROTO: return "EPROTO";
@@ -316,7 +326,9 @@ static char *errsym(int err)
     case ESPIPE: return "ESPIPE";
     case ESRCH: return "ESRCH";
     case ESTALE: return "ESTALE";
+#ifdef ETIME
     case ETIME: return "ETIME";
+#endif
     case ETIMEDOUT: return "ETIMEDOUT";
     case ETXTBSY: return "ETXTBSY";
     case EWOULDBLOCK: return "EWOULDBLOCK";
