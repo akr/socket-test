@@ -26,43 +26,54 @@
 
 #include "sockettest.h"
 
+#define SHOW_STRUCT(struct_name) \
+  printf("sizeof(%s)=%d\n", \
+      #struct_name, (int)sizeof(struct struct_name))
+#define SHOW_FIELD(struct_name, field_name) \
+  printf("  offsetof(%s)=%d%*s sizeof(%s)=%d\n", \
+      #field_name, (int)offsetof(struct struct_name, field_name), \
+      20-(int)sizeof(#field_name), "", \
+      #field_name, (int)FIELD_SIZE(struct struct_name, field_name))
+
 int main(int argc, char *argv[])
 {
-  printf("sizeof(sockaddr)=%d\n", (int)sizeof(struct sockaddr_storage));
+  SHOW_STRUCT(sockaddr);
 #ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
-  printf("  offsetof(sa_len)=%d         sizeof(sa_len)=%d\n",
-      (int)offsetof(struct sockaddr, sa_len),
-      (int)FIELD_SIZE(struct sockaddr, sa_len));
+  SHOW_FIELD(sockaddr, sa_len);
 #endif
-  printf("  offsetof(sa_family)=%d      sizeof(sa_family)=%d\n",
-      (int)offsetof(struct sockaddr, sa_family),
-      (int)FIELD_SIZE(struct sockaddr, sa_family));
-  printf("  offsetof(sa_data)=%d        sizeof(sa_data)=%d\n",
-      (int)offsetof(struct sockaddr, sa_data),
-      (int)FIELD_SIZE(struct sockaddr, sa_data));
+  SHOW_FIELD(sockaddr, sa_family);
+  SHOW_FIELD(sockaddr, sa_data);
 
-  printf("sizeof(sockaddr_un)=%d\n", (int)sizeof(struct sockaddr_un));
+  SHOW_STRUCT(sockaddr_un);
 #ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
-  printf("  offsetof(sun_len)=%d        sizeof(sun_len)=%d\n",
-      (int)offsetof(struct sockaddr_un, sun_len),
-      (int)FIELD_SIZE(struct sockaddr_un, sun_len));
+  SHOW_FIELD(sockaddr_un, sun_len);
 #endif
-  printf("  offsetof(sun_family)=%d     sizeof(sun_family)=%d\n",
-      (int)offsetof(struct sockaddr_un, sun_family),
-      (int)FIELD_SIZE(struct sockaddr_un, sun_family));
-  printf("  offsetof(sun_path)=%d       sizeof(sun_path)=%d\n",
-      (int)offsetof(struct sockaddr_un, sun_path),
-      (int)FIELD_SIZE(struct sockaddr_un, sun_path));
+  SHOW_FIELD(sockaddr_un, sun_family);
+  SHOW_FIELD(sockaddr_un, sun_path);
 
-  printf("sizeof(sockaddr_storage)=%d\n", (int)sizeof(struct sockaddr_storage));
+  SHOW_STRUCT(sockaddr_in);
 #ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
-  printf("  offsetof(ss_len)=%d         sizeof(ss_len)=%d\n",
-      (int)offsetof(struct sockaddr_storage, ss_len),
-      (int)FIELD_SIZE(struct sockaddr_storage, ss_len));
+  SHOW_FIELD(sockaddr_in, sin_len);
 #endif
-  printf("  offsetof(ss_family)=%d      sizeof(ss_family)=%d\n",
-      (int)offsetof(struct sockaddr_storage, ss_family),
-      (int)FIELD_SIZE(struct sockaddr_storage, ss_family));
+  SHOW_FIELD(sockaddr_in, sin_family);
+  SHOW_FIELD(sockaddr_in, sin_port);
+  SHOW_FIELD(sockaddr_in, sin_addr);
+
+  SHOW_STRUCT(sockaddr_in6);
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+  SHOW_FIELD(sockaddr_in6, sin6_len);
+#endif
+  SHOW_FIELD(sockaddr_in6, sin6_family);
+  SHOW_FIELD(sockaddr_in6, sin6_port);
+  SHOW_FIELD(sockaddr_in6, sin6_flowinfo);
+  SHOW_FIELD(sockaddr_in6, sin6_addr);
+  SHOW_FIELD(sockaddr_in6, sin6_scope_id);
+
+  SHOW_STRUCT(sockaddr_storage);
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+  SHOW_FIELD(sockaddr_storage, ss_len);
+#endif
+  SHOW_FIELD(sockaddr_storage, ss_family);
 
   return EXIT_SUCCESS;
 }
