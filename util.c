@@ -70,6 +70,11 @@ void buffer_add_byte(buffer_t *buf, int byte)
   buffer_add_mem(buf, &ch, 1);
 }
 
+void buffer_add_buf(buffer_t *buf, buffer_t *buf2)
+{
+  buffer_add_mem(buf, buf2->ptr, buf2->len);
+}
+
 void *buffer_unwrap(buffer_t *buf)
 {
   void *ptr = buf->ptr;
@@ -187,10 +192,123 @@ char *escape_string(size_t *escaped_len_ret, char *unescaped_ptr, size_t unescap
   return buffer_unwrap(buf);
 }
 
+/* 
+ * skip_whitespace,
+ * parse_integer,
+ * parse_string_repeatation,
+ * parse_string_content :
+ *
+ * return the next character to scan.
+ * return NULL on unrecoverable error.
+ *
+ * unescaped content is added into _buf_.
+ */
+
+static char *parse_string_content(char *p, char *pend, int terminator, buffer_t *buf);
+
+static char *skip_whitespace(char *p, char *pend)
+{
+  while (p < pend) {
+    switch (*p) {
+      default:
+        return p;
+
+      case ' ':
+      case '\f':
+      case '\n':
+      case '\r':
+      case '\t':
+      case '\v':
+        p++;
+        break;
+    }
+  }
+  return p;
+}
+
+static char *parse_integer(char *p, char *pend, long *resultp)
+{
+  char *s, *e;
+  if (p == pend) return NULL;
+  if (!isdigit(*p)) return NULL;
+  s = p++;
+  while (p < pend && isdigit(*p))
+    p++;
+  *resultp = strtol(s, &e, 10);
+  if (p != e) return NULL;
+  return p;
+}
+
+/* integer * "content" */
+static char *parse_string_repeatation(char *p, char *pend, buffer_t *buf)
+{
+  int i;
+  long n;
+  buffer_t *elem = buffer_new(2);
+  p = skip_whitespace(p, pend);
+  p = parse_integer(p, pend, &n);
+  if (p == NULL) return NULL;
+  p = skip_whitespace(p, pend);
+  if (p == pend) return NULL;
+  if (*p != '*') return NULL;
+  p++;
+  p = skip_whitespace(p, pend);
+  if (p == pend) return NULL;
+  if (*p != '"') return NULL;
+  p++;
+  p = parse_string_content(p, pend, '"', elem);
+  if (p == NULL) return NULL;
+  if (p == pend) return NULL;
+  if (*p != '"') return NULL;
+  p++;
+  p = skip_whitespace(p, pend);
+  for (i = 0; i < n; i++)
+    buffer_add_buf(buf, elem);
+  buffer_free(elem);
+  return p;
+}
+
+static char *parse_string_content(char *p, char *pend, int terminator, buffer_t *buf)
+{
+  while (p < pend)
+  {
+    size_t used_len;
+    int ch;
+
+    if (*p == terminator)
+      return p;
+    else if (*p == '(') {
+      p++;
+      p = parse_string_repeatation(p, pend, buf);
+      if (p == NULL) return NULL;
+      if (*p != ')') return NULL;
+      p++;
+    }
+    else if (*p == ')') {
+      return NULL;
+    }
+    else {
+      ch = unescape_sequence(&used_len, p, pend - p);
+      if (ch == -1) {
+        return NULL;
+      }
+      p += used_len;
+      buffer_add_byte(buf, ch);
+    }
+  }
+  return p;
+}
+
 /*
  * Unescape a string (\t to TAB, etc.) pointed by _escaped_ptr_ with length _escaped_len_.
  * The result is stored in a buffer newly allcated by malloc.
  * The pointer to the allocated memory is returned and the length is stored in *unescaped_len_ret.
+ *
+ * Escape sequences are similar as C.
+ * However octal form is not supported.
+ *
+ * The form, '(integer * "...")', is also expanded as _integer_ repeatation of
+ * the inner string.
  *
  * The result buffer is terminated by NUL but it is not counted in *unescaped_len_ret.
  *
@@ -203,16 +321,14 @@ char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escap
 
   p = escaped_ptr;
   pend = escaped_ptr + escaped_len;
-  while (p < pend) {
-    size_t used_len;
-    int ch = unescape_sequence(&used_len, p, pend - p);
-    if (ch == -1) {
+
+  p = parse_string_content(p, pend, -1, buf);
+
+  if (p != pend) {
       buffer_free(buf);
       return NULL;
-    }
-    p += used_len;
-    buffer_add_byte(buf, ch);
   }
+
   *unescaped_len_ret = (size_t)buf->len;
   buffer_add_byte(buf, '\0');
   return buffer_unwrap(buf);

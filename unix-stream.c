@@ -89,6 +89,10 @@ static void parse_args(int argc, char *argv[])
 
   arg = argv[optind++];
   server_path_str = unescape_string(&server_path_len, arg, strlen(arg));
+  if (server_path_str == NULL) {
+    fprintf(stderr, "server path unescape failed\n");
+    exit(EXIT_FAILURE);
+  }
 
   if (optind == argc) {
     connect_path_str = server_path_str;
@@ -98,6 +102,10 @@ static void parse_args(int argc, char *argv[])
 
   arg = argv[optind++];
   connect_path_str = unescape_string(&connect_path_len, arg, strlen(arg));
+  if (connect_path_str == NULL) {
+    fprintf(stderr, "connect path unescape failed\n");
+    exit(EXIT_FAILURE);
+  }
 
   if (optind == argc) {
     return;
@@ -105,6 +113,10 @@ static void parse_args(int argc, char *argv[])
 
   arg = argv[optind++];
   client_path_str = unescape_string(&client_path_len, arg, strlen(arg));
+  if (client_path_str == NULL) {
+    fprintf(stderr, "client path unescape failed\n");
+    exit(EXIT_FAILURE);
+  }
 
   if (optind == argc) {
     return;
