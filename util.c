@@ -83,7 +83,7 @@ void buffer_free(buffer_t *buf)
   free(buf);
 }
 
-#define ESCAPED_SINGLE_CHAR_MAXLEN 4
+#define ESCAPED_SINGLE_CHAR_MAXLEN (sizeof("\\xXX"))
 
 static size_t escape_sequence(char *buf, size_t bufsize, int ch)
 {
