@@ -7,6 +7,5 @@ config.h
 config.log
 config.status
 configure
-bind-getsockname
 size
 unix-stream
