@@ -1,5 +1,7 @@
 /* errsym.c is generated from errsym.erb. */
 
+
+
 #include "sockettest.h"
 
 char *errsym(int err)
