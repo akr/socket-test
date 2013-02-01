@@ -149,6 +149,8 @@ static int unescape_sequence(size_t *used_len_ret, char *escaped_ptr, size_t esc
     case 't': *used_len_ret = 2; return '\t';
     case 'v': *used_len_ret = 2; return '\v';
     case 'e': *used_len_ret = 2; return '\x1B';
+    case '(': *used_len_ret = 2; return '(';
+    case ')': *used_len_ret = 2; return ')';
     case '\\': *used_len_ret = 2; return '\\';
     case 'x': {
       int hi, lo;
