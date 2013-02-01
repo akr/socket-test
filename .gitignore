@@ -9,4 +9,4 @@ config.status
 configure
 bind-getsockname
 size
-unix-connection
+unix-stream

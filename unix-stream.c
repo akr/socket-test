@@ -40,7 +40,7 @@ static size_t client_path_len = 0;
 void usage(int status)
 {
   fputs(
-      "usage: unix-connection server-path [connect-path [client-path]]\n"
+      "usage: unix-stream server-path [connect-path [client-path]]\n"
       "option: -h : show this help message\n"
       "        -g N : increase buffer size for getsockname/getpeername/accept (negative to decrease)\n"
       "        -f N : ASCII code to fill for getsockname buffer\n"
@@ -144,7 +144,7 @@ static void report_path_gotten(char *key, size_t buf_len, struct sockaddr_un *so
   free(escaped_path);
 }
 
-static void test_unix_connection(void)
+static void test_unix_stream(void)
 {
   struct sockaddr_un *server_sockaddr_ptr, *connect_sockaddr_ptr, *client_sockaddr_ptr, *get_sockaddr_ptr;
   socklen_t server_sockaddr_len, connect_sockaddr_len, client_sockaddr_len, get_sockaddr_len;
@@ -243,6 +243,6 @@ static void test_unix_connection(void)
 int main(int argc, char *argv[])
 {
   parse_args(argc, argv);
-  test_unix_connection();
+  test_unix_stream();
   return EXIT_SUCCESS;
 }

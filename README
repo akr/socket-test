@@ -37,7 +37,7 @@ Debian GNU/Linux 7.0 (wheezy) :
     offsetof(sin6_scope_id)=24         sizeof(sin6_scope_id)=4
   sizeof(sockaddr_storage)=128
     offsetof(ss_family)=0              sizeof(ss_family)=2
-  linux% ./unix-connection 'foo' './foo'
+  linux% ./unix-stream 'foo' './foo'
   bind(server)          <- "foo" (3 bytes)
   getsockname(server)   -> "foo\0" (4 bytes)    # Linux complements a NUL.
   getsockname(client)   -> "" (0 bytes)         # sun_family only sockaddr_un for anonymous Unix domain socket.
@@ -73,7 +73,7 @@ Debian GNU/Linux 7.0 (wheezy) :
   linux% ./bind-getsockname ''
   bind        <- "" (0 bytes)
   getsockname -> "\00001c" (6 bytes)    # Linux "autobind" feature
-  linux% ./unix-connection '\0abc'      # Linux "abstract name space" begins with "\0"
+  linux% ./unix-stream '\0abc'      # Linux "abstract name space" begins with "\0"
   bind(server)          <- "\0abc" (4 bytes)
   getsockname(server)   -> "\0abc" (4 bytes)
   getsockname(client)   -> "" (0 bytes)
@@ -82,7 +82,7 @@ Debian GNU/Linux 7.0 (wheezy) :
   accept                -> "" (0 bytes)
   getsockname(accepted) -> "\0abc" (4 bytes)
   getpeername(accepted) -> "" (0 bytes)
-  linux% ./unix-connection '\0abc' '\0abc\0'
+  linux% ./unix-stream '\0abc' '\0abc\0'
   bind(server)          <- "\0abc" (4 bytes)
   getsockname(server)   -> "\0abc" (4 bytes)
   getsockname(client)   -> "" (0 bytes)
@@ -117,7 +117,7 @@ FreeBSD 9.1 :
   sizeof(sockaddr_storage)=128
     offsetof(ss_len)=0                 sizeof(ss_len)=1
     offsetof(ss_family)=1              sizeof(ss_family)=1
-  freebsd% ./unix-connection foo ./foo
+  freebsd% ./unix-stream foo ./foo
   bind(server)          <- "foo" (3 bytes)
   getsockname(server)   -> "foo" (3 bytes)      # FreeBSD doesn't complement a NUL.
   getsockname(client)   -> "\0\0\0\0\0\0\0\0\0\0\0\0\0\0" (14 bytes)    # 14 NULs returned for anonymous Unix domain socket.
@@ -180,7 +180,7 @@ NetBSD 5.1 :
   sizeof(sockaddr_storage)=128
     offsetof(ss_len)=0                 sizeof(ss_len)=1
     offsetof(ss_family)=1              sizeof(ss_family)=1
-  netbsd% ./unix-connection foo ./foo
+  netbsd% ./unix-stream foo ./foo
   bind(server)          <- "foo" (3 bytes)
   getsockname(server)   -> "foo" (3 bytes)      # FreeBSD doesn't complement a NUL.
   getsockname(client)   -> "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0" (104 bytes)       # 104 NULs returned for anonymous Unix domain socket.
@@ -246,7 +246,7 @@ OpenBSD 5.1 :
   sizeof(sockaddr_storage)=256
     offsetof(ss_len)=0                 sizeof(ss_len)=1
     offsetof(ss_family)=1              sizeof(ss_family)=1
-  openbsd% ./unix-connection foo ./foo
+  openbsd% ./unix-stream foo ./foo
   bind(server)          <- "foo" (3 bytes)
   getsockname(server)   -> "foo" (3 bytes)      # OpenBSD doesn't complement a NUL.
   getsockname(client)   -> too short sockaddr_un (0 bytes)      # empty sockaddr_un (no sun_len and sun_family) returned by getsockname for anonymous Unix domain socket.
@@ -304,7 +304,7 @@ SunOS 5.11 :
     offsetof(sin6_scope_id)=24         sizeof(sin6_scope_id)=4
   sizeof(sockaddr_storage)=256
     offsetof(ss_family)=0              sizeof(ss_family)=2
-  sunos% ./unix-connection foo ./foo
+  sunos% ./unix-stream foo ./foo
   bind(server)          <- "foo" (3 bytes)
   getsockname(server)   -> "foo\0" (4 bytes)    # Solaris complements a NUL.
   getsockname(client)   -> too short sockaddr_un (0 bytes)      # empty sockaddr_un (no sun_family) returned by getsockname for anonymous Unix domain socket.

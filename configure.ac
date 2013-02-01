@@ -24,7 +24,7 @@
 
 AC_PREREQ(2.61)
 AC_INIT(socket-test, 0.1)
-AC_CONFIG_SRCDIR([unix-connection.c])
+AC_CONFIG_SRCDIR([unix-stream.c])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.

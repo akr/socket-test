@@ -28,7 +28,7 @@ CPPFLAGS = @CPPFLAGS@
 LDFLAGS = @LDFLAGS@
 LDLIBS = @LIBS@
 
-TARGETS = size bind-getsockname unix-connection
+TARGETS = size bind-getsockname unix-stream
 UTILOBJS = util.o errsym.o
 
 all: $(TARGETS)
@@ -42,15 +42,15 @@ size: size.o
 bind-getsockname: bind-getsockname.o $(UTILOBJS)
 	$(CC) $(LDFLAGS) bind-getsockname.o $(UTILOBJS) $(LDLIBS) -o $@
 
-unix-connection: unix-connection.o $(UTILOBJS)
-	$(CC) $(LDFLAGS) unix-connection.o $(UTILOBJS) $(LDLIBS) -o $@
+unix-stream: unix-stream.o $(UTILOBJS)
+	$(CC) $(LDFLAGS) unix-stream.o $(UTILOBJS) $(LDLIBS) -o $@
 
 size: size.c
 bind-getsockname: bind-getsockname.o $(UTILOBJS)
-unix-connection: unix-connection.o $(UTILOBJS)
+unix-stream: unix-stream.o $(UTILOBJS)
 
 bind-getsockname.o: bind-getsockname.c sockettest.h config.h
-unix-connection.o: unix-connection.c sockettest.h config.h
+unix-stream.o: unix-stream.c sockettest.h config.h
 util.o: util.c sockettest.h config.h
 
 errsym.o: errsym.c
