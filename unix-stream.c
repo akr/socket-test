@@ -26,6 +26,7 @@
 
 #include "sockettest.h"
 
+static int opt_s = 0;
 static int opt_g = 0;
 static int opt_f = '\0';
 static int opt_e = 0;
@@ -42,6 +43,7 @@ void usage(int status)
   fputs(
       "usage: unix-stream server-path [connect-path [client-path]]\n"
       "option: -h : show this help message\n"
+      "        -s : server only test mode.\n"
       "        -g N : increase buffer size for getsockname/getpeername/accept (negative to decrease)\n"
       "        -f N : ASCII code to fill for getsockname buffer\n"
       "        -e N : number of extra bytes for getsockname buffer\n"
@@ -54,11 +56,15 @@ static void parse_args(int argc, char *argv[])
   int opt;
   char *arg;
 
-  while ((opt = getopt(argc, argv, "hg:f:e:")) != -1) {
+  while ((opt = getopt(argc, argv, "hsg:f:e:")) != -1) {
     switch (opt) {
       case 'h':
         usage(EXIT_SUCCESS);
         break; /* not reached */
+
+      case 's':
+        opt_s = 1;
+        break;
 
       case 'g':
         opt_g = atoi(optarg);
@@ -188,6 +194,11 @@ static void test_unix_stream(void)
   ret = getsockname(s, (struct sockaddr *)get_sockaddr_ptr, &len);
   if (ret == -1) { perror2("getsockname(server)"); exit(EXIT_FAILURE); }
   report_path_gotten("getsockname(server)", get_sockaddr_len, get_sockaddr_ptr, len);
+
+  if (opt_s) {
+    unlink_socket(server_path_str);
+    return;
+  }
 
   ret = listen(s, SOMAXCONN);
   if (ret == -1) { perror2("listen"); exit(EXIT_FAILURE); }
