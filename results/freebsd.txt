@@ -28,43 +28,43 @@ sockaddr_storage.ss_family :    offset=1    size=1
 ./unix-stream 'foo' './foo'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(sun_len=5)foo" (3 bytes)
-getsockname(client)   -> "(sun_len=16)(14*"\0")" (14 bytes)
+getsockname(server)   -> "foo" (3 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
 connect               <- "./foo" (5 bytes)
-getpeername(client)   -> "(sun_len=5)foo" (3 bytes)
-accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
-getsockname(accepted) -> "(sun_len=5)foo" (3 bytes)
-getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
+getpeername(client)   -> "foo" (3 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "foo" (3 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream 'foo\0bar' './foo\0hoge'
 bind(server)          <- "foo\0bar" (7 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(sun_len=9)foo\0bar" (7 bytes)
-getsockname(client)   -> "(sun_len=16)(14*"\0")" (14 bytes)
+getsockname(server)   -> "foo\0bar" (7 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
 connect               <- "./foo\0hoge" (10 bytes)
-getpeername(client)   -> "(sun_len=9)foo\0bar" (7 bytes)
-accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
-getsockname(accepted) -> "(sun_len=9)foo\0bar" (7 bytes)
-getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
+getpeername(client)   -> "foo\0bar" (7 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "foo\0bar" (7 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream -p '012345678'
 bind(server)          <- "(94*"Z")012345678" (103 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(sun_len=105)(94*"Z")012345678" (103 bytes)
-getsockname(client)   -> "(sun_len=16)(14*"\0")" (14 bytes)
+getsockname(server)   -> "(94*"Z")012345678" (103 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
 connect               <- "(94*"Z")012345678" (103 bytes)
-getpeername(client)   -> "(sun_len=105)(94*"Z")012345678" (103 bytes)
-accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
-getsockname(accepted) -> "(sun_len=105)(94*"Z")012345678" (103 bytes)
-getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
+getpeername(client)   -> "(94*"Z")012345678" (103 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(94*"Z")012345678" (103 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream -p '0123456789'
 bind(server)          <- "(94*"Z")0123456789" (104 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(sun_len=106)(94*"Z")0123456789" (104 bytes)
-getsockname(client)   -> "(sun_len=16)(14*"\0")" (14 bytes)
+getsockname(server)   -> "(94*"Z")0123456789" (104 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
 connect               <- "(94*"Z")0123456789" (104 bytes)
-getpeername(client)   -> "(sun_len=106)(94*"Z")0123456789" (104 bytes)
-accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
-getsockname(accepted) -> "(sun_len=106)(94*"Z")0123456789" (104 bytes)
-getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
+getpeername(client)   -> "(94*"Z")0123456789" (104 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(94*"Z")0123456789" (104 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream -p '01234567890'
 bind(server)          <- "(94*"Z")01234567890" (105 bytes)
 bind(server): Invalid argument (EINVAL)
@@ -89,7 +89,7 @@ bind(server): File name too long (ENAMETOOLONG)
 ./unix-stream 'foo' 'foo' '(200*"b")'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(sun_len=5)foo" (3 bytes)
+getsockname(server)   -> "foo" (3 bytes)
 bind(client)          <- "(200*"b")" (200 bytes)
 bind(client): Invalid argument (EINVAL)
 ./unix-stream -s /etc/hosts
@@ -113,9 +113,9 @@ bind(server): Invalid argument (EINVAL)
 ./unix-stream -s 'foo'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(sun_len=5)foo" (3 bytes)
+getsockname(server)   -> "foo" (3 bytes)
 
-./unix-stream '(sun_len=1)abc'
+./unix-stream -4 '(sun_len=1)abc'
 bind(server)          <- "(sun_len=1)abc" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
@@ -125,7 +125,7 @@ getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
 getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
-./unix-stream '(sun_len=2)abc'
+./unix-stream -4 '(sun_len=2)abc'
 bind(server)          <- "(sun_len=2)abc" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
@@ -135,7 +135,7 @@ getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
 getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
-./unix-stream '(sun_len=3)abc'
+./unix-stream -4 '(sun_len=3)abc'
 bind(server)          <- "(sun_len=3)abc" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
@@ -145,7 +145,7 @@ getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
 getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
-./unix-stream '(sun_len=4)abc'
+./unix-stream -4 '(sun_len=4)abc'
 bind(server)          <- "(sun_len=4)abc" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
@@ -155,7 +155,7 @@ getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
 getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
-./unix-stream '(sun_len=5)abc'
+./unix-stream -4 '(sun_len=5)abc'
 bind(server)          <- "(sun_len=5)abc" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
@@ -165,7 +165,7 @@ getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
 getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
-./unix-stream '(sun_len=6)abc'
+./unix-stream -4 '(sun_len=6)abc'
 bind(server)          <- "(sun_len=6)abc" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=5)abc" (3 bytes)

@@ -286,16 +286,16 @@
   <tr>
     <th align="left">getsockname(server)   -&gt;</th>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
   </tr>
   <tr>
     <th align="left">getsockname(client)   -&gt;</th>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-abnormal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-normal">too short sockaddr_un (0 bytes)</td>
       <td class="socket-normal">too short sockaddr_un (0 bytes)</td>
   </tr>
@@ -310,34 +310,34 @@
   <tr>
     <th align="left">getpeername(client)   -&gt;</th>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
       <td class="socket-abnormal">&quot;./foo\0&quot; (6 bytes)</td>
   </tr>
   <tr>
     <th align="left">accept                -&gt;</th>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
-      <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-abnormal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
   </tr>
   <tr>
     <th align="left">getsockname(accepted) -&gt;</th>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
   </tr>
   <tr>
     <th align="left">getpeername(accepted) -&gt;</th>
-      <td class="socket-normal">&quot;&quot; (0 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-abnormal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-abnormal">too short sockaddr_un (0 bytes)</td>
-      <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -370,16 +370,16 @@
   <tr>
     <th align="left">getsockname(server)   -&gt;</th>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=9)foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=9)foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=9)foo\0\0\0\0&quot; (7 bytes)</td>
-      <td class="socket-abnormal">&quot;foo\0bar&quot; (7 bytes)</td>
+      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
+      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
+      <td class="socket-abnormal">&quot;foo\0\0\0\0&quot; (7 bytes)</td>
+      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
   </tr>
   <tr>
     <th align="left">getsockname(client)   -&gt;</th>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-abnormal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-normal">too short sockaddr_un (0 bytes)</td>
       <td class="socket-normal">too short sockaddr_un (0 bytes)</td>
   </tr>
@@ -394,34 +394,34 @@
   <tr>
     <th align="left">getpeername(client)   -&gt;</th>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=9)foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=9)foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=9)foo\0\0\0\0&quot; (7 bytes)</td>
+      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
+      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
+      <td class="socket-abnormal">&quot;foo\0\0\0\0&quot; (7 bytes)</td>
       <td class="socket-abnormal">&quot;./foo\0hoge&quot; (10 bytes)</td>
   </tr>
   <tr>
     <th align="left">accept                -&gt;</th>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
-      <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-abnormal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
   </tr>
   <tr>
     <th align="left">getsockname(accepted) -&gt;</th>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=9)foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=9)foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=9)foo\0\0\0\0&quot; (7 bytes)</td>
-      <td class="socket-abnormal">&quot;foo\0bar&quot; (7 bytes)</td>
+      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
+      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
+      <td class="socket-abnormal">&quot;foo\0\0\0\0&quot; (7 bytes)</td>
+      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
   </tr>
   <tr>
     <th align="left">getpeername(accepted) -&gt;</th>
-      <td class="socket-normal">&quot;&quot; (0 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-abnormal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-abnormal">too short sockaddr_un (0 bytes)</td>
-      <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -454,16 +454,16 @@
   <tr>
     <th align="left">getsockname(server)   -&gt;</th>
       <td class="socket-abnormal">&quot;(98*&quot;Z&quot;)012345678\0&quot; (108 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=105)(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=105)(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=105)(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+      <td class="socket-normal">&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+      <td class="socket-normal">&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+      <td class="socket-normal">&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
       <td class="socket-abnormal">&quot;(98*&quot;Z&quot;)012345678\0&quot; (108 bytes)</td>
   </tr>
   <tr>
     <th align="left">getsockname(client)   -&gt;</th>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-abnormal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-normal">too short sockaddr_un (0 bytes)</td>
       <td class="socket-normal">too short sockaddr_un (0 bytes)</td>
   </tr>
@@ -478,34 +478,34 @@
   <tr>
     <th align="left">getpeername(client)   -&gt;</th>
       <td class="socket-abnormal">&quot;(98*&quot;Z&quot;)012345678\0&quot; (108 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=105)(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=105)(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=105)(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+      <td class="socket-normal">&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+      <td class="socket-normal">&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+      <td class="socket-normal">&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
       <td class="socket-abnormal">&quot;(98*&quot;Z&quot;)012345678\0&quot; (108 bytes)</td>
   </tr>
   <tr>
     <th align="left">accept                -&gt;</th>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
-      <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-abnormal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
   </tr>
   <tr>
     <th align="left">getsockname(accepted) -&gt;</th>
       <td class="socket-abnormal">&quot;(98*&quot;Z&quot;)012345678\0&quot; (108 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=105)(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=105)(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=105)(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+      <td class="socket-normal">&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+      <td class="socket-normal">&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+      <td class="socket-normal">&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
       <td class="socket-abnormal">&quot;(98*&quot;Z&quot;)012345678\0&quot; (108 bytes)</td>
   </tr>
   <tr>
     <th align="left">getpeername(accepted) -&gt;</th>
-      <td class="socket-normal">&quot;&quot; (0 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-abnormal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-abnormal">too short sockaddr_un (0 bytes)</td>
-      <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -546,16 +546,16 @@
   <tr>
     <th align="left">getsockname(server)   -&gt;</th>
       <td class="socket-normal">&quot;(98*&quot;Z&quot;)0123456789&quot;... (109 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+      <td class="socket-abnormal">&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+      <td class="socket-abnormal">&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(98*&quot;Z&quot;)0123456789&quot;... (109 bytes)</td>
   </tr>
   <tr>
     <th align="left">getsockname(client)   -&gt;</th>
       <td class="socket-normal">&quot;&quot; (0 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-abnormal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">too short sockaddr_un (0 bytes)</td>
   </tr>
@@ -570,34 +570,34 @@
   <tr>
     <th align="left">getpeername(client)   -&gt;</th>
       <td class="socket-normal">&quot;(98*&quot;Z&quot;)0123456789&quot;... (109 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+      <td class="socket-abnormal">&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+      <td class="socket-abnormal">&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(98*&quot;Z&quot;)0123456789&quot;... (109 bytes)</td>
   </tr>
   <tr>
     <th align="left">accept                -&gt;</th>
-      <td class="socket-normal">&quot;&quot; (0 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-abnormal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-none"></td>
-      <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
   </tr>
   <tr>
     <th align="left">getsockname(accepted) -&gt;</th>
       <td class="socket-normal">&quot;(98*&quot;Z&quot;)0123456789&quot;... (109 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+      <td class="socket-abnormal">&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+      <td class="socket-abnormal">&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(98*&quot;Z&quot;)0123456789&quot;... (109 bytes)</td>
   </tr>
   <tr>
     <th align="left">getpeername(accepted) -&gt;</th>
-      <td class="socket-normal">&quot;&quot; (0 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-abnormal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-none"></td>
-      <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -639,7 +639,7 @@
     <th align="left">getsockname(server)   -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=107)(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(98*&quot;Z&quot;)0123456789&quot;... (110 bytes)</td>
   </tr>
@@ -647,7 +647,7 @@
     <th align="left">getsockname(client)   -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">too short sockaddr_un (0 bytes)</td>
   </tr>
@@ -663,7 +663,7 @@
     <th align="left">getpeername(client)   -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=107)(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(98*&quot;Z&quot;)0123456789&quot;... (110 bytes)</td>
   </tr>
@@ -671,7 +671,7 @@
     <th align="left">accept                -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
   </tr>
@@ -679,7 +679,7 @@
     <th align="left">getsockname(accepted) -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=107)(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(98*&quot;Z&quot;)0123456789&quot;... (110 bytes)</td>
   </tr>
@@ -687,7 +687,7 @@
     <th align="left">getpeername(accepted) -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
   </tr>
@@ -731,7 +731,7 @@
     <th align="left">getsockname(server)   -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=255)(10*&quot;0123456789&quot;)0123&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(10*&quot;0123456789&quot;)0123&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(10*&quot;0123456789&quot;)01234567&quot;... (254 bytes)</td>
   </tr>
@@ -739,7 +739,7 @@
     <th align="left">getsockname(client)   -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">too short sockaddr_un (0 bytes)</td>
   </tr>
@@ -755,7 +755,7 @@
     <th align="left">getpeername(client)   -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=255)(10*&quot;0123456789&quot;)0123&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(10*&quot;0123456789&quot;)0123&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(10*&quot;0123456789&quot;)01234567&quot;... (254 bytes)</td>
   </tr>
@@ -763,7 +763,7 @@
     <th align="left">accept                -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
   </tr>
@@ -771,7 +771,7 @@
     <th align="left">getsockname(accepted) -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=255)(10*&quot;0123456789&quot;)0123&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(10*&quot;0123456789&quot;)0123&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(10*&quot;0123456789&quot;)01234567&quot;... (254 bytes)</td>
   </tr>
@@ -779,7 +779,7 @@
     <th align="left">getpeername(accepted) -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
   </tr>
@@ -823,7 +823,7 @@
     <th align="left">getsockname(server)   -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=255)(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+      <td class="socket-normal">&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(25*&quot;0123456789&quot;)012\0&quot; (254 bytes)</td>
   </tr>
@@ -831,7 +831,7 @@
     <th align="left">getsockname(client)   -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">too short sockaddr_un (0 bytes)</td>
   </tr>
@@ -847,7 +847,7 @@
     <th align="left">getpeername(client)   -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=255)(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+      <td class="socket-normal">&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(25*&quot;0123456789&quot;)012\0&quot; (254 bytes)</td>
   </tr>
@@ -855,7 +855,7 @@
     <th align="left">accept                -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
   </tr>
@@ -863,7 +863,7 @@
     <th align="left">getsockname(accepted) -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=255)(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+      <td class="socket-normal">&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(25*&quot;0123456789&quot;)012\0&quot; (254 bytes)</td>
   </tr>
@@ -871,7 +871,7 @@
     <th align="left">getpeername(accepted) -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=106)(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
   </tr>
@@ -1210,9 +1210,9 @@
   <tr>
     <th align="left">getsockname(server)   -&gt;</th>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
   </tr>
   <tr>
@@ -1243,7 +1243,7 @@
     <th align="left">getsockname(client)   -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=202)(104*&quot;b&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(104*&quot;b&quot;)&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(108*&quot;b&quot;)&quot;... (201 bytes)</td>
   </tr>
@@ -1259,7 +1259,7 @@
     <th align="left">getpeername(client)   -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
   </tr>
@@ -1267,7 +1267,7 @@
     <th align="left">accept                -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=202)(104*&quot;b&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(104*&quot;b&quot;)&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(108*&quot;b&quot;)&quot;... (201 bytes)</td>
   </tr>
@@ -1275,7 +1275,7 @@
     <th align="left">getsockname(accepted) -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
   </tr>
@@ -1283,7 +1283,7 @@
     <th align="left">getpeername(accepted) -&gt;</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(sun_len=202)(104*&quot;b&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(104*&quot;b&quot;)&quot; (104 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-abnormal">&quot;(108*&quot;b&quot;)&quot;... (201 bytes)</td>
   </tr>
@@ -1465,7 +1465,7 @@
   </tr>
   <tr>
     <th align="left">getsockname(server)   -&gt;</th>
-      <td class="socket-normal">&quot;\00004e&quot; (6 bytes)</td>
+      <td class="socket-normal">&quot;\000052&quot; (6 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -1505,9 +1505,9 @@
   <tr>
     <th align="left">getsockname(server)   -&gt;</th>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;foo&quot; (3 bytes)</td>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-abnormal">&quot;foo\xD5#a\x10\0&quot; (8 bytes)</td>
   </tr>
@@ -1693,7 +1693,7 @@
   </tr>
   </tr>
 </table>
-<h2>./unix-stream &#39;(sun_len=1)abc&#39;</h2>
+<h2>./unix-stream -4 &#39;(sun_len=1)abc&#39;</h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -1757,7 +1757,7 @@
   </tr>
   </tr>
 </table>
-<h2>./unix-stream &#39;(sun_len=2)abc&#39;</h2>
+<h2>./unix-stream -4 &#39;(sun_len=2)abc&#39;</h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -1821,7 +1821,7 @@
   </tr>
   </tr>
 </table>
-<h2>./unix-stream &#39;(sun_len=3)abc&#39;</h2>
+<h2>./unix-stream -4 &#39;(sun_len=3)abc&#39;</h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -1885,7 +1885,7 @@
   </tr>
   </tr>
 </table>
-<h2>./unix-stream &#39;(sun_len=4)abc&#39;</h2>
+<h2>./unix-stream -4 &#39;(sun_len=4)abc&#39;</h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -1949,7 +1949,7 @@
   </tr>
   </tr>
 </table>
-<h2>./unix-stream &#39;(sun_len=5)abc&#39;</h2>
+<h2>./unix-stream -4 &#39;(sun_len=5)abc&#39;</h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -2013,7 +2013,7 @@
   </tr>
   </tr>
 </table>
-<h2>./unix-stream &#39;(sun_len=6)abc&#39;</h2>
+<h2>./unix-stream -4 &#39;(sun_len=6)abc&#39;</h2>
 <table border>
   <tr>
     <th align="right">OS</th>
