@@ -26,6 +26,7 @@
 
 #include "sockettest.h"
 
+static int opt_U = 0;
 static int opt_s = 0;
 static int opt_p = 0;
 static int opt_g = 0;
@@ -42,8 +43,9 @@ static size_t client_path_len = 0;
 void usage(int status)
 {
   fputs(
-      "usage: unix-stream server-path [connect-path [client-path]]\n"
+      "usage: unix-stream [options] server-path [connect-path [client-path]]\n"
       "option: -h : show this help message\n"
+      "        -U : don't unlink sockets.\n"
       "        -s : server only test mode.\n"
       "        -p : prepend sizeof(sun_path)-10 characters for socket-path.\n"
       "        -g N : increase buffer size for getsockname/getpeername/accept (negative to decrease)\n"
@@ -79,11 +81,15 @@ static void parse_args(int argc, char *argv[])
   int opt;
   char *arg;
 
-  while ((opt = getopt(argc, argv, "hspg:f:e:")) != -1) {
+  while ((opt = getopt(argc, argv, "hUspg:f:e:")) != -1) {
     switch (opt) {
       case 'h':
         usage(EXIT_SUCCESS);
         break; /* not reached */
+
+      case 'U':
+        opt_U = 1;
+        break;
 
       case 's':
         opt_s = 1;
@@ -217,9 +223,11 @@ static void test_unix_stream(void)
   get_sockaddr_len = sizeof(struct sockaddr_un) + opt_g;
   get_sockaddr_ptr = xmalloc(get_sockaddr_len);
 
-  unlink_socket(server_path_str);
-  if (client_path_str)
-    unlink_socket(client_path_str);
+  if (!opt_U) {
+    unlink_socket(server_path_str);
+    if (client_path_str)
+      unlink_socket(client_path_str);
+  }
 
   s = socket(AF_UNIX, SOCK_STREAM, 0);
   if (s == -1) { perror2("socket(server)"); exit(EXIT_FAILURE); }
@@ -235,7 +243,9 @@ static void test_unix_stream(void)
   report_path_gotten("getsockname(server)", get_sockaddr_len, get_sockaddr_ptr, len);
 
   if (opt_s) {
-    unlink_socket(server_path_str);
+    if (!opt_U) {
+      unlink_socket(server_path_str);
+    }
     return;
   }
 
@@ -285,9 +295,11 @@ static void test_unix_stream(void)
   if (ret == -1) { perror2("getpeername(accepted)"); exit(EXIT_FAILURE); }
   report_path_gotten("getpeername(accepted)", get_sockaddr_len, get_sockaddr_ptr, len);
 
-  unlink_socket(server_path_str);
-  if (client_path_str)
-    unlink_socket(client_path_str);
+  if (!opt_U) {
+    unlink_socket(server_path_str);
+    if (client_path_str)
+      unlink_socket(client_path_str);
+  }
 }
 
 int main(int argc, char *argv[])
