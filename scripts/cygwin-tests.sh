@@ -27,4 +27,5 @@
 set -v
 
 uname -mrsv
+./size
 ./unix-stream -s 'foo'

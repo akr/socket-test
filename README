@@ -356,6 +356,25 @@ Cygwin :
 
   cygwin% uname -mrsv
   CYGWIN_NT-5.1 1.7.17(0.262/5/3) 2012-10-19 14:39 i686
+  cygwin% ./size
+  sizeof(sockaddr)=16
+    offsetof(sa_family)=0              sizeof(sa_family)=2
+    offsetof(sa_data)=2                sizeof(sa_data)=14
+  sizeof(sockaddr_un)=110
+    offsetof(sun_family)=0             sizeof(sun_family)=2
+    offsetof(sun_path)=2               sizeof(sun_path)=108
+  sizeof(sockaddr_in)=16
+    offsetof(sin_family)=0             sizeof(sin_family)=2
+    offsetof(sin_port)=2               sizeof(sin_port)=2
+    offsetof(sin_addr)=4               sizeof(sin_addr)=4
+  sizeof(sockaddr_in6)=28
+    offsetof(sin6_family)=0            sizeof(sin6_family)=2
+    offsetof(sin6_port)=2              sizeof(sin6_port)=2
+    offsetof(sin6_flowinfo)=4          sizeof(sin6_flowinfo)=4
+    offsetof(sin6_addr)=8              sizeof(sin6_addr)=16
+    offsetof(sin6_scope_id)=24         sizeof(sin6_scope_id)=4
+  sizeof(sockaddr_storage)=128
+    offsetof(ss_family)=0              sizeof(ss_family)=2
   cygwin% ./unix-stream -s 'foo'
   bind(server)          <- "foo" (3 bytes)
   getsockname(server)   -> "foo\xD5#a\x10\0" (8 bytes)
