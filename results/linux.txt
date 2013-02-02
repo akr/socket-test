@@ -3,23 +3,23 @@ uname -mrsv
 Linux 2.6.39-bpo.2-amd64 #1 SMP Tue Jul 26 10:35:23 UTC 2011 x86_64
 ./size
 sizeof(sockaddr)=16
-  offsetof(sa_family)=0              sizeof(sa_family)=2
-  offsetof(sa_data)=2                sizeof(sa_data)=14
+  sa_family            : offset=0    size=2
+  sa_data              : offset=2    size=14
 sizeof(sockaddr_un)=110
-  offsetof(sun_family)=0             sizeof(sun_family)=2
-  offsetof(sun_path)=2               sizeof(sun_path)=108
+  sun_family           : offset=0    size=2
+  sun_path             : offset=2    size=108
 sizeof(sockaddr_in)=16
-  offsetof(sin_family)=0             sizeof(sin_family)=2
-  offsetof(sin_port)=2               sizeof(sin_port)=2
-  offsetof(sin_addr)=4               sizeof(sin_addr)=4
+  sin_family           : offset=0    size=2
+  sin_port             : offset=2    size=2
+  sin_addr             : offset=4    size=4
 sizeof(sockaddr_in6)=28
-  offsetof(sin6_family)=0            sizeof(sin6_family)=2
-  offsetof(sin6_port)=2              sizeof(sin6_port)=2
-  offsetof(sin6_flowinfo)=4          sizeof(sin6_flowinfo)=4
-  offsetof(sin6_addr)=8              sizeof(sin6_addr)=16
-  offsetof(sin6_scope_id)=24         sizeof(sin6_scope_id)=4
+  sin6_family          : offset=0    size=2
+  sin6_port            : offset=2    size=2
+  sin6_flowinfo        : offset=4    size=4
+  sin6_addr            : offset=8    size=16
+  sin6_scope_id        : offset=24   size=4
 sizeof(sockaddr_storage)=128
-  offsetof(ss_family)=0              sizeof(ss_family)=2
+  ss_family            : offset=0    size=2
 ./unix-stream 'foo' './foo'
 bind(server)          <- "foo" (3 bytes)
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -64,11 +64,11 @@ bind(server)          <- "/foo/bar" (8 bytes)
 bind(server): No such file or directory (ENOENT)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
-getsockname(server)   -> "\00002d" (6 bytes)
+getsockname(server)   -> "\00002f" (6 bytes)
 
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
-getsockname(server)   -> "\00002e" (6 bytes)
+getsockname(server)   -> "\000030" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 getsockname(server)   -> "\0abc" (4 bytes)

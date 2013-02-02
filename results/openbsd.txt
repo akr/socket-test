@@ -3,28 +3,28 @@ uname -mrsv
 OpenBSD 5.1 GENERIC#0 sparc64
 ./size
 sizeof(sockaddr)=16
-  offsetof(sa_len)=0                 sizeof(sa_len)=1
-  offsetof(sa_family)=1              sizeof(sa_family)=1
-  offsetof(sa_data)=2                sizeof(sa_data)=14
+  sa_len               : offset=0    size=1
+  sa_family            : offset=1    size=1
+  sa_data              : offset=2    size=14
 sizeof(sockaddr_un)=106
-  offsetof(sun_len)=0                sizeof(sun_len)=1
-  offsetof(sun_family)=1             sizeof(sun_family)=1
-  offsetof(sun_path)=2               sizeof(sun_path)=104
+  sun_len              : offset=0    size=1
+  sun_family           : offset=1    size=1
+  sun_path             : offset=2    size=104
 sizeof(sockaddr_in)=16
-  offsetof(sin_len)=0                sizeof(sin_len)=1
-  offsetof(sin_family)=1             sizeof(sin_family)=1
-  offsetof(sin_port)=2               sizeof(sin_port)=2
-  offsetof(sin_addr)=4               sizeof(sin_addr)=4
+  sin_len              : offset=0    size=1
+  sin_family           : offset=1    size=1
+  sin_port             : offset=2    size=2
+  sin_addr             : offset=4    size=4
 sizeof(sockaddr_in6)=28
-  offsetof(sin6_len)=0               sizeof(sin6_len)=1
-  offsetof(sin6_family)=1            sizeof(sin6_family)=1
-  offsetof(sin6_port)=2              sizeof(sin6_port)=2
-  offsetof(sin6_flowinfo)=4          sizeof(sin6_flowinfo)=4
-  offsetof(sin6_addr)=8              sizeof(sin6_addr)=16
-  offsetof(sin6_scope_id)=24         sizeof(sin6_scope_id)=4
+  sin6_len             : offset=0    size=1
+  sin6_family          : offset=1    size=1
+  sin6_port            : offset=2    size=2
+  sin6_flowinfo        : offset=4    size=4
+  sin6_addr            : offset=8    size=16
+  sin6_scope_id        : offset=24   size=4
 sizeof(sockaddr_storage)=256
-  offsetof(ss_len)=0                 sizeof(ss_len)=1
-  offsetof(ss_family)=1              sizeof(ss_family)=1
+  ss_len               : offset=0    size=1
+  ss_family            : offset=1    size=1
 ./unix-stream 'foo' './foo'
 bind(server)          <- "foo" (3 bytes)
 getsockname(server)   -> "foo" (3 bytes)
