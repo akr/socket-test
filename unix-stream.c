@@ -29,7 +29,7 @@
 static int opt_U = 0;
 static int opt_s = 0;
 static int opt_p = 0;
-static int opt_g = 0;
+static socklen_t opt_g = sizeof(struct sockaddr_un);
 static int opt_f = '\0';
 static int opt_e = 0;
 
@@ -48,7 +48,7 @@ void usage(int status)
       "        -U : don't unlink sockets.\n"
       "        -s : server only test mode.\n"
       "        -p : prepend sizeof(sun_path)-10 characters for socket-path.\n"
-      "        -g N : increase buffer size for getsockname/getpeername/accept (negative to decrease)\n"
+      "        -g N : buffer size for getsockname/getpeername/accept (no sign means exact.  +N for increase and -N for decrease from sockaddr_un)\n"
       "        -f N : ASCII code to fill for getsockname buffer\n"
       "        -e N : number of extra bytes for getsockname buffer\n"
       , stdout);
@@ -100,7 +100,17 @@ static void parse_args(int argc, char *argv[])
         break;
 
       case 'g':
-        opt_g = atoi(optarg);
+        if (*optarg == '-' || *optarg == '+') {
+          int n = atoi(optarg);
+          if (n < 0 && sizeof(struct sockaddr_un) < (size_t)-n) {
+            fprintf(stderr, "argument for -g is too small.  (%d minimum)\n",
+                -(int)sizeof(struct sockaddr_un));
+            exit(EXIT_FAILURE);
+          }
+          opt_g = sizeof(struct sockaddr_un) + n;
+        }
+        else
+          opt_g = atoi(optarg);
         break;
 
       case 'f':
@@ -220,7 +230,7 @@ static void test_unix_stream(void)
     memcpy(client_sockaddr_ptr->sun_path, client_path_str, client_path_len);
   }
 
-  get_sockaddr_len = sizeof(struct sockaddr_un) + opt_g;
+  get_sockaddr_len = opt_g;
   get_sockaddr_ptr = xmalloc(get_sockaddr_len);
 
   if (!opt_U) {
