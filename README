@@ -13,6 +13,11 @@
 
 == Example
 
+./unix-stream command takes "escaped" pathnames for Unix domain sockets.
+The escape notation is similar to ANSI C with run length compression.
+The parenthesized part, (integer * "string"), means _integer_ times repeatation
+of "string".
+
 Debian GNU/Linux 7.0 (wheezy) :
 
   linux% uname -mrsv
