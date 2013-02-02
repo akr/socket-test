@@ -236,8 +236,8 @@ static void test_unix_stream(void)
   ret = bind(s, (const struct sockaddr *)server_sockaddr_ptr, server_sockaddr_len);
   if (ret == -1) { perror2("bind(server)"); exit(EXIT_FAILURE); }
 
-  if (socket_file_p(server_path_str))
-    printf("socket file exist?    : yes\n");
+  ret = socket_file_p(server_path_str);
+  printf("socket file exist?    : %s\n", ret ? "yes" : "no");
 
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
   len = get_sockaddr_len;
