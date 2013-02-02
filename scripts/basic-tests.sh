@@ -35,6 +35,7 @@ uname -mrsv
 ./unix-stream -p '0123456789'
 ./unix-stream -p '01234567890'
 ./unix-stream '(25*"0123456789")012'
+./unix-stream -g 1024 '(25*"0123456789")012'
 ./unix-stream '(25*"0123456789")0123'
 ./unix-stream '(25*"0123456789")01234'    
 ./unix-stream '(25*"0123456789")012345'
