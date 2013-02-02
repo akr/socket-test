@@ -25,7 +25,6 @@
 # OF SUCH DAMAGE.
 
 exec 2>&1
-
 set -v
 
 uname -mrsv
