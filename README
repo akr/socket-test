@@ -285,7 +285,7 @@ SunOS 5.11 :
 
   sunos% uname -mrsv
   SunOS 5.11 snv_111b i86pc
-  sunos% ./size                     
+  sunos% ./size
   sizeof(sockaddr)=16
     offsetof(sa_family)=0              sizeof(sa_family)=2
     offsetof(sa_data)=2                sizeof(sa_data)=14
@@ -313,7 +313,7 @@ SunOS 5.11 :
   accept                -> "\0\0\0\0\0\0\0\0\0\0\0\0\0\0" (14 bytes)    # 14 NULs returned by accept (and getpeername) for anonymous Unix domain socket.
   getsockname(accepted) -> "foo\0" (4 bytes)
   getpeername(accepted) -> "\0\0\0\0\0\0\0\0\0\0\0\0\0\0" (14 bytes)
-  sunos% ./unix-stream -s 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456 
+  sunos% ./unix-stream -s 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456
   bind        <- "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456" (107 bytes)
   getsockname -> "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456\0" (108 bytes)
   sunos% ./unix-stream -s 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567
@@ -351,7 +351,7 @@ Cygwin :
 
   cygwin% uname -mrsv
   CYGWIN_NT-5.1 1.7.17(0.262/5/3) 2012-10-19 14:39 i686
-  cygwin% ./unix-stream -s 'foo'  
+  cygwin% ./unix-stream -s 'foo'
   bind        <- "foo" (3 bytes)
   getsockname -> "foo\xD5#a\x10\0" (8 bytes)    # Cygwin doesn't see addrlen?
 
