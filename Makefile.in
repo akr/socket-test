@@ -52,5 +52,11 @@ errsym.o: errsym.c
 errsym.c: errsym.erb
 	erb errsym.erb > errsym.c
 
-results.html : table-result.erb
+results.html : table-result.erb \
+  results/linux.txt \
+  results/freebsd.txt \
+  results/netbsd.txt \
+  results/openbsd.txt \
+  results/sunos.txt \
+  results/cygwin.txt
 	erb table-result.erb > results.html
