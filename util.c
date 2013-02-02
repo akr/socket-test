@@ -104,6 +104,7 @@ static size_t escape_sequence(char *buf, size_t bufsize, int ch)
     case '\v': COPY_AND_RETURN("\\v");
     case '\x1b': COPY_AND_RETURN("\\e");
     case '\\': COPY_AND_RETURN("\\\\");
+    case '"': COPY_AND_RETURN("\\\"");
     default:
       if (0x20 <= ch && ch <= 0x7e) {
         buf[0] = ch;
@@ -114,6 +115,78 @@ static size_t escape_sequence(char *buf, size_t bufsize, int ch)
       }
   }
 #undef COPY_AND_RETURN
+}
+
+void escape_string_content(char *unescaped_ptr, size_t unescaped_len, buffer_t *buf)
+{
+  size_t last_byte_pos[0x100];
+  size_t *next_same_byte = xmalloc(sizeof(size_t)* unescaped_len);
+  size_t i;
+
+#define NO_LAST ((size_t)-1)
+#define NO_NEXT ((size_t)-1)
+
+  for (i = 0; i < 0x100; i++)
+    last_byte_pos[i] = NO_LAST;
+  for (i = 0; i < unescaped_len; i++)
+    next_same_byte[i] = NO_NEXT;
+
+  for (i = 0 ; i < unescaped_len; i++) {
+    int byte = (unsigned char)unescaped_ptr[i];
+    if (last_byte_pos[byte] != NO_LAST) {
+      next_same_byte[last_byte_pos[byte]] = i;
+    }
+    last_byte_pos[byte] = i;
+  }
+
+  for (i = 0; i < unescaped_len; i++) {
+    int ch = (unsigned char)unescaped_ptr[i];
+    char chbuf[ESCAPED_SINGLE_CHAR_MAXLEN];
+    size_t chsize;
+
+    if (next_same_byte[i] != NO_NEXT) {
+      size_t elem_len = next_same_byte[i] - i;
+      size_t num_repeat = 1;
+      while (i + num_repeat * elem_len <= unescaped_len - elem_len) {
+        if (memcmp(unescaped_ptr + i, unescaped_ptr + i + num_repeat * elem_len, elem_len) != 0)
+          break;
+        num_repeat++;
+      }
+      if (10 < num_repeat * elem_len) {
+        char nbuf[sizeof(size_t) * 3 + 10];
+        snprintf(nbuf, sizeof(nbuf), "(%ld*\"", (long)num_repeat);
+        buffer_add_str(buf, nbuf);
+        escape_string_content(unescaped_ptr + i, elem_len, buf);
+        buffer_add_str(buf, "\")");
+        i += num_repeat * elem_len - 1;
+        continue;
+      }
+    }
+
+    chsize = escape_sequence(chbuf, ESCAPED_SINGLE_CHAR_MAXLEN, ch);
+    buffer_add_mem(buf, chbuf, chsize);
+  }
+#undef NO_LAST
+#undef NO_NEXT
+}
+
+/*
+ * Escape a string (TAB to \t, etc.) pointed by _unescaped_ptr_ with length _unescaped_len_.
+ * The result (NUL-terminated string) is stored in a buffer newly allcated by malloc.
+ * The pointer to the allocated memory is returned.
+ * The length without the terminated NUL is stored in *escaped_len_ret if escaped_len_ret is not NULL.
+ *
+ * NULL is returned on error.
+ */
+char *escape_string(size_t *escaped_len_ret, char *unescaped_ptr, size_t unescaped_len)
+{
+  buffer_t *buf = buffer_new(unescaped_len+1);
+  escape_string_content(unescaped_ptr, unescaped_len, buf);
+  if (escaped_len_ret) {
+    *escaped_len_ret = buf->len;
+  }
+  buffer_add_byte(buf, '\0');
+  return buffer_unwrap(buf);
 }
 
 /* return -1 if ch is not a hex digit. */
@@ -165,33 +238,6 @@ static int unescape_sequence(size_t *used_len_ret, char *escaped_ptr, size_t esc
     }
   }
   return -1;
-}
-
-/*
- * Escape a string (TAB to \t, etc.) pointed by _unescaped_ptr_ with length _unescaped_len_.
- * The result (NUL-terminated string) is stored in a buffer newly allcated by malloc.
- * The pointer to the allocated memory is returned.
- * The length without the terminated NUL is stored in *escaped_len_ret if escaped_len_ret is not NULL.
- *
- * NULL is returned on error.
- */
-char *escape_string(size_t *escaped_len_ret, char *unescaped_ptr, size_t unescaped_len)
-{
-  buffer_t *buf = buffer_new(unescaped_len+1);
-  size_t i;
-
-  for (i = 0; i < unescaped_len; i++) {
-    int ch = (unsigned char)unescaped_ptr[i];
-    char chbuf[ESCAPED_SINGLE_CHAR_MAXLEN];
-    size_t chsize;
-    chsize = escape_sequence(chbuf, ESCAPED_SINGLE_CHAR_MAXLEN, ch);
-    buffer_add_mem(buf, chbuf, chsize);
-  }
-  if (escaped_len_ret) {
-    *escaped_len_ret = buf->len;
-  }
-  buffer_add_byte(buf, '\0');
-  return buffer_unwrap(buf);
 }
 
 /* 
