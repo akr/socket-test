@@ -31,12 +31,14 @@ uname -mrsv
 ./size
 ./unix-stream 'foo' './foo'
 ./unix-stream 'foo\0bar' './foo\0hoge'
-./unix-stream -ps '012345678'
-./unix-stream -ps '0123456789'
-./unix-stream -ps '01234567890'
-./unix-stream -s '(25*"0123456789")01234'    
-./unix-stream -s '(25*"0123456789")012345'
-./unix-stream -s '(300*"./")a'      
+./unix-stream -p '012345678'
+./unix-stream -p '0123456789'
+./unix-stream -p '01234567890'
+./unix-stream '(25*"0123456789")012'
+./unix-stream '(25*"0123456789")0123'
+./unix-stream '(25*"0123456789")01234'    
+./unix-stream '(25*"0123456789")012345'
+./unix-stream '(300*"./")a'      
 ./unix-stream -s /etc/hosts
 ./unix-stream -s /etc
 ./unix-stream -s /
