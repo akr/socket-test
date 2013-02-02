@@ -39,7 +39,8 @@ uname -mrsv
 ./unix-stream '(25*"0123456789")0123'
 ./unix-stream '(25*"0123456789")01234'    
 ./unix-stream '(25*"0123456789")012345'
-./unix-stream '(300*"./")a'      
+./unix-stream '(511*"./")a'      
+./unix-stream '(511*"./")ab'      
 ./unix-stream 'foo' 'foo' '(200*"b")'
 ./unix-stream -s /etc/hosts
 ./unix-stream -s /etc
