@@ -2,29 +2,29 @@
 uname -mrsv
 NetBSD 5.1 NetBSD 5.1 (GENERIC) #0: Sat Nov  6 13:19:33 UTC 2010  builds@b6.netbsd.org:/home/builds/ab/netbsd-5-1-RELEASE/amd64/201011061943Z-obj/home/builds/ab/netbsd-5-1-RELEASE/src/sys/arch/amd64/compile/GENERIC amd64
 ./size
-sizeof(sockaddr)=16
-  sa_len               : offset=0    size=1
-  sa_family            : offset=1    size=1
-  sa_data              : offset=2    size=14
-sizeof(sockaddr_un)=106
-  sun_len              : offset=0    size=1
-  sun_family           : offset=1    size=1
-  sun_path             : offset=2    size=104
-sizeof(sockaddr_in)=16
-  sin_len              : offset=0    size=1
-  sin_family           : offset=1    size=1
-  sin_port             : offset=2    size=2
-  sin_addr             : offset=4    size=4
-sizeof(sockaddr_in6)=28
-  sin6_len             : offset=0    size=1
-  sin6_family          : offset=1    size=1
-  sin6_port            : offset=2    size=2
-  sin6_flowinfo        : offset=4    size=4
-  sin6_addr            : offset=8    size=16
-  sin6_scope_id        : offset=24   size=4
-sizeof(sockaddr_storage)=128
-  ss_len               : offset=0    size=1
-  ss_family            : offset=1    size=1
+sockaddr :                    size=16
+sockaddr.sa_len :               offset=0    size=1
+sockaddr.sa_family :            offset=1    size=1
+sockaddr.sa_data :              offset=2    size=14
+sockaddr_un :                 size=106
+sockaddr_un.sun_len :           offset=0    size=1
+sockaddr_un.sun_family :        offset=1    size=1
+sockaddr_un.sun_path :          offset=2    size=104
+sockaddr_in :                 size=16
+sockaddr_in.sin_len :           offset=0    size=1
+sockaddr_in.sin_family :        offset=1    size=1
+sockaddr_in.sin_port :          offset=2    size=2
+sockaddr_in.sin_addr :          offset=4    size=4
+sockaddr_in6 :                size=28
+sockaddr_in6.sin6_len :         offset=0    size=1
+sockaddr_in6.sin6_family :      offset=1    size=1
+sockaddr_in6.sin6_port :        offset=2    size=2
+sockaddr_in6.sin6_flowinfo :    offset=4    size=4
+sockaddr_in6.sin6_addr :        offset=8    size=16
+sockaddr_in6.sin6_scope_id :    offset=24   size=4
+sockaddr_storage :            size=128
+sockaddr_storage.ss_len :       offset=0    size=1
+sockaddr_storage.ss_family :    offset=1    size=1
 ./unix-stream 'foo' './foo'
 bind(server)          <- "foo" (3 bytes)
 getsockname(server)   -> "foo" (3 bytes)

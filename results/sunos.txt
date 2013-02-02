@@ -1,24 +1,24 @@
 uname -mrsv
 SunOS 5.11 snv_111b i86pc
 ./size
-sizeof(sockaddr)=16
-  sa_family            : offset=0    size=2
-  sa_data              : offset=2    size=14
-sizeof(sockaddr_un)=110
-  sun_family           : offset=0    size=2
-  sun_path             : offset=2    size=108
-sizeof(sockaddr_in)=16
-  sin_family           : offset=0    size=2
-  sin_port             : offset=2    size=2
-  sin_addr             : offset=4    size=4
-sizeof(sockaddr_in6)=32
-  sin6_family          : offset=0    size=2
-  sin6_port            : offset=2    size=2
-  sin6_flowinfo        : offset=4    size=4
-  sin6_addr            : offset=8    size=16
-  sin6_scope_id        : offset=24   size=4
-sizeof(sockaddr_storage)=256
-  ss_family            : offset=0    size=2
+sockaddr :                    size=16
+sockaddr.sa_family :            offset=0    size=2
+sockaddr.sa_data :              offset=2    size=14
+sockaddr_un :                 size=110
+sockaddr_un.sun_family :        offset=0    size=2
+sockaddr_un.sun_path :          offset=2    size=108
+sockaddr_in :                 size=16
+sockaddr_in.sin_family :        offset=0    size=2
+sockaddr_in.sin_port :          offset=2    size=2
+sockaddr_in.sin_addr :          offset=4    size=4
+sockaddr_in6 :                size=32
+sockaddr_in6.sin6_family :      offset=0    size=2
+sockaddr_in6.sin6_port :        offset=2    size=2
+sockaddr_in6.sin6_flowinfo :    offset=4    size=4
+sockaddr_in6.sin6_addr :        offset=8    size=16
+sockaddr_in6.sin6_scope_id :    offset=24   size=4
+sockaddr_storage :            size=256
+sockaddr_storage.ss_family :    offset=0    size=2
 ./unix-stream 'foo' './foo'
 bind(server)          <- "foo" (3 bytes)
 getsockname(server)   -> "foo\0" (4 bytes)
