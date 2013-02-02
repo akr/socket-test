@@ -353,8 +353,9 @@ Cygwin :
   cygwin% uname -mrsv
   CYGWIN_NT-5.1 1.7.17(0.262/5/3) 2012-10-19 14:39 i686
   cygwin% ./unix-stream -s 'foo'
-  bind        <- "foo" (3 bytes)
-  getsockname -> "foo\xD5#a\x10\0" (8 bytes)    # Cygwin doesn't see addrlen?
+  bind(server)          <- "foo" (3 bytes)
+  getsockname(server)   -> "foo\xD5#a\x10\0" (8 bytes)
+
 
 == License
 
