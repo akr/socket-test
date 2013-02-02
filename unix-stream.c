@@ -247,7 +247,7 @@ static void test_unix_stream(void)
   if (ret == -1) { perror2("bind(server)"); exit(EXIT_FAILURE); }
 
   ret = socket_file_p(server_path_str);
-  printf("socket file exist?    : %s\n", ret ? "yes" : "no");
+  printf("socket file (server)  : %s\n", ret ? "exist" : "not exist");
 
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
   len = get_sockaddr_len;
@@ -272,6 +272,9 @@ static void test_unix_stream(void)
     report_path("bind(client)", client_path_str, client_path_len);
     ret = bind(c, (const struct sockaddr *)client_sockaddr_ptr, client_sockaddr_len);
     if (ret == -1) { perror2("bind(client)"); exit(EXIT_FAILURE); }
+
+    ret = socket_file_p(client_path_str);
+    printf("socket file (client)  : %s\n", ret ? "exist" : "not exist");
   }
 
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);

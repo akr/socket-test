@@ -30,3 +30,6 @@ set -v
 ./unix-stream -s ''
 ./unix-stream '\0abc'
 ./unix-stream '\0abc' '\0abc\0'
+./unix-stream 'non-abstract' 'non-abstract' '\0abstract'
+./unix-stream '\0abstract' '\0abstract' 'non-abstract'
+
