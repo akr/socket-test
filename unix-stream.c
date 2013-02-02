@@ -35,10 +35,13 @@ static int opt_e = 0;
 
 static char *server_path_str;
 static size_t server_path_len = 0;
+static int server_path_sun_len = 0; /* 4.4BSD sun_len field in sockaddr_un */
 static char *connect_path_str;
 static size_t connect_path_len = 0;
+static int connect_path_sun_len = 0; /* 4.4BSD sun_len field in sockaddr_un */
 static char *client_path_str;
 static size_t client_path_len = 0;
+static int client_path_sun_len = 0; /* 4.4BSD sun_len field in sockaddr_un */
 
 void usage(int status)
 {
@@ -56,10 +59,40 @@ void usage(int status)
 }
 
 #define PREPEND_LENGTH (FIELD_SIZE(struct sockaddr_un, sun_path)-10)
-static char *unescape_and_prepend_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escaped_len)
+static char *unescape_and_prepend_string(
+    size_t *unescaped_len_ret, int *sun_len_ret,
+    char *escaped_ptr, size_t escaped_len)
 {
   char *unescaped_str;
   size_t unescaped_len;
+  int sun_len = 0;
+
+#define STATIC_STRLEN(str) (sizeof(str)-1)
+  if (STATIC_STRLEN("(sun_len=N)") <= escaped_len &&
+      memcmp("(sun_len=", escaped_ptr, STATIC_STRLEN("(sun_len=")) == 0) {
+    char *pstart = escaped_ptr + sizeof("(sun_len=")-1;
+    char *p = pstart;
+    char *pend = escaped_ptr + escaped_len;
+    while (p < pend && isdigit((unsigned char)*p))
+      p++;
+    if (pstart == p) return NULL;
+    if (p == pend) return NULL;
+    if (*p != ')') return NULL;
+    p++;
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+    {
+      int n = atoi(pstart);
+      if (n < 0 || 0xff < n)
+        return NULL;
+      sun_len = n;
+      escaped_len -= p - escaped_ptr;
+      escaped_ptr = p;
+    }
+#else
+    return NULL;
+#endif
+  }
+
   unescaped_str = unescape_string(&unescaped_len, escaped_ptr, escaped_len);
   if (unescaped_str == NULL)
     return NULL;
@@ -73,6 +106,8 @@ static char *unescape_and_prepend_string(size_t *unescaped_len_ret, char *escape
 
   if (unescaped_len_ret)
     *unescaped_len_ret = unescaped_len;
+  if (sun_len_ret)
+    *sun_len_ret = sun_len;
   return unescaped_str;
 }
 
@@ -131,7 +166,8 @@ static void parse_args(int argc, char *argv[])
   }
 
   arg = argv[optind++];
-  server_path_str = unescape_and_prepend_string(&server_path_len, arg, strlen(arg));
+  server_path_str = unescape_and_prepend_string(
+      &server_path_len, &server_path_sun_len, arg, strlen(arg));
   if (server_path_str == NULL) {
     fprintf(stderr, "server path unescape failed\n");
     exit(EXIT_FAILURE);
@@ -144,7 +180,8 @@ static void parse_args(int argc, char *argv[])
   }
 
   arg = argv[optind++];
-  connect_path_str = unescape_and_prepend_string(&connect_path_len, arg, strlen(arg));
+  connect_path_str = unescape_and_prepend_string(
+      &connect_path_len, &connect_path_sun_len, arg, strlen(arg));
   if (connect_path_str == NULL) {
     fprintf(stderr, "connect path unescape failed\n");
     exit(EXIT_FAILURE);
@@ -155,7 +192,8 @@ static void parse_args(int argc, char *argv[])
   }
 
   arg = argv[optind++];
-  client_path_str = unescape_and_prepend_string(&client_path_len, arg, strlen(arg));
+  client_path_str = unescape_and_prepend_string(
+      &client_path_len, &client_path_sun_len, arg, strlen(arg));
   if (client_path_str == NULL) {
     fprintf(stderr, "client path unescape failed\n");
     exit(EXIT_FAILURE);
@@ -169,11 +207,16 @@ static void parse_args(int argc, char *argv[])
   exit(EXIT_FAILURE);
 }
 
-static void report_path(char *key, char *path_ptr, size_t path_len)
+static void report_path(char *key, char *path_ptr, size_t path_len, int path_sun_len)
 {
   char *escaped_path;
+  char path_sun_len_prefix[sizeof("(sun_len=NNN)")] = "";
   escaped_path = escape_string(NULL, path_ptr, path_len);
-  printf("%-21s <- \"%s\" (%d bytes)\n", key, escaped_path, (int)path_len);
+  if (path_sun_len != 0) {
+    snprintf(path_sun_len_prefix, sizeof(path_sun_len_prefix),
+        "(sun_len=%d)", path_sun_len);
+  }
+  printf("%-21s <- \"%s%s\" (%d bytes)\n", key, path_sun_len_prefix, escaped_path, (int)path_len);
   free(escaped_path);
 }
 
@@ -182,11 +225,19 @@ static void report_path_gotten(char *key, size_t buf_len, struct sockaddr_un *so
   int truncated;
   size_t len;
   char *escaped_path;
+  char path_sun_len_prefix[sizeof("(sun_len=NNN)")] = "";
 
   if (sockaddr_len < offsetof(struct sockaddr_un, sun_path)) {
     printf("%-21s -> too short sockaddr_un (%d bytes)\n", key, (int)sockaddr_len);
     return;
   }
+
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+  if (sockaddr_ptr->sun_len != 0) {
+    snprintf(path_sun_len_prefix, sizeof(path_sun_len_prefix),
+        "(sun_len=%d)", (int)sockaddr_ptr->sun_len);
+  }
+#endif
 
   if (sockaddr_len <= buf_len) {
     truncated = 0;
@@ -198,8 +249,8 @@ static void report_path_gotten(char *key, size_t buf_len, struct sockaddr_un *so
   }
 
   escaped_path = escape_string(NULL, sockaddr_ptr->sun_path, len);
-  printf("%-21s -> \"%s\"%s (%d bytes)\n",
-      key, escaped_path,
+  printf("%-21s -> \"%s%s\"%s (%d bytes)\n",
+      key, path_sun_len_prefix, escaped_path,
       truncated ? "..." : "",
       (int)(sockaddr_len - offsetof(struct sockaddr_un, sun_path)));
   free(escaped_path);
@@ -215,17 +266,26 @@ static void test_unix_stream(void)
 
   server_sockaddr_len = offsetof(struct sockaddr_un, sun_path) + server_path_len;
   server_sockaddr_ptr = xfalloc(server_sockaddr_len, '\0');
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+  server_sockaddr_ptr->sun_len = server_path_sun_len;
+#endif
   server_sockaddr_ptr->sun_family = AF_UNIX;
   memcpy(server_sockaddr_ptr->sun_path, server_path_str, server_path_len);
 
   connect_sockaddr_len = offsetof(struct sockaddr_un, sun_path) + connect_path_len;
   connect_sockaddr_ptr = xfalloc(connect_sockaddr_len, '\0');
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+  server_sockaddr_ptr->sun_len = connect_path_sun_len;
+#endif
   connect_sockaddr_ptr->sun_family = AF_UNIX;
   memcpy(connect_sockaddr_ptr->sun_path, connect_path_str, connect_path_len);
 
   if (client_path_str) {
     client_sockaddr_len = offsetof(struct sockaddr_un, sun_path) + client_path_len;
     client_sockaddr_ptr = xfalloc(client_sockaddr_len, '\0');
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+  server_sockaddr_ptr->sun_len = client_path_sun_len;
+#endif
     client_sockaddr_ptr->sun_family = AF_UNIX;
     memcpy(client_sockaddr_ptr->sun_path, client_path_str, client_path_len);
   }
@@ -242,7 +302,7 @@ static void test_unix_stream(void)
   s = socket(AF_UNIX, SOCK_STREAM, 0);
   if (s == -1) { perror2("socket(server)"); exit(EXIT_FAILURE); }
 
-  report_path("bind(server)", server_path_str, server_path_len);
+  report_path("bind(server)", server_path_str, server_path_len, server_path_sun_len);
   ret = bind(s, (const struct sockaddr *)server_sockaddr_ptr, server_sockaddr_len);
   if (ret == -1) { perror2("bind(server)"); exit(EXIT_FAILURE); }
 
@@ -266,7 +326,7 @@ static void test_unix_stream(void)
   if (c == -1) { perror2("socket(client)"); exit(EXIT_FAILURE); }
 
   if (client_path_str) {
-    report_path("bind(client)", client_path_str, client_path_len);
+    report_path("bind(client)", client_path_str, client_path_len, client_path_sun_len);
     ret = bind(c, (const struct sockaddr *)client_sockaddr_ptr, client_sockaddr_len);
     if (ret == -1) { perror2("bind(client)"); exit(EXIT_FAILURE); }
 
@@ -280,7 +340,7 @@ static void test_unix_stream(void)
   if (ret == -1) { perror2("getsockname(client)"); exit(EXIT_FAILURE); }
   report_path_gotten("getsockname(client)", get_sockaddr_len, get_sockaddr_ptr, len);
 
-  report_path("connect", connect_path_str, connect_path_len);
+  report_path("connect", connect_path_str, connect_path_len, connect_path_sun_len);
   ret = connect(c, (struct sockaddr *)connect_sockaddr_ptr, connect_sockaddr_len);
   if (ret == -1) { perror2("connect"); exit(EXIT_FAILURE); }
 
