@@ -52,6 +52,15 @@ getsockname(server)   -> "(94*"Z")0123456789" (104 bytes)
 ./unix-stream -ps '01234567890'
 bind(server)          <- "(94*"Z")01234567890" (105 bytes)
 getsockname(server)   -> "(94*"Z")0123456789" (104 bytes)
+./unix-stream -s '(25*"0123456789")01234'    
+bind(server)          <- "(25*"0123456789")01234" (255 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream -s '(25*"0123456789")012345'
+bind(server)          <- "(25*"0123456789")012345" (256 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream -s '(300*"./")a'      
+bind(server)          <- "(300*"./")a" (601 bytes)
+bind(server): Invalid argument (EINVAL)
 ./unix-stream -s /etc/hosts
 bind(server)          <- "/etc/hosts" (10 bytes)
 bind(server): Address already in use (EADDRINUSE)
@@ -70,3 +79,6 @@ bind(server): No such file or directory (ENOENT)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 bind(server): No such file or directory (ENOENT)
+./unix-stream -s 'foo'
+bind(server)          <- "foo" (3 bytes)
+getsockname(server)   -> "foo" (3 bytes)
