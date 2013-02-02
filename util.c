@@ -152,7 +152,7 @@ void escape_string_content(char *unescaped_ptr, size_t unescaped_len, buffer_t *
           break;
         num_repeat++;
       }
-      if (10 < num_repeat * elem_len) {
+      if (1 < num_repeat && 10 < num_repeat * elem_len) {
         char nbuf[sizeof(size_t) * 3 + 10];
         snprintf(nbuf, sizeof(nbuf), "(%ld*\"", (long)num_repeat);
         buffer_add_str(buf, nbuf);
