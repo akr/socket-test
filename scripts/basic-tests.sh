@@ -38,4 +38,3 @@ uname -mrsv
 ./unix-stream -s /foo
 ./unix-stream -s /foo/bar
 ./unix-stream -s ''
-
