@@ -27,6 +27,7 @@ sockaddr_storage.ss_len :       offset=0    size=1
 sockaddr_storage.ss_family :    offset=1    size=1
 ./unix-stream 'foo' './foo'
 bind(server)          <- "foo" (3 bytes)
+socket file exist?    : yes
 getsockname(server)   -> "foo" (3 bytes)
 getsockname(client)   -> "(14*"\0")" (14 bytes)
 connect               <- "./foo" (5 bytes)
@@ -36,6 +37,7 @@ getsockname(accepted) -> "foo" (3 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream 'foo\0bar' './foo\0hoge'
 bind(server)          <- "foo\0bar" (7 bytes)
+socket file exist?    : yes
 getsockname(server)   -> "foo\0bar" (7 bytes)
 getsockname(client)   -> "(14*"\0")" (14 bytes)
 connect               <- "./foo\0hoge" (10 bytes)
@@ -43,22 +45,45 @@ getpeername(client)   -> "foo\0bar" (7 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "foo\0bar" (7 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
-./unix-stream -ps '012345678'
+./unix-stream -p '012345678'
 bind(server)          <- "(94*"Z")012345678" (103 bytes)
+socket file exist?    : yes
 getsockname(server)   -> "(94*"Z")012345678" (103 bytes)
-./unix-stream -ps '0123456789'
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(94*"Z")012345678" (103 bytes)
+getpeername(client)   -> "(94*"Z")012345678" (103 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(94*"Z")012345678" (103 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream -p '0123456789'
 bind(server)          <- "(94*"Z")0123456789" (104 bytes)
+socket file exist?    : yes
 getsockname(server)   -> "(94*"Z")0123456789" (104 bytes)
-./unix-stream -ps '01234567890'
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(94*"Z")0123456789" (104 bytes)
+getpeername(client)   -> "(94*"Z")0123456789" (104 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(94*"Z")0123456789" (104 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream -p '01234567890'
 bind(server)          <- "(94*"Z")01234567890" (105 bytes)
 bind(server): Invalid argument (EINVAL)
-./unix-stream -s '(25*"0123456789")01234'    
+./unix-stream '(25*"0123456789")012'
+bind(server)          <- "(25*"0123456789")012" (253 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream -g 1024 '(25*"0123456789")012'
+bind(server)          <- "(25*"0123456789")012" (253 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(25*"0123456789")0123'
+bind(server)          <- "(25*"0123456789")0123" (254 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(25*"0123456789")01234'    
 bind(server)          <- "(25*"0123456789")01234" (255 bytes)
 bind(server): File name too long (ENAMETOOLONG)
-./unix-stream -s '(25*"0123456789")012345'
+./unix-stream '(25*"0123456789")012345'
 bind(server)          <- "(25*"0123456789")012345" (256 bytes)
 bind(server): File name too long (ENAMETOOLONG)
-./unix-stream -s '(300*"./")a'      
+./unix-stream '(300*"./")a'      
 bind(server)          <- "(300*"./")a" (601 bytes)
 bind(server): File name too long (ENAMETOOLONG)
 ./unix-stream -s /etc/hosts
@@ -81,4 +106,5 @@ bind(server)          <- "" (0 bytes)
 bind(server): Invalid argument (EINVAL)
 ./unix-stream -s 'foo'
 bind(server)          <- "foo" (3 bytes)
+socket file exist?    : yes
 getsockname(server)   -> "foo" (3 bytes)

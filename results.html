@@ -259,6 +259,14 @@
     <td>&quot;foo&quot; (3 bytes)</td>
   </tr>
   <tr>
+    <th align="left">socket file exist?</th>
+    <td>yes</td>
+    <td>yes</td>
+    <td>yes</td>
+    <td>yes</td>
+    <td>yes</td>
+  </tr>
+  <tr>
     <th align="left">getsockname(server)   -&gt;</th>
     <td>&quot;foo\0&quot; (4 bytes)</td>
     <td>&quot;foo&quot; (3 bytes)</td>
@@ -335,6 +343,14 @@
     <td>&quot;foo\0bar&quot; (7 bytes)</td>
   </tr>
   <tr>
+    <th align="left">socket file exist?</th>
+    <td>yes</td>
+    <td>yes</td>
+    <td>yes</td>
+    <td>yes</td>
+    <td>yes</td>
+  </tr>
+  <tr>
     <th align="left">getsockname(server)   -&gt;</th>
     <td>&quot;foo\0&quot; (4 bytes)</td>
     <td>&quot;foo\0bar&quot; (7 bytes)</td>
@@ -392,7 +408,7 @@
   </tr>
   </tr>
 </table>
-<h2>./unix-stream -ps &#39;012345678&#39;</h2>
+<h2>./unix-stream -p &#39;012345678&#39;</h2>
 <table border>
   <tr>
     <th>OS</th>
@@ -411,6 +427,14 @@
     <td>&quot;(98*&quot;Z&quot;)012345678&quot; (107 bytes)</td>
   </tr>
   <tr>
+    <th align="left">socket file exist?</th>
+    <td>yes</td>
+    <td>yes</td>
+    <td>yes</td>
+    <td>yes</td>
+    <td>yes</td>
+  </tr>
+  <tr>
     <th align="left">getsockname(server)   -&gt;</th>
     <td>&quot;(98*&quot;Z&quot;)012345678\0&quot; (108 bytes)</td>
     <td>&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
@@ -418,9 +442,57 @@
     <td>&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
     <td>&quot;(98*&quot;Z&quot;)012345678\0&quot; (108 bytes)</td>
   </tr>
+  <tr>
+    <th align="left">getsockname(client)   -&gt;</th>
+    <td>&quot;&quot; (0 bytes)</td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+    <td>&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+    <td>too short sockaddr_un (0 bytes)</td>
+    <td>too short sockaddr_un (0 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">connect               &lt;-</th>
+    <td>&quot;(98*&quot;Z&quot;)012345678&quot; (107 bytes)</td>
+    <td>&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+    <td>&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+    <td>&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+    <td>&quot;(98*&quot;Z&quot;)012345678&quot; (107 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(client)   -&gt;</th>
+    <td>&quot;(98*&quot;Z&quot;)012345678\0&quot; (108 bytes)</td>
+    <td>&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+    <td>&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+    <td>&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+    <td>&quot;(98*&quot;Z&quot;)012345678\0&quot; (108 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">accept                -&gt;</th>
+    <td>&quot;&quot; (0 bytes)</td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+    <td>&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(accepted) -&gt;</th>
+    <td>&quot;(98*&quot;Z&quot;)012345678\0&quot; (108 bytes)</td>
+    <td>&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+    <td>&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+    <td>&quot;(94*&quot;Z&quot;)012345678&quot; (103 bytes)</td>
+    <td>&quot;(98*&quot;Z&quot;)012345678\0&quot; (108 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(accepted) -&gt;</th>
+    <td>&quot;&quot; (0 bytes)</td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+    <td>&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+    <td>too short sockaddr_un (0 bytes)</td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+  </tr>
   </tr>
 </table>
-<h2>./unix-stream -ps &#39;0123456789&#39;</h2>
+<h2>./unix-stream -p &#39;0123456789&#39;</h2>
 <table border>
   <tr>
     <th>OS</th>
@@ -447,6 +519,14 @@
     <td></td>
   </tr>
   <tr>
+    <th align="left">socket file exist?</th>
+    <td>yes</td>
+    <td>yes</td>
+    <td>yes</td>
+    <td></td>
+    <td>yes</td>
+  </tr>
+  <tr>
     <th align="left">getsockname(server)   -&gt;</th>
     <td>&quot;(98*&quot;Z&quot;)0123456789&quot;... (109 bytes)</td>
     <td>&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
@@ -454,9 +534,57 @@
     <td></td>
     <td>&quot;(98*&quot;Z&quot;)0123456789&quot;... (109 bytes)</td>
   </tr>
+  <tr>
+    <th align="left">getsockname(client)   -&gt;</th>
+    <td>&quot;&quot; (0 bytes)</td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+    <td>&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+    <td></td>
+    <td>too short sockaddr_un (0 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">connect               &lt;-</th>
+    <td>&quot;(98*&quot;Z&quot;)0123456789&quot; (108 bytes)</td>
+    <td>&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+    <td>&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+    <td></td>
+    <td>&quot;(98*&quot;Z&quot;)0123456789&quot; (108 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(client)   -&gt;</th>
+    <td>&quot;(98*&quot;Z&quot;)0123456789&quot;... (109 bytes)</td>
+    <td>&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+    <td>&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+    <td></td>
+    <td>&quot;(98*&quot;Z&quot;)0123456789&quot;... (109 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">accept                -&gt;</th>
+    <td>&quot;&quot; (0 bytes)</td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+    <td>&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+    <td></td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(accepted) -&gt;</th>
+    <td>&quot;(98*&quot;Z&quot;)0123456789&quot;... (109 bytes)</td>
+    <td>&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+    <td>&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+    <td></td>
+    <td>&quot;(98*&quot;Z&quot;)0123456789&quot;... (109 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(accepted) -&gt;</th>
+    <td>&quot;&quot; (0 bytes)</td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+    <td>&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+    <td></td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+  </tr>
   </tr>
 </table>
-<h2>./unix-stream -ps &#39;01234567890&#39;</h2>
+<h2>./unix-stream -p &#39;01234567890&#39;</h2>
 <table border>
   <tr>
     <th>OS</th>
@@ -481,6 +609,14 @@
     <td></td>
     <td>Invalid argument (EINVAL)</td>
     <td></td>
+  </tr>
+  <tr>
+    <th align="left">socket file exist?</th>
+    <td></td>
+    <td></td>
+    <td>yes</td>
+    <td></td>
+    <td>yes</td>
   </tr>
   <tr>
     <th align="left">getsockname(server)   -&gt;</th>
@@ -490,9 +626,333 @@
     <td></td>
     <td>&quot;(98*&quot;Z&quot;)0123456789&quot;... (110 bytes)</td>
   </tr>
+  <tr>
+    <th align="left">getsockname(client)   -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+    <td></td>
+    <td>too short sockaddr_un (0 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">connect               &lt;-</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(94*&quot;Z&quot;)01234567890&quot; (105 bytes)</td>
+    <td></td>
+    <td>&quot;(98*&quot;Z&quot;)01234567890&quot; (109 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(client)   -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+    <td></td>
+    <td>&quot;(98*&quot;Z&quot;)0123456789&quot;... (110 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">accept                -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+    <td></td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(accepted) -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(94*&quot;Z&quot;)0123456789&quot; (104 bytes)</td>
+    <td></td>
+    <td>&quot;(98*&quot;Z&quot;)0123456789&quot;... (110 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(accepted) -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+    <td></td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+  </tr>
   </tr>
 </table>
-<h2>./unix-stream -s &#39;(25*&quot;0123456789&quot;)01234&#39;    </h2>
+<h2>./unix-stream &#39;(25*&quot;0123456789&quot;)012&#39;</h2>
+<table border>
+  <tr>
+    <th>OS</th>
+    <th>linux</th>
+    <th>freebsd</th>
+    <th>netbsd</th>
+    <th>openbsd</th>
+    <th>sunos</th>
+  </tr>
+  <tr>
+    <th align="left">bind(server)          &lt;-</th>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">bind(server)</th>
+    <td>Invalid argument (EINVAL)</td>
+    <td>Invalid argument (EINVAL)</td>
+    <td></td>
+    <td>Invalid argument (EINVAL)</td>
+    <td></td>
+  </tr>
+  <tr>
+    <th align="left">socket file exist?</th>
+    <td></td>
+    <td></td>
+    <td>yes</td>
+    <td></td>
+    <td>yes</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(server)   -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(10*&quot;0123456789&quot;)0123&quot; (104 bytes)</td>
+    <td></td>
+    <td>&quot;(10*&quot;0123456789&quot;)01234567&quot;... (254 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(client)   -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+    <td></td>
+    <td>too short sockaddr_un (0 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">connect               &lt;-</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+    <td></td>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(client)   -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(10*&quot;0123456789&quot;)0123&quot; (104 bytes)</td>
+    <td></td>
+    <td>&quot;(10*&quot;0123456789&quot;)01234567&quot;... (254 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">accept                -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+    <td></td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(accepted) -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(10*&quot;0123456789&quot;)0123&quot; (104 bytes)</td>
+    <td></td>
+    <td>&quot;(10*&quot;0123456789&quot;)01234567&quot;... (254 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(accepted) -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+    <td></td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+  </tr>
+  </tr>
+</table>
+<h2>./unix-stream -g 1024 &#39;(25*&quot;0123456789&quot;)012&#39;</h2>
+<table border>
+  <tr>
+    <th>OS</th>
+    <th>linux</th>
+    <th>freebsd</th>
+    <th>netbsd</th>
+    <th>openbsd</th>
+    <th>sunos</th>
+  </tr>
+  <tr>
+    <th align="left">bind(server)          &lt;-</th>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">bind(server)</th>
+    <td>Invalid argument (EINVAL)</td>
+    <td>Invalid argument (EINVAL)</td>
+    <td></td>
+    <td>Invalid argument (EINVAL)</td>
+    <td></td>
+  </tr>
+  <tr>
+    <th align="left">socket file exist?</th>
+    <td></td>
+    <td></td>
+    <td>yes</td>
+    <td></td>
+    <td>yes</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(server)   -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+    <td></td>
+    <td>&quot;(25*&quot;0123456789&quot;)012\0&quot; (254 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(client)   -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+    <td></td>
+    <td>too short sockaddr_un (0 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">connect               &lt;-</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+    <td></td>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(client)   -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+    <td></td>
+    <td>&quot;(25*&quot;0123456789&quot;)012\0&quot; (254 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">accept                -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+    <td></td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(accepted) -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(25*&quot;0123456789&quot;)012&quot; (253 bytes)</td>
+    <td></td>
+    <td>&quot;(25*&quot;0123456789&quot;)012\0&quot; (254 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(accepted) -&gt;</th>
+    <td></td>
+    <td></td>
+    <td>&quot;(104*&quot;\0&quot;)&quot; (104 bytes)</td>
+    <td></td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+  </tr>
+  </tr>
+</table>
+<h2>./unix-stream &#39;(25*&quot;0123456789&quot;)0123&#39;</h2>
+<table border>
+  <tr>
+    <th>OS</th>
+    <th>linux</th>
+    <th>freebsd</th>
+    <th>netbsd</th>
+    <th>openbsd</th>
+    <th>sunos</th>
+  </tr>
+  <tr>
+    <th align="left">bind(server)          &lt;-</th>
+    <td>&quot;(25*&quot;0123456789&quot;)0123&quot; (254 bytes)</td>
+    <td>&quot;(25*&quot;0123456789&quot;)0123&quot; (254 bytes)</td>
+    <td>&quot;(25*&quot;0123456789&quot;)0123&quot; (254 bytes)</td>
+    <td>&quot;(25*&quot;0123456789&quot;)0123&quot; (254 bytes)</td>
+    <td>&quot;(25*&quot;0123456789&quot;)0123&quot; (254 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">bind(server)</th>
+    <td>Invalid argument (EINVAL)</td>
+    <td>File name too long (ENAMETOOLONG)</td>
+    <td>Invalid argument (EINVAL)</td>
+    <td>Invalid argument (EINVAL)</td>
+    <td></td>
+  </tr>
+  <tr>
+    <th align="left">socket file exist?</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>yes</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(server)   -&gt;</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&quot;(10*&quot;0123456789&quot;)01234567&quot;... (255 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(client)   -&gt;</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>too short sockaddr_un (0 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">connect               &lt;-</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&quot;(25*&quot;0123456789&quot;)0123&quot; (254 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(client)   -&gt;</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&quot;(10*&quot;0123456789&quot;)01234567&quot;... (255 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">accept                -&gt;</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(accepted) -&gt;</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&quot;(10*&quot;0123456789&quot;)01234567&quot;... (255 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(accepted) -&gt;</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+  </tr>
+  </tr>
+</table>
+<h2>./unix-stream &#39;(25*&quot;0123456789&quot;)01234&#39;    </h2>
 <table border>
   <tr>
     <th>OS</th>
@@ -517,6 +977,14 @@
     <td>Invalid argument (EINVAL)</td>
     <td>Invalid argument (EINVAL)</td>
     <td></td>
+  </tr>
+  <tr>
+    <th align="left">socket file exist?</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>yes</td>
   </tr>
   <tr>
     <th align="left">getsockname(server)   -&gt;</th>
@@ -526,9 +994,57 @@
     <td></td>
     <td>&quot;(10*&quot;0123456789&quot;)01234567&quot;... (256 bytes)</td>
   </tr>
+  <tr>
+    <th align="left">getsockname(client)   -&gt;</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>too short sockaddr_un (0 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">connect               &lt;-</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&quot;(25*&quot;0123456789&quot;)01234&quot; (255 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(client)   -&gt;</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&quot;(10*&quot;0123456789&quot;)01234567&quot;... (256 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">accept                -&gt;</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(accepted) -&gt;</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&quot;(10*&quot;0123456789&quot;)01234567&quot;... (256 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(accepted) -&gt;</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+  </tr>
   </tr>
 </table>
-<h2>./unix-stream -s &#39;(25*&quot;0123456789&quot;)012345&#39;</h2>
+<h2>./unix-stream &#39;(25*&quot;0123456789&quot;)012345&#39;</h2>
 <table border>
   <tr>
     <th>OS</th>
@@ -556,7 +1072,7 @@
   </tr>
   </tr>
 </table>
-<h2>./unix-stream -s &#39;(300*&quot;./&quot;)a&#39;      </h2>
+<h2>./unix-stream &#39;(300*&quot;./&quot;)a&#39;      </h2>
 <table border>
   <tr>
     <th>OS</th>
@@ -581,6 +1097,14 @@
     <td>Invalid argument (EINVAL)</td>
     <td>Invalid argument (EINVAL)</td>
     <td></td>
+  </tr>
+  <tr>
+    <th align="left">socket file exist?</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>yes</td>
   </tr>
   <tr>
     <th align="left">getsockname(server)   -&gt;</th>
@@ -589,6 +1113,54 @@
     <td></td>
     <td></td>
     <td>&quot;(54*&quot;./&quot;)&quot;... (602 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(client)   -&gt;</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>too short sockaddr_un (0 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">connect               &lt;-</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&quot;(300*&quot;./&quot;)a&quot; (601 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(client)   -&gt;</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&quot;(54*&quot;./&quot;)&quot;... (602 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">accept                -&gt;</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(accepted) -&gt;</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&quot;(54*&quot;./&quot;)&quot;... (602 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(accepted) -&gt;</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -759,8 +1331,16 @@
     <td>Is a directory (EISDIR)</td>
   </tr>
   <tr>
+    <th align="left">socket file exist?</th>
+    <td>no</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
     <th align="left">getsockname(server)   -&gt;</th>
-    <td>&quot;\00003c&quot; (6 bytes)</td>
+    <td>&quot;\000049&quot; (6 bytes)</td>
     <td></td>
     <td></td>
     <td></td>
@@ -789,6 +1369,15 @@
     <td>&quot;foo&quot; (3 bytes)</td>
   </tr>
   <tr>
+    <th align="left">socket file exist?</th>
+    <td>yes</td>
+    <td>yes</td>
+    <td>yes</td>
+    <td>yes</td>
+    <td>yes</td>
+    <td>no</td>
+  </tr>
+  <tr>
     <th align="left">getsockname(server)   -&gt;</th>
     <td>&quot;foo\0&quot; (4 bytes)</td>
     <td>&quot;foo&quot; (3 bytes)</td>
@@ -808,6 +1397,10 @@
   <tr>
     <th align="left">bind(server)          &lt;-</th>
     <td>&quot;\0abc&quot; (4 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">socket file exist?</th>
+    <td>no</td>
   </tr>
   <tr>
     <th align="left">getsockname(server)   -&gt;</th>
@@ -848,6 +1441,10 @@
   <tr>
     <th align="left">bind(server)          &lt;-</th>
     <td>&quot;\0abc&quot; (4 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">socket file exist?</th>
+    <td>no</td>
   </tr>
   <tr>
     <th align="left">getsockname(server)   -&gt;</th>

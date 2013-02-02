@@ -22,4 +22,5 @@ sockaddr_storage :            size=128
 sockaddr_storage.ss_family :    offset=0    size=2
 ./unix-stream -s 'foo'
 bind(server)          <- "foo" (3 bytes)
+socket file exist?    : no
 getsockname(server)   -> "foo\xD5#a\x10\0" (8 bytes)
