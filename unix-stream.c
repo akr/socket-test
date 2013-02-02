@@ -27,6 +27,7 @@
 #include "sockettest.h"
 
 static int opt_s = 0;
+static int opt_p = 0;
 static int opt_g = 0;
 static int opt_f = '\0';
 static int opt_e = 0;
@@ -44,6 +45,7 @@ void usage(int status)
       "usage: unix-stream server-path [connect-path [client-path]]\n"
       "option: -h : show this help message\n"
       "        -s : server only test mode.\n"
+      "        -p : prepend sizeof(sun_path)-10 characters for socket-path.\n"
       "        -g N : increase buffer size for getsockname/getpeername/accept (negative to decrease)\n"
       "        -f N : ASCII code to fill for getsockname buffer\n"
       "        -e N : number of extra bytes for getsockname buffer\n"
@@ -51,12 +53,33 @@ void usage(int status)
   exit(status);
 }
 
+#define PREPEND_LENGTH (FIELD_SIZE(struct sockaddr_un, sun_path)-10)
+static char *unescape_and_prepend_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escaped_len)
+{
+  char *unescaped_str;
+  size_t unescaped_len;
+  unescaped_str = unescape_string(&unescaped_len, escaped_ptr, escaped_len);
+  if (unescaped_str == NULL)
+    return NULL;
+
+  if (!opt_p)
+    return unescaped_str;
+
+  unescaped_str = xrealloc(unescaped_str, PREPEND_LENGTH+unescaped_len+1);
+  memmove(unescaped_str+PREPEND_LENGTH, unescaped_str, unescaped_len+1);
+  memset(unescaped_str, 'Z', PREPEND_LENGTH);
+
+  if (unescaped_len_ret)
+    *unescaped_len_ret = PREPEND_LENGTH+unescaped_len;
+  return unescaped_str;
+}
+
 static void parse_args(int argc, char *argv[])
 {
   int opt;
   char *arg;
 
-  while ((opt = getopt(argc, argv, "hsg:f:e:")) != -1) {
+  while ((opt = getopt(argc, argv, "hspg:f:e:")) != -1) {
     switch (opt) {
       case 'h':
         usage(EXIT_SUCCESS);
@@ -64,6 +87,10 @@ static void parse_args(int argc, char *argv[])
 
       case 's':
         opt_s = 1;
+        break;
+
+      case 'p':
+        opt_p = 1;
         break;
 
       case 'g':
@@ -88,7 +115,7 @@ static void parse_args(int argc, char *argv[])
   }
 
   arg = argv[optind++];
-  server_path_str = unescape_string(&server_path_len, arg, strlen(arg));
+  server_path_str = unescape_and_prepend_string(&server_path_len, arg, strlen(arg));
   if (server_path_str == NULL) {
     fprintf(stderr, "server path unescape failed\n");
     exit(EXIT_FAILURE);
@@ -101,7 +128,7 @@ static void parse_args(int argc, char *argv[])
   }
 
   arg = argv[optind++];
-  connect_path_str = unescape_string(&connect_path_len, arg, strlen(arg));
+  connect_path_str = unescape_and_prepend_string(&connect_path_len, arg, strlen(arg));
   if (connect_path_str == NULL) {
     fprintf(stderr, "connect path unescape failed\n");
     exit(EXIT_FAILURE);
@@ -112,7 +139,7 @@ static void parse_args(int argc, char *argv[])
   }
 
   arg = argv[optind++];
-  client_path_str = unescape_string(&client_path_len, arg, strlen(arg));
+  client_path_str = unescape_and_prepend_string(&client_path_len, arg, strlen(arg));
   if (client_path_str == NULL) {
     fprintf(stderr, "client path unescape failed\n");
     exit(EXIT_FAILURE);
