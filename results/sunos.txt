@@ -1,0 +1,66 @@
+uname -mrsv
+SunOS 5.11 snv_111b i86pc
+./size
+sizeof(sockaddr)=16
+  offsetof(sa_family)=0              sizeof(sa_family)=2
+  offsetof(sa_data)=2                sizeof(sa_data)=14
+sizeof(sockaddr_un)=110
+  offsetof(sun_family)=0             sizeof(sun_family)=2
+  offsetof(sun_path)=2               sizeof(sun_path)=108
+sizeof(sockaddr_in)=16
+  offsetof(sin_family)=0             sizeof(sin_family)=2
+  offsetof(sin_port)=2               sizeof(sin_port)=2
+  offsetof(sin_addr)=4               sizeof(sin_addr)=4
+sizeof(sockaddr_in6)=32
+  offsetof(sin6_family)=0            sizeof(sin6_family)=2
+  offsetof(sin6_port)=2              sizeof(sin6_port)=2
+  offsetof(sin6_flowinfo)=4          sizeof(sin6_flowinfo)=4
+  offsetof(sin6_addr)=8              sizeof(sin6_addr)=16
+  offsetof(sin6_scope_id)=24         sizeof(sin6_scope_id)=4
+sizeof(sockaddr_storage)=256
+  offsetof(ss_family)=0              sizeof(ss_family)=2
+./unix-stream 'foo' './foo'
+bind(server)          <- "foo" (3 bytes)
+getsockname(server)   -> "foo\0" (4 bytes)
+getsockname(client)   -> too short sockaddr_un (0 bytes)
+connect               <- "./foo" (5 bytes)
+getpeername(client)   -> "./foo\0" (6 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream 'foo\0bar' './foo\0hoge'
+bind(server)          <- "foo\0bar" (7 bytes)
+getsockname(server)   -> "foo\0bar" (7 bytes)
+getsockname(client)   -> too short sockaddr_un (0 bytes)
+connect               <- "./foo\0hoge" (10 bytes)
+getpeername(client)   -> "./foo\0hoge" (10 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "foo\0bar" (7 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream -ps '012345678'
+bind(server)          <- "(98*"Z")012345678" (107 bytes)
+getsockname(server)   -> "(98*"Z")012345678\0" (108 bytes)
+./unix-stream -ps '0123456789'
+bind(server)          <- "(98*"Z")0123456789" (108 bytes)
+getsockname(server)   -> "(98*"Z")0123456789"... (109 bytes)
+./unix-stream -ps '01234567890'
+bind(server)          <- "(98*"Z")01234567890" (109 bytes)
+getsockname(server)   -> "(98*"Z")0123456789"... (110 bytes)
+./unix-stream -s /etc/hosts
+bind(server)          <- "/etc/hosts" (10 bytes)
+bind(server): Address already in use (EADDRINUSE)
+./unix-stream -s /etc
+bind(server)          <- "/etc" (4 bytes)
+bind(server): Address already in use (EADDRINUSE)
+./unix-stream -s /
+bind(server)          <- "/" (1 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream -s /foo
+bind(server)          <- "/foo" (4 bytes)
+bind(server): Permission denied (EACCES)
+./unix-stream -s /foo/bar
+bind(server)          <- "/foo/bar" (8 bytes)
+bind(server): No such file or directory (ENOENT)
+./unix-stream -s ''
+bind(server)          <- "" (0 bytes)
+bind(server): Is a directory (EISDIR)
