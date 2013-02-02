@@ -29,7 +29,7 @@ set -v
 uname -mrsv
 ./size
 ./unix-stream 'foo' './foo'
-./unix-stream 'foo\0bar' './foo\0baz'
+./unix-stream 'foo\0bar' './foo\0hoge'
 ./unix-stream -ps '012345678'
 ./unix-stream -ps '0123456789'
 ./unix-stream -ps '01234567890'
