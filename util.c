@@ -390,7 +390,7 @@ void unlink_socket(char *path)
   if (path[0] == '\0')
     return;
 
-  ret = stat(path, &statbuf);
+  ret = lstat(path, &statbuf);
   if (ret == -1)
     return;
 
