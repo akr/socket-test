@@ -27,9 +27,9 @@
 exec 2>&1
 set -v
 
-./unix-stream '(sun_len=1)abc'
-./unix-stream '(sun_len=2)abc'
-./unix-stream '(sun_len=3)abc'
-./unix-stream '(sun_len=4)abc'
-./unix-stream '(sun_len=5)abc'
-./unix-stream '(sun_len=6)abc'
+./unix-stream -4 '(sun_len=1)abc'
+./unix-stream -4 '(sun_len=2)abc'
+./unix-stream -4 '(sun_len=3)abc'
+./unix-stream -4 '(sun_len=4)abc'
+./unix-stream -4 '(sun_len=5)abc'
+./unix-stream -4 '(sun_len=6)abc'

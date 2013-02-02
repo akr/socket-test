@@ -32,6 +32,7 @@ static int opt_p = 0;
 static socklen_t opt_g = sizeof(struct sockaddr_un);
 static int opt_f = '\0';
 static int opt_e = 0;
+static int opt_4 = 0;
 
 static char *server_path_str;
 static size_t server_path_len = 0;
@@ -54,6 +55,7 @@ void usage(int status)
       "        -g N : buffer size for getsockname/getpeername/accept (no sign means exact.  +N for increase and -N for decrease from sockaddr_un)\n"
       "        -f N : ASCII code to fill for getsockname buffer\n"
       "        -e N : number of extra bytes for getsockname buffer\n"
+      "        -4 : show 4.4BSD sun_len field\n"
       , stdout);
   exit(status);
 }
@@ -116,7 +118,7 @@ static void parse_args(int argc, char *argv[])
   int opt;
   char *arg;
 
-  while ((opt = getopt(argc, argv, "hUspg:f:e:")) != -1) {
+  while ((opt = getopt(argc, argv, "hUspg:f:e:4")) != -1) {
     switch (opt) {
       case 'h':
         usage(EXIT_SUCCESS);
@@ -154,6 +156,10 @@ static void parse_args(int argc, char *argv[])
 
       case 'e':
         opt_e = atoi(optarg);
+        break;
+
+      case '4':
+        opt_4 = 1;
         break;
 
       default:
@@ -212,7 +218,7 @@ static void report_path(char *key, char *path_ptr, size_t path_len, int path_sun
   char *escaped_path;
   char path_sun_len_prefix[sizeof("(sun_len=NNN)")] = "";
   escaped_path = escape_string(NULL, path_ptr, path_len);
-  if (path_sun_len != 0) {
+  if (opt_4 && path_sun_len != 0) {
     snprintf(path_sun_len_prefix, sizeof(path_sun_len_prefix),
         "(sun_len=%d)", path_sun_len);
   }
@@ -233,7 +239,7 @@ static void report_path_gotten(char *key, size_t buf_len, struct sockaddr_un *so
   }
 
 #ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
-  if (sockaddr_ptr->sun_len != 0) {
+  if (opt_4 && sockaddr_ptr->sun_len != 0) {
     snprintf(path_sun_len_prefix, sizeof(path_sun_len_prefix),
         "(sun_len=%d)", (int)sockaddr_ptr->sun_len);
   }
