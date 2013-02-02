@@ -62,15 +62,15 @@ static char *unescape_and_prepend_string(size_t *unescaped_len_ret, char *escape
   if (unescaped_str == NULL)
     return NULL;
 
-  if (!opt_p)
-    return unescaped_str;
-
-  unescaped_str = xrealloc(unescaped_str, PREPEND_LENGTH+unescaped_len+1);
-  memmove(unescaped_str+PREPEND_LENGTH, unescaped_str, unescaped_len+1);
-  memset(unescaped_str, 'Z', PREPEND_LENGTH);
+  if (opt_p) {
+    unescaped_str = xrealloc(unescaped_str, PREPEND_LENGTH+unescaped_len+1);
+    memmove(unescaped_str+PREPEND_LENGTH, unescaped_str, unescaped_len+1);
+    memset(unescaped_str, 'Z', PREPEND_LENGTH);
+    unescaped_len += PREPEND_LENGTH;
+  }
 
   if (unescaped_len_ret)
-    *unescaped_len_ret = PREPEND_LENGTH+unescaped_len;
+    *unescaped_len_ret = unescaped_len;
   return unescaped_str;
 }
 
