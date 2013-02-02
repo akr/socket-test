@@ -64,11 +64,11 @@ bind(server)          <- "/foo/bar" (8 bytes)
 bind(server): No such file or directory (ENOENT)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
-getsockname(server)   -> "\000031" (6 bytes)
+getsockname(server)   -> "\000035" (6 bytes)
 
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
-getsockname(server)   -> "\000032" (6 bytes)
+getsockname(server)   -> "\000036" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 getsockname(server)   -> "\0abc" (4 bytes)

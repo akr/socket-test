@@ -64,3 +64,13 @@ bind(server): No such file or directory (ENOENT)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 bind(server): Is a directory (EISDIR)
+./unix-stream -s '(25*"0123456789")01234'    
+bind(server)          <- "(25*"0123456789")01234" (255 bytes)
+getsockname(server)   -> "(10*"0123456789")01234567"... (256 bytes)
+./unix-stream -s '(25*"0123456789")012345'
+bind(server)          <- "(25*"0123456789")012345" (256 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream -s '(300*"./")a'      
+
+bind(server)          <- "(300*"./")a" (601 bytes)
+getsockname(server)   -> "(54*"./")"... (602 bytes)
