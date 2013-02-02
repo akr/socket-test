@@ -382,19 +382,26 @@ char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escap
   return buffer_unwrap(buf);
 }
 
-void unlink_socket(char *path)
+int socket_file_p(char *path)
 {
   int ret;
   struct stat statbuf;
 
   if (path[0] == '\0')
-    return;
+    return 0;
 
   ret = lstat(path, &statbuf);
   if (ret == -1)
-    return;
+    return 0;
 
   if (S_ISSOCK(statbuf.st_mode))
+    return 1;
+  return 0;
+}
+
+void unlink_socket(char *path)
+{
+  if (socket_file_p(path))
     unlink(path);
 }
 

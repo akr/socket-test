@@ -61,6 +61,7 @@ void buffer_free(buffer_t *buf);
 char *escape_string(size_t *escaped_len_ret, char *unescaped_ptr, size_t unescaped_len);
 char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escaped_len);
 
+int socket_file_p(char *path);
 void unlink_socket(char *path);
 void perror2(const char *s);
 char *errsym(int err);
