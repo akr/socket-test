@@ -256,9 +256,6 @@ static void test_unix_stream(void)
   report_path_gotten("getsockname(server)", get_sockaddr_len, get_sockaddr_ptr, len);
 
   if (opt_s) {
-    if (!opt_U) {
-      unlink_socket(server_path_str);
-    }
     return;
   }
 
@@ -310,9 +307,13 @@ static void test_unix_stream(void)
   ret = getpeername(sc, (struct sockaddr *)get_sockaddr_ptr, &len);
   if (ret == -1) { perror2("getpeername(accepted)"); exit(EXIT_FAILURE); }
   report_path_gotten("getpeername(accepted)", get_sockaddr_len, get_sockaddr_ptr, len);
+}
 
+void atexit_func()
+{
   if (!opt_U) {
-    unlink_socket(server_path_str);
+    if (server_path_str)
+      unlink_socket(server_path_str);
     if (client_path_str)
       unlink_socket(client_path_str);
   }
@@ -322,6 +323,7 @@ int main(int argc, char *argv[])
 {
   setvbuf(stdout, NULL, _IONBF, 0);
   parse_args(argc, argv);
+  atexit(atexit_func);
   test_unix_stream();
   return EXIT_SUCCESS;
 }
