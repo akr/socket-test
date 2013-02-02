@@ -22,6 +22,7 @@
           -g N : buffer size for getsockname/getpeername/accept (no sign means exact.  +N for increase and -N for decrease from sockaddr_un)
           -f N : ASCII code to fill for getsockname buffer
           -e N : number of extra bytes for getsockname buffer
+          -4 : show 4.4BSD sun_len field
 
 == Results
 
