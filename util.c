@@ -278,9 +278,9 @@ static char *parse_integer(char *p, char *pend, long *resultp)
 {
   char *s, *e;
   if (p == pend) return NULL;
-  if (!isdigit(*p)) return NULL;
+  if (!isdigit((unsigned char)*p)) return NULL;
   s = p++;
-  while (p < pend && isdigit(*p))
+  while (p < pend && isdigit((unsigned char)*p))
     p++;
   *resultp = strtol(s, &e, 10);
   if (p != e) return NULL;
