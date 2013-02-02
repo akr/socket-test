@@ -1089,7 +1089,7 @@
   </tr>
   </tr>
 </table>
-<h2>./unix-stream &#39;(300*&quot;./&quot;)a&#39;      </h2>
+<h2>./unix-stream &#39;(511*&quot;./&quot;)a&#39;      </h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -1101,11 +1101,11 @@
   </tr>
   <tr>
     <th align="left">bind(server)          &lt;-</th>
-      <td class="socket-normal">&quot;(300*&quot;./&quot;)a&quot; (601 bytes)</td>
-      <td class="socket-normal">&quot;(300*&quot;./&quot;)a&quot; (601 bytes)</td>
-      <td class="socket-normal">&quot;(300*&quot;./&quot;)a&quot; (601 bytes)</td>
-      <td class="socket-normal">&quot;(300*&quot;./&quot;)a&quot; (601 bytes)</td>
-      <td class="socket-normal">&quot;(300*&quot;./&quot;)a&quot; (601 bytes)</td>
+      <td class="socket-normal">&quot;(511*&quot;./&quot;)a&quot; (1023 bytes)</td>
+      <td class="socket-normal">&quot;(511*&quot;./&quot;)a&quot; (1023 bytes)</td>
+      <td class="socket-normal">&quot;(511*&quot;./&quot;)a&quot; (1023 bytes)</td>
+      <td class="socket-normal">&quot;(511*&quot;./&quot;)a&quot; (1023 bytes)</td>
+      <td class="socket-normal">&quot;(511*&quot;./&quot;)a&quot; (1023 bytes)</td>
   </tr>
   <tr>
     <th align="left">bind(server)</th>
@@ -1129,7 +1129,7 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(54*&quot;./&quot;)&quot;... (602 bytes)</td>
+      <td class="socket-normal">&quot;(54*&quot;./&quot;)&quot;... (1024 bytes)</td>
   </tr>
   <tr>
     <th align="left">getsockname(client)   -&gt;</th>
@@ -1145,7 +1145,7 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(300*&quot;./&quot;)a&quot; (601 bytes)</td>
+      <td class="socket-normal">&quot;(511*&quot;./&quot;)a&quot; (1023 bytes)</td>
   </tr>
   <tr>
     <th align="left">getpeername(client)   -&gt;</th>
@@ -1153,7 +1153,7 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(54*&quot;./&quot;)&quot;... (602 bytes)</td>
+      <td class="socket-normal">&quot;(54*&quot;./&quot;)&quot;... (1024 bytes)</td>
   </tr>
   <tr>
     <th align="left">accept                -&gt;</th>
@@ -1169,7 +1169,7 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;(54*&quot;./&quot;)&quot;... (602 bytes)</td>
+      <td class="socket-normal">&quot;(54*&quot;./&quot;)&quot;... (1024 bytes)</td>
   </tr>
   <tr>
     <th align="left">getpeername(accepted) -&gt;</th>
@@ -1178,6 +1178,34 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+  </tr>
+  </tr>
+</table>
+<h2>./unix-stream &#39;(511*&quot;./&quot;)ab&#39;      </h2>
+<table border>
+  <tr>
+    <th align="right">OS</th>
+    <th>linux</th>
+    <th>freebsd</th>
+    <th>netbsd</th>
+    <th>openbsd</th>
+    <th>sunos</th>
+  </tr>
+  <tr>
+    <th align="left">bind(server)          &lt;-</th>
+      <td class="socket-normal">&quot;(511*&quot;./&quot;)ab&quot; (1024 bytes)</td>
+      <td class="socket-normal">&quot;(511*&quot;./&quot;)ab&quot; (1024 bytes)</td>
+      <td class="socket-normal">&quot;(511*&quot;./&quot;)ab&quot; (1024 bytes)</td>
+      <td class="socket-normal">&quot;(511*&quot;./&quot;)ab&quot; (1024 bytes)</td>
+      <td class="socket-normal">&quot;(511*&quot;./&quot;)ab&quot; (1024 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">bind(server)</th>
+      <td class="socket-normal">Invalid argument (EINVAL)</td>
+      <td class="socket-abnormal">File name too long (ENAMETOOLONG)</td>
+      <td class="socket-normal">Invalid argument (EINVAL)</td>
+      <td class="socket-normal">Invalid argument (EINVAL)</td>
+      <td class="socket-abnormal">File name too long (ENAMETOOLONG)</td>
   </tr>
   </tr>
 </table>
@@ -1465,7 +1493,7 @@
   </tr>
   <tr>
     <th align="left">getsockname(server)   -&gt;</th>
-      <td class="socket-normal">&quot;\000052&quot; (6 bytes)</td>
+      <td class="socket-normal">&quot;\000056&quot; (6 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>

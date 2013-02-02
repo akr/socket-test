@@ -83,8 +83,11 @@ bind(server): File name too long (ENAMETOOLONG)
 ./unix-stream '(25*"0123456789")012345'
 bind(server)          <- "(25*"0123456789")012345" (256 bytes)
 bind(server): File name too long (ENAMETOOLONG)
-./unix-stream '(300*"./")a'      
-bind(server)          <- "(300*"./")a" (601 bytes)
+./unix-stream '(511*"./")a'      
+bind(server)          <- "(511*"./")a" (1023 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(511*"./")ab'      
+bind(server)          <- "(511*"./")ab" (1024 bytes)
 bind(server): File name too long (ENAMETOOLONG)
 ./unix-stream 'foo' 'foo' '(200*"b")'
 bind(server)          <- "foo" (3 bytes)
