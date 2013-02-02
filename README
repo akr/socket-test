@@ -182,7 +182,7 @@ NetBSD 5.1 :
     offsetof(ss_family)=1              sizeof(ss_family)=1
   netbsd% ./unix-stream foo ./foo
   bind(server)          <- "foo" (3 bytes)
-  getsockname(server)   -> "foo" (3 bytes)      # FreeBSD doesn't complement a NUL.
+  getsockname(server)   -> "foo" (3 bytes)      # NetBSD doesn't complement a NUL.
   getsockname(client)   -> "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0" (104 bytes)       # 104 NULs returned for anonymous Unix domain socket.
   connect               <- "./foo" (5 bytes)
   getpeername(client)   -> "foo" (3 bytes)      # getpeername returns the name given for bind().
