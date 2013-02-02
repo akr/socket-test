@@ -252,33 +252,33 @@ OpenBSD 5.1 :
   getsockname(client)   -> too short sockaddr_un (0 bytes)      # empty sockaddr_un (no sun_len and sun_family) returned by getsockname for anonymous Unix domain socket.
   connect               <- "./foo" (5 bytes)
   getpeername(client)   -> "foo" (3 bytes)      # getpeername returns the name given for bind().
-  accept                -> "\0\0\0\0\0\0\0\0\0\0\0\0\0\0" (14 bytes)    # 14 NULs returned by accept for anonymous Unix domain socket.
+  accept                -> "(14*"\0")" (14 bytes)       # 14 NULs returned by accept for anonymous Unix domain socket.
   getsockname(accepted) -> "foo" (3 bytes)
   getpeername(accepted) -> too short sockaddr_un (0 bytes)      # empty sockaddr_un returned by getpeername for anonymous Unix domain socket.
-  openbsd% ./unix-stream -s 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012
-  bind        <- "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012" (103 bytes)
-  getsockname -> "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012" (103 bytes)
-  openbsd% ./unix-stream -s 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123
-  bind        <- "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123" (104 bytes)
-  bind: Invalid argument
-  openbsd% ./unix-stream -s 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234
-  bind        <- "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234" (105 bytes)
-  bind: Invalid argument
+  openbsd% ./unix-stream -s '(10*"0123456789")012'
+  bind(server)          <- "(10*"0123456789")012" (103 bytes)
+  getsockname(server)   -> "(10*"0123456789")012" (103 bytes)
+  openbsd% ./unix-stream -s '(10*"0123456789")0123'
+  bind(server)          <- "(10*"0123456789")0123" (104 bytes)
+  bind(server): Invalid argument (EINVAL)
+  openbsd% ./unix-stream -s '(10*"0123456789")01234'
+  bind(server)          <- "(10*"0123456789")01234" (105 bytes)
+  bind(server): Invalid argument (EINVAL)
   openbsd% ./unix-stream -s /etc/hosts
-  bind        <- "/etc/hosts" (10 bytes)
-  bind: Address already in use (EADDRINUSE)
+  bind(server)          <- "/etc/hosts" (10 bytes)
+  bind(server): Address already in use (EADDRINUSE)
   openbsd% ./unix-stream -s /etc
-  bind        <- "/etc" (4 bytes)
-  bind: Address already in use (EADDRINUSE)
+  bind(server)          <- "/etc" (4 bytes)
+  bind(server): Address already in use (EADDRINUSE)
   openbsd% ./unix-stream -s /
-  bind        <- "/" (1 bytes)
-  bind: Is a directory (EISDIR)         # EISDIR for the root directory.
+  bind(server)          <- "/" (1 bytes)
+  bind(server): Is a directory (EISDIR)         # EISDIR for the root directory.
   openbsd% ./unix-stream -s /foo
-  bind        <- "/foo" (4 bytes)
-  bind: Permission denied (EACCES)
+  bind(server)          <- "/foo" (4 bytes)
+  bind(server): Permission denied (EACCES)
   openbsd% ./unix-stream -s ''
-  bind        <- "" (0 bytes)
-  bind: Invalid argument (EINVAL)       # EINVAL for empty path.
+  bind(server)          <- "" (0 bytes)
+  bind(server): Invalid argument (EINVAL)       # EINVAL for empty path.
 
 
 SunOS 5.11 :
