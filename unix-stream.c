@@ -292,6 +292,7 @@ static void test_unix_stream(void)
 
 int main(int argc, char *argv[])
 {
+  setvbuf(stdout, NULL, _IONBF, 0);
   parse_args(argc, argv);
   test_unix_stream();
   return EXIT_SUCCESS;
