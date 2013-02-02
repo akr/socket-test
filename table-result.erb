@@ -1,0 +1,176 @@
+<%
+
+require 'pp'
+include ERB::Util # for ERB::Util#h
+
+def shared_prefix_length(str1, str2)
+  (0..str1.length).find {|i| str1[i] != str2[i] } || str1.length
+end
+
+def merge_orderd(*arys)
+  merged = []
+  arys.each {|ary|
+    ary = ary.dup
+    h = Hash.new(0)
+    merged.each {|e| h[e] += 1 }
+    ary.each {|e| h[e] += 1 }
+    merged2 = []
+    while !merged.empty? && !ary.empty?
+      if merged.first == ary.first
+        merged2 << merged.first
+        merged.shift
+        ary.shift
+      elsif h[merged.first] == 1 && h[ary.first] == 1
+        # ambiguous.  needs heuristics.
+        if !merged2.empty?
+          if shared_prefix_length(merged2.last, merged.first) < shared_prefix_length(merged2.last, ary.first)
+            merged2 << ary.first
+            ary.shift
+          else
+            merged2 << merged.first
+            merged.shift
+          end
+        else
+          merged2 << merged.first
+          merged.shift
+        end
+      elsif h[merged.first] == 1
+        merged2 << merged.first
+        merged.shift
+      elsif h[ary.first] == 1
+        merged2 << ary.first
+        ary.shift
+      else
+        warn "inconsistent elements: #{merged.first.inspect}(#{h[merged.first]}) v.s. #{ary.first.inspect}(#{h[ary.first]})"
+        merged2 << merged.first
+        merged.shift
+      end
+    end
+    merged2.concat merged
+    merged2.concat ary
+    merged = merged2
+  }
+  merged
+end
+
+files = {}
+Dir.glob('results/*.txt') {|filename|
+  os = File.basename(filename, '.txt')
+  files[os] = File.read(filename)
+}
+
+os_order = {
+  'linux' => -9,
+  'freebsd' => -8,
+  'netbsd' => -7,
+  'openbsd' => -6,
+  'cygwin' => 100,
+}
+files.keys.sort.each_with_index {|os, i|
+  os_order[os] ||= i
+}
+
+command_os_lines = {}
+files.keys.sort_by {|os| os_order[os] }.each {|os|
+  content = files[os]
+  content.lines.slice_before(/\A(uname|\.\/)/).each {|lines|
+    lines = lines.reject {|line| /\A\s*\z/ =~ line }
+    next if lines.empty?
+    command = lines.shift.chomp
+    command_os_lines[command] ||= {}
+    command_os_lines[command][os] = lines
+  }
+}
+
+
+uname_results = command_os_lines.delete 'uname -mrsv'
+#pp uname_results
+#pp command_os_lines
+
+command_os_action_result_pairs = {}
+command_os_lines.each {|command, os_lines|
+  os_lines.each {|os, lines|
+    action_result_pairs = lines.map {|line|
+      unless /:|=|->|<-/ =~ line
+        warn "unexpected line: #{line.inspect}"
+        next
+      end
+      result = $'.strip
+      action = "#{$`}#{$&}".sub(/(:|=)\z/, '').strip
+      [action, result]
+    }.compact
+    command_os_action_result_pairs[command] ||= {}
+    command_os_action_result_pairs[command][os] = action_result_pairs
+  }
+}
+
+#pp command_os_action_result_pairs
+
+command_actions = {}
+command_actions_order = {}
+command_os_action_result_pairs.each {|command, os_action_result_pairs|
+  actions_list = os_action_result_pairs.map {|os, action_result_pairs|
+    action_result_pairs.map {|action, result|
+      action
+    }
+  }
+  command_actions_order[command] = {}
+  merged_actions = merge_orderd(*actions_list)
+  command_actions[command] = merged_actions
+  merged_actions.each_with_index {|action, i|
+    command_actions_order[command][action] = i
+  }
+}
+
+#pp command_actions_order
+
+command_action_os_result = {}
+command_os_action_result_pairs.each {|command, os_action_result_pairs|
+  action_os_result = {}
+  os_action_result_pairs.each {|os, action_result_pairs|
+    action_result_pairs.each {|action, result|
+      action_os_result[action] ||= {}
+      action_os_result[action][os] = result
+    }
+  }
+  command_action_os_result[command] = action_os_result
+}
+
+#pp command_action_os_result
+
+%>
+<title>Unix domain socket behavior comparison</title>
+
+<h1>Unix domain socket behavior comparison</h1>
+
+<h2>uname</h2>
+<table border>
+  <tr> <th>OS</th> <th>uname</th> </tr>
+% uname_results.keys.sort_by {|os| os_order[os] }.each {|os|
+%   uname = uname_results[os].join
+  <tr> <th align="left"><%=h os %></th> <td><%=h uname %></td> </tr>
+% }
+</table>
+
+% command_action_os_result.each {|command, action_os_result|
+%   os_list = action_os_result.values.map {|os_result| os_result.keys }.inject(&:|).sort_by {|os| os_order[os] }
+<h2><%=h command %></h2>
+<table border>
+  <tr>
+    <th>OS</th>
+% os_list.each {|os|
+    <th><%=h os %></th>
+% }
+  </tr>
+% action_os_result.keys.sort_by {|action| command_actions_order[command][action] }.each {|action|
+%   os_result = action_os_result[action]
+  <tr>
+    <th align="left"><%=h action %></th>
+%   os_list.each {|os|
+    <td><%=h os_result[os] %></td>
+%   }
+  </tr>
+% }
+  </tr>
+</table>
+% }

@@ -51,3 +51,6 @@ util.o: util.c sockettest.h config.h
 errsym.o: errsym.c
 errsym.c: errsym.erb
 	erb errsym.erb > errsym.c
+
+results.html : table-result.erb
+	erb table-result.erb > results.html
