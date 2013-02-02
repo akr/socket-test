@@ -46,34 +46,34 @@ Debian GNU/Linux 7.0 (wheezy) :
   accept                -> "" (0 bytes)
   getsockname(accepted) -> "foo\0" (4 bytes)
   getpeername(accepted) -> "" (0 bytes)
-  linux% ./unix-stream -s 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456
-  bind        <- "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456" (107 bytes)
-  getsockname -> "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456\0" (108 bytes)
-  linux% ./unix-stream -s 012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567
-  bind        <- "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567" (108 bytes)
-  getsockname -> "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567"... (109 bytes)
-  linux% ./unix-stream -s 0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678
-  bind        <- "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" (109 bytes)
-  bind: Invalid argument (EINVAL)
+  linux% ./unix-stream -s '(10*"0123456789")0123456'
+  bind(server)          <- "(10*"0123456789")0123456" (107 bytes)
+  getsockname(server)   -> "(10*"0123456789")0123456\0" (108 bytes)
+  linux% ./unix-stream -s '(10*"0123456789")01234567'
+  bind(server)          <- "(10*"0123456789")01234567" (108 bytes)
+  getsockname(server)   -> "(10*"0123456789")01234567"... (109 bytes)
+  linux% ./unix-stream -s '(10*"0123456789")012345678'
+  bind(server)          <- "(10*"0123456789")012345678" (109 bytes)
+  bind(server): Invalid argument (EINVAL)
   linux% ./unix-stream -s /etc/hosts
-  bind        <- "/etc/hosts" (10 bytes)
-  bind: Address already in use (EADDRINUSE)
+  bind(server)          <- "/etc/hosts" (10 bytes)
+  bind(server): Address already in use (EADDRINUSE)
   linux% ./unix-stream -s /etc
-  bind        <- "/etc" (4 bytes)
-  bind: Address already in use (EADDRINUSE)
+  bind(server)          <- "/etc" (4 bytes)
+  bind(server): Address already in use (EADDRINUSE)
   linux% ./unix-stream -s /
-  bind        <- "/" (1 bytes)
-  bind: Address already in use (EADDRINUSE)     # EADDRINUSE for the root directory.
+  bind(server)          <- "/" (1 bytes)
+  bind(server): Address already in use (EADDRINUSE)     # EADDRINUSE for the root directory.
   linux% ./unix-stream -s /foo
-  bind        <- "/foo" (4 bytes)
-  bind: Permission denied (EACCES)
+  bind(server)          <- "/foo" (4 bytes)
+  bind(server): Permission denied (EACCES)
   linux% ./unix-stream -s ''
-  bind        <- "" (0 bytes)
-  getsockname -> "\00001b" (6 bytes)    # Linux "autobind" feature binds a socket to a fresh name in abstract name space.
+  bind(server)          <- "" (0 bytes)
+  getsockname(server)   -> "\000005" (6 bytes)  # Linux "autobind" feature binds a socket to a fresh name in abstract name space.
   linux% ./unix-stream -s ''
-  bind        <- "" (0 bytes)
-  getsockname -> "\00001c" (6 bytes)    # Linux "autobind" feature
-  linux% ./unix-stream '\0abc'      # Linux "abstract name space" begins with "\0"
+  bind(server)          <- "" (0 bytes)
+  getsockname(server)   -> "\000006" (6 bytes)  # Linux "autobind" feature
+  linux% ./unix-stream '\0abc'                  # Linux "abstract name space" begins with "\0"
   bind(server)          <- "\0abc" (4 bytes)
   getsockname(server)   -> "\0abc" (4 bytes)
   getsockname(client)   -> "" (0 bytes)
