@@ -27,11 +27,14 @@
 #include "sockettest.h"
 
 #define SHOW_STRUCT(struct_name) \
-  printf("sizeof(%s)=%d\n", \
-      #struct_name, (int)sizeof(struct struct_name))
+  printf("%s :%*s size=%d\n", \
+      #struct_name, \
+      (int)(28-sizeof(#struct_name)), "", \
+      (int)sizeof(struct struct_name))
 #define SHOW_FIELD(struct_name, field_name) \
-  printf("  %-20s : offset=%-4d size=%d\n", \
-      #field_name, \
+  printf("%s.%s :%*s offset=%-4d size=%d\n", \
+      #struct_name, #field_name, \
+      (int)(30-sizeof(#struct_name)-sizeof(#field_name)), "", \
       (int)offsetof(struct struct_name, field_name), \
       (int)FIELD_SIZE(struct struct_name, field_name))
 
