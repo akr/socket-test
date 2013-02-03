@@ -38,8 +38,11 @@ maintainer-clean:
 complete-clean: maintainer-clean
 	rm -f configure config.h.in
 
-Makefile2 config.h: configure config.h.in
-	./update-file-direct configure.ac Makefile2 sh -c 'if [ -f config.status ]; then ./config.status --recheck && ./config.status; else ./configure; fi'
+Makefile2 config.h: configure Makefile2.in config.h.in
+	./update-file-direct \
+	  configure.ac \
+	  Makefile2 \
+	  sh -c 'if [ -f config.status ]; then ./config.status --recheck && ./config.status; else ./configure; fi'
 
 configure: configure.ac
 	./update-file-direct configure.ac configure autoconf

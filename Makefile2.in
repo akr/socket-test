@@ -31,7 +31,7 @@ LDLIBS = @LIBS@
 TARGETS = size const unix-stream
 UTILOBJS = util.o errsym.o
 
-all: $(TARGETS)
+all: $(TARGETS) results.html
 
 clean:
 	rm -f $(TARGETS) *.o

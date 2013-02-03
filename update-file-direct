@@ -32,7 +32,10 @@ shift
 target=$1
 shift
 
-if cmp -s "$source" ".update-$target.src" && [ -f ".update-$target.blt" ]
+if [ -f "$source" -a \
+     -f ".update-$target.src" -a \
+     -f ".update-$target.blt" ] && \
+  cmp -s "$source" ".update-$target.src"
 then
   cp ".update-$target.blt" "$target"
 else
