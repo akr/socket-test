@@ -28,7 +28,7 @@ CPPFLAGS = @CPPFLAGS@
 LDFLAGS = @LDFLAGS@
 LDLIBS = @LIBS@
 
-TARGETS = size unix-stream
+TARGETS = size const unix-stream
 UTILOBJS = util.o errsym.o
 
 all: $(TARGETS)
@@ -39,18 +39,23 @@ clean:
 size: size.o
 	$(CC) $(LDFLAGS) size.o $(LDLIBS) -o $@
 
+const: const.o
+	$(CC) $(LDFLAGS) const.o $(LDLIBS) -o $@
+
 unix-stream: unix-stream.o $(UTILOBJS)
 	$(CC) $(LDFLAGS) unix-stream.o $(UTILOBJS) $(LDLIBS) -o $@
 
-size: size.c
-unix-stream: unix-stream.o $(UTILOBJS)
-
+size.o: size.c sockettest.h config.h
 unix-stream.o: unix-stream.c sockettest.h config.h
 util.o: util.c sockettest.h config.h
 
-errsym.o: errsym.c
+errsym.o: errsym.c sockettest.h config.h
 errsym.c: errsym.erb
 	erb errsym.erb > errsym.c
+
+const.o: size.c sockettest.h config.h
+const.c: const.erb
+	erb const.erb > const.c
 
 results.html : table-result.erb \
   results/linux.txt \

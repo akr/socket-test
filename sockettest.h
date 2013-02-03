@@ -38,6 +38,7 @@
 #include <netinet/in.h>
 #include <sys/stat.h>
 #include <errno.h>
+#include <limits.h>
 
 #define FIELD_SIZE(struct_name, field_name) sizeof(((struct_name *)0)->field_name)
 
