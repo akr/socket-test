@@ -38,41 +38,57 @@
 
 #include "sockettest.h"
 
-#define SHOW_STRUCT(struct_name) \
+#define SHOW_STRUCT_SIZE(struct_name) \
   do { \
     printf("%s.size :%*s %d\n", \
         #struct_name, \
         (int)(36-sizeof(#struct_name)), "", \
         (int)sizeof(struct struct_name)); \
-    printf("%s.align :%*s %d\n", \
-        #struct_name, \
-        (int)(35-sizeof(#struct_name)), "", \
-        ALIGNOF(struct struct_name)); \
   } while (0)
-#define SHOW_FIELD(struct_name, field_name) \
+#define SHOW_FIELD_SIZE(struct_name, field_name) \
   do { \
-    printf("%s.%s.offset :%*s %d\n", \
-        #struct_name, #field_name, \
-        (int)(34-sizeof(#struct_name)-sizeof(#field_name)), "", \
-        (int)offsetof(struct struct_name, field_name)); \
     printf("%s.%s.size :%*s %d\n", \
         #struct_name, #field_name, \
         (int)(36-sizeof(#struct_name)-sizeof(#field_name)), "", \
         (int)FIELD_SIZE(struct struct_name, field_name)); \
   } while (0)
 
+#define SHOW_STRUCT_ALIGNMENT(struct_name) \
+  do { \
+    printf("%s.align :%*s %d\n", \
+        #struct_name, \
+        (int)(35-sizeof(#struct_name)), "", \
+        ALIGNOF(struct struct_name)); \
+  } while (0)
+#define SHOW_FIELD_OFFSET(struct_name, field_name) \
+  do { \
+    printf("%s.%s.offset :%*s %d\n", \
+        #struct_name, #field_name, \
+        (int)(34-sizeof(#struct_name)-sizeof(#field_name)), "", \
+        (int)offsetof(struct struct_name, field_name)); \
+  } while (0)
+
 int main(int argc, char *argv[])
 {
 % struct_list.each {|struct_name, *field_names|
-  SHOW_STRUCT(<%= struct_name %>);
+  SHOW_STRUCT_SIZE(<%= struct_name %>);
 %   field_names.each {|field_name|
-%     if /_len\z/ =~ field_name
-#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
-  SHOW_FIELD(<%= struct_name %>, <%= field_name %>);
-#endif
-%     else
-  SHOW_FIELD(<%= struct_name %>, <%= field_name %>);
-%     end
+%     pre_line, post_line = '', ''
+%     pre_line, post_line = '#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN', '#endif' if /_len\z/ =~ field_name
+<%= pre_line %>
+  SHOW_FIELD_SIZE(<%= struct_name %>, <%= field_name %>);
+<%= post_line %>
+%   }
+% }
+
+% struct_list.each {|struct_name, *field_names|
+  SHOW_STRUCT_ALIGNMENT(<%= struct_name %>);
+%   field_names.each {|field_name|
+%     pre_line, post_line = '', ''
+%     pre_line, post_line = '#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN', '#endif' if /_len\z/ =~ field_name
+<%= pre_line %>
+  SHOW_FIELD_OFFSET(<%= struct_name %>, <%= field_name %>);
+<%= post_line %>
 %   }
 % }
 
