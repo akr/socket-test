@@ -29,4 +29,5 @@ set -v
 
 uname -mrsv
 ./size
+./const
 ./unix-stream -s 'foo'
