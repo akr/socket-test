@@ -46,3 +46,6 @@ configure: configure.ac
 
 config.h.in: configure.ac
 	./update-file-direct configure.ac config.h.in autoheader
+
+results.html: Makefile2
+	$(MAKE) -f Makefile2 results.html

@@ -50,12 +50,12 @@
   </tr>
   <tr>
     <th align="left">sockaddr</th>
-      <td class="socket-normal">size=16</td>
-      <td class="socket-normal">size=16</td>
-      <td class="socket-normal">size=16</td>
-      <td class="socket-normal">size=16</td>
-      <td class="socket-normal">size=16</td>
-      <td class="socket-normal">size=16</td>
+      <td class="socket-normal">size=16 align=2</td>
+      <td class="socket-abnormal">size=16 align=1</td>
+      <td class="socket-abnormal">size=16 align=1</td>
+      <td class="socket-abnormal">size=16 align=1</td>
+      <td class="socket-normal">size=16 align=2</td>
+      <td class="socket-normal">size=16 align=2</td>
   </tr>
   <tr>
     <th align="left">sockaddr.sa_len</th>
@@ -86,12 +86,12 @@
   </tr>
   <tr>
     <th align="left">sockaddr_un</th>
-      <td class="socket-normal">size=110</td>
-      <td class="socket-abnormal">size=106</td>
-      <td class="socket-abnormal">size=106</td>
-      <td class="socket-abnormal">size=106</td>
-      <td class="socket-normal">size=110</td>
-      <td class="socket-normal">size=110</td>
+      <td class="socket-normal">size=110 align=2</td>
+      <td class="socket-abnormal">size=106 align=1</td>
+      <td class="socket-abnormal">size=106 align=1</td>
+      <td class="socket-abnormal">size=106 align=1</td>
+      <td class="socket-normal">size=110 align=2</td>
+      <td class="socket-normal">size=110 align=2</td>
   </tr>
   <tr>
     <th align="left">sockaddr_un.sun_len</th>
@@ -122,12 +122,12 @@
   </tr>
   <tr>
     <th align="left">sockaddr_in</th>
-      <td class="socket-normal">size=16</td>
-      <td class="socket-normal">size=16</td>
-      <td class="socket-normal">size=16</td>
-      <td class="socket-normal">size=16</td>
-      <td class="socket-normal">size=16</td>
-      <td class="socket-normal">size=16</td>
+      <td class="socket-normal">size=16 align=4</td>
+      <td class="socket-normal">size=16 align=4</td>
+      <td class="socket-abnormal">size=16 align=2</td>
+      <td class="socket-normal">size=16 align=4</td>
+      <td class="socket-normal">size=16 align=4</td>
+      <td class="socket-normal">size=16 align=4</td>
   </tr>
   <tr>
     <th align="left">sockaddr_in.sin_len</th>
@@ -167,12 +167,12 @@
   </tr>
   <tr>
     <th align="left">sockaddr_in6</th>
-      <td class="socket-normal">size=28</td>
-      <td class="socket-normal">size=28</td>
-      <td class="socket-normal">size=28</td>
-      <td class="socket-normal">size=28</td>
-      <td class="socket-abnormal">size=32</td>
-      <td class="socket-normal">size=28</td>
+      <td class="socket-normal">size=28 align=4</td>
+      <td class="socket-normal">size=28 align=4</td>
+      <td class="socket-normal">size=28 align=4</td>
+      <td class="socket-normal">size=28 align=4</td>
+      <td class="socket-abnormal">size=32 align=4</td>
+      <td class="socket-normal">size=28 align=4</td>
   </tr>
   <tr>
     <th align="left">sockaddr_in6.sin6_len</th>
@@ -230,12 +230,12 @@
   </tr>
   <tr>
     <th align="left">sockaddr_storage</th>
-      <td class="socket-normal">size=128</td>
-      <td class="socket-normal">size=128</td>
-      <td class="socket-normal">size=128</td>
-      <td class="socket-abnormal">size=256</td>
-      <td class="socket-abnormal">size=256</td>
-      <td class="socket-normal">size=128</td>
+      <td class="socket-normal">size=128 align=8</td>
+      <td class="socket-normal">size=128 align=8</td>
+      <td class="socket-normal">size=128 align=8</td>
+      <td class="socket-abnormal">size=256 align=8</td>
+      <td class="socket-abnormal">size=256 align=4</td>
+      <td class="socket-normal">size=128 align=8</td>
   </tr>
   <tr>
     <th align="left">sockaddr_storage.ss_len</th>
@@ -1659,7 +1659,7 @@
   </tr>
   <tr>
     <th align="left">getsockname(server)   -&gt;</th>
-      <td class="socket-normal">&quot;\000063&quot; (6 bytes)</td>
+      <td class="socket-normal">&quot;\00006c&quot; (6 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>

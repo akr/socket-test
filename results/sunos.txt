@@ -1,23 +1,23 @@
 uname -mrsv
 SunOS 5.11 snv_111b i86pc
 ./size
-sockaddr :                    size=16
+sockaddr :                    size=16 align=2
 sockaddr.sa_family :            offset=0    size=2
 sockaddr.sa_data :              offset=2    size=14
-sockaddr_un :                 size=110
+sockaddr_un :                 size=110 align=2
 sockaddr_un.sun_family :        offset=0    size=2
 sockaddr_un.sun_path :          offset=2    size=108
-sockaddr_in :                 size=16
+sockaddr_in :                 size=16 align=4
 sockaddr_in.sin_family :        offset=0    size=2
 sockaddr_in.sin_port :          offset=2    size=2
 sockaddr_in.sin_addr :          offset=4    size=4
-sockaddr_in6 :                size=32
+sockaddr_in6 :                size=32 align=4
 sockaddr_in6.sin6_family :      offset=0    size=2
 sockaddr_in6.sin6_port :        offset=2    size=2
 sockaddr_in6.sin6_flowinfo :    offset=4    size=4
 sockaddr_in6.sin6_addr :        offset=8    size=16
 sockaddr_in6.sin6_scope_id :    offset=24   size=4
-sockaddr_storage :            size=256
+sockaddr_storage :            size=256 align=4
 sockaddr_storage.ss_family :    offset=0    size=2
 ./const
 AF_UNSPEC: 0 (4 bytes)
