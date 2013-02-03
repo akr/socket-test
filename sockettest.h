@@ -41,6 +41,7 @@
 #include <limits.h>
 
 #define FIELD_SIZE(struct_name, field_name) sizeof(((struct_name *)0)->field_name)
+#define ALIGNOF(type) ((int)offsetof(struct { char f1; type f2; }, f2))
 
 void *xmalloc(size_t size);
 void *xfalloc(size_t size, int ch);

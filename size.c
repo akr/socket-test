@@ -27,10 +27,11 @@
 #include "sockettest.h"
 
 #define SHOW_STRUCT(struct_name) \
-  printf("%s :%*s size=%d\n", \
+  printf("%s :%*s size=%d align=%d\n", \
       #struct_name, \
       (int)(28-sizeof(#struct_name)), "", \
-      (int)sizeof(struct struct_name))
+      (int)sizeof(struct struct_name), \
+      ALIGNOF(struct struct_name))
 #define SHOW_FIELD(struct_name, field_name) \
   printf("%s.%s :%*s offset=%-4d size=%d\n", \
       #struct_name, #field_name, \
