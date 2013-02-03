@@ -42,11 +42,11 @@
     printf("%s.%s.offset :%*s %d\n", \
         #struct_name, #field_name, \
         (int)(34-sizeof(#struct_name)-sizeof(#field_name)), "", \
-        (int)FIELD_SIZE(struct struct_name, field_name)); \
+        (int)offsetof(struct struct_name, field_name)); \
     printf("%s.%s.size :%*s %d\n", \
         #struct_name, #field_name, \
         (int)(36-sizeof(#struct_name)-sizeof(#field_name)), "", \
-        (int)offsetof(struct struct_name, field_name)); \
+        (int)FIELD_SIZE(struct struct_name, field_name)); \
   } while (0)
 
 int main(int argc, char *argv[])
