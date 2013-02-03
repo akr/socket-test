@@ -1,0 +1,80 @@
+/* size.c is generated from size.erb. */
+
+/*
+ * Copyright (C) 2013 Tanaka Akira  <akr@fsij.org>
+ * 
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * 
+ *  1. Redistributions of source code must retain the above copyright notice, this
+ *     list of conditions and the following disclaimer.
+ *  2. Redistributions in binary form must reproduce the above copyright notice,
+ *     this list of conditions and the following disclaimer in the documentation
+ *     and/or other materials provided with the distribution.
+ *  3. The name of the author may not be used to endorse or promote products
+ *     derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+ * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+ * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+ * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+ * OF SUCH DAMAGE.
+ */
+
+<%
+  struct_list = [
+    %w[sockaddr sa_len sa_family sa_data],
+    %w[sockaddr_un sun_len sun_family sun_path],
+    %w[sockaddr_in sin_len sin_family sin_port sin_addr],
+    %w[sockaddr_in6 sin6_len sin6_family sin6_port sin6_flowinfo sin6_addr sin6_scope_id],
+    %w[sockaddr_storage ss_len ss_family],
+  ]
+%>
+
+#include "sockettest.h"
+
+#define SHOW_STRUCT(struct_name) \
+  do { \
+    printf("%s.size :%*s %d\n", \
+        #struct_name, \
+        (int)(36-sizeof(#struct_name)), "", \
+        (int)sizeof(struct struct_name)); \
+    printf("%s.align :%*s %d\n", \
+        #struct_name, \
+        (int)(35-sizeof(#struct_name)), "", \
+        ALIGNOF(struct struct_name)); \
+  } while (0)
+#define SHOW_FIELD(struct_name, field_name) \
+  do { \
+    printf("%s.%s.offset :%*s %d\n", \
+        #struct_name, #field_name, \
+        (int)(34-sizeof(#struct_name)-sizeof(#field_name)), "", \
+        (int)offsetof(struct struct_name, field_name)); \
+    printf("%s.%s.size :%*s %d\n", \
+        #struct_name, #field_name, \
+        (int)(36-sizeof(#struct_name)-sizeof(#field_name)), "", \
+        (int)FIELD_SIZE(struct struct_name, field_name)); \
+  } while (0)
+
+int main(int argc, char *argv[])
+{
+% struct_list.each {|struct_name, *field_names|
+  SHOW_STRUCT(<%= struct_name %>);
+%   field_names.each {|field_name|
+%     if /_len\z/ =~ field_name
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+  SHOW_FIELD(<%= struct_name %>, <%= field_name %>);
+#endif
+%     else
+  SHOW_FIELD(<%= struct_name %>, <%= field_name %>);
+%     end
+%   }
+% }
+
+  return EXIT_SUCCESS;
+}
