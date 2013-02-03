@@ -57,6 +57,9 @@ const.o: size.c sockettest.h config.h
 errsym.c: errsym.erb
 	sh update-file errsym.erb errsym.c erb errsym.erb
 
+size.c: size.erb
+	sh update-file size.erb size.c erb size.erb
+
 const.c: const.erb
 	sh update-file const.erb const.c erb const.erb
 
