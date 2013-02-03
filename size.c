@@ -27,17 +27,27 @@
 #include "sockettest.h"
 
 #define SHOW_STRUCT(struct_name) \
-  printf("%s :%*s size=%d align=%d\n", \
-      #struct_name, \
-      (int)(28-sizeof(#struct_name)), "", \
-      (int)sizeof(struct struct_name), \
-      ALIGNOF(struct struct_name))
+  do { \
+    printf("%s.size :%*s %d\n", \
+        #struct_name, \
+        (int)(36-sizeof(#struct_name)), "", \
+        (int)sizeof(struct struct_name)); \
+    printf("%s.align :%*s %d\n", \
+        #struct_name, \
+        (int)(35-sizeof(#struct_name)), "", \
+        ALIGNOF(struct struct_name)); \
+  } while (0)
 #define SHOW_FIELD(struct_name, field_name) \
-  printf("%s.%s :%*s offset=%-4d size=%d\n", \
-      #struct_name, #field_name, \
-      (int)(30-sizeof(#struct_name)-sizeof(#field_name)), "", \
-      (int)offsetof(struct struct_name, field_name), \
-      (int)FIELD_SIZE(struct struct_name, field_name))
+  do { \
+    printf("%s.%s.offset :%*s %d\n", \
+        #struct_name, #field_name, \
+        (int)(34-sizeof(#struct_name)-sizeof(#field_name)), "", \
+        (int)FIELD_SIZE(struct struct_name, field_name)); \
+    printf("%s.%s.size :%*s %d\n", \
+        #struct_name, #field_name, \
+        (int)(36-sizeof(#struct_name)-sizeof(#field_name)), "", \
+        (int)offsetof(struct struct_name, field_name)); \
+  } while (0)
 
 int main(int argc, char *argv[])
 {
