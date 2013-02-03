@@ -1,0 +1,37 @@
+/* errsym.c is generated from errsym.erb. */
+
+<%
+  const_list = <<End
+AF_UNSPEC
+PF_UNSPEC
+AF_UNIX
+PF_UNIX
+AF_INET
+PF_INET
+AF_INET6
+PF_INET6
+SOCK_STREAM
+SOCK_DGRAM
+SOCK_SEQPACKET
+SOMAXCONN
+NAME_MAX
+PATH_MAX
+SYMLOOP_MAX
+EXIT_SUCCESS
+EXIT_FAILURE
+End
+%>
+
+#include "sockettest.h"
+
+int main(int argc, char *argv[])
+{
+% const_list.each_line {|sym| sym.chomp!
+#ifdef <%= sym %>
+  printf("%s: %ld (%d bytes)\n", "<%= sym %>", (long)<%= sym %>, (int)sizeof(<%= sym %>));
+#endif
+% }
+
+  return EXIT_SUCCESS;
+}
+

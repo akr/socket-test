@@ -48,14 +48,30 @@ unix-stream: unix-stream.o $(UTILOBJS)
 size.o: size.c sockettest.h config.h
 unix-stream.o: unix-stream.c sockettest.h config.h
 util.o: util.c sockettest.h config.h
-
 errsym.o: errsym.c sockettest.h config.h
-errsym.c: errsym.erb
-	erb errsym.erb > errsym.c
-
 const.o: size.c sockettest.h config.h
+
+errsym.c: errsym.erb
+	if cmp -s errsym.erb .stamp-errsym.src; \
+	then \
+	  cp .stamp-errsym.blt errsym.c; \
+	else \
+	  erb errsym.erb > errsym.c.tmp && \
+	  mv errsym.c.tmp errsym.c && \
+	  cp errsym.c .stamp-errsym.blt && \
+	  cp errsym.erb .stamp-errsym.src; \
+	fi
+
 const.c: const.erb
-	erb const.erb > const.c
+	if cmp -s const.erb .stamp-const.src; \
+	then \
+	  cp .stamp-const.blt const.c; \
+	else \
+	  erb const.erb > const.c.tmp && \
+	  mv const.c.tmp const.c && \
+	  cp const.c .stamp-const.blt && \
+	  cp const.erb .stamp-const.src; \
+	fi
 
 results.html : table-result.erb \
   results/linux.txt \
