@@ -266,9 +266,11 @@
     <th>netbsd</th>
     <th>openbsd</th>
     <th>sunos</th>
+    <th>cygwin</th>
   </tr>
   <tr>
     <th align="left">AF_UNSPEC</th>
+      <td class="socket-normal">0</td>
       <td class="socket-normal">0</td>
       <td class="socket-normal">0</td>
       <td class="socket-normal">0</td>
@@ -282,9 +284,11 @@
       <td class="socket-normal">0</td>
       <td class="socket-normal">0</td>
       <td class="socket-normal">0</td>
+      <td class="socket-normal">0</td>
   </tr>
   <tr>
     <th align="left">AF_UNIX</th>
+      <td class="socket-normal">1</td>
       <td class="socket-normal">1</td>
       <td class="socket-normal">1</td>
       <td class="socket-normal">1</td>
@@ -298,9 +302,11 @@
       <td class="socket-normal">1</td>
       <td class="socket-normal">1</td>
       <td class="socket-normal">1</td>
+      <td class="socket-normal">1</td>
   </tr>
   <tr>
     <th align="left">AF_INET</th>
+      <td class="socket-normal">2</td>
       <td class="socket-normal">2</td>
       <td class="socket-normal">2</td>
       <td class="socket-normal">2</td>
@@ -314,6 +320,7 @@
       <td class="socket-normal">2</td>
       <td class="socket-normal">2</td>
       <td class="socket-normal">2</td>
+      <td class="socket-normal">2</td>
   </tr>
   <tr>
     <th align="left">AF_INET6</th>
@@ -322,6 +329,7 @@
       <td class="socket-normal">24</td>
       <td class="socket-normal">24</td>
       <td class="socket-abnormal">26</td>
+      <td class="socket-abnormal">23</td>
   </tr>
   <tr>
     <th align="left">PF_INET6</th>
@@ -330,6 +338,7 @@
       <td class="socket-normal">24</td>
       <td class="socket-normal">24</td>
       <td class="socket-abnormal">26</td>
+      <td class="socket-abnormal">23</td>
   </tr>
   <tr>
     <th align="left">SOCK_STREAM</th>
@@ -338,6 +347,7 @@
       <td class="socket-normal">1</td>
       <td class="socket-normal">1</td>
       <td class="socket-abnormal">2</td>
+      <td class="socket-normal">1</td>
   </tr>
   <tr>
     <th align="left">SOCK_DGRAM</th>
@@ -346,6 +356,7 @@
       <td class="socket-normal">2</td>
       <td class="socket-normal">2</td>
       <td class="socket-abnormal">1</td>
+      <td class="socket-normal">2</td>
   </tr>
   <tr>
     <th align="left">SOCK_SEQPACKET</th>
@@ -354,6 +365,7 @@
       <td class="socket-normal">5</td>
       <td class="socket-normal">5</td>
       <td class="socket-abnormal">6</td>
+      <td class="socket-normal">5</td>
   </tr>
   <tr>
     <th align="left">SOMAXCONN</th>
@@ -362,6 +374,7 @@
       <td class="socket-normal">128</td>
       <td class="socket-normal">128</td>
       <td class="socket-normal">128</td>
+      <td class="socket-abnormal">2147483647</td>
   </tr>
   <tr>
     <th align="left">NAME_MAX</th>
@@ -370,6 +383,7 @@
       <td class="socket-normal">255</td>
       <td class="socket-normal">255</td>
       <td class="socket-none"></td>
+      <td class="socket-normal">255</td>
   </tr>
   <tr>
     <th align="left">PATH_MAX</th>
@@ -378,6 +392,7 @@
       <td class="socket-normal">1024</td>
       <td class="socket-normal">1024</td>
       <td class="socket-normal">1024</td>
+      <td class="socket-abnormal">4096</td>
   </tr>
   <tr>
     <th align="left">SYMLOOP_MAX</th>
@@ -386,6 +401,7 @@
       <td class="socket-none"></td>
       <td class="socket-normal">32</td>
       <td class="socket-none"></td>
+      <td class="socket-abnormal">10</td>
   </tr>
   <tr>
     <th align="left">EXIT_SUCCESS</th>
@@ -394,9 +410,11 @@
       <td class="socket-normal">0</td>
       <td class="socket-normal">0</td>
       <td class="socket-normal">0</td>
+      <td class="socket-normal">0</td>
   </tr>
   <tr>
     <th align="left">EXIT_FAILURE</th>
+      <td class="socket-normal">1</td>
       <td class="socket-normal">1</td>
       <td class="socket-normal">1</td>
       <td class="socket-normal">1</td>
