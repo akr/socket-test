@@ -1,20 +1,20 @@
 #!/bin/sh
 
 # usage:
-#  update-file source-file target-file commandline...
+#  update-file source-file target-file commandline-to-output-to-stdout...
 
 source=$1
 shift
 target=$1
 shift
 
-if cmp -s "$source" ".update-$source.src"
+if cmp -s "$source" ".update-$target.src" && [ -f ".update-$target.blt" ]
 then
-  cp ".update-$target.target" "$target"
+  cp ".update-$target.blt" "$target"
 else
   "$@" > "$target.tmp" &&
   mv "$target.tmp" "$target" &&
-  cp "$target" ".update-$target.target" &&
-  cp "$source" ".update-$source.src"
+  cp "$target" ".update-$target.blt" &&
+  cp "$source" ".update-$target.src"
 fi
 

@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# usage:
+#  update-file-direct source-file target-file commandline-to-create-target-file...
+
+source=$1
+shift
+target=$1
+shift
+
+if cmp -s "$source" ".update-$target.src" && [ -f ".update-$target.blt" ]
+then
+  cp ".update-$target.blt" "$target"
+else
+  rm -f "$target.update-backup"
+  if [ -f "$target" ]
+  then
+    mv "$target" "$target.update-backup"
+    if "$@"
+    then
+      cp "$target" ".update-$target.blt" &&
+      cp "$source" ".update-$target.src" &&
+      rm "$target.update-backup"
+    else
+      mv "$target.update-backup" "$target"
+      false
+    fi
+  else
+    "$@" &&
+    cp "$target" ".update-$target.blt" &&
+    cp "$source" ".update-$target.src"
+  fi
+fi
+

@@ -22,49 +22,35 @@
 # IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 # OF SUCH DAMAGE.
 
-CC = @CC@
-CFLAGS = @CFLAGS@
-CPPFLAGS = @CPPFLAGS@
-LDFLAGS = @LDFLAGS@
-LDLIBS = @LIBS@
+AC_PREREQ(2.61)
+AC_INIT(socket-test, 0.1)
+AC_CONFIG_SRCDIR([unix-stream.c])
+AC_CONFIG_HEADERS([config.h])
 
-TARGETS = size const unix-stream
-UTILOBJS = util.o errsym.o
+# Checks for programs.
+AC_PROG_CC
 
-all: $(TARGETS)
+# Checks for libraries.
+AC_CHECK_LIB([xnet], [socketpair]) # Solaris
 
-clean:
-	rm -f $(TARGETS) *.o
+# Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS([stddef.h stdlib.h string.h sys/socket.h unistd.h])
 
-maintainer-clean: clean
-	rm -f errsym.c const.c
+# Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_TYPE_SIZE_T
+AC_TYPE_SSIZE_T
 
-size: size.o
-	$(CC) $(LDFLAGS) size.o $(LDLIBS) -o $@
+AC_CHECK_MEMBERS([struct sockaddr.sa_len], [], [], [[
+#include <sys/types.h>
+#include <sys/socket.h>
+]])
 
-const: const.o
-	$(CC) $(LDFLAGS) const.o $(LDLIBS) -o $@
+# Checks for library functions.
+AC_FUNC_MALLOC
+AC_FUNC_STAT
+AC_CHECK_FUNCS([memset socket])
 
-unix-stream: unix-stream.o $(UTILOBJS)
-	$(CC) $(LDFLAGS) unix-stream.o $(UTILOBJS) $(LDLIBS) -o $@
-
-size.o: size.c sockettest.h config.h
-unix-stream.o: unix-stream.c sockettest.h config.h
-util.o: util.c sockettest.h config.h
-errsym.o: errsym.c sockettest.h config.h
-const.o: size.c sockettest.h config.h
-
-errsym.c: errsym.erb
-	sh update-file errsym.erb errsym.c erb errsym.erb
-
-const.c: const.erb
-	sh update-file const.erb const.c erb const.erb
-
-results.html : table-result.erb \
-  results/linux.txt \
-  results/freebsd.txt \
-  results/netbsd.txt \
-  results/openbsd.txt \
-  results/sunos.txt \
-  results/cygwin.txt
-	erb table-result.erb > results.html
+AC_CONFIG_FILES([Makefile2])
+AC_OUTPUT

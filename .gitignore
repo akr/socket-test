@@ -9,3 +9,6 @@ config.status
 size
 const
 unix-stream
+Makefile2
+.update-Makefile2.blt
+.update-Makefile2.src
