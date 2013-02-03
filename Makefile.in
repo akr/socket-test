@@ -52,26 +52,10 @@ errsym.o: errsym.c sockettest.h config.h
 const.o: size.c sockettest.h config.h
 
 errsym.c: errsym.erb
-	if cmp -s errsym.erb .stamp-errsym.src; \
-	then \
-	  cp .stamp-errsym.blt errsym.c; \
-	else \
-	  erb errsym.erb > errsym.c.tmp && \
-	  mv errsym.c.tmp errsym.c && \
-	  cp errsym.c .stamp-errsym.blt && \
-	  cp errsym.erb .stamp-errsym.src; \
-	fi
+	sh update-file errsym.erb errsym.c erb errsym.erb
 
 const.c: const.erb
-	if cmp -s const.erb .stamp-const.src; \
-	then \
-	  cp .stamp-const.blt const.c; \
-	else \
-	  erb const.erb > const.c.tmp && \
-	  mv const.c.tmp const.c && \
-	  cp const.c .stamp-const.blt && \
-	  cp const.erb .stamp-const.src; \
-	fi
+	sh update-file const.erb const.c erb const.erb
 
 results.html : table-result.erb \
   results/linux.txt \

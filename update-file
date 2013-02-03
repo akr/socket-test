@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# usage:
+#  update-file source-file target-file commandline...
+
+source=$1
+shift
+target=$1
+shift
+
+if cmp -s "$source" ".update-$source.src"
+then
+  cp ".update-$target.target" "$target"
+else
+  "$@" > "$target.tmp" &&
+  mv "$target.tmp" "$target" &&
+  cp "$target" ".update-$target.target" &&
+  cp "$source" ".update-$source.src"
+fi
+
