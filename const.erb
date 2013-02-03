@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 {
 % const_list.each_line {|sym| sym.chomp!
 #ifdef <%= sym %>
-  printf("%s: %ld\n", "<%= sym %>", (long)<%= sym %>);
+  printf("%s: %ld (%d bytes)\n", "<%= sym %>", (long)<%= sym %>, (int)sizeof(<%= sym %>));
 #endif
 % }
 
