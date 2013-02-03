@@ -19,6 +19,22 @@ sockaddr_in6.sin6_addr :        offset=8    size=16
 sockaddr_in6.sin6_scope_id :    offset=24   size=4
 sockaddr_storage :            size=256
 sockaddr_storage.ss_family :    offset=0    size=2
+./const
+AF_UNSPEC: 0
+PF_UNSPEC: 0
+AF_UNIX: 1
+PF_UNIX: 1
+AF_INET: 2
+PF_INET: 2
+AF_INET6: 26
+PF_INET6: 26
+SOCK_STREAM: 2
+SOCK_DGRAM: 1
+SOCK_SEQPACKET: 6
+SOMAXCONN: 128
+PATH_MAX: 1024
+EXIT_SUCCESS: 0
+EXIT_FAILURE: 1
 ./unix-stream 'foo' './foo'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
