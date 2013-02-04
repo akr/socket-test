@@ -1,5 +1,5 @@
 uname -mrsv
-SunOS 5.11 snv_111b i86pc
+SunOS 5.11 oi_151a7 i86pc
 ./size
 sockaddr.size :                            16
 sockaddr.sa_family.size :                  2
