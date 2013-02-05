@@ -66,7 +66,7 @@ uname -mrsv
 ./unix-stream -s '/foo/bar'
 ./unix-stream -s '/foo/bar\0'
 ./unix-stream -s ''
-./unix-stream -s ''
+./unix-stream -s '\0'
 ./unix-stream -s 'foo'
 ./unix-stream -s 'foo\0'
 
