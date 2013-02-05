@@ -50,4 +50,4 @@ uname -mrsv
 ./unix-stream -s '/foo\0'
 ./unix-stream -s '/foo/bar\0'
 ./unix-stream -s '\0'
-./unix-stream -s 'foo\0'
+./unix-stream -s 'foo'
