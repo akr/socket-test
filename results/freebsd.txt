@@ -225,9 +225,9 @@ bind(server): No such file or directory (ENOENT)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 bind(server): Invalid argument (EINVAL)
-./unix-stream -s ''
-bind(server)          <- "" (0 bytes)
-bind(server): Invalid argument (EINVAL)
+./unix-stream -s '\0'
+bind(server)          <- "\0" (1 bytes)
+bind(server): No such file or directory (ENOENT)
 ./unix-stream -s 'foo'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist

@@ -266,8 +266,8 @@ bind(server): No such file or directory (ENOENT)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 bind(server): No such file or directory (ENOENT)
-./unix-stream -s ''
-bind(server)          <- "" (0 bytes)
+./unix-stream -s '\0'
+bind(server)          <- "\0" (1 bytes)
 bind(server): No such file or directory (ENOENT)
 ./unix-stream -s 'foo'
 bind(server)          <- "foo" (3 bytes)

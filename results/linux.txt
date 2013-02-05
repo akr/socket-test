@@ -215,11 +215,11 @@ bind(server): No such file or directory (ENOENT)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000081" (6 bytes)
-./unix-stream -s ''
-bind(server)          <- "" (0 bytes)
+getsockname(server)   -> "\000086" (6 bytes)
+./unix-stream -s '\0'
+bind(server)          <- "\0" (1 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000082" (6 bytes)
+getsockname(server)   -> "\0" (1 bytes)
 ./unix-stream -s 'foo'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
@@ -233,7 +233,7 @@ getsockname(server)   -> "foo\0" (4 bytes)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000083" (6 bytes)
+getsockname(server)   -> "\000087" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
