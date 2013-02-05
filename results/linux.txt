@@ -62,7 +62,17 @@ getsockname(server)   -> "foo\0" (4 bytes)
 getsockname(client)   -> "" (0 bytes)
 connect               <- "./foo" (5 bytes)
 getpeername(client)   -> "foo\0" (4 bytes)
-accept                -> "" (0 bytes)
+accept                -> "\0\0\0\0" (4 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream 'foo\0' './foo\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "./foo\0" (6 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "\0\0\0\0" (4 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream 'foo\0bar' './foo\0hoge'
@@ -72,7 +82,7 @@ getsockname(server)   -> "foo\0" (4 bytes)
 getsockname(client)   -> "" (0 bytes)
 connect               <- "./foo\0hoge" (10 bytes)
 getpeername(client)   -> "foo\0" (4 bytes)
-accept                -> "" (0 bytes)
+accept                -> "\0\0\0\0" (4 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream -p '012345678'
@@ -82,7 +92,7 @@ getsockname(server)   -> "(98*"Z")012345678\0" (108 bytes)
 getsockname(client)   -> "" (0 bytes)
 connect               <- "(98*"Z")012345678" (107 bytes)
 getpeername(client)   -> "(98*"Z")012345678\0" (108 bytes)
-accept                -> "" (0 bytes)
+accept                -> "(108*"\0")" (108 bytes)
 getsockname(accepted) -> "(98*"Z")012345678\0" (108 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream -p '0123456789'
@@ -92,7 +102,7 @@ getsockname(server)   -> "(98*"Z")0123456789"... (109 bytes)
 getsockname(client)   -> "" (0 bytes)
 connect               <- "(98*"Z")0123456789" (108 bytes)
 getpeername(client)   -> "(98*"Z")0123456789"... (109 bytes)
-accept                -> "" (0 bytes)
+accept                -> "(108*"\0")"... (109 bytes)
 getsockname(accepted) -> "(98*"Z")0123456789"... (109 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream -p '01234567890'
@@ -119,6 +129,53 @@ bind(server): Invalid argument (EINVAL)
 ./unix-stream '(511*"./")ab'      
 bind(server)          <- "(511*"./")ab" (1024 bytes)
 bind(server): Invalid argument (EINVAL)
+./unix-stream -p '01234567\0'
+bind(server)          <- "(98*"Z")01234567\0" (107 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(98*"Z")01234567\0" (107 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(98*"Z")01234567\0" (107 bytes)
+getpeername(client)   -> "(98*"Z")01234567\0" (107 bytes)
+accept                -> "(107*"\0")" (107 bytes)
+getsockname(accepted) -> "(98*"Z")01234567\0" (107 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream -p '012345678\0'
+bind(server)          <- "(98*"Z")012345678\0" (108 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(98*"Z")012345678\0" (108 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(98*"Z")012345678\0" (108 bytes)
+getpeername(client)   -> "(98*"Z")012345678\0" (108 bytes)
+accept                -> "(108*"\0")" (108 bytes)
+getsockname(accepted) -> "(98*"Z")012345678\0" (108 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream -p '0123456789\0'
+bind(server)          <- "(98*"Z")0123456789\0" (109 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream -p '01234567890\0'
+bind(server)          <- "(98*"Z")01234567890\0" (110 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(25*"0123456789")012\0'
+bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream -g 1024 '(25*"0123456789")012\0'
+bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(25*"0123456789")0123\0'
+bind(server)          <- "(25*"0123456789")0123\0" (255 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(25*"0123456789")01234\0'    
+bind(server)          <- "(25*"0123456789")01234\0" (256 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(25*"0123456789")012345\0'
+bind(server)          <- "(25*"0123456789")012345\0" (257 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(511*"./")a\0'
+bind(server)          <- "(511*"./")a\0" (1024 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(511*"./")ab\0'
+bind(server)          <- "(511*"./")ab\0" (1025 bytes)
+bind(server): Invalid argument (EINVAL)
 ./unix-stream 'foo' 'foo' '(200*"b")'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
@@ -128,31 +185,55 @@ bind(client): Invalid argument (EINVAL)
 ./unix-stream -s /etc/hosts
 bind(server)          <- "/etc/hosts" (10 bytes)
 bind(server): Address already in use (EADDRINUSE)
-./unix-stream -s /etc
+./unix-stream -s '/etc/hosts\0'
+bind(server)          <- "/etc/hosts\0" (11 bytes)
+bind(server): Address already in use (EADDRINUSE)
+./unix-stream -s '/etc'
 bind(server)          <- "/etc" (4 bytes)
 bind(server): Address already in use (EADDRINUSE)
-./unix-stream -s /
+./unix-stream -s '/etc\0'
+bind(server)          <- "/etc\0" (5 bytes)
+bind(server): Address already in use (EADDRINUSE)
+./unix-stream -s '/'
 bind(server)          <- "/" (1 bytes)
 bind(server): Address already in use (EADDRINUSE)
-./unix-stream -s /foo
+./unix-stream -s '/\0'
+bind(server)          <- "/\0" (2 bytes)
+bind(server): Address already in use (EADDRINUSE)
+./unix-stream -s '/foo'
 bind(server)          <- "/foo" (4 bytes)
 bind(server): Permission denied (EACCES)
-./unix-stream -s /foo/bar
+./unix-stream -s '/foo\0'
+bind(server)          <- "/foo\0" (5 bytes)
+bind(server): Permission denied (EACCES)
+./unix-stream -s '/foo/bar'
 bind(server)          <- "/foo/bar" (8 bytes)
+bind(server): No such file or directory (ENOENT)
+./unix-stream -s '/foo/bar\0'
+bind(server)          <- "/foo/bar\0" (9 bytes)
 bind(server): No such file or directory (ENOENT)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000071" (6 bytes)
+getsockname(server)   -> "\00007e" (6 bytes)
+./unix-stream -s ''
+bind(server)          <- "" (0 bytes)
+socket file (server)  : not exist
+getsockname(server)   -> "\00007f" (6 bytes)
 ./unix-stream -s 'foo'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
+./unix-stream -s 'foo\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+
 
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000072" (6 bytes)
+getsockname(server)   -> "\000080" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
@@ -160,7 +241,7 @@ getsockname(server)   -> "\0abc" (4 bytes)
 getsockname(client)   -> "" (0 bytes)
 connect               <- "\0abc" (4 bytes)
 getpeername(client)   -> "\0abc" (4 bytes)
-accept                -> "" (0 bytes)
+accept                -> "\0\0\0\0" (4 bytes)
 getsockname(accepted) -> "\0abc" (4 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream '\0abc' '\0abc\0'
@@ -179,7 +260,7 @@ socket file (client)  : not exist
 getsockname(client)   -> "\0abstract" (9 bytes)
 connect               <- "non-abstract" (12 bytes)
 getpeername(client)   -> "non-abstract\0" (13 bytes)
-accept                -> "\0abstract" (9 bytes)
+accept                -> "\0abstract\0\0\0\0" (13 bytes)
 getsockname(accepted) -> "non-abstract\0" (13 bytes)
 getpeername(accepted) -> "\0abstract" (9 bytes)
 ./unix-stream '\0abstract' '\0abstract' 'non-abstract'
@@ -191,7 +272,7 @@ socket file (client)  : exist
 getsockname(client)   -> "non-abstract\0" (13 bytes)
 connect               <- "\0abstract" (9 bytes)
 getpeername(client)   -> "\0abstract" (9 bytes)
-accept                -> "non-abstract\0" (13 bytes)
+accept                -> "non-abstr" (9 bytes)
 getsockname(accepted) -> "\0abstract" (9 bytes)
 getpeername(accepted) -> "non-abstract\0" (13 bytes)
 
