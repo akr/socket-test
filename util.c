@@ -80,7 +80,7 @@ void buffer_add_mem(buffer_t *buf, void *mem, size_t size)
     buf->ptr = xrealloc(buf->ptr, buf->bufsize);
   }
 
-  memcpy(buf->ptr + buf->len, mem, size);
+  memcpy((char *)buf->ptr + buf->len, mem, size);
   buf->len += size;
   return;
 }
