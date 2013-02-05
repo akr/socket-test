@@ -33,6 +33,8 @@ UTILOBJS = util.o errsym.o
 
 all: $(TARGETS) results.html
 
+tools: $(TARGETS)
+
 clean:
 	rm -f $(TARGETS) *.o
 

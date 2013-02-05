@@ -51,5 +51,9 @@ config.h.in: configure.ac
 	./update-file-direct configure.ac config.h.in autoheader
 
 .PHONY: results.html
+tools: Makefile2
+	$(MAKE) -f Makefile2 tools
+
+.PHONY: results.html
 results.html: Makefile2
 	$(MAKE) -f Makefile2 results.html
