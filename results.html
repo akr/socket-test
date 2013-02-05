@@ -3453,7 +3453,61 @@
   </tr>
   <tr>
     <th align="left">getsockname(server)   -&gt;</th>
-      <td class="socket-normal">&quot;\000083&quot; (6 bytes)</td>
+      <td class="socket-normal">&quot;\000087&quot; (6 bytes)</td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+  </tr>
+  </tr>
+</table>
+<h2>./unix-stream -s &#39;\0&#39;</h2>
+<table border>
+  <tr>
+    <th align="right">OS</th>
+    <th>linux</th>
+    <th>freebsd</th>
+    <th>netbsd</th>
+    <th>openbsd</th>
+    <th>dragonfly</th>
+    <th>sunos</th>
+    <th>cygwin</th>
+  </tr>
+  <tr>
+    <th align="left">bind(server)          &lt;-</th>
+      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
+      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
+      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
+      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
+      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
+      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
+      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">bind(server)</th>
+      <td class="socket-none"></td>
+      <td class="socket-normal">No such file or directory (ENOENT)</td>
+      <td class="socket-normal">No such file or directory (ENOENT)</td>
+      <td class="socket-normal">No such file or directory (ENOENT)</td>
+      <td class="socket-normal">No such file or directory (ENOENT)</td>
+      <td class="socket-abnormal">Is a directory (EISDIR)</td>
+      <td class="socket-normal">No such file or directory (ENOENT)</td>
+  </tr>
+  <tr>
+    <th align="left">socket file (server)</th>
+      <td class="socket-normal">not exist</td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(server)   -&gt;</th>
+      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
+      <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -4211,22 +4265,6 @@
   <tr>
     <th align="left">bind(client)</th>
       <td class="socket-normal">File name too long (ENAMETOOLONG)</td>
-  </tr>
-  </tr>
-</table>
-<h2>./unix-stream -s &#39;\0&#39;</h2>
-<table border>
-  <tr>
-    <th align="right">OS</th>
-    <th>cygwin</th>
-  </tr>
-  <tr>
-    <th align="left">bind(server)          &lt;-</th>
-      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">bind(server)</th>
-      <td class="socket-normal">No such file or directory (ENOENT)</td>
   </tr>
   </tr>
 </table>
