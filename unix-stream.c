@@ -26,6 +26,17 @@
 
 #include "sockettest.h"
 
+#ifdef __CYGWIN__
+/* cygwin hangs connect() if no one calls accept().
+ * Note that cygwin don't need addtional compile/link option for pthread.
+ */
+#define USE_PTHREAD 1
+#endif
+
+#ifdef USE_PTHREAD
+#include <pthread.h>
+#endif
+
 static int opt_U = 0;
 static int opt_s = 0;
 static int opt_p = 0;
@@ -262,10 +273,27 @@ static void report_path_from_kernel(char *key, size_t buf_len, struct sockaddr_u
   free(escaped_path);
 }
 
+static struct sockaddr_un *connect_sockaddr_ptr;
+static socklen_t connect_sockaddr_len;
+
+#ifdef USE_PTHREAD
+static pthread_t connect_thread;
+static int connect_sockaddr_socket;
+static int connect_sockaddr_return;
+static void *connect_func(void *arg)
+{
+  connect_sockaddr_return = connect(
+      connect_sockaddr_socket,
+      (struct sockaddr *)connect_sockaddr_ptr,
+      connect_sockaddr_len);
+  return NULL;
+}
+#endif
+
 static void test_unix_stream(void)
 {
-  struct sockaddr_un *server_sockaddr_ptr, *connect_sockaddr_ptr, *client_sockaddr_ptr, *get_sockaddr_ptr;
-  socklen_t server_sockaddr_len, connect_sockaddr_len, client_sockaddr_len, get_sockaddr_len;
+  struct sockaddr_un *server_sockaddr_ptr, *client_sockaddr_ptr, *get_sockaddr_ptr, *get_sockaddr_ptr2;
+  socklen_t server_sockaddr_len, client_sockaddr_len, get_sockaddr_len, get_sockaddr_len2;
   socklen_t len;
   int s, c, sc;
   int ret;
@@ -298,6 +326,9 @@ static void test_unix_stream(void)
 
   get_sockaddr_len = opt_g;
   get_sockaddr_ptr = xmalloc(get_sockaddr_len);
+
+  get_sockaddr_len2 = opt_g;
+  get_sockaddr_ptr2 = xmalloc(get_sockaddr_len2);
 
   if (!opt_U) {
     unlink_socket(server_path_str);
@@ -347,19 +378,33 @@ static void test_unix_stream(void)
   report_path_from_kernel("getsockname(client)", get_sockaddr_len, get_sockaddr_ptr, len);
 
   report_path_to_kernel("connect", connect_path_str, connect_path_len, connect_path_sun_len);
+#ifdef USE_PTHREAD
+  connect_sockaddr_socket = c;
+  ret = pthread_create(&connect_thread, NULL, connect_func, (void *)c);
+  if (ret != 0) { errno = ret; perror2("pthread_create"); exit(EXIT_FAILURE); }
+#else
   ret = connect(c, (struct sockaddr *)connect_sockaddr_ptr, connect_sockaddr_len);
   if (ret == -1) { perror2("connect"); exit(EXIT_FAILURE); }
-
-  memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
-  len = get_sockaddr_len;
-  ret = getpeername(c, (struct sockaddr *)get_sockaddr_ptr, &len);
-  if (ret == -1) { perror2("getpeername(client)"); exit(EXIT_FAILURE); }
-  report_path_from_kernel("getpeername(client)", get_sockaddr_len, get_sockaddr_ptr, len);
+#endif
 
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
   len = get_sockaddr_len;
   sc = accept(s, (struct sockaddr *)get_sockaddr_ptr, &len);
   if (sc == -1) { perror2("accept"); exit(EXIT_FAILURE); }
+
+#ifdef USE_PTHREAD
+  ret = pthread_join(connect_thread, NULL);
+  if (ret != 0) { errno = ret; perror2("pthread_join"); exit(EXIT_FAILURE); }
+  ret = connect_sockaddr_return;
+  if (ret == -1) { perror2("connect"); exit(EXIT_FAILURE); }
+#endif
+
+  memset(get_sockaddr_ptr2, opt_f, get_sockaddr_len2);
+  len = get_sockaddr_len2;
+  ret = getpeername(c, (struct sockaddr *)get_sockaddr_ptr2, &len);
+  if (ret == -1) { perror2("getpeername(client)"); exit(EXIT_FAILURE); }
+  report_path_from_kernel("getpeername(client)", get_sockaddr_len2, get_sockaddr_ptr2, len);
+
   report_path_from_kernel("accept", get_sockaddr_len, get_sockaddr_ptr, len);
 
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
