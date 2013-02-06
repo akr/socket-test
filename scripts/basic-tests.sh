@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # Copyright (C) 2013 Tanaka Akira  <akr@fsij.org>
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# 
+#
 #  1. Redistributions of source code must retain the above copyright notice, this
 #     list of conditions and the following disclaimer.
 #  2. Redistributions in binary form must reproduce the above copyright notice,
@@ -39,10 +39,10 @@ uname -mrsv
 ./unix-stream '(25*"0123456789")012'
 ./unix-stream -g 1024 '(25*"0123456789")012'
 ./unix-stream '(25*"0123456789")0123'
-./unix-stream '(25*"0123456789")01234'    
+./unix-stream '(25*"0123456789")01234'
 ./unix-stream '(25*"0123456789")012345'
-./unix-stream '(511*"./")a'      
-./unix-stream '(511*"./")ab'      
+./unix-stream '(511*"./")a'
+./unix-stream '(511*"./")ab'
 ./unix-stream -p '01234567\0'
 ./unix-stream -p '012345678\0'
 ./unix-stream -p '0123456789\0'
@@ -50,11 +50,12 @@ uname -mrsv
 ./unix-stream '(25*"0123456789")012\0'
 ./unix-stream -g 1024 '(25*"0123456789")012\0'
 ./unix-stream '(25*"0123456789")0123\0'
-./unix-stream '(25*"0123456789")01234\0'    
+./unix-stream '(25*"0123456789")01234\0'
 ./unix-stream '(25*"0123456789")012345\0'
 ./unix-stream '(511*"./")a\0'
 ./unix-stream '(511*"./")ab\0'
 ./unix-stream 'foo' 'foo' '(200*"b")'
+./unix-stream 'foo\0' 'foo\0' '(200*"b")\0'
 ./unix-stream -s /etc/hosts
 ./unix-stream -s '/etc/hosts\0'
 ./unix-stream -s '/etc'
