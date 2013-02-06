@@ -35,247 +35,243 @@ char *errsym(int err)
   if (err == EAGAIN) return "EAGAIN"; /* may be equal to EWOULDBLOCK */
   if (err == ENOTSUP) return "ENOTSUP"; /* may be equal to EOPNOTSUPP */
 
-  switch (err) {
-
 #ifdef E2BIG
-  case E2BIG: return "E2BIG";
+  if (err == E2BIG) { return "E2BIG"; } else
 #endif
 #ifdef EACCES
-  case EACCES: return "EACCES";
+  if (err == EACCES) { return "EACCES"; } else
 #endif
 #ifdef EADDRINUSE
-  case EADDRINUSE: return "EADDRINUSE";
+  if (err == EADDRINUSE) { return "EADDRINUSE"; } else
 #endif
 #ifdef EADDRNOTAVAIL
-  case EADDRNOTAVAIL: return "EADDRNOTAVAIL";
+  if (err == EADDRNOTAVAIL) { return "EADDRNOTAVAIL"; } else
 #endif
 #ifdef EAFNOSUPPORT
-  case EAFNOSUPPORT: return "EAFNOSUPPORT";
+  if (err == EAFNOSUPPORT) { return "EAFNOSUPPORT"; } else
 #endif
 #ifdef EALREADY
-  case EALREADY: return "EALREADY";
+  if (err == EALREADY) { return "EALREADY"; } else
 #endif
 #ifdef EBADF
-  case EBADF: return "EBADF";
+  if (err == EBADF) { return "EBADF"; } else
 #endif
 #ifdef EBADMSG
-  case EBADMSG: return "EBADMSG";
+  if (err == EBADMSG) { return "EBADMSG"; } else
 #endif
 #ifdef EBUSY
-  case EBUSY: return "EBUSY";
+  if (err == EBUSY) { return "EBUSY"; } else
 #endif
 #ifdef ECANCELED
-  case ECANCELED: return "ECANCELED";
+  if (err == ECANCELED) { return "ECANCELED"; } else
 #endif
 #ifdef ECHILD
-  case ECHILD: return "ECHILD";
+  if (err == ECHILD) { return "ECHILD"; } else
 #endif
 #ifdef ECONNABORTED
-  case ECONNABORTED: return "ECONNABORTED";
+  if (err == ECONNABORTED) { return "ECONNABORTED"; } else
 #endif
 #ifdef ECONNREFUSED
-  case ECONNREFUSED: return "ECONNREFUSED";
+  if (err == ECONNREFUSED) { return "ECONNREFUSED"; } else
 #endif
 #ifdef ECONNRESET
-  case ECONNRESET: return "ECONNRESET";
+  if (err == ECONNRESET) { return "ECONNRESET"; } else
 #endif
 #ifdef EDEADLK
-  case EDEADLK: return "EDEADLK";
+  if (err == EDEADLK) { return "EDEADLK"; } else
 #endif
 #ifdef EDESTADDRREQ
-  case EDESTADDRREQ: return "EDESTADDRREQ";
+  if (err == EDESTADDRREQ) { return "EDESTADDRREQ"; } else
 #endif
 #ifdef EDOM
-  case EDOM: return "EDOM";
+  if (err == EDOM) { return "EDOM"; } else
 #endif
 #ifdef EDQUOT
-  case EDQUOT: return "EDQUOT";
+  if (err == EDQUOT) { return "EDQUOT"; } else
 #endif
 #ifdef EEXIST
-  case EEXIST: return "EEXIST";
+  if (err == EEXIST) { return "EEXIST"; } else
 #endif
 #ifdef EFAULT
-  case EFAULT: return "EFAULT";
+  if (err == EFAULT) { return "EFAULT"; } else
 #endif
 #ifdef EFBIG
-  case EFBIG: return "EFBIG";
+  if (err == EFBIG) { return "EFBIG"; } else
 #endif
 #ifdef EHOSTUNREACH
-  case EHOSTUNREACH: return "EHOSTUNREACH";
+  if (err == EHOSTUNREACH) { return "EHOSTUNREACH"; } else
 #endif
 #ifdef EIDRM
-  case EIDRM: return "EIDRM";
+  if (err == EIDRM) { return "EIDRM"; } else
 #endif
 #ifdef EILSEQ
-  case EILSEQ: return "EILSEQ";
+  if (err == EILSEQ) { return "EILSEQ"; } else
 #endif
 #ifdef EINPROGRESS
-  case EINPROGRESS: return "EINPROGRESS";
+  if (err == EINPROGRESS) { return "EINPROGRESS"; } else
 #endif
 #ifdef EINTR
-  case EINTR: return "EINTR";
+  if (err == EINTR) { return "EINTR"; } else
 #endif
 #ifdef EINVAL
-  case EINVAL: return "EINVAL";
+  if (err == EINVAL) { return "EINVAL"; } else
 #endif
 #ifdef EIO
-  case EIO: return "EIO";
+  if (err == EIO) { return "EIO"; } else
 #endif
 #ifdef EISCONN
-  case EISCONN: return "EISCONN";
+  if (err == EISCONN) { return "EISCONN"; } else
 #endif
 #ifdef EISDIR
-  case EISDIR: return "EISDIR";
+  if (err == EISDIR) { return "EISDIR"; } else
 #endif
 #ifdef ELOOP
-  case ELOOP: return "ELOOP";
+  if (err == ELOOP) { return "ELOOP"; } else
 #endif
 #ifdef EMFILE
-  case EMFILE: return "EMFILE";
+  if (err == EMFILE) { return "EMFILE"; } else
 #endif
 #ifdef EMLINK
-  case EMLINK: return "EMLINK";
+  if (err == EMLINK) { return "EMLINK"; } else
 #endif
 #ifdef EMSGSIZE
-  case EMSGSIZE: return "EMSGSIZE";
+  if (err == EMSGSIZE) { return "EMSGSIZE"; } else
 #endif
 #ifdef EMULTIHOP
-  case EMULTIHOP: return "EMULTIHOP";
+  if (err == EMULTIHOP) { return "EMULTIHOP"; } else
 #endif
 #ifdef ENAMETOOLONG
-  case ENAMETOOLONG: return "ENAMETOOLONG";
+  if (err == ENAMETOOLONG) { return "ENAMETOOLONG"; } else
 #endif
 #ifdef ENETDOWN
-  case ENETDOWN: return "ENETDOWN";
+  if (err == ENETDOWN) { return "ENETDOWN"; } else
 #endif
 #ifdef ENETRESET
-  case ENETRESET: return "ENETRESET";
+  if (err == ENETRESET) { return "ENETRESET"; } else
 #endif
 #ifdef ENETUNREACH
-  case ENETUNREACH: return "ENETUNREACH";
+  if (err == ENETUNREACH) { return "ENETUNREACH"; } else
 #endif
 #ifdef ENFILE
-  case ENFILE: return "ENFILE";
+  if (err == ENFILE) { return "ENFILE"; } else
 #endif
 #ifdef ENOBUFS
-  case ENOBUFS: return "ENOBUFS";
+  if (err == ENOBUFS) { return "ENOBUFS"; } else
 #endif
 #ifdef ENODATA
-  case ENODATA: return "ENODATA";
+  if (err == ENODATA) { return "ENODATA"; } else
 #endif
 #ifdef ENODEV
-  case ENODEV: return "ENODEV";
+  if (err == ENODEV) { return "ENODEV"; } else
 #endif
 #ifdef ENOENT
-  case ENOENT: return "ENOENT";
+  if (err == ENOENT) { return "ENOENT"; } else
 #endif
 #ifdef ENOEXEC
-  case ENOEXEC: return "ENOEXEC";
+  if (err == ENOEXEC) { return "ENOEXEC"; } else
 #endif
 #ifdef ENOLCK
-  case ENOLCK: return "ENOLCK";
+  if (err == ENOLCK) { return "ENOLCK"; } else
 #endif
 #ifdef ENOLINK
-  case ENOLINK: return "ENOLINK";
+  if (err == ENOLINK) { return "ENOLINK"; } else
 #endif
 #ifdef ENOMEM
-  case ENOMEM: return "ENOMEM";
+  if (err == ENOMEM) { return "ENOMEM"; } else
 #endif
 #ifdef ENOMSG
-  case ENOMSG: return "ENOMSG";
+  if (err == ENOMSG) { return "ENOMSG"; } else
 #endif
 #ifdef ENOPROTOOPT
-  case ENOPROTOOPT: return "ENOPROTOOPT";
+  if (err == ENOPROTOOPT) { return "ENOPROTOOPT"; } else
 #endif
 #ifdef ENOSPC
-  case ENOSPC: return "ENOSPC";
+  if (err == ENOSPC) { return "ENOSPC"; } else
 #endif
 #ifdef ENOSR
-  case ENOSR: return "ENOSR";
+  if (err == ENOSR) { return "ENOSR"; } else
 #endif
 #ifdef ENOSTR
-  case ENOSTR: return "ENOSTR";
+  if (err == ENOSTR) { return "ENOSTR"; } else
 #endif
 #ifdef ENOSYS
-  case ENOSYS: return "ENOSYS";
+  if (err == ENOSYS) { return "ENOSYS"; } else
 #endif
 #ifdef ENOTCONN
-  case ENOTCONN: return "ENOTCONN";
+  if (err == ENOTCONN) { return "ENOTCONN"; } else
 #endif
 #ifdef ENOTDIR
-  case ENOTDIR: return "ENOTDIR";
+  if (err == ENOTDIR) { return "ENOTDIR"; } else
 #endif
 #ifdef ENOTEMPTY
-  case ENOTEMPTY: return "ENOTEMPTY";
+  if (err == ENOTEMPTY) { return "ENOTEMPTY"; } else
 #endif
 #ifdef ENOTRECOVERABLE
-  case ENOTRECOVERABLE: return "ENOTRECOVERABLE";
+  if (err == ENOTRECOVERABLE) { return "ENOTRECOVERABLE"; } else
 #endif
 #ifdef ENOTSOCK
-  case ENOTSOCK: return "ENOTSOCK";
+  if (err == ENOTSOCK) { return "ENOTSOCK"; } else
 #endif
 #ifdef ENOTTY
-  case ENOTTY: return "ENOTTY";
+  if (err == ENOTTY) { return "ENOTTY"; } else
 #endif
 #ifdef ENXIO
-  case ENXIO: return "ENXIO";
+  if (err == ENXIO) { return "ENXIO"; } else
 #endif
 #ifdef EOPNOTSUPP
-  case EOPNOTSUPP: return "EOPNOTSUPP";
+  if (err == EOPNOTSUPP) { return "EOPNOTSUPP"; } else
 #endif
 #ifdef EOVERFLOW
-  case EOVERFLOW: return "EOVERFLOW";
+  if (err == EOVERFLOW) { return "EOVERFLOW"; } else
 #endif
 #ifdef EOWNERDEAD
-  case EOWNERDEAD: return "EOWNERDEAD";
+  if (err == EOWNERDEAD) { return "EOWNERDEAD"; } else
 #endif
 #ifdef EPERM
-  case EPERM: return "EPERM";
+  if (err == EPERM) { return "EPERM"; } else
 #endif
 #ifdef EPIPE
-  case EPIPE: return "EPIPE";
+  if (err == EPIPE) { return "EPIPE"; } else
 #endif
 #ifdef EPROTO
-  case EPROTO: return "EPROTO";
+  if (err == EPROTO) { return "EPROTO"; } else
 #endif
 #ifdef EPROTONOSUPPORT
-  case EPROTONOSUPPORT: return "EPROTONOSUPPORT";
+  if (err == EPROTONOSUPPORT) { return "EPROTONOSUPPORT"; } else
 #endif
 #ifdef EPROTOTYPE
-  case EPROTOTYPE: return "EPROTOTYPE";
+  if (err == EPROTOTYPE) { return "EPROTOTYPE"; } else
 #endif
 #ifdef ERANGE
-  case ERANGE: return "ERANGE";
+  if (err == ERANGE) { return "ERANGE"; } else
 #endif
 #ifdef EROFS
-  case EROFS: return "EROFS";
+  if (err == EROFS) { return "EROFS"; } else
 #endif
 #ifdef ESPIPE
-  case ESPIPE: return "ESPIPE";
+  if (err == ESPIPE) { return "ESPIPE"; } else
 #endif
 #ifdef ESRCH
-  case ESRCH: return "ESRCH";
+  if (err == ESRCH) { return "ESRCH"; } else
 #endif
 #ifdef ESTALE
-  case ESTALE: return "ESTALE";
+  if (err == ESTALE) { return "ESTALE"; } else
 #endif
 #ifdef ETIME
-  case ETIME: return "ETIME";
+  if (err == ETIME) { return "ETIME"; } else
 #endif
 #ifdef ETIMEDOUT
-  case ETIMEDOUT: return "ETIMEDOUT";
+  if (err == ETIMEDOUT) { return "ETIMEDOUT"; } else
 #endif
 #ifdef ETXTBSY
-  case ETXTBSY: return "ETXTBSY";
+  if (err == ETXTBSY) { return "ETXTBSY"; } else
 #endif
 #ifdef EWOULDBLOCK
-  case EWOULDBLOCK: return "EWOULDBLOCK";
+  if (err == EWOULDBLOCK) { return "EWOULDBLOCK"; } else
 #endif
 #ifdef EXDEV
-  case EXDEV: return "EXDEV";
+  if (err == EXDEV) { return "EXDEV"; } else
 #endif
-
-  }
   return NULL;
 }
 

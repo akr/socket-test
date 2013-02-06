@@ -117,15 +117,11 @@ char *errsym(int err)
   if (err == EAGAIN) return "EAGAIN"; /* may be equal to EWOULDBLOCK */
   if (err == ENOTSUP) return "ENOTSUP"; /* may be equal to EOPNOTSUPP */
 
-  switch (err) {
-
 % errno_list.each_line {|sym| sym.chomp!
 #ifdef <%= sym %>
-  case <%= sym %>: return "<%= sym %>";
+  if (err == <%= sym %>) { return "<%= sym %>"; } else
 #endif
 % }
-
-  }
   return NULL;
 }
 
