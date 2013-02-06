@@ -54,10 +54,3 @@ configure: configure.ac
 config.h.in: configure.ac
 	./update-files config.h.in -- configure.ac -- autoheader
 
-.PHONY: results.html
-tools: Makefile2
-	$(MAKE) -f Makefile2 tools
-
-.PHONY: results.html
-results.html: Makefile2
-	$(MAKE) -f Makefile2 results.html
