@@ -102,7 +102,7 @@ files.keys.sort_by {|os| os_order[os] }.each {|os|
   content.lines.slice_before(/\A(uname|\.\/)/).each {|lines|
     lines = lines.reject {|line| /\A\s*\z/ =~ line }
     next if lines.empty?
-    command = lines.shift.chomp
+    command = lines.shift.chomp.rstrip
     command_os_lines[command] ||= {}
     command_os_lines[command][os] = lines
   }
