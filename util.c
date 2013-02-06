@@ -118,7 +118,7 @@ void buffer_free(buffer_t *buf)
 
 static size_t escape_sequence(char *buf, size_t bufsize, int ch)
 {
-#define COPY_AND_RETURN(str) do { strcpy(buf, str); return sizeof(str)-1; } while (0)
+#define COPY_AND_RETURN(str) do { memcpy(buf, str, sizeof(str)); return sizeof(str)-1; } while (0)
   switch (ch) {
     case '\0': COPY_AND_RETURN("\\0");
     case '\a': COPY_AND_RETURN("\\a");
