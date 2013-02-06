@@ -57,13 +57,13 @@ errsym.o: errsym.c sockettest.h config.h
 const.o: size.c sockettest.h config.h
 
 errsym.c: errsym.erb
-	sh update-file errsym.erb errsym.c erb errsym.erb
+	./update-files errsym.c -- errsym.erb -- erb errsym.erb
 
 size.c: size.erb
-	sh update-file size.erb size.c erb size.erb
+	./update-files size.c -- size.erb -- erb size.erb
 
 const.c: const.erb
-	sh update-file const.erb const.c erb const.erb
+	./update-files const.c -- const.erb -- erb const.erb
 
 results.html : table-result.erb \
   results/linux.txt \

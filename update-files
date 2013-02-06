@@ -1,0 +1,131 @@
+#!/bin/sh
+
+# Copyright (C) 2013 Tanaka Akira  <akr@fsij.org>
+# 
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+# 
+#  1. Redistributions of source code must retain the above copyright notice, this
+#     list of conditions and the following disclaimer.
+#  2. Redistributions in binary form must reproduce the above copyright notice,
+#     this list of conditions and the following disclaimer in the documentation
+#     and/or other materials provided with the distribution.
+#  3. The name of the author may not be used to endorse or promote products
+#     derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+# EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+# OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+# IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+# OF SUCH DAMAGE.
+
+# usage:
+#   update-files \
+#     target-file1 ... -- \
+#     source-file1 ... -- \
+#     commandline-to-create-target-files ...
+
+# example:
+#   update-files dst -- src -- cp src dst
+#   update-files c -- a b -- sh -c 'cat a b > c'
+
+# file layout
+#
+# update-files records memo files relative to target-file1=dir/base.
+#
+#   permanent:
+#     dir/.upd-base.args
+#     dir/.upd-base.1.target
+#     dir/.upd-base.2.target
+#     ...                    
+#     dir/.upd-base.1.source
+#     dir/.upd-base.2.source
+#     ...
+#
+#   temporally:
+#     dir/.upd-base.args.tmp
+#     dir/.upd-base.1.target.filename.tmp
+#     dir/.upd-base.2.target.filename.tmp
+#     ...                     
+#     dir/.upd-base.1.source.filename.tmp
+#     dir/.upd-base.2.source.filename.tmp
+#     ...
+#
+
+target1="$1"
+memo_prefix="`dirname $target1`/.upd-`basename $target1`"
+
+rm -f "$memo_prefix".*.tmp
+
+copyable=true
+
+echo "$*" > "$memo_prefix.args.tmp"
+if [ ! -f "$memo_prefix.args" ] || ! cmp -s "$memo_prefix.args" "$memo_prefix.args.tmp"; then
+  copyable=false
+fi
+
+i=1
+while [ "$1" != "--" ]; do
+  target="$1"
+  shift
+  echo -n "$target" > "$memo_prefix.$i.target.filename.tmp"
+  if [ ! -f "$memo_prefix.$i.target" ]; then
+    copyable=false
+  fi
+  i=`expr $i + 1`
+done
+
+if [ "$1" != "--" ]; then
+  echo 'update-files: first "--" not found' >&2
+  exit 1
+fi
+shift
+
+i=1
+while [ "$1" != "--" ]; do
+  source="$1"
+  shift
+  echo -n "$source" > "$memo_prefix.$i.source.filename.tmp"
+  if [ ! -f "$memo_prefix.$i.source" ] || ! cmp -s "$memo_prefix.$i.source" "$source"; then
+    copyable=false
+  fi
+  i=`expr $i + 1`
+done
+
+if [ "$1" != "--" ]; then
+  echo 'update-files: second "--" not found' >&2
+  exit 1
+fi
+shift
+
+if $copyable; then
+  for f in "$memo_prefix".*.target.filename.tmp; do
+    cp "`dirname $f`/`basename $f .filename.tmp`" "`cat $f`"
+  done
+else
+  if "$@"; then
+    cp "$memo_prefix.args.tmp" "$memo_prefix.args"
+    for f in "$memo_prefix".*.source.filename.tmp; do
+      cp "`cat $f`" "`dirname $f`/`basename $f .filename.tmp`"
+    done
+    for f in "$memo_prefix".*.target.filename.tmp; do
+      cp "`cat $f`" "`dirname $f`/`basename $f .filename.tmp`"
+    done
+    rm -f "$memo_prefix".*.tmp
+    true
+  else
+    for f in "$memo_prefix".*.target.filename.tmp; do
+      rm -f "`cat $f`"
+    done
+    rm -f "$memo_prefix".*.args \
+      "$memo_prefix".*.target \
+      "$memo_prefix".*.source \
+      "$memo_prefix".*.tmp
+    false
+  fi
+fi
