@@ -54,16 +54,16 @@ size.o: size.c sockettest.h config.h
 unix-stream.o: unix-stream.c sockettest.h config.h
 util.o: util.c sockettest.h config.h
 errsym.o: errsym.c sockettest.h config.h
-const.o: size.c sockettest.h config.h
+const.o: const.c sockettest.h config.h
 
 errsym.c: errsym.erb
-	./update-files errsym.c -- errsym.erb -- erb errsym.erb
+	./update-files errsym.c -- errsym.erb -- sh -c 'erb errsym.erb > errsym.c'
 
 size.c: size.erb
-	./update-files size.c -- size.erb -- erb size.erb
+	./update-files size.c -- size.erb -- sh -c 'erb size.erb > size.c'
 
 const.c: const.erb
-	./update-files const.c -- const.erb -- erb const.erb
+	./update-files const.c -- const.erb -- sh -c 'erb const.erb > const.c'
 
 results.html : table-result.erb \
   results/linux.txt \

@@ -29,7 +29,7 @@ clean:
 	$(MAKE) -f Makefile2 clean
 
 maintainer-clean:
-	rm -f .update-*.src .update-*.blt
+	rm -f .upd-*.args .upd-*.source .upd-*.target
 	rm -f Makefile2 config.h
 	rm -f config.status config.log
 	rm -rf autom4te.cache
@@ -43,9 +43,9 @@ Makefile2 config.h: config.status Makefile2.in config.h.in
 
 config.status: configure
 	if [ -f config.status ]; then \
-	  ./config.status --recheck && ./config.status; \
+	  ./config.status --recheck; \
 	else \
-	  ./configure; \
+	  ./configure --no-create; \
 	fi
 
 configure: configure.ac
