@@ -84,11 +84,12 @@ Dir.glob('results/*.txt') {|filename|
 }
 
 os_order = {
-  'linux' => -9,
-  'freebsd' => -8,
-  'netbsd' => -7,
-  'openbsd' => -6,
-  'dragonfly' => -5,
+  'freebsd' => -29,
+  'netbsd' => -28,
+  'openbsd' => -27,
+  'dragonfly' => -26,
+  'miros' => -25,
+  'linux' => -20,
   'cygwin' => 100,
 }
 files.keys.sort.each_with_index {|os, i|
