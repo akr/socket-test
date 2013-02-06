@@ -148,16 +148,16 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(25*"0123456789")0123'
 bind(server)          <- "(25*"0123456789")0123" (254 bytes)
 bind(server): File name too long (ENAMETOOLONG)
-./unix-stream '(25*"0123456789")01234'    
+./unix-stream '(25*"0123456789")01234'
 bind(server)          <- "(25*"0123456789")01234" (255 bytes)
 bind(server): File name too long (ENAMETOOLONG)
 ./unix-stream '(25*"0123456789")012345'
 bind(server)          <- "(25*"0123456789")012345" (256 bytes)
 bind(server): File name too long (ENAMETOOLONG)
-./unix-stream '(511*"./")a'      
+./unix-stream '(511*"./")a'
 bind(server)          <- "(511*"./")a" (1023 bytes)
 bind(server): File name too long (ENAMETOOLONG)
-./unix-stream '(511*"./")ab'      
+./unix-stream '(511*"./")ab'
 bind(server)          <- "(511*"./")ab" (1024 bytes)
 bind(server): File name too long (ENAMETOOLONG)
 ./unix-stream -p '01234567\0'
@@ -209,7 +209,7 @@ bind(server): File name too long (ENAMETOOLONG)
 ./unix-stream '(25*"0123456789")0123\0'
 bind(server)          <- "(25*"0123456789")0123\0" (255 bytes)
 bind(server): File name too long (ENAMETOOLONG)
-./unix-stream '(25*"0123456789")01234\0'    
+./unix-stream '(25*"0123456789")01234\0'
 bind(server)          <- "(25*"0123456789")01234\0" (256 bytes)
 bind(server): File name too long (ENAMETOOLONG)
 ./unix-stream '(25*"0123456789")012345\0'
@@ -232,6 +232,18 @@ connect               <- "foo" (3 bytes)
 getpeername(client)   -> "foo" (3 bytes)
 accept                -> "bbb" (3 bytes)
 getsockname(accepted) -> "foo" (3 bytes)
+getpeername(accepted) -> "(104*"b")" (104 bytes)
+./unix-stream 'foo\0' 'foo\0' '(200*"b")\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "(200*"b")\0" (201 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "(104*"b")" (104 bytes)
+connect               <- "foo\0" (4 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "bbbb" (4 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "(104*"b")" (104 bytes)
 ./unix-stream -s /etc/hosts
 bind(server)          <- "/etc/hosts" (10 bytes)

@@ -3377,6 +3377,153 @@
   </tr>
   </tr>
 </table>
+<h2>./unix-stream &#39;foo\0&#39; &#39;foo\0&#39; &#39;(200*&quot;b&quot;)\0&#39;</h2>
+<table border>
+  <tr>
+    <th align="right">OS</th>
+    <th>freebsd</th>
+    <th>netbsd</th>
+    <th>openbsd</th>
+    <th>dragonfly</th>
+    <th>miros</th>
+    <th>linux</th>
+    <th>sunos</th>
+    <th>cygwin</th>
+  </tr>
+  <tr>
+    <th align="left">bind(server)          &lt;-</th>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">socket file (server)</th>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(server)   -&gt;</th>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">bind(client)          &lt;-</th>
+      <td class="socket-normal">&quot;(200*&quot;b&quot;)\0&quot; (201 bytes)</td>
+      <td class="socket-normal">&quot;(200*&quot;b&quot;)\0&quot; (201 bytes)</td>
+      <td class="socket-normal">&quot;(200*&quot;b&quot;)\0&quot; (201 bytes)</td>
+      <td class="socket-normal">&quot;(200*&quot;b&quot;)\0&quot; (201 bytes)</td>
+      <td class="socket-normal">&quot;(200*&quot;b&quot;)\0&quot; (201 bytes)</td>
+      <td class="socket-normal">&quot;(200*&quot;b&quot;)\0&quot; (201 bytes)</td>
+      <td class="socket-normal">&quot;(200*&quot;b&quot;)\0&quot; (201 bytes)</td>
+      <td class="socket-normal">&quot;(200*&quot;b&quot;)\0&quot; (201 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">bind(client)</th>
+      <td class="socket-normal">Invalid argument (EINVAL)</td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">Invalid argument (EINVAL)</td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">Invalid argument (EINVAL)</td>
+      <td class="socket-none"></td>
+      <td class="socket-abnormal">File name too long (ENAMETOOLONG)</td>
+  </tr>
+  <tr>
+    <th align="left">socket file (client)</th>
+      <td class="socket-none"></td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-none"></td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(client)   -&gt;</th>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;(104*&quot;b&quot;)&quot; (104 bytes)</td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;(104*&quot;b&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(104*&quot;b&quot;)&quot; (104 bytes)</td>
+      <td class="socket-none"></td>
+      <td class="socket-abnormal">&quot;(108*&quot;b&quot;)&quot;... (201 bytes)</td>
+      <td class="socket-none"></td>
+  </tr>
+  <tr>
+    <th align="left">connect               &lt;-</th>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-none"></td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(client)   -&gt;</th>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-none"></td>
+  </tr>
+  <tr>
+    <th align="left">accept                -&gt;</th>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;bbbb&quot; (4 bytes)</td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;bbbb&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;bbbb&quot; (4 bytes)</td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;bbbb&quot; (4 bytes)</td>
+      <td class="socket-none"></td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(accepted) -&gt;</th>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-none"></td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(accepted) -&gt;</th>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;(104*&quot;b&quot;)&quot; (104 bytes)</td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;(104*&quot;b&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(104*&quot;b&quot;)&quot; (104 bytes)</td>
+      <td class="socket-none"></td>
+      <td class="socket-abnormal">&quot;(108*&quot;b&quot;)&quot;... (201 bytes)</td>
+      <td class="socket-none"></td>
+  </tr>
+  </tr>
+</table>
 <h2>./unix-stream -s /etc/hosts</h2>
 <table border>
   <tr>
@@ -3803,7 +3950,7 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;\000087&quot; (6 bytes)</td>
+      <td class="socket-normal">&quot;\000089&quot; (6 bytes)</td>
       <td class="socket-none"></td>
   </tr>
   </tr>
@@ -4460,75 +4607,6 @@
       <td class="socket-abnormal">too short sockaddr_un (0 bytes)</td>
       <td class="socket-normal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">too short sockaddr_un (0 bytes)</td>
-  </tr>
-  </tr>
-</table>
-<h2>./unix-stream &#39;foo\0&#39; &#39;foo\0&#39; &#39;(200*&quot;b&quot;)\0&#39;</h2>
-<table border>
-  <tr>
-    <th align="right">OS</th>
-    <th>miros</th>
-    <th>cygwin</th>
-  </tr>
-  <tr>
-    <th align="left">bind(server)          &lt;-</th>
-      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">socket file (server)</th>
-      <td class="socket-normal">exist</td>
-      <td class="socket-normal">exist</td>
-  </tr>
-  <tr>
-    <th align="left">getsockname(server)   -&gt;</th>
-      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">bind(client)          &lt;-</th>
-      <td class="socket-normal">&quot;(200*&quot;b&quot;)\0&quot; (201 bytes)</td>
-      <td class="socket-normal">&quot;(200*&quot;b&quot;)\0&quot; (201 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">bind(client)</th>
-      <td class="socket-none"></td>
-      <td class="socket-normal">File name too long (ENAMETOOLONG)</td>
-  </tr>
-  <tr>
-    <th align="left">socket file (client)</th>
-      <td class="socket-normal">exist</td>
-      <td class="socket-none"></td>
-  </tr>
-  <tr>
-    <th align="left">getsockname(client)   -&gt;</th>
-      <td class="socket-normal">&quot;(104*&quot;b&quot;)&quot; (104 bytes)</td>
-      <td class="socket-none"></td>
-  </tr>
-  <tr>
-    <th align="left">connect               &lt;-</th>
-      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-none"></td>
-  </tr>
-  <tr>
-    <th align="left">getpeername(client)   -&gt;</th>
-      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-none"></td>
-  </tr>
-  <tr>
-    <th align="left">accept                -&gt;</th>
-      <td class="socket-normal">&quot;bbbb&quot; (4 bytes)</td>
-      <td class="socket-none"></td>
-  </tr>
-  <tr>
-    <th align="left">getsockname(accepted) -&gt;</th>
-      <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-none"></td>
-  </tr>
-  <tr>
-    <th align="left">getpeername(accepted) -&gt;</th>
-      <td class="socket-normal">&quot;(104*&quot;b&quot;)&quot; (104 bytes)</td>
-      <td class="socket-none"></td>
   </tr>
   </tr>
 </table>
