@@ -52,5 +52,5 @@ AC_FUNC_MALLOC
 AC_FUNC_STAT
 AC_CHECK_FUNCS([memset socket])
 
-AC_CONFIG_FILES([Makefile2 compile.sh link.sh])
+AC_CONFIG_FILES([compile.sh link.sh])
 AC_OUTPUT

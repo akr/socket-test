@@ -1,13 +1,14 @@
 *~
 *.bak
 *.o
-autom4te.cache/
+autom4te.cache
 config.h
 config.log
 config.status
 size
 const
 unix-stream
-Makefile2
+compile.sh
+link.sh
 .update-Makefile2.blt
 .update-Makefile2.src

@@ -22,24 +22,26 @@
 # IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 # OF SUCH DAMAGE.
 
-all: Makefile2
-	$(MAKE) -f Makefile2 all
+TARGETS = size const unix-stream
+UTILOBJS = util.o errsym.o
+
+all: $(TARGETS)
 
 clean:
-	$(MAKE) -f Makefile2 clean
+	rm -f $(TARGETS) *.o
 
 maintainer-clean:
 	rm -f .upd-*.args .upd-*.source .upd-*.target
 	rm -f Makefile2 config.h
 	rm -f config.status config.log
 	rm -rf autom4te.cache
-	$(MAKE) -f Makefile2.in maintainer-clean
+	rm -f errsym.c const.c
 
 complete-clean: maintainer-clean
 	rm -f configure config.h.in
 
-Makefile2 config.h: config.status Makefile2.in config.h.in
-	./config.status
+compile.sh link.sh config.h: config.status compile.sh.in link.sh.in config.h.in
+	./config.status && touch config.h
 
 config.status: configure
 	if [ -f config.status ]; then \
@@ -54,3 +56,44 @@ configure: configure.ac
 config.h.in: configure.ac
 	./update-files config.h.in -- configure.ac -- autoheader
 
+size: size.o link.sh
+	sh link.sh size.o -o $@
+
+const: const.o link.sh
+	sh link.sh const.o -o $@
+
+unix-stream: unix-stream.o $(UTILOBJS) link.sh
+	sh link.sh unix-stream.o $(UTILOBJS) -o $@
+
+size.o: size.c sockettest.h config.h compile.sh
+	sh compile.sh $< -o $@
+
+unix-stream.o: unix-stream.c sockettest.h config.h compile.sh
+	sh compile.sh $< -o $@
+
+util.o: util.c sockettest.h config.h compile.sh
+	sh compile.sh $< -o $@
+
+errsym.o: errsym.c sockettest.h config.h compile.sh
+	sh compile.sh $< -o $@
+
+const.o: const.c sockettest.h config.h compile.sh
+	sh compile.sh $< -o $@
+
+errsym.c: errsym.erb
+	./update-files errsym.c -- errsym.erb -- sh -c 'erb errsym.erb > errsym.c'
+
+size.c: size.erb
+	./update-files size.c -- size.erb -- sh -c 'erb size.erb > size.c'
+
+const.c: const.erb
+	./update-files const.c -- const.erb -- sh -c 'erb const.erb > const.c'
+
+results.html : table-result.erb \
+  results/linux.txt \
+  results/freebsd.txt \
+  results/netbsd.txt \
+  results/openbsd.txt \
+  results/sunos.txt \
+  results/cygwin.txt
+	erb table-result.erb > results.html
