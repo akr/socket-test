@@ -22,12 +22,6 @@
 # IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 # OF SUCH DAMAGE.
 
-CC = @CC@
-CFLAGS = @CFLAGS@
-CPPFLAGS = @CPPFLAGS@
-LDFLAGS = @LDFLAGS@
-LDLIBS = @LIBS@
-
 TARGETS = size const unix-stream
 UTILOBJS = util.o errsym.o
 
@@ -39,20 +33,29 @@ clean:
 maintainer-clean: clean
 	rm -f errsym.c const.c
 
-size: size.o
-	$(CC) $(LDFLAGS) size.o $(LDLIBS) -o $@
+size: size.o link.sh
+	sh link.sh size.o -o $@
 
-const: const.o
-	$(CC) $(LDFLAGS) const.o $(LDLIBS) -o $@
+const: const.o link.sh
+	sh link.sh const.o -o $@
 
-unix-stream: unix-stream.o $(UTILOBJS)
-	$(CC) $(LDFLAGS) unix-stream.o $(UTILOBJS) $(LDLIBS) -o $@
+unix-stream: unix-stream.o $(UTILOBJS) link.sh
+	sh link.sh unix-stream.o $(UTILOBJS) -o $@
 
-size.o: size.c sockettest.h config.h
-unix-stream.o: unix-stream.c sockettest.h config.h
-util.o: util.c sockettest.h config.h
-errsym.o: errsym.c sockettest.h config.h
-const.o: const.c sockettest.h config.h
+size.o: size.c sockettest.h config.h compile.sh
+	sh compile.sh $< -o $@
+
+unix-stream.o: unix-stream.c sockettest.h config.h compile.sh
+	sh compile.sh $< -o $@
+
+util.o: util.c sockettest.h config.h compile.sh
+	sh compile.sh $< -o $@
+
+errsym.o: errsym.c sockettest.h config.h compile.sh
+	sh compile.sh $< -o $@
+
+const.o: const.c sockettest.h config.h compile.sh
+	sh compile.sh $< -o $@
 
 errsym.c: errsym.erb
 	./update-files errsym.c -- errsym.erb -- sh -c 'erb errsym.erb > errsym.c'

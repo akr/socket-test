@@ -3751,7 +3751,7 @@ fi
 done
 
 
-ac_config_files="$ac_config_files Makefile2"
+ac_config_files="$ac_config_files Makefile2 compile.sh link.sh"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -4444,6 +4444,8 @@ do
   case $ac_config_target in
     "config.h") CONFIG_HEADERS="$CONFIG_HEADERS config.h" ;;
     "Makefile2") CONFIG_FILES="$CONFIG_FILES Makefile2" ;;
+    "compile.sh") CONFIG_FILES="$CONFIG_FILES compile.sh" ;;
+    "link.sh") CONFIG_FILES="$CONFIG_FILES link.sh" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac
