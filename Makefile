@@ -57,28 +57,28 @@ config.h.in: configure.ac
 	./update-files config.h.in -- configure.ac -- autoheader
 
 size: size.o link.sh
-	sh link.sh size.o -o $@
+	./link.sh size.o -o $@
 
 const: const.o link.sh
-	sh link.sh const.o -o $@
+	./link.sh const.o -o $@
 
 unix-stream: unix-stream.o $(UTILOBJS) link.sh
-	sh link.sh unix-stream.o $(UTILOBJS) -o $@
+	./link.sh unix-stream.o $(UTILOBJS) -o $@
 
 size.o: size.c sockettest.h config.h compile.sh
-	sh compile.sh $< -o $@
+	./compile.sh $< -o $@
 
 unix-stream.o: unix-stream.c sockettest.h config.h compile.sh
-	sh compile.sh $< -o $@
+	./compile.sh $< -o $@
 
 util.o: util.c sockettest.h config.h compile.sh
-	sh compile.sh $< -o $@
+	./compile.sh $< -o $@
 
 errsym.o: errsym.c sockettest.h config.h compile.sh
-	sh compile.sh $< -o $@
+	./compile.sh $< -o $@
 
 const.o: const.c sockettest.h config.h compile.sh
-	sh compile.sh $< -o $@
+	./compile.sh $< -o $@
 
 errsym.c: errsym.erb
 	./update-files errsym.c -- errsym.erb -- sh -c 'erb errsym.erb > errsym.c'
