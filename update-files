@@ -107,6 +107,8 @@ if $copyable; then
   for f in "$memo_prefix".*.target.filename.tmp; do
     cp "`dirname $f`/`basename $f .filename.tmp`" "`cat $f`"
   done
+  rm -f "$memo_prefix".*.tmp
+  true
 else
   if "$@"; then
     cp "$memo_prefix.args.tmp" "$memo_prefix.args"
