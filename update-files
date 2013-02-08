@@ -25,10 +25,13 @@
 # OF SUCH DAMAGE.
 
 # usage:
-#   update-files \
+#   update-files [-b hidden-basename-prefix] \
 #     target-file1 ... -- \
 #     source-file1 ... -- \
 #     commandline-to-create-target-files ...
+#
+# hidden-basename-prefix is ".upd" by default.
+# -p option overwrites it.
 
 # example:
 #   update-files dst -- src -- cp src dst
@@ -57,8 +60,15 @@
 #     ...
 #
 
+hidden_basename_prefix='.upd'
+if [ "$1" = '-b' ]; then
+  shift
+  hidden_basename_prefix="$1"
+  shift
+fi
+
 target1="$1"
-memo_prefix="`dirname $target1`/.upd-`basename $target1`"
+memo_prefix="`dirname $target1`/$hidden_basename_prefix-`basename $target1`"
 
 rm -f "$memo_prefix".*.tmp
 
