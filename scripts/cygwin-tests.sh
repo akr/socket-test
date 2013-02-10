@@ -31,7 +31,8 @@ uname -mrsv
 ./size
 ./const
 ./unix-stream 'foo\0' './foo\0'
-./unix-stream 'foo\0bar' './foo\0hoge'
+./unix-stream 'foo\0hoge' './foo\0fuga'
+./unix-stream 'foo\0hoge' './foo\0fuga' 'bar\0moga'
 ./unix-stream -p '01234567\0'
 ./unix-stream -p '012345678\0'
 ./unix-stream -p '0123456789\0'
