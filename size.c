@@ -30,6 +30,18 @@
 
 #include "sockettest.h"
 
+#define SHOW_INTEGER_TYPE(type_name) \
+  do { \
+    printf("%s.size :%*s %d\n", \
+        #type_name, \
+        (int)(36-sizeof(#type_name)), "", \
+        (int)sizeof(type_name)); \
+    printf("%s.sign :%*s %s\n", \
+        #type_name, \
+        (int)(36-sizeof(#type_name)), "", \
+        0 < ((type_name)-1) ? "unsigned" : "signed"); \
+  } while (0)
+
 #define SHOW_STRUCT_SIZE(struct_name) \
   do { \
     printf("%s.size :%*s %d\n", \
@@ -62,6 +74,11 @@
 
 int main(int argc, char *argv[])
 {
+  SHOW_INTEGER_TYPE(socklen_t);
+  SHOW_INTEGER_TYPE(sa_family_t);
+  SHOW_INTEGER_TYPE(size_t);
+  SHOW_INTEGER_TYPE(ssize_t);
+
   SHOW_STRUCT_SIZE(sockaddr);
 #ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
   SHOW_FIELD_SIZE(sockaddr, sa_len);
