@@ -73,16 +73,28 @@ getpeername(client)   -> "./foo\0" (6 bytes)
 accept                -> "\0\0\0\0\0\0" (6 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
-./unix-stream 'foo\0bar' './foo\0hoge'
-bind(server)          <- "foo\0bar" (7 bytes)
+./unix-stream 'foo\0hoge' './foo\0fuga'
+bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "foo\0bar" (7 bytes)
+getsockname(server)   -> "foo\0hoge" (8 bytes)
 getsockname(client)   -> too short sockaddr_un (0 bytes)
-connect               <- "./foo\0hoge" (10 bytes)
-getpeername(client)   -> "./foo\0hoge" (10 bytes)
+connect               <- "./foo\0fuga" (10 bytes)
+getpeername(client)   -> "./foo\0fuga" (10 bytes)
 accept                -> "\0\0\0\0\0\0\0\0\0\0" (10 bytes)
-getsockname(accepted) -> "foo\0bar" (7 bytes)
+getsockname(accepted) -> "foo\0hoge" (8 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream 'foo\0hoge' './foo\0fuga' 'bar\0moga'
+bind(server)          <- "foo\0hoge" (8 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0hoge" (8 bytes)
+bind(client)          <- "bar\0moga" (8 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar\0moga" (8 bytes)
+connect               <- "./foo\0fuga" (10 bytes)
+getpeername(client)   -> "./foo\0fuga" (10 bytes)
+accept                -> "bar\0moga\0\0" (10 bytes)
+getsockname(accepted) -> "foo\0hoge" (8 bytes)
+getpeername(accepted) -> "bar\0moga" (8 bytes)
 ./unix-stream -p '012345678'
 bind(server)          <- "(98*"Z")012345678" (107 bytes)
 socket file (server)  : exist

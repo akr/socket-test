@@ -75,16 +75,28 @@ getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "\0\0\0\0" (4 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream 'foo\0bar' './foo\0hoge'
-bind(server)          <- "foo\0bar" (7 bytes)
+./unix-stream 'foo\0hoge' './foo\0fuga'
+bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "./foo\0hoge" (10 bytes)
+connect               <- "./foo\0fuga" (10 bytes)
 getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "\0\0\0\0" (4 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "" (0 bytes)
+./unix-stream 'foo\0hoge' './foo\0fuga' 'bar\0moga'
+bind(server)          <- "foo\0hoge" (8 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "bar\0moga" (8 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar\0" (4 bytes)
+connect               <- "./foo\0fuga" (10 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "bar\0" (4 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "bar\0" (4 bytes)
 ./unix-stream -p '012345678'
 bind(server)          <- "(98*"Z")012345678" (107 bytes)
 socket file (server)  : exist
@@ -221,7 +233,7 @@ bind(server): No such file or directory (ENOENT)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000088" (6 bytes)
+getsockname(server)   -> "\00008f" (6 bytes)
 ./unix-stream -s '\0'
 bind(server)          <- "\0" (1 bytes)
 socket file (server)  : not exist
@@ -239,7 +251,7 @@ getsockname(server)   -> "foo\0" (4 bytes)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000089" (6 bytes)
+getsockname(server)   -> "\000090" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist

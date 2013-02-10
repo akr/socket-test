@@ -982,7 +982,7 @@
   </tr>
   </tr>
 </table>
-<h2>./unix-stream &#39;foo\0bar&#39; &#39;./foo\0hoge&#39;</h2>
+<h2>./unix-stream &#39;foo\0hoge&#39; &#39;./foo\0fuga&#39;</h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -997,14 +997,14 @@
   </tr>
   <tr>
     <th align="left">bind(server)          &lt;-</th>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
   </tr>
   <tr>
     <th align="left">socket file (server)</th>
@@ -1019,13 +1019,13 @@
   </tr>
   <tr>
     <th align="left">getsockname(server)   -&gt;</th>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-abnormal">&quot;foo\0\0\0\0&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;foo\0\0\0\0\0&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
   </tr>
   <tr>
@@ -1041,46 +1041,46 @@
   </tr>
   <tr>
     <th align="left">connect               &lt;-</th>
-      <td class="socket-normal">&quot;./foo\0hoge&quot; (10 bytes)</td>
-      <td class="socket-normal">&quot;./foo\0hoge&quot; (10 bytes)</td>
-      <td class="socket-normal">&quot;./foo\0hoge&quot; (10 bytes)</td>
-      <td class="socket-normal">&quot;./foo\0hoge&quot; (10 bytes)</td>
-      <td class="socket-normal">&quot;./foo\0hoge&quot; (10 bytes)</td>
-      <td class="socket-normal">&quot;./foo\0hoge&quot; (10 bytes)</td>
-      <td class="socket-normal">&quot;./foo\0hoge&quot; (10 bytes)</td>
-      <td class="socket-normal">&quot;./foo\0hoge&quot; (10 bytes)</td>
+      <td class="socket-normal">&quot;./foo\0fuga&quot; (10 bytes)</td>
+      <td class="socket-normal">&quot;./foo\0fuga&quot; (10 bytes)</td>
+      <td class="socket-normal">&quot;./foo\0fuga&quot; (10 bytes)</td>
+      <td class="socket-normal">&quot;./foo\0fuga&quot; (10 bytes)</td>
+      <td class="socket-normal">&quot;./foo\0fuga&quot; (10 bytes)</td>
+      <td class="socket-normal">&quot;./foo\0fuga&quot; (10 bytes)</td>
+      <td class="socket-normal">&quot;./foo\0fuga&quot; (10 bytes)</td>
+      <td class="socket-normal">&quot;./foo\0fuga&quot; (10 bytes)</td>
   </tr>
   <tr>
     <th align="left">getpeername(client)   -&gt;</th>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-abnormal">&quot;foo\0\0\0\0&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;foo\0\0\0\0\0&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">&quot;./foo\0hoge&quot; (10 bytes)</td>
+      <td class="socket-abnormal">&quot;./foo\0fuga&quot; (10 bytes)</td>
       <td class="socket-abnormal">&quot;./foo\0&quot; (6 bytes)</td>
   </tr>
   <tr>
     <th align="left">accept                -&gt;</th>
-      <td class="socket-normal">&quot;\0\0\0\0\0\0\0&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;\0\0\0\0\0\0\0&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;\0\0\0\0\0\0\0&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;\0\0\0\0\0\0\0&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;\0\0\0\0\0\0\0&quot; (7 bytes)</td>
+      <td class="socket-normal">&quot;\0\0\0\0\0\0\0\0&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;\0\0\0\0\0\0\0\0&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;\0\0\0\0\0\0\0\0&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;\0\0\0\0\0\0\0\0&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;\0\0\0\0\0\0\0\0&quot; (8 bytes)</td>
       <td class="socket-abnormal">&quot;\0\0\0\0&quot; (4 bytes)</td>
       <td class="socket-abnormal">&quot;\0\0\0\0\0\0\0\0\0\0&quot; (10 bytes)</td>
       <td class="socket-abnormal">&quot;\0\0\0\0\0\0&quot; (6 bytes)</td>
   </tr>
   <tr>
     <th align="left">getsockname(accepted) -&gt;</th>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-abnormal">&quot;foo\0\0\0\0&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;foo\0\0\0\0\0&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;foo\0bar&quot; (7 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
   </tr>
   <tr>
@@ -1092,6 +1092,142 @@
       <td class="socket-abnormal">too short sockaddr_un (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
+  </tr>
+  </tr>
+</table>
+<h2>./unix-stream &#39;foo\0hoge&#39; &#39;./foo\0fuga&#39; &#39;bar\0moga&#39;</h2>
+<table border>
+  <tr>
+    <th align="right">OS</th>
+    <th>freebsd</th>
+    <th>netbsd</th>
+    <th>openbsd</th>
+    <th>dragonfly</th>
+    <th>miros</th>
+    <th>linux</th>
+    <th>sunos</th>
+    <th>cygwin</th>
+  </tr>
+  <tr>
+    <th align="left">bind(server)          &lt;-</th>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">socket file (server)</th>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(server)   -&gt;</th>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;foo\0\0\0\0\0&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">bind(client)          &lt;-</th>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">socket file (client)</th>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(client)   -&gt;</th>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;bar\0\0\0\0\0&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;bar\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;bar\0&quot; (4 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">connect               &lt;-</th>
+      <td class="socket-normal">&quot;./foo\0fuga&quot; (10 bytes)</td>
+      <td class="socket-normal">&quot;./foo\0fuga&quot; (10 bytes)</td>
+      <td class="socket-normal">&quot;./foo\0fuga&quot; (10 bytes)</td>
+      <td class="socket-normal">&quot;./foo\0fuga&quot; (10 bytes)</td>
+      <td class="socket-normal">&quot;./foo\0fuga&quot; (10 bytes)</td>
+      <td class="socket-normal">&quot;./foo\0fuga&quot; (10 bytes)</td>
+      <td class="socket-normal">&quot;./foo\0fuga&quot; (10 bytes)</td>
+      <td class="socket-normal">&quot;./foo\0fuga&quot; (10 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(client)   -&gt;</th>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;foo\0\0\0\0\0&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-abnormal">&quot;./foo\0fuga&quot; (10 bytes)</td>
+      <td class="socket-abnormal">&quot;./foo\0&quot; (6 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">accept                -&gt;</th>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;bar\0\0\0\0\0&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;bar\0&quot; (4 bytes)</td>
+      <td class="socket-abnormal">&quot;bar\0moga\0\0&quot; (10 bytes)</td>
+      <td class="socket-abnormal">&quot;\0\0\0\0\0\0&quot; (6 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(accepted) -&gt;</th>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;foo\0\0\0\0\0&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getpeername(accepted) -&gt;</th>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;bar\0\0\0\0\0&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;bar\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
   </tr>
   </tr>
@@ -3950,7 +4086,7 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;\000089&quot; (6 bytes)</td>
+      <td class="socket-normal">&quot;\000090&quot; (6 bytes)</td>
       <td class="socket-none"></td>
   </tr>
   </tr>
