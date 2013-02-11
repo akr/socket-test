@@ -34,6 +34,10 @@
         #type_name, \
         (int)(36-sizeof(#type_name)), "", \
         (int)sizeof(type_name)); \
+    printf("%s.align :%*s %d\n", \
+        #type_name, \
+        (int)(35-sizeof(#type_name)), "", \
+        ALIGNOF(type_name)); \
     printf("%s.sign :%*s %s\n", \
         #type_name, \
         (int)(36-sizeof(#type_name)), "", \
@@ -46,6 +50,10 @@
         #type_name, \
         (int)(36-sizeof(#type_name)), "", \
         (int)sizeof(type_name)); \
+    printf("%s.align :%*s %d\n", \
+        #type_name, \
+        (int)(35-sizeof(#type_name)), "", \
+        ALIGNOF(type_name)); \
   } while (0)
 
 #define SHOW_STRUCT_SIZE(struct_name) \
