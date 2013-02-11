@@ -74,6 +74,11 @@
 
 int main(int argc, char *argv[])
 {
+  SHOW_INTEGER_TYPE(char);
+  SHOW_INTEGER_TYPE(short);
+  SHOW_INTEGER_TYPE(int);
+  SHOW_INTEGER_TYPE(long);
+  SHOW_INTEGER_TYPE(long long);
   SHOW_INTEGER_TYPE(socklen_t);
   SHOW_INTEGER_TYPE(sa_family_t);
   SHOW_INTEGER_TYPE(size_t);
