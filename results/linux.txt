@@ -2,6 +2,16 @@
 uname -mrsv
 Linux 2.6.39-bpo.2-amd64 #1 SMP Tue Jul 26 10:35:23 UTC 2011 x86_64
 ./size
+char.size :                                1
+char.sign :                                signed
+short.size :                               2
+short.sign :                               signed
+int.size :                                 4
+int.sign :                                 signed
+long.size :                                8
+long.sign :                                signed
+long long.size :                           8
+long long.sign :                           signed
 socklen_t.size :                           4
 socklen_t.sign :                           unsigned
 sa_family_t.size :                         2
@@ -10,6 +20,9 @@ size_t.size :                              8
 size_t.sign :                              unsigned
 ssize_t.size :                             8
 ssize_t.sign :                             signed
+void*.size :                               8
+char*.size :                               8
+int*.size :                                8
 sockaddr.size :                            16
 sockaddr.sa_family.size :                  2
 sockaddr.sa_data.size :                    14
@@ -241,7 +254,7 @@ bind(server): No such file or directory (ENOENT)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000099" (6 bytes)
+getsockname(server)   -> "\00009b" (6 bytes)
 ./unix-stream -s '\0'
 bind(server)          <- "\0" (1 bytes)
 socket file (server)  : not exist
@@ -259,7 +272,7 @@ getsockname(server)   -> "foo\0" (4 bytes)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\00009a" (6 bytes)
+getsockname(server)   -> "\00009c" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist

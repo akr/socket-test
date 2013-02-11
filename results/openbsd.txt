@@ -2,6 +2,16 @@
 uname -mrsv
 OpenBSD 5.1 GENERIC#0 sparc64
 ./size
+char.size :                                1
+char.sign :                                signed
+short.size :                               2
+short.sign :                               signed
+int.size :                                 4
+int.sign :                                 signed
+long.size :                                8
+long.sign :                                signed
+long long.size :                           8
+long long.sign :                           signed
 socklen_t.size :                           4
 socklen_t.sign :                           unsigned
 sa_family_t.size :                         1
@@ -10,6 +20,9 @@ size_t.size :                              8
 size_t.sign :                              unsigned
 ssize_t.size :                             8
 ssize_t.sign :                             signed
+void*.size :                               8
+char*.size :                               8
+int*.size :                                8
 sockaddr.size :                            16
 sockaddr.sa_len.size :                     1
 sockaddr.sa_family.size :                  1
