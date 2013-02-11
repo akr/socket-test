@@ -2,6 +2,14 @@
 uname -mrsv
 FreeBSD 9.1-RELEASE FreeBSD 9.1-RELEASE #0 r243825: Tue Dec  4 09:23:10 UTC 2012     root@farrell.cse.buffalo.edu:/usr/obj/usr/src/sys/GENERIC  amd64
 ./size
+socklen_t.size :                           4
+socklen_t.sign :                           unsigned
+sa_family_t.size :                         1
+sa_family_t.sign :                         unsigned
+size_t.size :                              8
+size_t.sign :                              unsigned
+ssize_t.size :                             8
+ssize_t.sign :                             signed
 sockaddr.size :                            16
 sockaddr.sa_len.size :                     1
 sockaddr.sa_family.size :                  1

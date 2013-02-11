@@ -2,6 +2,14 @@
 uname -mrsv
 MirBSD 10 GENERIC#1382 i386
 ./size
+socklen_t.size :                           4
+socklen_t.sign :                           unsigned
+sa_family_t.size :                         1
+sa_family_t.sign :                         unsigned
+size_t.size :                              4
+size_t.sign :                              unsigned
+ssize_t.size :                             4
+ssize_t.sign :                             signed
 sockaddr.size :                            16
 sockaddr.sa_len.size :                     1
 sockaddr.sa_family.size :                  1

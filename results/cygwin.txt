@@ -2,6 +2,14 @@
 uname -mrsv
 CYGWIN_NT-5.1 1.7.17(0.262/5/3) 2012-10-19 14:39 i686
 ./size
+socklen_t.size :                           4
+socklen_t.sign :                           signed
+sa_family_t.size :                         2
+sa_family_t.sign :                         unsigned
+size_t.size :                              4
+size_t.sign :                              unsigned
+ssize_t.size :                             4
+ssize_t.sign :                             signed
 sockaddr.size :                            16
 sockaddr.sa_family.size :                  2
 sockaddr.sa_data.size :                    14

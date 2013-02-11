@@ -2,6 +2,14 @@
 uname -mrsv
 NetBSD 5.1 NetBSD 5.1 (GENERIC) #0: Sat Nov  6 13:19:33 UTC 2010  builds@b6.netbsd.org:/home/builds/ab/netbsd-5-1-RELEASE/amd64/201011061943Z-obj/home/builds/ab/netbsd-5-1-RELEASE/src/sys/arch/amd64/compile/GENERIC amd64
 ./size
+socklen_t.size :                           4
+socklen_t.sign :                           unsigned
+sa_family_t.size :                         1
+sa_family_t.sign :                         unsigned
+size_t.size :                              8
+size_t.sign :                              unsigned
+ssize_t.size :                             8
+ssize_t.sign :                             signed
 sockaddr.size :                            16
 sockaddr.sa_len.size :                     1
 sockaddr.sa_family.size :                  1

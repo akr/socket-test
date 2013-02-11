@@ -2,6 +2,14 @@
 uname -mrsv
 DragonFly 3.2-RELEASE DragonFly v3.2.2-RELEASE #0: Sun Dec 16 13:26:10 PST 2012     root@pkgbox64.dragonflybsd.org:/usr/obj/build/home/justin/src/sys/X86_64_GENERIC  x86_64
 ./size
+socklen_t.size :                           4
+socklen_t.sign :                           unsigned
+sa_family_t.size :                         1
+sa_family_t.sign :                         unsigned
+size_t.size :                              8
+size_t.sign :                              unsigned
+ssize_t.size :                             8
+ssize_t.sign :                             signed
 sockaddr.size :                            16
 sockaddr.sa_len.size :                     1
 sockaddr.sa_family.size :                  1
