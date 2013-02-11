@@ -69,28 +69,28 @@ const.c: const.erb
 	./update-files const.c -- const.erb -- sh -c 'erb const.erb > const.c'
 
 util.o: util.c sockettest.h config.h compile.sh
-	./compile.sh $< -o $@
+	sh ./compile.sh $< -o $@
 
 errsym.o: errsym.c sockettest.h config.h compile.sh
-	./compile.sh $< -o $@
+	sh ./compile.sh $< -o $@
 
 size.o: size.c sockettest.h config.h compile.sh
-	./compile.sh $< -o $@
+	sh ./compile.sh $< -o $@
 
 const.o: const.c sockettest.h config.h compile.sh
-	./compile.sh $< -o $@
+	sh ./compile.sh $< -o $@
 
 unix-stream.o: unix-stream.c sockettest.h config.h compile.sh
-	./compile.sh $< -o $@
+	sh ./compile.sh $< -o $@
 
 size: size.o link.sh
-	./link.sh size.o -o $@
+	sh ./link.sh size.o -o $@
 
 const: const.o link.sh
-	./link.sh const.o -o $@
+	sh ./link.sh const.o -o $@
 
 unix-stream: unix-stream.o $(UTILOBJS) link.sh
-	./link.sh unix-stream.o $(UTILOBJS) -o $@
+	sh ./link.sh unix-stream.o $(UTILOBJS) -o $@
 
 results.html : table-result.erb \
   results/linux.txt \
