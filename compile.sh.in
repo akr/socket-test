@@ -1,3 +1,5 @@
 #!/bin/sh
+#
+# @configure_input@
 
 @CC@ @CFLAGS@ @CPPFLAGS@ -c "$@"

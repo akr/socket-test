@@ -3751,7 +3751,9 @@ fi
 done
 
 
-ac_config_files="$ac_config_files compile.sh link.sh"
+ac_config_files="$ac_config_files compile.sh"
+
+ac_config_files="$ac_config_files link.sh"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -4990,6 +4992,12 @@ $as_echo "$as_me: $ac_file is unchanged" >&6;}
 
   esac
 
+
+  case $ac_file$ac_mode in
+    "compile.sh":F) chmod +x compile.sh ;;
+    "link.sh":F) chmod +x link.sh ;;
+
+  esac
 done # for ac_tag
 
 

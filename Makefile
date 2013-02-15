@@ -55,9 +55,7 @@ config.status: configure
 
 config.h compile.sh link.sh: config.status config.h.in compile.sh.in link.sh.in
 	./config.status && \
-	  touch config.h && \
-	  chmod +x compile.sh && \
-	  chmod +x link.sh
+	  touch config.h
 
 errsym.c: errsym.erb
 	./update-files errsym.c -- errsym.erb -- sh -c 'erb errsym.erb > errsym.c'
