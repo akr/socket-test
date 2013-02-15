@@ -168,6 +168,18 @@ bind(server): Invalid argument (EINVAL)
 ./unix-stream '(25*"0123456789")012345'
 bind(server)          <- "(25*"0123456789")012345" (256 bytes)
 bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")a' 
+bind(server)          <- "(125*"./")a" (251 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")ab'
+bind(server)          <- "(125*"./")ab" (252 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")abc'
+bind(server)          <- "(125*"./")abc" (253 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")abcd'
+bind(server)          <- "(125*"./")abcd" (254 bytes)
+bind(server): Invalid argument (EINVAL)
 ./unix-stream '(511*"./")a'
 bind(server)          <- "(511*"./")a" (1023 bytes)
 bind(server): Invalid argument (EINVAL)
@@ -214,6 +226,18 @@ bind(server)          <- "(25*"0123456789")01234\0" (256 bytes)
 bind(server): Invalid argument (EINVAL)
 ./unix-stream '(25*"0123456789")012345\0'
 bind(server)          <- "(25*"0123456789")012345\0" (257 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")a\0'
+bind(server)          <- "(125*"./")a\0" (252 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")ab\0'
+bind(server)          <- "(125*"./")ab\0" (253 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")abc\0'
+bind(server)          <- "(125*"./")abc\0" (254 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")abcd\0'
+bind(server)          <- "(125*"./")abcd\0" (255 bytes)
 bind(server): Invalid argument (EINVAL)
 ./unix-stream '(511*"./")a\0'
 bind(server)          <- "(511*"./")a\0" (1024 bytes)
@@ -266,7 +290,7 @@ bind(server): No such file or directory (ENOENT)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\00009f" (6 bytes)
+getsockname(server)   -> "\0000b4" (6 bytes)
 ./unix-stream -s '\0'
 bind(server)          <- "\0" (1 bytes)
 socket file (server)  : not exist
@@ -284,7 +308,7 @@ getsockname(server)   -> "foo\0" (4 bytes)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\0000a0" (6 bytes)
+getsockname(server)   -> "\0000b5" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
