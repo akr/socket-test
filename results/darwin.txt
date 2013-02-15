@@ -1,0 +1,398 @@
+
+uname -mrsv
+Darwin 9.8.0 Darwin Kernel Version 9.8.0: Sun Sep  9 10:11:39 PDT 2012; root:xnu-1228.15.4.obj/RELEASE_I386 x86
+./size
+char.size :                                1
+char.align :                               1
+char.sign :                                signed
+short.size :                               2
+short.align :                              2
+short.sign :                               signed
+int.size :                                 4
+int.align :                                4
+int.sign :                                 signed
+long.size :                                4
+long.align :                               4
+long.sign :                                signed
+long long.size :                           8
+long long.align :                          4
+long long.sign :                           signed
+socklen_t.size :                           4
+socklen_t.align :                          4
+socklen_t.sign :                           unsigned
+sa_family_t.size :                         1
+sa_family_t.align :                        1
+sa_family_t.sign :                         unsigned
+size_t.size :                              4
+size_t.align :                             4
+size_t.sign :                              unsigned
+ssize_t.size :                             4
+ssize_t.align :                            4
+ssize_t.sign :                             signed
+void*.size :                               4
+void*.align :                              4
+char*.size :                               4
+char*.align :                              4
+int*.size :                                4
+int*.align :                               4
+sockaddr.size :                            16
+sockaddr.sa_len.size :                     1
+sockaddr.sa_family.size :                  1
+sockaddr.sa_data.size :                    14
+sockaddr_un.size :                         106
+sockaddr_un.sun_len.size :                 1
+sockaddr_un.sun_family.size :              1
+sockaddr_un.sun_path.size :                104
+sockaddr_in.size :                         16
+sockaddr_in.sin_len.size :                 1
+sockaddr_in.sin_family.size :              1
+sockaddr_in.sin_port.size :                2
+sockaddr_in.sin_addr.size :                4
+sockaddr_in6.size :                        28
+sockaddr_in6.sin6_len.size :               1
+sockaddr_in6.sin6_family.size :            1
+sockaddr_in6.sin6_port.size :              2
+sockaddr_in6.sin6_flowinfo.size :          4
+sockaddr_in6.sin6_addr.size :              16
+sockaddr_in6.sin6_scope_id.size :          4
+sockaddr_storage.size :                    128
+sockaddr_storage.ss_len.size :             1
+sockaddr_storage.ss_family.size :          1
+sockaddr.align :                           1
+sockaddr.sa_len.offset :                   0
+sockaddr.sa_family.offset :                1
+sockaddr.sa_data.offset :                  2
+sockaddr_un.align :                        1
+sockaddr_un.sun_len.offset :               0
+sockaddr_un.sun_family.offset :            1
+sockaddr_un.sun_path.offset :              2
+sockaddr_in.align :                        4
+sockaddr_in.sin_len.offset :               0
+sockaddr_in.sin_family.offset :            1
+sockaddr_in.sin_port.offset :              2
+sockaddr_in.sin_addr.offset :              4
+sockaddr_in6.align :                       4
+sockaddr_in6.sin6_len.offset :             0
+sockaddr_in6.sin6_family.offset :          1
+sockaddr_in6.sin6_port.offset :            2
+sockaddr_in6.sin6_flowinfo.offset :        4
+sockaddr_in6.sin6_addr.offset :            8
+sockaddr_in6.sin6_scope_id.offset :        24
+sockaddr_storage.align :                   4
+sockaddr_storage.ss_len.offset :           0
+sockaddr_storage.ss_family.offset :        1
+./const
+AF_UNSPEC: 0 (4 bytes)
+PF_UNSPEC: 0 (4 bytes)
+AF_UNIX: 1 (4 bytes)
+PF_UNIX: 1 (4 bytes)
+AF_INET: 2 (4 bytes)
+PF_INET: 2 (4 bytes)
+AF_INET6: 30 (4 bytes)
+PF_INET6: 30 (4 bytes)
+SOCK_STREAM: 1 (4 bytes)
+SOCK_DGRAM: 2 (4 bytes)
+SOCK_SEQPACKET: 5 (4 bytes)
+SOMAXCONN: 128 (4 bytes)
+NAME_MAX: 255 (4 bytes)
+PATH_MAX: 1024 (4 bytes)
+EXIT_SUCCESS: 0 (4 bytes)
+EXIT_FAILURE: 1 (4 bytes)
+./unix-stream 'foo' './foo'
+bind(server)          <- "foo" (3 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo" (3 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "./foo" (5 bytes)
+getpeername(client)   -> "foo" (3 bytes)
+accept                -> "\0\0\0" (3 bytes)
+getsockname(accepted) -> "foo" (3 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream 'foo\0' './foo\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "./foo\0" (6 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "\0\0\0\0" (4 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream 'foo\0hoge' './foo\0fuga'
+bind(server)          <- "foo\0hoge" (8 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0hoge" (8 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "./foo\0fuga" (10 bytes)
+getpeername(client)   -> "foo\0hoge" (8 bytes)
+accept                -> "\0\0\0\0\0\0\0\0" (8 bytes)
+getsockname(accepted) -> "foo\0hoge" (8 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream 'foo\0hoge' './foo\0fuga' 'bar\0moga'
+bind(server)          <- "foo\0hoge" (8 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0hoge" (8 bytes)
+bind(client)          <- "bar\0moga" (8 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar\0moga" (8 bytes)
+connect               <- "./foo\0fuga" (10 bytes)
+getpeername(client)   -> "foo\0hoge" (8 bytes)
+accept                -> "bar\0moga" (8 bytes)
+getsockname(accepted) -> "foo\0hoge" (8 bytes)
+getpeername(accepted) -> "bar\0moga" (8 bytes)
+./unix-stream -p '012345678'
+bind(server)          <- "(94*"Z")012345678" (103 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(94*"Z")012345678" (103 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(94*"Z")012345678" (103 bytes)
+getpeername(client)   -> "(94*"Z")012345678" (103 bytes)
+accept                -> "(103*"\0")" (103 bytes)
+getsockname(accepted) -> "(94*"Z")012345678" (103 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream -p '0123456789'
+bind(server)          <- "(94*"Z")0123456789" (104 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(94*"Z")0123456789" (104 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(94*"Z")0123456789" (104 bytes)
+getpeername(client)   -> "(94*"Z")0123456789" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(94*"Z")0123456789" (104 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream -p '01234567890'
+bind(server)          <- "(94*"Z")01234567890" (105 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(94*"Z")0123456789"... (105 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(94*"Z")01234567890" (105 bytes)
+getpeername(client)   -> "(94*"Z")0123456789"... (105 bytes)
+accept                -> "(104*"\0")"... (105 bytes)
+getsockname(accepted) -> "(94*"Z")0123456789"... (105 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(25*"0123456789")012'
+bind(server)          <- "(25*"0123456789")012" (253 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123"... (253 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(25*"0123456789")012" (253 bytes)
+getpeername(client)   -> "(10*"0123456789")0123"... (253 bytes)
+accept                -> "(104*"\0")"... (253 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123"... (253 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream -g 1024 '(25*"0123456789")012'
+bind(server)          <- "(25*"0123456789")012" (253 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(25*"0123456789")012" (253 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(25*"0123456789")012" (253 bytes)
+getpeername(client)   -> "(25*"0123456789")012" (253 bytes)
+accept                -> "(253*"\0")" (253 bytes)
+getsockname(accepted) -> "(25*"0123456789")012" (253 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(25*"0123456789")0123'
+bind(server)          <- "(25*"0123456789")0123" (254 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(25*"0123456789")01234'
+bind(server)          <- "(25*"0123456789")01234" (255 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(25*"0123456789")012345'
+bind(server)          <- "(25*"0123456789")012345" (256 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(511*"./")a'
+bind(server)          <- "(511*"./")a" (1023 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(511*"./")ab'
+bind(server)          <- "(511*"./")ab" (1024 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream -p '01234567\0'
+bind(server)          <- "(94*"Z")01234567\0" (103 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(94*"Z")01234567\0" (103 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(94*"Z")01234567\0" (103 bytes)
+getpeername(client)   -> "(94*"Z")01234567\0" (103 bytes)
+accept                -> "(103*"\0")" (103 bytes)
+getsockname(accepted) -> "(94*"Z")01234567\0" (103 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream -p '012345678\0'
+bind(server)          <- "(94*"Z")012345678\0" (104 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(94*"Z")012345678\0" (104 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(94*"Z")012345678\0" (104 bytes)
+getpeername(client)   -> "(94*"Z")012345678\0" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(94*"Z")012345678\0" (104 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream -p '0123456789\0'
+bind(server)          <- "(94*"Z")0123456789\0" (105 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(94*"Z")0123456789"... (105 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(94*"Z")0123456789\0" (105 bytes)
+getpeername(client)   -> "(94*"Z")0123456789"... (105 bytes)
+accept                -> "(104*"\0")"... (105 bytes)
+getsockname(accepted) -> "(94*"Z")0123456789"... (105 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream -p '01234567890\0'
+bind(server)          <- "(94*"Z")01234567890\0" (106 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(94*"Z")0123456789"... (106 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(94*"Z")01234567890\0" (106 bytes)
+getpeername(client)   -> "(94*"Z")0123456789"... (106 bytes)
+accept                -> "(104*"\0")"... (106 bytes)
+getsockname(accepted) -> "(94*"Z")0123456789"... (106 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(25*"0123456789")012\0'
+bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream -g 1024 '(25*"0123456789")012\0'
+bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(25*"0123456789")0123\0'
+bind(server)          <- "(25*"0123456789")0123\0" (255 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(25*"0123456789")01234\0'
+bind(server)          <- "(25*"0123456789")01234\0" (256 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(25*"0123456789")012345\0'
+bind(server)          <- "(25*"0123456789")012345\0" (257 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(511*"./")a\0'
+bind(server)          <- "(511*"./")a\0" (1024 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(511*"./")ab\0'
+bind(server)          <- "(511*"./")ab\0" (1025 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream 'foo' 'foo' '(200*"b")'
+bind(server)          <- "foo" (3 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo" (3 bytes)
+bind(client)          <- "(200*"b")" (200 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "(104*"b")"... (200 bytes)
+connect               <- "foo" (3 bytes)
+getpeername(client)   -> "foo" (3 bytes)
+accept                -> "bbb" (3 bytes)
+getsockname(accepted) -> "foo" (3 bytes)
+getpeername(accepted) -> "(104*"b")"... (200 bytes)
+./unix-stream 'foo\0' 'foo\0' '(200*"b")\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "(200*"b")\0" (201 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "(104*"b")"... (201 bytes)
+connect               <- "foo\0" (4 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "bbbb" (4 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "(104*"b")"... (201 bytes)
+./unix-stream -s /etc/hosts
+bind(server)          <- "/etc/hosts" (10 bytes)
+bind(server): Address already in use (EADDRINUSE)
+./unix-stream -s '/etc/hosts\0'
+bind(server)          <- "/etc/hosts\0" (11 bytes)
+bind(server): Address already in use (EADDRINUSE)
+./unix-stream -s '/etc'
+bind(server)          <- "/etc" (4 bytes)
+bind(server): Address already in use (EADDRINUSE)
+./unix-stream -s '/etc\0'
+bind(server)          <- "/etc\0" (5 bytes)
+bind(server): Address already in use (EADDRINUSE)
+./unix-stream -s '/'
+bind(server)          <- "/" (1 bytes)
+bind(server): Is a directory (EISDIR)
+./unix-stream -s '/\0'
+bind(server)          <- "/\0" (2 bytes)
+bind(server): Is a directory (EISDIR)
+./unix-stream -s '/foo'
+bind(server)          <- "/foo" (4 bytes)
+bind(server): Permission denied (EACCES)
+./unix-stream -s '/foo\0'
+bind(server)          <- "/foo\0" (5 bytes)
+bind(server): Permission denied (EACCES)
+./unix-stream -s '/foo/bar'
+bind(server)          <- "/foo/bar" (8 bytes)
+bind(server): No such file or directory (ENOENT)
+./unix-stream -s '/foo/bar\0'
+bind(server)          <- "/foo/bar\0" (9 bytes)
+bind(server): No such file or directory (ENOENT)
+./unix-stream -s ''
+bind(server)          <- "" (0 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream -s '\0'
+bind(server)          <- "\0" (1 bytes)
+bind(server): No such file or directory (ENOENT)
+./unix-stream -s 'foo'
+bind(server)          <- "foo" (3 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo" (3 bytes)
+./unix-stream -s 'foo\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+
+
+./unix-stream -4 '(sun_len=1)abc'
+bind(server)          <- "(sun_len=1)abc" (3 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
+getsockname(client)   -> "(sun_len=16)(14*"\0")" (14 bytes)
+connect               <- "abc" (3 bytes)
+getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
+accept                -> "(sun_len=16)\0\0\0" (3 bytes)
+getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
+getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
+./unix-stream -4 '(sun_len=2)abc'
+bind(server)          <- "(sun_len=2)abc" (3 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
+getsockname(client)   -> "(sun_len=16)(14*"\0")" (14 bytes)
+connect               <- "abc" (3 bytes)
+getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
+accept                -> "(sun_len=16)\0\0\0" (3 bytes)
+getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
+getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
+./unix-stream -4 '(sun_len=3)abc'
+bind(server)          <- "(sun_len=3)abc" (3 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
+getsockname(client)   -> "(sun_len=16)(14*"\0")" (14 bytes)
+connect               <- "abc" (3 bytes)
+getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
+accept                -> "(sun_len=16)\0\0\0" (3 bytes)
+getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
+getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
+./unix-stream -4 '(sun_len=4)abc'
+bind(server)          <- "(sun_len=4)abc" (3 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
+getsockname(client)   -> "(sun_len=16)(14*"\0")" (14 bytes)
+connect               <- "abc" (3 bytes)
+getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
+accept                -> "(sun_len=16)\0\0\0" (3 bytes)
+getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
+getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
+./unix-stream -4 '(sun_len=5)abc'
+bind(server)          <- "(sun_len=5)abc" (3 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
+getsockname(client)   -> "(sun_len=16)(14*"\0")" (14 bytes)
+connect               <- "abc" (3 bytes)
+getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
+accept                -> "(sun_len=16)\0\0\0" (3 bytes)
+getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
+getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
+./unix-stream -4 '(sun_len=6)abc'
+bind(server)          <- "(sun_len=6)abc" (3 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
+getsockname(client)   -> "(sun_len=16)(14*"\0")" (14 bytes)
+connect               <- "abc" (3 bytes)
+getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
+accept                -> "(sun_len=16)\0\0\0" (3 bytes)
+getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
+getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
