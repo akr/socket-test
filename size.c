@@ -26,6 +26,8 @@
  * OF SUCH DAMAGE.
  */
 
+
+
 #include "sockettest.h"
 
 #define SHOW_INTEGER_TYPE(type_name) \
@@ -55,6 +57,7 @@
         (int)(35-sizeof(#type_name)), "", \
         ALIGNOF(type_name)); \
   } while (0)
+
 
 #define SHOW_STRUCT_SIZE(struct_name) \
   do { \
