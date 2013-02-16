@@ -409,6 +409,12 @@ static void test_unix_dgram(void)
   if (ss != 3) { fprintf(stderr, "recvfrom(server): unexpected return value %ld\n", (long)ss); }
   if (memcmp(buf, "req", 3) != 0) { fprintf(stderr, "recvfrom(server): unexpected return message\n"); }
 
+  /* ignore truncated part */
+  if (get_sockaddr_len < len) {
+    printf("address truncation    : %ld bytes\n", len-get_sockaddr_len);
+    len = get_sockaddr_len;
+  }
+
   report_path_to_kernel("sendto(server)", get_sockaddr_ptr, len);
   ss = sendto(s, "res", 3, 0, (struct sockaddr *)get_sockaddr_ptr, len);
   if (ss == -1) { perror2("sendto(server)"); exit(EXIT_FAILURE); }
