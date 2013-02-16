@@ -8,6 +8,7 @@ config.status
 size
 const
 unix-stream
+unix-dgram
 compile.sh
 link.sh
 .update-Makefile2.blt

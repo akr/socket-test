@@ -22,7 +22,7 @@
 # IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 # OF SUCH DAMAGE.
 
-TARGETS = size const unix-stream
+TARGETS = size const unix-stream unix-dgram
 UTILOBJS = util.o errsym.o
 
 all: $(TARGETS)
@@ -81,6 +81,9 @@ const.o: const.c sockettest.h config.h compile.sh
 unix-stream.o: unix-stream.c sockettest.h config.h compile.sh
 	sh ./compile.sh $< -o $@
 
+unix-dgram.o: unix-dgram.c sockettest.h config.h compile.sh
+	sh ./compile.sh $< -o $@
+
 size: size.o link.sh
 	sh ./link.sh size.o -o $@
 
@@ -89,6 +92,9 @@ const: const.o link.sh
 
 unix-stream: unix-stream.o $(UTILOBJS) link.sh
 	sh ./link.sh unix-stream.o $(UTILOBJS) -o $@
+
+unix-dgram: unix-dgram.o $(UTILOBJS) link.sh
+	sh ./link.sh unix-dgram.o $(UTILOBJS) -o $@
 
 results.html : table-result.erb \
   results/linux.txt \
