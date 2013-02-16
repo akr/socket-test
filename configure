@@ -3028,7 +3028,7 @@ _ACEOF
   LIBS="-lxnet $LIBS"
 
 fi
- # Solaris
+ # SunOS.  cf. libxnet(3LIB) and standards(5)
 
 # Checks for header files.
 ac_ext=c
