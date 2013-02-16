@@ -28,6 +28,7 @@
 
 static int opt_U = 0;
 static int opt_c = 0;
+static int opt_m = 0;
 static int opt_4 = 0;
 
 static int opt_s = 0;
@@ -55,6 +56,7 @@ void usage(int status)
       "option: -h : show this help message\n"
       "        -U : don't unlink sockets.\n"
       "        -c : use connect&send instead of sendto.\n"
+      "        -m : use recvmsg instead of recvfrom.\n"
       "        -4 : show 4.4BSD sun_len field\n"
 
       "        -s : server only test mode.\n"
@@ -124,7 +126,7 @@ static void parse_args(int argc, char *argv[])
   int opt;
   char *arg;
 
-  while ((opt = getopt(argc, argv, "hUcspg:f:e:4")) != -1) {
+  while ((opt = getopt(argc, argv, "hUcmspg:f:e:4")) != -1) {
     switch (opt) {
       case 'h':
         usage(EXIT_SUCCESS);
@@ -136,6 +138,10 @@ static void parse_args(int argc, char *argv[])
 
       case 'c':
         opt_c = 1;
+        break;
+
+      case 'm':
+        opt_m = 1;
         break;
 
       case 's':
@@ -401,13 +407,35 @@ static void test_unix_dgram(void)
     if (ss != 3) { fprintf(stderr, "sendto(client): unexpected return value %ld\n", (long)ss); }
   }
 
-  memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
-  len = get_sockaddr_len;
-  ss = recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr *)get_sockaddr_ptr, &len);
-  if (ss == -1) { perror2("recvfrom(server)"); exit(EXIT_FAILURE); }
-  report_path_from_kernel("recvfrom(server)", get_sockaddr_len, get_sockaddr_ptr, len);
-  if (ss != 3) { fprintf(stderr, "recvfrom(server): unexpected return value %ld\n", (long)ss); }
-  if (memcmp(buf, "req", 3) != 0) { fprintf(stderr, "recvfrom(server): unexpected return message\n"); }
+  if (opt_m) {
+    struct msghdr mhdr;
+    struct iovec iov;
+    iov.iov_base = buf;
+    iov.iov_len = sizeof(buf);
+    mhdr.msg_name = (struct sockaddr *)get_sockaddr_ptr;
+    mhdr.msg_namelen = get_sockaddr_len;
+    mhdr.msg_iov = &iov;
+    mhdr.msg_iovlen = 1;
+    mhdr.msg_control = NULL;
+    mhdr.msg_controllen = 0;
+    mhdr.msg_flags = 0;
+    ss = recvmsg(s, &mhdr, 0);
+    if (ss == -1) { perror2("recvmsg(server)"); exit(EXIT_FAILURE); }
+    len = mhdr.msg_namelen;
+    report_path_from_kernel("recvmsg(server)", get_sockaddr_len, get_sockaddr_ptr, len);
+    if (ss != 3) { fprintf(stderr, "recvmsg(server): unexpected return value %ld\n", (long)ss); }
+    if (memcmp(buf, "req", 3) != 0) { fprintf(stderr, "recvmsg(server): unexpected return message\n"); }
+    if (mhdr.msg_flags != 0) { fprintf(stderr, "recvmsg(server): unexpected return flags %lx\n", (unsigned long)mhdr.msg_flags); }
+  }
+  else {
+    memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
+    len = get_sockaddr_len;
+    ss = recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr *)get_sockaddr_ptr, &len);
+    if (ss == -1) { perror2("recvfrom(server)"); exit(EXIT_FAILURE); }
+    report_path_from_kernel("recvfrom(server)", get_sockaddr_len, get_sockaddr_ptr, len);
+    if (ss != 3) { fprintf(stderr, "recvfrom(server): unexpected return value %ld\n", (long)ss); }
+    if (memcmp(buf, "req", 3) != 0) { fprintf(stderr, "recvfrom(server): unexpected return message\n"); }
+  }
 
   /* ignore truncated part */
   if (get_sockaddr_len < len) {
@@ -420,13 +448,35 @@ static void test_unix_dgram(void)
   if (ss == -1) { perror2("sendto(server)"); exit(EXIT_FAILURE); }
   if (ss != 3) { fprintf(stderr, "sendto(server): unexpected return value %ld\n", (long)ss); }
 
-  memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
-  len = get_sockaddr_len;
-  ss = recvfrom(c, buf, sizeof(buf), 0, (struct sockaddr *)get_sockaddr_ptr, &len);
-  if (ss == -1) { perror2("recvfrom(client)"); exit(EXIT_FAILURE); }
-  report_path_from_kernel("recvfrom(client)", get_sockaddr_len, get_sockaddr_ptr, len);
-  if (ss != 3) { fprintf(stderr, "recvfrom(client): unexpected return value %ld\n", (long)ss); }
-  if (memcmp(buf, "res", 3) != 0) { fprintf(stderr, "recvfrom(client): unexpected return message\n"); }
+  if (opt_m) {
+    struct msghdr mhdr;
+    struct iovec iov;
+    iov.iov_base = buf;
+    iov.iov_len = sizeof(buf);
+    mhdr.msg_name = (struct sockaddr *)get_sockaddr_ptr;
+    mhdr.msg_namelen = get_sockaddr_len;
+    mhdr.msg_iov = &iov;
+    mhdr.msg_iovlen = 1;
+    mhdr.msg_control = NULL;
+    mhdr.msg_controllen = 0;
+    mhdr.msg_flags = 0;
+    ss = recvmsg(c, &mhdr, 0);
+    if (ss == -1) { perror2("recvmsg(client)"); exit(EXIT_FAILURE); }
+    len = mhdr.msg_namelen;
+    report_path_from_kernel("recvmsg(client)", get_sockaddr_len, get_sockaddr_ptr, len);
+    if (ss != 3) { fprintf(stderr, "recvmsg(client): unexpected return value %ld\n", (long)ss); }
+    if (memcmp(buf, "res", 3) != 0) { fprintf(stderr, "recvmsg(client): unexpected return message\n"); }
+    if (mhdr.msg_flags != 0) { fprintf(stderr, "recvmsg(client): unexpected return flags %lx\n", (unsigned long)mhdr.msg_flags); }
+  }
+  else {
+    memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
+    len = get_sockaddr_len;
+    ss = recvfrom(c, buf, sizeof(buf), 0, (struct sockaddr *)get_sockaddr_ptr, &len);
+    if (ss == -1) { perror2("recvfrom(client)"); exit(EXIT_FAILURE); }
+    report_path_from_kernel("recvfrom(client)", get_sockaddr_len, get_sockaddr_ptr, len);
+    if (ss != 3) { fprintf(stderr, "recvfrom(client): unexpected return value %ld\n", (long)ss); }
+    if (memcmp(buf, "res", 3) != 0) { fprintf(stderr, "recvfrom(client): unexpected return message\n"); }
+  }
 }
 
 void atexit_func()
