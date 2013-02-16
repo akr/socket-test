@@ -26,6 +26,16 @@
 
 #include "config.h"
 
+#ifdef __sun
+/* On SunOS, following definitions declares that
+ * this program uses SUS (XPG4v2) with other non-conflicting features. 
+ * They are required to use newer struct msghdr for sendmsg/recvmsg.
+/* cf. standards(5). */
+#  define _XOPEN_SOURCE
+#  define _XOPEN_SOURCE_EXTENDED 1
+#  define __EXTENSIONS__
+#endif
+
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
