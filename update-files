@@ -124,6 +124,11 @@ if $copyable; then
   rm -f "$memo_prefix".*.tmp
   true
 else
+  for f in "$memo_prefix".*.target.filename.tmp; do
+    dst="`cat $f`"
+    dstlog="`dirname $f`/`basename $f .filename.tmp`"
+    rm -f "$dst" "$dstlog"
+  done
   if "$@"; then
     cp "$memo_prefix.args.tmp" "$memo_prefix.args"
     for f in "$memo_prefix".*.source.filename.tmp; do
@@ -131,7 +136,7 @@ else
       srclog="`dirname $f`/`basename $f .filename.tmp`"
       rm -f "$srclog"
       cp "$src" "$srclog"
-      chmod -w "$src" "$srclog"
+      chmod -w "$srclog"
     done
     for f in "$memo_prefix".*.target.filename.tmp; do
       dst="`cat $f`"
