@@ -100,6 +100,19 @@
       <td class="socket-normal">signed</td>
   </tr>
   <tr>
+    <th align="left">char.byteorder</th>
+      <td class="socket-normal">1</td>
+      <td class="socket-normal">1</td>
+      <td class="socket-normal">1</td>
+      <td class="socket-normal">1</td>
+      <td class="socket-normal">1</td>
+      <td class="socket-normal">1</td>
+      <td class="socket-normal">1</td>
+      <td class="socket-normal">1</td>
+      <td class="socket-normal">1</td>
+      <td class="socket-normal">1</td>
+  </tr>
+  <tr>
     <th align="left">short.size</th>
       <td class="socket-normal">2</td>
       <td class="socket-normal">2</td>
@@ -137,6 +150,19 @@
       <td class="socket-normal">signed</td>
       <td class="socket-normal">signed</td>
       <td class="socket-normal">signed</td>
+  </tr>
+  <tr>
+    <th align="left">short.byteorder</th>
+      <td class="socket-normal">12</td>
+      <td class="socket-normal">12</td>
+      <td class="socket-normal">12</td>
+      <td class="socket-abnormal">21</td>
+      <td class="socket-normal">12</td>
+      <td class="socket-normal">12</td>
+      <td class="socket-normal">12</td>
+      <td class="socket-normal">12</td>
+      <td class="socket-normal">12</td>
+      <td class="socket-normal">12</td>
   </tr>
   <tr>
     <th align="left">int.size</th>
@@ -178,6 +204,19 @@
       <td class="socket-normal">signed</td>
   </tr>
   <tr>
+    <th align="left">int.byteorder</th>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-abnormal">4321</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+  </tr>
+  <tr>
     <th align="left">long.size</th>
       <td class="socket-normal">8</td>
       <td class="socket-abnormal">4</td>
@@ -215,6 +254,19 @@
       <td class="socket-normal">signed</td>
       <td class="socket-normal">signed</td>
       <td class="socket-normal">signed</td>
+  </tr>
+  <tr>
+    <th align="left">long.byteorder</th>
+      <td class="socket-abnormal">12345678</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-abnormal">12345678</td>
+      <td class="socket-abnormal">87654321</td>
+      <td class="socket-abnormal">12345678</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-abnormal">12345678</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
   </tr>
   <tr>
     <th align="left">long long.size</th>
@@ -256,6 +308,19 @@
       <td class="socket-normal">signed</td>
   </tr>
   <tr>
+    <th align="left">long long.byteorder</th>
+      <td class="socket-normal">12345678</td>
+      <td class="socket-normal">12345678</td>
+      <td class="socket-normal">12345678</td>
+      <td class="socket-abnormal">87654321</td>
+      <td class="socket-normal">12345678</td>
+      <td class="socket-normal">12345678</td>
+      <td class="socket-normal">12345678</td>
+      <td class="socket-normal">12345678</td>
+      <td class="socket-normal">12345678</td>
+      <td class="socket-normal">12345678</td>
+  </tr>
+  <tr>
     <th align="left">socklen_t.size</th>
       <td class="socket-normal">4</td>
       <td class="socket-normal">4</td>
@@ -293,6 +358,19 @@
       <td class="socket-normal">unsigned</td>
       <td class="socket-normal">unsigned</td>
       <td class="socket-abnormal">signed</td>
+  </tr>
+  <tr>
+    <th align="left">socklen_t.byteorder</th>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-abnormal">4321</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
   </tr>
   <tr>
     <th align="left">sa_family_t.size</th>
@@ -334,6 +412,19 @@
       <td class="socket-normal">unsigned</td>
   </tr>
   <tr>
+    <th align="left">sa_family_t.byteorder</th>
+      <td class="socket-normal">1</td>
+      <td class="socket-normal">1</td>
+      <td class="socket-normal">1</td>
+      <td class="socket-normal">1</td>
+      <td class="socket-normal">1</td>
+      <td class="socket-normal">1</td>
+      <td class="socket-abnormal">12</td>
+      <td class="socket-abnormal">12</td>
+      <td class="socket-abnormal">12</td>
+      <td class="socket-abnormal">12</td>
+  </tr>
+  <tr>
     <th align="left">size_t.size</th>
       <td class="socket-normal">8</td>
       <td class="socket-abnormal">4</td>
@@ -373,6 +464,19 @@
       <td class="socket-normal">unsigned</td>
   </tr>
   <tr>
+    <th align="left">size_t.byteorder</th>
+      <td class="socket-abnormal">12345678</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-abnormal">12345678</td>
+      <td class="socket-abnormal">87654321</td>
+      <td class="socket-abnormal">12345678</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-abnormal">12345678</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+  </tr>
+  <tr>
     <th align="left">ssize_t.size</th>
       <td class="socket-normal">8</td>
       <td class="socket-abnormal">4</td>
@@ -410,6 +514,97 @@
       <td class="socket-normal">signed</td>
       <td class="socket-normal">signed</td>
       <td class="socket-normal">signed</td>
+  </tr>
+  <tr>
+    <th align="left">ssize_t.byteorder</th>
+      <td class="socket-abnormal">12345678</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-abnormal">12345678</td>
+      <td class="socket-abnormal">87654321</td>
+      <td class="socket-abnormal">12345678</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-abnormal">12345678</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+      <td class="socket-normal">1234</td>
+  </tr>
+  <tr>
+    <th align="left">float.size</th>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+  </tr>
+  <tr>
+    <th align="left">float.align</th>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+      <td class="socket-normal">4</td>
+  </tr>
+  <tr>
+    <th align="left">double.size</th>
+      <td class="socket-normal">8</td>
+      <td class="socket-normal">8</td>
+      <td class="socket-normal">8</td>
+      <td class="socket-normal">8</td>
+      <td class="socket-normal">8</td>
+      <td class="socket-normal">8</td>
+      <td class="socket-normal">8</td>
+      <td class="socket-normal">8</td>
+      <td class="socket-normal">8</td>
+      <td class="socket-normal">8</td>
+  </tr>
+  <tr>
+    <th align="left">double.align</th>
+      <td class="socket-normal">8</td>
+      <td class="socket-abnormal">4</td>
+      <td class="socket-normal">8</td>
+      <td class="socket-normal">8</td>
+      <td class="socket-normal">8</td>
+      <td class="socket-abnormal">4</td>
+      <td class="socket-normal">8</td>
+      <td class="socket-normal">8</td>
+      <td class="socket-abnormal">4</td>
+      <td class="socket-normal">8</td>
+  </tr>
+  <tr>
+    <th align="left">long double.size</th>
+      <td class="socket-normal">16</td>
+      <td class="socket-normal">16</td>
+      <td class="socket-normal">16</td>
+      <td class="socket-normal">16</td>
+      <td class="socket-normal">16</td>
+      <td class="socket-abnormal">12</td>
+      <td class="socket-normal">16</td>
+      <td class="socket-abnormal">8</td>
+      <td class="socket-abnormal">12</td>
+      <td class="socket-abnormal">12</td>
+  </tr>
+  <tr>
+    <th align="left">long double.align</th>
+      <td class="socket-normal">16</td>
+      <td class="socket-normal">16</td>
+      <td class="socket-normal">16</td>
+      <td class="socket-normal">16</td>
+      <td class="socket-normal">16</td>
+      <td class="socket-abnormal">4</td>
+      <td class="socket-normal">16</td>
+      <td class="socket-abnormal">8</td>
+      <td class="socket-abnormal">4</td>
+      <td class="socket-abnormal">4</td>
   </tr>
   <tr>
     <th align="left">void*.size</th>
@@ -1103,6 +1298,19 @@
     <th>linux-arm</th>
     <th>sunos</th>
     <th>cygwin</th>
+  </tr>
+  <tr>
+    <th align="left">CHAR_BIT</th>
+      <td class="socket-normal">8 (4 bytes)</td>
+      <td class="socket-normal">8 (4 bytes)</td>
+      <td class="socket-normal">8 (4 bytes)</td>
+      <td class="socket-normal">8 (4 bytes)</td>
+      <td class="socket-normal">8 (4 bytes)</td>
+      <td class="socket-normal">8 (4 bytes)</td>
+      <td class="socket-normal">8 (4 bytes)</td>
+      <td class="socket-normal">8 (4 bytes)</td>
+      <td class="socket-normal">8 (4 bytes)</td>
+      <td class="socket-normal">8 (4 bytes)</td>
   </tr>
   <tr>
     <th align="left">AF_UNSPEC</th>
@@ -6382,8 +6590,8 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">&quot;\0000b5&quot; (6 bytes)</td>
-      <td class="socket-abnormal">&quot;\000002&quot; (6 bytes)</td>
+      <td class="socket-normal">&quot;\0000bf&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000008&quot; (6 bytes)</td>
       <td class="socket-none"></td>
   </tr>
   </tr>
@@ -6578,12 +6786,12 @@
   </tr>
   <tr>
     <th align="left">bind(server)          &lt;-</th>
-      <td class="socket-normal">&quot;(sun_len=1)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=1)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=1)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=1)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=1)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=1)abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
   </tr>
   <tr>
     <th align="left">socket file (server)</th>
@@ -6672,12 +6880,12 @@
   </tr>
   <tr>
     <th align="left">bind(server)          &lt;-</th>
-      <td class="socket-normal">&quot;(sun_len=2)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=2)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=2)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=2)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=2)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=2)abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
   </tr>
   <tr>
     <th align="left">socket file (server)</th>
@@ -6766,12 +6974,12 @@
   </tr>
   <tr>
     <th align="left">bind(server)          &lt;-</th>
-      <td class="socket-normal">&quot;(sun_len=3)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=3)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=3)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=3)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=3)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=3)abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
   </tr>
   <tr>
     <th align="left">socket file (server)</th>
@@ -6860,12 +7068,12 @@
   </tr>
   <tr>
     <th align="left">bind(server)          &lt;-</th>
-      <td class="socket-normal">&quot;(sun_len=4)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=4)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=4)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=4)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=4)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=4)abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
   </tr>
   <tr>
     <th align="left">socket file (server)</th>
@@ -6954,12 +7162,12 @@
   </tr>
   <tr>
     <th align="left">bind(server)          &lt;-</th>
-      <td class="socket-normal">&quot;(sun_len=5)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=5)abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
   </tr>
   <tr>
     <th align="left">socket file (server)</th>
@@ -7048,12 +7256,12 @@
   </tr>
   <tr>
     <th align="left">bind(server)          &lt;-</th>
-      <td class="socket-normal">&quot;(sun_len=6)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=6)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=6)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=6)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=6)abc&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;(sun_len=6)abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;abc&quot; (3 bytes)</td>
   </tr>
   <tr>
     <th align="left">socket file (server)</th>

@@ -5,30 +5,45 @@ Linux 2.6.32-5-versatile #1 Mon Sep 24 07:26:43 UTC 2012 armv5tejl
 char.size :                                1
 char.align :                               1
 char.sign :                                unsigned
+char.byteorder :                           1
 short.size :                               2
 short.align :                              2
 short.sign :                               signed
+short.byteorder :                          12
 int.size :                                 4
 int.align :                                4
 int.sign :                                 signed
+int.byteorder :                            1234
 long.size :                                4
 long.align :                               4
 long.sign :                                signed
+long.byteorder :                           1234
 long long.size :                           8
 long long.align :                          8
 long long.sign :                           signed
+long long.byteorder :                      12345678
 socklen_t.size :                           4
 socklen_t.align :                          4
 socklen_t.sign :                           unsigned
+socklen_t.byteorder :                      1234
 sa_family_t.size :                         2
 sa_family_t.align :                        2
 sa_family_t.sign :                         unsigned
+sa_family_t.byteorder :                    12
 size_t.size :                              4
 size_t.align :                             4
 size_t.sign :                              unsigned
+size_t.byteorder :                         1234
 ssize_t.size :                             4
 ssize_t.align :                            4
 ssize_t.sign :                             signed
+ssize_t.byteorder :                        1234
+float.size :                               4
+float.align :                              4
+double.size :                              8
+double.align :                             8
+long double.size :                         8
+long double.align :                        8
 void*.size :                               4
 void*.align :                              4
 char*.size :                               4
@@ -72,6 +87,7 @@ sockaddr_in6.sin6_scope_id.offset :        24
 sockaddr_storage.align :                   4
 sockaddr_storage.ss_family.offset :        0
 ./const
+CHAR_BIT: 8 (4 bytes)
 AF_UNSPEC: 0 (4 bytes)
 PF_UNSPEC: 0 (4 bytes)
 AF_UNIX: 1 (4 bytes)
@@ -290,7 +306,7 @@ bind(server): No such file or directory (ENOENT)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000001" (6 bytes)
+getsockname(server)   -> "\000007" (6 bytes)
 ./unix-stream -s '\0'
 bind(server)          <- "\0" (1 bytes)
 socket file (server)  : not exist
@@ -308,7 +324,7 @@ getsockname(server)   -> "foo\0" (4 bytes)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000002" (6 bytes)
+getsockname(server)   -> "\000008" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist

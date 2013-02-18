@@ -5,30 +5,45 @@ MirBSD 10 GENERIC#1382 i386
 char.size :                                1
 char.align :                               1
 char.sign :                                signed
+char.byteorder :                           1
 short.size :                               2
 short.align :                              2
 short.sign :                               signed
+short.byteorder :                          12
 int.size :                                 4
 int.align :                                4
 int.sign :                                 signed
+int.byteorder :                            1234
 long.size :                                4
 long.align :                               4
 long.sign :                                signed
+long.byteorder :                           1234
 long long.size :                           8
 long long.align :                          4
 long long.sign :                           signed
+long long.byteorder :                      12345678
 socklen_t.size :                           4
 socklen_t.align :                          4
 socklen_t.sign :                           unsigned
+socklen_t.byteorder :                      1234
 sa_family_t.size :                         1
 sa_family_t.align :                        1
 sa_family_t.sign :                         unsigned
+sa_family_t.byteorder :                    1
 size_t.size :                              4
 size_t.align :                             4
 size_t.sign :                              unsigned
+size_t.byteorder :                         1234
 ssize_t.size :                             4
 ssize_t.align :                            4
 ssize_t.sign :                             signed
+ssize_t.byteorder :                        1234
+float.size :                               4
+float.align :                              4
+double.size :                              8
+double.align :                             4
+long double.size :                         12
+long double.align :                        4
 void*.size :                               4
 void*.align :                              4
 char*.size :                               4
@@ -82,6 +97,7 @@ sockaddr_storage.align :                   4
 sockaddr_storage.ss_len.offset :           0
 sockaddr_storage.ss_family.offset :        1
 ./const
+CHAR_BIT: 8 (4 bytes)
 AF_UNSPEC: 0 (4 bytes)
 PF_UNSPEC: 0 (4 bytes)
 AF_UNIX: 1 (4 bytes)
@@ -348,7 +364,7 @@ getsockname(server)   -> "foo\0" (4 bytes)
 
 
 ./unix-stream -4 '(sun_len=1)abc'
-bind(server)          <- "(sun_len=1)abc" (3 bytes)
+bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
 getsockname(client)   -> too short sockaddr_un (0 bytes)
@@ -358,7 +374,7 @@ accept                -> "(sun_len=16)\0\0\0" (3 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
 getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -4 '(sun_len=2)abc'
-bind(server)          <- "(sun_len=2)abc" (3 bytes)
+bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
 getsockname(client)   -> too short sockaddr_un (0 bytes)
@@ -368,7 +384,7 @@ accept                -> "(sun_len=16)\0\0\0" (3 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
 getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -4 '(sun_len=3)abc'
-bind(server)          <- "(sun_len=3)abc" (3 bytes)
+bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
 getsockname(client)   -> too short sockaddr_un (0 bytes)
@@ -378,7 +394,7 @@ accept                -> "(sun_len=16)\0\0\0" (3 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
 getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -4 '(sun_len=4)abc'
-bind(server)          <- "(sun_len=4)abc" (3 bytes)
+bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
 getsockname(client)   -> too short sockaddr_un (0 bytes)
@@ -388,7 +404,7 @@ accept                -> "(sun_len=16)\0\0\0" (3 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
 getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -4 '(sun_len=5)abc'
-bind(server)          <- "(sun_len=5)abc" (3 bytes)
+bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
 getsockname(client)   -> too short sockaddr_un (0 bytes)
@@ -398,7 +414,7 @@ accept                -> "(sun_len=16)\0\0\0" (3 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
 getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -4 '(sun_len=6)abc'
-bind(server)          <- "(sun_len=6)abc" (3 bytes)
+bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
 getsockname(client)   -> too short sockaddr_un (0 bytes)
