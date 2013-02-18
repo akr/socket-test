@@ -38,7 +38,7 @@
 
 #include "sockettest.h"
 
-#define SHOW_BYTEORDER(type_name) \
+#define SHOW_BYTEORDER(type_name, type_name_str) \
   do { \
     union { \
       type_name integer; \
@@ -50,7 +50,7 @@
     for (i = 0; i < sizeof(type_name); i++) { \
       u.integer |= ((type_name)('1' + i)) << (i * CHAR_BIT); \
     } \
-    printf("%s.byteorder :%*s", #type_name, (int)(32-sizeof(#type_name)), ""); \
+    printf("%s.byteorder :%*s", type_name_str, (int)(32-sizeof(type_name_str)), ""); \
     for (i = 0; i < sizeof(type_name); i++) { \
       putc(u.bytes[i], stdout); \
     } \
@@ -71,7 +71,7 @@
         #type_name, \
         (int)(36-sizeof(#type_name)), "", \
         0 < ((type_name)-1) ? "unsigned" : "signed"); \
-    SHOW_BYTEORDER(type_name); \
+    SHOW_BYTEORDER(type_name, #type_name); \
   } while (0)
 
 #define SHOW_FLOAT_TYPE(type_name) \
