@@ -28,6 +28,7 @@
 
 <%
   const_list = <<End
+CHAR_BIT
 AF_UNSPEC
 PF_UNSPEC
 AF_UNIX

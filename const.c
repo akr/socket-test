@@ -32,6 +32,9 @@
 
 int main(int argc, char *argv[])
 {
+#ifdef CHAR_BIT
+  printf("%s: %ld (%d bytes)\n", "CHAR_BIT", (long)CHAR_BIT, (int)sizeof(CHAR_BIT));
+#endif
 #ifdef AF_UNSPEC
   printf("%s: %ld (%d bytes)\n", "AF_UNSPEC", (long)AF_UNSPEC, (int)sizeof(AF_UNSPEC));
 #endif
