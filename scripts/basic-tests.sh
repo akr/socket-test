@@ -164,23 +164,6 @@ uname -mrsv
 ./unix-stream -g 1024 '(25*"0123456789")012\0'
 ./unix-stream 'foo\0' 'foo\0' '(200*"b")\0'
 
-./unix-stream 'foo' './foo'
-./unix-stream -p '012345678'
-./unix-stream -p '0123456789'
-./unix-stream -p '01234567890'
-./unix-stream '(25*"0123456789")012'
-./unix-stream -g 1024 '(25*"0123456789")012'
-./unix-stream '(25*"0123456789")0123'
-./unix-stream '(25*"0123456789")01234'
-./unix-stream '(25*"0123456789")012345'
-./unix-stream '(125*"./")a' 
-./unix-stream '(125*"./")ab'
-./unix-stream '(125*"./")abc'
-./unix-stream '(125*"./")abcd'
-./unix-stream '(511*"./")a'
-./unix-stream '(511*"./")ab'
-./unix-stream 'foo' 'foo' '(200*"b")'
-
 ./unix-stream -s '/etc/hosts\0'
 ./unix-stream -s '/etc\0'
 ./unix-stream -s '/\0'
@@ -188,12 +171,4 @@ uname -mrsv
 ./unix-stream -s '/foo/bar\0'
 ./unix-stream -s '\0'
 ./unix-stream -s 'foo\0'
-
-./unix-stream -s /etc/hosts
-./unix-stream -s '/etc'
-./unix-stream -s '/'
-./unix-stream -s '/foo'
-./unix-stream -s '/foo/bar'
-./unix-stream -s ''
-./unix-stream -s 'foo'
 
