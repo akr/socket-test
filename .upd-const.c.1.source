@@ -129,6 +129,19 @@ int main(int argc, char *argv[])
 #endif
 % }
 
+% float_const_list.each_line {|sym| sym.chomp!
+#ifdef <%= sym %>
+  if (sizeof(<%= sym %>) == sizeof(long double))
+    printf("%s: %.*Lg (%d bytes)\n", "<%= sym %>", LDBL_DIG, (long double)<%= sym %>, (int)sizeof(<%= sym %>));
+  else if (sizeof(<%= sym %>) == sizeof(double))
+    printf("%s: %.*g (%d bytes)\n", "<%= sym %>", DBL_DIG, (double)<%= sym %>, (int)sizeof(<%= sym %>));
+  else if (sizeof(<%= sym %>) == sizeof(float))
+    printf("%s: %.*g (%d bytes)\n", "<%= sym %>", FLT_DIG, (double)<%= sym %>, (int)sizeof(<%= sym %>));
+  else
+    printf("%s: %.*g (%d bytes)\n", "<%= sym %>", DBL_DIG, (double)<%= sym %>, (int)sizeof(<%= sym %>));
+#endif
+% }
+
   return EXIT_SUCCESS;
 }
 
