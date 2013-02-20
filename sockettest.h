@@ -51,6 +51,7 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include <limits.h>
+#include <float.h>
 
 #define FIELD_SIZE(struct_name, field_name) sizeof(((struct_name *)0)->field_name)
 #define ALIGNOF(type) ((int)offsetof(struct { char f1; type f2; }, f2))
