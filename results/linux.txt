@@ -22,6 +22,10 @@ long long.size :                           8
 long long.align :                          8
 long long.sign :                           signed
 long long.byteorder :                      12345678
+intmax_t.size :                            8
+intmax_t.align :                           8
+intmax_t.sign :                            signed
+intmax_t.byteorder :                       12345678
 socklen_t.size :                           4
 socklen_t.align :                          4
 socklen_t.sign :                           unsigned
@@ -104,16 +108,6 @@ NAME_MAX: 255 (4 bytes)
 PATH_MAX: 4096 (4 bytes)
 EXIT_SUCCESS: 0 (4 bytes)
 EXIT_FAILURE: 1 (4 bytes)
-./unix-stream 'foo' './foo'
-bind(server)          <- "foo" (3 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "foo\0" (4 bytes)
-getsockname(client)   -> "" (0 bytes)
-connect               <- "./foo" (5 bytes)
-getpeername(client)   -> "foo\0" (4 bytes)
-accept                -> "\0\0\0\0" (4 bytes)
-getsockname(accepted) -> "foo\0" (4 bytes)
-getpeername(accepted) -> "" (0 bytes)
 ./unix-stream 'foo\0' './foo\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
@@ -146,62 +140,607 @@ getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "bar\0" (4 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "bar\0" (4 bytes)
-./unix-stream -p '012345678'
-bind(server)          <- "(98*"Z")012345678" (107 bytes)
+
+./unix-stream '(45*"./")0\0'
+bind(server)          <- "(45*"./")0\0" (92 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(98*"Z")012345678\0" (108 bytes)
+getsockname(server)   -> "(45*"./")0\0" (92 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(98*"Z")012345678" (107 bytes)
-getpeername(client)   -> "(98*"Z")012345678\0" (108 bytes)
+connect               <- "(45*"./")0\0" (92 bytes)
+getpeername(client)   -> "(45*"./")0\0" (92 bytes)
+accept                -> "(92*"\0")" (92 bytes)
+getsockname(accepted) -> "(45*"./")0\0" (92 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(45*"./")01\0'
+bind(server)          <- "(45*"./")01\0" (93 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(45*"./")01\0" (93 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(45*"./")01\0" (93 bytes)
+getpeername(client)   -> "(45*"./")01\0" (93 bytes)
+accept                -> "(93*"\0")" (93 bytes)
+getsockname(accepted) -> "(45*"./")01\0" (93 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(45*"./")012\0'
+bind(server)          <- "(45*"./")012\0" (94 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(45*"./")012\0" (94 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(45*"./")012\0" (94 bytes)
+getpeername(client)   -> "(45*"./")012\0" (94 bytes)
+accept                -> "(94*"\0")" (94 bytes)
+getsockname(accepted) -> "(45*"./")012\0" (94 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(45*"./")0123\0'
+bind(server)          <- "(45*"./")0123\0" (95 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(45*"./")0123\0" (95 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(45*"./")0123\0" (95 bytes)
+getpeername(client)   -> "(45*"./")0123\0" (95 bytes)
+accept                -> "(95*"\0")" (95 bytes)
+getsockname(accepted) -> "(45*"./")0123\0" (95 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(45*"./")01234\0'
+bind(server)          <- "(45*"./")01234\0" (96 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(45*"./")01234\0" (96 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(45*"./")01234\0" (96 bytes)
+getpeername(client)   -> "(45*"./")01234\0" (96 bytes)
+accept                -> "(96*"\0")" (96 bytes)
+getsockname(accepted) -> "(45*"./")01234\0" (96 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(45*"./")012345\0'
+bind(server)          <- "(45*"./")012345\0" (97 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(45*"./")012345\0" (97 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(45*"./")012345\0" (97 bytes)
+getpeername(client)   -> "(45*"./")012345\0" (97 bytes)
+accept                -> "(97*"\0")" (97 bytes)
+getsockname(accepted) -> "(45*"./")012345\0" (97 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(45*"./")0123456\0'
+bind(server)          <- "(45*"./")0123456\0" (98 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(45*"./")0123456\0" (98 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(45*"./")0123456\0" (98 bytes)
+getpeername(client)   -> "(45*"./")0123456\0" (98 bytes)
+accept                -> "(98*"\0")" (98 bytes)
+getsockname(accepted) -> "(45*"./")0123456\0" (98 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(45*"./")01234567\0'
+bind(server)          <- "(45*"./")01234567\0" (99 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(45*"./")01234567\0" (99 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(45*"./")01234567\0" (99 bytes)
+getpeername(client)   -> "(45*"./")01234567\0" (99 bytes)
+accept                -> "(99*"\0")" (99 bytes)
+getsockname(accepted) -> "(45*"./")01234567\0" (99 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(45*"./")012345678\0'
+bind(server)          <- "(45*"./")012345678\0" (100 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(45*"./")012345678\0" (100 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(45*"./")012345678\0" (100 bytes)
+getpeername(client)   -> "(45*"./")012345678\0" (100 bytes)
+accept                -> "(100*"\0")" (100 bytes)
+getsockname(accepted) -> "(45*"./")012345678\0" (100 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(45*"./")0123456789\0'
+bind(server)          <- "(45*"./")0123456789\0" (101 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(45*"./")0123456789\0" (101 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(45*"./")0123456789\0" (101 bytes)
+getpeername(client)   -> "(45*"./")0123456789\0" (101 bytes)
+accept                -> "(101*"\0")" (101 bytes)
+getsockname(accepted) -> "(45*"./")0123456789\0" (101 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(50*"./")0\0'
+bind(server)          <- "(50*"./")0\0" (102 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(50*"./")0\0" (102 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(50*"./")0\0" (102 bytes)
+getpeername(client)   -> "(50*"./")0\0" (102 bytes)
+accept                -> "(102*"\0")" (102 bytes)
+getsockname(accepted) -> "(50*"./")0\0" (102 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(50*"./")01\0'
+bind(server)          <- "(50*"./")01\0" (103 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(50*"./")01\0" (103 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(50*"./")01\0" (103 bytes)
+getpeername(client)   -> "(50*"./")01\0" (103 bytes)
+accept                -> "(103*"\0")" (103 bytes)
+getsockname(accepted) -> "(50*"./")01\0" (103 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(50*"./")012\0'
+bind(server)          <- "(50*"./")012\0" (104 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(50*"./")012\0" (104 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(50*"./")012\0" (104 bytes)
+getpeername(client)   -> "(50*"./")012\0" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(50*"./")012\0" (104 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(50*"./")0123\0'
+bind(server)          <- "(50*"./")0123\0" (105 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(50*"./")0123\0" (105 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(50*"./")0123\0" (105 bytes)
+getpeername(client)   -> "(50*"./")0123\0" (105 bytes)
+accept                -> "(105*"\0")" (105 bytes)
+getsockname(accepted) -> "(50*"./")0123\0" (105 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(50*"./")01234\0'
+bind(server)          <- "(50*"./")01234\0" (106 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(50*"./")01234\0" (106 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(50*"./")01234\0" (106 bytes)
+getpeername(client)   -> "(50*"./")01234\0" (106 bytes)
+accept                -> "(106*"\0")" (106 bytes)
+getsockname(accepted) -> "(50*"./")01234\0" (106 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(50*"./")012345\0'
+bind(server)          <- "(50*"./")012345\0" (107 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(50*"./")012345\0" (107 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(50*"./")012345\0" (107 bytes)
+getpeername(client)   -> "(50*"./")012345\0" (107 bytes)
+accept                -> "(107*"\0")" (107 bytes)
+getsockname(accepted) -> "(50*"./")012345\0" (107 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(50*"./")0123456\0'
+bind(server)          <- "(50*"./")0123456\0" (108 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(50*"./")0123456\0" (108 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(50*"./")0123456\0" (108 bytes)
+getpeername(client)   -> "(50*"./")0123456\0" (108 bytes)
 accept                -> "(108*"\0")" (108 bytes)
-getsockname(accepted) -> "(98*"Z")012345678\0" (108 bytes)
+getsockname(accepted) -> "(50*"./")0123456\0" (108 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream -p '0123456789'
-bind(server)          <- "(98*"Z")0123456789" (108 bytes)
+./unix-stream '(50*"./")01234567\0'
+bind(server)          <- "(50*"./")01234567\0" (109 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(50*"./")012345678\0'
+bind(server)          <- "(50*"./")012345678\0" (110 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(50*"./")0123456789\0'
+bind(server)          <- "(50*"./")0123456789\0" (111 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(55*"./")0\0'
+bind(server)          <- "(55*"./")0\0" (112 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(55*"./")01\0'
+bind(server)          <- "(55*"./")01\0" (113 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(55*"./")012\0'
+bind(server)          <- "(55*"./")012\0" (114 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(55*"./")0123\0'
+bind(server)          <- "(55*"./")0123\0" (115 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(55*"./")01234\0'
+bind(server)          <- "(55*"./")01234\0" (116 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(55*"./")012345\0'
+bind(server)          <- "(55*"./")012345\0" (117 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(55*"./")0123456\0'
+bind(server)          <- "(55*"./")0123456\0" (118 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(55*"./")01234567\0'
+bind(server)          <- "(55*"./")01234567\0" (119 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(55*"./")012345678\0'
+bind(server)          <- "(55*"./")012345678\0" (120 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(55*"./")0123456789\0'
+bind(server)          <- "(55*"./")0123456789\0" (121 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")0\0'
+bind(server)          <- "(125*"./")0\0" (252 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")01\0'
+bind(server)          <- "(125*"./")01\0" (253 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")012\0'
+bind(server)          <- "(125*"./")012\0" (254 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")0123\0'
+bind(server)          <- "(125*"./")0123\0" (255 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")01234\0'
+bind(server)          <- "(125*"./")01234\0" (256 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")012345\0'
+bind(server)          <- "(125*"./")012345\0" (257 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")0123456\0'
+bind(server)          <- "(125*"./")0123456\0" (258 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")01234567\0'
+bind(server)          <- "(125*"./")01234567\0" (259 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")012345678\0'
+bind(server)          <- "(125*"./")012345678\0" (260 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(125*"./")0123456789\0'
+bind(server)          <- "(125*"./")0123456789\0" (261 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(250*"./")0\0'
+bind(server)          <- "(250*"./")0\0" (502 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(250*"./")01\0'
+bind(server)          <- "(250*"./")01\0" (503 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(250*"./")012\0'
+bind(server)          <- "(250*"./")012\0" (504 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(250*"./")0123\0'
+bind(server)          <- "(250*"./")0123\0" (505 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(250*"./")01234\0'
+bind(server)          <- "(250*"./")01234\0" (506 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(250*"./")012345\0'
+bind(server)          <- "(250*"./")012345\0" (507 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(250*"./")0123456\0'
+bind(server)          <- "(250*"./")0123456\0" (508 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(250*"./")01234567\0'
+bind(server)          <- "(250*"./")01234567\0" (509 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(250*"./")012345678\0'
+bind(server)          <- "(250*"./")012345678\0" (510 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(250*"./")0123456789\0'
+bind(server)          <- "(250*"./")0123456789\0" (511 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(255*"./")0\0'
+bind(server)          <- "(255*"./")0\0" (512 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(255*"./")01\0'
+bind(server)          <- "(255*"./")01\0" (513 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(255*"./")012\0'
+bind(server)          <- "(255*"./")012\0" (514 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(255*"./")0123\0'
+bind(server)          <- "(255*"./")0123\0" (515 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(255*"./")01234\0'
+bind(server)          <- "(255*"./")01234\0" (516 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(255*"./")012345\0'
+bind(server)          <- "(255*"./")012345\0" (517 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(255*"./")0123456\0'
+bind(server)          <- "(255*"./")0123456\0" (518 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(255*"./")01234567\0'
+bind(server)          <- "(255*"./")01234567\0" (519 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(255*"./")012345678\0'
+bind(server)          <- "(255*"./")012345678\0" (520 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(255*"./")0123456789\0'
+bind(server)          <- "(255*"./")0123456789\0" (521 bytes)
+bind(server): Invalid argument (EINVAL)
+
+./unix-stream '(9*"0123456789")0\0'
+bind(server)          <- "(9*"0123456789")0\0" (92 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(98*"Z")0123456789"... (109 bytes)
+getsockname(server)   -> "(9*"0123456789")0\0" (92 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(98*"Z")0123456789" (108 bytes)
-getpeername(client)   -> "(98*"Z")0123456789"... (109 bytes)
-accept                -> "(108*"\0")"... (109 bytes)
-getsockname(accepted) -> "(98*"Z")0123456789"... (109 bytes)
+connect               <- "(9*"0123456789")0\0" (92 bytes)
+getpeername(client)   -> "(9*"0123456789")0\0" (92 bytes)
+accept                -> "(92*"\0")" (92 bytes)
+getsockname(accepted) -> "(9*"0123456789")0\0" (92 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream -p '01234567890'
-bind(server)          <- "(98*"Z")01234567890" (109 bytes)
+./unix-stream '(9*"0123456789")01\0'
+bind(server)          <- "(9*"0123456789")01\0" (93 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(9*"0123456789")01\0" (93 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(9*"0123456789")01\0" (93 bytes)
+getpeername(client)   -> "(9*"0123456789")01\0" (93 bytes)
+accept                -> "(93*"\0")" (93 bytes)
+getsockname(accepted) -> "(9*"0123456789")01\0" (93 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(9*"0123456789")012\0'
+bind(server)          <- "(9*"0123456789")012\0" (94 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(9*"0123456789")012\0" (94 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(9*"0123456789")012\0" (94 bytes)
+getpeername(client)   -> "(9*"0123456789")012\0" (94 bytes)
+accept                -> "(94*"\0")" (94 bytes)
+getsockname(accepted) -> "(9*"0123456789")012\0" (94 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(9*"0123456789")0123\0'
+bind(server)          <- "(9*"0123456789")0123\0" (95 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(9*"0123456789")0123\0" (95 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(9*"0123456789")0123\0" (95 bytes)
+getpeername(client)   -> "(9*"0123456789")0123\0" (95 bytes)
+accept                -> "(95*"\0")" (95 bytes)
+getsockname(accepted) -> "(9*"0123456789")0123\0" (95 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(9*"0123456789")01234\0'
+bind(server)          <- "(9*"0123456789")01234\0" (96 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(9*"0123456789")01234\0" (96 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(9*"0123456789")01234\0" (96 bytes)
+getpeername(client)   -> "(9*"0123456789")01234\0" (96 bytes)
+accept                -> "(96*"\0")" (96 bytes)
+getsockname(accepted) -> "(9*"0123456789")01234\0" (96 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(9*"0123456789")012345\0'
+bind(server)          <- "(9*"0123456789")012345\0" (97 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(9*"0123456789")012345\0" (97 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(9*"0123456789")012345\0" (97 bytes)
+getpeername(client)   -> "(9*"0123456789")012345\0" (97 bytes)
+accept                -> "(97*"\0")" (97 bytes)
+getsockname(accepted) -> "(9*"0123456789")012345\0" (97 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(9*"0123456789")0123456\0'
+bind(server)          <- "(9*"0123456789")0123456\0" (98 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(9*"0123456789")0123456\0" (98 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(9*"0123456789")0123456\0" (98 bytes)
+getpeername(client)   -> "(9*"0123456789")0123456\0" (98 bytes)
+accept                -> "(98*"\0")" (98 bytes)
+getsockname(accepted) -> "(9*"0123456789")0123456\0" (98 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(9*"0123456789")01234567\0'
+bind(server)          <- "(9*"0123456789")01234567\0" (99 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(9*"0123456789")01234567\0" (99 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(9*"0123456789")01234567\0" (99 bytes)
+getpeername(client)   -> "(9*"0123456789")01234567\0" (99 bytes)
+accept                -> "(99*"\0")" (99 bytes)
+getsockname(accepted) -> "(9*"0123456789")01234567\0" (99 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(9*"0123456789")012345678\0'
+bind(server)          <- "(9*"0123456789")012345678\0" (100 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(9*"0123456789")012345678\0" (100 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(9*"0123456789")012345678\0" (100 bytes)
+getpeername(client)   -> "(9*"0123456789")012345678\0" (100 bytes)
+accept                -> "(100*"\0")" (100 bytes)
+getsockname(accepted) -> "(9*"0123456789")012345678\0" (100 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(9*"0123456789")0123456789\0'
+bind(server)          <- "(10*"0123456789")\0" (101 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")\0" (101 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(10*"0123456789")\0" (101 bytes)
+getpeername(client)   -> "(10*"0123456789")\0" (101 bytes)
+accept                -> "(101*"\0")" (101 bytes)
+getsockname(accepted) -> "(10*"0123456789")\0" (101 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(10*"0123456789")0\0'
+bind(server)          <- "(10*"0123456789")0\0" (102 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0\0" (102 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(10*"0123456789")0\0" (102 bytes)
+getpeername(client)   -> "(10*"0123456789")0\0" (102 bytes)
+accept                -> "(102*"\0")" (102 bytes)
+getsockname(accepted) -> "(10*"0123456789")0\0" (102 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(10*"0123456789")01\0'
+bind(server)          <- "(10*"0123456789")01\0" (103 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")01\0" (103 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(10*"0123456789")01\0" (103 bytes)
+getpeername(client)   -> "(10*"0123456789")01\0" (103 bytes)
+accept                -> "(103*"\0")" (103 bytes)
+getsockname(accepted) -> "(10*"0123456789")01\0" (103 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(10*"0123456789")012\0'
+bind(server)          <- "(10*"0123456789")012\0" (104 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")012\0" (104 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(10*"0123456789")012\0" (104 bytes)
+getpeername(client)   -> "(10*"0123456789")012\0" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(10*"0123456789")012\0" (104 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(10*"0123456789")0123\0'
+bind(server)          <- "(10*"0123456789")0123\0" (105 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123\0" (105 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(10*"0123456789")0123\0" (105 bytes)
+getpeername(client)   -> "(10*"0123456789")0123\0" (105 bytes)
+accept                -> "(105*"\0")" (105 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123\0" (105 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(10*"0123456789")01234\0'
+bind(server)          <- "(10*"0123456789")01234\0" (106 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")01234\0" (106 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(10*"0123456789")01234\0" (106 bytes)
+getpeername(client)   -> "(10*"0123456789")01234\0" (106 bytes)
+accept                -> "(106*"\0")" (106 bytes)
+getsockname(accepted) -> "(10*"0123456789")01234\0" (106 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(10*"0123456789")012345\0'
+bind(server)          <- "(10*"0123456789")012345\0" (107 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")012345\0" (107 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(10*"0123456789")012345\0" (107 bytes)
+getpeername(client)   -> "(10*"0123456789")012345\0" (107 bytes)
+accept                -> "(107*"\0")" (107 bytes)
+getsockname(accepted) -> "(10*"0123456789")012345\0" (107 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(10*"0123456789")0123456\0'
+bind(server)          <- "(10*"0123456789")0123456\0" (108 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123456\0" (108 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(10*"0123456789")0123456\0" (108 bytes)
+getpeername(client)   -> "(10*"0123456789")0123456\0" (108 bytes)
+accept                -> "(108*"\0")" (108 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123456\0" (108 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(10*"0123456789")01234567\0'
+bind(server)          <- "(10*"0123456789")01234567\0" (109 bytes)
 bind(server): Invalid argument (EINVAL)
-./unix-stream '(25*"0123456789")012'
-bind(server)          <- "(25*"0123456789")012" (253 bytes)
+./unix-stream '(10*"0123456789")012345678\0'
+bind(server)          <- "(10*"0123456789")012345678\0" (110 bytes)
 bind(server): Invalid argument (EINVAL)
-./unix-stream -g 1024 '(25*"0123456789")012'
-bind(server)          <- "(25*"0123456789")012" (253 bytes)
+./unix-stream '(10*"0123456789")0123456789\0'
+bind(server)          <- "(11*"0123456789")\0" (111 bytes)
 bind(server): Invalid argument (EINVAL)
-./unix-stream '(25*"0123456789")0123'
-bind(server)          <- "(25*"0123456789")0123" (254 bytes)
+./unix-stream '(11*"0123456789")0\0'
+bind(server)          <- "(11*"0123456789")0\0" (112 bytes)
 bind(server): Invalid argument (EINVAL)
-./unix-stream '(25*"0123456789")01234'
-bind(server)          <- "(25*"0123456789")01234" (255 bytes)
+./unix-stream '(11*"0123456789")01\0'
+bind(server)          <- "(11*"0123456789")01\0" (113 bytes)
 bind(server): Invalid argument (EINVAL)
-./unix-stream '(25*"0123456789")012345'
-bind(server)          <- "(25*"0123456789")012345" (256 bytes)
+./unix-stream '(11*"0123456789")012\0'
+bind(server)          <- "(11*"0123456789")012\0" (114 bytes)
 bind(server): Invalid argument (EINVAL)
-./unix-stream '(125*"./")a' 
-bind(server)          <- "(125*"./")a" (251 bytes)
+./unix-stream '(11*"0123456789")0123\0'
+bind(server)          <- "(11*"0123456789")0123\0" (115 bytes)
 bind(server): Invalid argument (EINVAL)
-./unix-stream '(125*"./")ab'
-bind(server)          <- "(125*"./")ab" (252 bytes)
+./unix-stream '(11*"0123456789")01234\0'
+bind(server)          <- "(11*"0123456789")01234\0" (116 bytes)
 bind(server): Invalid argument (EINVAL)
-./unix-stream '(125*"./")abc'
-bind(server)          <- "(125*"./")abc" (253 bytes)
+./unix-stream '(11*"0123456789")012345\0'
+bind(server)          <- "(11*"0123456789")012345\0" (117 bytes)
 bind(server): Invalid argument (EINVAL)
-./unix-stream '(125*"./")abcd'
-bind(server)          <- "(125*"./")abcd" (254 bytes)
+./unix-stream '(11*"0123456789")0123456\0'
+bind(server)          <- "(11*"0123456789")0123456\0" (118 bytes)
 bind(server): Invalid argument (EINVAL)
-./unix-stream '(511*"./")a'
-bind(server)          <- "(511*"./")a" (1023 bytes)
+./unix-stream '(11*"0123456789")01234567\0'
+bind(server)          <- "(11*"0123456789")01234567\0" (119 bytes)
 bind(server): Invalid argument (EINVAL)
-./unix-stream '(511*"./")ab'
-bind(server)          <- "(511*"./")ab" (1024 bytes)
+./unix-stream '(11*"0123456789")012345678\0'
+bind(server)          <- "(11*"0123456789")012345678\0" (120 bytes)
 bind(server): Invalid argument (EINVAL)
+./unix-stream '(11*"0123456789")0123456789\0'
+bind(server)          <- "(12*"0123456789")\0" (121 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(25*"0123456789")0\0'
+bind(server)          <- "(25*"0123456789")0\0" (252 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(25*"0123456789")01\0'
+bind(server)          <- "(25*"0123456789")01\0" (253 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(25*"0123456789")012\0'
+bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(25*"0123456789")0123\0'
+bind(server)          <- "(25*"0123456789")0123\0" (255 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(25*"0123456789")01234\0'
+bind(server)          <- "(25*"0123456789")01234\0" (256 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(25*"0123456789")012345\0'
+bind(server)          <- "(25*"0123456789")012345\0" (257 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(25*"0123456789")0123456\0'
+bind(server)          <- "(25*"0123456789")0123456\0" (258 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(25*"0123456789")01234567\0'
+bind(server)          <- "(25*"0123456789")01234567\0" (259 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(25*"0123456789")012345678\0'
+bind(server)          <- "(25*"0123456789")012345678\0" (260 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(25*"0123456789")0123456789\0'
+bind(server)          <- "(26*"0123456789")\0" (261 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(50*"0123456789")0\0'
+bind(server)          <- "(50*"0123456789")0\0" (502 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(50*"0123456789")01\0'
+bind(server)          <- "(50*"0123456789")01\0" (503 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(50*"0123456789")012\0'
+bind(server)          <- "(50*"0123456789")012\0" (504 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(50*"0123456789")0123\0'
+bind(server)          <- "(50*"0123456789")0123\0" (505 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(50*"0123456789")01234\0'
+bind(server)          <- "(50*"0123456789")01234\0" (506 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(50*"0123456789")012345\0'
+bind(server)          <- "(50*"0123456789")012345\0" (507 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(50*"0123456789")0123456\0'
+bind(server)          <- "(50*"0123456789")0123456\0" (508 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(50*"0123456789")01234567\0'
+bind(server)          <- "(50*"0123456789")01234567\0" (509 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(50*"0123456789")012345678\0'
+bind(server)          <- "(50*"0123456789")012345678\0" (510 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(50*"0123456789")0123456789\0'
+bind(server)          <- "(51*"0123456789")\0" (511 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(51*"0123456789")0\0'
+bind(server)          <- "(51*"0123456789")0\0" (512 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(51*"0123456789")01\0'
+bind(server)          <- "(51*"0123456789")01\0" (513 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(51*"0123456789")012\0'
+bind(server)          <- "(51*"0123456789")012\0" (514 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(51*"0123456789")0123\0'
+bind(server)          <- "(51*"0123456789")0123\0" (515 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(51*"0123456789")01234\0'
+bind(server)          <- "(51*"0123456789")01234\0" (516 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(51*"0123456789")012345\0'
+bind(server)          <- "(51*"0123456789")012345\0" (517 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(51*"0123456789")0123456\0'
+bind(server)          <- "(51*"0123456789")0123456\0" (518 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(51*"0123456789")01234567\0'
+bind(server)          <- "(51*"0123456789")01234567\0" (519 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(51*"0123456789")012345678\0'
+bind(server)          <- "(51*"0123456789")012345678\0" (520 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(51*"0123456789")0123456789\0'
+bind(server)          <- "(52*"0123456789")\0" (521 bytes)
+bind(server): Invalid argument (EINVAL)
+
 ./unix-stream -p '01234567\0'
 bind(server)          <- "(98*"Z")01234567\0" (107 bytes)
 socket file (server)  : exist
@@ -228,93 +767,36 @@ bind(server): Invalid argument (EINVAL)
 ./unix-stream -p '01234567890\0'
 bind(server)          <- "(98*"Z")01234567890\0" (110 bytes)
 bind(server): Invalid argument (EINVAL)
-./unix-stream '(25*"0123456789")012\0'
-bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
-bind(server): Invalid argument (EINVAL)
+
 ./unix-stream -g 1024 '(25*"0123456789")012\0'
 bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
 bind(server): Invalid argument (EINVAL)
-./unix-stream '(25*"0123456789")0123\0'
-bind(server)          <- "(25*"0123456789")0123\0" (255 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(25*"0123456789")01234\0'
-bind(server)          <- "(25*"0123456789")01234\0" (256 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(25*"0123456789")012345\0'
-bind(server)          <- "(25*"0123456789")012345\0" (257 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(125*"./")a\0'
-bind(server)          <- "(125*"./")a\0" (252 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(125*"./")ab\0'
-bind(server)          <- "(125*"./")ab\0" (253 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(125*"./")abc\0'
-bind(server)          <- "(125*"./")abc\0" (254 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(125*"./")abcd\0'
-bind(server)          <- "(125*"./")abcd\0" (255 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(511*"./")a\0'
-bind(server)          <- "(511*"./")a\0" (1024 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(511*"./")ab\0'
-bind(server)          <- "(511*"./")ab\0" (1025 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream 'foo' 'foo' '(200*"b")'
-bind(server)          <- "foo" (3 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "foo\0" (4 bytes)
-bind(client)          <- "(200*"b")" (200 bytes)
-bind(client): Invalid argument (EINVAL)
 ./unix-stream 'foo\0' 'foo\0' '(200*"b")\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(200*"b")\0" (201 bytes)
 bind(client): Invalid argument (EINVAL)
-./unix-stream -s /etc/hosts
-bind(server)          <- "/etc/hosts" (10 bytes)
-bind(server): Address already in use (EADDRINUSE)
+
 ./unix-stream -s '/etc/hosts\0'
 bind(server)          <- "/etc/hosts\0" (11 bytes)
-bind(server): Address already in use (EADDRINUSE)
-./unix-stream -s '/etc'
-bind(server)          <- "/etc" (4 bytes)
 bind(server): Address already in use (EADDRINUSE)
 ./unix-stream -s '/etc\0'
 bind(server)          <- "/etc\0" (5 bytes)
 bind(server): Address already in use (EADDRINUSE)
-./unix-stream -s '/'
-bind(server)          <- "/" (1 bytes)
-bind(server): Address already in use (EADDRINUSE)
 ./unix-stream -s '/\0'
 bind(server)          <- "/\0" (2 bytes)
 bind(server): Address already in use (EADDRINUSE)
-./unix-stream -s '/foo'
-bind(server)          <- "/foo" (4 bytes)
-bind(server): Permission denied (EACCES)
 ./unix-stream -s '/foo\0'
 bind(server)          <- "/foo\0" (5 bytes)
 bind(server): Permission denied (EACCES)
-./unix-stream -s '/foo/bar'
-bind(server)          <- "/foo/bar" (8 bytes)
-bind(server): No such file or directory (ENOENT)
 ./unix-stream -s '/foo/bar\0'
 bind(server)          <- "/foo/bar\0" (9 bytes)
 bind(server): No such file or directory (ENOENT)
-./unix-stream -s ''
-bind(server)          <- "" (0 bytes)
-socket file (server)  : not exist
-getsockname(server)   -> "\0000be" (6 bytes)
 ./unix-stream -s '\0'
 bind(server)          <- "\0" (1 bytes)
 socket file (server)  : not exist
 getsockname(server)   -> "\0" (1 bytes)
-./unix-stream -s 'foo'
-bind(server)          <- "foo" (3 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "foo\0" (4 bytes)
 ./unix-stream -s 'foo\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
@@ -324,7 +806,7 @@ getsockname(server)   -> "foo\0" (4 bytes)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\0000bf" (6 bytes)
+getsockname(server)   -> "\0000c5" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
