@@ -71,18 +71,22 @@ buffer_t *buffer_new(size_t initial_bufsize)
   return buf;
 }
 
-void buffer_add_mem(buffer_t *buf, void *mem, size_t size)
+static void buffer_enlarge(buffer_t *buf, size_t space_size)
 {
-  if (buf->bufsize - buf->len < size) {
-    while (buf->bufsize - buf->len < size) {
+  if (buf->bufsize - buf->len < space_size) {
+    while (buf->bufsize - buf->len < space_size) {
       buf->bufsize *= 2;
     }
     buf->ptr = xrealloc(buf->ptr, buf->bufsize);
   }
+}
+
+void buffer_add_mem(buffer_t *buf, void *mem, size_t size)
+{
+  buffer_enlarge(buf, size);
 
   memcpy((char *)buf->ptr + buf->len, mem, size);
   buf->len += size;
-  return;
 }
 
 void buffer_add_str(buffer_t *buf, char *str)
@@ -99,6 +103,19 @@ void buffer_add_byte(buffer_t *buf, int byte)
 void buffer_add_buf(buffer_t *buf, buffer_t *buf2)
 {
   buffer_add_mem(buf, buf2->ptr, buf2->len);
+}
+
+void buffer_terminate_mem(buffer_t *buf, void *mem, size_t size)
+{
+  buffer_enlarge(buf, size);
+
+  memcpy((char *)buf->ptr + buf->len, mem, size);
+}
+
+void buffer_terminate_byte(buffer_t *buf, int byte)
+{
+  char ch = byte;
+  buffer_terminate_mem(buf, &ch, 1);
 }
 
 void *buffer_unwrap(buffer_t *buf)
@@ -408,6 +425,39 @@ char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escap
   return buffer_unwrap(buf);
 }
 
+static int rand_initialized = 0;
+
+void init_rand(void)
+{
+  unsigned int seed;
+  time_t t;
+  clock_t c;
+  if (rand_initialized)
+    return;
+  seed = getpid();
+  if (time(&t) == (time_t)-1) {
+    perror2("time");
+    exit(EXIT_FAILURE);
+  }
+  seed ^= t;
+  c = clock();
+  if (c == (clock_t)-1) {
+    perror2("clock");
+    exit(EXIT_FAILURE);
+  }
+  seed ^= c;
+  srand(seed);
+  rand_initialized = 1;
+}
+
+int get_rand(void)
+{
+  init_rand();
+  return rand();
+  /* The quality of rand() is not a big problem for mkchtempdir()
+   * because mkchtempdir() retry mkdir() until it succeeds. */
+}
+
 int socket_file_p(char *path)
 {
   int ret;
@@ -430,6 +480,82 @@ void unlink_socket(char *path)
   if (socket_file_p(path))
     unlink(path);
 }
+
+char *mkchtempdir(char *basename)
+{
+  char *tmpdir_env;
+  buffer_t *buf = buffer_new(0);
+  char *suffix;
+
+  if (basename == NULL)
+    basename = "temp";
+
+  tmpdir_env = getenv("TMPDIR");
+
+  if (!tmpdir_env) {
+    buffer_add_str(buf, "/tmp");
+  }
+  else if (tmpdir_env[0] == '/') {
+    buffer_add_str(buf, tmpdir_env);
+  }
+  else {
+    char cwd[4096];
+    if (getcwd(cwd, sizeof(cwd)) == NULL) {
+      perror2("getcwd");
+      exit(EXIT_FAILURE);
+    }
+    buffer_add_str(buf, cwd);
+    if (buf->len == 0 || ((char *)buf->ptr)[buf->len-1] != '/')
+      buffer_add_str(buf, "/");
+    buffer_add_str(buf, tmpdir_env);
+  }
+  if (buf->len == 0 || ((char *)buf->ptr)[buf->len-1] != '/')
+    buffer_add_str(buf, "/");
+  buffer_add_str(buf, basename);
+  buffer_add_str(buf, ".XXXXXX");
+  buffer_terminate_byte(buf, '\0');
+  suffix = buf->ptr + buf->len - 6;
+  while (1) {
+    int r = get_rand();
+    r = r % 1000000;
+    snprintf(suffix, 6, "%06d", r);
+    if (mkdir(buf->ptr, 0700) == 0) {
+      break;
+    }
+  }
+  if (chdir(buf->ptr) == -1) {
+    perror2("chdir");
+    exit(EXIT_FAILURE);
+  }
+  return buffer_unwrap(buf);
+}
+
+void rmchtmpdir(char *tmpdir)
+{
+  pid_t pid;
+
+  if (chdir("/") == -1) {
+    perror2("chdir");
+    exit(EXIT_FAILURE);
+  }
+
+  pid = fork();
+  if (pid == -1) {
+    perror2("fork");
+    exit(EXIT_FAILURE);
+  }
+  if (pid == 0) {
+    execlp("rm", "rm", "-r", tmpdir, (char *)0);
+    perror2("execlp");
+    exit(EXIT_FAILURE);
+  }
+  if (waitpid(pid, NULL, 0) == (pid_t)-1) {
+    perror2("waitpid");
+    exit(EXIT_FAILURE);
+  }
+}
+
+
 
 void perror2(const char *s)
 {

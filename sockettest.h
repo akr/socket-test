@@ -70,11 +70,18 @@ buffer_t *buffer_new(size_t initial_bufsize);
 void buffer_add_mem(buffer_t *buf, void *mem, size_t size);
 void buffer_add_str(buffer_t *buf, char *str);
 void buffer_add_byte(buffer_t *buf, int byte);
+void buffer_terminate_mem(buffer_t *buf, void *mem, size_t size);
+void buffer_terminate_byte(buffer_t *buf, int byte);
 void *buffer_unwrap(buffer_t *buf);
 void buffer_free(buffer_t *buf);
 
 char *escape_string(size_t *escaped_len_ret, char *unescaped_ptr, size_t unescaped_len);
 char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escaped_len);
+
+void init_rand(void);
+int get_rand(void);
+char *mkchtempdir(char *basename);
+void rmchtmpdir(char *tmpdir);
 
 int socket_file_p(char *path);
 void unlink_socket(char *path);

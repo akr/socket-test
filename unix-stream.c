@@ -38,6 +38,7 @@
 #endif
 
 static int opt_U = 0;
+static int opt_c = 0;
 static int opt_s = 0;
 static int opt_p = 0;
 static socklen_t opt_g = sizeof(struct sockaddr_un);
@@ -55,12 +56,15 @@ static char *client_path_str;
 static size_t client_path_len = 0;
 static int client_path_sun_len = 0; /* 4.4BSD sun_len field in sockaddr_un */
 
+static char *tmpdir = NULL;
+
 void usage(int status)
 {
   fputs(
       "usage: unix-stream [options] server-path [connect-path [client-path]]\n"
       "option: -h : show this help message\n"
       "        -U : don't unlink sockets.\n"
+      "        -c : test in the current directory.\n"
       "        -s : server only test mode.\n"
       "        -p : prepend sizeof(sun_path)-10 characters for socket-path.\n"
       "        -g N : buffer size for getsockname/getpeername/accept (no sign means exact.  +N for increase and -N for decrease from sockaddr_un)\n"
@@ -345,6 +349,9 @@ static void test_unix_stream(void)
       unlink_socket(client_path_str);
   }
 
+  if (!opt_c)
+      tmpdir = mkchtempdir(NULL);
+
   s = socket(AF_UNIX, SOCK_STREAM, 0);
   if (s == -1) { perror2("socket(server)"); exit(EXIT_FAILURE); }
 
@@ -437,6 +444,8 @@ void atexit_func()
     if (client_path_str)
       unlink_socket(client_path_str);
   }
+  if (tmpdir)
+      rmchtmpdir(tmpdir);
 }
 
 int main(int argc, char *argv[])
