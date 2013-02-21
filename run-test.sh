@@ -1,17 +1,17 @@
 #!/bin/sh
 
-case "`uname -s`" in
-Linux)
+case "`uname -srvm`" in
+Linux*)
   sh scripts/basic-tests.sh
   sh scripts/nullless-tests.sh
   sh scripts/linux-tests.sh
   ;;
-NetBSD|FreeBSD|OpenBSD|DragonFly|MirBSD|GNU/kFreeBSD|Darwin)
+NetBSD*|FreeBSD*|OpenBSD*|DragonFly*|MirBSD*|GNU/kFreeBSD*|*Hurd*|Darwin*)
   sh scripts/basic-tests.sh
   sh scripts/nullless-tests.sh
   sh scripts/44bsd-tests.sh
   ;;
-SunOS)
+SunOS*)
   sh scripts/basic-tests.sh
   sh scripts/nullless-tests.sh
   ;;
