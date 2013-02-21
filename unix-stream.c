@@ -26,12 +26,18 @@
 
 #include "sockettest.h"
 
-#ifdef __CYGWIN__
+#if defined(__minix)
+/* MINIX hangs connect() if no one calls accept().
+ */
+#define USE_FORK 1
+#elif defined(__CYGWIN__)
 /* cygwin hangs connect() if no one calls accept().
  * Note that cygwin don't need addtional compile/link option for pthread.
  */
 #define USE_PTHREAD 1
 #endif
+
+#define USE_FORK 1
 
 #ifdef USE_PTHREAD
 #include <pthread.h>
@@ -296,28 +302,48 @@ static void report_path_from_kernel(char *key, size_t buf_len, struct sockaddr_u
 
 static struct sockaddr_un *connect_sockaddr_ptr;
 static socklen_t connect_sockaddr_len;
+struct sockaddr_un *get_sockaddr_ptr, *get_sockaddr_ptr2;
+socklen_t get_sockaddr_len, get_sockaddr_len2;
+
+#ifdef USE_FORK
+static pid_t child_pid;
+#endif
 
 #ifdef USE_PTHREAD
 static pthread_t connect_thread;
+#endif
+
 static int connect_sockaddr_socket;
-static int connect_sockaddr_return;
+
 static void *connect_func(void *arg)
 {
-  connect_sockaddr_return = connect(
+  socklen_t len;
+  int ret;
+
+  ret = connect(
       connect_sockaddr_socket,
       (struct sockaddr *)connect_sockaddr_ptr,
       connect_sockaddr_len);
+
+  if (ret == -1) { perror2("connect"); return (void *)"connect"; }
+
+  memset(get_sockaddr_ptr2, opt_f, get_sockaddr_len2);
+  len = get_sockaddr_len2;
+  ret = getpeername(connect_sockaddr_socket, (struct sockaddr *)get_sockaddr_ptr2, &len);
+  if (ret == -1) { perror2("getpeername(client)"); return (void*)"getpeername(client)"; }
+  report_path_from_kernel("getpeername(client)", get_sockaddr_len2, get_sockaddr_ptr2, len);
+
   return NULL;
 }
-#endif
 
 static void test_unix_stream(void)
 {
-  struct sockaddr_un *server_sockaddr_ptr, *client_sockaddr_ptr, *get_sockaddr_ptr, *get_sockaddr_ptr2;
-  socklen_t server_sockaddr_len, client_sockaddr_len, get_sockaddr_len, get_sockaddr_len2;
+  struct sockaddr_un *server_sockaddr_ptr, *client_sockaddr_ptr;
+  socklen_t server_sockaddr_len, client_sockaddr_len;
   socklen_t len;
   int s, c, sc;
   int ret;
+  void *connect_func_ret;
 
   server_sockaddr_len = offsetof(struct sockaddr_un, sun_path) + server_path_len;
   server_sockaddr_ptr = xfalloc(server_sockaddr_len, '\0');
@@ -402,13 +428,20 @@ static void test_unix_stream(void)
   report_path_from_kernel("getsockname(client)", get_sockaddr_len, get_sockaddr_ptr, len);
 
   report_path_to_kernel("connect", connect_sockaddr_ptr, connect_sockaddr_len);
-#ifdef USE_PTHREAD
   connect_sockaddr_socket = c;
-  ret = pthread_create(&connect_thread, NULL, connect_func, (void *)c);
+#if defined(USE_FORK)
+  child_pid = fork();
+  if (child_pid == -1) { perror2("fork"); exit(EXIT_FAILURE); }
+  if (child_pid == 0) {
+    if (connect_func(NULL))
+      _exit(EXIT_FAILURE);
+    _exit(EXIT_SUCCESS);
+  }
+#elif defined(USE_PTHREAD)
+  ret = pthread_create(&connect_thread, NULL, connect_func, NULL);
   if (ret != 0) { errno = ret; perror2("pthread_create"); exit(EXIT_FAILURE); }
 #else
-  ret = connect(c, (struct sockaddr *)connect_sockaddr_ptr, connect_sockaddr_len);
-  if (ret == -1) { perror2("connect"); exit(EXIT_FAILURE); }
+  connect_func_ret = connect_func(NULL);
 #endif
 
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
@@ -416,18 +449,15 @@ static void test_unix_stream(void)
   sc = accept(s, (struct sockaddr *)get_sockaddr_ptr, &len);
   if (sc == -1) { perror2("accept"); exit(EXIT_FAILURE); }
 
-#ifdef USE_PTHREAD
-  ret = pthread_join(connect_thread, NULL);
+#if defined(USE_FORK)
+  if (waitpid(child_pid, &ret, 0) == -1) { perror2("waitpid"); exit(EXIT_FAILURE); }
+  if (!WIFEXITED(ret) || WEXITSTATUS(ret) != EXIT_SUCCESS) { exit(EXIT_FAILURE); }
+#elif defined(USE_PTHREAD)
+  ret = pthread_join(connect_thread, &connect_func_ret);
   if (ret != 0) { errno = ret; perror2("pthread_join"); exit(EXIT_FAILURE); }
-  ret = connect_sockaddr_return;
-  if (ret == -1) { perror2("connect"); exit(EXIT_FAILURE); }
 #endif
 
-  memset(get_sockaddr_ptr2, opt_f, get_sockaddr_len2);
-  len = get_sockaddr_len2;
-  ret = getpeername(c, (struct sockaddr *)get_sockaddr_ptr2, &len);
-  if (ret == -1) { perror2("getpeername(client)"); exit(EXIT_FAILURE); }
-  report_path_from_kernel("getpeername(client)", get_sockaddr_len2, get_sockaddr_ptr2, len);
+  if (connect_func_ret) { exit(EXIT_FAILURE); }
 
   report_path_from_kernel("accept", get_sockaddr_len, get_sockaddr_ptr, len);
 
