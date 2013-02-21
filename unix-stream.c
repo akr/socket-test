@@ -37,6 +37,10 @@
 #include <pthread.h>
 #endif
 
+#ifndef SOMAXCONN
+#  define SOMAXCONN 128
+#endif
+
 static int opt_U = 0;
 static int opt_c = 0;
 static int opt_s = 0;
