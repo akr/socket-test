@@ -133,7 +133,7 @@ static void parse_args(int argc, char *argv[])
   int opt;
   char *arg;
 
-  while ((opt = getopt(argc, argv, "hUspg:f:e:4")) != -1) {
+  while ((opt = getopt(argc, argv, "hUcspg:f:e:4")) != -1) {
     switch (opt) {
       case 'h':
         usage(EXIT_SUCCESS);
@@ -141,6 +141,10 @@ static void parse_args(int argc, char *argv[])
 
       case 'U':
         opt_U = 1;
+        break;
+
+      case 'c':
+        opt_c = 1;
         break;
 
       case 's':
