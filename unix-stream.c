@@ -37,8 +37,6 @@
 #define USE_PTHREAD 1
 #endif
 
-#define USE_FORK 1
-
 #ifdef USE_PTHREAD
 #include <pthread.h>
 #endif
