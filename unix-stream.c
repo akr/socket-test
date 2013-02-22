@@ -376,8 +376,8 @@ static void *connect_func(void *arg)
   memset(get_sockaddr_ptr2, opt_f, get_sockaddr_len2);
   len = get_sockaddr_len2;
   ret = getsockname(client_socket, (struct sockaddr *)get_sockaddr_ptr2, &len);
-  if (ret == -1) { perror2("getsockname(client)"); exit(EXIT_FAILURE); }
-  report_path_from_kernel("getsockname(client)", get_sockaddr_len2, get_sockaddr_ptr2, len);
+  if (ret == -1) { perror2("getsockname(client)"); }
+  else report_path_from_kernel("getsockname(client)", get_sockaddr_len2, get_sockaddr_ptr2, len);
 
   report_path_to_kernel("connect", connect_sockaddr_ptr, connect_sockaddr_len);
 //printf("pid=%d line=%d: before connect\n", (int)getpid(), __LINE__);
@@ -392,8 +392,8 @@ static void *connect_func(void *arg)
   memset(get_sockaddr_ptr2, opt_f, get_sockaddr_len2);
   len = get_sockaddr_len2;
   ret = getpeername(client_socket, (struct sockaddr *)get_sockaddr_ptr2, &len);
-  if (ret == -1) { perror2("getpeername(client)"); return (void*)"getpeername(client)"; }
-  report_path_from_kernel("getpeername(client)", get_sockaddr_len2, get_sockaddr_ptr2, len);
+  if (ret == -1) { perror2("getpeername(client)"); }
+  else report_path_from_kernel("getpeername(client)", get_sockaddr_len2, get_sockaddr_ptr2, len);
 
   /*
 printf("pid=%d line=%d: before sleep\n", (int)getpid(), __LINE__);
@@ -434,16 +434,16 @@ static void *accept_func(void *arg)
 //printf("pid=%d line=%d: before getsockname(accepted)\n", (int)getpid(), __LINE__);
   ret = getsockname(accepted_socket, (struct sockaddr *)get_sockaddr_ptr, &len);
 //printf("pid=%d line=%d: after getsockname(accepted)\n", (int)getpid(), __LINE__);
-  if (ret == -1) { perror2("getsockname(accepted)"); return("getsockname(accepted)"); }
-  report_path_from_kernel("getsockname(accepted)", get_sockaddr_len, get_sockaddr_ptr, len);
+  if (ret == -1) { perror2("getsockname(accepted)"); }
+  else report_path_from_kernel("getsockname(accepted)", get_sockaddr_len, get_sockaddr_ptr, len);
 
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
   len = get_sockaddr_len;
 //printf("pid=%d line=%d: before getpeername(accepted)\n", (int)getpid(), __LINE__);
   ret = getpeername(accepted_socket, (struct sockaddr *)get_sockaddr_ptr, &len);
 //printf("pid=%d line=%d: after getpeername(accepted)\n", (int)getpid(), __LINE__);
-  if (ret == -1) { perror2("getpeername(accepted)"); return("getpeername(accepted)"); }
-  report_path_from_kernel("getpeername(accepted)", get_sockaddr_len, get_sockaddr_ptr, len);
+  if (ret == -1) { perror2("getpeername(accepted)"); }
+  else report_path_from_kernel("getpeername(accepted)", get_sockaddr_len, get_sockaddr_ptr, len);
 }
 
 static void test_unix_stream(void)
