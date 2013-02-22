@@ -492,6 +492,7 @@ static void test_unix_stream(void)
   child_pid = fork();
   if (child_pid == -1) { perror2("fork"); exit(EXIT_FAILURE); }
   if (child_pid == 0) {
+    close(client_socket);
     if (accept_func(NULL) != NULL)
       _exit(EXIT_FAILURE);
     _exit(EXIT_SUCCESS);
