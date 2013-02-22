@@ -48,7 +48,6 @@ AC_CHECK_MEMBERS([struct sockaddr.sa_len], [], [], [[
 ]])
 
 # Checks for library functions.
-AC_FUNC_MALLOC
 AC_FUNC_STAT
 AC_CHECK_FUNCS([memset socket])
 
