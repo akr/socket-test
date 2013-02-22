@@ -29,6 +29,8 @@
 void *xmalloc(size_t size)
 {
   void *p;
+  if (size == 0)
+    size = 1;
   p = malloc(size);
   if (p == NULL) {
     perror2("malloc");
