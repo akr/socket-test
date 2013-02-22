@@ -401,8 +401,6 @@ printf("pid=%d line=%d: before sleep\n", (int)getpid(), __LINE__);
 printf("pid=%d line=%d: after sleep\n", (int)getpid(), __LINE__);
 */
 
-  close(client_socket);
-
   return NULL;
 }
 
