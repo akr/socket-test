@@ -171,6 +171,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "./foo\0" (6 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream 'foo\0hoge' './foo\0fuga'
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
@@ -178,6 +181,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "./foo\0fuga" (10 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream 'foo\0hoge' './foo\0fuga' 'bar\0moga'
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
@@ -187,6 +193,9 @@ socket file (client)  : exist
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "./foo\0fuga" (10 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 
 ./unix-stream '(45*"./")0\0'
 bind(server)          <- "(45*"./")0\0" (92 bytes)
@@ -195,6 +204,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(45*"./")0\0" (92 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(45*"./")01\0'
 bind(server)          <- "(45*"./")01\0" (93 bytes)
 socket file (server)  : exist
@@ -202,6 +214,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(45*"./")01\0" (93 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(45*"./")012\0'
 bind(server)          <- "(45*"./")012\0" (94 bytes)
 socket file (server)  : exist
@@ -209,6 +224,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(45*"./")012\0" (94 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(45*"./")0123\0'
 bind(server)          <- "(45*"./")0123\0" (95 bytes)
 socket file (server)  : exist
@@ -216,6 +234,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(45*"./")0123\0" (95 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(45*"./")01234\0'
 bind(server)          <- "(45*"./")01234\0" (96 bytes)
 socket file (server)  : exist
@@ -223,6 +244,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(45*"./")01234\0" (96 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(45*"./")012345\0'
 bind(server)          <- "(45*"./")012345\0" (97 bytes)
 socket file (server)  : exist
@@ -230,6 +254,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(45*"./")012345\0" (97 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(45*"./")0123456\0'
 bind(server)          <- "(45*"./")0123456\0" (98 bytes)
 socket file (server)  : exist
@@ -237,6 +264,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(45*"./")0123456\0" (98 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(45*"./")01234567\0'
 bind(server)          <- "(45*"./")01234567\0" (99 bytes)
 socket file (server)  : exist
@@ -244,6 +274,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(45*"./")01234567\0" (99 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(45*"./")012345678\0'
 bind(server)          <- "(45*"./")012345678\0" (100 bytes)
 socket file (server)  : exist
@@ -251,6 +284,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(45*"./")012345678\0" (100 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(45*"./")0123456789\0'
 bind(server)          <- "(45*"./")0123456789\0" (101 bytes)
 socket file (server)  : exist
@@ -258,6 +294,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(45*"./")0123456789\0" (101 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(50*"./")0\0'
 bind(server)          <- "(50*"./")0\0" (102 bytes)
 socket file (server)  : exist
@@ -265,6 +304,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(50*"./")0\0" (102 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(50*"./")01\0'
 bind(server)          <- "(50*"./")01\0" (103 bytes)
 socket file (server)  : exist
@@ -272,6 +314,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(50*"./")01\0" (103 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(50*"./")012\0'
 bind(server)          <- "(50*"./")012\0" (104 bytes)
 socket file (server)  : exist
@@ -279,6 +324,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(50*"./")012\0" (104 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(50*"./")0123\0'
 bind(server)          <- "(50*"./")0123\0" (105 bytes)
 socket file (server)  : exist
@@ -286,6 +334,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(50*"./")0123\0" (105 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(50*"./")01234\0'
 bind(server)          <- "(50*"./")01234\0" (106 bytes)
 socket file (server)  : exist
@@ -293,6 +344,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(50*"./")01234\0" (106 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(50*"./")012345\0'
 bind(server)          <- "(50*"./")012345\0" (107 bytes)
 socket file (server)  : exist
@@ -300,6 +354,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(50*"./")012345\0" (107 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(50*"./")0123456\0'
 bind(server)          <- "(50*"./")0123456\0" (108 bytes)
 socket file (server)  : exist
@@ -307,6 +364,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(50*"./")0123456\0" (108 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(50*"./")01234567\0'
 bind(server)          <- "(50*"./")01234567\0" (109 bytes)
 socket file (server)  : exist
@@ -314,6 +374,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(50*"./")01234567\0" (109 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(50*"./")012345678\0'
 bind(server)          <- "(50*"./")012345678\0" (110 bytes)
 socket file (server)  : exist
@@ -321,6 +384,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(50*"./")012345678\0" (110 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(50*"./")0123456789\0'
 bind(server)          <- "(50*"./")0123456789\0" (111 bytes)
 socket file (server)  : exist
@@ -328,6 +394,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(50*"./")0123456789\0" (111 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(55*"./")0\0'
 bind(server)          <- "(55*"./")0\0" (112 bytes)
 socket file (server)  : exist
@@ -335,6 +404,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(55*"./")0\0" (112 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(55*"./")01\0'
 bind(server)          <- "(55*"./")01\0" (113 bytes)
 socket file (server)  : exist
@@ -342,6 +414,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(55*"./")01\0" (113 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(55*"./")012\0'
 bind(server)          <- "(55*"./")012\0" (114 bytes)
 socket file (server)  : exist
@@ -349,6 +424,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(55*"./")012\0" (114 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(55*"./")0123\0'
 bind(server)          <- "(55*"./")0123\0" (115 bytes)
 socket file (server)  : exist
@@ -356,6 +434,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(55*"./")0123\0" (115 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(55*"./")01234\0'
 bind(server)          <- "(55*"./")01234\0" (116 bytes)
 socket file (server)  : exist
@@ -363,6 +444,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(55*"./")01234\0" (116 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(55*"./")012345\0'
 bind(server)          <- "(55*"./")012345\0" (117 bytes)
 socket file (server)  : exist
@@ -370,6 +454,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(55*"./")012345\0" (117 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(55*"./")0123456\0'
 bind(server)          <- "(55*"./")0123456\0" (118 bytes)
 socket file (server)  : exist
@@ -377,6 +464,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(55*"./")0123456\0" (118 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(55*"./")01234567\0'
 bind(server)          <- "(55*"./")01234567\0" (119 bytes)
 socket file (server)  : exist
@@ -384,6 +474,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(55*"./")01234567\0" (119 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(55*"./")012345678\0'
 bind(server)          <- "(55*"./")012345678\0" (120 bytes)
 socket file (server)  : exist
@@ -391,6 +484,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(55*"./")012345678\0" (120 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(55*"./")0123456789\0'
 bind(server)          <- "(55*"./")0123456789\0" (121 bytes)
 socket file (server)  : exist
@@ -398,6 +494,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(55*"./")0123456789\0" (121 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(125*"./")0\0'
 bind(server)          <- "(125*"./")0\0" (252 bytes)
 socket file (server)  : exist
@@ -405,6 +504,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(125*"./")0\0" (252 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(125*"./")01\0'
 bind(server)          <- "(125*"./")01\0" (253 bytes)
 socket file (server)  : exist
@@ -412,6 +514,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(125*"./")01\0" (253 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(125*"./")012\0'
 bind(server)          <- "(125*"./")012\0" (254 bytes)
 socket file (server)  : exist
@@ -419,6 +524,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(125*"./")012\0" (254 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(125*"./")0123\0'
 bind(server)          <- "(125*"./")0123\0" (255 bytes)
 socket file (server)  : exist
@@ -426,6 +534,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(125*"./")0123\0" (255 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(125*"./")01234\0'
 bind(server)          <- "(125*"./")01234\0" (256 bytes)
 socket file (server)  : exist
@@ -433,6 +544,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(125*"./")01234\0" (256 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(125*"./")012345\0'
 bind(server)          <- "(125*"./")012345\0" (257 bytes)
 socket file (server)  : exist
@@ -440,6 +554,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(125*"./")012345\0" (257 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(125*"./")0123456\0'
 bind(server)          <- "(125*"./")0123456\0" (258 bytes)
 socket file (server)  : exist
@@ -447,6 +564,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(125*"./")0123456\0" (258 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(125*"./")01234567\0'
 bind(server)          <- "(125*"./")01234567\0" (259 bytes)
 socket file (server)  : exist
@@ -454,6 +574,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(125*"./")01234567\0" (259 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(125*"./")012345678\0'
 bind(server)          <- "(125*"./")012345678\0" (260 bytes)
 socket file (server)  : exist
@@ -461,6 +584,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(125*"./")012345678\0" (260 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(125*"./")0123456789\0'
 bind(server)          <- "(125*"./")0123456789\0" (261 bytes)
 socket file (server)  : exist
@@ -468,6 +594,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(125*"./")0123456789\0" (261 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(250*"./")0\0'
 bind(server)          <- "(250*"./")0\0" (502 bytes)
 socket file (server)  : exist
@@ -475,6 +604,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(250*"./")0\0" (502 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(250*"./")01\0'
 bind(server)          <- "(250*"./")01\0" (503 bytes)
 socket file (server)  : exist
@@ -482,6 +614,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(250*"./")01\0" (503 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(250*"./")012\0'
 bind(server)          <- "(250*"./")012\0" (504 bytes)
 socket file (server)  : exist
@@ -489,6 +624,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(250*"./")012\0" (504 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(250*"./")0123\0'
 bind(server)          <- "(250*"./")0123\0" (505 bytes)
 socket file (server)  : exist
@@ -496,6 +634,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(250*"./")0123\0" (505 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(250*"./")01234\0'
 bind(server)          <- "(250*"./")01234\0" (506 bytes)
 socket file (server)  : exist
@@ -503,6 +644,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(250*"./")01234\0" (506 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(250*"./")012345\0'
 bind(server)          <- "(250*"./")012345\0" (507 bytes)
 socket file (server)  : exist
@@ -510,6 +654,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(250*"./")012345\0" (507 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(250*"./")0123456\0'
 bind(server)          <- "(250*"./")0123456\0" (508 bytes)
 socket file (server)  : exist
@@ -517,6 +664,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(250*"./")0123456\0" (508 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(250*"./")01234567\0'
 bind(server)          <- "(250*"./")01234567\0" (509 bytes)
 socket file (server)  : exist
@@ -524,6 +674,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(250*"./")01234567\0" (509 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(250*"./")012345678\0'
 bind(server)          <- "(250*"./")012345678\0" (510 bytes)
 socket file (server)  : exist
@@ -531,6 +684,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(250*"./")012345678\0" (510 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(250*"./")0123456789\0'
 bind(server)          <- "(250*"./")0123456789\0" (511 bytes)
 socket file (server)  : exist
@@ -538,6 +694,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(250*"./")0123456789\0" (511 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(255*"./")0\0'
 bind(server)          <- "(255*"./")0\0" (512 bytes)
 socket file (server)  : exist
@@ -545,6 +704,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(255*"./")0\0" (512 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(255*"./")01\0'
 bind(server)          <- "(255*"./")01\0" (513 bytes)
 socket file (server)  : exist
@@ -552,6 +714,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(255*"./")01\0" (513 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(255*"./")012\0'
 bind(server)          <- "(255*"./")012\0" (514 bytes)
 socket file (server)  : exist
@@ -559,6 +724,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(255*"./")012\0" (514 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(255*"./")0123\0'
 bind(server)          <- "(255*"./")0123\0" (515 bytes)
 socket file (server)  : exist
@@ -566,6 +734,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(255*"./")0123\0" (515 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(255*"./")01234\0'
 bind(server)          <- "(255*"./")01234\0" (516 bytes)
 socket file (server)  : exist
@@ -573,6 +744,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(255*"./")01234\0" (516 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(255*"./")012345\0'
 bind(server)          <- "(255*"./")012345\0" (517 bytes)
 socket file (server)  : exist
@@ -580,6 +754,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(255*"./")012345\0" (517 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(255*"./")0123456\0'
 bind(server)          <- "(255*"./")0123456\0" (518 bytes)
 socket file (server)  : exist
@@ -587,6 +764,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(255*"./")0123456\0" (518 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(255*"./")01234567\0'
 bind(server)          <- "(255*"./")01234567\0" (519 bytes)
 socket file (server)  : exist
@@ -594,6 +774,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(255*"./")01234567\0" (519 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(255*"./")012345678\0'
 bind(server)          <- "(255*"./")012345678\0" (520 bytes)
 socket file (server)  : exist
@@ -601,6 +784,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(255*"./")012345678\0" (520 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(255*"./")0123456789\0'
 bind(server)          <- "(255*"./")0123456789\0" (521 bytes)
 socket file (server)  : exist
@@ -608,6 +794,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(255*"./")0123456789\0" (521 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 
 ./unix-stream '(9*"0123456789")0\0'
 bind(server)          <- "(9*"0123456789")0\0" (92 bytes)
@@ -616,6 +805,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(9*"0123456789")0\0" (92 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(9*"0123456789")01\0'
 bind(server)          <- "(9*"0123456789")01\0" (93 bytes)
 socket file (server)  : exist
@@ -623,6 +815,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(9*"0123456789")01\0" (93 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(9*"0123456789")012\0'
 bind(server)          <- "(9*"0123456789")012\0" (94 bytes)
 socket file (server)  : exist
@@ -630,6 +825,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(9*"0123456789")012\0" (94 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(9*"0123456789")0123\0'
 bind(server)          <- "(9*"0123456789")0123\0" (95 bytes)
 socket file (server)  : exist
@@ -637,6 +835,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(9*"0123456789")0123\0" (95 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(9*"0123456789")01234\0'
 bind(server)          <- "(9*"0123456789")01234\0" (96 bytes)
 socket file (server)  : exist
@@ -644,6 +845,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(9*"0123456789")01234\0" (96 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(9*"0123456789")012345\0'
 bind(server)          <- "(9*"0123456789")012345\0" (97 bytes)
 socket file (server)  : exist
@@ -651,6 +855,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(9*"0123456789")012345\0" (97 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(9*"0123456789")0123456\0'
 bind(server)          <- "(9*"0123456789")0123456\0" (98 bytes)
 socket file (server)  : exist
@@ -658,6 +865,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(9*"0123456789")0123456\0" (98 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(9*"0123456789")01234567\0'
 bind(server)          <- "(9*"0123456789")01234567\0" (99 bytes)
 socket file (server)  : exist
@@ -665,6 +875,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(9*"0123456789")01234567\0" (99 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(9*"0123456789")012345678\0'
 bind(server)          <- "(9*"0123456789")012345678\0" (100 bytes)
 socket file (server)  : exist
@@ -672,6 +885,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(9*"0123456789")012345678\0" (100 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(9*"0123456789")0123456789\0'
 bind(server)          <- "(10*"0123456789")\0" (101 bytes)
 socket file (server)  : exist
@@ -679,6 +895,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(10*"0123456789")\0" (101 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(10*"0123456789")0\0'
 bind(server)          <- "(10*"0123456789")0\0" (102 bytes)
 socket file (server)  : exist
@@ -686,6 +905,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(10*"0123456789")0\0" (102 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(10*"0123456789")01\0'
 bind(server)          <- "(10*"0123456789")01\0" (103 bytes)
 socket file (server)  : exist
@@ -693,6 +915,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(10*"0123456789")01\0" (103 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(10*"0123456789")012\0'
 bind(server)          <- "(10*"0123456789")012\0" (104 bytes)
 socket file (server)  : exist
@@ -700,6 +925,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(10*"0123456789")012\0" (104 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(10*"0123456789")0123\0'
 bind(server)          <- "(10*"0123456789")0123\0" (105 bytes)
 socket file (server)  : exist
@@ -707,6 +935,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(10*"0123456789")0123\0" (105 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(10*"0123456789")01234\0'
 bind(server)          <- "(10*"0123456789")01234\0" (106 bytes)
 socket file (server)  : exist
@@ -714,6 +945,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(10*"0123456789")01234\0" (106 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(10*"0123456789")012345\0'
 bind(server)          <- "(10*"0123456789")012345\0" (107 bytes)
 socket file (server)  : exist
@@ -721,6 +955,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(10*"0123456789")012345\0" (107 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(10*"0123456789")0123456\0'
 bind(server)          <- "(10*"0123456789")0123456\0" (108 bytes)
 socket file (server)  : exist
@@ -728,6 +965,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(10*"0123456789")0123456\0" (108 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(10*"0123456789")01234567\0'
 bind(server)          <- "(10*"0123456789")01234567\0" (109 bytes)
 socket file (server)  : exist
@@ -735,6 +975,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(10*"0123456789")01234567\0" (109 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(10*"0123456789")012345678\0'
 bind(server)          <- "(10*"0123456789")012345678\0" (110 bytes)
 socket file (server)  : exist
@@ -742,6 +985,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(10*"0123456789")012345678\0" (110 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(10*"0123456789")0123456789\0'
 bind(server)          <- "(11*"0123456789")\0" (111 bytes)
 socket file (server)  : exist
@@ -749,6 +995,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(11*"0123456789")\0" (111 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(11*"0123456789")0\0'
 bind(server)          <- "(11*"0123456789")0\0" (112 bytes)
 socket file (server)  : exist
@@ -756,6 +1005,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(11*"0123456789")0\0" (112 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(11*"0123456789")01\0'
 bind(server)          <- "(11*"0123456789")01\0" (113 bytes)
 socket file (server)  : exist
@@ -763,6 +1015,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(11*"0123456789")01\0" (113 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(11*"0123456789")012\0'
 bind(server)          <- "(11*"0123456789")012\0" (114 bytes)
 socket file (server)  : exist
@@ -770,6 +1025,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(11*"0123456789")012\0" (114 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(11*"0123456789")0123\0'
 bind(server)          <- "(11*"0123456789")0123\0" (115 bytes)
 socket file (server)  : exist
@@ -777,6 +1035,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(11*"0123456789")0123\0" (115 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(11*"0123456789")01234\0'
 bind(server)          <- "(11*"0123456789")01234\0" (116 bytes)
 socket file (server)  : exist
@@ -784,6 +1045,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(11*"0123456789")01234\0" (116 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(11*"0123456789")012345\0'
 bind(server)          <- "(11*"0123456789")012345\0" (117 bytes)
 socket file (server)  : exist
@@ -791,6 +1055,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(11*"0123456789")012345\0" (117 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(11*"0123456789")0123456\0'
 bind(server)          <- "(11*"0123456789")0123456\0" (118 bytes)
 socket file (server)  : exist
@@ -798,6 +1065,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(11*"0123456789")0123456\0" (118 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(11*"0123456789")01234567\0'
 bind(server)          <- "(11*"0123456789")01234567\0" (119 bytes)
 socket file (server)  : exist
@@ -805,6 +1075,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(11*"0123456789")01234567\0" (119 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(11*"0123456789")012345678\0'
 bind(server)          <- "(11*"0123456789")012345678\0" (120 bytes)
 socket file (server)  : exist
@@ -812,6 +1085,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(11*"0123456789")012345678\0" (120 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(11*"0123456789")0123456789\0'
 bind(server)          <- "(12*"0123456789")\0" (121 bytes)
 socket file (server)  : exist
@@ -819,6 +1095,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(12*"0123456789")\0" (121 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(25*"0123456789")0\0'
 bind(server)          <- "(25*"0123456789")0\0" (252 bytes)
 socket file (server)  : exist
@@ -826,6 +1105,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(25*"0123456789")0\0" (252 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(25*"0123456789")01\0'
 bind(server)          <- "(25*"0123456789")01\0" (253 bytes)
 socket file (server)  : exist
@@ -833,6 +1115,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(25*"0123456789")01\0" (253 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(25*"0123456789")012\0'
 bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
 socket file (server)  : exist
@@ -840,6 +1125,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(25*"0123456789")012\0" (254 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(25*"0123456789")0123\0'
 bind(server)          <- "(25*"0123456789")0123\0" (255 bytes)
 socket file (server)  : exist
@@ -847,6 +1135,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(25*"0123456789")0123\0" (255 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(25*"0123456789")01234\0'
 bind(server)          <- "(25*"0123456789")01234\0" (256 bytes)
 socket file (server)  : exist
@@ -854,6 +1145,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(25*"0123456789")01234\0" (256 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(25*"0123456789")012345\0'
 bind(server)          <- "(25*"0123456789")012345\0" (257 bytes)
 bind(server): File name too long (ENAMETOOLONG)
@@ -937,6 +1231,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(98*"Z")01234567\0" (107 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream -p '012345678\0'
 bind(server)          <- "(98*"Z")012345678\0" (108 bytes)
 socket file (server)  : exist
@@ -944,6 +1241,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(98*"Z")012345678\0" (108 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream -p '0123456789\0'
 bind(server)          <- "(98*"Z")0123456789\0" (109 bytes)
 socket file (server)  : exist
@@ -951,6 +1251,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(98*"Z")0123456789\0" (109 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream -p '01234567890\0'
 bind(server)          <- "(98*"Z")01234567890\0" (110 bytes)
 socket file (server)  : exist
@@ -958,6 +1261,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(98*"Z")01234567890\0" (110 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 
 ./unix-stream -g 1024 '(25*"0123456789")012\0'
 bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
@@ -966,6 +1272,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(25*"0123456789")012\0" (254 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream 'foo\0' 'foo\0' '(200*"b")\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
@@ -975,6 +1284,9 @@ socket file (client)  : exist
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "foo\0" (4 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 
 ./unix-stream -s '/etc/hosts\0'
 bind(server)          <- "/etc/hosts\0" (11 bytes)
@@ -1007,6 +1319,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "./foo" (5 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream -p '012345678'
 bind(server)          <- "(98*"Z")012345678" (107 bytes)
 socket file (server)  : exist
@@ -1014,6 +1329,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(98*"Z")012345678" (107 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream -p '0123456789'
 bind(server)          <- "(98*"Z")0123456789" (108 bytes)
 socket file (server)  : exist
@@ -1021,6 +1339,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(98*"Z")0123456789" (108 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream -p '01234567890'
 bind(server)          <- "(98*"Z")01234567890" (109 bytes)
 socket file (server)  : exist
@@ -1028,6 +1349,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(98*"Z")01234567890" (109 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(25*"0123456789")012'
 bind(server)          <- "(25*"0123456789")012" (253 bytes)
 socket file (server)  : exist
@@ -1035,6 +1359,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(25*"0123456789")012" (253 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream -g 1024 '(25*"0123456789")012'
 bind(server)          <- "(25*"0123456789")012" (253 bytes)
 socket file (server)  : exist
@@ -1042,6 +1369,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(25*"0123456789")012" (253 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(25*"0123456789")0123'
 bind(server)          <- "(25*"0123456789")0123" (254 bytes)
 socket file (server)  : exist
@@ -1049,6 +1379,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(25*"0123456789")0123" (254 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(25*"0123456789")01234'
 bind(server)          <- "(25*"0123456789")01234" (255 bytes)
 socket file (server)  : exist
@@ -1056,6 +1389,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(25*"0123456789")01234" (255 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(25*"0123456789")012345'
 bind(server)          <- "(25*"0123456789")012345" (256 bytes)
 bind(server): File name too long (ENAMETOOLONG)
@@ -1066,6 +1402,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(125*"./")a" (251 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(125*"./")ab'
 bind(server)          <- "(125*"./")ab" (252 bytes)
 socket file (server)  : exist
@@ -1073,6 +1412,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(125*"./")ab" (252 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(125*"./")abc'
 bind(server)          <- "(125*"./")abc" (253 bytes)
 socket file (server)  : exist
@@ -1080,6 +1422,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(125*"./")abc" (253 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(125*"./")abcd'
 bind(server)          <- "(125*"./")abcd" (254 bytes)
 socket file (server)  : exist
@@ -1087,6 +1432,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(125*"./")abcd" (254 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(511*"./")a'
 bind(server)          <- "(511*"./")a" (1023 bytes)
 socket file (server)  : exist
@@ -1094,6 +1442,9 @@ getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "(511*"./")a" (1023 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream '(511*"./")ab'
 bind(server)          <- "(511*"./")ab" (1024 bytes)
 socket file (server)  : not exist
@@ -1110,6 +1461,9 @@ socket file (client)  : exist
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "foo" (3 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "\0" (1 bytes)
+getsockname(accepted) -> "\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 
 ./unix-stream -s /etc/hosts
 bind(server)          <- "/etc/hosts" (10 bytes)
@@ -1141,6 +1495,9 @@ getsockname(server)   -> "(sun_len=3)\0" (1 bytes)
 getsockname(client)   -> "(sun_len=3)\0" (1 bytes)
 connect               <- "abc" (3 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "(sun_len=3)\0" (1 bytes)
+getsockname(accepted) -> "(sun_len=3)\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream -4 '(sun_len=2)abc'
 bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
@@ -1148,6 +1505,9 @@ getsockname(server)   -> "(sun_len=3)\0" (1 bytes)
 getsockname(client)   -> "(sun_len=3)\0" (1 bytes)
 connect               <- "abc" (3 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "(sun_len=3)\0" (1 bytes)
+getsockname(accepted) -> "(sun_len=3)\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream -4 '(sun_len=3)abc'
 bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
@@ -1155,6 +1515,9 @@ getsockname(server)   -> "(sun_len=3)\0" (1 bytes)
 getsockname(client)   -> "(sun_len=3)\0" (1 bytes)
 connect               <- "abc" (3 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "(sun_len=3)\0" (1 bytes)
+getsockname(accepted) -> "(sun_len=3)\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream -4 '(sun_len=4)abc'
 bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
@@ -1162,6 +1525,9 @@ getsockname(server)   -> "(sun_len=3)\0" (1 bytes)
 getsockname(client)   -> "(sun_len=3)\0" (1 bytes)
 connect               <- "abc" (3 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "(sun_len=3)\0" (1 bytes)
+getsockname(accepted) -> "(sun_len=3)\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream -4 '(sun_len=5)abc'
 bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
@@ -1169,6 +1535,9 @@ getsockname(server)   -> "(sun_len=3)\0" (1 bytes)
 getsockname(client)   -> "(sun_len=3)\0" (1 bytes)
 connect               <- "abc" (3 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "(sun_len=3)\0" (1 bytes)
+getsockname(accepted) -> "(sun_len=3)\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
 ./unix-stream -4 '(sun_len=6)abc'
 bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
@@ -1176,3 +1545,6 @@ getsockname(server)   -> "(sun_len=3)\0" (1 bytes)
 getsockname(client)   -> "(sun_len=3)\0" (1 bytes)
 connect               <- "abc" (3 bytes)
 getpeername(client): Operation not supported (EOPNOTSUPP)
+accept                -> "(sun_len=3)\0" (1 bytes)
+getsockname(accepted) -> "(sun_len=3)\0" (1 bytes)
+getpeername(accepted): Operation not supported (EOPNOTSUPP)
