@@ -11,7 +11,7 @@ NetBSD*|FreeBSD*|OpenBSD*|DragonFly*|MirBSD*|GNU/kFreeBSD*|*Hurd*|Darwin*)
   sh scripts/nullless-tests.sh
   sh scripts/44bsd-tests.sh
   ;;
-SunOS*)
+SunOS*|Minix*)
   sh scripts/basic-tests.sh
   sh scripts/nullless-tests.sh
   ;;
