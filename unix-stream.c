@@ -495,7 +495,9 @@ static void test_unix_stream(void)
       _exit(EXIT_FAILURE);
     _exit(EXIT_SUCCESS);
   }
+  close(server_socket);
   connect_func_ret = connect_func(NULL);
+  close(client_socket); /* to avoid hang on MINIX but it causes ECONNRESET at getpeername(accepted). */
   if (connect_func_ret) { exit(EXIT_FAILURE); }
 #elif defined(USE_PTHREAD)
   ret = pthread_create(&connect_thread, NULL, connect_func, NULL);
