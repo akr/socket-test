@@ -175,7 +175,7 @@ connect               <- "./foo\0" (6 bytes)
 getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream 'foo\0hoge' './foo\0fuga'
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
@@ -185,7 +185,7 @@ connect               <- "./foo\0fuga" (10 bytes)
 getpeername(client)   -> "foo\0\0\0\0\0" (8 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "foo\0\0\0\0\0" (8 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream 'foo\0hoge' './foo\0fuga' 'bar\0moga'
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
@@ -195,9 +195,9 @@ socket file (client)  : exist
 getsockname(client)   -> "bar\0\0\0\0\0" (8 bytes)
 connect               <- "./foo\0fuga" (10 bytes)
 getpeername(client)   -> "foo\0\0\0\0\0" (8 bytes)
-accept                -> "(14*"\0")" (14 bytes)
+accept                -> "bar\0\0\0\0\0" (8 bytes)
 getsockname(accepted) -> "foo\0\0\0\0\0" (8 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "bar\0\0\0\0\0" (8 bytes)
 
 ./unix-stream '(45*"./")0\0'
 bind(server)          <- "(45*"./")0\0" (92 bytes)
@@ -208,7 +208,7 @@ connect               <- "(45*"./")0\0" (92 bytes)
 getpeername(client)   -> "(45*"./")0\0" (92 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")0\0" (92 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(45*"./")01\0'
 bind(server)          <- "(45*"./")01\0" (93 bytes)
 socket file (server)  : exist
@@ -218,7 +218,7 @@ connect               <- "(45*"./")01\0" (93 bytes)
 getpeername(client)   -> "(45*"./")01\0" (93 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")01\0" (93 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(45*"./")012\0'
 bind(server)          <- "(45*"./")012\0" (94 bytes)
 socket file (server)  : exist
@@ -228,7 +228,7 @@ connect               <- "(45*"./")012\0" (94 bytes)
 getpeername(client)   -> "(45*"./")012\0" (94 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")012\0" (94 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(45*"./")0123\0'
 bind(server)          <- "(45*"./")0123\0" (95 bytes)
 socket file (server)  : exist
@@ -238,7 +238,7 @@ connect               <- "(45*"./")0123\0" (95 bytes)
 getpeername(client)   -> "(45*"./")0123\0" (95 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")0123\0" (95 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(45*"./")01234\0'
 bind(server)          <- "(45*"./")01234\0" (96 bytes)
 socket file (server)  : exist
@@ -248,7 +248,7 @@ connect               <- "(45*"./")01234\0" (96 bytes)
 getpeername(client)   -> "(45*"./")01234\0" (96 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")01234\0" (96 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(45*"./")012345\0'
 bind(server)          <- "(45*"./")012345\0" (97 bytes)
 socket file (server)  : exist
@@ -258,7 +258,7 @@ connect               <- "(45*"./")012345\0" (97 bytes)
 getpeername(client)   -> "(45*"./")012345\0" (97 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")012345\0" (97 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(45*"./")0123456\0'
 bind(server)          <- "(45*"./")0123456\0" (98 bytes)
 socket file (server)  : exist
@@ -268,7 +268,7 @@ connect               <- "(45*"./")0123456\0" (98 bytes)
 getpeername(client)   -> "(45*"./")0123456\0" (98 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")0123456\0" (98 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(45*"./")01234567\0'
 bind(server)          <- "(45*"./")01234567\0" (99 bytes)
 socket file (server)  : exist
@@ -278,7 +278,7 @@ connect               <- "(45*"./")01234567\0" (99 bytes)
 getpeername(client)   -> "(45*"./")01234567\0" (99 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")01234567\0" (99 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(45*"./")012345678\0'
 bind(server)          <- "(45*"./")012345678\0" (100 bytes)
 socket file (server)  : exist
@@ -288,7 +288,7 @@ connect               <- "(45*"./")012345678\0" (100 bytes)
 getpeername(client)   -> "(45*"./")012345678\0" (100 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")012345678\0" (100 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(45*"./")0123456789\0'
 bind(server)          <- "(45*"./")0123456789\0" (101 bytes)
 socket file (server)  : exist
@@ -298,7 +298,7 @@ connect               <- "(45*"./")0123456789\0" (101 bytes)
 getpeername(client)   -> "(45*"./")0123456789\0" (101 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")0123456789\0" (101 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(50*"./")0\0'
 bind(server)          <- "(50*"./")0\0" (102 bytes)
 socket file (server)  : exist
@@ -308,7 +308,7 @@ connect               <- "(50*"./")0\0" (102 bytes)
 getpeername(client)   -> "(50*"./")0\0" (102 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(50*"./")0\0" (102 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(50*"./")01\0'
 bind(server)          <- "(50*"./")01\0" (103 bytes)
 socket file (server)  : exist
@@ -318,7 +318,7 @@ connect               <- "(50*"./")01\0" (103 bytes)
 getpeername(client)   -> "(50*"./")01\0" (103 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(50*"./")01\0" (103 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(50*"./")012\0'
 bind(server)          <- "(50*"./")012\0" (104 bytes)
 socket file (server)  : exist
@@ -328,7 +328,7 @@ connect               <- "(50*"./")012\0" (104 bytes)
 getpeername(client)   -> "(50*"./")012\0" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(50*"./")012\0" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(50*"./")0123\0'
 bind(server)          <- "(50*"./")0123\0" (105 bytes)
 bind(server): Invalid argument (EINVAL)
@@ -480,7 +480,7 @@ connect               <- "(9*"0123456789")0\0" (92 bytes)
 getpeername(client)   -> "(9*"0123456789")0\0" (92 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")0\0" (92 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(9*"0123456789")01\0'
 bind(server)          <- "(9*"0123456789")01\0" (93 bytes)
 socket file (server)  : exist
@@ -490,7 +490,7 @@ connect               <- "(9*"0123456789")01\0" (93 bytes)
 getpeername(client)   -> "(9*"0123456789")01\0" (93 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")01\0" (93 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(9*"0123456789")012\0'
 bind(server)          <- "(9*"0123456789")012\0" (94 bytes)
 socket file (server)  : exist
@@ -500,7 +500,7 @@ connect               <- "(9*"0123456789")012\0" (94 bytes)
 getpeername(client)   -> "(9*"0123456789")012\0" (94 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")012\0" (94 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(9*"0123456789")0123\0'
 bind(server)          <- "(9*"0123456789")0123\0" (95 bytes)
 socket file (server)  : exist
@@ -510,7 +510,7 @@ connect               <- "(9*"0123456789")0123\0" (95 bytes)
 getpeername(client)   -> "(9*"0123456789")0123\0" (95 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")0123\0" (95 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(9*"0123456789")01234\0'
 bind(server)          <- "(9*"0123456789")01234\0" (96 bytes)
 socket file (server)  : exist
@@ -520,7 +520,7 @@ connect               <- "(9*"0123456789")01234\0" (96 bytes)
 getpeername(client)   -> "(9*"0123456789")01234\0" (96 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")01234\0" (96 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(9*"0123456789")012345\0'
 bind(server)          <- "(9*"0123456789")012345\0" (97 bytes)
 socket file (server)  : exist
@@ -530,7 +530,7 @@ connect               <- "(9*"0123456789")012345\0" (97 bytes)
 getpeername(client)   -> "(9*"0123456789")012345\0" (97 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")012345\0" (97 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(9*"0123456789")0123456\0'
 bind(server)          <- "(9*"0123456789")0123456\0" (98 bytes)
 socket file (server)  : exist
@@ -540,7 +540,7 @@ connect               <- "(9*"0123456789")0123456\0" (98 bytes)
 getpeername(client)   -> "(9*"0123456789")0123456\0" (98 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")0123456\0" (98 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(9*"0123456789")01234567\0'
 bind(server)          <- "(9*"0123456789")01234567\0" (99 bytes)
 socket file (server)  : exist
@@ -550,7 +550,7 @@ connect               <- "(9*"0123456789")01234567\0" (99 bytes)
 getpeername(client)   -> "(9*"0123456789")01234567\0" (99 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")01234567\0" (99 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(9*"0123456789")012345678\0'
 bind(server)          <- "(9*"0123456789")012345678\0" (100 bytes)
 socket file (server)  : exist
@@ -560,7 +560,7 @@ connect               <- "(9*"0123456789")012345678\0" (100 bytes)
 getpeername(client)   -> "(9*"0123456789")012345678\0" (100 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")012345678\0" (100 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(9*"0123456789")0123456789\0'
 bind(server)          <- "(10*"0123456789")\0" (101 bytes)
 socket file (server)  : exist
@@ -570,7 +570,7 @@ connect               <- "(10*"0123456789")\0" (101 bytes)
 getpeername(client)   -> "(10*"0123456789")\0" (101 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")\0" (101 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(10*"0123456789")0\0'
 bind(server)          <- "(10*"0123456789")0\0" (102 bytes)
 socket file (server)  : exist
@@ -580,7 +580,7 @@ connect               <- "(10*"0123456789")0\0" (102 bytes)
 getpeername(client)   -> "(10*"0123456789")0\0" (102 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0\0" (102 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(10*"0123456789")01\0'
 bind(server)          <- "(10*"0123456789")01\0" (103 bytes)
 socket file (server)  : exist
@@ -590,7 +590,7 @@ connect               <- "(10*"0123456789")01\0" (103 bytes)
 getpeername(client)   -> "(10*"0123456789")01\0" (103 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")01\0" (103 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(10*"0123456789")012\0'
 bind(server)          <- "(10*"0123456789")012\0" (104 bytes)
 socket file (server)  : exist
@@ -600,7 +600,7 @@ connect               <- "(10*"0123456789")012\0" (104 bytes)
 getpeername(client)   -> "(10*"0123456789")012\0" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")012\0" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream '(10*"0123456789")0123\0'
 bind(server)          <- "(10*"0123456789")0123\0" (105 bytes)
 bind(server): Invalid argument (EINVAL)
@@ -752,7 +752,7 @@ connect               <- "(94*"Z")01234567\0" (103 bytes)
 getpeername(client)   -> "(94*"Z")01234567\0" (103 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(94*"Z")01234567\0" (103 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -p '012345678\0'
 bind(server)          <- "(94*"Z")012345678\0" (104 bytes)
 socket file (server)  : exist
@@ -762,7 +762,7 @@ connect               <- "(94*"Z")012345678\0" (104 bytes)
 getpeername(client)   -> "(94*"Z")012345678\0" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(94*"Z")012345678\0" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -p '0123456789\0'
 bind(server)          <- "(94*"Z")0123456789\0" (105 bytes)
 bind(server): Invalid argument (EINVAL)
@@ -813,7 +813,7 @@ connect               <- "./foo" (5 bytes)
 getpeername(client)   -> "foo" (3 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "foo" (3 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -p '012345678'
 bind(server)          <- "(94*"Z")012345678" (103 bytes)
 socket file (server)  : exist
@@ -823,7 +823,7 @@ connect               <- "(94*"Z")012345678" (103 bytes)
 getpeername(client)   -> "(94*"Z")012345678" (103 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(94*"Z")012345678" (103 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -p '0123456789'
 bind(server)          <- "(94*"Z")0123456789" (104 bytes)
 bind(server): Invalid argument (EINVAL)
@@ -902,7 +902,7 @@ connect               <- "abc" (3 bytes)
 getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -4 '(sun_len=2)abc'
 bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
@@ -912,7 +912,7 @@ connect               <- "abc" (3 bytes)
 getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -4 '(sun_len=3)abc'
 bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
@@ -922,7 +922,7 @@ connect               <- "abc" (3 bytes)
 getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -4 '(sun_len=4)abc'
 bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
@@ -932,7 +932,7 @@ connect               <- "abc" (3 bytes)
 getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -4 '(sun_len=5)abc'
 bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
@@ -942,7 +942,7 @@ connect               <- "abc" (3 bytes)
 getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -4 '(sun_len=6)abc'
 bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
@@ -952,4 +952,4 @@ connect               <- "abc" (3 bytes)
 getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)

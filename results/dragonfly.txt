@@ -174,7 +174,7 @@ connect               <- "./foo\0" (6 bytes)
 getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream 'foo\0hoge' './foo\0fuga'
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
@@ -184,7 +184,7 @@ connect               <- "./foo\0fuga" (10 bytes)
 getpeername(client)   -> "foo\0hoge" (8 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "foo\0hoge" (8 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream 'foo\0hoge' './foo\0fuga' 'bar\0moga'
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
@@ -194,9 +194,9 @@ socket file (client)  : exist
 getsockname(client)   -> "bar\0moga" (8 bytes)
 connect               <- "./foo\0fuga" (10 bytes)
 getpeername(client)   -> "foo\0hoge" (8 bytes)
-accept                -> "(14*"\0")" (14 bytes)
+accept                -> "bar\0moga" (8 bytes)
 getsockname(accepted) -> "foo\0hoge" (8 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "bar\0moga" (8 bytes)
 
 ./unix-stream '(45*"./")0\0'
 bind(server)          <- "(45*"./")0\0" (92 bytes)
@@ -207,7 +207,7 @@ connect               <- "(45*"./")0\0" (92 bytes)
 getpeername(client)   -> "(45*"./")0\0" (92 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")0\0" (92 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(45*"./")01\0'
 bind(server)          <- "(45*"./")01\0" (93 bytes)
 socket file (server)  : exist
@@ -217,7 +217,7 @@ connect               <- "(45*"./")01\0" (93 bytes)
 getpeername(client)   -> "(45*"./")01\0" (93 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")01\0" (93 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(45*"./")012\0'
 bind(server)          <- "(45*"./")012\0" (94 bytes)
 socket file (server)  : exist
@@ -227,7 +227,7 @@ connect               <- "(45*"./")012\0" (94 bytes)
 getpeername(client)   -> "(45*"./")012\0" (94 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")012\0" (94 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(45*"./")0123\0'
 bind(server)          <- "(45*"./")0123\0" (95 bytes)
 socket file (server)  : exist
@@ -237,7 +237,7 @@ connect               <- "(45*"./")0123\0" (95 bytes)
 getpeername(client)   -> "(45*"./")0123\0" (95 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")0123\0" (95 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(45*"./")01234\0'
 bind(server)          <- "(45*"./")01234\0" (96 bytes)
 socket file (server)  : exist
@@ -247,7 +247,7 @@ connect               <- "(45*"./")01234\0" (96 bytes)
 getpeername(client)   -> "(45*"./")01234\0" (96 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")01234\0" (96 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(45*"./")012345\0'
 bind(server)          <- "(45*"./")012345\0" (97 bytes)
 socket file (server)  : exist
@@ -257,7 +257,7 @@ connect               <- "(45*"./")012345\0" (97 bytes)
 getpeername(client)   -> "(45*"./")012345\0" (97 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")012345\0" (97 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(45*"./")0123456\0'
 bind(server)          <- "(45*"./")0123456\0" (98 bytes)
 socket file (server)  : exist
@@ -267,7 +267,7 @@ connect               <- "(45*"./")0123456\0" (98 bytes)
 getpeername(client)   -> "(45*"./")0123456\0" (98 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")0123456\0" (98 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(45*"./")01234567\0'
 bind(server)          <- "(45*"./")01234567\0" (99 bytes)
 socket file (server)  : exist
@@ -277,7 +277,7 @@ connect               <- "(45*"./")01234567\0" (99 bytes)
 getpeername(client)   -> "(45*"./")01234567\0" (99 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")01234567\0" (99 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(45*"./")012345678\0'
 bind(server)          <- "(45*"./")012345678\0" (100 bytes)
 socket file (server)  : exist
@@ -287,7 +287,7 @@ connect               <- "(45*"./")012345678\0" (100 bytes)
 getpeername(client)   -> "(45*"./")012345678\0" (100 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")012345678\0" (100 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(45*"./")0123456789\0'
 bind(server)          <- "(45*"./")0123456789\0" (101 bytes)
 socket file (server)  : exist
@@ -297,7 +297,7 @@ connect               <- "(45*"./")0123456789\0" (101 bytes)
 getpeername(client)   -> "(45*"./")0123456789\0" (101 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(45*"./")0123456789\0" (101 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(50*"./")0\0'
 bind(server)          <- "(50*"./")0\0" (102 bytes)
 socket file (server)  : exist
@@ -307,7 +307,7 @@ connect               <- "(50*"./")0\0" (102 bytes)
 getpeername(client)   -> "(50*"./")0\0" (102 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(50*"./")0\0" (102 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(50*"./")01\0'
 bind(server)          <- "(50*"./")01\0" (103 bytes)
 socket file (server)  : exist
@@ -317,7 +317,7 @@ connect               <- "(50*"./")01\0" (103 bytes)
 getpeername(client)   -> "(50*"./")01\0" (103 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(50*"./")01\0" (103 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(50*"./")012\0'
 bind(server)          <- "(50*"./")012\0" (104 bytes)
 socket file (server)  : exist
@@ -327,7 +327,7 @@ connect               <- "(50*"./")012\0" (104 bytes)
 getpeername(client)   -> "(50*"./")012\0" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(50*"./")012\0" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(50*"./")0123\0'
 bind(server)          <- "(50*"./")0123\0" (105 bytes)
 socket file (server)  : exist
@@ -337,7 +337,7 @@ connect               <- "(50*"./")0123\0" (105 bytes)
 getpeername(client)   -> "(50*"./")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(50*"./")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(50*"./")01234\0'
 bind(server)          <- "(50*"./")01234\0" (106 bytes)
 socket file (server)  : exist
@@ -347,7 +347,7 @@ connect               <- "(50*"./")01234\0" (106 bytes)
 getpeername(client)   -> "(50*"./")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(50*"./")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(50*"./")012345\0'
 bind(server)          <- "(50*"./")012345\0" (107 bytes)
 socket file (server)  : exist
@@ -357,7 +357,7 @@ connect               <- "(50*"./")012345\0" (107 bytes)
 getpeername(client)   -> "(50*"./")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(50*"./")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(50*"./")0123456\0'
 bind(server)          <- "(50*"./")0123456\0" (108 bytes)
 socket file (server)  : exist
@@ -367,7 +367,7 @@ connect               <- "(50*"./")0123456\0" (108 bytes)
 getpeername(client)   -> "(50*"./")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(50*"./")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(50*"./")01234567\0'
 bind(server)          <- "(50*"./")01234567\0" (109 bytes)
 socket file (server)  : exist
@@ -377,7 +377,7 @@ connect               <- "(50*"./")01234567\0" (109 bytes)
 getpeername(client)   -> "(50*"./")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(50*"./")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(50*"./")012345678\0'
 bind(server)          <- "(50*"./")012345678\0" (110 bytes)
 socket file (server)  : exist
@@ -387,7 +387,7 @@ connect               <- "(50*"./")012345678\0" (110 bytes)
 getpeername(client)   -> "(50*"./")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(50*"./")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(50*"./")0123456789\0'
 bind(server)          <- "(50*"./")0123456789\0" (111 bytes)
 socket file (server)  : exist
@@ -397,7 +397,7 @@ connect               <- "(50*"./")0123456789\0" (111 bytes)
 getpeername(client)   -> "(50*"./")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(50*"./")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(55*"./")0\0'
 bind(server)          <- "(55*"./")0\0" (112 bytes)
 socket file (server)  : exist
@@ -407,7 +407,7 @@ connect               <- "(55*"./")0\0" (112 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(52*"./")" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(55*"./")01\0'
 bind(server)          <- "(55*"./")01\0" (113 bytes)
 socket file (server)  : exist
@@ -417,7 +417,7 @@ connect               <- "(55*"./")01\0" (113 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(52*"./")" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(55*"./")012\0'
 bind(server)          <- "(55*"./")012\0" (114 bytes)
 socket file (server)  : exist
@@ -427,7 +427,7 @@ connect               <- "(55*"./")012\0" (114 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(52*"./")" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(55*"./")0123\0'
 bind(server)          <- "(55*"./")0123\0" (115 bytes)
 socket file (server)  : exist
@@ -437,7 +437,7 @@ connect               <- "(55*"./")0123\0" (115 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(52*"./")" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(55*"./")01234\0'
 bind(server)          <- "(55*"./")01234\0" (116 bytes)
 socket file (server)  : exist
@@ -447,7 +447,7 @@ connect               <- "(55*"./")01234\0" (116 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(52*"./")" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(55*"./")012345\0'
 bind(server)          <- "(55*"./")012345\0" (117 bytes)
 socket file (server)  : exist
@@ -457,7 +457,7 @@ connect               <- "(55*"./")012345\0" (117 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(52*"./")" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(55*"./")0123456\0'
 bind(server)          <- "(55*"./")0123456\0" (118 bytes)
 socket file (server)  : exist
@@ -467,7 +467,7 @@ connect               <- "(55*"./")0123456\0" (118 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(52*"./")" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(55*"./")01234567\0'
 bind(server)          <- "(55*"./")01234567\0" (119 bytes)
 socket file (server)  : exist
@@ -477,7 +477,7 @@ connect               <- "(55*"./")01234567\0" (119 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(52*"./")" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(55*"./")012345678\0'
 bind(server)          <- "(55*"./")012345678\0" (120 bytes)
 socket file (server)  : exist
@@ -487,7 +487,7 @@ connect               <- "(55*"./")012345678\0" (120 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(52*"./")" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(55*"./")0123456789\0'
 bind(server)          <- "(55*"./")0123456789\0" (121 bytes)
 socket file (server)  : exist
@@ -497,7 +497,7 @@ connect               <- "(55*"./")0123456789\0" (121 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(52*"./")" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(125*"./")0\0'
 bind(server)          <- "(125*"./")0\0" (252 bytes)
 socket file (server)  : exist
@@ -507,7 +507,7 @@ connect               <- "(125*"./")0\0" (252 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(52*"./")" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(125*"./")01\0'
 bind(server)          <- "(125*"./")01\0" (253 bytes)
 socket file (server)  : exist
@@ -517,7 +517,7 @@ connect               <- "(125*"./")01\0" (253 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(52*"./")" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(125*"./")012\0'
 bind(server)          <- "(125*"./")012\0" (254 bytes)
 bind(server): File name too long (ENAMETOOLONG)
@@ -612,7 +612,7 @@ connect               <- "(9*"0123456789")0\0" (92 bytes)
 getpeername(client)   -> "(9*"0123456789")0\0" (92 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")0\0" (92 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(9*"0123456789")01\0'
 bind(server)          <- "(9*"0123456789")01\0" (93 bytes)
 socket file (server)  : exist
@@ -622,7 +622,7 @@ connect               <- "(9*"0123456789")01\0" (93 bytes)
 getpeername(client)   -> "(9*"0123456789")01\0" (93 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")01\0" (93 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(9*"0123456789")012\0'
 bind(server)          <- "(9*"0123456789")012\0" (94 bytes)
 socket file (server)  : exist
@@ -632,7 +632,7 @@ connect               <- "(9*"0123456789")012\0" (94 bytes)
 getpeername(client)   -> "(9*"0123456789")012\0" (94 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")012\0" (94 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(9*"0123456789")0123\0'
 bind(server)          <- "(9*"0123456789")0123\0" (95 bytes)
 socket file (server)  : exist
@@ -642,7 +642,7 @@ connect               <- "(9*"0123456789")0123\0" (95 bytes)
 getpeername(client)   -> "(9*"0123456789")0123\0" (95 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")0123\0" (95 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(9*"0123456789")01234\0'
 bind(server)          <- "(9*"0123456789")01234\0" (96 bytes)
 socket file (server)  : exist
@@ -652,7 +652,7 @@ connect               <- "(9*"0123456789")01234\0" (96 bytes)
 getpeername(client)   -> "(9*"0123456789")01234\0" (96 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")01234\0" (96 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(9*"0123456789")012345\0'
 bind(server)          <- "(9*"0123456789")012345\0" (97 bytes)
 socket file (server)  : exist
@@ -662,7 +662,7 @@ connect               <- "(9*"0123456789")012345\0" (97 bytes)
 getpeername(client)   -> "(9*"0123456789")012345\0" (97 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")012345\0" (97 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(9*"0123456789")0123456\0'
 bind(server)          <- "(9*"0123456789")0123456\0" (98 bytes)
 socket file (server)  : exist
@@ -672,7 +672,7 @@ connect               <- "(9*"0123456789")0123456\0" (98 bytes)
 getpeername(client)   -> "(9*"0123456789")0123456\0" (98 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")0123456\0" (98 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(9*"0123456789")01234567\0'
 bind(server)          <- "(9*"0123456789")01234567\0" (99 bytes)
 socket file (server)  : exist
@@ -682,7 +682,7 @@ connect               <- "(9*"0123456789")01234567\0" (99 bytes)
 getpeername(client)   -> "(9*"0123456789")01234567\0" (99 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")01234567\0" (99 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(9*"0123456789")012345678\0'
 bind(server)          <- "(9*"0123456789")012345678\0" (100 bytes)
 socket file (server)  : exist
@@ -692,7 +692,7 @@ connect               <- "(9*"0123456789")012345678\0" (100 bytes)
 getpeername(client)   -> "(9*"0123456789")012345678\0" (100 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(9*"0123456789")012345678\0" (100 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(9*"0123456789")0123456789\0'
 bind(server)          <- "(10*"0123456789")\0" (101 bytes)
 socket file (server)  : exist
@@ -702,7 +702,7 @@ connect               <- "(10*"0123456789")\0" (101 bytes)
 getpeername(client)   -> "(10*"0123456789")\0" (101 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")\0" (101 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(10*"0123456789")0\0'
 bind(server)          <- "(10*"0123456789")0\0" (102 bytes)
 socket file (server)  : exist
@@ -712,7 +712,7 @@ connect               <- "(10*"0123456789")0\0" (102 bytes)
 getpeername(client)   -> "(10*"0123456789")0\0" (102 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0\0" (102 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(10*"0123456789")01\0'
 bind(server)          <- "(10*"0123456789")01\0" (103 bytes)
 socket file (server)  : exist
@@ -722,7 +722,7 @@ connect               <- "(10*"0123456789")01\0" (103 bytes)
 getpeername(client)   -> "(10*"0123456789")01\0" (103 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")01\0" (103 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(10*"0123456789")012\0'
 bind(server)          <- "(10*"0123456789")012\0" (104 bytes)
 socket file (server)  : exist
@@ -732,7 +732,7 @@ connect               <- "(10*"0123456789")012\0" (104 bytes)
 getpeername(client)   -> "(10*"0123456789")012\0" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")012\0" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(10*"0123456789")0123\0'
 bind(server)          <- "(10*"0123456789")0123\0" (105 bytes)
 socket file (server)  : exist
@@ -742,7 +742,7 @@ connect               <- "(10*"0123456789")0123\0" (105 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(10*"0123456789")01234\0'
 bind(server)          <- "(10*"0123456789")01234\0" (106 bytes)
 socket file (server)  : exist
@@ -752,7 +752,7 @@ connect               <- "(10*"0123456789")01234\0" (106 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(10*"0123456789")012345\0'
 bind(server)          <- "(10*"0123456789")012345\0" (107 bytes)
 socket file (server)  : exist
@@ -762,7 +762,7 @@ connect               <- "(10*"0123456789")012345\0" (107 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(10*"0123456789")0123456\0'
 bind(server)          <- "(10*"0123456789")0123456\0" (108 bytes)
 socket file (server)  : exist
@@ -772,7 +772,7 @@ connect               <- "(10*"0123456789")0123456\0" (108 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(10*"0123456789")01234567\0'
 bind(server)          <- "(10*"0123456789")01234567\0" (109 bytes)
 socket file (server)  : exist
@@ -782,7 +782,7 @@ connect               <- "(10*"0123456789")01234567\0" (109 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(10*"0123456789")012345678\0'
 bind(server)          <- "(10*"0123456789")012345678\0" (110 bytes)
 socket file (server)  : exist
@@ -792,7 +792,7 @@ connect               <- "(10*"0123456789")012345678\0" (110 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(10*"0123456789")0123456789\0'
 bind(server)          <- "(11*"0123456789")\0" (111 bytes)
 socket file (server)  : exist
@@ -802,7 +802,7 @@ connect               <- "(11*"0123456789")\0" (111 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(11*"0123456789")0\0'
 bind(server)          <- "(11*"0123456789")0\0" (112 bytes)
 socket file (server)  : exist
@@ -812,7 +812,7 @@ connect               <- "(11*"0123456789")0\0" (112 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(11*"0123456789")01\0'
 bind(server)          <- "(11*"0123456789")01\0" (113 bytes)
 socket file (server)  : exist
@@ -822,7 +822,7 @@ connect               <- "(11*"0123456789")01\0" (113 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(11*"0123456789")012\0'
 bind(server)          <- "(11*"0123456789")012\0" (114 bytes)
 socket file (server)  : exist
@@ -832,7 +832,7 @@ connect               <- "(11*"0123456789")012\0" (114 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(11*"0123456789")0123\0'
 bind(server)          <- "(11*"0123456789")0123\0" (115 bytes)
 socket file (server)  : exist
@@ -842,7 +842,7 @@ connect               <- "(11*"0123456789")0123\0" (115 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(11*"0123456789")01234\0'
 bind(server)          <- "(11*"0123456789")01234\0" (116 bytes)
 socket file (server)  : exist
@@ -852,7 +852,7 @@ connect               <- "(11*"0123456789")01234\0" (116 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(11*"0123456789")012345\0'
 bind(server)          <- "(11*"0123456789")012345\0" (117 bytes)
 socket file (server)  : exist
@@ -862,7 +862,7 @@ connect               <- "(11*"0123456789")012345\0" (117 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(11*"0123456789")0123456\0'
 bind(server)          <- "(11*"0123456789")0123456\0" (118 bytes)
 socket file (server)  : exist
@@ -872,7 +872,7 @@ connect               <- "(11*"0123456789")0123456\0" (118 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(11*"0123456789")01234567\0'
 bind(server)          <- "(11*"0123456789")01234567\0" (119 bytes)
 socket file (server)  : exist
@@ -882,7 +882,7 @@ connect               <- "(11*"0123456789")01234567\0" (119 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(11*"0123456789")012345678\0'
 bind(server)          <- "(11*"0123456789")012345678\0" (120 bytes)
 socket file (server)  : exist
@@ -892,7 +892,7 @@ connect               <- "(11*"0123456789")012345678\0" (120 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(11*"0123456789")0123456789\0'
 bind(server)          <- "(12*"0123456789")\0" (121 bytes)
 socket file (server)  : exist
@@ -902,7 +902,7 @@ connect               <- "(12*"0123456789")\0" (121 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(25*"0123456789")0\0'
 bind(server)          <- "(25*"0123456789")0\0" (252 bytes)
 socket file (server)  : exist
@@ -912,7 +912,7 @@ connect               <- "(25*"0123456789")0\0" (252 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(25*"0123456789")01\0'
 bind(server)          <- "(25*"0123456789")01\0" (253 bytes)
 socket file (server)  : exist
@@ -922,7 +922,7 @@ connect               <- "(25*"0123456789")01\0" (253 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(25*"0123456789")012\0'
 bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
 bind(server): File name too long (ENAMETOOLONG)
@@ -1017,7 +1017,7 @@ connect               <- "(94*"Z")01234567\0" (103 bytes)
 getpeername(client)   -> "(94*"Z")01234567\0" (103 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(94*"Z")01234567\0" (103 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream -p '012345678\0'
 bind(server)          <- "(94*"Z")012345678\0" (104 bytes)
 socket file (server)  : exist
@@ -1027,7 +1027,7 @@ connect               <- "(94*"Z")012345678\0" (104 bytes)
 getpeername(client)   -> "(94*"Z")012345678\0" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(94*"Z")012345678\0" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream -p '0123456789\0'
 bind(server)          <- "(94*"Z")0123456789\0" (105 bytes)
 socket file (server)  : exist
@@ -1037,7 +1037,7 @@ connect               <- "(94*"Z")0123456789\0" (105 bytes)
 getpeername(client)   -> "(94*"Z")0123456789" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(94*"Z")0123456789" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream -p '01234567890\0'
 bind(server)          <- "(94*"Z")01234567890\0" (106 bytes)
 socket file (server)  : exist
@@ -1047,7 +1047,7 @@ connect               <- "(94*"Z")01234567890\0" (106 bytes)
 getpeername(client)   -> "(94*"Z")0123456789" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(94*"Z")0123456789" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 
 ./unix-stream -g 1024 '(25*"0123456789")012\0'
 bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
@@ -1061,9 +1061,9 @@ socket file (client)  : exist
 getsockname(client)   -> "(104*"b")" (104 bytes)
 connect               <- "foo\0" (4 bytes)
 getpeername(client)   -> "foo\0" (4 bytes)
-accept                -> "(14*"\0")" (14 bytes)
+accept                -> "(104*"b")" (104 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(104*"b")" (104 bytes)
 
 ./unix-stream -s '/etc/hosts\0'
 bind(server)          <- "/etc/hosts\0" (11 bytes)
@@ -1098,7 +1098,7 @@ connect               <- "./foo" (5 bytes)
 getpeername(client)   -> "foo" (3 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "foo" (3 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream -p '012345678'
 bind(server)          <- "(94*"Z")012345678" (103 bytes)
 socket file (server)  : exist
@@ -1108,7 +1108,7 @@ connect               <- "(94*"Z")012345678" (103 bytes)
 getpeername(client)   -> "(94*"Z")012345678" (103 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(94*"Z")012345678" (103 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream -p '0123456789'
 bind(server)          <- "(94*"Z")0123456789" (104 bytes)
 socket file (server)  : exist
@@ -1118,7 +1118,7 @@ connect               <- "(94*"Z")0123456789" (104 bytes)
 getpeername(client)   -> "(94*"Z")0123456789" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(94*"Z")0123456789" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream -p '01234567890'
 bind(server)          <- "(94*"Z")01234567890" (105 bytes)
 socket file (server)  : exist
@@ -1128,7 +1128,7 @@ connect               <- "(94*"Z")01234567890" (105 bytes)
 getpeername(client)   -> "(94*"Z")0123456789" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(94*"Z")0123456789" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(25*"0123456789")012'
 bind(server)          <- "(25*"0123456789")012" (253 bytes)
 socket file (server)  : exist
@@ -1138,7 +1138,7 @@ connect               <- "(25*"0123456789")012" (253 bytes)
 getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream -g 1024 '(25*"0123456789")012'
 bind(server)          <- "(25*"0123456789")012" (253 bytes)
 socket file (server)  : exist
@@ -1148,7 +1148,7 @@ connect               <- "(25*"0123456789")012" (253 bytes)
 getpeername(client)   -> "(25*"0123456789")012" (253 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(25*"0123456789")012" (253 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(25*"0123456789")0123'
 bind(server)          <- "(25*"0123456789")0123" (254 bytes)
 bind(server): File name too long (ENAMETOOLONG)
@@ -1167,7 +1167,7 @@ connect               <- "(125*"./")a" (251 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(52*"./")" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(125*"./")ab'
 bind(server)          <- "(125*"./")ab" (252 bytes)
 socket file (server)  : exist
@@ -1177,7 +1177,7 @@ connect               <- "(125*"./")ab" (252 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(52*"./")" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(125*"./")abc'
 bind(server)          <- "(125*"./")abc" (253 bytes)
 socket file (server)  : exist
@@ -1187,7 +1187,7 @@ connect               <- "(125*"./")abc" (253 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(52*"./")" (104 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(125*"./")abcd'
 bind(server)          <- "(125*"./")abcd" (254 bytes)
 bind(server): File name too long (ENAMETOOLONG)
@@ -1206,9 +1206,9 @@ socket file (client)  : exist
 getsockname(client)   -> "(104*"b")" (104 bytes)
 connect               <- "foo" (3 bytes)
 getpeername(client)   -> "foo" (3 bytes)
-accept                -> "(14*"\0")" (14 bytes)
+accept                -> "(104*"b")" (104 bytes)
 getsockname(accepted) -> "foo" (3 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(104*"b")" (104 bytes)
 
 ./unix-stream -s /etc/hosts
 bind(server)          <- "/etc/hosts" (10 bytes)
@@ -1242,7 +1242,7 @@ connect               <- "abc" (3 bytes)
 getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
 ./unix-stream -4 '(sun_len=2)abc'
 bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
@@ -1252,7 +1252,7 @@ connect               <- "abc" (3 bytes)
 getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
 ./unix-stream -4 '(sun_len=3)abc'
 bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
@@ -1262,7 +1262,7 @@ connect               <- "abc" (3 bytes)
 getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
 ./unix-stream -4 '(sun_len=4)abc'
 bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
@@ -1272,7 +1272,7 @@ connect               <- "abc" (3 bytes)
 getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
 ./unix-stream -4 '(sun_len=5)abc'
 bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
@@ -1282,7 +1282,7 @@ connect               <- "abc" (3 bytes)
 getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
 ./unix-stream -4 '(sun_len=6)abc'
 bind(server)          <- "abc" (3 bytes)
 socket file (server)  : exist
@@ -1292,4 +1292,4 @@ connect               <- "abc" (3 bytes)
 getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
-getpeername(accepted): Socket is not connected (ENOTCONN)
+getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
