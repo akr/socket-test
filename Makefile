@@ -97,12 +97,17 @@ unix-dgram: unix-dgram.o $(UTILOBJS) link.sh
 	sh ./link.sh unix-dgram.o $(UTILOBJS) -o $@
 
 results.html : table-result.erb \
-  results/linux.txt \
+  results/cygwin.txt \
+  results/darwin.txt \
+  results/debian-kfreebsd.txt \
+  results/dragonfly.txt \
   results/freebsd.txt \
+  results/hurd.txt \
+  results/linux-arm.txt \
+  results/linux.txt \
+  results/minix.txt \
+  results/miros.txt \
   results/netbsd.txt \
   results/openbsd.txt \
-  results/dragonfly.txt \
-  results/miros.txt \
-  results/sunos.txt \
-  results/cygwin.txt
+  results/sunos.txt
 	erb table-result.erb > results.html
