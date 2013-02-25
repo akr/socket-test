@@ -497,6 +497,106 @@ getpeername(client)   -> "(52*"./")"... (121 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(52*"./")"... (121 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(60*"./")0\0'
+bind(server)          <- "(60*"./")0\0" (122 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")"... (122 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(60*"./")0\0" (122 bytes)
+getpeername(client)   -> "(52*"./")"... (122 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(52*"./")"... (122 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(60*"./")01\0'
+bind(server)          <- "(60*"./")01\0" (123 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")"... (123 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(60*"./")01\0" (123 bytes)
+getpeername(client)   -> "(52*"./")"... (123 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(52*"./")"... (123 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(60*"./")012\0'
+bind(server)          <- "(60*"./")012\0" (124 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")"... (124 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(60*"./")012\0" (124 bytes)
+getpeername(client)   -> "(52*"./")"... (124 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(52*"./")"... (124 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(60*"./")0123\0'
+bind(server)          <- "(60*"./")0123\0" (125 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")"... (125 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(60*"./")0123\0" (125 bytes)
+getpeername(client)   -> "(52*"./")"... (125 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(52*"./")"... (125 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(60*"./")01234\0'
+bind(server)          <- "(60*"./")01234\0" (126 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")"... (126 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(60*"./")01234\0" (126 bytes)
+getpeername(client)   -> "(52*"./")"... (126 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(52*"./")"... (126 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(60*"./")012345\0'
+bind(server)          <- "(60*"./")012345\0" (127 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")"... (127 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(60*"./")012345\0" (127 bytes)
+getpeername(client)   -> "(52*"./")"... (127 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(52*"./")"... (127 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(60*"./")0123456\0'
+bind(server)          <- "(60*"./")0123456\0" (128 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")"... (128 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(60*"./")0123456\0" (128 bytes)
+getpeername(client)   -> "(52*"./")"... (128 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(52*"./")"... (128 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(60*"./")01234567\0'
+bind(server)          <- "(60*"./")01234567\0" (129 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")"... (129 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(60*"./")01234567\0" (129 bytes)
+getpeername(client)   -> "(52*"./")"... (129 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(52*"./")"... (129 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(60*"./")012345678\0'
+bind(server)          <- "(60*"./")012345678\0" (130 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")"... (130 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(60*"./")012345678\0" (130 bytes)
+getpeername(client)   -> "(52*"./")"... (130 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(52*"./")"... (130 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(60*"./")0123456789\0'
+bind(server)          <- "(60*"./")0123456789\0" (131 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")"... (131 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(60*"./")0123456789\0" (131 bytes)
+getpeername(client)   -> "(52*"./")"... (131 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(52*"./")"... (131 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(125*"./")0\0'
 bind(server)          <- "(125*"./")0\0" (252 bytes)
 socket file (server)  : exist
@@ -902,6 +1002,106 @@ getpeername(client)   -> "(10*"0123456789")0123"... (121 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123"... (121 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(12*"0123456789")0\0'
+bind(server)          <- "(12*"0123456789")0\0" (122 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123"... (122 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(12*"0123456789")0\0" (122 bytes)
+getpeername(client)   -> "(10*"0123456789")0123"... (122 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123"... (122 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(12*"0123456789")01\0'
+bind(server)          <- "(12*"0123456789")01\0" (123 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123"... (123 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(12*"0123456789")01\0" (123 bytes)
+getpeername(client)   -> "(10*"0123456789")0123"... (123 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123"... (123 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(12*"0123456789")012\0'
+bind(server)          <- "(12*"0123456789")012\0" (124 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123"... (124 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(12*"0123456789")012\0" (124 bytes)
+getpeername(client)   -> "(10*"0123456789")0123"... (124 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123"... (124 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(12*"0123456789")0123\0'
+bind(server)          <- "(12*"0123456789")0123\0" (125 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123"... (125 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(12*"0123456789")0123\0" (125 bytes)
+getpeername(client)   -> "(10*"0123456789")0123"... (125 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123"... (125 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(12*"0123456789")01234\0'
+bind(server)          <- "(12*"0123456789")01234\0" (126 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123"... (126 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(12*"0123456789")01234\0" (126 bytes)
+getpeername(client)   -> "(10*"0123456789")0123"... (126 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123"... (126 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(12*"0123456789")012345\0'
+bind(server)          <- "(12*"0123456789")012345\0" (127 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123"... (127 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(12*"0123456789")012345\0" (127 bytes)
+getpeername(client)   -> "(10*"0123456789")0123"... (127 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123"... (127 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(12*"0123456789")0123456\0'
+bind(server)          <- "(12*"0123456789")0123456\0" (128 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123"... (128 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(12*"0123456789")0123456\0" (128 bytes)
+getpeername(client)   -> "(10*"0123456789")0123"... (128 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123"... (128 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(12*"0123456789")01234567\0'
+bind(server)          <- "(12*"0123456789")01234567\0" (129 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123"... (129 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(12*"0123456789")01234567\0" (129 bytes)
+getpeername(client)   -> "(10*"0123456789")0123"... (129 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123"... (129 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(12*"0123456789")012345678\0'
+bind(server)          <- "(12*"0123456789")012345678\0" (130 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123"... (130 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(12*"0123456789")012345678\0" (130 bytes)
+getpeername(client)   -> "(10*"0123456789")0123"... (130 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123"... (130 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream '(12*"0123456789")0123456789\0'
+bind(server)          <- "(13*"0123456789")\0" (131 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123"... (131 bytes)
+getsockname(client)   -> "(14*"\0")" (14 bytes)
+connect               <- "(13*"0123456789")\0" (131 bytes)
+getpeername(client)   -> "(10*"0123456789")0123"... (131 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123"... (131 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(25*"0123456789")0\0'
 bind(server)          <- "(25*"0123456789")0\0" (252 bytes)
 socket file (server)  : exist
@@ -1086,6 +1286,7 @@ bind(server): No such file or directory (ENOENT)
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
+
 
 
 ./unix-stream 'foo' './foo'
