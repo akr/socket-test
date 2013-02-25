@@ -43,7 +43,10 @@ AC_C_CONST
 AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
 
-AC_CHECK_TYPES([sa_family_t], [], [], [[#include <sys/socket.h>]])
+AC_CHECK_TYPES([sa_family_t], [], [], [[
+#include <sys/types.h>
+#include <sys/socket.h>
+]])
 
 AC_CHECK_MEMBERS([struct sockaddr.sa_len], [], [], [[
 #include <sys/types.h>
