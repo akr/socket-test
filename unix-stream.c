@@ -79,7 +79,7 @@ struct sockaddr_un *get_sockaddr_ptr, *get_sockaddr_ptr2;
 socklen_t get_sockaddr_len, get_sockaddr_len2;
 
 #ifdef USE_FORK
-static pid_t child_pid;
+static pid_t child_pid = 0;
 #endif
 
 #ifdef USE_PTHREAD
@@ -512,6 +512,7 @@ static void test_unix_stream(void)
 #if defined(USE_FORK)
   if (waitpid(child_pid, &ret, 0) == -1) { perror2("waitpid"); exit(EXIT_FAILURE); }
   if (!WIFEXITED(ret) || WEXITSTATUS(ret) != EXIT_SUCCESS) { exit(EXIT_FAILURE); }
+  child_pid = 0;
 #endif
 }
 
@@ -524,7 +525,11 @@ void atexit_func()
       unlink_socket(client_path_str);
   }
   if (tmpdir)
-      rmchtmpdir(tmpdir);
+    rmchtmpdir(tmpdir);
+#if defined(USE_FORK)
+  if (child_pid)
+    kill(child_pid, 9);
+#endif
 }
 
 int main(int argc, char *argv[])
