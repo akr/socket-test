@@ -1,2 +1,6 @@
 .upd-* binary
 configure binary
+config.h.in binary
+errsym.c binary
+size.c binary
+const.c binary
