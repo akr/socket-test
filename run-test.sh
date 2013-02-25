@@ -6,7 +6,7 @@ Linux*)
   sh scripts/nullless-tests.sh
   sh scripts/linux-tests.sh
   ;;
-NetBSD*|FreeBSD*|OpenBSD*|DragonFly*|MirBSD*|GNU/kFreeBSD*|*Hurd*|Darwin*)
+NetBSD*|FreeBSD*|OpenBSD*|DragonFly*|MirBSD*|GNU/kFreeBSD*|*Hurd*|Darwin*|Haiku*)
   sh scripts/basic-tests.sh
   sh scripts/nullless-tests.sh
   sh scripts/44bsd-tests.sh

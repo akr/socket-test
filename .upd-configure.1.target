@@ -3012,6 +3012,51 @@ _ACEOF
 
 fi
  # SunOS.  cf. libxnet(3LIB) and standards(5)
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for socketpair in -lnetwork" >&5
+$as_echo_n "checking for socketpair in -lnetwork... " >&6; }
+if ${ac_cv_lib_network_socketpair+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lnetwork  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char socketpair ();
+int
+main ()
+{
+return socketpair ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_network_socketpair=yes
+else
+  ac_cv_lib_network_socketpair=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_network_socketpair" >&5
+$as_echo "$ac_cv_lib_network_socketpair" >&6; }
+if test "x$ac_cv_lib_network_socketpair" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBNETWORK 1
+_ACEOF
+
+  LIBS="-lnetwork $LIBS"
+
+fi
+ # Haiku.
 
 # Checks for header files.
 ac_ext=c
@@ -3525,6 +3570,18 @@ else
 cat >>confdefs.h <<_ACEOF
 #define ssize_t int
 _ACEOF
+
+fi
+
+
+ac_fn_c_check_type "$LINENO" "sa_family_t" "ac_cv_type_sa_family_t" "#include <sys/socket.h>
+"
+if test "x$ac_cv_type_sa_family_t" = xyes; then :
+
+cat >>confdefs.h <<_ACEOF
+#define HAVE_SA_FAMILY_T 1
+_ACEOF
+
 
 fi
 

@@ -130,7 +130,9 @@ int main(int argc, char *argv[])
   SHOW_INTEGER_TYPE(long long);
   SHOW_INTEGER_TYPE(intmax_t);
   SHOW_INTEGER_TYPE(socklen_t);
+#ifdef HAVE_SA_FAMILY_T
   SHOW_INTEGER_TYPE(sa_family_t);
+#endif
   SHOW_INTEGER_TYPE(size_t);
   SHOW_INTEGER_TYPE(ssize_t);
 

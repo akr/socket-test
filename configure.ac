@@ -32,6 +32,7 @@ AC_PROG_CC
 
 # Checks for libraries.
 AC_CHECK_LIB([xnet], [socketpair]) # SunOS.  cf. libxnet(3LIB) and standards(5)
+AC_CHECK_LIB([network], [socketpair]) # Haiku.
 
 # Checks for header files.
 AC_HEADER_STDC
@@ -41,6 +42,8 @@ AC_CHECK_HEADERS([stddef.h stdlib.h string.h sys/socket.h unistd.h])
 AC_C_CONST
 AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
+
+AC_CHECK_TYPES([sa_family_t], [], [], [[#include <sys/socket.h>]])
 
 AC_CHECK_MEMBERS([struct sockaddr.sa_len], [], [], [[
 #include <sys/types.h>
