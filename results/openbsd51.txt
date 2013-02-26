@@ -2,6 +2,52 @@
 uname -mrsv
 OpenBSD 5.1 GENERIC#0 sparc64
 ./size
+sockaddr.size =                            16
+sockaddr.sa_len.size =                     1
+sockaddr.sa_family.size =                  1
+sockaddr.sa_data.size =                    14
+sockaddr_un.size =                         106
+sockaddr_un.sun_len.size =                 1
+sockaddr_un.sun_family.size =              1
+sockaddr_un.sun_path.size =                104
+sockaddr_in.size =                         16
+sockaddr_in.sin_len.size =                 1
+sockaddr_in.sin_family.size =              1
+sockaddr_in.sin_port.size =                2
+sockaddr_in.sin_addr.size =                4
+sockaddr_in6.size =                        28
+sockaddr_in6.sin6_len.size =               1
+sockaddr_in6.sin6_family.size =            1
+sockaddr_in6.sin6_port.size =              2
+sockaddr_in6.sin6_flowinfo.size =          4
+sockaddr_in6.sin6_addr.size =              16
+sockaddr_in6.sin6_scope_id.size =          4
+sockaddr_storage.size =                    256
+sockaddr_storage.ss_len.size =             1
+sockaddr_storage.ss_family.size =          1
+sockaddr.align =                           1
+sockaddr.sa_len.offset =                   0
+sockaddr.sa_family.offset =                1
+sockaddr.sa_data.offset =                  2
+sockaddr_un.align =                        1
+sockaddr_un.sun_len.offset =               0
+sockaddr_un.sun_family.offset =            1
+sockaddr_un.sun_path.offset =              2
+sockaddr_in.align =                        4
+sockaddr_in.sin_len.offset =               0
+sockaddr_in.sin_family.offset =            1
+sockaddr_in.sin_port.offset =              2
+sockaddr_in.sin_addr.offset =              4
+sockaddr_in6.align =                       4
+sockaddr_in6.sin6_len.offset =             0
+sockaddr_in6.sin6_family.offset =          1
+sockaddr_in6.sin6_port.offset =            2
+sockaddr_in6.sin6_flowinfo.offset =        4
+sockaddr_in6.sin6_addr.offset =            8
+sockaddr_in6.sin6_scope_id.offset =        24
+sockaddr_storage.align =                   8
+sockaddr_storage.ss_len.offset =           0
+sockaddr_storage.ss_family.offset =        1
 char.size =                                1
 char.align =                               1
 char.sign =                                signed
@@ -54,53 +100,24 @@ char*.size =                               8
 char*.align =                              8
 int*.size =                                8
 int*.align =                               8
-sockaddr.size =                            16
-sockaddr.sa_len.size =                     1
-sockaddr.sa_family.size =                  1
-sockaddr.sa_data.size =                    14
-sockaddr_un.size =                         106
-sockaddr_un.sun_len.size =                 1
-sockaddr_un.sun_family.size =              1
-sockaddr_un.sun_path.size =                104
-sockaddr_in.size =                         16
-sockaddr_in.sin_len.size =                 1
-sockaddr_in.sin_family.size =              1
-sockaddr_in.sin_port.size =                2
-sockaddr_in.sin_addr.size =                4
-sockaddr_in6.size =                        28
-sockaddr_in6.sin6_len.size =               1
-sockaddr_in6.sin6_family.size =            1
-sockaddr_in6.sin6_port.size =              2
-sockaddr_in6.sin6_flowinfo.size =          4
-sockaddr_in6.sin6_addr.size =              16
-sockaddr_in6.sin6_scope_id.size =          4
-sockaddr_storage.size =                    256
-sockaddr_storage.ss_len.size =             1
-sockaddr_storage.ss_family.size =          1
-sockaddr.align =                           1
-sockaddr.sa_len.offset =                   0
-sockaddr.sa_family.offset =                1
-sockaddr.sa_data.offset =                  2
-sockaddr_un.align =                        1
-sockaddr_un.sun_len.offset =               0
-sockaddr_un.sun_family.offset =            1
-sockaddr_un.sun_path.offset =              2
-sockaddr_in.align =                        4
-sockaddr_in.sin_len.offset =               0
-sockaddr_in.sin_family.offset =            1
-sockaddr_in.sin_port.offset =              2
-sockaddr_in.sin_addr.offset =              4
-sockaddr_in6.align =                       4
-sockaddr_in6.sin6_len.offset =             0
-sockaddr_in6.sin6_family.offset =          1
-sockaddr_in6.sin6_port.offset =            2
-sockaddr_in6.sin6_flowinfo.offset =        4
-sockaddr_in6.sin6_addr.offset =            8
-sockaddr_in6.sin6_scope_id.offset =        24
-sockaddr_storage.align =                   8
-sockaddr_storage.ss_len.offset =           0
-sockaddr_storage.ss_family.offset =        1
 ./const
+AF_UNSPEC = 0 (4 bytes)
+PF_UNSPEC = 0 (4 bytes)
+AF_UNIX = 1 (4 bytes)
+PF_UNIX = 1 (4 bytes)
+AF_INET = 2 (4 bytes)
+PF_INET = 2 (4 bytes)
+AF_INET6 = 24 (4 bytes)
+PF_INET6 = 24 (4 bytes)
+SOCK_STREAM = 1 (4 bytes)
+SOCK_DGRAM = 2 (4 bytes)
+SOCK_SEQPACKET = 5 (4 bytes)
+SOMAXCONN = 128 (4 bytes)
+NAME_MAX = 255 (4 bytes)
+PATH_MAX = 1024 (4 bytes)
+SYMLOOP_MAX = 32 (4 bytes)
+EXIT_SUCCESS = 0 (4 bytes)
+EXIT_FAILURE = 1 (4 bytes)
 CHAR_BIT = 8 (4 bytes)
 SCHAR_MIN = -128 (4 bytes)
 SCHAR_MAX = 127 (4 bytes)
@@ -140,23 +157,6 @@ LDBL_MAX_EXP = 16384 (4 bytes)
 FLT_MAX_10_EXP = 38 (4 bytes)
 DBL_MAX_10_EXP = 308 (4 bytes)
 LDBL_MAX_10_EXP = 4932 (4 bytes)
-AF_UNSPEC = 0 (4 bytes)
-PF_UNSPEC = 0 (4 bytes)
-AF_UNIX = 1 (4 bytes)
-PF_UNIX = 1 (4 bytes)
-AF_INET = 2 (4 bytes)
-PF_INET = 2 (4 bytes)
-AF_INET6 = 24 (4 bytes)
-PF_INET6 = 24 (4 bytes)
-SOCK_STREAM = 1 (4 bytes)
-SOCK_DGRAM = 2 (4 bytes)
-SOCK_SEQPACKET = 5 (4 bytes)
-SOMAXCONN = 128 (4 bytes)
-NAME_MAX = 255 (4 bytes)
-PATH_MAX = 1024 (4 bytes)
-SYMLOOP_MAX = 32 (4 bytes)
-EXIT_SUCCESS = 0 (4 bytes)
-EXIT_FAILURE = 1 (4 bytes)
 FLT_MAX = 3.40282e+38 (4 bytes)
 DBL_MAX = 1.79769313486232e+308 (8 bytes)
 LDBL_MAX = 1.18973149535723176508575932662801e+4932 (16 bytes)
@@ -167,22 +167,24 @@ FLT_MIN = 1.17549e-38 (4 bytes)
 DBL_MIN = 2.2250738585072e-308 (8 bytes)
 LDBL_MIN = 3.36210314311209350626267781732175e-4932 (16 bytes)
 
+./unix-stream 'foo\0' 'foo\0' 'bar\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar\0" (4 bytes)
+connect               <- "foo\0" (4 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "bar\0" (4 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "bar\0" (4 bytes)
 ./unix-stream 'foo\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 getsockname(client)   -> too short sockaddr_un (0 bytes)
 connect               <- "foo\0" (4 bytes)
-getpeername(client)   -> "foo\0" (4 bytes)
-accept                -> "(14*"\0")" (14 bytes)
-getsockname(accepted) -> "foo\0" (4 bytes)
-getpeername(accepted) -> too short sockaddr_un (0 bytes)
-./unix-stream 'foo\0' './foo\0'
-bind(server)          <- "foo\0" (4 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "foo\0" (4 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
-connect               <- "./foo\0" (6 bytes)
 getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
@@ -199,16 +201,53 @@ getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "bar\0" (4 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "bar\0" (4 bytes)
-./unix-stream 'foo\0hoge' './foo\0fuga'
+./unix-stream 'foo\0' './foo\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+getsockname(client)   -> too short sockaddr_un (0 bytes)
+connect               <- "./foo\0" (6 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
+
+./unix-stream 'foo\0hoge' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0\0\0\0\0" (8 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
-connect               <- "./foo\0fuga" (10 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar\0" (4 bytes)
+connect               <- "foo\0" (4 bytes)
 getpeername(client)   -> "foo\0\0\0\0\0" (8 bytes)
-accept                -> "(14*"\0")" (14 bytes)
+accept                -> "bar\0" (4 bytes)
 getsockname(accepted) -> "foo\0\0\0\0\0" (8 bytes)
-getpeername(accepted) -> too short sockaddr_un (0 bytes)
+getpeername(accepted) -> "bar\0" (4 bytes)
+./unix-stream 'foo\0' 'foo\0fuga' 'bar\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar\0" (4 bytes)
+connect               <- "foo\0fuga" (8 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "bar\0" (4 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "bar\0" (4 bytes)
+./unix-stream 'foo\0' 'foo\0' 'bar\0moga'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "bar\0moga" (8 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar\0\0\0\0\0" (8 bytes)
+connect               <- "foo\0" (4 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "bar\0\0\0\0\0" (8 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "bar\0\0\0\0\0" (8 bytes)
 ./unix-stream 'foo\0hoge' './foo\0fuga' 'bar\0moga'
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
@@ -608,6 +647,67 @@ bind(server): Invalid argument (EINVAL)
 bind(server)          <- "(259*"./")ab\0" (521 bytes)
 bind(server): Invalid argument (EINVAL)
 
+./unix-stream '(510*"./")a\0'
+bind(server)          <- "(510*"./")a\0" (1022 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(510*"./")ab\0'
+bind(server)          <- "(510*"./")ab\0" (1023 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(511*"./")a\0'
+bind(server)          <- "(511*"./")a\0" (1024 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(511*"./")ab\0'
+bind(server)          <- "(511*"./")ab\0" (1025 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(512*"./")a\0'
+bind(server)          <- "(512*"./")a\0" (1026 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(512*"./")ab\0'
+bind(server)          <- "(512*"./")ab\0" (1027 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(513*"./")a\0'
+bind(server)          <- "(513*"./")a\0" (1028 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(513*"./")ab\0'
+bind(server)          <- "(513*"./")ab\0" (1029 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(514*"./")a\0'
+bind(server)          <- "(514*"./")a\0" (1030 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(514*"./")ab\0'
+bind(server)          <- "(514*"./")ab\0" (1031 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(515*"./")a\0'
+bind(server)          <- "(515*"./")a\0" (1032 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(515*"./")ab\0'
+bind(server)          <- "(515*"./")ab\0" (1033 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(516*"./")a\0'
+bind(server)          <- "(516*"./")a\0" (1034 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(516*"./")ab\0'
+bind(server)          <- "(516*"./")ab\0" (1035 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(517*"./")a\0'
+bind(server)          <- "(517*"./")a\0" (1036 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(517*"./")ab\0'
+bind(server)          <- "(517*"./")ab\0" (1037 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(518*"./")a\0'
+bind(server)          <- "(518*"./")a\0" (1038 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(518*"./")ab\0'
+bind(server)          <- "(518*"./")ab\0" (1039 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(519*"./")a\0'
+bind(server)          <- "(519*"./")a\0" (1040 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(519*"./")ab\0'
+bind(server)          <- "(519*"./")ab\0" (1041 bytes)
+bind(server): Invalid argument (EINVAL)
+
 ./unix-stream '(90*"c")\0'
 bind(server)          <- "(90*"c")\0" (91 bytes)
 socket file (server)  : exist
@@ -861,68 +961,6 @@ bind(server): Invalid argument (EINVAL)
 bind(server)          <- "(259*"c")\0" (260 bytes)
 bind(server): Invalid argument (EINVAL)
 
-./unix-stream '(500*"c")\0'
-bind(server)          <- "(500*"c")\0" (501 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(501*"c")\0'
-bind(server)          <- "(501*"c")\0" (502 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(502*"c")\0'
-bind(server)          <- "(502*"c")\0" (503 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(503*"c")\0'
-bind(server)          <- "(503*"c")\0" (504 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(504*"c")\0'
-bind(server)          <- "(504*"c")\0" (505 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(505*"c")\0'
-bind(server)          <- "(505*"c")\0" (506 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(506*"c")\0'
-bind(server)          <- "(506*"c")\0" (507 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(507*"c")\0'
-bind(server)          <- "(507*"c")\0" (508 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(508*"c")\0'
-bind(server)          <- "(508*"c")\0" (509 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(509*"c")\0'
-bind(server)          <- "(509*"c")\0" (510 bytes)
-bind(server): Invalid argument (EINVAL)
-
-./unix-stream '(510*"c")\0'
-bind(server)          <- "(510*"c")\0" (511 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(511*"c")\0'
-bind(server)          <- "(511*"c")\0" (512 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(512*"c")\0'
-bind(server)          <- "(512*"c")\0" (513 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(513*"c")\0'
-bind(server)          <- "(513*"c")\0" (514 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(514*"c")\0'
-bind(server)          <- "(514*"c")\0" (515 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(515*"c")\0'
-bind(server)          <- "(515*"c")\0" (516 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(516*"c")\0'
-bind(server)          <- "(516*"c")\0" (517 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(517*"c")\0'
-bind(server)          <- "(517*"c")\0" (518 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(518*"c")\0'
-bind(server)          <- "(518*"c")\0" (519 bytes)
-bind(server): Invalid argument (EINVAL)
-./unix-stream '(519*"c")\0'
-bind(server)          <- "(519*"c")\0" (520 bytes)
-bind(server): Invalid argument (EINVAL)
-
 ./unix-stream -p '01234567\0'
 bind(server)          <- "(94*"Z")01234567\0" (103 bytes)
 socket file (server)  : exist
@@ -984,22 +1022,24 @@ bind(server): Address already in use (EADDRINUSE)
 
 
 
+./unix-stream 'foo' 'foo' 'bar'
+bind(server)          <- "foo" (3 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo" (3 bytes)
+bind(client)          <- "bar" (3 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar" (3 bytes)
+connect               <- "foo" (3 bytes)
+getpeername(client)   -> "foo" (3 bytes)
+accept                -> "bar" (3 bytes)
+getsockname(accepted) -> "foo" (3 bytes)
+getpeername(accepted) -> "bar" (3 bytes)
 ./unix-stream 'foo'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo" (3 bytes)
 getsockname(client)   -> too short sockaddr_un (0 bytes)
 connect               <- "foo" (3 bytes)
-getpeername(client)   -> "foo" (3 bytes)
-accept                -> "(14*"\0")" (14 bytes)
-getsockname(accepted) -> "foo" (3 bytes)
-getpeername(accepted) -> too short sockaddr_un (0 bytes)
-./unix-stream 'foo' './foo'
-bind(server)          <- "foo" (3 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "foo" (3 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
-connect               <- "./foo" (5 bytes)
 getpeername(client)   -> "foo" (3 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "foo" (3 bytes)
@@ -1016,6 +1056,16 @@ getpeername(client)   -> "foo" (3 bytes)
 accept                -> "bar" (3 bytes)
 getsockname(accepted) -> "foo" (3 bytes)
 getpeername(accepted) -> "bar" (3 bytes)
+./unix-stream 'foo' './foo'
+bind(server)          <- "foo" (3 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo" (3 bytes)
+getsockname(client)   -> too short sockaddr_un (0 bytes)
+connect               <- "./foo" (5 bytes)
+getpeername(client)   -> "foo" (3 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "foo" (3 bytes)
+getpeername(accepted) -> too short sockaddr_un (0 bytes)
 
 ./unix-stream '(44*"./")a'
 bind(server)          <- "(44*"./")a" (89 bytes)
@@ -1403,6 +1453,67 @@ bind(server): Invalid argument (EINVAL)
 bind(server)          <- "(259*"./")ab" (520 bytes)
 bind(server): Invalid argument (EINVAL)
 
+./unix-stream '(510*"./")a'
+bind(server)          <- "(510*"./")a" (1021 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(510*"./")ab'
+bind(server)          <- "(510*"./")ab" (1022 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(511*"./")a'
+bind(server)          <- "(511*"./")a" (1023 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(511*"./")ab'
+bind(server)          <- "(511*"./")ab" (1024 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(512*"./")a'
+bind(server)          <- "(512*"./")a" (1025 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(512*"./")ab'
+bind(server)          <- "(512*"./")ab" (1026 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(513*"./")a'
+bind(server)          <- "(513*"./")a" (1027 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(513*"./")ab'
+bind(server)          <- "(513*"./")ab" (1028 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(514*"./")a'
+bind(server)          <- "(514*"./")a" (1029 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(514*"./")ab'
+bind(server)          <- "(514*"./")ab" (1030 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(515*"./")a'
+bind(server)          <- "(515*"./")a" (1031 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(515*"./")ab'
+bind(server)          <- "(515*"./")ab" (1032 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(516*"./")a'
+bind(server)          <- "(516*"./")a" (1033 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(516*"./")ab'
+bind(server)          <- "(516*"./")ab" (1034 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(517*"./")a'
+bind(server)          <- "(517*"./")a" (1035 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(517*"./")ab'
+bind(server)          <- "(517*"./")ab" (1036 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(518*"./")a'
+bind(server)          <- "(518*"./")a" (1037 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(518*"./")ab'
+bind(server)          <- "(518*"./")ab" (1038 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(519*"./")a'
+bind(server)          <- "(519*"./")a" (1039 bytes)
+bind(server): Invalid argument (EINVAL)
+./unix-stream '(519*"./")ab'
+bind(server)          <- "(519*"./")ab" (1040 bytes)
+bind(server): Invalid argument (EINVAL)
+
 ./unix-stream '(90*"c")'
 bind(server)          <- "(90*"c")" (90 bytes)
 socket file (server)  : exist
@@ -1767,10 +1878,9 @@ bind(server): Address already in use (EADDRINUSE)
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo" (3 bytes)
-./unix-stream -s 'README'
+./unix-stream -c -s 'README'
 bind(server)          <- "README" (6 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "README" (6 bytes)
+bind(server): Address already in use (EADDRINUSE)
 
 ./unix-stream -4 '(sun_len=1)abc\0'
 bind(server)          <- "abc\0" (4 bytes)
