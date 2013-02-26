@@ -359,163 +359,163 @@ getsockname(accepted) -> "(50*"./")0123456\0" (108 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream '(50*"./")01234567\0'
 bind(server)          <- "(50*"./")01234567\0" (109 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(50*"./")012345678\0'
 bind(server)          <- "(50*"./")012345678\0" (110 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(50*"./")0123456789\0'
 bind(server)          <- "(50*"./")0123456789\0" (111 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(55*"./")0\0'
 bind(server)          <- "(55*"./")0\0" (112 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(55*"./")01\0'
 bind(server)          <- "(55*"./")01\0" (113 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(55*"./")012\0'
 bind(server)          <- "(55*"./")012\0" (114 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(55*"./")0123\0'
 bind(server)          <- "(55*"./")0123\0" (115 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(55*"./")01234\0'
 bind(server)          <- "(55*"./")01234\0" (116 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(55*"./")012345\0'
 bind(server)          <- "(55*"./")012345\0" (117 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(55*"./")0123456\0'
 bind(server)          <- "(55*"./")0123456\0" (118 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(55*"./")01234567\0'
 bind(server)          <- "(55*"./")01234567\0" (119 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(55*"./")012345678\0'
 bind(server)          <- "(55*"./")012345678\0" (120 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(55*"./")0123456789\0'
 bind(server)          <- "(55*"./")0123456789\0" (121 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(60*"./")0\0'
 bind(server)          <- "(60*"./")0\0" (122 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(60*"./")01\0'
 bind(server)          <- "(60*"./")01\0" (123 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(60*"./")012\0'
 bind(server)          <- "(60*"./")012\0" (124 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(60*"./")0123\0'
 bind(server)          <- "(60*"./")0123\0" (125 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(60*"./")01234\0'
 bind(server)          <- "(60*"./")01234\0" (126 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(60*"./")012345\0'
 bind(server)          <- "(60*"./")012345\0" (127 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(60*"./")0123456\0'
 bind(server)          <- "(60*"./")0123456\0" (128 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(60*"./")01234567\0'
 bind(server)          <- "(60*"./")01234567\0" (129 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(60*"./")012345678\0'
 bind(server)          <- "(60*"./")012345678\0" (130 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(60*"./")0123456789\0'
 bind(server)          <- "(60*"./")0123456789\0" (131 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(125*"./")0\0'
 bind(server)          <- "(125*"./")0\0" (252 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(125*"./")01\0'
 bind(server)          <- "(125*"./")01\0" (253 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(125*"./")012\0'
 bind(server)          <- "(125*"./")012\0" (254 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(125*"./")0123\0'
 bind(server)          <- "(125*"./")0123\0" (255 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(125*"./")01234\0'
 bind(server)          <- "(125*"./")01234\0" (256 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(125*"./")012345\0'
 bind(server)          <- "(125*"./")012345\0" (257 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(125*"./")0123456\0'
 bind(server)          <- "(125*"./")0123456\0" (258 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(125*"./")01234567\0'
 bind(server)          <- "(125*"./")01234567\0" (259 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(125*"./")012345678\0'
 bind(server)          <- "(125*"./")012345678\0" (260 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(125*"./")0123456789\0'
 bind(server)          <- "(125*"./")0123456789\0" (261 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(250*"./")0\0'
 bind(server)          <- "(250*"./")0\0" (502 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(250*"./")01\0'
 bind(server)          <- "(250*"./")01\0" (503 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(250*"./")012\0'
 bind(server)          <- "(250*"./")012\0" (504 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(250*"./")0123\0'
 bind(server)          <- "(250*"./")0123\0" (505 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(250*"./")01234\0'
 bind(server)          <- "(250*"./")01234\0" (506 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(250*"./")012345\0'
 bind(server)          <- "(250*"./")012345\0" (507 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(250*"./")0123456\0'
 bind(server)          <- "(250*"./")0123456\0" (508 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(250*"./")01234567\0'
 bind(server)          <- "(250*"./")01234567\0" (509 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(250*"./")012345678\0'
 bind(server)          <- "(250*"./")012345678\0" (510 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(250*"./")0123456789\0'
 bind(server)          <- "(250*"./")0123456789\0" (511 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(255*"./")0\0'
 bind(server)          <- "(255*"./")0\0" (512 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(255*"./")01\0'
 bind(server)          <- "(255*"./")01\0" (513 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(255*"./")012\0'
 bind(server)          <- "(255*"./")012\0" (514 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(255*"./")0123\0'
 bind(server)          <- "(255*"./")0123\0" (515 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(255*"./")01234\0'
 bind(server)          <- "(255*"./")01234\0" (516 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(255*"./")012345\0'
 bind(server)          <- "(255*"./")012345\0" (517 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(255*"./")0123456\0'
 bind(server)          <- "(255*"./")0123456\0" (518 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(255*"./")01234567\0'
 bind(server)          <- "(255*"./")01234567\0" (519 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(255*"./")012345678\0'
 bind(server)          <- "(255*"./")012345678\0" (520 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(255*"./")0123456789\0'
 bind(server)          <- "(255*"./")0123456789\0" (521 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 
 ./unix-stream '(9*"0123456789")0\0'
 bind(server)          <- "(9*"0123456789")0\0" (92 bytes)
@@ -689,163 +689,163 @@ getsockname(accepted) -> "(10*"0123456789")0123456\0" (108 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream '(10*"0123456789")01234567\0'
 bind(server)          <- "(10*"0123456789")01234567\0" (109 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(10*"0123456789")012345678\0'
 bind(server)          <- "(10*"0123456789")012345678\0" (110 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(10*"0123456789")0123456789\0'
 bind(server)          <- "(11*"0123456789")\0" (111 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(11*"0123456789")0\0'
 bind(server)          <- "(11*"0123456789")0\0" (112 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(11*"0123456789")01\0'
 bind(server)          <- "(11*"0123456789")01\0" (113 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(11*"0123456789")012\0'
 bind(server)          <- "(11*"0123456789")012\0" (114 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(11*"0123456789")0123\0'
 bind(server)          <- "(11*"0123456789")0123\0" (115 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(11*"0123456789")01234\0'
 bind(server)          <- "(11*"0123456789")01234\0" (116 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(11*"0123456789")012345\0'
 bind(server)          <- "(11*"0123456789")012345\0" (117 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(11*"0123456789")0123456\0'
 bind(server)          <- "(11*"0123456789")0123456\0" (118 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(11*"0123456789")01234567\0'
 bind(server)          <- "(11*"0123456789")01234567\0" (119 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(11*"0123456789")012345678\0'
 bind(server)          <- "(11*"0123456789")012345678\0" (120 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(11*"0123456789")0123456789\0'
 bind(server)          <- "(12*"0123456789")\0" (121 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(12*"0123456789")0\0'
 bind(server)          <- "(12*"0123456789")0\0" (122 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(12*"0123456789")01\0'
 bind(server)          <- "(12*"0123456789")01\0" (123 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(12*"0123456789")012\0'
 bind(server)          <- "(12*"0123456789")012\0" (124 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(12*"0123456789")0123\0'
 bind(server)          <- "(12*"0123456789")0123\0" (125 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(12*"0123456789")01234\0'
 bind(server)          <- "(12*"0123456789")01234\0" (126 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(12*"0123456789")012345\0'
 bind(server)          <- "(12*"0123456789")012345\0" (127 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(12*"0123456789")0123456\0'
 bind(server)          <- "(12*"0123456789")0123456\0" (128 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(12*"0123456789")01234567\0'
 bind(server)          <- "(12*"0123456789")01234567\0" (129 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(12*"0123456789")012345678\0'
 bind(server)          <- "(12*"0123456789")012345678\0" (130 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(12*"0123456789")0123456789\0'
 bind(server)          <- "(13*"0123456789")\0" (131 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(25*"0123456789")0\0'
 bind(server)          <- "(25*"0123456789")0\0" (252 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(25*"0123456789")01\0'
 bind(server)          <- "(25*"0123456789")01\0" (253 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(25*"0123456789")012\0'
 bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(25*"0123456789")0123\0'
 bind(server)          <- "(25*"0123456789")0123\0" (255 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(25*"0123456789")01234\0'
 bind(server)          <- "(25*"0123456789")01234\0" (256 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(25*"0123456789")012345\0'
 bind(server)          <- "(25*"0123456789")012345\0" (257 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(25*"0123456789")0123456\0'
 bind(server)          <- "(25*"0123456789")0123456\0" (258 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(25*"0123456789")01234567\0'
 bind(server)          <- "(25*"0123456789")01234567\0" (259 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(25*"0123456789")012345678\0'
 bind(server)          <- "(25*"0123456789")012345678\0" (260 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(25*"0123456789")0123456789\0'
 bind(server)          <- "(26*"0123456789")\0" (261 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(50*"0123456789")0\0'
 bind(server)          <- "(50*"0123456789")0\0" (502 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(50*"0123456789")01\0'
 bind(server)          <- "(50*"0123456789")01\0" (503 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(50*"0123456789")012\0'
 bind(server)          <- "(50*"0123456789")012\0" (504 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(50*"0123456789")0123\0'
 bind(server)          <- "(50*"0123456789")0123\0" (505 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(50*"0123456789")01234\0'
 bind(server)          <- "(50*"0123456789")01234\0" (506 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(50*"0123456789")012345\0'
 bind(server)          <- "(50*"0123456789")012345\0" (507 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(50*"0123456789")0123456\0'
 bind(server)          <- "(50*"0123456789")0123456\0" (508 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(50*"0123456789")01234567\0'
 bind(server)          <- "(50*"0123456789")01234567\0" (509 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(50*"0123456789")012345678\0'
 bind(server)          <- "(50*"0123456789")012345678\0" (510 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(50*"0123456789")0123456789\0'
 bind(server)          <- "(51*"0123456789")\0" (511 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(51*"0123456789")0\0'
 bind(server)          <- "(51*"0123456789")0\0" (512 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(51*"0123456789")01\0'
 bind(server)          <- "(51*"0123456789")01\0" (513 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(51*"0123456789")012\0'
 bind(server)          <- "(51*"0123456789")012\0" (514 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(51*"0123456789")0123\0'
 bind(server)          <- "(51*"0123456789")0123\0" (515 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(51*"0123456789")01234\0'
 bind(server)          <- "(51*"0123456789")01234\0" (516 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(51*"0123456789")012345\0'
 bind(server)          <- "(51*"0123456789")012345\0" (517 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(51*"0123456789")0123456\0'
 bind(server)          <- "(51*"0123456789")0123456\0" (518 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(51*"0123456789")01234567\0'
 bind(server)          <- "(51*"0123456789")01234567\0" (519 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(51*"0123456789")012345678\0'
 bind(server)          <- "(51*"0123456789")012345678\0" (520 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(51*"0123456789")0123456789\0'
 bind(server)          <- "(52*"0123456789")\0" (521 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 
 ./unix-stream -p '01234567\0'
 bind(server)          <- "(98*"Z")01234567\0" (107 bytes)
@@ -869,36 +869,36 @@ getsockname(accepted) -> "(98*"Z")012345678\0" (108 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream -p '0123456789\0'
 bind(server)          <- "(98*"Z")0123456789\0" (109 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream -p '01234567890\0'
 bind(server)          <- "(98*"Z")01234567890\0" (110 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 
 ./unix-stream -g 1024 '(25*"0123456789")012\0'
 bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream 'foo\0' 'foo\0' '(200*"b")\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(200*"b")\0" (201 bytes)
-bind(client): Invalid argument (EINVAL)
+bind(client) -> Invalid argument (EINVAL)
 
 ./unix-stream -s '/etc/hosts\0'
 bind(server)          <- "/etc/hosts\0" (11 bytes)
-bind(server): Address already in use (EADDRINUSE)
+bind(server) -> Address already in use (EADDRINUSE)
 ./unix-stream -s '/etc\0'
 bind(server)          <- "/etc\0" (5 bytes)
-bind(server): Address already in use (EADDRINUSE)
+bind(server) -> Address already in use (EADDRINUSE)
 ./unix-stream -s '/\0'
 bind(server)          <- "/\0" (2 bytes)
-bind(server): Address already in use (EADDRINUSE)
+bind(server) -> Address already in use (EADDRINUSE)
 ./unix-stream -s '/foo\0'
 bind(server)          <- "/foo\0" (5 bytes)
-bind(server): Permission denied (EACCES)
+bind(server) -> Permission denied (EACCES)
 ./unix-stream -s '/foo/bar\0'
 bind(server)          <- "/foo/bar\0" (9 bytes)
-bind(server): No such file or directory (ENOENT)
+bind(server) -> No such file or directory (ENOENT)
 ./unix-stream -s '\0'
 bind(server)          <- "\0" (1 bytes)
 socket file (server)  : not exist
@@ -942,66 +942,66 @@ getsockname(accepted) -> "(98*"Z")0123456789"... (109 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream -p '01234567890'
 bind(server)          <- "(98*"Z")01234567890" (109 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(25*"0123456789")012'
 bind(server)          <- "(25*"0123456789")012" (253 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream -g 1024 '(25*"0123456789")012'
 bind(server)          <- "(25*"0123456789")012" (253 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(25*"0123456789")0123'
 bind(server)          <- "(25*"0123456789")0123" (254 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(25*"0123456789")01234'
 bind(server)          <- "(25*"0123456789")01234" (255 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(25*"0123456789")012345'
 bind(server)          <- "(25*"0123456789")012345" (256 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(125*"./")a' 
 bind(server)          <- "(125*"./")a" (251 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(125*"./")ab'
 bind(server)          <- "(125*"./")ab" (252 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(125*"./")abc'
 bind(server)          <- "(125*"./")abc" (253 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(125*"./")abcd'
 bind(server)          <- "(125*"./")abcd" (254 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(511*"./")a'
 bind(server)          <- "(511*"./")a" (1023 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream '(511*"./")ab'
 bind(server)          <- "(511*"./")ab" (1024 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream 'foo' 'foo' '(200*"b")'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(200*"b")" (200 bytes)
-bind(client): Invalid argument (EINVAL)
+bind(client) -> Invalid argument (EINVAL)
 
 ./unix-stream -s /etc/hosts
 bind(server)          <- "/etc/hosts" (10 bytes)
-bind(server): Address already in use (EADDRINUSE)
+bind(server) -> Address already in use (EADDRINUSE)
 ./unix-stream -s '/etc'
 bind(server)          <- "/etc" (4 bytes)
-bind(server): Address already in use (EADDRINUSE)
+bind(server) -> Address already in use (EADDRINUSE)
 ./unix-stream -s '/'
 bind(server)          <- "/" (1 bytes)
-bind(server): Address already in use (EADDRINUSE)
+bind(server) -> Address already in use (EADDRINUSE)
 ./unix-stream -s '/foo'
 bind(server)          <- "/foo" (4 bytes)
-bind(server): Permission denied (EACCES)
+bind(server) -> Permission denied (EACCES)
 ./unix-stream -s '/foo/bar'
 bind(server)          <- "/foo/bar" (8 bytes)
-bind(server): No such file or directory (ENOENT)
+bind(server) -> No such file or directory (ENOENT)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\00000c" (6 bytes)
+getsockname(server)   -> "\00000e" (6 bytes)
 ./unix-stream -s 'foo'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
@@ -1010,7 +1010,7 @@ getsockname(server)   -> "foo\0" (4 bytes)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\00000d" (6 bytes)
+getsockname(server)   -> "\00000f" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
@@ -1027,7 +1027,7 @@ socket file (server)  : not exist
 getsockname(server)   -> "\0abc" (4 bytes)
 getsockname(client)   -> "" (0 bytes)
 connect               <- "\0abc\0" (5 bytes)
-connect: Connection refused (ECONNREFUSED)
+connect -> Connection refused (ECONNREFUSED)
 ./unix-stream 'non-abstract' 'non-abstract' '\0abstract'
 bind(server)          <- "non-abstract" (12 bytes)
 socket file (server)  : exist

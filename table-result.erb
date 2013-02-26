@@ -130,7 +130,7 @@ command_os_lines.each {|command, os_lines|
         next
       end
       result = $'.strip
-      action = "#{$`}#{$&}".sub(/(:|=)\z/, '').strip
+      action = "#{$`.strip} #{$&}".sub(/(:|=)\z/, '').strip
       [action, result]
     }.compact
     command_os_action_result_pairs[command] ||= {}

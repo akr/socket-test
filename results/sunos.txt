@@ -1339,80 +1339,80 @@ getsockname(accepted) -> "(10*"0123456789")01234567"... (256 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(25*"0123456789")012345\0'
 bind(server)          <- "(25*"0123456789")012345\0" (257 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(25*"0123456789")0123456\0'
 bind(server)          <- "(25*"0123456789")0123456\0" (258 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(25*"0123456789")01234567\0'
 bind(server)          <- "(25*"0123456789")01234567\0" (259 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(25*"0123456789")012345678\0'
 bind(server)          <- "(25*"0123456789")012345678\0" (260 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(25*"0123456789")0123456789\0'
 bind(server)          <- "(26*"0123456789")\0" (261 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(50*"0123456789")0\0'
 bind(server)          <- "(50*"0123456789")0\0" (502 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(50*"0123456789")01\0'
 bind(server)          <- "(50*"0123456789")01\0" (503 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(50*"0123456789")012\0'
 bind(server)          <- "(50*"0123456789")012\0" (504 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(50*"0123456789")0123\0'
 bind(server)          <- "(50*"0123456789")0123\0" (505 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(50*"0123456789")01234\0'
 bind(server)          <- "(50*"0123456789")01234\0" (506 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(50*"0123456789")012345\0'
 bind(server)          <- "(50*"0123456789")012345\0" (507 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(50*"0123456789")0123456\0'
 bind(server)          <- "(50*"0123456789")0123456\0" (508 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(50*"0123456789")01234567\0'
 bind(server)          <- "(50*"0123456789")01234567\0" (509 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(50*"0123456789")012345678\0'
 bind(server)          <- "(50*"0123456789")012345678\0" (510 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(50*"0123456789")0123456789\0'
 bind(server)          <- "(51*"0123456789")\0" (511 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(51*"0123456789")0\0'
 bind(server)          <- "(51*"0123456789")0\0" (512 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(51*"0123456789")01\0'
 bind(server)          <- "(51*"0123456789")01\0" (513 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(51*"0123456789")012\0'
 bind(server)          <- "(51*"0123456789")012\0" (514 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(51*"0123456789")0123\0'
 bind(server)          <- "(51*"0123456789")0123\0" (515 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(51*"0123456789")01234\0'
 bind(server)          <- "(51*"0123456789")01234\0" (516 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(51*"0123456789")012345\0'
 bind(server)          <- "(51*"0123456789")012345\0" (517 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(51*"0123456789")0123456\0'
 bind(server)          <- "(51*"0123456789")0123456\0" (518 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(51*"0123456789")01234567\0'
 bind(server)          <- "(51*"0123456789")01234567\0" (519 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(51*"0123456789")012345678\0'
 bind(server)          <- "(51*"0123456789")012345678\0" (520 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(51*"0123456789")0123456789\0'
 
 bind(server)          <- "(52*"0123456789")\0" (521 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream -p '01234567\0'
 bind(server)          <- "(98*"Z")01234567\0" (107 bytes)
 socket file (server)  : exist
@@ -1479,22 +1479,22 @@ getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "(108*"b")"... (201 bytes)
 ./unix-stream -s '/etc/hosts\0'
 bind(server)          <- "/etc/hosts\0" (11 bytes)
-bind(server): Address already in use (EADDRINUSE)
+bind(server) -> Address already in use (EADDRINUSE)
 ./unix-stream -s '/etc\0'
 bind(server)          <- "/etc\0" (5 bytes)
-bind(server): Address already in use (EADDRINUSE)
+bind(server) -> Address already in use (EADDRINUSE)
 ./unix-stream -s '/\0'
 bind(server)          <- "/\0" (2 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream -s '/foo\0'
 bind(server)          <- "/foo\0" (5 bytes)
-bind(server): Permission denied (EACCES)
+bind(server) -> Permission denied (EACCES)
 ./unix-stream -s '/foo/bar\0'
 bind(server)          <- "/foo/bar\0" (9 bytes)
-bind(server): No such file or directory (ENOENT)
+bind(server) -> No such file or directory (ENOENT)
 ./unix-stream -s '\0'
 bind(server)          <- "\0" (1 bytes)
-bind(server): Is a directory (EISDIR)
+bind(server) -> Is a directory (EISDIR)
 ./unix-stream -s 'foo\0'
 
 
@@ -1583,7 +1583,7 @@ getsockname(accepted) -> "(10*"0123456789")01234567"... (256 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(25*"0123456789")012345'
 bind(server)          <- "(25*"0123456789")012345" (256 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream '(125*"./")a' 
 bind(server)          <- "(125*"./")a" (251 bytes)
 socket file (server)  : exist
@@ -1636,7 +1636,7 @@ getsockname(accepted) -> "(54*"./")"... (1024 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(511*"./")ab'
 bind(server)          <- "(511*"./")ab" (1024 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server) -> File name too long (ENAMETOOLONG)
 ./unix-stream 'foo' 'foo' '(200*"b")'
 
 bind(server)          <- "foo" (3 bytes)
@@ -1652,22 +1652,22 @@ getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "(108*"b")"... (201 bytes)
 ./unix-stream -s /etc/hosts
 bind(server)          <- "/etc/hosts" (10 bytes)
-bind(server): Address already in use (EADDRINUSE)
+bind(server) -> Address already in use (EADDRINUSE)
 ./unix-stream -s '/etc'
 bind(server)          <- "/etc" (4 bytes)
-bind(server): Address already in use (EADDRINUSE)
+bind(server) -> Address already in use (EADDRINUSE)
 ./unix-stream -s '/'
 bind(server)          <- "/" (1 bytes)
-bind(server): Invalid argument (EINVAL)
+bind(server) -> Invalid argument (EINVAL)
 ./unix-stream -s '/foo'
 bind(server)          <- "/foo" (4 bytes)
-bind(server): Permission denied (EACCES)
+bind(server) -> Permission denied (EACCES)
 ./unix-stream -s '/foo/bar'
 bind(server)          <- "/foo/bar" (8 bytes)
-bind(server): No such file or directory (ENOENT)
+bind(server) -> No such file or directory (ENOENT)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
-bind(server): Is a directory (EISDIR)
+bind(server) -> Is a directory (EISDIR)
 ./unix-stream -s 'foo'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
