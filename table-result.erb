@@ -84,17 +84,21 @@ Dir.glob('results/*.txt') {|filename|
 }
 
 os_order = {
-  'freebsd' => -31,
-  'debian-kfreebsd' => -30,
-  'darwin' => -29,
-  'netbsd' => -28,
-  'openbsd' => -27,
-  'dragonfly' => -26,
-  'miros' => -25,
-  'hurd' => -24,
-  'linux' => -19,
-  'linux-arm' => -18,
-  'cygwin' => 100,
+  'freebsd' => 10,
+  'debian-kfreebsd' => 20,
+  'darwin' => 30,
+  'dragonfly' => 40,
+  'netbsd' => 50,
+  'openbsd51' => 60,
+  'openbsd52' => 70,
+  'miros' => 80,
+  'hurd' => 90,
+  'haiku' => 100,
+  'minix' => 110,
+  'linux' => 120,
+  'linux-arm' => 130,
+  'sunos' => 140,
+  'cygwin' => 150,
 }
 files.keys.sort.each_with_index {|os, i|
   os_order[os] ||= i

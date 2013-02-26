@@ -1,6 +1,6 @@
 
 uname -mrsv
-NetBSD 5.1 NetBSD 5.1 (GENERIC) #0: Sat Nov  6 13:19:33 UTC 2010  builds@b6.netbsd.org:/home/builds/ab/netbsd-5-1-RELEASE/amd64/201011061943Z-obj/home/builds/ab/netbsd-5-1-RELEASE/src/sys/arch/amd64/compile/GENERIC amd64
+NetBSD 6.0.1 NetBSD 6.0.1 (GENERIC) amd64
 ./size
 char.size :                                1
 char.align :                               1
@@ -152,7 +152,7 @@ SOCK_STREAM: 1 (4 bytes)
 SOCK_DGRAM: 2 (4 bytes)
 SOCK_SEQPACKET: 5 (4 bytes)
 SOMAXCONN: 128 (4 bytes)
-NAME_MAX: 255 (4 bytes)
+NAME_MAX: 511 (4 bytes)
 PATH_MAX: 1024 (4 bytes)
 EXIT_SUCCESS: 0 (4 bytes)
 EXIT_FAILURE: 1 (4 bytes)
@@ -494,6 +494,106 @@ socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
 getsockname(client)   -> "(104*"\0")" (104 bytes)
 connect               <- "(55*"./")0123456789\0" (121 bytes)
+getpeername(client)   -> "(52*"./")" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(52*"./")" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(60*"./")0\0'
+bind(server)          <- "(60*"./")0\0" (122 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(60*"./")0\0" (122 bytes)
+getpeername(client)   -> "(52*"./")" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(52*"./")" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(60*"./")01\0'
+bind(server)          <- "(60*"./")01\0" (123 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(60*"./")01\0" (123 bytes)
+getpeername(client)   -> "(52*"./")" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(52*"./")" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(60*"./")012\0'
+bind(server)          <- "(60*"./")012\0" (124 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(60*"./")012\0" (124 bytes)
+getpeername(client)   -> "(52*"./")" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(52*"./")" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(60*"./")0123\0'
+bind(server)          <- "(60*"./")0123\0" (125 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(60*"./")0123\0" (125 bytes)
+getpeername(client)   -> "(52*"./")" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(52*"./")" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(60*"./")01234\0'
+bind(server)          <- "(60*"./")01234\0" (126 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(60*"./")01234\0" (126 bytes)
+getpeername(client)   -> "(52*"./")" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(52*"./")" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(60*"./")012345\0'
+bind(server)          <- "(60*"./")012345\0" (127 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(60*"./")012345\0" (127 bytes)
+getpeername(client)   -> "(52*"./")" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(52*"./")" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(60*"./")0123456\0'
+bind(server)          <- "(60*"./")0123456\0" (128 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(60*"./")0123456\0" (128 bytes)
+getpeername(client)   -> "(52*"./")" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(52*"./")" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(60*"./")01234567\0'
+bind(server)          <- "(60*"./")01234567\0" (129 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(60*"./")01234567\0" (129 bytes)
+getpeername(client)   -> "(52*"./")" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(52*"./")" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(60*"./")012345678\0'
+bind(server)          <- "(60*"./")012345678\0" (130 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(60*"./")012345678\0" (130 bytes)
+getpeername(client)   -> "(52*"./")" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(52*"./")" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(60*"./")0123456789\0'
+bind(server)          <- "(60*"./")0123456789\0" (131 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(52*"./")" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(60*"./")0123456789\0" (131 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(104*"\0")" (104 bytes)
 getsockname(accepted) -> "(52*"./")" (104 bytes)
@@ -903,6 +1003,106 @@ getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
 accept                -> "(104*"\0")" (104 bytes)
 getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
 getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(12*"0123456789")0\0'
+bind(server)          <- "(12*"0123456789")0\0" (122 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(12*"0123456789")0\0" (122 bytes)
+getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(12*"0123456789")01\0'
+bind(server)          <- "(12*"0123456789")01\0" (123 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(12*"0123456789")01\0" (123 bytes)
+getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(12*"0123456789")012\0'
+bind(server)          <- "(12*"0123456789")012\0" (124 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(12*"0123456789")012\0" (124 bytes)
+getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(12*"0123456789")0123\0'
+bind(server)          <- "(12*"0123456789")0123\0" (125 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(12*"0123456789")0123\0" (125 bytes)
+getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(12*"0123456789")01234\0'
+bind(server)          <- "(12*"0123456789")01234\0" (126 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(12*"0123456789")01234\0" (126 bytes)
+getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(12*"0123456789")012345\0'
+bind(server)          <- "(12*"0123456789")012345\0" (127 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(12*"0123456789")012345\0" (127 bytes)
+getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(12*"0123456789")0123456\0'
+bind(server)          <- "(12*"0123456789")0123456\0" (128 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(12*"0123456789")0123456\0" (128 bytes)
+getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(12*"0123456789")01234567\0'
+bind(server)          <- "(12*"0123456789")01234567\0" (129 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(12*"0123456789")01234567\0" (129 bytes)
+getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(12*"0123456789")012345678\0'
+bind(server)          <- "(12*"0123456789")012345678\0" (130 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(12*"0123456789")012345678\0" (130 bytes)
+getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
+./unix-stream '(12*"0123456789")0123456789\0'
+bind(server)          <- "(13*"0123456789")\0" (131 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(10*"0123456789")0123" (104 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "(13*"0123456789")\0" (131 bytes)
+getpeername(client)   -> "(10*"0123456789")0123" (104 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(10*"0123456789")0123" (104 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
 ./unix-stream '(25*"0123456789")0\0'
 bind(server)          <- "(25*"0123456789")0\0" (252 bytes)
 socket file (server)  : exist
@@ -1089,6 +1289,7 @@ socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 
 
+
 ./unix-stream 'foo' './foo'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
@@ -1233,63 +1434,73 @@ bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo" (3 bytes)
 
-./unix-stream -4 '(sun_len=1)abc'
-bind(server)          <- "abc" (3 bytes)
+./unix-stream -4 '(sun_len=1)abc\0'
+bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
+getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
 getsockname(client)   -> "(sun_len=106)(104*"\0")" (104 bytes)
-connect               <- "abc" (3 bytes)
-getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
+connect               <- "abc\0" (4 bytes)
+getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
 accept                -> "(sun_len=106)(104*"\0")" (104 bytes)
-getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
+getsockname(accepted) -> "(sun_len=6)abc\0" (4 bytes)
 getpeername(accepted) -> "(sun_len=106)(104*"\0")" (104 bytes)
-./unix-stream -4 '(sun_len=2)abc'
-bind(server)          <- "abc" (3 bytes)
+./unix-stream -4 '(sun_len=2)abc\0'
+bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
+getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
 getsockname(client)   -> "(sun_len=106)(104*"\0")" (104 bytes)
-connect               <- "abc" (3 bytes)
-getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
+connect               <- "abc\0" (4 bytes)
+getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
 accept                -> "(sun_len=106)(104*"\0")" (104 bytes)
-getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
+getsockname(accepted) -> "(sun_len=6)abc\0" (4 bytes)
 getpeername(accepted) -> "(sun_len=106)(104*"\0")" (104 bytes)
-./unix-stream -4 '(sun_len=3)abc'
-bind(server)          <- "abc" (3 bytes)
+./unix-stream -4 '(sun_len=3)abc\0'
+bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
+getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
 getsockname(client)   -> "(sun_len=106)(104*"\0")" (104 bytes)
-connect               <- "abc" (3 bytes)
-getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
+connect               <- "abc\0" (4 bytes)
+getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
 accept                -> "(sun_len=106)(104*"\0")" (104 bytes)
-getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
+getsockname(accepted) -> "(sun_len=6)abc\0" (4 bytes)
 getpeername(accepted) -> "(sun_len=106)(104*"\0")" (104 bytes)
-./unix-stream -4 '(sun_len=4)abc'
-bind(server)          <- "abc" (3 bytes)
+./unix-stream -4 '(sun_len=4)abc\0'
+bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
+getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
 getsockname(client)   -> "(sun_len=106)(104*"\0")" (104 bytes)
-connect               <- "abc" (3 bytes)
-getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
+connect               <- "abc\0" (4 bytes)
+getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
 accept                -> "(sun_len=106)(104*"\0")" (104 bytes)
-getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
+getsockname(accepted) -> "(sun_len=6)abc\0" (4 bytes)
 getpeername(accepted) -> "(sun_len=106)(104*"\0")" (104 bytes)
-./unix-stream -4 '(sun_len=5)abc'
-bind(server)          <- "abc" (3 bytes)
+./unix-stream -4 '(sun_len=5)abc\0'
+bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
+getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
 getsockname(client)   -> "(sun_len=106)(104*"\0")" (104 bytes)
-connect               <- "abc" (3 bytes)
-getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
+connect               <- "abc\0" (4 bytes)
+getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
 accept                -> "(sun_len=106)(104*"\0")" (104 bytes)
-getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
+getsockname(accepted) -> "(sun_len=6)abc\0" (4 bytes)
 getpeername(accepted) -> "(sun_len=106)(104*"\0")" (104 bytes)
-./unix-stream -4 '(sun_len=6)abc'
-bind(server)          <- "abc" (3 bytes)
+./unix-stream -4 '(sun_len=6)abc\0'
+bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(sun_len=5)abc" (3 bytes)
+getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
 getsockname(client)   -> "(sun_len=106)(104*"\0")" (104 bytes)
-connect               <- "abc" (3 bytes)
-getpeername(client)   -> "(sun_len=5)abc" (3 bytes)
+connect               <- "abc\0" (4 bytes)
+getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
 accept                -> "(sun_len=106)(104*"\0")" (104 bytes)
-getsockname(accepted) -> "(sun_len=5)abc" (3 bytes)
+getsockname(accepted) -> "(sun_len=6)abc\0" (4 bytes)
+getpeername(accepted) -> "(sun_len=106)(104*"\0")" (104 bytes)
+./unix-stream -4 '(sun_len=7)abc\0'
+bind(server)          <- "abc\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
+getsockname(client)   -> "(sun_len=106)(104*"\0")" (104 bytes)
+connect               <- "abc\0" (4 bytes)
+getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
+accept                -> "(sun_len=106)(104*"\0")" (104 bytes)
+getsockname(accepted) -> "(sun_len=6)abc\0" (4 bytes)
 getpeername(accepted) -> "(sun_len=106)(104*"\0")" (104 bytes)

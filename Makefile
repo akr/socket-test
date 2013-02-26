@@ -102,12 +102,14 @@ results.html : table-result.erb \
   results/debian-kfreebsd.txt \
   results/dragonfly.txt \
   results/freebsd.txt \
+  results/haiku.txt \
   results/hurd.txt \
   results/linux-arm.txt \
   results/linux.txt \
   results/minix.txt \
   results/miros.txt \
   results/netbsd.txt \
-  results/openbsd.txt \
+  results/openbsd51.txt \
+  results/openbsd52.txt \
   results/sunos.txt
 	erb table-result.erb > results.html
