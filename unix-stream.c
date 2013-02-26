@@ -45,6 +45,10 @@
 #  define SOMAXCONN 128
 #endif
 
+#ifdef USE_FORK
+typedef struct { int pipe[2]; } serialized_flow_t;
+#endif
+
 static int opt_U = 0;
 static int opt_c = 0;
 static int opt_s = 0;
@@ -79,7 +83,10 @@ struct sockaddr_un *get_sockaddr_ptr, *get_sockaddr_ptr2;
 socklen_t get_sockaddr_len, get_sockaddr_len2;
 
 #ifdef USE_FORK
+static pid_t parent_pid;
 static pid_t child_pid = 0;
+static serialized_flow_t server_serialised_flow;
+static serialized_flow_t client_serialised_flow;
 #endif
 
 #ifdef USE_PTHREAD
@@ -106,6 +113,50 @@ void usage(int status)
       , stdout);
   exit(status);
 }
+
+#ifdef USE_FORK
+static void serialized_flow_init(serialized_flow_t *ptr)
+{
+  int ret;
+  ret = pipe(ptr->pipe);
+  if (ret == -1) { perror("pipe"); exit(EXIT_FAILURE); }
+}
+
+static void serialized_flow_send(serialized_flow_t *another, int tag)
+{
+  int e = errno;
+  char buf[1];
+  ssize_t ssize;
+  buf[0] = tag;
+  ssize = write(another->pipe[1], buf, 1);
+  if (ssize == -1) { perror("write"); exit(EXIT_FAILURE); }
+  errno = e;
+}
+
+static void serialized_flow_recv(serialized_flow_t *self, int tag)
+{
+  int e = errno;
+  char buf[1];
+  ssize_t ssize;
+  ssize = read(self->pipe[0], buf, 1);
+  if (ssize == -1) { perror("read"); exit(EXIT_FAILURE); }
+  if (ssize == 0) {
+    /* serialization error: EOF got */
+    /* exit without a error message because another process should print an error. */
+    exit(EXIT_FAILURE);
+  }
+  if ((unsigned char)buf[0] != tag) {
+    fprintf(stderr, "serialization error: %d expected but %d got\n", tag, (unsigned char)buf[0]);
+    exit(EXIT_FAILURE);
+  }
+  errno = e;
+}
+
+#else
+#  define serialized_flow_init(ptr)
+#  define serialized_flow_send(another, tag)
+#  define serialized_flow_recv(self, tag)
+#endif
 
 #define PREPEND_LENGTH (FIELD_SIZE(struct sockaddr_un, sun_path)-10)
 static char *unescape_and_prepend_string(
@@ -264,7 +315,7 @@ static void parse_args(int argc, char *argv[])
   return;
 }
 
-void setup(void)
+void addr_setup(void)
 {
   server_sockaddr_len = offsetof(struct sockaddr_un, sun_path) + server_path_len;
   server_sockaddr_ptr = xfalloc(server_sockaddr_len, '\0');
@@ -359,6 +410,39 @@ static void report_path_from_kernel(char *key, size_t buf_len, struct sockaddr_u
   free(escaped_path);
 }
 
+void server_setup(void)
+{
+  socklen_t len;
+  int ret;
+
+  server_socket = socket(AF_UNIX, SOCK_STREAM, 0);
+  if (server_socket == -1) { perror2("socket(server)"); exit(EXIT_FAILURE); }
+
+  report_path_to_kernel("bind(server)", server_sockaddr_ptr, server_sockaddr_len);
+  ret = bind(server_socket, (const struct sockaddr *)server_sockaddr_ptr, server_sockaddr_len);
+  if (ret == -1) { perror2("bind(server)"); exit(EXIT_FAILURE); }
+
+  ret = socket_file_p(server_path_str);
+  printf("socket file (server)  : %s\n", ret ? "exist" : "not exist");
+
+  memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
+  len = get_sockaddr_len;
+  ret = getsockname(server_socket, (struct sockaddr *)get_sockaddr_ptr, &len);
+  if (ret == -1) { perror2("getsockname(server)"); }
+  else report_path_from_kernel("getsockname(server)", get_sockaddr_len, get_sockaddr_ptr, len);
+
+  ret = listen(server_socket, SOMAXCONN);
+  if (ret == -1) { perror2("listen"); exit(EXIT_FAILURE); }
+}
+
+void client_setup(void)
+{
+  int ret;
+
+  client_socket = socket(AF_UNIX, SOCK_STREAM, 0);
+  if (client_socket == -1) { perror2("socket(client)"); exit(EXIT_FAILURE); }
+}
+
 static void *connect_func(void *arg)
 {
   socklen_t len;
@@ -380,14 +464,24 @@ static void *connect_func(void *arg)
   else report_path_from_kernel("getsockname(client)", get_sockaddr_len2, get_sockaddr_ptr2, len);
 
   report_path_to_kernel("connect", connect_sockaddr_ptr, connect_sockaddr_len);
+  serialized_flow_send(&server_serialised_flow, 2);
 //printf("pid=%d line=%d: before connect\n", (int)getpid(), __LINE__);
   ret = connect(
       client_socket,
       (struct sockaddr *)connect_sockaddr_ptr,
       connect_sockaddr_len);
+
+  if (ret != -1) {
+    int e = errno;
+    write(client_socket, "", 1); /* This avoids hang on MINIX. */
+    errno = e;
+  }
+
 //printf("pid=%d line=%d: after connect\n", (int)getpid(), __LINE__);
 
   if (ret == -1) { perror2("connect"); return (void *)"connect"; }
+
+  serialized_flow_recv(&client_serialised_flow, 3);
 
   memset(get_sockaddr_ptr2, opt_f, get_sockaddr_len2);
   len = get_sockaddr_len2;
@@ -401,6 +495,7 @@ printf("pid=%d line=%d: before sleep\n", (int)getpid(), __LINE__);
 printf("pid=%d line=%d: after sleep\n", (int)getpid(), __LINE__);
 */
 
+  serialized_flow_send(&server_serialised_flow, 4);
   return NULL;
 }
 
@@ -409,12 +504,16 @@ static void *accept_func(void *arg)
   socklen_t len;
   int ret;
 
+  serialized_flow_recv(&server_serialised_flow, 2);
+
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
   len = get_sockaddr_len;
 //printf("pid=%d line=%d: before accept\n", (int)getpid(), __LINE__);
   accepted_socket = accept(server_socket, (struct sockaddr *)get_sockaddr_ptr, &len);
 //printf("pid=%d line=%d: after accept\n", (int)getpid(), __LINE__);
-  if (accepted_socket == -1) { perror2("accept"); return("accept"); }
+
+  serialized_flow_send(&client_serialised_flow, 3);
+  serialized_flow_recv(&server_serialised_flow, 4);
 
 #if defined(USE_PTHREAD)
   {
@@ -425,6 +524,7 @@ static void *accept_func(void *arg)
   }
 #endif
 
+  if (accepted_socket == -1) { perror2("accept"); return("accept"); }
   report_path_from_kernel("accept", get_sockaddr_len, get_sockaddr_ptr, len);
 
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
@@ -442,6 +542,8 @@ static void *accept_func(void *arg)
 //printf("pid=%d line=%d: after getpeername(accepted)\n", (int)getpid(), __LINE__);
   if (ret == -1) { perror2("getpeername(accepted)"); }
   else report_path_from_kernel("getpeername(accepted)", get_sockaddr_len, get_sockaddr_ptr, len);
+
+  return NULL;
 }
 
 static void test_unix_stream(void)
@@ -450,6 +552,7 @@ static void test_unix_stream(void)
   int s;
   int ret;
   void *connect_func_ret;
+
 
   if (!opt_U) {
     unlink_socket(server_path_str);
@@ -460,64 +563,54 @@ static void test_unix_stream(void)
   if (!opt_c)
     tmpdir = mkchtempdir(NULL);
 
-  server_socket = socket(AF_UNIX, SOCK_STREAM, 0);
-  if (server_socket == -1) { perror2("socket(server)"); exit(EXIT_FAILURE); }
-
-  report_path_to_kernel("bind(server)", server_sockaddr_ptr, server_sockaddr_len);
-  ret = bind(server_socket, (const struct sockaddr *)server_sockaddr_ptr, server_sockaddr_len);
-  if (ret == -1) { perror2("bind(server)"); exit(EXIT_FAILURE); }
-
-  ret = socket_file_p(server_path_str);
-  printf("socket file (server)  : %s\n", ret ? "exist" : "not exist");
-
-  memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
-  len = get_sockaddr_len;
-  ret = getsockname(server_socket, (struct sockaddr *)get_sockaddr_ptr, &len);
-  if (ret == -1) { perror2("getsockname(server)"); }
-  else report_path_from_kernel("getsockname(server)", get_sockaddr_len, get_sockaddr_ptr, len);
-
   if (opt_s) {
+    server_setup();
     return;
   }
 
-  ret = listen(server_socket, SOMAXCONN);
-  if (ret == -1) { perror2("listen"); exit(EXIT_FAILURE); }
-
-  client_socket = socket(AF_UNIX, SOCK_STREAM, 0);
-  if (client_socket == -1) { perror2("socket(client)"); exit(EXIT_FAILURE); }
-
 #if defined(USE_FORK)
+  parent_pid = getpid();
+  serialized_flow_init(&server_serialised_flow);
+  serialized_flow_init(&client_serialised_flow);
   child_pid = fork();
   if (child_pid == -1) { perror2("fork"); exit(EXIT_FAILURE); }
   if (child_pid == 0) {
-    close(client_socket);
+    close(server_serialised_flow.pipe[1]);
+    server_setup();
+    serialized_flow_send(&client_serialised_flow, 1);
     if (accept_func(NULL) != NULL)
       _exit(EXIT_FAILURE);
     _exit(EXIT_SUCCESS);
   }
-  close(server_socket);
+  close(client_serialised_flow.pipe[1]);
+  client_setup();
+  serialized_flow_recv(&client_serialised_flow, 1);
   connect_func_ret = connect_func(NULL);
-  write(client_socket, "", 1); /* This avoids hang on MINIX. */
   if (connect_func_ret) { exit(EXIT_FAILURE); }
+  if (waitpid(child_pid, &ret, 0) == -1) { perror2("waitpid"); exit(EXIT_FAILURE); }
+  child_pid = 0;
+  if (!WIFEXITED(ret) || WEXITSTATUS(ret) != EXIT_SUCCESS) { exit(EXIT_FAILURE); }
 #elif defined(USE_PTHREAD)
+  server_setup();
+  client_setup();
   ret = pthread_create(&connect_thread, NULL, connect_func, NULL);
   if (ret != 0) { errno = ret; perror2("pthread_create"); exit(EXIT_FAILURE); }
   accept_func(NULL);
 #else
+  server_setup();
+  client_setup();
   connect_func_ret = connect_func(NULL);
   if (connect_func_ret) { exit(EXIT_FAILURE); }
   accept_func(NULL);
-#endif
-
-#if defined(USE_FORK)
-  if (waitpid(child_pid, &ret, 0) == -1) { perror2("waitpid"); exit(EXIT_FAILURE); }
-  if (!WIFEXITED(ret) || WEXITSTATUS(ret) != EXIT_SUCCESS) { exit(EXIT_FAILURE); }
-  child_pid = 0;
 #endif
 }
 
 void atexit_func()
 {
+#if defined(USE_FORK)
+  if (parent_pid != getpid())
+    return;
+#endif
   if (!opt_U) {
     if (server_path_str)
       unlink_socket(server_path_str);
@@ -537,7 +630,7 @@ int main(int argc, char *argv[])
   setvbuf(stdout, NULL, _IONBF, 0);
   parse_args(argc, argv);
   atexit(atexit_func);
-  setup();
+  addr_setup();
   test_unix_stream();
   return EXIT_SUCCESS;
 }
