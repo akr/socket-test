@@ -155,11 +155,34 @@ LDBL_EPSILON: 1.08420217248550443e-19 (12 bytes)
 FLT_MIN: 1.17549e-38 (4 bytes)
 DBL_MIN: 2.2250738585072e-308 (8 bytes)
 LDBL_MIN: 3.36210314311209351e-4932 (12 bytes)
+
+./unix-stream 'foo\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "foo\0" (4 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "" (0 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "" (0 bytes)
 ./unix-stream 'foo\0' './foo\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 getsockname(client)   -> "" (0 bytes)
+connect               <- "./foo\0" (6 bytes)
+getpeername(client)   -> "./foo\0" (6 bytes)
+accept                -> "" (0 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream 'foo\0' './foo\0' 'bar\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar\0" (4 bytes)
 connect               <- "./foo\0" (6 bytes)
 getpeername(client)   -> "./foo\0" (6 bytes)
 accept                -> "" (0 bytes)
@@ -188,665 +211,762 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "" (0 bytes)
 
-./unix-stream '(45*"./")0\0'
-bind(server)          <- "(45*"./")0\0" (92 bytes)
+./unix-stream '(44*"./")a\0'
+bind(server)          <- "(44*"./")a\0" (90 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(45*"./")0\0" (92 bytes)
+getsockname(server)   -> "(44*"./")a\0" (90 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(45*"./")0\0" (92 bytes)
-getpeername(client)   -> "(45*"./")0\0" (92 bytes)
+connect               <- "(44*"./")a\0" (90 bytes)
+getpeername(client)   -> "(44*"./")a\0" (90 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(45*"./")0\0" (92 bytes)
+getsockname(accepted) -> "(44*"./")a\0" (90 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(45*"./")01\0'
-bind(server)          <- "(45*"./")01\0" (93 bytes)
+./unix-stream '(44*"./")ab\0'
+bind(server)          <- "(44*"./")ab\0" (91 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(45*"./")01\0" (93 bytes)
+getsockname(server)   -> "(44*"./")ab\0" (91 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(45*"./")01\0" (93 bytes)
-getpeername(client)   -> "(45*"./")01\0" (93 bytes)
+connect               <- "(44*"./")ab\0" (91 bytes)
+getpeername(client)   -> "(44*"./")ab\0" (91 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(45*"./")01\0" (93 bytes)
+getsockname(accepted) -> "(44*"./")ab\0" (91 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(45*"./")012\0'
-bind(server)          <- "(45*"./")012\0" (94 bytes)
+./unix-stream '(45*"./")a\0'
+bind(server)          <- "(45*"./")a\0" (92 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(45*"./")012\0" (94 bytes)
+getsockname(server)   -> "(45*"./")a\0" (92 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(45*"./")012\0" (94 bytes)
-getpeername(client)   -> "(45*"./")012\0" (94 bytes)
+connect               <- "(45*"./")a\0" (92 bytes)
+getpeername(client)   -> "(45*"./")a\0" (92 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(45*"./")012\0" (94 bytes)
+getsockname(accepted) -> "(45*"./")a\0" (92 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(45*"./")0123\0'
-bind(server)          <- "(45*"./")0123\0" (95 bytes)
+./unix-stream '(45*"./")ab\0'
+bind(server)          <- "(45*"./")ab\0" (93 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(45*"./")0123\0" (95 bytes)
+getsockname(server)   -> "(45*"./")ab\0" (93 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(45*"./")0123\0" (95 bytes)
-getpeername(client)   -> "(45*"./")0123\0" (95 bytes)
+connect               <- "(45*"./")ab\0" (93 bytes)
+getpeername(client)   -> "(45*"./")ab\0" (93 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(45*"./")0123\0" (95 bytes)
+getsockname(accepted) -> "(45*"./")ab\0" (93 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(45*"./")01234\0'
-bind(server)          <- "(45*"./")01234\0" (96 bytes)
+./unix-stream '(46*"./")a\0'
+bind(server)          <- "(46*"./")a\0" (94 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(45*"./")01234\0" (96 bytes)
+getsockname(server)   -> "(46*"./")a\0" (94 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(45*"./")01234\0" (96 bytes)
-getpeername(client)   -> "(45*"./")01234\0" (96 bytes)
+connect               <- "(46*"./")a\0" (94 bytes)
+getpeername(client)   -> "(46*"./")a\0" (94 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(45*"./")01234\0" (96 bytes)
+getsockname(accepted) -> "(46*"./")a\0" (94 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(45*"./")012345\0'
-bind(server)          <- "(45*"./")012345\0" (97 bytes)
+./unix-stream '(46*"./")ab\0'
+bind(server)          <- "(46*"./")ab\0" (95 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(45*"./")012345\0" (97 bytes)
+getsockname(server)   -> "(46*"./")ab\0" (95 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(45*"./")012345\0" (97 bytes)
-getpeername(client)   -> "(45*"./")012345\0" (97 bytes)
+connect               <- "(46*"./")ab\0" (95 bytes)
+getpeername(client)   -> "(46*"./")ab\0" (95 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(45*"./")012345\0" (97 bytes)
+getsockname(accepted) -> "(46*"./")ab\0" (95 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(45*"./")0123456\0'
-bind(server)          <- "(45*"./")0123456\0" (98 bytes)
+./unix-stream '(47*"./")a\0'
+bind(server)          <- "(47*"./")a\0" (96 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(45*"./")0123456\0" (98 bytes)
+getsockname(server)   -> "(47*"./")a\0" (96 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(45*"./")0123456\0" (98 bytes)
-getpeername(client)   -> "(45*"./")0123456\0" (98 bytes)
+connect               <- "(47*"./")a\0" (96 bytes)
+getpeername(client)   -> "(47*"./")a\0" (96 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(45*"./")0123456\0" (98 bytes)
+getsockname(accepted) -> "(47*"./")a\0" (96 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(45*"./")01234567\0'
-bind(server)          <- "(45*"./")01234567\0" (99 bytes)
+./unix-stream '(47*"./")ab\0'
+bind(server)          <- "(47*"./")ab\0" (97 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(45*"./")01234567\0" (99 bytes)
+getsockname(server)   -> "(47*"./")ab\0" (97 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(45*"./")01234567\0" (99 bytes)
-getpeername(client)   -> "(45*"./")01234567\0" (99 bytes)
+connect               <- "(47*"./")ab\0" (97 bytes)
+getpeername(client)   -> "(47*"./")ab\0" (97 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(45*"./")01234567\0" (99 bytes)
+getsockname(accepted) -> "(47*"./")ab\0" (97 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(45*"./")012345678\0'
-bind(server)          <- "(45*"./")012345678\0" (100 bytes)
+./unix-stream '(48*"./")a\0'
+bind(server)          <- "(48*"./")a\0" (98 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(45*"./")012345678\0" (100 bytes)
+getsockname(server)   -> "(48*"./")a\0" (98 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(45*"./")012345678\0" (100 bytes)
-getpeername(client)   -> "(45*"./")012345678\0" (100 bytes)
+connect               <- "(48*"./")a\0" (98 bytes)
+getpeername(client)   -> "(48*"./")a\0" (98 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(45*"./")012345678\0" (100 bytes)
+getsockname(accepted) -> "(48*"./")a\0" (98 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(45*"./")0123456789\0'
-bind(server)          <- "(45*"./")0123456789\0" (101 bytes)
+./unix-stream '(48*"./")ab\0'
+bind(server)          <- "(48*"./")ab\0" (99 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(45*"./")0123456789\0" (101 bytes)
+getsockname(server)   -> "(48*"./")ab\0" (99 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(45*"./")0123456789\0" (101 bytes)
-getpeername(client)   -> "(45*"./")0123456789\0" (101 bytes)
+connect               <- "(48*"./")ab\0" (99 bytes)
+getpeername(client)   -> "(48*"./")ab\0" (99 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(45*"./")0123456789\0" (101 bytes)
+getsockname(accepted) -> "(48*"./")ab\0" (99 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(50*"./")0\0'
-bind(server)          <- "(50*"./")0\0" (102 bytes)
+./unix-stream '(49*"./")a\0'
+bind(server)          <- "(49*"./")a\0" (100 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(50*"./")0\0" (102 bytes)
+getsockname(server)   -> "(49*"./")a\0" (100 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(50*"./")0\0" (102 bytes)
-getpeername(client)   -> "(50*"./")0\0" (102 bytes)
+connect               <- "(49*"./")a\0" (100 bytes)
+getpeername(client)   -> "(49*"./")a\0" (100 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(50*"./")0\0" (102 bytes)
+getsockname(accepted) -> "(49*"./")a\0" (100 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(50*"./")01\0'
-bind(server)          <- "(50*"./")01\0" (103 bytes)
+./unix-stream '(49*"./")ab\0'
+bind(server)          <- "(49*"./")ab\0" (101 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(50*"./")01\0" (103 bytes)
+getsockname(server)   -> "(49*"./")ab\0" (101 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(50*"./")01\0" (103 bytes)
-getpeername(client)   -> "(50*"./")01\0" (103 bytes)
+connect               <- "(49*"./")ab\0" (101 bytes)
+getpeername(client)   -> "(49*"./")ab\0" (101 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(50*"./")01\0" (103 bytes)
+getsockname(accepted) -> "(49*"./")ab\0" (101 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(50*"./")012\0'
-bind(server)          <- "(50*"./")012\0" (104 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "(50*"./")012\0" (104 bytes)
-getsockname(client)   -> "" (0 bytes)
-connect               <- "(50*"./")012\0" (104 bytes)
-getpeername(client)   -> "(50*"./")012\0" (104 bytes)
-accept                -> "" (0 bytes)
-getsockname(accepted) -> "(50*"./")012\0" (104 bytes)
-getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(50*"./")0123\0'
-bind(server)          <- "(50*"./")0123\0" (105 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "(50*"./")0123\0" (105 bytes)
-getsockname(client)   -> "" (0 bytes)
-connect               <- "(50*"./")0123\0" (105 bytes)
-getpeername(client)   -> "(50*"./")0123\0" (105 bytes)
-accept                -> "" (0 bytes)
-getsockname(accepted) -> "(50*"./")0123\0" (105 bytes)
-getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(50*"./")01234\0'
-bind(server)          <- "(50*"./")01234\0" (106 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "(50*"./")01234\0" (106 bytes)
-getsockname(client)   -> "" (0 bytes)
-connect               <- "(50*"./")01234\0" (106 bytes)
-getpeername(client)   -> "(50*"./")01234\0" (106 bytes)
-accept                -> "" (0 bytes)
-getsockname(accepted) -> "(50*"./")01234\0" (106 bytes)
-getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(50*"./")012345\0'
-bind(server)          <- "(50*"./")012345\0" (107 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "(50*"./")012345\0" (107 bytes)
-getsockname(client)   -> "" (0 bytes)
-connect               <- "(50*"./")012345\0" (107 bytes)
-getpeername(client)   -> "(50*"./")012345\0" (107 bytes)
-accept                -> "" (0 bytes)
-getsockname(accepted) -> "(50*"./")012345\0" (107 bytes)
-getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(50*"./")0123456\0'
-bind(server)          <- "(50*"./")0123456\0" (108 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "(50*"./")0123456\0" (108 bytes)
-getsockname(client)   -> "" (0 bytes)
-connect               <- "(50*"./")0123456\0" (108 bytes)
-getpeername(client)   -> "(50*"./")0123456\0" (108 bytes)
-accept                -> "" (0 bytes)
-getsockname(accepted) -> "(50*"./")0123456\0" (108 bytes)
-getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(50*"./")01234567\0'
-bind(server)          <- "(50*"./")01234567\0" (109 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(50*"./")012345678\0'
-bind(server)          <- "(50*"./")012345678\0" (110 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(50*"./")0123456789\0'
-bind(server)          <- "(50*"./")0123456789\0" (111 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(55*"./")0\0'
-bind(server)          <- "(55*"./")0\0" (112 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(55*"./")01\0'
-bind(server)          <- "(55*"./")01\0" (113 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(55*"./")012\0'
-bind(server)          <- "(55*"./")012\0" (114 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(55*"./")0123\0'
-bind(server)          <- "(55*"./")0123\0" (115 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(55*"./")01234\0'
-bind(server)          <- "(55*"./")01234\0" (116 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(55*"./")012345\0'
-bind(server)          <- "(55*"./")012345\0" (117 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(55*"./")0123456\0'
-bind(server)          <- "(55*"./")0123456\0" (118 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(55*"./")01234567\0'
-bind(server)          <- "(55*"./")01234567\0" (119 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(55*"./")012345678\0'
-bind(server)          <- "(55*"./")012345678\0" (120 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(55*"./")0123456789\0'
-bind(server)          <- "(55*"./")0123456789\0" (121 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(60*"./")0\0'
-bind(server)          <- "(60*"./")0\0" (122 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(60*"./")01\0'
-bind(server)          <- "(60*"./")01\0" (123 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(60*"./")012\0'
-bind(server)          <- "(60*"./")012\0" (124 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(60*"./")0123\0'
-bind(server)          <- "(60*"./")0123\0" (125 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(60*"./")01234\0'
-bind(server)          <- "(60*"./")01234\0" (126 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(60*"./")012345\0'
-bind(server)          <- "(60*"./")012345\0" (127 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(60*"./")0123456\0'
-bind(server)          <- "(60*"./")0123456\0" (128 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(60*"./")01234567\0'
-bind(server)          <- "(60*"./")01234567\0" (129 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(60*"./")012345678\0'
-bind(server)          <- "(60*"./")012345678\0" (130 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(60*"./")0123456789\0'
-bind(server)          <- "(60*"./")0123456789\0" (131 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(125*"./")0\0'
-bind(server)          <- "(125*"./")0\0" (252 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(125*"./")01\0'
-bind(server)          <- "(125*"./")01\0" (253 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(125*"./")012\0'
-bind(server)          <- "(125*"./")012\0" (254 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(125*"./")0123\0'
-bind(server)          <- "(125*"./")0123\0" (255 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(125*"./")01234\0'
-bind(server)          <- "(125*"./")01234\0" (256 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(125*"./")012345\0'
-bind(server)          <- "(125*"./")012345\0" (257 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(125*"./")0123456\0'
-bind(server)          <- "(125*"./")0123456\0" (258 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(125*"./")01234567\0'
-bind(server)          <- "(125*"./")01234567\0" (259 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(125*"./")012345678\0'
-bind(server)          <- "(125*"./")012345678\0" (260 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(125*"./")0123456789\0'
-bind(server)          <- "(125*"./")0123456789\0" (261 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(250*"./")0\0'
-bind(server)          <- "(250*"./")0\0" (502 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(250*"./")01\0'
-bind(server)          <- "(250*"./")01\0" (503 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(250*"./")012\0'
-bind(server)          <- "(250*"./")012\0" (504 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(250*"./")0123\0'
-bind(server)          <- "(250*"./")0123\0" (505 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(250*"./")01234\0'
-bind(server)          <- "(250*"./")01234\0" (506 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(250*"./")012345\0'
-bind(server)          <- "(250*"./")012345\0" (507 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(250*"./")0123456\0'
-bind(server)          <- "(250*"./")0123456\0" (508 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(250*"./")01234567\0'
-bind(server)          <- "(250*"./")01234567\0" (509 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(250*"./")012345678\0'
-bind(server)          <- "(250*"./")012345678\0" (510 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(250*"./")0123456789\0'
-bind(server)          <- "(250*"./")0123456789\0" (511 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(255*"./")0\0'
-bind(server)          <- "(255*"./")0\0" (512 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(255*"./")01\0'
-bind(server)          <- "(255*"./")01\0" (513 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(255*"./")012\0'
-bind(server)          <- "(255*"./")012\0" (514 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(255*"./")0123\0'
-bind(server)          <- "(255*"./")0123\0" (515 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(255*"./")01234\0'
-bind(server)          <- "(255*"./")01234\0" (516 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(255*"./")012345\0'
-bind(server)          <- "(255*"./")012345\0" (517 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(255*"./")0123456\0'
-bind(server)          <- "(255*"./")0123456\0" (518 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(255*"./")01234567\0'
-bind(server)          <- "(255*"./")01234567\0" (519 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(255*"./")012345678\0'
-bind(server)          <- "(255*"./")012345678\0" (520 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(255*"./")0123456789\0'
-bind(server)          <- "(255*"./")0123456789\0" (521 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
 
-./unix-stream '(9*"0123456789")0\0'
-bind(server)          <- "(9*"0123456789")0\0" (92 bytes)
+./unix-stream '(50*"./")a\0'
+bind(server)          <- "(50*"./")a\0" (102 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(9*"0123456789")0\0" (92 bytes)
+getsockname(server)   -> "(50*"./")a\0" (102 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(9*"0123456789")0\0" (92 bytes)
-getpeername(client)   -> "(9*"0123456789")0\0" (92 bytes)
+connect               <- "(50*"./")a\0" (102 bytes)
+getpeername(client)   -> "(50*"./")a\0" (102 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(9*"0123456789")0\0" (92 bytes)
+getsockname(accepted) -> "(50*"./")a\0" (102 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(9*"0123456789")01\0'
-bind(server)          <- "(9*"0123456789")01\0" (93 bytes)
+./unix-stream '(50*"./")ab\0'
+bind(server)          <- "(50*"./")ab\0" (103 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(9*"0123456789")01\0" (93 bytes)
+getsockname(server)   -> "(50*"./")ab\0" (103 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(9*"0123456789")01\0" (93 bytes)
-getpeername(client)   -> "(9*"0123456789")01\0" (93 bytes)
+connect               <- "(50*"./")ab\0" (103 bytes)
+getpeername(client)   -> "(50*"./")ab\0" (103 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(9*"0123456789")01\0" (93 bytes)
+getsockname(accepted) -> "(50*"./")ab\0" (103 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(9*"0123456789")012\0'
-bind(server)          <- "(9*"0123456789")012\0" (94 bytes)
+./unix-stream '(51*"./")a\0'
+bind(server)          <- "(51*"./")a\0" (104 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(9*"0123456789")012\0" (94 bytes)
+getsockname(server)   -> "(51*"./")a\0" (104 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(9*"0123456789")012\0" (94 bytes)
-getpeername(client)   -> "(9*"0123456789")012\0" (94 bytes)
+connect               <- "(51*"./")a\0" (104 bytes)
+getpeername(client)   -> "(51*"./")a\0" (104 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(9*"0123456789")012\0" (94 bytes)
+getsockname(accepted) -> "(51*"./")a\0" (104 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(9*"0123456789")0123\0'
-bind(server)          <- "(9*"0123456789")0123\0" (95 bytes)
+./unix-stream '(51*"./")ab\0'
+bind(server)          <- "(51*"./")ab\0" (105 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(9*"0123456789")0123\0" (95 bytes)
+getsockname(server)   -> "(51*"./")ab\0" (105 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(9*"0123456789")0123\0" (95 bytes)
-getpeername(client)   -> "(9*"0123456789")0123\0" (95 bytes)
+connect               <- "(51*"./")ab\0" (105 bytes)
+getpeername(client)   -> "(51*"./")ab\0" (105 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(9*"0123456789")0123\0" (95 bytes)
+getsockname(accepted) -> "(51*"./")ab\0" (105 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(9*"0123456789")01234\0'
-bind(server)          <- "(9*"0123456789")01234\0" (96 bytes)
+./unix-stream '(52*"./")a\0'
+bind(server)          <- "(52*"./")a\0" (106 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(9*"0123456789")01234\0" (96 bytes)
+getsockname(server)   -> "(52*"./")a\0" (106 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(9*"0123456789")01234\0" (96 bytes)
-getpeername(client)   -> "(9*"0123456789")01234\0" (96 bytes)
+connect               <- "(52*"./")a\0" (106 bytes)
+getpeername(client)   -> "(52*"./")a\0" (106 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(9*"0123456789")01234\0" (96 bytes)
+getsockname(accepted) -> "(52*"./")a\0" (106 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(9*"0123456789")012345\0'
-bind(server)          <- "(9*"0123456789")012345\0" (97 bytes)
+./unix-stream '(52*"./")ab\0'
+bind(server)          <- "(52*"./")ab\0" (107 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(9*"0123456789")012345\0" (97 bytes)
+getsockname(server)   -> "(52*"./")ab\0" (107 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(9*"0123456789")012345\0" (97 bytes)
-getpeername(client)   -> "(9*"0123456789")012345\0" (97 bytes)
+connect               <- "(52*"./")ab\0" (107 bytes)
+getpeername(client)   -> "(52*"./")ab\0" (107 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(9*"0123456789")012345\0" (97 bytes)
+getsockname(accepted) -> "(52*"./")ab\0" (107 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(9*"0123456789")0123456\0'
-bind(server)          <- "(9*"0123456789")0123456\0" (98 bytes)
+./unix-stream '(53*"./")a\0'
+bind(server)          <- "(53*"./")a\0" (108 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(9*"0123456789")0123456\0" (98 bytes)
+getsockname(server)   -> "(53*"./")a\0" (108 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(9*"0123456789")0123456\0" (98 bytes)
-getpeername(client)   -> "(9*"0123456789")0123456\0" (98 bytes)
+connect               <- "(53*"./")a\0" (108 bytes)
+getpeername(client)   -> "(53*"./")a\0" (108 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(9*"0123456789")0123456\0" (98 bytes)
+getsockname(accepted) -> "(53*"./")a\0" (108 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(9*"0123456789")01234567\0'
-bind(server)          <- "(9*"0123456789")01234567\0" (99 bytes)
+./unix-stream '(53*"./")ab\0'
+bind(server)          <- "(53*"./")ab\0" (109 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(54*"./")a\0'
+bind(server)          <- "(54*"./")a\0" (110 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(54*"./")ab\0'
+bind(server)          <- "(54*"./")ab\0" (111 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(55*"./")a\0'
+bind(server)          <- "(55*"./")a\0" (112 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(55*"./")ab\0'
+bind(server)          <- "(55*"./")ab\0" (113 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(56*"./")a\0'
+bind(server)          <- "(56*"./")a\0" (114 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(56*"./")ab\0'
+bind(server)          <- "(56*"./")ab\0" (115 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(57*"./")a\0'
+bind(server)          <- "(57*"./")a\0" (116 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(57*"./")ab\0'
+bind(server)          <- "(57*"./")ab\0" (117 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(58*"./")a\0'
+bind(server)          <- "(58*"./")a\0" (118 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(58*"./")ab\0'
+bind(server)          <- "(58*"./")ab\0" (119 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(59*"./")a\0'
+bind(server)          <- "(59*"./")a\0" (120 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(59*"./")ab\0'
+bind(server)          <- "(59*"./")ab\0" (121 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+
+./unix-stream '(60*"./")a\0'
+bind(server)          <- "(60*"./")a\0" (122 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(60*"./")ab\0'
+bind(server)          <- "(60*"./")ab\0" (123 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(61*"./")a\0'
+bind(server)          <- "(61*"./")a\0" (124 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(61*"./")ab\0'
+bind(server)          <- "(61*"./")ab\0" (125 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(62*"./")a\0'
+bind(server)          <- "(62*"./")a\0" (126 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(62*"./")ab\0'
+bind(server)          <- "(62*"./")ab\0" (127 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(63*"./")a\0'
+bind(server)          <- "(63*"./")a\0" (128 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(63*"./")ab\0'
+bind(server)          <- "(63*"./")ab\0" (129 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(64*"./")a\0'
+bind(server)          <- "(64*"./")a\0" (130 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(64*"./")ab\0'
+bind(server)          <- "(64*"./")ab\0" (131 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(65*"./")a\0'
+bind(server)          <- "(65*"./")a\0" (132 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(65*"./")ab\0'
+bind(server)          <- "(65*"./")ab\0" (133 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(66*"./")a\0'
+bind(server)          <- "(66*"./")a\0" (134 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(66*"./")ab\0'
+bind(server)          <- "(66*"./")ab\0" (135 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(67*"./")a\0'
+bind(server)          <- "(67*"./")a\0" (136 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(67*"./")ab\0'
+bind(server)          <- "(67*"./")ab\0" (137 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(68*"./")a\0'
+bind(server)          <- "(68*"./")a\0" (138 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(68*"./")ab\0'
+bind(server)          <- "(68*"./")ab\0" (139 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(69*"./")a\0'
+bind(server)          <- "(69*"./")a\0" (140 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(69*"./")ab\0'
+bind(server)          <- "(69*"./")ab\0" (141 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+
+./unix-stream '(120*"./")a\0'
+bind(server)          <- "(120*"./")a\0" (242 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(120*"./")ab\0'
+bind(server)          <- "(120*"./")ab\0" (243 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(121*"./")a\0'
+bind(server)          <- "(121*"./")a\0" (244 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(121*"./")ab\0'
+bind(server)          <- "(121*"./")ab\0" (245 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(122*"./")a\0'
+bind(server)          <- "(122*"./")a\0" (246 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(122*"./")ab\0'
+bind(server)          <- "(122*"./")ab\0" (247 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(123*"./")a\0'
+bind(server)          <- "(123*"./")a\0" (248 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(123*"./")ab\0'
+bind(server)          <- "(123*"./")ab\0" (249 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(124*"./")a\0'
+bind(server)          <- "(124*"./")a\0" (250 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(124*"./")ab\0'
+bind(server)          <- "(124*"./")ab\0" (251 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(125*"./")a\0'
+bind(server)          <- "(125*"./")a\0" (252 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(125*"./")ab\0'
+bind(server)          <- "(125*"./")ab\0" (253 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(126*"./")a\0'
+bind(server)          <- "(126*"./")a\0" (254 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(126*"./")ab\0'
+bind(server)          <- "(126*"./")ab\0" (255 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(127*"./")a\0'
+bind(server)          <- "(127*"./")a\0" (256 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(127*"./")ab\0'
+bind(server)          <- "(127*"./")ab\0" (257 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(128*"./")a\0'
+bind(server)          <- "(128*"./")a\0" (258 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(128*"./")ab\0'
+bind(server)          <- "(128*"./")ab\0" (259 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(129*"./")a\0'
+bind(server)          <- "(129*"./")a\0" (260 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(129*"./")ab\0'
+bind(server)          <- "(129*"./")ab\0" (261 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+
+./unix-stream '(250*"./")a\0'
+bind(server)          <- "(250*"./")a\0" (502 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(250*"./")ab\0'
+bind(server)          <- "(250*"./")ab\0" (503 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(251*"./")a\0'
+bind(server)          <- "(251*"./")a\0" (504 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(251*"./")ab\0'
+bind(server)          <- "(251*"./")ab\0" (505 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(252*"./")a\0'
+bind(server)          <- "(252*"./")a\0" (506 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(252*"./")ab\0'
+bind(server)          <- "(252*"./")ab\0" (507 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(253*"./")a\0'
+bind(server)          <- "(253*"./")a\0" (508 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(253*"./")ab\0'
+bind(server)          <- "(253*"./")ab\0" (509 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(254*"./")a\0'
+bind(server)          <- "(254*"./")a\0" (510 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(254*"./")ab\0'
+bind(server)          <- "(254*"./")ab\0" (511 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(255*"./")a\0'
+bind(server)          <- "(255*"./")a\0" (512 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(255*"./")ab\0'
+bind(server)          <- "(255*"./")ab\0" (513 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(256*"./")a\0'
+bind(server)          <- "(256*"./")a\0" (514 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(256*"./")ab\0'
+bind(server)          <- "(256*"./")ab\0" (515 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(257*"./")a\0'
+bind(server)          <- "(257*"./")a\0" (516 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(257*"./")ab\0'
+bind(server)          <- "(257*"./")ab\0" (517 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(258*"./")a\0'
+bind(server)          <- "(258*"./")a\0" (518 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(258*"./")ab\0'
+bind(server)          <- "(258*"./")ab\0" (519 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(259*"./")a\0'
+bind(server)          <- "(259*"./")a\0" (520 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(259*"./")ab\0'
+bind(server)          <- "(259*"./")ab\0" (521 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+
+./unix-stream '(90*"c")\0'
+bind(server)          <- "(90*"c")\0" (91 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(9*"0123456789")01234567\0" (99 bytes)
+getsockname(server)   -> "(90*"c")\0" (91 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(9*"0123456789")01234567\0" (99 bytes)
-getpeername(client)   -> "(9*"0123456789")01234567\0" (99 bytes)
+connect               <- "(90*"c")\0" (91 bytes)
+getpeername(client)   -> "(90*"c")\0" (91 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(9*"0123456789")01234567\0" (99 bytes)
+getsockname(accepted) -> "(90*"c")\0" (91 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(9*"0123456789")012345678\0'
-bind(server)          <- "(9*"0123456789")012345678\0" (100 bytes)
+./unix-stream '(91*"c")\0'
+bind(server)          <- "(91*"c")\0" (92 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(9*"0123456789")012345678\0" (100 bytes)
+getsockname(server)   -> "(91*"c")\0" (92 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(9*"0123456789")012345678\0" (100 bytes)
-getpeername(client)   -> "(9*"0123456789")012345678\0" (100 bytes)
+connect               <- "(91*"c")\0" (92 bytes)
+getpeername(client)   -> "(91*"c")\0" (92 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(9*"0123456789")012345678\0" (100 bytes)
+getsockname(accepted) -> "(91*"c")\0" (92 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(9*"0123456789")0123456789\0'
-bind(server)          <- "(10*"0123456789")\0" (101 bytes)
+./unix-stream '(92*"c")\0'
+bind(server)          <- "(92*"c")\0" (93 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(10*"0123456789")\0" (101 bytes)
+getsockname(server)   -> "(92*"c")\0" (93 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(10*"0123456789")\0" (101 bytes)
-getpeername(client)   -> "(10*"0123456789")\0" (101 bytes)
+connect               <- "(92*"c")\0" (93 bytes)
+getpeername(client)   -> "(92*"c")\0" (93 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(10*"0123456789")\0" (101 bytes)
+getsockname(accepted) -> "(92*"c")\0" (93 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(10*"0123456789")0\0'
-bind(server)          <- "(10*"0123456789")0\0" (102 bytes)
+./unix-stream '(93*"c")\0'
+bind(server)          <- "(93*"c")\0" (94 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(10*"0123456789")0\0" (102 bytes)
+getsockname(server)   -> "(93*"c")\0" (94 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(10*"0123456789")0\0" (102 bytes)
-getpeername(client)   -> "(10*"0123456789")0\0" (102 bytes)
+connect               <- "(93*"c")\0" (94 bytes)
+getpeername(client)   -> "(93*"c")\0" (94 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(10*"0123456789")0\0" (102 bytes)
+getsockname(accepted) -> "(93*"c")\0" (94 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(10*"0123456789")01\0'
-bind(server)          <- "(10*"0123456789")01\0" (103 bytes)
+./unix-stream '(94*"c")\0'
+bind(server)          <- "(94*"c")\0" (95 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(10*"0123456789")01\0" (103 bytes)
+getsockname(server)   -> "(94*"c")\0" (95 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(10*"0123456789")01\0" (103 bytes)
-getpeername(client)   -> "(10*"0123456789")01\0" (103 bytes)
+connect               <- "(94*"c")\0" (95 bytes)
+getpeername(client)   -> "(94*"c")\0" (95 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(10*"0123456789")01\0" (103 bytes)
+getsockname(accepted) -> "(94*"c")\0" (95 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(10*"0123456789")012\0'
-bind(server)          <- "(10*"0123456789")012\0" (104 bytes)
+./unix-stream '(95*"c")\0'
+bind(server)          <- "(95*"c")\0" (96 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(10*"0123456789")012\0" (104 bytes)
+getsockname(server)   -> "(95*"c")\0" (96 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(10*"0123456789")012\0" (104 bytes)
-getpeername(client)   -> "(10*"0123456789")012\0" (104 bytes)
+connect               <- "(95*"c")\0" (96 bytes)
+getpeername(client)   -> "(95*"c")\0" (96 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(10*"0123456789")012\0" (104 bytes)
+getsockname(accepted) -> "(95*"c")\0" (96 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(10*"0123456789")0123\0'
-bind(server)          <- "(10*"0123456789")0123\0" (105 bytes)
+./unix-stream '(96*"c")\0'
+bind(server)          <- "(96*"c")\0" (97 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(10*"0123456789")0123\0" (105 bytes)
+getsockname(server)   -> "(96*"c")\0" (97 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(10*"0123456789")0123\0" (105 bytes)
-getpeername(client)   -> "(10*"0123456789")0123\0" (105 bytes)
+connect               <- "(96*"c")\0" (97 bytes)
+getpeername(client)   -> "(96*"c")\0" (97 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(10*"0123456789")0123\0" (105 bytes)
+getsockname(accepted) -> "(96*"c")\0" (97 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(10*"0123456789")01234\0'
-bind(server)          <- "(10*"0123456789")01234\0" (106 bytes)
+./unix-stream '(97*"c")\0'
+bind(server)          <- "(97*"c")\0" (98 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(10*"0123456789")01234\0" (106 bytes)
+getsockname(server)   -> "(97*"c")\0" (98 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(10*"0123456789")01234\0" (106 bytes)
-getpeername(client)   -> "(10*"0123456789")01234\0" (106 bytes)
+connect               <- "(97*"c")\0" (98 bytes)
+getpeername(client)   -> "(97*"c")\0" (98 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(10*"0123456789")01234\0" (106 bytes)
+getsockname(accepted) -> "(97*"c")\0" (98 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(10*"0123456789")012345\0'
-bind(server)          <- "(10*"0123456789")012345\0" (107 bytes)
+./unix-stream '(98*"c")\0'
+bind(server)          <- "(98*"c")\0" (99 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(10*"0123456789")012345\0" (107 bytes)
+getsockname(server)   -> "(98*"c")\0" (99 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(10*"0123456789")012345\0" (107 bytes)
-getpeername(client)   -> "(10*"0123456789")012345\0" (107 bytes)
+connect               <- "(98*"c")\0" (99 bytes)
+getpeername(client)   -> "(98*"c")\0" (99 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(10*"0123456789")012345\0" (107 bytes)
+getsockname(accepted) -> "(98*"c")\0" (99 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(10*"0123456789")0123456\0'
-bind(server)          <- "(10*"0123456789")0123456\0" (108 bytes)
+./unix-stream '(99*"c")\0'
+bind(server)          <- "(99*"c")\0" (100 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(10*"0123456789")0123456\0" (108 bytes)
+getsockname(server)   -> "(99*"c")\0" (100 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(10*"0123456789")0123456\0" (108 bytes)
-getpeername(client)   -> "(10*"0123456789")0123456\0" (108 bytes)
+connect               <- "(99*"c")\0" (100 bytes)
+getpeername(client)   -> "(99*"c")\0" (100 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(10*"0123456789")0123456\0" (108 bytes)
+getsockname(accepted) -> "(99*"c")\0" (100 bytes)
 getpeername(accepted) -> "" (0 bytes)
-./unix-stream '(10*"0123456789")01234567\0'
-bind(server)          <- "(10*"0123456789")01234567\0" (109 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(10*"0123456789")012345678\0'
-bind(server)          <- "(10*"0123456789")012345678\0" (110 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(10*"0123456789")0123456789\0'
-bind(server)          <- "(11*"0123456789")\0" (111 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(11*"0123456789")0\0'
-bind(server)          <- "(11*"0123456789")0\0" (112 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(11*"0123456789")01\0'
-bind(server)          <- "(11*"0123456789")01\0" (113 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(11*"0123456789")012\0'
-bind(server)          <- "(11*"0123456789")012\0" (114 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(11*"0123456789")0123\0'
-bind(server)          <- "(11*"0123456789")0123\0" (115 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(11*"0123456789")01234\0'
-bind(server)          <- "(11*"0123456789")01234\0" (116 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(11*"0123456789")012345\0'
-bind(server)          <- "(11*"0123456789")012345\0" (117 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(11*"0123456789")0123456\0'
-bind(server)          <- "(11*"0123456789")0123456\0" (118 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(11*"0123456789")01234567\0'
-bind(server)          <- "(11*"0123456789")01234567\0" (119 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(11*"0123456789")012345678\0'
-bind(server)          <- "(11*"0123456789")012345678\0" (120 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(11*"0123456789")0123456789\0'
-bind(server)          <- "(12*"0123456789")\0" (121 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(12*"0123456789")0\0'
-bind(server)          <- "(12*"0123456789")0\0" (122 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(12*"0123456789")01\0'
-bind(server)          <- "(12*"0123456789")01\0" (123 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(12*"0123456789")012\0'
-bind(server)          <- "(12*"0123456789")012\0" (124 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(12*"0123456789")0123\0'
-bind(server)          <- "(12*"0123456789")0123\0" (125 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(12*"0123456789")01234\0'
-bind(server)          <- "(12*"0123456789")01234\0" (126 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(12*"0123456789")012345\0'
-bind(server)          <- "(12*"0123456789")012345\0" (127 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(12*"0123456789")0123456\0'
-bind(server)          <- "(12*"0123456789")0123456\0" (128 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(12*"0123456789")01234567\0'
-bind(server)          <- "(12*"0123456789")01234567\0" (129 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(12*"0123456789")012345678\0'
-bind(server)          <- "(12*"0123456789")012345678\0" (130 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(12*"0123456789")0123456789\0'
-bind(server)          <- "(13*"0123456789")\0" (131 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(25*"0123456789")0\0'
-bind(server)          <- "(25*"0123456789")0\0" (252 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(25*"0123456789")01\0'
-bind(server)          <- "(25*"0123456789")01\0" (253 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(25*"0123456789")012\0'
-bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(25*"0123456789")0123\0'
-bind(server)          <- "(25*"0123456789")0123\0" (255 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(25*"0123456789")01234\0'
-bind(server)          <- "(25*"0123456789")01234\0" (256 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(25*"0123456789")012345\0'
-bind(server)          <- "(25*"0123456789")012345\0" (257 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(25*"0123456789")0123456\0'
-bind(server)          <- "(25*"0123456789")0123456\0" (258 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(25*"0123456789")01234567\0'
-bind(server)          <- "(25*"0123456789")01234567\0" (259 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(25*"0123456789")012345678\0'
-bind(server)          <- "(25*"0123456789")012345678\0" (260 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(25*"0123456789")0123456789\0'
-bind(server)          <- "(26*"0123456789")\0" (261 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(50*"0123456789")0\0'
-bind(server)          <- "(50*"0123456789")0\0" (502 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(50*"0123456789")01\0'
-bind(server)          <- "(50*"0123456789")01\0" (503 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(50*"0123456789")012\0'
-bind(server)          <- "(50*"0123456789")012\0" (504 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(50*"0123456789")0123\0'
-bind(server)          <- "(50*"0123456789")0123\0" (505 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(50*"0123456789")01234\0'
-bind(server)          <- "(50*"0123456789")01234\0" (506 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(50*"0123456789")012345\0'
-bind(server)          <- "(50*"0123456789")012345\0" (507 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(50*"0123456789")0123456\0'
-bind(server)          <- "(50*"0123456789")0123456\0" (508 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(50*"0123456789")01234567\0'
-bind(server)          <- "(50*"0123456789")01234567\0" (509 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(50*"0123456789")012345678\0'
-bind(server)          <- "(50*"0123456789")012345678\0" (510 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(50*"0123456789")0123456789\0'
-bind(server)          <- "(51*"0123456789")\0" (511 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(51*"0123456789")0\0'
-bind(server)          <- "(51*"0123456789")0\0" (512 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(51*"0123456789")01\0'
-bind(server)          <- "(51*"0123456789")01\0" (513 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(51*"0123456789")012\0'
-bind(server)          <- "(51*"0123456789")012\0" (514 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(51*"0123456789")0123\0'
-bind(server)          <- "(51*"0123456789")0123\0" (515 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(51*"0123456789")01234\0'
-bind(server)          <- "(51*"0123456789")01234\0" (516 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(51*"0123456789")012345\0'
-bind(server)          <- "(51*"0123456789")012345\0" (517 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(51*"0123456789")0123456\0'
-bind(server)          <- "(51*"0123456789")0123456\0" (518 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(51*"0123456789")01234567\0'
-bind(server)          <- "(51*"0123456789")01234567\0" (519 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(51*"0123456789")012345678\0'
-bind(server)          <- "(51*"0123456789")012345678\0" (520 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
-./unix-stream '(51*"0123456789")0123456789\0'
-bind(server)          <- "(52*"0123456789")\0" (521 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
+
+./unix-stream '(100*"c")\0'
+bind(server)          <- "(100*"c")\0" (101 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(100*"c")\0" (101 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(100*"c")\0" (101 bytes)
+getpeername(client)   -> "(100*"c")\0" (101 bytes)
+accept                -> "" (0 bytes)
+getsockname(accepted) -> "(100*"c")\0" (101 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(101*"c")\0'
+bind(server)          <- "(101*"c")\0" (102 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(101*"c")\0" (102 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(101*"c")\0" (102 bytes)
+getpeername(client)   -> "(101*"c")\0" (102 bytes)
+accept                -> "" (0 bytes)
+getsockname(accepted) -> "(101*"c")\0" (102 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(102*"c")\0'
+bind(server)          <- "(102*"c")\0" (103 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(102*"c")\0" (103 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(102*"c")\0" (103 bytes)
+getpeername(client)   -> "(102*"c")\0" (103 bytes)
+accept                -> "" (0 bytes)
+getsockname(accepted) -> "(102*"c")\0" (103 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(103*"c")\0'
+bind(server)          <- "(103*"c")\0" (104 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(103*"c")\0" (104 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(103*"c")\0" (104 bytes)
+getpeername(client)   -> "(103*"c")\0" (104 bytes)
+accept                -> "" (0 bytes)
+getsockname(accepted) -> "(103*"c")\0" (104 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(104*"c")\0'
+bind(server)          <- "(104*"c")\0" (105 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(104*"c")\0" (105 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(104*"c")\0" (105 bytes)
+getpeername(client)   -> "(104*"c")\0" (105 bytes)
+accept                -> "" (0 bytes)
+getsockname(accepted) -> "(104*"c")\0" (105 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(105*"c")\0'
+bind(server)          <- "(105*"c")\0" (106 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(105*"c")\0" (106 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(105*"c")\0" (106 bytes)
+getpeername(client)   -> "(105*"c")\0" (106 bytes)
+accept                -> "" (0 bytes)
+getsockname(accepted) -> "(105*"c")\0" (106 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(106*"c")\0'
+bind(server)          <- "(106*"c")\0" (107 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(106*"c")\0" (107 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(106*"c")\0" (107 bytes)
+getpeername(client)   -> "(106*"c")\0" (107 bytes)
+accept                -> "" (0 bytes)
+getsockname(accepted) -> "(106*"c")\0" (107 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(107*"c")\0'
+bind(server)          <- "(107*"c")\0" (108 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(107*"c")\0" (108 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "(107*"c")\0" (108 bytes)
+getpeername(client)   -> "(107*"c")\0" (108 bytes)
+accept                -> "" (0 bytes)
+getsockname(accepted) -> "(107*"c")\0" (108 bytes)
+getpeername(accepted) -> "" (0 bytes)
+./unix-stream '(108*"c")\0'
+bind(server)          <- "(108*"c")\0" (109 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(109*"c")\0'
+bind(server)          <- "(109*"c")\0" (110 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+
+./unix-stream '(110*"c")\0'
+bind(server)          <- "(110*"c")\0" (111 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(111*"c")\0'
+bind(server)          <- "(111*"c")\0" (112 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(112*"c")\0'
+bind(server)          <- "(112*"c")\0" (113 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(113*"c")\0'
+bind(server)          <- "(113*"c")\0" (114 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(114*"c")\0'
+bind(server)          <- "(114*"c")\0" (115 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(115*"c")\0'
+bind(server)          <- "(115*"c")\0" (116 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(116*"c")\0'
+bind(server)          <- "(116*"c")\0" (117 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(117*"c")\0'
+bind(server)          <- "(117*"c")\0" (118 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(118*"c")\0'
+bind(server)          <- "(118*"c")\0" (119 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(119*"c")\0'
+bind(server)          <- "(119*"c")\0" (120 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+
+./unix-stream '(120*"c")\0'
+bind(server)          <- "(120*"c")\0" (121 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(121*"c")\0'
+bind(server)          <- "(121*"c")\0" (122 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(122*"c")\0'
+bind(server)          <- "(122*"c")\0" (123 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(123*"c")\0'
+bind(server)          <- "(123*"c")\0" (124 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(124*"c")\0'
+bind(server)          <- "(124*"c")\0" (125 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(125*"c")\0'
+bind(server)          <- "(125*"c")\0" (126 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(126*"c")\0'
+bind(server)          <- "(126*"c")\0" (127 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(127*"c")\0'
+bind(server)          <- "(127*"c")\0" (128 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(128*"c")\0'
+bind(server)          <- "(128*"c")\0" (129 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(129*"c")\0'
+bind(server)          <- "(129*"c")\0" (130 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+
+./unix-stream '(250*"c")\0'
+bind(server)          <- "(250*"c")\0" (251 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(251*"c")\0'
+bind(server)          <- "(251*"c")\0" (252 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(252*"c")\0'
+bind(server)          <- "(252*"c")\0" (253 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(253*"c")\0'
+bind(server)          <- "(253*"c")\0" (254 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(254*"c")\0'
+bind(server)          <- "(254*"c")\0" (255 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(255*"c")\0'
+bind(server)          <- "(255*"c")\0" (256 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(256*"c")\0'
+bind(server)          <- "(256*"c")\0" (257 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(257*"c")\0'
+bind(server)          <- "(257*"c")\0" (258 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(258*"c")\0'
+bind(server)          <- "(258*"c")\0" (259 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(259*"c")\0'
+bind(server)          <- "(259*"c")\0" (260 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+
+./unix-stream '(500*"c")\0'
+bind(server)          <- "(500*"c")\0" (501 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(501*"c")\0'
+bind(server)          <- "(501*"c")\0" (502 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(502*"c")\0'
+bind(server)          <- "(502*"c")\0" (503 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(503*"c")\0'
+bind(server)          <- "(503*"c")\0" (504 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(504*"c")\0'
+bind(server)          <- "(504*"c")\0" (505 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(505*"c")\0'
+bind(server)          <- "(505*"c")\0" (506 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(506*"c")\0'
+bind(server)          <- "(506*"c")\0" (507 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(507*"c")\0'
+bind(server)          <- "(507*"c")\0" (508 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(508*"c")\0'
+bind(server)          <- "(508*"c")\0" (509 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(509*"c")\0'
+bind(server)          <- "(509*"c")\0" (510 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+
+./unix-stream '(510*"c")\0'
+bind(server)          <- "(510*"c")\0" (511 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(511*"c")\0'
+bind(server)          <- "(511*"c")\0" (512 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(512*"c")\0'
+bind(server)          <- "(512*"c")\0" (513 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(513*"c")\0'
+bind(server)          <- "(513*"c")\0" (514 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(514*"c")\0'
+bind(server)          <- "(514*"c")\0" (515 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(515*"c")\0'
+bind(server)          <- "(515*"c")\0" (516 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(516*"c")\0'
+bind(server)          <- "(516*"c")\0" (517 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(517*"c")\0'
+bind(server)          <- "(517*"c")\0" (518 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(518*"c")\0'
+bind(server)          <- "(518*"c")\0" (519 bytes)
+bind(server): File name too long (ENAMETOOLONG)
+./unix-stream '(519*"c")\0'
+bind(server)          <- "(519*"c")\0" (520 bytes)
+bind(server): File name too long (ENAMETOOLONG)
 
 ./unix-stream -p '01234567\0'
 bind(server)          <- "(98*"Z")01234567\0" (107 bytes)
@@ -870,44 +990,43 @@ getsockname(accepted) -> "(98*"Z")012345678\0" (108 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream -p '0123456789\0'
 bind(server)          <- "(98*"Z")0123456789\0" (109 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
+bind(server): File name too long (ENAMETOOLONG)
 ./unix-stream -p '01234567890\0'
 bind(server)          <- "(98*"Z")01234567890\0" (110 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
+bind(server): File name too long (ENAMETOOLONG)
 
 ./unix-stream -g 1024 '(25*"0123456789")012\0'
 bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
-bind(server) -> File name too long (ENAMETOOLONG)
+bind(server): File name too long (ENAMETOOLONG)
 ./unix-stream 'foo\0' 'foo\0' '(200*"b")\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(200*"b")\0" (201 bytes)
-bind(client) -> File name too long (ENAMETOOLONG)
+bind(client): File name too long (ENAMETOOLONG)
 
-./unix-stream -s '/etc/hosts\0'
-bind(server)          <- "/etc/hosts\0" (11 bytes)
-bind(server) -> Address already in use (EADDRINUSE)
-./unix-stream -s '/etc\0'
-bind(server)          <- "/etc\0" (5 bytes)
-bind(server) -> Address already in use (EADDRINUSE)
+./unix-stream -s '\0'
+bind(server)          <- "\0" (1 bytes)
+bind(server): No such file or directory (ENOENT)
+./unix-stream -s '.\0'
+bind(server)          <- ".\0" (2 bytes)
+bind(server): Address already in use (EADDRINUSE)
 ./unix-stream -s '/\0'
 bind(server)          <- "/\0" (2 bytes)
-bind(server) -> Address already in use (EADDRINUSE)
+bind(server): Address already in use (EADDRINUSE)
 ./unix-stream -s '/foo\0'
 bind(server)          <- "/foo\0" (5 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "/foo\0" (5 bytes)
 ./unix-stream -s '/foo/bar\0'
 bind(server)          <- "/foo/bar\0" (9 bytes)
-bind(server) -> No such file or directory (ENOENT)
-./unix-stream -s '\0'
-bind(server)          <- "\0" (1 bytes)
-bind(server) -> No such file or directory (ENOENT)
-./unix-stream -s 'foo\0'
-bind(server)          <- "foo\0" (4 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "foo\0" (4 bytes)
+bind(server): No such file or directory (ENOENT)
+./unix-stream -s '/etc\0'
+bind(server)          <- "/etc\0" (5 bytes)
+bind(server): Address already in use (EADDRINUSE)
+./unix-stream -c -s 'README\0'
+bind(server)          <- "README\0" (7 bytes)
+bind(server): Address already in use (EADDRINUSE)
 
 
 

@@ -129,8 +129,14 @@ command_os_lines.each {|command, os_lines|
         warn "unexpected line: #{line.inspect}"
         next
       end
-      result = $'.strip
-      action = "#{$`.strip} #{$&}".sub(/(:|=)\z/, '').strip
+      key, sep, result = $`, $&, $'
+      key = key.strip
+      case sep
+      when ':' then sep = '->'
+      when '=' then sep = ''
+      end
+      result = result.strip
+      action = "#{key} #{sep}".strip
       [action, result]
     }.compact
     command_os_action_result_pairs[command] ||= {}

@@ -42,7 +42,7 @@
     for (i = 0; i < sizeof(type_name); i++) { \
       u.integer |= ((type_name)('1' + i)) << (i * CHAR_BIT); \
     } \
-    printf("%s.byteorder :%*s", type_name_str, (int)(32-sizeof(type_name_str)), ""); \
+    printf("%s.byteorder =%*s", type_name_str, (int)(32-sizeof(type_name_str)), ""); \
     for (i = 0; i < sizeof(type_name); i++) { \
       putc(u.bytes[i], stdout); \
     } \
@@ -51,15 +51,15 @@
 
 #define SHOW_INTEGER_TYPE(type_name) \
   do { \
-    printf("%s.size :%*s %d\n", \
+    printf("%s.size =%*s %d\n", \
         #type_name, \
         (int)(36-sizeof(#type_name)), "", \
         (int)sizeof(type_name)); \
-    printf("%s.align :%*s %d\n", \
+    printf("%s.align =%*s %d\n", \
         #type_name, \
         (int)(35-sizeof(#type_name)), "", \
         ALIGNOF(type_name)); \
-    printf("%s.sign :%*s %s\n", \
+    printf("%s.sign =%*s %s\n", \
         #type_name, \
         (int)(36-sizeof(#type_name)), "", \
         0 < ((type_name)-1) ? "unsigned" : "signed"); \
@@ -68,11 +68,11 @@
 
 #define SHOW_FLOAT_TYPE(type_name) \
   do { \
-    printf("%s.size :%*s %d\n", \
+    printf("%s.size =%*s %d\n", \
         #type_name, \
         (int)(36-sizeof(#type_name)), "", \
         (int)sizeof(type_name)); \
-    printf("%s.align :%*s %d\n", \
+    printf("%s.align =%*s %d\n", \
         #type_name, \
         (int)(35-sizeof(#type_name)), "", \
         ALIGNOF(type_name)); \
@@ -80,11 +80,11 @@
 
 #define SHOW_POINTER_TYPE(type_name) \
   do { \
-    printf("%s.size :%*s %d\n", \
+    printf("%s.size =%*s %d\n", \
         #type_name, \
         (int)(36-sizeof(#type_name)), "", \
         (int)sizeof(type_name)); \
-    printf("%s.align :%*s %d\n", \
+    printf("%s.align =%*s %d\n", \
         #type_name, \
         (int)(35-sizeof(#type_name)), "", \
         ALIGNOF(type_name)); \
@@ -93,14 +93,14 @@
 
 #define SHOW_STRUCT_SIZE(struct_name) \
   do { \
-    printf("%s.size :%*s %d\n", \
+    printf("%s.size =%*s %d\n", \
         #struct_name, \
         (int)(36-sizeof(#struct_name)), "", \
         (int)sizeof(struct struct_name)); \
   } while (0)
 #define SHOW_FIELD_SIZE(struct_name, field_name) \
   do { \
-    printf("%s.%s.size :%*s %d\n", \
+    printf("%s.%s.size =%*s %d\n", \
         #struct_name, #field_name, \
         (int)(36-sizeof(#struct_name)-sizeof(#field_name)), "", \
         (int)FIELD_SIZE(struct struct_name, field_name)); \
@@ -108,14 +108,14 @@
 
 #define SHOW_STRUCT_ALIGNMENT(struct_name) \
   do { \
-    printf("%s.align :%*s %d\n", \
+    printf("%s.align =%*s %d\n", \
         #struct_name, \
         (int)(35-sizeof(#struct_name)), "", \
         ALIGNOF(struct struct_name)); \
   } while (0)
 #define SHOW_FIELD_OFFSET(struct_name, field_name) \
   do { \
-    printf("%s.%s.offset :%*s %d\n", \
+    printf("%s.%s.offset =%*s %d\n", \
         #struct_name, #field_name, \
         (int)(34-sizeof(#struct_name)-sizeof(#field_name)), "", \
         (int)offsetof(struct struct_name, field_name)); \

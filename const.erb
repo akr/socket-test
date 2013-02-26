@@ -104,18 +104,18 @@ End
 
 #ifdef PRIuMAX
 #  define SHOW_POSITIVE_INTEGER(name, num) \
-     printf("%s: %"PRIuMAX" (%d bytes)\n", name, (uintmax_t)num, (int)sizeof(num))
+     printf("%s = %"PRIuMAX" (%d bytes)\n", name, (uintmax_t)num, (int)sizeof(num))
 #else
 #  define SHOW_POSITIVE_INTEGER(name, num) \
-     printf("%s: %lu (%d bytes)\n", name, (unsigned long)num, (int)sizeof(num))
+     printf("%s = %lu (%d bytes)\n", name, (unsigned long)num, (int)sizeof(num))
 #endif
 
 #ifdef PRIdMAX
 #  define SHOW_NEGATIVE_INTEGER(name, num) \
-     printf("%s: %"PRIdMAX" (%d bytes)\n", name, (intmax_t)num, (int)sizeof(num))
+     printf("%s = %"PRIdMAX" (%d bytes)\n", name, (intmax_t)num, (int)sizeof(num))
 #else
 #  define SHOW_POSITIVE_INTEGER(name, num) \
-     printf("%s: %ld (%d bytes)\n", name, (long)num, (int)sizeof(num))
+     printf("%s = %ld (%d bytes)\n", name, (long)num, (int)sizeof(num))
 #endif
 
 int main(int argc, char *argv[])
@@ -132,13 +132,13 @@ int main(int argc, char *argv[])
 % float_const_list.each_line {|sym| sym.chomp!
 #ifdef <%= sym %>
   if (sizeof(<%= sym %>) == sizeof(long double))
-    printf("%s: %.*Lg (%d bytes)\n", "<%= sym %>", LDBL_DIG, (long double)<%= sym %>, (int)sizeof(<%= sym %>));
+    printf("%s = %.*Lg (%d bytes)\n", "<%= sym %>", LDBL_DIG, (long double)<%= sym %>, (int)sizeof(<%= sym %>));
   else if (sizeof(<%= sym %>) == sizeof(double))
-    printf("%s: %.*g (%d bytes)\n", "<%= sym %>", DBL_DIG, (double)<%= sym %>, (int)sizeof(<%= sym %>));
+    printf("%s = %.*g (%d bytes)\n", "<%= sym %>", DBL_DIG, (double)<%= sym %>, (int)sizeof(<%= sym %>));
   else if (sizeof(<%= sym %>) == sizeof(float))
-    printf("%s: %.*g (%d bytes)\n", "<%= sym %>", FLT_DIG, (double)<%= sym %>, (int)sizeof(<%= sym %>));
+    printf("%s = %.*g (%d bytes)\n", "<%= sym %>", FLT_DIG, (double)<%= sym %>, (int)sizeof(<%= sym %>));
   else
-    printf("%s: %.*g (%d bytes)\n", "<%= sym %>", DBL_DIG, (double)<%= sym %>, (int)sizeof(<%= sym %>));
+    printf("%s = %.*g (%d bytes)\n", "<%= sym %>", DBL_DIG, (double)<%= sym %>, (int)sizeof(<%= sym %>));
 #endif
 % }
 
