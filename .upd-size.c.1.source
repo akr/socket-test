@@ -131,27 +131,6 @@
 
 int main(int argc, char *argv[])
 {
-  SHOW_INTEGER_TYPE(char);
-  SHOW_INTEGER_TYPE(short);
-  SHOW_INTEGER_TYPE(int);
-  SHOW_INTEGER_TYPE(long);
-  SHOW_INTEGER_TYPE(long long);
-  SHOW_INTEGER_TYPE(intmax_t);
-  SHOW_INTEGER_TYPE(socklen_t);
-#ifdef HAVE_SA_FAMILY_T
-  SHOW_INTEGER_TYPE(sa_family_t);
-#endif
-  SHOW_INTEGER_TYPE(size_t);
-  SHOW_INTEGER_TYPE(ssize_t);
-
-  SHOW_FLOAT_TYPE(float);
-  SHOW_FLOAT_TYPE(double);
-  SHOW_FLOAT_TYPE(long double);
-
-  SHOW_POINTER_TYPE(void*);
-  SHOW_POINTER_TYPE(char*);
-  SHOW_POINTER_TYPE(int*);
-
 % struct_list.each {|struct_name, *field_names|
   SHOW_STRUCT_SIZE(<%= struct_name %>);
 %   field_names.each {|field_name|
@@ -173,6 +152,28 @@ int main(int argc, char *argv[])
 <%= post_line %>
 %   }
 % }
+
+
+  SHOW_INTEGER_TYPE(char);
+  SHOW_INTEGER_TYPE(short);
+  SHOW_INTEGER_TYPE(int);
+  SHOW_INTEGER_TYPE(long);
+  SHOW_INTEGER_TYPE(long long);
+  SHOW_INTEGER_TYPE(intmax_t);
+  SHOW_INTEGER_TYPE(socklen_t);
+#ifdef HAVE_SA_FAMILY_T
+  SHOW_INTEGER_TYPE(sa_family_t);
+#endif
+  SHOW_INTEGER_TYPE(size_t);
+  SHOW_INTEGER_TYPE(ssize_t);
+
+  SHOW_FLOAT_TYPE(float);
+  SHOW_FLOAT_TYPE(double);
+  SHOW_FLOAT_TYPE(long double);
+
+  SHOW_POINTER_TYPE(void*);
+  SHOW_POINTER_TYPE(char*);
+  SHOW_POINTER_TYPE(int*);
 
   return EXIT_SUCCESS;
 }

@@ -123,27 +123,6 @@
 
 int main(int argc, char *argv[])
 {
-  SHOW_INTEGER_TYPE(char);
-  SHOW_INTEGER_TYPE(short);
-  SHOW_INTEGER_TYPE(int);
-  SHOW_INTEGER_TYPE(long);
-  SHOW_INTEGER_TYPE(long long);
-  SHOW_INTEGER_TYPE(intmax_t);
-  SHOW_INTEGER_TYPE(socklen_t);
-#ifdef HAVE_SA_FAMILY_T
-  SHOW_INTEGER_TYPE(sa_family_t);
-#endif
-  SHOW_INTEGER_TYPE(size_t);
-  SHOW_INTEGER_TYPE(ssize_t);
-
-  SHOW_FLOAT_TYPE(float);
-  SHOW_FLOAT_TYPE(double);
-  SHOW_FLOAT_TYPE(long double);
-
-  SHOW_POINTER_TYPE(void*);
-  SHOW_POINTER_TYPE(char*);
-  SHOW_POINTER_TYPE(int*);
-
   SHOW_STRUCT_SIZE(sockaddr);
 #ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
   SHOW_FIELD_SIZE(sockaddr, sa_len);
@@ -263,6 +242,28 @@ int main(int argc, char *argv[])
 
   SHOW_FIELD_OFFSET(sockaddr_storage, ss_family);
 
+
+
+  SHOW_INTEGER_TYPE(char);
+  SHOW_INTEGER_TYPE(short);
+  SHOW_INTEGER_TYPE(int);
+  SHOW_INTEGER_TYPE(long);
+  SHOW_INTEGER_TYPE(long long);
+  SHOW_INTEGER_TYPE(intmax_t);
+  SHOW_INTEGER_TYPE(socklen_t);
+#ifdef HAVE_SA_FAMILY_T
+  SHOW_INTEGER_TYPE(sa_family_t);
+#endif
+  SHOW_INTEGER_TYPE(size_t);
+  SHOW_INTEGER_TYPE(ssize_t);
+
+  SHOW_FLOAT_TYPE(float);
+  SHOW_FLOAT_TYPE(double);
+  SHOW_FLOAT_TYPE(long double);
+
+  SHOW_POINTER_TYPE(void*);
+  SHOW_POINTER_TYPE(char*);
+  SHOW_POINTER_TYPE(int*);
 
   return EXIT_SUCCESS;
 }
