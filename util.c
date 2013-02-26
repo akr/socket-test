@@ -564,7 +564,7 @@ void perror2(const char *s)
   int err = errno;
   char *sep, *sym;
   if (s)
-    sep = " -> ";
+    sep = ": ";
   else
     s = sep = "";
   sym = errsym(err);
