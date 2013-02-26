@@ -27,9 +27,10 @@
 exec 2>&1
 set -v
 
+./unix-stream 'foo' 'foo' 'bar'
 ./unix-stream 'foo'
-./unix-stream 'foo' './foo'
 ./unix-stream 'foo' './foo' 'bar'
+./unix-stream 'foo' './foo'
 
 ./unix-stream '(44*"./")a'
 ./unix-stream '(44*"./")ab'
@@ -128,6 +129,27 @@ set -v
 ./unix-stream '(259*"./")a'
 ./unix-stream '(259*"./")ab'
 
+./unix-stream '(510*"./")a'
+./unix-stream '(510*"./")ab'
+./unix-stream '(511*"./")a'
+./unix-stream '(511*"./")ab'
+./unix-stream '(512*"./")a'
+./unix-stream '(512*"./")ab'
+./unix-stream '(513*"./")a'
+./unix-stream '(513*"./")ab'
+./unix-stream '(514*"./")a'
+./unix-stream '(514*"./")ab'
+./unix-stream '(515*"./")a'
+./unix-stream '(515*"./")ab'
+./unix-stream '(516*"./")a'
+./unix-stream '(516*"./")ab'
+./unix-stream '(517*"./")a'
+./unix-stream '(517*"./")ab'
+./unix-stream '(518*"./")a'
+./unix-stream '(518*"./")ab'
+./unix-stream '(519*"./")a'
+./unix-stream '(519*"./")ab'
+
 ./unix-stream '(90*"c")'
 ./unix-stream '(91*"c")'
 ./unix-stream '(92*"c")'
@@ -219,4 +241,4 @@ set -v
 ./unix-stream -s '/foo/bar'
 ./unix-stream -s '/etc'
 ./unix-stream -s 'foo'
-./unix-stream -s 'README'
+./unix-stream -c -s 'README'
