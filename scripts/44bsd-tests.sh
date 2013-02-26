@@ -33,3 +33,4 @@ set -v
 ./unix-stream -4 '(sun_len=4)abc\0'
 ./unix-stream -4 '(sun_len=5)abc\0'
 ./unix-stream -4 '(sun_len=6)abc\0'
+./unix-stream -4 '(sun_len=7)abc\0'
