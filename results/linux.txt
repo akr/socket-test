@@ -2,158 +2,158 @@
 uname -mrsv
 Linux 2.6.39-bpo.2-amd64 #1 SMP Tue Jul 26 10:35:23 UTC 2011 x86_64
 ./size
-char.size :                                1
-char.align :                               1
-char.sign :                                signed
-char.byteorder :                           1
-short.size :                               2
-short.align :                              2
-short.sign :                               signed
-short.byteorder :                          12
-int.size :                                 4
-int.align :                                4
-int.sign :                                 signed
-int.byteorder :                            1234
-long.size :                                8
-long.align :                               8
-long.sign :                                signed
-long.byteorder :                           12345678
-long long.size :                           8
-long long.align :                          8
-long long.sign :                           signed
-long long.byteorder :                      12345678
-intmax_t.size :                            8
-intmax_t.align :                           8
-intmax_t.sign :                            signed
-intmax_t.byteorder :                       12345678
-socklen_t.size :                           4
-socklen_t.align :                          4
-socklen_t.sign :                           unsigned
-socklen_t.byteorder :                      1234
-sa_family_t.size :                         2
-sa_family_t.align :                        2
-sa_family_t.sign :                         unsigned
-sa_family_t.byteorder :                    12
-size_t.size :                              8
-size_t.align :                             8
-size_t.sign :                              unsigned
-size_t.byteorder :                         12345678
-ssize_t.size :                             8
-ssize_t.align :                            8
-ssize_t.sign :                             signed
-ssize_t.byteorder :                        12345678
-float.size :                               4
-float.align :                              4
-double.size :                              8
-double.align :                             8
-long double.size :                         16
-long double.align :                        16
-void*.size :                               8
-void*.align :                              8
-char*.size :                               8
-char*.align :                              8
-int*.size :                                8
-int*.align :                               8
-sockaddr.size :                            16
-sockaddr.sa_family.size :                  2
-sockaddr.sa_data.size :                    14
-sockaddr_un.size :                         110
-sockaddr_un.sun_family.size :              2
-sockaddr_un.sun_path.size :                108
-sockaddr_in.size :                         16
-sockaddr_in.sin_family.size :              2
-sockaddr_in.sin_port.size :                2
-sockaddr_in.sin_addr.size :                4
-sockaddr_in6.size :                        28
-sockaddr_in6.sin6_family.size :            2
-sockaddr_in6.sin6_port.size :              2
-sockaddr_in6.sin6_flowinfo.size :          4
-sockaddr_in6.sin6_addr.size :              16
-sockaddr_in6.sin6_scope_id.size :          4
-sockaddr_storage.size :                    128
-sockaddr_storage.ss_family.size :          2
-sockaddr.align :                           2
-sockaddr.sa_family.offset :                0
-sockaddr.sa_data.offset :                  2
-sockaddr_un.align :                        2
-sockaddr_un.sun_family.offset :            0
-sockaddr_un.sun_path.offset :              2
-sockaddr_in.align :                        4
-sockaddr_in.sin_family.offset :            0
-sockaddr_in.sin_port.offset :              2
-sockaddr_in.sin_addr.offset :              4
-sockaddr_in6.align :                       4
-sockaddr_in6.sin6_family.offset :          0
-sockaddr_in6.sin6_port.offset :            2
-sockaddr_in6.sin6_flowinfo.offset :        4
-sockaddr_in6.sin6_addr.offset :            8
-sockaddr_in6.sin6_scope_id.offset :        24
-sockaddr_storage.align :                   8
-sockaddr_storage.ss_family.offset :        0
+char.size =                                1
+char.align =                               1
+char.sign =                                signed
+char.byteorder =                           1
+short.size =                               2
+short.align =                              2
+short.sign =                               signed
+short.byteorder =                          12
+int.size =                                 4
+int.align =                                4
+int.sign =                                 signed
+int.byteorder =                            1234
+long.size =                                8
+long.align =                               8
+long.sign =                                signed
+long.byteorder =                           12345678
+long long.size =                           8
+long long.align =                          8
+long long.sign =                           signed
+long long.byteorder =                      12345678
+intmax_t.size =                            8
+intmax_t.align =                           8
+intmax_t.sign =                            signed
+intmax_t.byteorder =                       12345678
+socklen_t.size =                           4
+socklen_t.align =                          4
+socklen_t.sign =                           unsigned
+socklen_t.byteorder =                      1234
+sa_family_t.size =                         2
+sa_family_t.align =                        2
+sa_family_t.sign =                         unsigned
+sa_family_t.byteorder =                    12
+size_t.size =                              8
+size_t.align =                             8
+size_t.sign =                              unsigned
+size_t.byteorder =                         12345678
+ssize_t.size =                             8
+ssize_t.align =                            8
+ssize_t.sign =                             signed
+ssize_t.byteorder =                        12345678
+float.size =                               4
+float.align =                              4
+double.size =                              8
+double.align =                             8
+long double.size =                         16
+long double.align =                        16
+void*.size =                               8
+void*.align =                              8
+char*.size =                               8
+char*.align =                              8
+int*.size =                                8
+int*.align =                               8
+sockaddr.size =                            16
+sockaddr.sa_family.size =                  2
+sockaddr.sa_data.size =                    14
+sockaddr_un.size =                         110
+sockaddr_un.sun_family.size =              2
+sockaddr_un.sun_path.size =                108
+sockaddr_in.size =                         16
+sockaddr_in.sin_family.size =              2
+sockaddr_in.sin_port.size =                2
+sockaddr_in.sin_addr.size =                4
+sockaddr_in6.size =                        28
+sockaddr_in6.sin6_family.size =            2
+sockaddr_in6.sin6_port.size =              2
+sockaddr_in6.sin6_flowinfo.size =          4
+sockaddr_in6.sin6_addr.size =              16
+sockaddr_in6.sin6_scope_id.size =          4
+sockaddr_storage.size =                    128
+sockaddr_storage.ss_family.size =          2
+sockaddr.align =                           2
+sockaddr.sa_family.offset =                0
+sockaddr.sa_data.offset =                  2
+sockaddr_un.align =                        2
+sockaddr_un.sun_family.offset =            0
+sockaddr_un.sun_path.offset =              2
+sockaddr_in.align =                        4
+sockaddr_in.sin_family.offset =            0
+sockaddr_in.sin_port.offset =              2
+sockaddr_in.sin_addr.offset =              4
+sockaddr_in6.align =                       4
+sockaddr_in6.sin6_family.offset =          0
+sockaddr_in6.sin6_port.offset =            2
+sockaddr_in6.sin6_flowinfo.offset =        4
+sockaddr_in6.sin6_addr.offset =            8
+sockaddr_in6.sin6_scope_id.offset =        24
+sockaddr_storage.align =                   8
+sockaddr_storage.ss_family.offset =        0
 ./const
-CHAR_BIT: 8 (4 bytes)
-SCHAR_MIN: -128 (4 bytes)
-SCHAR_MAX: 127 (4 bytes)
-UCHAR_MAX: 255 (4 bytes)
-CHAR_MIN: -128 (4 bytes)
-CHAR_MAX: 127 (4 bytes)
-MB_LEN_MAX: 16 (4 bytes)
-SHRT_MIN: -32768 (4 bytes)
-SHRT_MAX: 32767 (4 bytes)
-USHRT_MAX: 65535 (4 bytes)
-INT_MIN: -2147483648 (4 bytes)
-INT_MAX: 2147483647 (4 bytes)
-UINT_MAX: 4294967295 (4 bytes)
-LONG_MIN: -9223372036854775808 (8 bytes)
-LONG_MAX: 9223372036854775807 (8 bytes)
-ULONG_MAX: 18446744073709551615 (8 bytes)
-LLONG_MIN: -9223372036854775808 (8 bytes)
-LLONG_MAX: 9223372036854775807 (8 bytes)
-ULLONG_MAX: 18446744073709551615 (8 bytes)
-FLT_RADIX: 2 (4 bytes)
-FLT_MANT_DIG: 24 (4 bytes)
-DBL_MANT_DIG: 53 (4 bytes)
-LDBL_MANT_DIG: 64 (4 bytes)
-FLT_DIG: 6 (4 bytes)
-DBL_DIG: 15 (4 bytes)
-LDBL_DIG: 18 (4 bytes)
-FLT_MIN_EXP: -125 (4 bytes)
-DBL_MIN_EXP: -1021 (4 bytes)
-LDBL_MIN_EXP: -16381 (4 bytes)
-FLT_MIN_10_EXP: -37 (4 bytes)
-DBL_MIN_10_EXP: -307 (4 bytes)
-LDBL_MIN_10_EXP: -4931 (4 bytes)
-FLT_MAX_EXP: 128 (4 bytes)
-DBL_MAX_EXP: 1024 (4 bytes)
-LDBL_MAX_EXP: 16384 (4 bytes)
-FLT_MAX_10_EXP: 38 (4 bytes)
-DBL_MAX_10_EXP: 308 (4 bytes)
-LDBL_MAX_10_EXP: 4932 (4 bytes)
-AF_UNSPEC: 0 (4 bytes)
-PF_UNSPEC: 0 (4 bytes)
-AF_UNIX: 1 (4 bytes)
-PF_UNIX: 1 (4 bytes)
-AF_INET: 2 (4 bytes)
-PF_INET: 2 (4 bytes)
-AF_INET6: 10 (4 bytes)
-PF_INET6: 10 (4 bytes)
-SOCK_STREAM: 1 (4 bytes)
-SOCK_DGRAM: 2 (4 bytes)
-SOCK_SEQPACKET: 5 (4 bytes)
-SOMAXCONN: 128 (4 bytes)
-NAME_MAX: 255 (4 bytes)
-PATH_MAX: 4096 (4 bytes)
-EXIT_SUCCESS: 0 (4 bytes)
-EXIT_FAILURE: 1 (4 bytes)
-FLT_MAX: 3.40282e+38 (4 bytes)
-DBL_MAX: 1.79769313486232e+308 (8 bytes)
-LDBL_MAX: 1.18973149535723177e+4932 (16 bytes)
-FLT_EPSILON: 1.19209e-07 (4 bytes)
-DBL_EPSILON: 2.22044604925031e-16 (8 bytes)
-LDBL_EPSILON: 1.08420217248550443e-19 (16 bytes)
-FLT_MIN: 1.17549e-38 (4 bytes)
-DBL_MIN: 2.2250738585072e-308 (8 bytes)
-LDBL_MIN: 3.36210314311209351e-4932 (16 bytes)
+CHAR_BIT = 8 (4 bytes)
+SCHAR_MIN = -128 (4 bytes)
+SCHAR_MAX = 127 (4 bytes)
+UCHAR_MAX = 255 (4 bytes)
+CHAR_MIN = -128 (4 bytes)
+CHAR_MAX = 127 (4 bytes)
+MB_LEN_MAX = 16 (4 bytes)
+SHRT_MIN = -32768 (4 bytes)
+SHRT_MAX = 32767 (4 bytes)
+USHRT_MAX = 65535 (4 bytes)
+INT_MIN = -2147483648 (4 bytes)
+INT_MAX = 2147483647 (4 bytes)
+UINT_MAX = 4294967295 (4 bytes)
+LONG_MIN = -9223372036854775808 (8 bytes)
+LONG_MAX = 9223372036854775807 (8 bytes)
+ULONG_MAX = 18446744073709551615 (8 bytes)
+LLONG_MIN = -9223372036854775808 (8 bytes)
+LLONG_MAX = 9223372036854775807 (8 bytes)
+ULLONG_MAX = 18446744073709551615 (8 bytes)
+FLT_RADIX = 2 (4 bytes)
+FLT_MANT_DIG = 24 (4 bytes)
+DBL_MANT_DIG = 53 (4 bytes)
+LDBL_MANT_DIG = 64 (4 bytes)
+FLT_DIG = 6 (4 bytes)
+DBL_DIG = 15 (4 bytes)
+LDBL_DIG = 18 (4 bytes)
+FLT_MIN_EXP = -125 (4 bytes)
+DBL_MIN_EXP = -1021 (4 bytes)
+LDBL_MIN_EXP = -16381 (4 bytes)
+FLT_MIN_10_EXP = -37 (4 bytes)
+DBL_MIN_10_EXP = -307 (4 bytes)
+LDBL_MIN_10_EXP = -4931 (4 bytes)
+FLT_MAX_EXP = 128 (4 bytes)
+DBL_MAX_EXP = 1024 (4 bytes)
+LDBL_MAX_EXP = 16384 (4 bytes)
+FLT_MAX_10_EXP = 38 (4 bytes)
+DBL_MAX_10_EXP = 308 (4 bytes)
+LDBL_MAX_10_EXP = 4932 (4 bytes)
+AF_UNSPEC = 0 (4 bytes)
+PF_UNSPEC = 0 (4 bytes)
+AF_UNIX = 1 (4 bytes)
+PF_UNIX = 1 (4 bytes)
+AF_INET = 2 (4 bytes)
+PF_INET = 2 (4 bytes)
+AF_INET6 = 10 (4 bytes)
+PF_INET6 = 10 (4 bytes)
+SOCK_STREAM = 1 (4 bytes)
+SOCK_DGRAM = 2 (4 bytes)
+SOCK_SEQPACKET = 5 (4 bytes)
+SOMAXCONN = 128 (4 bytes)
+NAME_MAX = 255 (4 bytes)
+PATH_MAX = 4096 (4 bytes)
+EXIT_SUCCESS = 0 (4 bytes)
+EXIT_FAILURE = 1 (4 bytes)
+FLT_MAX = 3.40282e+38 (4 bytes)
+DBL_MAX = 1.79769313486232e+308 (8 bytes)
+LDBL_MAX = 1.18973149535723177e+4932 (16 bytes)
+FLT_EPSILON = 1.19209e-07 (4 bytes)
+DBL_EPSILON = 2.22044604925031e-16 (8 bytes)
+LDBL_EPSILON = 1.08420217248550443e-19 (16 bytes)
+FLT_MIN = 1.17549e-38 (4 bytes)
+DBL_MIN = 2.2250738585072e-308 (8 bytes)
+LDBL_MIN = 3.36210314311209351e-4932 (16 bytes)
 
 ./unix-stream 'foo\0'
 bind(server)          <- "foo\0" (4 bytes)
@@ -1870,7 +1870,7 @@ bind(client): Invalid argument (EINVAL)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000010" (6 bytes)
+getsockname(server)   -> "\000012" (6 bytes)
 ./unix-stream -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): Address already in use (EADDRINUSE)
@@ -1898,7 +1898,7 @@ getsockname(server)   -> "README\0" (7 bytes)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000011" (6 bytes)
+getsockname(server)   -> "\000013" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
