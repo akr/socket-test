@@ -569,7 +569,7 @@ void perror2(const char *s)
     s = sep = "";
   sym = errsym(err);
   if (sym)
-    fprintf(stderr, "%s%s%s (%s)\n", s, sep, strerror(err), sym);
+    fprintf(stderr, "%s%s%s\n", s, sep, sym);
   else
-    fprintf(stderr, "%s%s%s (errno=%d)\n", s, sep, strerror(err), err);
+    fprintf(stderr, "%s%serrno=%d\n", s, sep, err);
 }
