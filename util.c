@@ -431,10 +431,15 @@ void report_path_to_kernel(char *key, struct sockaddr_un *sockaddr_ptr, size_t s
 {
   char *escaped_path;
   char path_sun_len_prefix[sizeof("(sun_len=NNN)")] = "";
-
   char *path_ptr = sockaddr_ptr->sun_path;
   size_t path_len = sockaddr_len - offsetof(struct sockaddr_un, sun_path);
   int path_sun_len;
+
+  if (sockaddr_len < offsetof(struct sockaddr_un, sun_path)) {
+    printf("%-21s -> too short sockaddr_un (%d bytes)\n", key, (int)sockaddr_len);
+    return;
+  }
+
 #ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
   path_sun_len = sockaddr_ptr->sun_len;
 #else
