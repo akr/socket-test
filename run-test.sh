@@ -5,7 +5,7 @@ UNAME="`uname -srvm`"
 sh scripts/basic-tests.sh
 
 case "$UNAME" in
-CYGWIN*|Haiku*|Minix*)
+CYGWIN*|Haiku*|Minix*|*Hurd*)
   sh scripts/nullless-simple-tests.sh
   ;;
 *)
