@@ -34,14 +34,6 @@ int main(int argc, char *argv[])
 {
   int err;
   char *str;
-#ifdef EAGAIN
-  err = EAGAIN; str = "EAGAIN";
-  printf("%s = %s\n", str, strerror(err));
-#endif
-#ifdef ENOTSUP
-  err = ENOTSUP; str = "ENOTSUP";
-  printf("%s = %s\n", str, strerror(err));
-#endif
 #ifdef E2BIG
   err = E2BIG; str = "E2BIG";
   printf("%s = %s\n", str, strerror(err));
@@ -60,6 +52,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef EAFNOSUPPORT
   err = EAFNOSUPPORT; str = "EAFNOSUPPORT";
+  printf("%s = %s\n", str, strerror(err));
+#endif
+#ifdef EAGAIN
+  err = EAGAIN; str = "EAGAIN";
   printf("%s = %s\n", str, strerror(err));
 #endif
 #ifdef EALREADY
@@ -276,6 +272,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef ENOTSOCK
   err = ENOTSOCK; str = "ENOTSOCK";
+  printf("%s = %s\n", str, strerror(err));
+#endif
+#ifdef ENOTSUP
+  err = ENOTSUP; str = "ENOTSUP";
   printf("%s = %s\n", str, strerror(err));
 #endif
 #ifdef ENOTTY

@@ -34,6 +34,7 @@
     next if line.empty?
     errno_list << line
   }
+  errno_list.sort!
 %>
 
 #include "sockettest.h"
