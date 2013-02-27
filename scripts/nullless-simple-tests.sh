@@ -27,4 +27,4 @@
 exec 2>&1
 set -v
 
-./unix-stream 'foobar'
+./unix-stream -s 'foobar'
