@@ -230,64 +230,6 @@ static void parse_args(int argc, char *argv[])
   exit(EXIT_FAILURE);
 }
 
-static void report_path_to_kernel(char *key, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len)
-{
-  char *escaped_path;
-  char path_sun_len_prefix[sizeof("(sun_len=NNN)")] = "";
-
-  char *path_ptr = sockaddr_ptr->sun_path;
-  size_t path_len = sockaddr_len - offsetof(struct sockaddr_un, sun_path);
-  int path_sun_len;
-#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
-  path_sun_len = sockaddr_ptr->sun_len;
-#else
-  path_sun_len = 0;
-#endif
-  escaped_path = escape_string(NULL, path_ptr, path_len);
-  if (opt_4 && path_sun_len != 0) {
-    snprintf(path_sun_len_prefix, sizeof(path_sun_len_prefix),
-        "(sun_len=%d)", path_sun_len);
-  }
-  printf("%-21s <- \"%s%s\" (%d bytes)\n", key, path_sun_len_prefix, escaped_path, (int)path_len);
-  free(escaped_path);
-}
-
-static void report_path_from_kernel(char *key, size_t buf_len, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len)
-{
-  int truncated;
-  size_t len;
-  char *escaped_path;
-  char path_sun_len_prefix[sizeof("(sun_len=NNN)")] = "";
-
-  if (sockaddr_len < offsetof(struct sockaddr_un, sun_path)) {
-    printf("%-21s -> too short sockaddr_un (%d bytes)\n", key, (int)sockaddr_len);
-    return;
-  }
-
-#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
-  if (opt_4 && sockaddr_ptr->sun_len != 0) {
-    snprintf(path_sun_len_prefix, sizeof(path_sun_len_prefix),
-        "(sun_len=%d)", (int)sockaddr_ptr->sun_len);
-  }
-#endif
-
-  if (sockaddr_len <= buf_len) {
-    truncated = 0;
-    len = sockaddr_len - offsetof(struct sockaddr_un, sun_path);
-  }
-  else {
-    truncated = 1;
-    len = buf_len - offsetof(struct sockaddr_un, sun_path);
-  }
-
-  escaped_path = escape_string(NULL, sockaddr_ptr->sun_path, len);
-  printf("%-21s -> \"%s%s\"%s (%d bytes)\n",
-      key, path_sun_len_prefix, escaped_path,
-      truncated ? "..." : "",
-      (int)(sockaddr_len - offsetof(struct sockaddr_un, sun_path)));
-  free(escaped_path);
-}
-
 static void test_unix_dgram(void)
 {
   struct sockaddr_un *server_sockaddr_ptr;
@@ -350,7 +292,7 @@ static void test_unix_dgram(void)
   s = socket(AF_UNIX, SOCK_DGRAM, 0);
   if (s == -1) { perror2("socket(server)"); exit(EXIT_FAILURE); }
 
-  report_path_to_kernel("bind(server)", server_sockaddr_ptr, server_sockaddr_len);
+  report_path_to_kernel("bind(server)", server_sockaddr_ptr, server_sockaddr_len, opt_4);
   ret = bind(s, (const struct sockaddr *)server_sockaddr_ptr, server_sockaddr_len);
   if (ret == -1) { perror2("bind(server)"); exit(EXIT_FAILURE); }
 
@@ -361,7 +303,7 @@ static void test_unix_dgram(void)
   len = get_sockaddr_len;
   ret = getsockname(s, (struct sockaddr *)get_sockaddr_ptr, &len);
   if (ret == -1) { perror2("getsockname(server)"); exit(EXIT_FAILURE); }
-  report_path_from_kernel("getsockname(server)", get_sockaddr_len, get_sockaddr_ptr, len);
+  report_path_from_kernel("getsockname(server)", get_sockaddr_len, get_sockaddr_ptr, len, opt_4);
 
   if (opt_s) {
     return;
@@ -371,7 +313,7 @@ static void test_unix_dgram(void)
   if (c == -1) { perror2("socket(client)"); exit(EXIT_FAILURE); }
 
   if (client_path_str) {
-    report_path_to_kernel("bind(client)", client_sockaddr_ptr, client_sockaddr_len);
+    report_path_to_kernel("bind(client)", client_sockaddr_ptr, client_sockaddr_len, opt_4);
     ret = bind(c, (const struct sockaddr *)client_sockaddr_ptr, client_sockaddr_len);
     if (ret == -1) { perror2("bind(client)"); exit(EXIT_FAILURE); }
 
@@ -383,10 +325,10 @@ static void test_unix_dgram(void)
   len = get_sockaddr_len;
   ret = getsockname(c, (struct sockaddr *)get_sockaddr_ptr, &len);
   if (ret == -1) { perror2("getsockname(client)"); exit(EXIT_FAILURE); }
-  report_path_from_kernel("getsockname(client)", get_sockaddr_len, get_sockaddr_ptr, len);
+  report_path_from_kernel("getsockname(client)", get_sockaddr_len, get_sockaddr_ptr, len, opt_4);
 
   if (opt_c) {
-    report_path_to_kernel("connect", sendto_sockaddr_ptr, sendto_sockaddr_len);
+    report_path_to_kernel("connect", sendto_sockaddr_ptr, sendto_sockaddr_len, opt_4);
     ret = connect(c, (struct sockaddr *)sendto_sockaddr_ptr, sendto_sockaddr_len);
     if (ret == -1) { perror2("connect"); exit(EXIT_FAILURE); }
 
@@ -394,14 +336,14 @@ static void test_unix_dgram(void)
     len = get_sockaddr_len2;
     ret = getpeername(c, (struct sockaddr *)get_sockaddr_ptr2, &len);
     if (ret == -1) { perror2("getpeername(client)"); exit(EXIT_FAILURE); }
-    report_path_from_kernel("getpeername(client)", get_sockaddr_len2, get_sockaddr_ptr2, len);
+    report_path_from_kernel("getpeername(client)", get_sockaddr_len2, get_sockaddr_ptr2, len, opt_4);
 
     ss = send(c, "req", 3, 0);
     if (ss == -1) { perror2("send(client)"); exit(EXIT_FAILURE); }
     if (ss != 3) { fprintf(stderr, "send(client): unexpected return value %ld\n", (long)ss); }
   }
   else {
-    report_path_to_kernel("sendto(client)", sendto_sockaddr_ptr, sendto_sockaddr_len);
+    report_path_to_kernel("sendto(client)", sendto_sockaddr_ptr, sendto_sockaddr_len, opt_4);
     ss = sendto(c, "req", 3, 0, (struct sockaddr *)sendto_sockaddr_ptr, sendto_sockaddr_len);
     if (ss == -1) { perror2("sendto(client)"); exit(EXIT_FAILURE); }
     if (ss != 3) { fprintf(stderr, "sendto(client): unexpected return value %ld\n", (long)ss); }
@@ -422,7 +364,7 @@ static void test_unix_dgram(void)
     ss = recvmsg(s, &mhdr, 0);
     if (ss == -1) { perror2("recvmsg(server)"); exit(EXIT_FAILURE); }
     len = mhdr.msg_namelen;
-    report_path_from_kernel("recvmsg(server)", get_sockaddr_len, get_sockaddr_ptr, len);
+    report_path_from_kernel("recvmsg(server)", get_sockaddr_len, get_sockaddr_ptr, len, opt_4);
     if (ss != 3) { fprintf(stderr, "recvmsg(server): unexpected return value %ld\n", (long)ss); }
     if (memcmp(buf, "req", 3) != 0) { fprintf(stderr, "recvmsg(server): unexpected return message\n"); }
     if (mhdr.msg_flags != 0) { fprintf(stderr, "recvmsg(server): unexpected return flags %lx\n", (unsigned long)mhdr.msg_flags); }
@@ -432,7 +374,7 @@ static void test_unix_dgram(void)
     len = get_sockaddr_len;
     ss = recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr *)get_sockaddr_ptr, &len);
     if (ss == -1) { perror2("recvfrom(server)"); exit(EXIT_FAILURE); }
-    report_path_from_kernel("recvfrom(server)", get_sockaddr_len, get_sockaddr_ptr, len);
+    report_path_from_kernel("recvfrom(server)", get_sockaddr_len, get_sockaddr_ptr, len, opt_4);
     if (ss != 3) { fprintf(stderr, "recvfrom(server): unexpected return value %ld\n", (long)ss); }
     if (memcmp(buf, "req", 3) != 0) { fprintf(stderr, "recvfrom(server): unexpected return message\n"); }
   }
@@ -443,7 +385,7 @@ static void test_unix_dgram(void)
     len = get_sockaddr_len;
   }
 
-  report_path_to_kernel("sendto(server)", get_sockaddr_ptr, len);
+  report_path_to_kernel("sendto(server)", get_sockaddr_ptr, len, opt_4);
   ss = sendto(s, "res", 3, 0, (struct sockaddr *)get_sockaddr_ptr, len);
   if (ss == -1) { perror2("sendto(server)"); exit(EXIT_FAILURE); }
   if (ss != 3) { fprintf(stderr, "sendto(server): unexpected return value %ld\n", (long)ss); }
@@ -463,7 +405,7 @@ static void test_unix_dgram(void)
     ss = recvmsg(c, &mhdr, 0);
     if (ss == -1) { perror2("recvmsg(client)"); exit(EXIT_FAILURE); }
     len = mhdr.msg_namelen;
-    report_path_from_kernel("recvmsg(client)", get_sockaddr_len, get_sockaddr_ptr, len);
+    report_path_from_kernel("recvmsg(client)", get_sockaddr_len, get_sockaddr_ptr, len, opt_4);
     if (ss != 3) { fprintf(stderr, "recvmsg(client): unexpected return value %ld\n", (long)ss); }
     if (memcmp(buf, "res", 3) != 0) { fprintf(stderr, "recvmsg(client): unexpected return message\n"); }
     if (mhdr.msg_flags != 0) { fprintf(stderr, "recvmsg(client): unexpected return flags %lx\n", (unsigned long)mhdr.msg_flags); }
@@ -473,7 +415,7 @@ static void test_unix_dgram(void)
     len = get_sockaddr_len;
     ss = recvfrom(c, buf, sizeof(buf), 0, (struct sockaddr *)get_sockaddr_ptr, &len);
     if (ss == -1) { perror2("recvfrom(client)"); exit(EXIT_FAILURE); }
-    report_path_from_kernel("recvfrom(client)", get_sockaddr_len, get_sockaddr_ptr, len);
+    report_path_from_kernel("recvfrom(client)", get_sockaddr_len, get_sockaddr_ptr, len, opt_4);
     if (ss != 3) { fprintf(stderr, "recvfrom(client): unexpected return value %ld\n", (long)ss); }
     if (memcmp(buf, "res", 3) != 0) { fprintf(stderr, "recvfrom(client): unexpected return message\n"); }
   }

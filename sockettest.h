@@ -81,6 +81,9 @@ void buffer_free(buffer_t *buf);
 char *escape_string(size_t *escaped_len_ret, char *unescaped_ptr, size_t unescaped_len);
 char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escaped_len);
 
+void report_path_to_kernel(char *key, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4);
+void report_path_from_kernel(char *key, size_t buf_len, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4);
+
 void init_rand(void);
 int get_rand(void);
 char *mkchtempdir(char *basename);

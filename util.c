@@ -427,6 +427,64 @@ char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escap
   return buffer_unwrap(buf);
 }
 
+void report_path_to_kernel(char *key, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4)
+{
+  char *escaped_path;
+  char path_sun_len_prefix[sizeof("(sun_len=NNN)")] = "";
+
+  char *path_ptr = sockaddr_ptr->sun_path;
+  size_t path_len = sockaddr_len - offsetof(struct sockaddr_un, sun_path);
+  int path_sun_len;
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+  path_sun_len = sockaddr_ptr->sun_len;
+#else
+  path_sun_len = 0;
+#endif
+  escaped_path = escape_string(NULL, path_ptr, path_len);
+  if (opt_4 && path_sun_len != 0) {
+    snprintf(path_sun_len_prefix, sizeof(path_sun_len_prefix),
+        "(sun_len=%d)", path_sun_len);
+  }
+  printf("%-21s <- \"%s%s\" (%d bytes)\n", key, path_sun_len_prefix, escaped_path, (int)path_len);
+  free(escaped_path);
+}
+
+void report_path_from_kernel(char *key, size_t buf_len, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4)
+{
+  int truncated;
+  size_t len;
+  char *escaped_path;
+  char path_sun_len_prefix[sizeof("(sun_len=NNN)")] = "";
+
+  if (sockaddr_len < offsetof(struct sockaddr_un, sun_path)) {
+    printf("%-21s -> too short sockaddr_un (%d bytes)\n", key, (int)sockaddr_len);
+    return;
+  }
+
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+  if (opt_4 && sockaddr_ptr->sun_len != 0) {
+    snprintf(path_sun_len_prefix, sizeof(path_sun_len_prefix),
+        "(sun_len=%d)", (int)sockaddr_ptr->sun_len);
+  }
+#endif
+
+  if (sockaddr_len <= buf_len) {
+    truncated = 0;
+    len = sockaddr_len - offsetof(struct sockaddr_un, sun_path);
+  }
+  else {
+    truncated = 1;
+    len = buf_len - offsetof(struct sockaddr_un, sun_path);
+  }
+
+  escaped_path = escape_string(NULL, sockaddr_ptr->sun_path, len);
+  printf("%-21s -> \"%s%s\"%s (%d bytes)\n",
+      key, path_sun_len_prefix, escaped_path,
+      truncated ? "..." : "",
+      (int)(sockaddr_len - offsetof(struct sockaddr_un, sun_path)));
+  free(escaped_path);
+}
+
 static int rand_initialized = 0;
 
 void init_rand(void)

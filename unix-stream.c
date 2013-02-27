@@ -352,64 +352,6 @@ void addr_setup(void)
   return;
 }
 
-static void report_path_to_kernel(char *key, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len)
-{
-  char *escaped_path;
-  char path_sun_len_prefix[sizeof("(sun_len=NNN)")] = "";
-
-  char *path_ptr = sockaddr_ptr->sun_path;
-  size_t path_len = sockaddr_len - offsetof(struct sockaddr_un, sun_path);
-  int path_sun_len;
-#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
-  path_sun_len = sockaddr_ptr->sun_len;
-#else
-  path_sun_len = 0;
-#endif
-  escaped_path = escape_string(NULL, path_ptr, path_len);
-  if (opt_4 && path_sun_len != 0) {
-    snprintf(path_sun_len_prefix, sizeof(path_sun_len_prefix),
-        "(sun_len=%d)", path_sun_len);
-  }
-  printf("%-21s <- \"%s%s\" (%d bytes)\n", key, path_sun_len_prefix, escaped_path, (int)path_len);
-  free(escaped_path);
-}
-
-static void report_path_from_kernel(char *key, size_t buf_len, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len)
-{
-  int truncated;
-  size_t len;
-  char *escaped_path;
-  char path_sun_len_prefix[sizeof("(sun_len=NNN)")] = "";
-
-  if (sockaddr_len < offsetof(struct sockaddr_un, sun_path)) {
-    printf("%-21s -> too short sockaddr_un (%d bytes)\n", key, (int)sockaddr_len);
-    return;
-  }
-
-#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
-  if (opt_4 && sockaddr_ptr->sun_len != 0) {
-    snprintf(path_sun_len_prefix, sizeof(path_sun_len_prefix),
-        "(sun_len=%d)", (int)sockaddr_ptr->sun_len);
-  }
-#endif
-
-  if (sockaddr_len <= buf_len) {
-    truncated = 0;
-    len = sockaddr_len - offsetof(struct sockaddr_un, sun_path);
-  }
-  else {
-    truncated = 1;
-    len = buf_len - offsetof(struct sockaddr_un, sun_path);
-  }
-
-  escaped_path = escape_string(NULL, sockaddr_ptr->sun_path, len);
-  printf("%-21s -> \"%s%s\"%s (%d bytes)\n",
-      key, path_sun_len_prefix, escaped_path,
-      truncated ? "..." : "",
-      (int)(sockaddr_len - offsetof(struct sockaddr_un, sun_path)));
-  free(escaped_path);
-}
-
 void server_setup(void)
 {
   socklen_t len;
@@ -418,7 +360,7 @@ void server_setup(void)
   server_socket = socket(AF_UNIX, SOCK_STREAM, 0);
   if (server_socket == -1) { perror2("socket(server)"); exit(EXIT_FAILURE); }
 
-  report_path_to_kernel("bind(server)", server_sockaddr_ptr, server_sockaddr_len);
+  report_path_to_kernel("bind(server)", server_sockaddr_ptr, server_sockaddr_len, opt_4);
   ret = bind(server_socket, (const struct sockaddr *)server_sockaddr_ptr, server_sockaddr_len);
   if (ret == -1) { perror2("bind(server)"); exit(EXIT_FAILURE); }
 
@@ -429,7 +371,7 @@ void server_setup(void)
   len = get_sockaddr_len;
   ret = getsockname(server_socket, (struct sockaddr *)get_sockaddr_ptr, &len);
   if (ret == -1) { perror2("getsockname(server)"); }
-  else report_path_from_kernel("getsockname(server)", get_sockaddr_len, get_sockaddr_ptr, len);
+  else report_path_from_kernel("getsockname(server)", get_sockaddr_len, get_sockaddr_ptr, len, opt_4);
 
   ret = listen(server_socket, SOMAXCONN);
   if (ret == -1) { perror2("listen"); exit(EXIT_FAILURE); }
@@ -449,7 +391,7 @@ static void *connect_func(void *arg)
   int ret;
 
   if (client_path_str) {
-    report_path_to_kernel("bind(client)", client_sockaddr_ptr, client_sockaddr_len);
+    report_path_to_kernel("bind(client)", client_sockaddr_ptr, client_sockaddr_len, opt_4);
     ret = bind(client_socket, (const struct sockaddr *)client_sockaddr_ptr, client_sockaddr_len);
     if (ret == -1) { perror2("bind(client)"); exit(EXIT_FAILURE); }
 
@@ -461,9 +403,9 @@ static void *connect_func(void *arg)
   len = get_sockaddr_len2;
   ret = getsockname(client_socket, (struct sockaddr *)get_sockaddr_ptr2, &len);
   if (ret == -1) { perror2("getsockname(client)"); }
-  else report_path_from_kernel("getsockname(client)", get_sockaddr_len2, get_sockaddr_ptr2, len);
+  else report_path_from_kernel("getsockname(client)", get_sockaddr_len2, get_sockaddr_ptr2, len, opt_4);
 
-  report_path_to_kernel("connect", connect_sockaddr_ptr, connect_sockaddr_len);
+  report_path_to_kernel("connect", connect_sockaddr_ptr, connect_sockaddr_len, opt_4);
   serialized_flow_send(&server_serialised_flow, 2);
 //printf("pid=%d line=%d: before connect\n", (int)getpid(), __LINE__);
   ret = connect(
@@ -487,7 +429,7 @@ static void *connect_func(void *arg)
   len = get_sockaddr_len2;
   ret = getpeername(client_socket, (struct sockaddr *)get_sockaddr_ptr2, &len);
   if (ret == -1) { perror2("getpeername(client)"); }
-  else report_path_from_kernel("getpeername(client)", get_sockaddr_len2, get_sockaddr_ptr2, len);
+  else report_path_from_kernel("getpeername(client)", get_sockaddr_len2, get_sockaddr_ptr2, len, opt_4);
 
   /*
 printf("pid=%d line=%d: before sleep\n", (int)getpid(), __LINE__);
@@ -525,7 +467,7 @@ static void *accept_func(void *arg)
 #endif
 
   if (accepted_socket == -1) { perror2("accept"); return("accept"); }
-  report_path_from_kernel("accept", get_sockaddr_len, get_sockaddr_ptr, len);
+  report_path_from_kernel("accept", get_sockaddr_len, get_sockaddr_ptr, len, opt_4);
 
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
   len = get_sockaddr_len;
@@ -533,7 +475,7 @@ static void *accept_func(void *arg)
   ret = getsockname(accepted_socket, (struct sockaddr *)get_sockaddr_ptr, &len);
 //printf("pid=%d line=%d: after getsockname(accepted)\n", (int)getpid(), __LINE__);
   if (ret == -1) { perror2("getsockname(accepted)"); }
-  else report_path_from_kernel("getsockname(accepted)", get_sockaddr_len, get_sockaddr_ptr, len);
+  else report_path_from_kernel("getsockname(accepted)", get_sockaddr_len, get_sockaddr_ptr, len, opt_4);
 
   memset(get_sockaddr_ptr, opt_f, get_sockaddr_len);
   len = get_sockaddr_len;
@@ -541,7 +483,7 @@ static void *accept_func(void *arg)
   ret = getpeername(accepted_socket, (struct sockaddr *)get_sockaddr_ptr, &len);
 //printf("pid=%d line=%d: after getpeername(accepted)\n", (int)getpid(), __LINE__);
   if (ret == -1) { perror2("getpeername(accepted)"); }
-  else report_path_from_kernel("getpeername(accepted)", get_sockaddr_len, get_sockaddr_ptr, len);
+  else report_path_from_kernel("getpeername(accepted)", get_sockaddr_len, get_sockaddr_ptr, len, opt_4);
 
   return NULL;
 }
