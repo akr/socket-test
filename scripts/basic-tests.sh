@@ -30,6 +30,8 @@ set -v
 uname -mrsv
 ./size
 ./const
+./errmsg
+./errnum
 
 ./unix-stream 'foo\0' 'foo\0' 'bar\0'
 ./unix-stream 'foo\0'
