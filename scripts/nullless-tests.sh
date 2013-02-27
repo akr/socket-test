@@ -28,8 +28,8 @@ exec 2>&1
 set -v
 
 ./unix-stream 'foo' 'foo' 'bar'
-./unix-stream 'foo'
 ./unix-stream 'foo' './foo' 'bar'
+./unix-stream 'foo'
 ./unix-stream 'foo' './foo'
 
 ./unix-stream '(44*"./")a'
