@@ -155,6 +155,170 @@ LDBL_EPSILON = 1.08420217248550443e-19 (12 bytes)
 FLT_MIN = 1.17549e-38 (4 bytes)
 DBL_MIN = 2.2250738585072e-308 (8 bytes)
 LDBL_MIN = 3.36210314311209351e-4932 (12 bytes)
+./errmsg
+EAGAIN = Resource temporarily unavailable
+ENOTSUP = Not supported
+E2BIG = Argument list too long
+EACCES = Permission denied
+EADDRINUSE = Address already in use
+EADDRNOTAVAIL = Cannot assign requested address
+EAFNOSUPPORT = Address family not supported by protocol
+EALREADY = Operation already in progress
+EBADF = Bad file descriptor
+EBADMSG = Bad message
+EBUSY = Device or resource busy
+ECANCELED = Operation canceled
+ECHILD = No child processes
+ECONNABORTED = Software caused connection abort
+ECONNREFUSED = Connection refused
+ECONNRESET = Connection reset by peer
+EDEADLK = Resource deadlock avoided
+EDESTADDRREQ = Destination address required
+EDOM = Numerical argument out of domain
+EDQUOT = Disk quota exceeded
+EEXIST = File exists
+EFAULT = Bad address
+EFBIG = File too large
+EHOSTUNREACH = No route to host
+EIDRM = Identifier removed
+EILSEQ = Invalid or incomplete multibyte or wide character
+EINPROGRESS = Operation now in progress
+EINTR = Interrupted system call
+EINVAL = Invalid argument
+EIO = Input/output error
+EISCONN = Transport endpoint is already connected
+EISDIR = Is a directory
+ELOOP = Too many levels of symbolic links
+EMFILE = Too many open files
+EMLINK = Too many links
+EMSGSIZE = Message too long
+EMULTIHOP = Multihop attempted
+ENAMETOOLONG = File name too long
+ENETDOWN = Network is down
+ENETRESET = Network dropped connection on reset
+ENETUNREACH = Network is unreachable
+ENFILE = Too many open files in system
+ENOBUFS = No buffer space available
+ENODATA = No data available
+ENODEV = No such device
+ENOENT = No such file or directory
+ENOEXEC = Exec format error
+ENOLCK = No locks available
+ENOLINK = Link has been severed
+ENOMEM = Cannot allocate memory
+ENOMSG = No message of desired type
+ENOPROTOOPT = Protocol not available
+ENOSPC = No space left on device
+ENOSR = Out of streams resources
+ENOSTR = Device not a stream
+ENOSYS = Function not implemented
+ENOTCONN = Transport endpoint is not connected
+ENOTDIR = Not a directory
+ENOTEMPTY = Directory not empty
+ENOTRECOVERABLE = State not recoverable
+ENOTSOCK = Socket operation on non-socket
+ENOTTY = Inappropriate ioctl for device
+ENXIO = No such device or address
+EOPNOTSUPP = Operation not supported
+EOVERFLOW = Value too large for defined data type
+EOWNERDEAD = Previous owner died
+EPERM = Operation not permitted
+EPIPE = Broken pipe
+EPROTO = Protocol error
+EPROTONOSUPPORT = Protocol not supported
+EPROTOTYPE = Protocol wrong type for socket
+ERANGE = Numerical result out of range
+EROFS = Read-only file system
+ESPIPE = Illegal seek
+ESRCH = No such process
+ESTALE = Stale NFS file handle
+ETIME = Timer expired
+ETIMEDOUT = Connection timed out
+ETXTBSY = Text file busy
+EWOULDBLOCK = Resource temporarily unavailable
+EXDEV = Invalid cross-device link
+./errnum
+EAGAIN = 11
+ENOTSUP = 134
+E2BIG = 7
+EACCES = 13
+EADDRINUSE = 112
+EADDRNOTAVAIL = 125
+EAFNOSUPPORT = 106
+EALREADY = 120
+EBADF = 9
+EBADMSG = 77
+EBUSY = 16
+ECANCELED = 140
+ECHILD = 10
+ECONNABORTED = 113
+ECONNREFUSED = 111
+ECONNRESET = 104
+EDEADLK = 45
+EDESTADDRREQ = 121
+EDOM = 33
+EDQUOT = 132
+EEXIST = 17
+EFAULT = 14
+EFBIG = 27
+EHOSTUNREACH = 118
+EIDRM = 36
+EILSEQ = 138
+EINPROGRESS = 119
+EINTR = 4
+EINVAL = 22
+EIO = 5
+EISCONN = 127
+EISDIR = 21
+ELOOP = 92
+EMFILE = 24
+EMLINK = 31
+EMSGSIZE = 122
+EMULTIHOP = 74
+ENAMETOOLONG = 91
+ENETDOWN = 115
+ENETRESET = 126
+ENETUNREACH = 114
+ENFILE = 23
+ENOBUFS = 105
+ENODATA = 61
+ENODEV = 19
+ENOENT = 2
+ENOEXEC = 8
+ENOLCK = 46
+ENOLINK = 67
+ENOMEM = 12
+ENOMSG = 35
+ENOPROTOOPT = 109
+ENOSPC = 28
+ENOSR = 63
+ENOSTR = 60
+ENOSYS = 88
+ENOTCONN = 128
+ENOTDIR = 20
+ENOTEMPTY = 90
+ENOTRECOVERABLE = 141
+ENOTSOCK = 108
+ENOTTY = 25
+ENXIO = 6
+EOPNOTSUPP = 95
+EOVERFLOW = 139
+EOWNERDEAD = 142
+EPERM = 1
+EPIPE = 32
+EPROTO = 71
+EPROTONOSUPPORT = 123
+EPROTOTYPE = 107
+ERANGE = 34
+EROFS = 30
+ESPIPE = 29
+ESRCH = 3
+ESTALE = 133
+ETIME = 62
+ETIMEDOUT = 116
+ETXTBSY = 26
+EWOULDBLOCK = 11
+EXDEV = 18
 
 ./unix-stream 'foo\0' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
@@ -443,287 +607,287 @@ getsockname(accepted) -> "(53*"./")a\0" (108 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream '(53*"./")ab\0'
 bind(server)          <- "(53*"./")ab\0" (109 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(54*"./")a\0'
 bind(server)          <- "(54*"./")a\0" (110 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(54*"./")ab\0'
 bind(server)          <- "(54*"./")ab\0" (111 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(55*"./")a\0'
 bind(server)          <- "(55*"./")a\0" (112 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(55*"./")ab\0'
 bind(server)          <- "(55*"./")ab\0" (113 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(56*"./")a\0'
 bind(server)          <- "(56*"./")a\0" (114 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(56*"./")ab\0'
 bind(server)          <- "(56*"./")ab\0" (115 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(57*"./")a\0'
 bind(server)          <- "(57*"./")a\0" (116 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(57*"./")ab\0'
 bind(server)          <- "(57*"./")ab\0" (117 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(58*"./")a\0'
 bind(server)          <- "(58*"./")a\0" (118 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(58*"./")ab\0'
 bind(server)          <- "(58*"./")ab\0" (119 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(59*"./")a\0'
 bind(server)          <- "(59*"./")a\0" (120 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(59*"./")ab\0'
 bind(server)          <- "(59*"./")ab\0" (121 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 
 ./unix-stream '(60*"./")a\0'
 bind(server)          <- "(60*"./")a\0" (122 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(60*"./")ab\0'
 bind(server)          <- "(60*"./")ab\0" (123 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(61*"./")a\0'
 bind(server)          <- "(61*"./")a\0" (124 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(61*"./")ab\0'
 bind(server)          <- "(61*"./")ab\0" (125 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(62*"./")a\0'
 bind(server)          <- "(62*"./")a\0" (126 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(62*"./")ab\0'
 bind(server)          <- "(62*"./")ab\0" (127 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(63*"./")a\0'
 bind(server)          <- "(63*"./")a\0" (128 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(63*"./")ab\0'
 bind(server)          <- "(63*"./")ab\0" (129 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(64*"./")a\0'
 bind(server)          <- "(64*"./")a\0" (130 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(64*"./")ab\0'
 bind(server)          <- "(64*"./")ab\0" (131 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(65*"./")a\0'
 bind(server)          <- "(65*"./")a\0" (132 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(65*"./")ab\0'
 bind(server)          <- "(65*"./")ab\0" (133 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(66*"./")a\0'
 bind(server)          <- "(66*"./")a\0" (134 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(66*"./")ab\0'
 bind(server)          <- "(66*"./")ab\0" (135 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(67*"./")a\0'
 bind(server)          <- "(67*"./")a\0" (136 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(67*"./")ab\0'
 bind(server)          <- "(67*"./")ab\0" (137 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(68*"./")a\0'
 bind(server)          <- "(68*"./")a\0" (138 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(68*"./")ab\0'
 bind(server)          <- "(68*"./")ab\0" (139 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(69*"./")a\0'
 bind(server)          <- "(69*"./")a\0" (140 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(69*"./")ab\0'
 bind(server)          <- "(69*"./")ab\0" (141 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 
 ./unix-stream '(120*"./")a\0'
 bind(server)          <- "(120*"./")a\0" (242 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(120*"./")ab\0'
 bind(server)          <- "(120*"./")ab\0" (243 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(121*"./")a\0'
 bind(server)          <- "(121*"./")a\0" (244 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(121*"./")ab\0'
 bind(server)          <- "(121*"./")ab\0" (245 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(122*"./")a\0'
 bind(server)          <- "(122*"./")a\0" (246 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(122*"./")ab\0'
 bind(server)          <- "(122*"./")ab\0" (247 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(123*"./")a\0'
 bind(server)          <- "(123*"./")a\0" (248 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(123*"./")ab\0'
 bind(server)          <- "(123*"./")ab\0" (249 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(124*"./")a\0'
 bind(server)          <- "(124*"./")a\0" (250 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(124*"./")ab\0'
 bind(server)          <- "(124*"./")ab\0" (251 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(125*"./")a\0'
 bind(server)          <- "(125*"./")a\0" (252 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(125*"./")ab\0'
 bind(server)          <- "(125*"./")ab\0" (253 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(126*"./")a\0'
 bind(server)          <- "(126*"./")a\0" (254 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(126*"./")ab\0'
 bind(server)          <- "(126*"./")ab\0" (255 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(127*"./")a\0'
 bind(server)          <- "(127*"./")a\0" (256 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(127*"./")ab\0'
 bind(server)          <- "(127*"./")ab\0" (257 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(128*"./")a\0'
 bind(server)          <- "(128*"./")a\0" (258 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(128*"./")ab\0'
 bind(server)          <- "(128*"./")ab\0" (259 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(129*"./")a\0'
 bind(server)          <- "(129*"./")a\0" (260 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(129*"./")ab\0'
 bind(server)          <- "(129*"./")ab\0" (261 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 
 ./unix-stream '(250*"./")a\0'
 bind(server)          <- "(250*"./")a\0" (502 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(250*"./")ab\0'
 bind(server)          <- "(250*"./")ab\0" (503 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(251*"./")a\0'
 bind(server)          <- "(251*"./")a\0" (504 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(251*"./")ab\0'
 bind(server)          <- "(251*"./")ab\0" (505 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(252*"./")a\0'
 bind(server)          <- "(252*"./")a\0" (506 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(252*"./")ab\0'
 bind(server)          <- "(252*"./")ab\0" (507 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(253*"./")a\0'
 bind(server)          <- "(253*"./")a\0" (508 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(253*"./")ab\0'
 bind(server)          <- "(253*"./")ab\0" (509 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(254*"./")a\0'
 bind(server)          <- "(254*"./")a\0" (510 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(254*"./")ab\0'
 bind(server)          <- "(254*"./")ab\0" (511 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(255*"./")a\0'
 bind(server)          <- "(255*"./")a\0" (512 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(255*"./")ab\0'
 bind(server)          <- "(255*"./")ab\0" (513 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(256*"./")a\0'
 bind(server)          <- "(256*"./")a\0" (514 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(256*"./")ab\0'
 bind(server)          <- "(256*"./")ab\0" (515 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(257*"./")a\0'
 bind(server)          <- "(257*"./")a\0" (516 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(257*"./")ab\0'
 bind(server)          <- "(257*"./")ab\0" (517 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(258*"./")a\0'
 bind(server)          <- "(258*"./")a\0" (518 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(258*"./")ab\0'
 bind(server)          <- "(258*"./")ab\0" (519 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(259*"./")a\0'
 bind(server)          <- "(259*"./")a\0" (520 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(259*"./")ab\0'
 bind(server)          <- "(259*"./")ab\0" (521 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 
 ./unix-stream '(510*"./")a\0'
 bind(server)          <- "(510*"./")a\0" (1022 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(510*"./")ab\0'
 bind(server)          <- "(510*"./")ab\0" (1023 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(511*"./")a\0'
 bind(server)          <- "(511*"./")a\0" (1024 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(511*"./")ab\0'
 bind(server)          <- "(511*"./")ab\0" (1025 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(512*"./")a\0'
 bind(server)          <- "(512*"./")a\0" (1026 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(512*"./")ab\0'
 bind(server)          <- "(512*"./")ab\0" (1027 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(513*"./")a\0'
 bind(server)          <- "(513*"./")a\0" (1028 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(513*"./")ab\0'
 bind(server)          <- "(513*"./")ab\0" (1029 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(514*"./")a\0'
 bind(server)          <- "(514*"./")a\0" (1030 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(514*"./")ab\0'
 bind(server)          <- "(514*"./")ab\0" (1031 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(515*"./")a\0'
 bind(server)          <- "(515*"./")a\0" (1032 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(515*"./")ab\0'
 bind(server)          <- "(515*"./")ab\0" (1033 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(516*"./")a\0'
 bind(server)          <- "(516*"./")a\0" (1034 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(516*"./")ab\0'
 bind(server)          <- "(516*"./")ab\0" (1035 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(517*"./")a\0'
 bind(server)          <- "(517*"./")a\0" (1036 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(517*"./")ab\0'
 bind(server)          <- "(517*"./")ab\0" (1037 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(518*"./")a\0'
 bind(server)          <- "(518*"./")a\0" (1038 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(518*"./")ab\0'
 bind(server)          <- "(518*"./")ab\0" (1039 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(519*"./")a\0'
 bind(server)          <- "(519*"./")a\0" (1040 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(519*"./")ab\0'
 bind(server)          <- "(519*"./")ab\0" (1041 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 
 ./unix-stream '(90*"c")\0'
 bind(server)          <- "(90*"c")\0" (91 bytes)
@@ -908,103 +1072,103 @@ getsockname(accepted) -> "(107*"c")\0" (108 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream '(108*"c")\0'
 bind(server)          <- "(108*"c")\0" (109 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(109*"c")\0'
 bind(server)          <- "(109*"c")\0" (110 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 
 ./unix-stream '(110*"c")\0'
 bind(server)          <- "(110*"c")\0" (111 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(111*"c")\0'
 bind(server)          <- "(111*"c")\0" (112 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(112*"c")\0'
 bind(server)          <- "(112*"c")\0" (113 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(113*"c")\0'
 bind(server)          <- "(113*"c")\0" (114 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(114*"c")\0'
 bind(server)          <- "(114*"c")\0" (115 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(115*"c")\0'
 bind(server)          <- "(115*"c")\0" (116 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(116*"c")\0'
 bind(server)          <- "(116*"c")\0" (117 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(117*"c")\0'
 bind(server)          <- "(117*"c")\0" (118 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(118*"c")\0'
 bind(server)          <- "(118*"c")\0" (119 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(119*"c")\0'
 bind(server)          <- "(119*"c")\0" (120 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 
 ./unix-stream '(120*"c")\0'
 bind(server)          <- "(120*"c")\0" (121 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(121*"c")\0'
 bind(server)          <- "(121*"c")\0" (122 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(122*"c")\0'
 bind(server)          <- "(122*"c")\0" (123 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(123*"c")\0'
 bind(server)          <- "(123*"c")\0" (124 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(124*"c")\0'
 bind(server)          <- "(124*"c")\0" (125 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(125*"c")\0'
 bind(server)          <- "(125*"c")\0" (126 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(126*"c")\0'
 bind(server)          <- "(126*"c")\0" (127 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(127*"c")\0'
 bind(server)          <- "(127*"c")\0" (128 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(128*"c")\0'
 bind(server)          <- "(128*"c")\0" (129 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(129*"c")\0'
 bind(server)          <- "(129*"c")\0" (130 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 
 ./unix-stream '(250*"c")\0'
 bind(server)          <- "(250*"c")\0" (251 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(251*"c")\0'
 bind(server)          <- "(251*"c")\0" (252 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(252*"c")\0'
 bind(server)          <- "(252*"c")\0" (253 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(253*"c")\0'
 bind(server)          <- "(253*"c")\0" (254 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(254*"c")\0'
 bind(server)          <- "(254*"c")\0" (255 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(255*"c")\0'
 bind(server)          <- "(255*"c")\0" (256 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(256*"c")\0'
 bind(server)          <- "(256*"c")\0" (257 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(257*"c")\0'
 bind(server)          <- "(257*"c")\0" (258 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(258*"c")\0'
 bind(server)          <- "(258*"c")\0" (259 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream '(259*"c")\0'
 bind(server)          <- "(259*"c")\0" (260 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 
 ./unix-stream -p '01234567\0'
 bind(server)          <- "(98*"Z")01234567\0" (107 bytes)
@@ -1028,43 +1192,43 @@ getsockname(accepted) -> "(98*"Z")012345678\0" (108 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream -p '0123456789\0'
 bind(server)          <- "(98*"Z")0123456789\0" (109 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream -p '01234567890\0'
 bind(server)          <- "(98*"Z")01234567890\0" (110 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 
 ./unix-stream -g 1024 '(25*"0123456789")012\0'
 bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
-bind(server): File name too long (ENAMETOOLONG)
+bind(server): ENAMETOOLONG
 ./unix-stream 'foo\0' 'foo\0' '(200*"b")\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(200*"b")\0" (201 bytes)
-bind(client): File name too long (ENAMETOOLONG)
+bind(client): ENAMETOOLONG
 
 ./unix-stream -s '\0'
 bind(server)          <- "\0" (1 bytes)
-bind(server): No such file or directory (ENOENT)
+bind(server): ENOENT
 ./unix-stream -s '.\0'
 bind(server)          <- ".\0" (2 bytes)
-bind(server): Address already in use (EADDRINUSE)
+bind(server): EADDRINUSE
 ./unix-stream -s '/\0'
 bind(server)          <- "/\0" (2 bytes)
-bind(server): Address already in use (EADDRINUSE)
+bind(server): EADDRINUSE
 ./unix-stream -s '/foo\0'
 bind(server)          <- "/foo\0" (5 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "/foo\0" (5 bytes)
 ./unix-stream -s '/foo/bar\0'
 bind(server)          <- "/foo/bar\0" (9 bytes)
-bind(server): No such file or directory (ENOENT)
+bind(server): ENOENT
 ./unix-stream -s '/etc\0'
 bind(server)          <- "/etc\0" (5 bytes)
-bind(server): Address already in use (EADDRINUSE)
+bind(server): EADDRINUSE
 ./unix-stream -c -s 'README\0'
 bind(server)          <- "README\0" (7 bytes)
-bind(server): Address already in use (EADDRINUSE)
+bind(server): EADDRINUSE
 
 
 
