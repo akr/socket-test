@@ -22,7 +22,7 @@
 # IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 # OF SUCH DAMAGE.
 
-TARGETS = size const unix-stream unix-dgram
+TARGETS = size const errmsg errnum unix-stream unix-dgram
 UTILOBJS = util.o errsym.o
 
 all: $(TARGETS)
@@ -66,6 +66,12 @@ size.c: size.erb
 const.c: const.erb
 	./update-files const.c -- const.erb -- sh -c 'erb const.erb > const.c'
 
+errmsg.c: errmsg.erb
+	./update-files errmsg.c -- errmsg.erb -- sh -c 'erb errmsg.erb > errmsg.c'
+
+errnum.c: errnum.erb
+	./update-files errnum.c -- errnum.erb -- sh -c 'erb errnum.erb > errnum.c'
+
 util.o: util.c sockettest.h config.h compile.sh
 	sh ./compile.sh $< -o $@
 
@@ -76,6 +82,12 @@ size.o: size.c sockettest.h config.h compile.sh
 	sh ./compile.sh $< -o $@
 
 const.o: const.c sockettest.h config.h compile.sh
+	sh ./compile.sh $< -o $@
+
+errmsg.o: errmsg.c sockettest.h config.h compile.sh
+	sh ./compile.sh $< -o $@
+
+errnum.o: errnum.c sockettest.h config.h compile.sh
 	sh ./compile.sh $< -o $@
 
 unix-stream.o: unix-stream.c sockettest.h config.h compile.sh
@@ -89,6 +101,12 @@ size: size.o link.sh
 
 const: const.o link.sh
 	sh ./link.sh const.o -o $@
+
+errmsg: errmsg.o link.sh
+	sh ./link.sh errmsg.o -o $@
+
+errnum: errnum.o link.sh
+	sh ./link.sh errnum.o -o $@
 
 unix-stream: unix-stream.o $(UTILOBJS) link.sh
 	sh ./link.sh unix-stream.o $(UTILOBJS) -o $@

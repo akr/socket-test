@@ -1,0 +1,1 @@
+errnum.c -- errnum.erb -- sh -c erb errnum.erb > errnum.c

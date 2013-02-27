@@ -1,4 +1,4 @@
-/* errsym.c is generated from errsym.erb. */
+/* errmsg.c is generated from errsym.erb. */
 
 /*
  * Copyright (C) 2013 Tanaka Akira  <akr@fsij.org>
@@ -38,13 +38,16 @@
 
 #include "sockettest.h"
 
-char *errsym(int err)
+int main(int argc, char *argv[])
 {
+  int err;
+  char *str;
 % errno_list.each {|sym|
 #ifdef <%= sym %>
-  if (err == <%= sym %>) { return "<%= sym %>"; } else
+  err = <%= sym %>; str = "<%= sym %>";
+  printf("%s = %s\n", str, strerror(err));
 #endif
 % }
-  return NULL;
+  return EXIT_SUCCESS;
 }
 

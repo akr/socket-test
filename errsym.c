@@ -32,9 +32,12 @@
 
 char *errsym(int err)
 {
-  if (err == EAGAIN) return "EAGAIN"; /* may be equal to EWOULDBLOCK */
-  if (err == ENOTSUP) return "ENOTSUP"; /* may be equal to EOPNOTSUPP */
-
+#ifdef EAGAIN
+  if (err == EAGAIN) { return "EAGAIN"; } else
+#endif
+#ifdef ENOTSUP
+  if (err == ENOTSUP) { return "ENOTSUP"; } else
+#endif
 #ifdef E2BIG
   if (err == E2BIG) { return "E2BIG"; } else
 #endif

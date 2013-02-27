@@ -1,0 +1,1 @@
+errmsg.c -- errmsg.erb -- sh -c erb errmsg.erb > errmsg.c
