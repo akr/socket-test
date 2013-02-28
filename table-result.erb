@@ -83,25 +83,30 @@ Dir.glob('results/*.txt') {|filename|
   files[os] = File.read(filename)
 }
 
-os_order = {
-  'freebsd' => 10,
-  'debian-kfreebsd' => 20,
-  'darwin' => 30,
-  'dragonfly' => 40,
-  'netbsd' => 50,
-  'openbsd51' => 60,
-  'openbsd52' => 70,
-  'miros' => 80,
-  'hurd' => 90,
-  'haiku' => 100,
-  'minix' => 110,
-  'linux' => 120,
-  'linux-arm' => 130,
-  'sunos' => 140,
-  'cygwin' => 150,
+os_list = %w[
+  freebsd
+  debian-kfreebsd
+  darwin
+  dragonfly
+  netbsd
+  openbsd51
+  openbsd52
+  miros
+  hurd
+  haiku
+  minix
+  linux
+  linux-arm
+  sunos
+  cygwin
+]
+os_order = {}
+os_list.each_with_index {|os, i|
+  os_order[os] = i
 }
+
 files.keys.sort.each_with_index {|os, i|
-  os_order[os] ||= i
+  os_order[os] ||= -i
 }
 
 command_os_lines = {}
