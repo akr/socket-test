@@ -385,11 +385,11 @@ static void after_sockaddr_put(sockaddr_put_t *sockaddr_put, int put_succeed, in
 
   if (put_succeed) {
     if (memcmp(p+len, CANARY_STR, CANARY_LEN) != 0) {
-      fprintf(stderr, "%s : canary modified 1\n", key);
+      fprintf(stderr, "%s : canary modified.\n", key);
       goto ret;
     }
     if (memcmp(p, p+len+CANARY_LEN, len) != 0) {
-      fprintf(stderr, "%s : buffer modified", key);
+      fprintf(stderr, "%s : buffer modified.", key);
       goto ret;
     }
   }
