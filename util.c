@@ -33,7 +33,7 @@ void *xmalloc(size_t size)
     size = 1;
   p = malloc(size);
   if (p == NULL) {
-    perror2("malloc");
+    perrsym("malloc");
     exit(EXIT_FAILURE);
   }
   return p;
@@ -52,7 +52,7 @@ void *xrealloc(void *ptr, size_t size)
   void *p;
   p = realloc(ptr, size);
   if (p == NULL) {
-    perror2("realloc");
+    perrsym("realloc");
     exit(EXIT_FAILURE);
   }
   return p;
@@ -540,7 +540,7 @@ void after_sockaddr_put(sockaddr_put_t *sockaddr_put, int put_succeed, int fatal
     }
   }
   else {
-    perror2(key);
+    perrsym(key);
     if (fatal)
       exit(EXIT_FAILURE);
   }
@@ -587,7 +587,7 @@ void after_sockaddr_get_report(sockaddr_get_t *sockaddr_get, int get_succeed, in
     }
   }
   else {
-    perror2(key);
+    perrsym(key);
     if (fatal)
       exit(EXIT_FAILURE);
   }
@@ -617,13 +617,13 @@ void init_rand(void)
     return;
   seed = getpid();
   if (time(&t) == (time_t)-1) {
-    perror2("time");
+    perrsym("time");
     exit(EXIT_FAILURE);
   }
   seed ^= t;
   c = clock();
   if (c == (clock_t)-1) {
-    perror2("clock");
+    perrsym("clock");
     exit(EXIT_FAILURE);
   }
   seed ^= c;
@@ -682,7 +682,7 @@ char *mkchtempdir(char *basename)
   else {
     char cwd[4096];
     if (getcwd(cwd, sizeof(cwd)) == NULL) {
-      perror2("getcwd");
+      perrsym("getcwd");
       exit(EXIT_FAILURE);
     }
     buffer_add_str(buf, cwd);
@@ -705,7 +705,7 @@ char *mkchtempdir(char *basename)
     }
   }
   if (chdir(buf->ptr) == -1) {
-    perror2("chdir");
+    perrsym("chdir");
     exit(EXIT_FAILURE);
   }
   return buffer_unwrap(buf);
@@ -716,29 +716,27 @@ void rmchtmpdir(char *tmpdir)
   pid_t pid;
 
   if (chdir("/") == -1) {
-    perror2("chdir");
+    perrsym("chdir");
     exit(EXIT_FAILURE);
   }
 
   pid = fork();
   if (pid == -1) {
-    perror2("fork");
+    perrsym("fork");
     exit(EXIT_FAILURE);
   }
   if (pid == 0) {
     execlp("rm", "rm", "-r", tmpdir, (char *)0);
-    perror2("execlp");
+    perrsym("execlp");
     exit(EXIT_FAILURE);
   }
   if (waitpid(pid, NULL, 0) == (pid_t)-1) {
-    perror2("waitpid");
+    perrsym("waitpid");
     exit(EXIT_FAILURE);
   }
 }
 
-
-
-void perror2(const char *s)
+void perrsym(const char *s)
 {
   int err = errno;
   char *sep, *sym;

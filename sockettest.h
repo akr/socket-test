@@ -113,5 +113,5 @@ void rmchtmpdir(char *tmpdir);
 
 int socket_file_p(char *path);
 void unlink_socket(char *path);
-void perror2(const char *s);
+void perrsym(const char *s);
 char *errsym(int err);

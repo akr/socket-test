@@ -34,8 +34,6 @@ static int opt_4 = 0;
 static int opt_s = 0;
 static int opt_p = 0;
 static socklen_t opt_g = sizeof(struct sockaddr_un);
-static int opt_f = '\0';
-static int opt_e = 0;
 
 static char *server_path_str;
 static size_t server_path_len = 0;
@@ -62,8 +60,6 @@ void usage(int status)
       "        -s : server only test mode.\n"
       "        -p : prepend sizeof(sun_path)-10 characters for socket-path.\n"
       "        -g N : buffer size for getsockname/getpeername/accept (no sign means exact.  +N for increase and -N for decrease from sockaddr_un)\n"
-      "        -f N : ASCII code to fill for getsockname buffer\n"
-      "        -e N : number of extra bytes for getsockname buffer\n"
       , stdout);
   exit(status);
 }
@@ -126,7 +122,7 @@ static void parse_args(int argc, char *argv[])
   int opt;
   char *arg;
 
-  while ((opt = getopt(argc, argv, "hUcmspg:f:e:4")) != -1) {
+  while ((opt = getopt(argc, argv, "hUcmspg:4")) != -1) {
     switch (opt) {
       case 'h':
         usage(EXIT_SUCCESS);
@@ -164,14 +160,6 @@ static void parse_args(int argc, char *argv[])
         }
         else
           opt_g = atoi(optarg);
-        break;
-
-      case 'f':
-        opt_f = atoi(optarg);
-        break;
-
-      case 'e':
-        opt_e = atoi(optarg);
         break;
 
       case '4':
@@ -241,8 +229,7 @@ static void test_unix_dgram(void)
   struct sockaddr_un *sendto_sockaddr_ptr;
   socklen_t sendto_sockaddr_len;
 
-  struct sockaddr_un *get_sockaddr_ptr, *get_sockaddr_ptr2;
-  socklen_t get_sockaddr_len, get_sockaddr_len2;
+  socklen_t get_sockaddr_len;
 
   struct sockaddr *client_sockaddr_ptr_in_server;
   socklen_t client_sockaddr_len_in_server;
@@ -284,10 +271,6 @@ static void test_unix_dgram(void)
   }
 
   get_sockaddr_len = opt_g;
-  get_sockaddr_ptr = xmalloc(get_sockaddr_len);
-
-  get_sockaddr_len2 = opt_g;
-  get_sockaddr_ptr2 = xmalloc(get_sockaddr_len2);
 
   if (!opt_U) {
     unlink_socket(server_path_str);
@@ -296,7 +279,7 @@ static void test_unix_dgram(void)
   }
 
   s = socket(AF_UNIX, SOCK_DGRAM, 0);
-  if (s == -1) { perror2("socket(server)"); exit(EXIT_FAILURE); }
+  if (s == -1) { perrsym("socket(server)"); exit(EXIT_FAILURE); }
 
   sockaddr_put = before_sockaddr_put("bind(server)", (struct sockaddr *)server_sockaddr_ptr, server_sockaddr_len, opt_4);
   ret = bind(s, sockaddr_put->addr, sockaddr_put->len);
@@ -314,7 +297,7 @@ static void test_unix_dgram(void)
   }
 
   c = socket(AF_UNIX, SOCK_DGRAM, 0);
-  if (c == -1) { perror2("socket(client)"); exit(EXIT_FAILURE); }
+  if (c == -1) { perrsym("socket(client)"); exit(EXIT_FAILURE); }
 
   if (client_path_str) {
     sockaddr_put = before_sockaddr_put("bind(client)", (struct sockaddr *)client_sockaddr_ptr, client_sockaddr_len, opt_4);
@@ -334,19 +317,29 @@ static void test_unix_dgram(void)
     ret = connect(c, sockaddr_put->addr, sockaddr_put->len);
     after_sockaddr_put(sockaddr_put, ret != -1, 1);
 
-    sockaddr_get = before_sockaddr_get("getpeername(client)", get_sockaddr_len2, opt_4);
+    sockaddr_get = before_sockaddr_get("getpeername(client)", get_sockaddr_len, opt_4);
     ret = getpeername(c, sockaddr_get->addr, &sockaddr_get->len);
     after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
-    ss = send(c, "req", 3, 0);
-    if (ss == -1) { perror2("send(client)"); exit(EXIT_FAILURE); }
-    if (ss != 3) { fprintf(stderr, "send(client): try to send 3 bytes but only %ld bytes sent.\n", (long)ss); }
+#define REQUEST_STR "request"
+#define REQUEST_LEN 7
+    ss = send(c, REQUEST_STR, REQUEST_LEN, 0);
+    if (ss == -1) { perrsym("send(client)"); exit(EXIT_FAILURE); }
+    if (ss != REQUEST_LEN) {
+      fprintf(stderr,
+          "send(client): try to send %ld bytes but only %ld bytes sent.\n",
+          (long) REQUEST_LEN, (long)ss);
+    }
   }
   else {
     sockaddr_put = before_sockaddr_put("sendto(client)", (struct sockaddr *)sendto_sockaddr_ptr, sendto_sockaddr_len, opt_4);
-    ss = sendto(c, "req", 3, 0, sockaddr_put->addr, sockaddr_put->len);
+    ss = sendto(c, REQUEST_STR, REQUEST_LEN, 0, sockaddr_put->addr, sockaddr_put->len);
     after_sockaddr_put(sockaddr_put, ss != -1, 1);
-    if (ss != 3) { fprintf(stderr, "sendto(client): try to send 3 bytes but only %ld bytes sent.\n", (long)ss); }
+    if (ss != REQUEST_LEN) {
+      fprintf(stderr,
+          "sendto(client): try to send %ld bytes but only %ld bytes sent.\n",
+          (long)REQUEST_LEN, (long)ss);
+    }
   }
 
   if (opt_m) {
@@ -365,16 +358,16 @@ static void test_unix_dgram(void)
     ss = recvmsg(s, &mhdr, 0);
     sockaddr_get->len = mhdr.msg_namelen;
     after_sockaddr_get_report(sockaddr_get, ss != -1, 1);
-    if (ss != 3) { fprintf(stderr, "recvmsg(server): 3 bytes expected but %ld bytes received.\n", (long)ss); }
-    if (memcmp(buf, "req", 3) != 0) { fprintf(stderr, "recvmsg(server): unexpected return message\n"); }
+    if (ss != REQUEST_LEN) { fprintf(stderr, "recvmsg(server): %ld bytes expected but %ld bytes received.\n", (long)REQUEST_LEN, (long)ss); }
+    if (memcmp(buf, REQUEST_STR, REQUEST_LEN) != 0) { fprintf(stderr, "recvmsg(server): unexpected return message\n"); }
     if (mhdr.msg_flags != 0) { fprintf(stderr, "recvmsg(server): unexpected return flags %lx\n", (unsigned long)mhdr.msg_flags); }
   }
   else {
     sockaddr_get = before_sockaddr_get("recvfrom(server)", get_sockaddr_len, opt_4);
     ss = recvfrom(s, buf, sizeof(buf), 0, sockaddr_get->addr, &sockaddr_get->len);
     after_sockaddr_get_report(sockaddr_get, ss != -1, 1);
-    if (ss != 3) { fprintf(stderr, "recvfrom(server): 3 bytes expected but %ld bytes received.\n", (long)ss); }
-    if (memcmp(buf, "req", 3) != 0) { fprintf(stderr, "recvfrom(server): unexpected return message\n"); }
+    if (ss != REQUEST_LEN) { fprintf(stderr, "recvfrom(server): %ld bytes expected but %ld bytes received.\n", (long)REQUEST_LEN, (long)ss); }
+    if (memcmp(buf, REQUEST_STR, REQUEST_LEN) != 0) { fprintf(stderr, "recvfrom(server): unexpected return message\n"); }
   }
 
   /* keep the address obtained by recvfrom/recvmsg to reply. */
@@ -390,10 +383,12 @@ static void test_unix_dgram(void)
   sockaddr_get->addr = NULL;
   after_sockaddr_get_finish(sockaddr_get);
 
+#define REPLY_STR "reply"
+#define REPLY_LEN 5
   sockaddr_put = before_sockaddr_put("sendto(server)", client_sockaddr_ptr_in_server, client_sockaddr_len_in_server, opt_4);
-  ss = sendto(s, "res", 3, 0, sockaddr_put->addr, sockaddr_put->len);
+  ss = sendto(s, REPLY_STR, REPLY_LEN, 0, sockaddr_put->addr, sockaddr_put->len);
   after_sockaddr_put(sockaddr_put, ss != -1, 1);
-  if (ss != 3) { fprintf(stderr, "sendto(server): try to send 3 bytes but only %ld bytes sent.\n", (long)ss); }
+  if (ss != REPLY_LEN) { fprintf(stderr, "sendto(server): try to send %ld bytes but only %ld bytes sent.\n", (long)REPLY_LEN, (long)ss); }
 
   if (opt_m) {
     struct msghdr mhdr;
@@ -411,16 +406,16 @@ static void test_unix_dgram(void)
     ss = recvmsg(c, &mhdr, 0);
     sockaddr_get->len = mhdr.msg_namelen;
     after_sockaddr_get(sockaddr_get, ss != -1, 1);
-    if (ss != 3) { fprintf(stderr, "recvmsg(client): 3 bytes expected but %ld bytes received.\n", (long)ss); }
-    if (memcmp(buf, "res", 3) != 0) { fprintf(stderr, "recvmsg(client): unexpected return message\n"); }
+    if (ss != REPLY_LEN) { fprintf(stderr, "recvmsg(client): %ld bytes expected but %ld bytes received.\n", (long)REPLY_LEN, (long)ss); }
+    if (memcmp(buf, REPLY_STR, REPLY_LEN) != 0) { fprintf(stderr, "recvmsg(client): unexpected return message\n"); }
     if (mhdr.msg_flags != 0) { fprintf(stderr, "recvmsg(client): unexpected return flags %lx\n", (unsigned long)mhdr.msg_flags); }
   }
   else {
     sockaddr_get = before_sockaddr_get("recvfrom(client)", get_sockaddr_len, opt_4);
     ss = recvfrom(c, buf, sizeof(buf), 0, sockaddr_get->addr, &sockaddr_get->len);
     after_sockaddr_get(sockaddr_get, ss != -1, 1);
-    if (ss != 3) { fprintf(stderr, "recvfrom(client): unexpected return value %ld\n", (long)ss); }
-    if (memcmp(buf, "res", 3) != 0) { fprintf(stderr, "recvfrom(client): unexpected return message\n"); }
+    if (ss != REPLY_LEN) { fprintf(stderr, "recvfrom(client): %ld bytes expected but %ld bytes received.\n", (long)REPLY_LEN, (long)ss); }
+    if (memcmp(buf, REPLY_STR, REPLY_LEN) != 0) { fprintf(stderr, "recvfrom(client): unexpected return message\n"); }
   }
 }
 
