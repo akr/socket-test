@@ -359,7 +359,7 @@ void server_setup(void)
   sockaddr_get_t *sockaddr_get;
 
   server_socket = socket(AF_UNIX, SOCK_STREAM, 0);
-  if (server_socket == -1) { perror2("socket(server)"); exit(EXIT_FAILURE); }
+  if (server_socket == -1) { perrsym("socket(server)"); exit(EXIT_FAILURE); }
 
   sockaddr_put = before_sockaddr_put("bind(server)", (struct sockaddr *)server_sockaddr_ptr, server_sockaddr_len, opt_4);
   ret = bind(server_socket, sockaddr_put->addr, sockaddr_put->len);
@@ -373,13 +373,13 @@ void server_setup(void)
   after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
   ret = listen(server_socket, SOMAXCONN);
-  if (ret == -1) { perror2("listen"); exit(EXIT_FAILURE); }
+  if (ret == -1) { perrsym("listen"); exit(EXIT_FAILURE); }
 }
 
 void client_setup(void)
 {
   client_socket = socket(AF_UNIX, SOCK_STREAM, 0);
-  if (client_socket == -1) { perror2("socket(client)"); exit(EXIT_FAILURE); }
+  if (client_socket == -1) { perrsym("socket(client)"); exit(EXIT_FAILURE); }
 }
 
 static void *connect_func(void *arg)
@@ -450,7 +450,7 @@ static void *accept_func(void *arg)
   {
     void *connect_func_ret;
     ret = pthread_join(connect_thread, &connect_func_ret);
-    if (ret != 0) { errno = ret; perror2("pthread_join"); exit(EXIT_FAILURE); }
+    if (ret != 0) { errno = ret; perrsym("pthread_join"); exit(EXIT_FAILURE); }
     if (connect_func_ret) { exit(EXIT_FAILURE); }
   }
 #endif
@@ -497,7 +497,7 @@ static void test_unix_stream(void)
     serialized_flow_init(&server_serialised_flow);
     serialized_flow_init(&client_serialised_flow);
     child_pid = fork();
-    if (child_pid == -1) { perror2("fork"); exit(EXIT_FAILURE); }
+    if (child_pid == -1) { perrsym("fork"); exit(EXIT_FAILURE); }
     if (child_pid == 0) {
       close(server_serialised_flow.pipe[1]);
       server_setup();
@@ -511,7 +511,7 @@ static void test_unix_stream(void)
     serialized_flow_recv(&client_serialised_flow, 1);
     connect_func_ret = connect_func(NULL);
     if (connect_func_ret) { exit(EXIT_FAILURE); }
-    if (waitpid(child_pid, &status, 0) == -1) { perror2("waitpid"); exit(EXIT_FAILURE); }
+    if (waitpid(child_pid, &status, 0) == -1) { perrsym("waitpid"); exit(EXIT_FAILURE); }
     child_pid = 0;
     if (!WIFEXITED(status) || WEXITSTATUS(status) != EXIT_SUCCESS) { exit(EXIT_FAILURE); }
   }
@@ -521,7 +521,7 @@ static void test_unix_stream(void)
     server_setup();
     client_setup();
     err = pthread_create(&connect_thread, NULL, connect_func, NULL);
-    if (err != 0) { errno = err; perror2("pthread_create"); exit(EXIT_FAILURE); }
+    if (err != 0) { errno = err; perrsym("pthread_create"); exit(EXIT_FAILURE); }
     accept_func(NULL);
   }
 #else

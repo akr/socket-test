@@ -296,7 +296,7 @@ static void test_unix_dgram(void)
   }
 
   s = socket(AF_UNIX, SOCK_DGRAM, 0);
-  if (s == -1) { perror2("socket(server)"); exit(EXIT_FAILURE); }
+  if (s == -1) { perrsym("socket(server)"); exit(EXIT_FAILURE); }
 
   sockaddr_put = before_sockaddr_put("bind(server)", (struct sockaddr *)server_sockaddr_ptr, server_sockaddr_len, opt_4);
   ret = bind(s, sockaddr_put->addr, sockaddr_put->len);
@@ -314,7 +314,7 @@ static void test_unix_dgram(void)
   }
 
   c = socket(AF_UNIX, SOCK_DGRAM, 0);
-  if (c == -1) { perror2("socket(client)"); exit(EXIT_FAILURE); }
+  if (c == -1) { perrsym("socket(client)"); exit(EXIT_FAILURE); }
 
   if (client_path_str) {
     sockaddr_put = before_sockaddr_put("bind(client)", (struct sockaddr *)client_sockaddr_ptr, client_sockaddr_len, opt_4);
@@ -339,7 +339,7 @@ static void test_unix_dgram(void)
     after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
     ss = send(c, "req", 3, 0);
-    if (ss == -1) { perror2("send(client)"); exit(EXIT_FAILURE); }
+    if (ss == -1) { perrsym("send(client)"); exit(EXIT_FAILURE); }
     if (ss != 3) { fprintf(stderr, "send(client): try to send 3 bytes but only %ld bytes sent.\n", (long)ss); }
   }
   else {
