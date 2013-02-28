@@ -581,8 +581,6 @@ static void *accept_func(void *arg)
 
 static void test_unix_stream(void)
 {
-  void *connect_func_ret;
-
   if (!opt_U) {
     unlink_socket(server_path_str);
     if (client_path_str)
@@ -599,6 +597,7 @@ static void test_unix_stream(void)
 
 #if defined(USE_FORK)
   {
+    void *connect_func_ret;
     int status;
     parent_pid = getpid();
     serialized_flow_init(&server_serialised_flow);
@@ -623,17 +622,22 @@ static void test_unix_stream(void)
     if (!WIFEXITED(status) || WEXITSTATUS(status) != EXIT_SUCCESS) { exit(EXIT_FAILURE); }
   }
 #elif defined(USE_PTHREAD)
-  server_setup();
-  client_setup();
-  ret = pthread_create(&connect_thread, NULL, connect_func, NULL);
-  if (ret != 0) { errno = ret; perror2("pthread_create"); exit(EXIT_FAILURE); }
-  accept_func(NULL);
+  {
+    server_setup();
+    client_setup();
+    err = pthread_create(&connect_thread, NULL, connect_func, NULL);
+    if (err != 0) { errno = err; perror2("pthread_create"); exit(EXIT_FAILURE); }
+    accept_func(NULL);
+  }
 #else
-  server_setup();
-  client_setup();
-  connect_func_ret = connect_func(NULL);
-  if (connect_func_ret) { exit(EXIT_FAILURE); }
-  accept_func(NULL);
+  {
+    void *connect_func_ret;
+    server_setup();
+    client_setup();
+    connect_func_ret = connect_func(NULL);
+    if (connect_func_ret) { exit(EXIT_FAILURE); }
+    accept_func(NULL);
+  }
 #endif
 }
 
