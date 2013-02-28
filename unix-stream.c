@@ -365,7 +365,6 @@ static sockaddr_put_t *before_sockaddr_put(char *key, struct sockaddr *addr, soc
 {
   sockaddr_put_t *sockaddr_put;
   char *p;
-  int i;
   sockaddr_put = xmalloc(sizeof(sockaddr_put_t));
   p = xmalloc(len+CANARY_LEN+len);
   memcpy(p, addr, len);
@@ -380,8 +379,6 @@ static sockaddr_put_t *before_sockaddr_put(char *key, struct sockaddr *addr, soc
 
 static void after_sockaddr_put(sockaddr_put_t *sockaddr_put, int put_succeed, int fatal)
 {
-  int i;
-  int modified = 0;
   char *key = sockaddr_put->key;
   char *p = (char *)sockaddr_put->addr;
   socklen_t len = sockaddr_put->len;
@@ -419,7 +416,6 @@ static sockaddr_get_t *before_sockaddr_get(char *key, socklen_t buflen)
 {
   sockaddr_get_t *sockaddr_get;
   char *p;
-  socklen_t i;
   p = xmalloc(buflen+CANARY_LEN);
 
   memset(p, '?', buflen);
@@ -439,7 +435,6 @@ static void after_sockaddr_get(sockaddr_get_t *sockaddr_get, int get_succeed, in
   socklen_t buflen = sockaddr_get->buflen;
   struct sockaddr *addr = sockaddr_get->addr;
   socklen_t len = sockaddr_get->len;
-  socklen_t i;
   char *p = (char *)addr;
   if (get_succeed) {
     report_path_from_kernel(key, buflen, (struct sockaddr_un *)addr, len, opt_4);
@@ -465,9 +460,7 @@ ret:
 
 void server_setup(void)
 {
-  socklen_t len;
   int ret;
-  struct sockaddr *saddr;
   sockaddr_put_t *sockaddr_put;
   sockaddr_get_t *sockaddr_get;
 
@@ -491,17 +484,13 @@ void server_setup(void)
 
 void client_setup(void)
 {
-  int ret;
-
   client_socket = socket(AF_UNIX, SOCK_STREAM, 0);
   if (client_socket == -1) { perror2("socket(client)"); exit(EXIT_FAILURE); }
 }
 
 static void *connect_func(void *arg)
 {
-  socklen_t len;
   int ret;
-  struct sockaddr *saddr;
   sockaddr_put_t *sockaddr_put;
   sockaddr_get_t *sockaddr_get;
 
@@ -549,10 +538,7 @@ static void *connect_func(void *arg)
 
 static void *accept_func(void *arg)
 {
-  struct sockaddr *saddr;
-  socklen_t len;
   int ret;
-  sockaddr_put_t *sockaddr_put;
   sockaddr_get_t *sockaddr_get;
 
   serialized_flow_recv(&server_serialised_flow, 2);
@@ -595,9 +581,6 @@ static void *accept_func(void *arg)
 
 static void test_unix_stream(void)
 {
-  socklen_t len;
-  int s;
-  int ret;
   void *connect_func_ret;
 
 
