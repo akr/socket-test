@@ -34,8 +34,6 @@ static int opt_4 = 0;
 static int opt_s = 0;
 static int opt_p = 0;
 static socklen_t opt_g = sizeof(struct sockaddr_un);
-static int opt_f = '\0';
-static int opt_e = 0;
 
 static char *server_path_str;
 static size_t server_path_len = 0;
@@ -126,7 +124,7 @@ static void parse_args(int argc, char *argv[])
   int opt;
   char *arg;
 
-  while ((opt = getopt(argc, argv, "hUcmspg:f:e:4")) != -1) {
+  while ((opt = getopt(argc, argv, "hUcmspg:4")) != -1) {
     switch (opt) {
       case 'h':
         usage(EXIT_SUCCESS);
@@ -164,14 +162,6 @@ static void parse_args(int argc, char *argv[])
         }
         else
           opt_g = atoi(optarg);
-        break;
-
-      case 'f':
-        opt_f = atoi(optarg);
-        break;
-
-      case 'e':
-        opt_e = atoi(optarg);
         break;
 
       case '4':
@@ -241,8 +231,7 @@ static void test_unix_dgram(void)
   struct sockaddr_un *sendto_sockaddr_ptr;
   socklen_t sendto_sockaddr_len;
 
-  struct sockaddr_un *get_sockaddr_ptr, *get_sockaddr_ptr2;
-  socklen_t get_sockaddr_len, get_sockaddr_len2;
+  socklen_t get_sockaddr_len;
 
   struct sockaddr *client_sockaddr_ptr_in_server;
   socklen_t client_sockaddr_len_in_server;
@@ -284,10 +273,6 @@ static void test_unix_dgram(void)
   }
 
   get_sockaddr_len = opt_g;
-  get_sockaddr_ptr = xmalloc(get_sockaddr_len);
-
-  get_sockaddr_len2 = opt_g;
-  get_sockaddr_ptr2 = xmalloc(get_sockaddr_len2);
 
   if (!opt_U) {
     unlink_socket(server_path_str);
@@ -334,7 +319,7 @@ static void test_unix_dgram(void)
     ret = connect(c, sockaddr_put->addr, sockaddr_put->len);
     after_sockaddr_put(sockaddr_put, ret != -1, 1);
 
-    sockaddr_get = before_sockaddr_get("getpeername(client)", get_sockaddr_len2, opt_4);
+    sockaddr_get = before_sockaddr_get("getpeername(client)", get_sockaddr_len, opt_4);
     ret = getpeername(c, sockaddr_get->addr, &sockaddr_get->len);
     after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
