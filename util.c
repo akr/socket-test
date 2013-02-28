@@ -234,6 +234,19 @@ char *escape_string(size_t *escaped_len_ret, char *unescaped_ptr, size_t unescap
   return buffer_unwrap(buf);
 }
 
+char *quote_string(size_t *quoted_len_ret, char *unquoted_ptr, size_t unquoted_len)
+{
+  buffer_t *buf = buffer_new(unquoted_len+1);
+  buffer_add_byte(buf, '"');
+  escape_string_content(unquoted_ptr, unquoted_len, buf);
+  if (quoted_len_ret) {
+    *quoted_len_ret = buf->len;
+  }
+  buffer_add_byte(buf, '"');
+  buffer_add_byte(buf, '\0');
+  return buffer_unwrap(buf);
+}
+
 /* return -1 if ch is not a hex digit. */
 static int decode_hexdigit(int ch)
 {
