@@ -60,8 +60,6 @@ void usage(int status)
       "        -s : server only test mode.\n"
       "        -p : prepend sizeof(sun_path)-10 characters for socket-path.\n"
       "        -g N : buffer size for getsockname/getpeername/accept (no sign means exact.  +N for increase and -N for decrease from sockaddr_un)\n"
-      "        -f N : ASCII code to fill for getsockname buffer\n"
-      "        -e N : number of extra bytes for getsockname buffer\n"
       , stdout);
   exit(status);
 }
