@@ -79,8 +79,7 @@ static socklen_t connect_sockaddr_len;
 struct sockaddr_un *client_sockaddr_ptr;
 socklen_t client_sockaddr_len;
 
-struct sockaddr_un *get_sockaddr_ptr, *get_sockaddr_ptr2;
-socklen_t get_sockaddr_len, get_sockaddr_len2;
+socklen_t get_sockaddr_len;
 
 #ifdef USE_FORK
 static pid_t parent_pid;
@@ -344,10 +343,6 @@ void addr_setup(void)
   }
 
   get_sockaddr_len = opt_g;
-  get_sockaddr_ptr = xmalloc(get_sockaddr_len);
-
-  get_sockaddr_len2 = opt_g;
-  get_sockaddr_ptr2 = xmalloc(get_sockaddr_len2);
 
   return;
 }
@@ -397,7 +392,7 @@ static void *connect_func(void *arg)
     printf("socket file (client)  : %s\n", ret ? "exist" : "not exist");
   }
 
-  sockaddr_get = before_sockaddr_get("getsockname(client)", get_sockaddr_len2, opt_4);
+  sockaddr_get = before_sockaddr_get("getsockname(client)", get_sockaddr_len, opt_4);
   ret = getsockname(client_socket, sockaddr_get->addr, &sockaddr_get->len);
   after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
@@ -422,7 +417,7 @@ static void *connect_func(void *arg)
 
   serialized_flow_recv(&client_serialised_flow, 3);
 
-  sockaddr_get = before_sockaddr_get("getpeername(client)", get_sockaddr_len2, opt_4);
+  sockaddr_get = before_sockaddr_get("getpeername(client)", get_sockaddr_len, opt_4);
   ret = getpeername(client_socket, sockaddr_get->addr, &sockaddr_get->len);
   after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
