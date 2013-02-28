@@ -155,13 +155,12 @@ FLT_MIN = 1.17549e-38 (4 bytes)
 DBL_MIN = 2.2250738585072e-308 (8 bytes)
 LDBL_MIN = 3.36210314311209351e-4932 (16 bytes)
 ./errmsg
-EAGAIN = Resource temporarily unavailable
-ENOTSUP = Operation not supported
 E2BIG = Argument list too long
 EACCES = Permission denied
 EADDRINUSE = Address already in use
 EADDRNOTAVAIL = Cannot assign requested address
 EAFNOSUPPORT = Address family not supported by protocol
+EAGAIN = Resource temporarily unavailable
 EALREADY = Operation already in progress
 EBADF = Bad file descriptor
 EBADMSG = Bad message
@@ -216,6 +215,7 @@ ENOTDIR = Not a directory
 ENOTEMPTY = Directory not empty
 ENOTRECOVERABLE = State not recoverable
 ENOTSOCK = Socket operation on non-socket
+ENOTSUP = Operation not supported
 ENOTTY = Inappropriate ioctl for device
 ENXIO = No such device or address
 EOPNOTSUPP = Operation not supported
@@ -237,13 +237,12 @@ ETXTBSY = Text file busy
 EWOULDBLOCK = Resource temporarily unavailable
 EXDEV = Invalid cross-device link
 ./errnum
-EAGAIN = 11
-ENOTSUP = 95
 E2BIG = 7
 EACCES = 13
 EADDRINUSE = 98
 EADDRNOTAVAIL = 99
 EAFNOSUPPORT = 97
+EAGAIN = 11
 EALREADY = 114
 EBADF = 9
 EBADMSG = 74
@@ -298,6 +297,7 @@ ENOTDIR = 20
 ENOTEMPTY = 39
 ENOTRECOVERABLE = 131
 ENOTSOCK = 88
+ENOTSUP = 95
 ENOTTY = 25
 ENXIO = 6
 EOPNOTSUPP = 95
@@ -331,16 +331,6 @@ getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "bar\0" (4 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "bar\0" (4 bytes)
-./unix-stream 'foo\0'
-bind(server)          <- "foo\0" (4 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "foo\0" (4 bytes)
-getsockname(client)   -> "" (0 bytes)
-connect               <- "foo\0" (4 bytes)
-getpeername(client)   -> "foo\0" (4 bytes)
-accept                -> "" (0 bytes)
-getsockname(accepted) -> "foo\0" (4 bytes)
-getpeername(accepted) -> "" (0 bytes)
 ./unix-stream 'foo\0' './foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
@@ -353,6 +343,16 @@ getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "bar\0" (4 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "bar\0" (4 bytes)
+./unix-stream 'foo\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "foo\0" (4 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "" (0 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "" (0 bytes)
 ./unix-stream 'foo\0' './foo\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
@@ -1243,16 +1243,6 @@ getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "bar\0" (4 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "bar\0" (4 bytes)
-./unix-stream 'foo'
-bind(server)          <- "foo" (3 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "foo\0" (4 bytes)
-getsockname(client)   -> "" (0 bytes)
-connect               <- "foo" (3 bytes)
-getpeername(client)   -> "foo\0" (4 bytes)
-accept                -> "" (0 bytes)
-getsockname(accepted) -> "foo\0" (4 bytes)
-getpeername(accepted) -> "" (0 bytes)
 ./unix-stream 'foo' './foo' 'bar'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
@@ -1265,6 +1255,16 @@ getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "bar\0" (4 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "bar\0" (4 bytes)
+./unix-stream 'foo'
+bind(server)          <- "foo" (3 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "foo" (3 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "" (0 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "" (0 bytes)
 ./unix-stream 'foo' './foo'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
@@ -2145,7 +2145,7 @@ bind(client): EINVAL
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000003" (6 bytes)
+getsockname(server)   -> "\00000c" (6 bytes)
 ./unix-stream -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -2172,7 +2172,7 @@ bind(server): EADDRINUSE
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000004" (6 bytes)
+getsockname(server)   -> "\00000d" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist

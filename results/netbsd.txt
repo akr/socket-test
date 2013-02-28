@@ -166,13 +166,12 @@ FLT_MIN = 1.17549e-38 (4 bytes)
 DBL_MIN = 2.2250738585072e-308 (8 bytes)
 LDBL_MIN = 3.36210314311209351e-4932 (16 bytes)
 ./errmsg
-EAGAIN = Resource temporarily unavailable
-ENOTSUP = Not supported
 E2BIG = Argument list too long
 EACCES = Permission denied
 EADDRINUSE = Address already in use
 EADDRNOTAVAIL = Can't assign requested address
 EAFNOSUPPORT = Address family not supported by protocol family
+EAGAIN = Resource temporarily unavailable
 EALREADY = Operation already in progress
 EBADF = Bad file descriptor
 EBADMSG = Bad or Corrupt message
@@ -226,6 +225,7 @@ ENOTCONN = Socket is not connected
 ENOTDIR = Not a directory
 ENOTEMPTY = Directory not empty
 ENOTSOCK = Socket operation on non-socket
+ENOTSUP = Not supported
 ENOTTY = Inappropriate ioctl for device
 ENXIO = Device not configured
 EOPNOTSUPP = Operation not supported
@@ -246,13 +246,12 @@ ETXTBSY = Text file busy
 EWOULDBLOCK = Resource temporarily unavailable
 EXDEV = Cross-device link
 ./errnum
-EAGAIN = 35
-ENOTSUP = 86
 E2BIG = 7
 EACCES = 13
 EADDRINUSE = 48
 EADDRNOTAVAIL = 49
 EAFNOSUPPORT = 47
+EAGAIN = 35
 EALREADY = 37
 EBADF = 9
 EBADMSG = 88
@@ -306,6 +305,7 @@ ENOTCONN = 57
 ENOTDIR = 20
 ENOTEMPTY = 66
 ENOTSOCK = 38
+ENOTSUP = 86
 ENOTTY = 25
 ENXIO = 6
 EOPNOTSUPP = 45
@@ -338,16 +338,6 @@ getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "bar\0" (4 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "bar\0" (4 bytes)
-./unix-stream 'foo\0'
-bind(server)          <- "foo\0" (4 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "foo\0" (4 bytes)
-getsockname(client)   -> "(104*"\0")" (104 bytes)
-connect               <- "foo\0" (4 bytes)
-getpeername(client)   -> "foo\0" (4 bytes)
-accept                -> "(104*"\0")" (104 bytes)
-getsockname(accepted) -> "foo\0" (4 bytes)
-getpeername(accepted) -> "(104*"\0")" (104 bytes)
 ./unix-stream 'foo\0' './foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
@@ -360,6 +350,16 @@ getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "bar\0" (4 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "bar\0" (4 bytes)
+./unix-stream 'foo\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "foo\0" (4 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
 ./unix-stream 'foo\0' './foo\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
@@ -1759,16 +1759,6 @@ getpeername(client)   -> "foo" (3 bytes)
 accept                -> "bar" (3 bytes)
 getsockname(accepted) -> "foo" (3 bytes)
 getpeername(accepted) -> "bar" (3 bytes)
-./unix-stream 'foo'
-bind(server)          <- "foo" (3 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "foo" (3 bytes)
-getsockname(client)   -> "(104*"\0")" (104 bytes)
-connect               <- "foo" (3 bytes)
-getpeername(client)   -> "foo" (3 bytes)
-accept                -> "(104*"\0")" (104 bytes)
-getsockname(accepted) -> "foo" (3 bytes)
-getpeername(accepted) -> "(104*"\0")" (104 bytes)
 ./unix-stream 'foo' './foo' 'bar'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
@@ -1781,6 +1771,16 @@ getpeername(client)   -> "foo" (3 bytes)
 accept                -> "bar" (3 bytes)
 getsockname(accepted) -> "foo" (3 bytes)
 getpeername(accepted) -> "bar" (3 bytes)
+./unix-stream 'foo'
+bind(server)          <- "foo" (3 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo" (3 bytes)
+getsockname(client)   -> "(104*"\0")" (104 bytes)
+connect               <- "foo" (3 bytes)
+getpeername(client)   -> "foo" (3 bytes)
+accept                -> "(104*"\0")" (104 bytes)
+getsockname(accepted) -> "foo" (3 bytes)
+getpeername(accepted) -> "(104*"\0")" (104 bytes)
 ./unix-stream 'foo' './foo'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
