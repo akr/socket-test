@@ -583,7 +583,6 @@ static void test_unix_stream(void)
 {
   void *connect_func_ret;
 
-
   if (!opt_U) {
     unlink_socket(server_path_str);
     if (client_path_str)
@@ -599,27 +598,30 @@ static void test_unix_stream(void)
   }
 
 #if defined(USE_FORK)
-  parent_pid = getpid();
-  serialized_flow_init(&server_serialised_flow);
-  serialized_flow_init(&client_serialised_flow);
-  child_pid = fork();
-  if (child_pid == -1) { perror2("fork"); exit(EXIT_FAILURE); }
-  if (child_pid == 0) {
-    close(server_serialised_flow.pipe[1]);
-    server_setup();
-    serialized_flow_send(&client_serialised_flow, 1);
-    if (accept_func(NULL) != NULL)
-      _exit(EXIT_FAILURE);
-    _exit(EXIT_SUCCESS);
+  {
+    int status;
+    parent_pid = getpid();
+    serialized_flow_init(&server_serialised_flow);
+    serialized_flow_init(&client_serialised_flow);
+    child_pid = fork();
+    if (child_pid == -1) { perror2("fork"); exit(EXIT_FAILURE); }
+    if (child_pid == 0) {
+      close(server_serialised_flow.pipe[1]);
+      server_setup();
+      serialized_flow_send(&client_serialised_flow, 1);
+      if (accept_func(NULL) != NULL)
+	_exit(EXIT_FAILURE);
+      _exit(EXIT_SUCCESS);
+    }
+    close(client_serialised_flow.pipe[1]);
+    client_setup();
+    serialized_flow_recv(&client_serialised_flow, 1);
+    connect_func_ret = connect_func(NULL);
+    if (connect_func_ret) { exit(EXIT_FAILURE); }
+    if (waitpid(child_pid, &status, 0) == -1) { perror2("waitpid"); exit(EXIT_FAILURE); }
+    child_pid = 0;
+    if (!WIFEXITED(status) || WEXITSTATUS(status) != EXIT_SUCCESS) { exit(EXIT_FAILURE); }
   }
-  close(client_serialised_flow.pipe[1]);
-  client_setup();
-  serialized_flow_recv(&client_serialised_flow, 1);
-  connect_func_ret = connect_func(NULL);
-  if (connect_func_ret) { exit(EXIT_FAILURE); }
-  if (waitpid(child_pid, &ret, 0) == -1) { perror2("waitpid"); exit(EXIT_FAILURE); }
-  child_pid = 0;
-  if (!WIFEXITED(ret) || WEXITSTATUS(ret) != EXIT_SUCCESS) { exit(EXIT_FAILURE); }
 #elif defined(USE_PTHREAD)
   server_setup();
   client_setup();
