@@ -440,7 +440,7 @@ char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escap
   return buffer_unwrap(buf);
 }
 
-void report_path_to_kernel(char *key, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4)
+static void report_path_to_kernel(char *key, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4)
 {
   char *escaped_path;
   char path_sun_len_prefix[sizeof("(sun_len=NNN)")] = "";
@@ -467,7 +467,7 @@ void report_path_to_kernel(char *key, struct sockaddr_un *sockaddr_ptr, size_t s
   free(escaped_path);
 }
 
-void report_path_from_kernel(char *key, size_t buf_len, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4)
+static void report_path_from_kernel(char *key, size_t buf_len, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4)
 {
   int truncated;
   size_t len;
@@ -501,6 +501,109 @@ void report_path_from_kernel(char *key, size_t buf_len, struct sockaddr_un *sock
       truncated ? "..." : "",
       (int)(sockaddr_len - offsetof(struct sockaddr_un, sun_path)));
   free(escaped_path);
+}
+
+#define CANARY_STR "???????"
+#define CANARY_LEN 8
+
+sockaddr_put_t *before_sockaddr_put(char *key, struct sockaddr *addr, socklen_t len, int opt_4)
+{
+  sockaddr_put_t *sockaddr_put;
+  char *p;
+  sockaddr_put = xmalloc(sizeof(sockaddr_put_t));
+  p = xmalloc(len+CANARY_LEN+len);
+  memcpy(p, addr, len);
+  memcpy(p+len, CANARY_STR, CANARY_LEN);
+  memcpy(p+len+CANARY_LEN, addr, len);
+  report_path_to_kernel(key, (struct sockaddr_un *)p, len, opt_4);
+  sockaddr_put->key = key;
+  sockaddr_put->addr = (struct sockaddr *)p;
+  sockaddr_put->len = len;
+  sockaddr_put->opt_4 = opt_4;
+  return sockaddr_put;
+}
+
+void after_sockaddr_put(sockaddr_put_t *sockaddr_put, int put_succeed, int fatal)
+{
+  char *key = sockaddr_put->key;
+  char *p = (char *)sockaddr_put->addr;
+  socklen_t len = sockaddr_put->len;
+
+  if (put_succeed) {
+    if (memcmp(p+len, CANARY_STR, CANARY_LEN) != 0) {
+      fprintf(stderr, "%s : canary modified.\n", key);
+      goto ret;
+    }
+    if (memcmp(p, p+len+CANARY_LEN, len) != 0) {
+      fprintf(stderr, "%s : buffer modified.", key);
+      goto ret;
+    }
+  }
+  else {
+    perror2(key);
+    if (fatal)
+      exit(EXIT_FAILURE);
+  }
+
+ret:
+
+  free(p);
+  free(sockaddr_put);
+}
+
+sockaddr_get_t *before_sockaddr_get(char *key, socklen_t buflen, int opt_4)
+{
+  sockaddr_get_t *sockaddr_get;
+  char *p;
+  p = xmalloc(buflen+CANARY_LEN);
+
+  memset(p, '?', buflen);
+  memcpy(p+buflen, CANARY_STR, CANARY_LEN);
+
+  sockaddr_get = xmalloc(sizeof(sockaddr_get_t));
+  sockaddr_get->key = key;
+  sockaddr_get->addr = (struct sockaddr *)p;
+  sockaddr_get->buflen = buflen;
+  sockaddr_get->len = buflen;
+  sockaddr_get->opt_4 = opt_4;
+  return sockaddr_get;
+}
+
+void after_sockaddr_get_report(sockaddr_get_t *sockaddr_get, int get_succeed, int fatal)
+{
+  char *key = sockaddr_get->key;
+  socklen_t buflen = sockaddr_get->buflen;
+  struct sockaddr *addr = sockaddr_get->addr;
+  socklen_t len = sockaddr_get->len;
+  char *p = (char *)addr;
+  if (get_succeed) {
+    report_path_from_kernel(key, buflen, (struct sockaddr_un *)addr, len, sockaddr_get->opt_4);
+    if (memcmp(p+buflen, CANARY_STR, CANARY_LEN) != 0) {
+      char *c1 = quote_string(NULL, CANARY_STR, CANARY_LEN);
+      char *c2 = quote_string(NULL, p+buflen, CANARY_LEN);
+      fprintf(stderr, "%s : canary modified.  %s -> %s\n", key, c1, c2);
+      free(c1);
+      free(c2);
+    }
+  }
+  else {
+    perror2(key);
+    if (fatal)
+      exit(EXIT_FAILURE);
+  }
+}
+
+void after_sockaddr_get_finish(sockaddr_get_t *sockaddr_get)
+{
+  if (sockaddr_get->addr)
+    free(sockaddr_get->addr);
+  free(sockaddr_get);
+}
+
+void after_sockaddr_get(sockaddr_get_t *sockaddr_get, int get_succeed, int fatal)
+{
+  after_sockaddr_get_report(sockaddr_get, get_succeed, fatal);
+  after_sockaddr_get_finish(sockaddr_get);
 }
 
 static int rand_initialized = 0;

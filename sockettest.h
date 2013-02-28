@@ -84,8 +84,27 @@ char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escap
 char *quote_string(size_t *quoted_len_ret, char *unquoted_ptr, size_t unquoted_len);
 /* char *unquote_string(size_t *unquoted_len_ret, char *quoted_ptr, size_t quoted_len); */
 
-void report_path_to_kernel(char *key, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4);
-void report_path_from_kernel(char *key, size_t buf_len, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4);
+typedef struct {
+  char *key;
+  struct sockaddr *addr;
+  socklen_t len;
+  int opt_4;
+} sockaddr_put_t;
+
+typedef struct {
+  char *key;
+  struct sockaddr *addr;
+  socklen_t buflen;
+  socklen_t len;
+  int opt_4;
+} sockaddr_get_t;
+
+sockaddr_put_t *before_sockaddr_put(char *key, struct sockaddr *addr, socklen_t len, int opt_4);
+void after_sockaddr_put(sockaddr_put_t *sockaddr_put, int put_succeed, int fatal);
+sockaddr_get_t *before_sockaddr_get(char *key, socklen_t buflen, int opt_4);
+void after_sockaddr_get(sockaddr_get_t *sockaddr_get, int get_succeed, int fatal);
+void after_sockaddr_get_report(sockaddr_get_t *sockaddr_get, int get_succeed, int fatal);
+void after_sockaddr_get_finish(sockaddr_get_t *sockaddr_get);
 
 void init_rand(void);
 int get_rand(void);

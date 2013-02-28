@@ -352,116 +352,6 @@ void addr_setup(void)
   return;
 }
 
-#define CANARY_STR "???????"
-#define CANARY_LEN 8
-
-typedef struct {
-  char *key;
-  struct sockaddr *addr;
-  socklen_t len;
-  int opt_4;
-} sockaddr_put_t;
-
-static sockaddr_put_t *before_sockaddr_put(char *key, struct sockaddr *addr, socklen_t len, int opt_4)
-{
-  sockaddr_put_t *sockaddr_put;
-  char *p;
-  sockaddr_put = xmalloc(sizeof(sockaddr_put_t));
-  p = xmalloc(len+CANARY_LEN+len);
-  memcpy(p, addr, len);
-  memcpy(p+len, CANARY_STR, CANARY_LEN);
-  memcpy(p+len+CANARY_LEN, addr, len);
-  report_path_to_kernel(key, (struct sockaddr_un *)p, len, opt_4);
-  sockaddr_put->key = key;
-  sockaddr_put->addr = (struct sockaddr *)p;
-  sockaddr_put->len = len;
-  sockaddr_put->opt_4 = opt_4;
-  return sockaddr_put;
-}
-
-static void after_sockaddr_put(sockaddr_put_t *sockaddr_put, int put_succeed, int fatal)
-{
-  char *key = sockaddr_put->key;
-  char *p = (char *)sockaddr_put->addr;
-  socklen_t len = sockaddr_put->len;
-
-  if (put_succeed) {
-    if (memcmp(p+len, CANARY_STR, CANARY_LEN) != 0) {
-      fprintf(stderr, "%s : canary modified.\n", key);
-      goto ret;
-    }
-    if (memcmp(p, p+len+CANARY_LEN, len) != 0) {
-      fprintf(stderr, "%s : buffer modified.", key);
-      goto ret;
-    }
-  }
-  else {
-    perror2(key);
-    if (fatal)
-      exit(EXIT_FAILURE);
-  }
-
-ret:
-
-  free(p);
-  free(sockaddr_put);
-}
-
-typedef struct {
-  char *key;
-  struct sockaddr *addr;
-  socklen_t buflen;
-  socklen_t len;
-  int opt_4;
-} sockaddr_get_t;
-
-static sockaddr_get_t *before_sockaddr_get(char *key, socklen_t buflen, int opt_4)
-{
-  sockaddr_get_t *sockaddr_get;
-  char *p;
-  p = xmalloc(buflen+CANARY_LEN);
-
-  memset(p, '?', buflen);
-  memcpy(p+buflen, CANARY_STR, CANARY_LEN);
-
-  sockaddr_get = xmalloc(sizeof(sockaddr_get_t));
-  sockaddr_get->key = key;
-  sockaddr_get->addr = (struct sockaddr *)p;
-  sockaddr_get->buflen = buflen;
-  sockaddr_get->len = buflen;
-  sockaddr_get->opt_4 = opt_4;
-  return sockaddr_get;
-}
-
-static void after_sockaddr_get(sockaddr_get_t *sockaddr_get, int get_succeed, int fatal)
-{
-  char *key = sockaddr_get->key;
-  socklen_t buflen = sockaddr_get->buflen;
-  struct sockaddr *addr = sockaddr_get->addr;
-  socklen_t len = sockaddr_get->len;
-  char *p = (char *)addr;
-  if (get_succeed) {
-    report_path_from_kernel(key, buflen, (struct sockaddr_un *)addr, len, sockaddr_get->opt_4);
-    if (memcmp(p+buflen, CANARY_STR, CANARY_LEN) != 0) {
-      char *c1 = quote_string(NULL, CANARY_STR, CANARY_LEN);
-      char *c2 = quote_string(NULL, p+buflen, CANARY_LEN);
-      fprintf(stderr, "%s : canary modified.  %s -> %s\n", key, c1, c2);
-      free(c1);
-      free(c2);
-      goto ret;
-    }
-  }
-  else {
-    perror2(key);
-    if (fatal)
-      exit(EXIT_FAILURE);
-  }
-
-ret:
-  free(addr);
-  free(sockaddr_get);
-}
-
 void server_setup(void)
 {
   int ret;
@@ -472,7 +362,7 @@ void server_setup(void)
   if (server_socket == -1) { perror2("socket(server)"); exit(EXIT_FAILURE); }
 
   sockaddr_put = before_sockaddr_put("bind(server)", (struct sockaddr *)server_sockaddr_ptr, server_sockaddr_len, opt_4);
-  ret = bind(server_socket, sockaddr_put->addr, server_sockaddr_len);
+  ret = bind(server_socket, sockaddr_put->addr, sockaddr_put->len);
   after_sockaddr_put(sockaddr_put, ret != -1, 1);
 
   ret = socket_file_p(server_path_str);
@@ -500,7 +390,7 @@ static void *connect_func(void *arg)
 
   if (client_path_str) {
     sockaddr_put = before_sockaddr_put("bind(client)", (struct sockaddr *)client_sockaddr_ptr, client_sockaddr_len, opt_4);
-    ret = bind(client_socket, sockaddr_put->addr, client_sockaddr_len);
+    ret = bind(client_socket, sockaddr_put->addr, sockaddr_put->len);
     after_sockaddr_put(sockaddr_put, ret != -1, 1);
 
     ret = socket_file_p(client_path_str);
@@ -517,7 +407,7 @@ static void *connect_func(void *arg)
   ret = connect(
       client_socket,
       sockaddr_put->addr,
-      connect_sockaddr_len);
+      sockaddr_put->len);
 
   if (ret != -1) {
     int e = errno;
