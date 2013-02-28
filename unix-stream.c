@@ -359,9 +359,10 @@ typedef struct {
   char *key;
   struct sockaddr *addr;
   socklen_t len;
+  int opt_4;
 } sockaddr_put_t;
 
-static sockaddr_put_t *before_sockaddr_put(char *key, struct sockaddr *addr, socklen_t len)
+static sockaddr_put_t *before_sockaddr_put(char *key, struct sockaddr *addr, socklen_t len, int opt_4)
 {
   sockaddr_put_t *sockaddr_put;
   char *p;
@@ -374,6 +375,7 @@ static sockaddr_put_t *before_sockaddr_put(char *key, struct sockaddr *addr, soc
   sockaddr_put->key = key;
   sockaddr_put->addr = (struct sockaddr *)p;
   sockaddr_put->len = len;
+  sockaddr_put->opt_4 = opt_4;
   return sockaddr_put;
 }
 
@@ -410,9 +412,10 @@ typedef struct {
   struct sockaddr *addr;
   socklen_t buflen;
   socklen_t len;
+  int opt_4;
 } sockaddr_get_t;
 
-static sockaddr_get_t *before_sockaddr_get(char *key, socklen_t buflen)
+static sockaddr_get_t *before_sockaddr_get(char *key, socklen_t buflen, int opt_4)
 {
   sockaddr_get_t *sockaddr_get;
   char *p;
@@ -426,6 +429,7 @@ static sockaddr_get_t *before_sockaddr_get(char *key, socklen_t buflen)
   sockaddr_get->addr = (struct sockaddr *)p;
   sockaddr_get->buflen = buflen;
   sockaddr_get->len = buflen;
+  sockaddr_get->opt_4 = opt_4;
   return sockaddr_get;
 }
 
@@ -437,7 +441,7 @@ static void after_sockaddr_get(sockaddr_get_t *sockaddr_get, int get_succeed, in
   socklen_t len = sockaddr_get->len;
   char *p = (char *)addr;
   if (get_succeed) {
-    report_path_from_kernel(key, buflen, (struct sockaddr_un *)addr, len, opt_4);
+    report_path_from_kernel(key, buflen, (struct sockaddr_un *)addr, len, sockaddr_get->opt_4);
     if (memcmp(p+buflen, CANARY_STR, CANARY_LEN) != 0) {
       char *c1 = quote_string(NULL, CANARY_STR, CANARY_LEN);
       char *c2 = quote_string(NULL, p+buflen, CANARY_LEN);
@@ -467,14 +471,14 @@ void server_setup(void)
   server_socket = socket(AF_UNIX, SOCK_STREAM, 0);
   if (server_socket == -1) { perror2("socket(server)"); exit(EXIT_FAILURE); }
 
-  sockaddr_put = before_sockaddr_put("bind(server)", (struct sockaddr *)server_sockaddr_ptr, server_sockaddr_len);
+  sockaddr_put = before_sockaddr_put("bind(server)", (struct sockaddr *)server_sockaddr_ptr, server_sockaddr_len, opt_4);
   ret = bind(server_socket, sockaddr_put->addr, server_sockaddr_len);
   after_sockaddr_put(sockaddr_put, ret != -1, 1);
 
   ret = socket_file_p(server_path_str);
   printf("socket file (server)  : %s\n", ret ? "exist" : "not exist");
 
-  sockaddr_get = before_sockaddr_get("getsockname(server)", get_sockaddr_len);
+  sockaddr_get = before_sockaddr_get("getsockname(server)", get_sockaddr_len, opt_4);
   ret = getsockname(server_socket, sockaddr_get->addr, &sockaddr_get->len);
   after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
@@ -495,7 +499,7 @@ static void *connect_func(void *arg)
   sockaddr_get_t *sockaddr_get;
 
   if (client_path_str) {
-    sockaddr_put = before_sockaddr_put("bind(client)", (struct sockaddr *)client_sockaddr_ptr, client_sockaddr_len);
+    sockaddr_put = before_sockaddr_put("bind(client)", (struct sockaddr *)client_sockaddr_ptr, client_sockaddr_len, opt_4);
     ret = bind(client_socket, sockaddr_put->addr, client_sockaddr_len);
     after_sockaddr_put(sockaddr_put, ret != -1, 1);
 
@@ -503,11 +507,11 @@ static void *connect_func(void *arg)
     printf("socket file (client)  : %s\n", ret ? "exist" : "not exist");
   }
 
-  sockaddr_get = before_sockaddr_get("getsockname(client)", get_sockaddr_len2);
+  sockaddr_get = before_sockaddr_get("getsockname(client)", get_sockaddr_len2, opt_4);
   ret = getsockname(client_socket, sockaddr_get->addr, &sockaddr_get->len);
   after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
-  sockaddr_put = before_sockaddr_put("connect", (struct sockaddr *)connect_sockaddr_ptr, connect_sockaddr_len);
+  sockaddr_put = before_sockaddr_put("connect", (struct sockaddr *)connect_sockaddr_ptr, connect_sockaddr_len, opt_4);
   serialized_flow_send(&server_serialised_flow, 2);
 //printf("pid=%d line=%d: before connect\n", (int)getpid(), __LINE__);
   ret = connect(
@@ -528,7 +532,7 @@ static void *connect_func(void *arg)
 
   serialized_flow_recv(&client_serialised_flow, 3);
 
-  sockaddr_get = before_sockaddr_get("getpeername(client)", get_sockaddr_len2);
+  sockaddr_get = before_sockaddr_get("getpeername(client)", get_sockaddr_len2, opt_4);
   ret = getpeername(client_socket, sockaddr_get->addr, &sockaddr_get->len);
   after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
@@ -543,7 +547,7 @@ static void *accept_func(void *arg)
 
   serialized_flow_recv(&server_serialised_flow, 2);
 
-  sockaddr_get = before_sockaddr_get("accept", get_sockaddr_len);
+  sockaddr_get = before_sockaddr_get("accept", get_sockaddr_len, opt_4);
 
 //printf("pid=%d line=%d: before accept\n", (int)getpid(), __LINE__);
   accepted_socket = accept(server_socket, sockaddr_get->addr, &sockaddr_get->len);
@@ -564,13 +568,13 @@ static void *accept_func(void *arg)
   after_sockaddr_get(sockaddr_get, accepted_socket != -1, 0);
   if (accepted_socket == -1) { return("accept"); }
 
-  sockaddr_get = before_sockaddr_get("getsockname(accepted)", get_sockaddr_len);
+  sockaddr_get = before_sockaddr_get("getsockname(accepted)", get_sockaddr_len, opt_4);
 //printf("pid=%d line=%d: before getsockname(accepted)\n", (int)getpid(), __LINE__);
   ret = getsockname(accepted_socket, sockaddr_get->addr, &sockaddr_get->len);
 //printf("pid=%d line=%d: after getsockname(accepted)\n", (int)getpid(), __LINE__);
   after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
-  sockaddr_get = before_sockaddr_get("getpeername(accepted)", get_sockaddr_len);
+  sockaddr_get = before_sockaddr_get("getpeername(accepted)", get_sockaddr_len, opt_4);
 //printf("pid=%d line=%d: before getpeername(accepted)\n", (int)getpid(), __LINE__);
   ret = getpeername(accepted_socket, sockaddr_get->addr, &sockaddr_get->len);
 //printf("pid=%d line=%d: after getpeername(accepted)\n", (int)getpid(), __LINE__);
