@@ -623,6 +623,7 @@ static void test_unix_stream(void)
   }
 #elif defined(USE_PTHREAD)
   {
+    int err;
     server_setup();
     client_setup();
     err = pthread_create(&connect_thread, NULL, connect_func, NULL);
