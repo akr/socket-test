@@ -3744,6 +3744,42 @@ fi
 done
 
 
+# Checks for library variables.
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for sys_nerr" >&5
+$as_echo_n "checking for sys_nerr... " >&6; }
+if ${socktest_cv_sys_nerr+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#include <errno.h>
+
+int
+main ()
+{
+int var = sys_nerr;
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  socktest_cv_sys_nerr=yes
+else
+  socktest_cv_sys_nerr=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $socktest_cv_sys_nerr" >&5
+$as_echo "$socktest_cv_sys_nerr" >&6; }
+if test "x$my_cv_shell_true_works" = xyes; then
+
+$as_echo "#define HAVE_SYS_NERR 1" >>confdefs.h
+
+fi
+
+# Output configure results.
 ac_config_files="$ac_config_files compile.sh"
 
 ac_config_files="$ac_config_files link.sh"

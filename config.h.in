@@ -43,6 +43,9 @@
 /* Define to 1 if `sa_len' is a member of `struct sockaddr'. */
 #undef HAVE_STRUCT_SOCKADDR_SA_LEN
 
+/* Define to 1 if you have the "sys_nerr" variable. */
+#undef HAVE_SYS_NERR
+
 /* Define to 1 if you have the <sys/socket.h> header file. */
 #undef HAVE_SYS_SOCKET_H
 

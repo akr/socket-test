@@ -28,7 +28,9 @@
 
 int main(int argc, char *argv[])
 {
+#ifdef HAVE_SYS_NERR
   printf("sys_nerr = %d\n", sys_nerr);
+#endif
   return EXIT_SUCCESS;
 }
 

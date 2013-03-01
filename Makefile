@@ -90,6 +90,9 @@ errmsg.o: errmsg.c sockettest.h config.h compile.sh
 errnum.o: errnum.c sockettest.h config.h compile.sh
 	sh ./compile.sh $< -o $@
 
+errtest.o: errtest.c sockettest.h config.h compile.sh
+	sh ./compile.sh $< -o $@
+
 unix-stream.o: unix-stream.c sockettest.h config.h compile.sh
 	sh ./compile.sh $< -o $@
 

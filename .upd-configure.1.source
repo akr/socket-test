@@ -57,6 +57,23 @@ AC_CHECK_MEMBERS([struct sockaddr.sa_len], [], [], [[
 AC_FUNC_STAT
 AC_CHECK_FUNCS([memset socket])
 
+# Checks for library variables.
+AC_DEFUN([SOCKTEST_CHECK_SYS_NERR],
+[AC_CACHE_CHECK([for sys_nerr], [socktest_cv_sys_nerr],
+  [AC_LINK_IFELSE(
+    [AC_LANG_PROGRAM(
+      [[#include <errno.h>
+      ]],
+      [[int var = sys_nerr;]])],
+    [socktest_cv_sys_nerr=yes],
+    [socktest_cv_sys_nerr=no])])
+if test "x$my_cv_shell_true_works" = xyes; then
+  AC_DEFINE([HAVE_SYS_NERR], [1],
+            [Define to 1 if you have the "sys_nerr" variable.])
+fi])
+SOCKTEST_CHECK_SYS_NERR
+
+# Output configure results.
 AC_CONFIG_FILES([compile.sh], [chmod +x compile.sh])
 AC_CONFIG_FILES([link.sh], [chmod +x link.sh])
 AC_OUTPUT
