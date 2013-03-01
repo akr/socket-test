@@ -27,14 +27,7 @@
  */
 
 <%
-  errno_list = []
-  File.foreach("errno.txt") {|line|
-    line.sub!(/#.*/, '')
-    line.strip!
-    next if line.empty?
-    errno_list << line
-  }
-  errno_list.sort!
+   errno_list = read_errno_list
 %>
 
 #include "sockettest.h"

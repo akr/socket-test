@@ -1,1 +1,1 @@
-errsym.c -- errsym.erb -- sh -c erb errsym.erb > errsym.c
+errsym.c -- errsym.erb -- sh -c erb -r ./util.rb errsym.erb > errsym.c

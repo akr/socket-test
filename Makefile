@@ -57,8 +57,9 @@ config.h compile.sh link.sh: config.status config.h.in compile.sh.in link.sh.in
 	./config.status && \
 	  touch config.h
 
-errsym.c: errsym.erb
-	./update-files errsym.c -- errsym.erb -- sh -c 'erb errsym.erb > errsym.c'
+errsym.c: errsym.erb util.rb errno.txt
+	./update-files errsym.c -- errsym.erb -- \
+	  sh -c 'erb -r ./util.rb errsym.erb > errsym.c'
 
 size.c: size.erb
 	./update-files size.c -- size.erb -- sh -c 'erb size.erb > size.c'
@@ -66,11 +67,13 @@ size.c: size.erb
 const.c: const.erb
 	./update-files const.c -- const.erb -- sh -c 'erb const.erb > const.c'
 
-errmsg.c: errmsg.erb
-	./update-files errmsg.c -- errmsg.erb -- sh -c 'erb errmsg.erb > errmsg.c'
+errmsg.c: errmsg.erb util.rb errno.txt
+	./update-files errmsg.c -- errmsg.erb -- \
+	  sh -c 'erb -r ./util.rb errmsg.erb > errmsg.c'
 
-errnum.c: errnum.erb
-	./update-files errnum.c -- errnum.erb -- sh -c 'erb errnum.erb > errnum.c'
+errnum.c: errnum.erb util.rb errno.txt
+	./update-files errnum.c -- errnum.erb -- \
+	  sh -c 'erb -r ./util.rb errnum.erb > errnum.c'
 
 util.o: util.c sockettest.h config.h compile.sh
 	sh ./compile.sh $< -o $@

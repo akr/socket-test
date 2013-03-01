@@ -32,12 +32,6 @@
 
 char *errsym(int err)
 {
-#ifdef EAGAIN
-  if (err == EAGAIN) { return "EAGAIN"; } else
-#endif
-#ifdef ENOTSUP
-  if (err == ENOTSUP) { return "ENOTSUP"; } else
-#endif
 #ifdef E2BIG
   if (err == E2BIG) { return "E2BIG"; } else
 #endif
@@ -52,6 +46,9 @@ char *errsym(int err)
 #endif
 #ifdef EAFNOSUPPORT
   if (err == EAFNOSUPPORT) { return "EAFNOSUPPORT"; } else
+#endif
+#ifdef EAGAIN
+  if (err == EAGAIN) { return "EAGAIN"; } else
 #endif
 #ifdef EALREADY
   if (err == EALREADY) { return "EALREADY"; } else
@@ -215,6 +212,9 @@ char *errsym(int err)
 #ifdef ENOTSOCK
   if (err == ENOTSOCK) { return "ENOTSOCK"; } else
 #endif
+#ifdef ENOTSUP
+  if (err == ENOTSUP) { return "ENOTSUP"; } else
+#endif
 #ifdef ENOTTY
   if (err == ENOTTY) { return "ENOTTY"; } else
 #endif
@@ -289,26 +289,6 @@ int errno_minmax(int *minp, int *maxp)
   defined = 1;
 #endif
 
-#ifdef EAGAIN
-  if (!defined) {
-    defined = 1;
-    min = max = EAGAIN;
-  }
-  else {
-    if (EAGAIN < min) min = EAGAIN;
-    if (max < EAGAIN) max = EAGAIN;
-  }
-#endif
-#ifdef ENOTSUP
-  if (!defined) {
-    defined = 1;
-    min = max = ENOTSUP;
-  }
-  else {
-    if (ENOTSUP < min) min = ENOTSUP;
-    if (max < ENOTSUP) max = ENOTSUP;
-  }
-#endif
 #ifdef E2BIG
   if (!defined) {
     defined = 1;
@@ -357,6 +337,16 @@ int errno_minmax(int *minp, int *maxp)
   else {
     if (EAFNOSUPPORT < min) min = EAFNOSUPPORT;
     if (max < EAFNOSUPPORT) max = EAFNOSUPPORT;
+  }
+#endif
+#ifdef EAGAIN
+  if (!defined) {
+    defined = 1;
+    min = max = EAGAIN;
+  }
+  else {
+    if (EAGAIN < min) min = EAGAIN;
+    if (max < EAGAIN) max = EAGAIN;
   }
 #endif
 #ifdef EALREADY
@@ -897,6 +887,16 @@ int errno_minmax(int *minp, int *maxp)
   else {
     if (ENOTSOCK < min) min = ENOTSOCK;
     if (max < ENOTSOCK) max = ENOTSOCK;
+  }
+#endif
+#ifdef ENOTSUP
+  if (!defined) {
+    defined = 1;
+    min = max = ENOTSUP;
+  }
+  else {
+    if (ENOTSUP < min) min = ENOTSUP;
+    if (max < ENOTSUP) max = ENOTSUP;
   }
 #endif
 #ifdef ENOTTY
