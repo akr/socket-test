@@ -8,6 +8,9 @@ case "$UNAME" in
 CYGWIN*|Haiku*|Minix*|*Hurd*)
   sh scripts/nullless-simple-tests.sh
   ;;
+*Hurd*)
+  sh scripts/nullless-simple2-tests.sh
+  ;;
 *)
   sh scripts/nullless-tests.sh
   ;;
