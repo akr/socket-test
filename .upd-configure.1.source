@@ -87,8 +87,7 @@ AC_DEFUN([SOCKTEST_CHECK_SYS_NERR],
     [AC_LANG_PROGRAM(
       [[
 /* GNU/Linux stdio.h defines sys_nerr if __USE_BSD or __USE_GNU is defined. */
-#include <stdio.h>
-#include <errno.h>
+$sockettest_includes
       ]],
       [[int var = sys_nerr;]])],
     [socktest_cv_sys_nerr=yes],
