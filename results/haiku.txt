@@ -1451,14 +1451,45 @@ bind(server): EINVAL
 bind(server)          <- "(116*"Z")01234567890\0" (128 bytes)
 bind(server): EINVAL
 
-./unix-stream -g 1024 '(25*"0123456789")012\0'
-bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
+./unix-stream -g2048 -p '01234567890\0'
+bind(server)          <- "(116*"Z")01234567890\0" (128 bytes)
 bind(server): EINVAL
-./unix-stream 'foo\0' 'foo\0' '(200*"b")\0'
+./unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
+bind(server)          <- "(116*"Z")foo\0" (120 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(116*"Z")foo\0" (120 bytes)
+bind(client)          <- "(116*"Z")01234567890\0" (128 bytes)
+bind(client): EINVAL
+
+./unix-stream -g255 '(125*"./")ab\0' 
+bind(server)          <- "(125*"./")ab\0" (253 bytes)
+bind(server): EINVAL
+./unix-stream -g1026 '(511*"./")a\0'
+bind(server)          <- "(511*"./")a\0" (1024 bytes)
+bind(server): EINVAL
+./unix-stream 'foo\0' 'foo\0' '(125*"./")ab\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
-bind(client)          <- "(200*"b")\0" (201 bytes)
+bind(client)          <- "(125*"./")ab\0" (253 bytes)
+bind(client): EINVAL
+./unix-stream 'foo\0' 'foo\0' '(511*"./")a\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "(511*"./")a\0" (1024 bytes)
+bind(client): EINVAL
+./unix-stream -g255 'foo\0' 'foo\0' '(125*"./")ab\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "(125*"./")ab\0" (253 bytes)
+bind(client): EINVAL
+./unix-stream -g1026 'foo\0' 'foo\0' '(511*"./")a\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "(511*"./")a\0" (1024 bytes)
 bind(client): EINVAL
 
 ./unix-stream -s '\0'
@@ -1489,7 +1520,7 @@ bind(server): EADDRINUSE
 ./unix-stream -s 'foobar'
 bind(server)          <- "foobar" (6 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "foobar\x80jB\xCE_\xE1\0" (13 bytes)
+getsockname(server)   -> "foobarHOy\xCE*\xE6\0" (13 bytes)
 
 ./unix-stream -4 '(sun_len=1)abc\0'
 bind(server)          <- "abc\0" (4 bytes)

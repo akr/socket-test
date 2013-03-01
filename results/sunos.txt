@@ -1937,29 +1937,98 @@ getpeername(client)   -> "(98*"Z")0123456789"... (110 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(98*"Z")0123456789"... (110 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
-./unix-stream -g 1024 '(25*"0123456789")012\0'
-bind(server)          <- "(25*"0123456789")012\0" (254 bytes)
+./unix-stream -g2048 -p '01234567890\0'
+bind(server)          <- "(98*"Z")01234567890\0" (110 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(25*"0123456789")012\0" (254 bytes)
+getsockname(server)   -> "(98*"Z")01234567890\0" (110 bytes)
 getsockname(client)   -> too short sockaddr_un (0 bytes)
-connect               <- "(25*"0123456789")012\0" (254 bytes)
-getpeername(client)   -> "(25*"0123456789")012\0" (254 bytes)
+connect               <- "(98*"Z")01234567890\0" (110 bytes)
+getpeername(client)   -> "(98*"Z")01234567890\0" (110 bytes)
 accept                -> "(14*"\0")" (14 bytes)
-getsockname(accepted) -> "(25*"0123456789")012\0" (254 bytes)
+getsockname(accepted) -> "(98*"Z")01234567890\0" (110 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
-./unix-stream 'foo\0' 'foo\0' '(200*"b")\0'
+./unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
+
+bind(server)          <- "(98*"Z")foo\0" (102 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(98*"Z")foo\0" (102 bytes)
+bind(client)          <- "(98*"Z")01234567890\0" (110 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "(98*"Z")01234567890\0" (110 bytes)
+connect               <- "(98*"Z")foo\0" (102 bytes)
+getpeername(client)   -> "(98*"Z")foo\0" (102 bytes)
+accept                -> "(98*"Z")01234567890\0" (110 bytes)
+getsockname(accepted) -> "(98*"Z")foo\0" (102 bytes)
+getpeername(accepted) -> "(98*"Z")01234567890\0" (110 bytes)
+./unix-stream -g255 '(125*"./")ab\0' 
+bind(server)          <- "(125*"./")ab\0" (253 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(125*"./")ab\0" (253 bytes)
+getsockname(client)   -> too short sockaddr_un (0 bytes)
+connect               <- "(125*"./")ab\0" (253 bytes)
+getpeername(client)   -> "(125*"./")ab\0" (253 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(125*"./")ab\0" (253 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream -g1026 '(511*"./")a\0'
+bind(server)          <- "(511*"./")a\0" (1024 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(511*"./")a\0" (1024 bytes)
+getsockname(client)   -> too short sockaddr_un (0 bytes)
+connect               <- "(511*"./")a\0" (1024 bytes)
+getpeername(client)   -> "(511*"./")a\0" (1024 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(511*"./")a\0" (1024 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream 'foo\0' 'foo\0' '(125*"./")ab\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "(125*"./")ab\0" (253 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "(54*"./")"... (253 bytes)
+connect               <- "foo\0" (4 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "(54*"./")"... (253 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "(54*"./")"... (253 bytes)
+./unix-stream 'foo\0' 'foo\0' '(511*"./")a\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "(511*"./")a\0" (1024 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "(54*"./")"... (1024 bytes)
+connect               <- "foo\0" (4 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "(54*"./")"... (1024 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "(54*"./")"... (1024 bytes)
+./unix-stream -g255 'foo\0' 'foo\0' '(125*"./")ab\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "(125*"./")ab\0" (253 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "(125*"./")ab\0" (253 bytes)
+connect               <- "foo\0" (4 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "(125*"./")ab\0" (253 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "(125*"./")ab\0" (253 bytes)
+./unix-stream -g1026 'foo\0' 'foo\0' '(511*"./")a\0'
 
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
-bind(client)          <- "(200*"b")\0" (201 bytes)
+bind(client)          <- "(511*"./")a\0" (1024 bytes)
 socket file (client)  : exist
-getsockname(client)   -> "(108*"b")"... (201 bytes)
+getsockname(client)   -> "(511*"./")a\0" (1024 bytes)
 connect               <- "foo\0" (4 bytes)
 getpeername(client)   -> "foo\0" (4 bytes)
-accept                -> "(108*"b")"... (201 bytes)
+accept                -> "(511*"./")a\0" (1024 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
-getpeername(accepted) -> "(108*"b")"... (201 bytes)
+getpeername(accepted) -> "(511*"./")a\0" (1024 bytes)
 ./unix-stream -s '\0'
 bind(server)          <- "\0" (1 bytes)
 bind(server): EISDIR
@@ -3594,40 +3663,98 @@ getpeername(client)   -> "(98*"Z")0123456789"... (109 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(98*"Z")0123456789"... (109 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
-./unix-stream -p '01234567890'
-
+./unix-stream -g2048 -p '01234567890'
 bind(server)          <- "(98*"Z")01234567890" (109 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(98*"Z")0123456789"... (110 bytes)
+getsockname(server)   -> "(98*"Z")01234567890\0" (110 bytes)
 getsockname(client)   -> too short sockaddr_un (0 bytes)
 connect               <- "(98*"Z")01234567890" (109 bytes)
-getpeername(client)   -> "(98*"Z")0123456789"... (110 bytes)
+getpeername(client)   -> "(98*"Z")01234567890\0" (110 bytes)
 accept                -> "(14*"\0")" (14 bytes)
-getsockname(accepted) -> "(98*"Z")0123456789"... (110 bytes)
+getsockname(accepted) -> "(98*"Z")01234567890\0" (110 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
-./unix-stream -g 1024 '(25*"0123456789")012'
-bind(server)          <- "(25*"0123456789")012" (253 bytes)
-socket file (server)  : exist
-getsockname(server)   -> "(25*"0123456789")012\0" (254 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
-connect               <- "(25*"0123456789")012" (253 bytes)
-getpeername(client)   -> "(25*"0123456789")012\0" (254 bytes)
-accept                -> "(14*"\0")" (14 bytes)
-getsockname(accepted) -> "(25*"0123456789")012\0" (254 bytes)
-getpeername(accepted) -> "(14*"\0")" (14 bytes)
-./unix-stream 'foo' 'foo' '(200*"b")'
+./unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890'
 
-bind(server)          <- "foo" (3 bytes)
+bind(server)          <- "(98*"Z")foo\0" (102 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(98*"Z")foo\0" (102 bytes)
+bind(client)          <- "(98*"Z")01234567890" (109 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "(98*"Z")01234567890\0" (110 bytes)
+connect               <- "(98*"Z")foo\0" (102 bytes)
+getpeername(client)   -> "(98*"Z")foo\0" (102 bytes)
+accept                -> "(98*"Z")01234567890\0" (110 bytes)
+getsockname(accepted) -> "(98*"Z")foo\0" (102 bytes)
+getpeername(accepted) -> "(98*"Z")01234567890\0" (110 bytes)
+./unix-stream -g255 '(126*"./")a'
+bind(server)          <- "(126*"./")a" (253 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(126*"./")a"... (254 bytes)
+getsockname(client)   -> too short sockaddr_un (0 bytes)
+connect               <- "(126*"./")a" (253 bytes)
+getpeername(client)   -> "(126*"./")a"... (254 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(126*"./")a"... (254 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream -g1026 '(511*"./")a'
+bind(server)          <- "(511*"./")a" (1023 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "(511*"./")a\0" (1024 bytes)
+getsockname(client)   -> too short sockaddr_un (0 bytes)
+connect               <- "(511*"./")a" (1023 bytes)
+getpeername(client)   -> "(511*"./")a\0" (1024 bytes)
+accept                -> "(14*"\0")" (14 bytes)
+getsockname(accepted) -> "(511*"./")a\0" (1024 bytes)
+getpeername(accepted) -> "(14*"\0")" (14 bytes)
+./unix-stream 'foo\0' 'foo\0' '(126*"./")a'
+bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
-bind(client)          <- "(200*"b")" (200 bytes)
+bind(client)          <- "(126*"./")a" (253 bytes)
 socket file (client)  : exist
-getsockname(client)   -> "(108*"b")"... (201 bytes)
-connect               <- "foo" (3 bytes)
+getsockname(client)   -> "(54*"./")"... (254 bytes)
+connect               <- "foo\0" (4 bytes)
 getpeername(client)   -> "foo\0" (4 bytes)
-accept                -> "(108*"b")"... (201 bytes)
+accept                -> "(54*"./")"... (254 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
-getpeername(accepted) -> "(108*"b")"... (201 bytes)
+getpeername(accepted) -> "(54*"./")"... (254 bytes)
+./unix-stream 'foo\0' 'foo\0' '(511*"./")a' 
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "(511*"./")a" (1023 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "(54*"./")"... (1024 bytes)
+connect               <- "foo\0" (4 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "(54*"./")"... (1024 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "(54*"./")"... (1024 bytes)
+./unix-stream -g255 'foo\0' 'foo\0' '(126*"./")a'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "(126*"./")a" (253 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "(126*"./")a"... (254 bytes)
+connect               <- "foo\0" (4 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "(126*"./")a"... (254 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "(126*"./")a"... (254 bytes)
+./unix-stream -g1026 'foo\0' 'foo\0' '(511*"./")a'
+
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "(511*"./")a" (1023 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "(511*"./")a\0" (1024 bytes)
+connect               <- "foo\0" (4 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+accept                -> "(511*"./")a\0" (1024 bytes)
+getsockname(accepted) -> "foo\0" (4 bytes)
+getpeername(accepted) -> "(511*"./")a\0" (1024 bytes)
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 bind(server): EISDIR
