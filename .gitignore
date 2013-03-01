@@ -14,5 +14,4 @@ unix-stream
 unix-dgram
 compile.sh
 link.sh
-.update-Makefile2.blt
-.update-Makefile2.src
+includes.h

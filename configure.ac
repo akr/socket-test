@@ -40,7 +40,7 @@ AC_CHECK_LIB([network], [socketpair]) # Haiku.
 
 # Checks for header files.
 
-sockettest_includes="AC_INCLUDES_DEFAULT"
+SOCKETTEST_INCLUDES="AC_INCLUDES_DEFAULT"
 
 # Minix 3.2.0: limits.h is required for sys/socket.h.
 for h in \
@@ -48,7 +48,7 @@ for h in \
   sys/wait.h sys/uio.h sys/socket.h sys/un.h netinet/in.h
 do
   AC_CHECK_HEADERS([$h])
-  sockettest_includes="$sockettest_includes
+  SOCKETTEST_INCLUDES="$SOCKETTEST_INCLUDES
 [#]ifdef AS_TR_CPP([HAVE_$h])
 [#]  include <$h>
 [#]endif
@@ -71,9 +71,9 @@ AC_C_CONST
 AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
 
-AC_CHECK_TYPES([sa_family_t], [], [], [$sockettest_includes])
+AC_CHECK_TYPES([sa_family_t], [], [], [$SOCKETTEST_INCLUDES])
 
-AC_CHECK_MEMBERS([struct sockaddr.sa_len], [], [], [$sockettest_includes])
+AC_CHECK_MEMBERS([struct sockaddr.sa_len], [], [], [$SOCKETTEST_INCLUDES])
 
 # Checks for library functions.
 AC_FUNC_STAT
@@ -87,7 +87,7 @@ AC_DEFUN([SOCKTEST_CHECK_SYS_NERR],
     [AC_LANG_PROGRAM(
       [[
 /* GNU/Linux stdio.h defines sys_nerr if __USE_BSD or __USE_GNU is defined. */
-$sockettest_includes
+$SOCKETTEST_INCLUDES
       ]],
       [[int var = sys_nerr;]])],
     [socktest_cv_sys_nerr=yes],
@@ -99,7 +99,11 @@ fi])
 SOCKTEST_CHECK_SYS_NERR
 
 # Output configure results.
+
+AC_SUBST(SOCKETTEST_INCLUDES)
+
 AC_CONFIG_FILES([compile.sh], [chmod +x compile.sh])
 AC_CONFIG_FILES([link.sh], [chmod +x link.sh])
+AC_CONFIG_FILES([includes.h])
 AC_OUTPUT
 

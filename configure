@@ -620,6 +620,7 @@ ac_includes_default="\
 #endif"
 
 ac_subst_vars='LTLIBOBJS
+SOCKETTEST_INCLUDES
 LIBOBJS
 EGREP
 GREP
@@ -3540,7 +3541,7 @@ fi
 
 # Checks for header files.
 
-sockettest_includes="$ac_includes_default"
+SOCKETTEST_INCLUDES="$ac_includes_default"
 
 # Minix 3.2.0: limits.h is required for sys/socket.h.
 for h in \
@@ -3560,7 +3561,7 @@ fi
 
 done
 
-  sockettest_includes="$sockettest_includes
+  SOCKETTEST_INCLUDES="$SOCKETTEST_INCLUDES
 #ifdef `$as_echo "HAVE_$h" | $as_tr_cpp`
 #  include <$h>
 #endif
@@ -3683,7 +3684,7 @@ _ACEOF
 fi
 
 
-ac_fn_c_check_type "$LINENO" "sa_family_t" "ac_cv_type_sa_family_t" "$sockettest_includes
+ac_fn_c_check_type "$LINENO" "sa_family_t" "ac_cv_type_sa_family_t" "$SOCKETTEST_INCLUDES
 "
 if test "x$ac_cv_type_sa_family_t" = xyes; then :
 
@@ -3695,7 +3696,7 @@ _ACEOF
 fi
 
 
-ac_fn_c_check_member "$LINENO" "struct sockaddr" "sa_len" "ac_cv_member_struct_sockaddr_sa_len" "$sockettest_includes
+ac_fn_c_check_member "$LINENO" "struct sockaddr" "sa_len" "ac_cv_member_struct_sockaddr_sa_len" "$SOCKETTEST_INCLUDES
 "
 if test "x$ac_cv_member_struct_sockaddr_sa_len" = xyes; then :
 
@@ -3841,7 +3842,7 @@ else
 /* end confdefs.h.  */
 
 /* GNU/Linux stdio.h defines sys_nerr if __USE_BSD or __USE_GNU is defined. */
-$sockettest_includes
+$SOCKETTEST_INCLUDES
 
 int
 main ()
@@ -3868,9 +3869,14 @@ $as_echo "#define HAVE_SYS_NERR 1" >>confdefs.h
 fi
 
 # Output configure results.
+
+
+
 ac_config_files="$ac_config_files compile.sh"
 
 ac_config_files="$ac_config_files link.sh"
+
+ac_config_files="$ac_config_files includes.h"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -4564,6 +4570,7 @@ do
     "config.h") CONFIG_HEADERS="$CONFIG_HEADERS config.h" ;;
     "compile.sh") CONFIG_FILES="$CONFIG_FILES compile.sh" ;;
     "link.sh") CONFIG_FILES="$CONFIG_FILES link.sh" ;;
+    "includes.h") CONFIG_FILES="$CONFIG_FILES includes.h" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac
