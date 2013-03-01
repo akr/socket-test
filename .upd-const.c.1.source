@@ -129,6 +129,10 @@ int main(int argc, char *argv[])
 #endif
 % }
 
+#ifdef HAVE_SYS_NERR
+  printf("sys_nerr = %d\n", sys_nerr);
+#endif
+
 % float_const_list.each_line {|sym| sym.chomp!
 #ifdef <%= sym %>
   if (sizeof(<%= sym %>) == sizeof(long double))

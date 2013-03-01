@@ -385,6 +385,10 @@ int main(int argc, char *argv[])
     SHOW_NEGATIVE_INTEGER("LDBL_MAX_10_EXP", LDBL_MAX_10_EXP);
 #endif
 
+#ifdef HAVE_SYS_NERR
+  printf("sys_nerr = %d\n", sys_nerr);
+#endif
+
 #ifdef FLT_MAX
   if (sizeof(FLT_MAX) == sizeof(long double))
     printf("%s = %.*Lg (%d bytes)\n", "FLT_MAX", LDBL_DIG, (long double)FLT_MAX, (int)sizeof(FLT_MAX));

@@ -34,6 +34,8 @@ int main(int argc, char *argv[])
 {
   int err;
   char *str;
+  int min, max, ret, i;
+
 #ifdef E2BIG
   err = E2BIG; str = "E2BIG";
   printf("%s = %s\n", str, strerror(err));
@@ -358,6 +360,42 @@ int main(int argc, char *argv[])
   err = EXDEV; str = "EXDEV";
   printf("%s = %s\n", str, strerror(err));
 #endif
+
+  ret = errno_minmax(&min, &max);
+  if (ret == 0) {
+    for (i = min; i <= max; i++) {
+      char *sym = errsym(i);
+      char *msg;
+      if (sym)
+        continue;
+      errno = 0;
+      msg = strerror(i);
+      if (msg && !errno) {
+        /*
+         * strerror() return value for unknown error:
+         * - GNU/Linux: "Unknown error NNN"
+         * - NetBSD: "Unknown error: NNN"
+         * - Haiku:
+         *   "Unknown General Error (-NNNNNNNNNN)"
+         *   "Unknown OS Error (-NNNNNNNNNN)"
+         *   "Unknown MIME type"
+         *   "Unknown Application Kit Error (-NNNNNNNNNN)"
+         *   "Unknown Interface Kit Error (-NNNNNNNNNN)"
+         *   "Unknown Media Kit Error (-NNNNNNNNNN)"
+         *   "Unknown Translation Kit Error (-NNNNNNNNNN)"
+         *   "Unknown Midi Kit Error (-NNNNNNNNNN)"
+         *   "Unknown Storage Kit Error (-NNNNNNNNNN)"
+         *   "Unknown POSIX Error (-NNNNNNNNNN)"
+         */
+#define START_WITH(prefix) (strncmp(msg, (prefix), sizeof(prefix)-1) == 0)
+        if (START_WITH("Unknown "))
+          continue;
+#undef START_WITH
+        printf("%d = %s\n", i, msg);
+      }
+    }
+  }
+
   return EXIT_SUCCESS;
 }
 

@@ -105,8 +105,8 @@ size: size.o link.sh
 const: const.o link.sh
 	sh ./link.sh const.o -o $@
 
-errmsg: errmsg.o link.sh
-	sh ./link.sh errmsg.o -o $@
+errmsg: errmsg.o errsym.o link.sh
+	sh ./link.sh errmsg.o errsym.o -o $@
 
 errnum: errnum.o link.sh
 	sh ./link.sh errnum.o -o $@
