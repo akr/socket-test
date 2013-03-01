@@ -111,8 +111,8 @@ errmsg: errmsg.o link.sh
 errnum: errnum.o link.sh
 	sh ./link.sh errnum.o -o $@
 
-errtest: errtest.o link.sh
-	sh ./link.sh errtest.o -o $@
+errtest: errtest.o errsym.o link.sh
+	sh ./link.sh errtest.o errsym.o -o $@
 
 unix-stream: unix-stream.o $(UTILOBJS) link.sh
 	sh ./link.sh unix-stream.o $(UTILOBJS) -o $@

@@ -29,7 +29,20 @@
 int main(int argc, char *argv[])
 {
 #ifdef HAVE_SYS_NERR
+  int i;
   printf("sys_nerr = %d\n", sys_nerr);
+  for (i = 0; i < sys_nerr; i++) {
+    char *sym = errsym(i);
+    char *msg;
+    errno = 0;
+    msg = strerror(i);
+    if (msg && !errno) {
+      if (sym)
+        printf("%s = %s\n", sym, msg);
+      else
+        printf("%d = %s\n", i, msg);
+    }
+  }
 #endif
   return EXIT_SUCCESS;
 }
