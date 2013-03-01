@@ -9,6 +9,7 @@ size
 const
 errmsg
 errnum
+errtest
 unix-stream
 unix-dgram
 compile.sh

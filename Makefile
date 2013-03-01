@@ -22,7 +22,7 @@
 # IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 # OF SUCH DAMAGE.
 
-TARGETS = size const errmsg errnum unix-stream unix-dgram
+TARGETS = size const errmsg errnum errtest unix-stream unix-dgram
 UTILOBJS = util.o errsym.o
 
 all: $(TARGETS)
@@ -107,6 +107,9 @@ errmsg: errmsg.o link.sh
 
 errnum: errnum.o link.sh
 	sh ./link.sh errnum.o -o $@
+
+errtest: errtest.o link.sh
+	sh ./link.sh errtest.o -o $@
 
 unix-stream: unix-stream.o $(UTILOBJS) link.sh
 	sh ./link.sh unix-stream.o $(UTILOBJS) -o $@
