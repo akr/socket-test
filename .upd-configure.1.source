@@ -67,7 +67,7 @@ AC_DEFUN([SOCKTEST_CHECK_SYS_NERR],
       [[int var = sys_nerr;]])],
     [socktest_cv_sys_nerr=yes],
     [socktest_cv_sys_nerr=no])])
-if test "x$my_cv_shell_true_works" = xyes; then
+if test "x$socktest_cv_sys_nerr" = xyes; then
   AC_DEFINE([HAVE_SYS_NERR], [1],
             [Define to 1 if you have the "sys_nerr" variable.])
 fi])

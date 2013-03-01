@@ -3773,7 +3773,7 @@ rm -f core conftest.err conftest.$ac_objext \
 fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $socktest_cv_sys_nerr" >&5
 $as_echo "$socktest_cv_sys_nerr" >&6; }
-if test "x$my_cv_shell_true_works" = xyes; then
+if test "x$socktest_cv_sys_nerr" = xyes; then
 
 $as_echo "#define HAVE_SYS_NERR 1" >>confdefs.h
 
