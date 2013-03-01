@@ -115,3 +115,5 @@ int socket_file_p(char *path);
 void unlink_socket(char *path);
 void perrsym(const char *s);
 char *errsym(int err);
+int errno_minmax(int *minp, int *maxp);
+

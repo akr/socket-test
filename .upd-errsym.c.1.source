@@ -48,3 +48,36 @@ char *errsym(int err)
   return NULL;
 }
 
+/* returns 0 on success, -1 on failure. */
+int errno_minmax(int *minp, int *maxp)
+{
+  int min = 0, max = 0;
+  int defined = 0;
+#ifdef HAVE_SYS_NERR
+  min = 1;
+  max = sys_nerr - 1;
+  defined = 1;
+#endif
+
+% errno_list.each {|sym|
+#ifdef <%= sym %>
+  if (!defined) {
+    defined = 1;
+    min = max = <%= sym %>;
+  }
+  else {
+    if (<%= sym %> < min) min = <%= sym %>;
+    if (max < <%= sym %>) max = <%= sym %>;
+  }
+#endif
+% }
+  if (defined) {
+    *minp = min;
+    *maxp = max;
+    return 0;
+  }
+  else {
+    return -1;
+  }
+}
+

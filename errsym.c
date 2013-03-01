@@ -278,3 +278,834 @@ char *errsym(int err)
   return NULL;
 }
 
+/* returns 0 on success, -1 on failure. */
+int errno_minmax(int *minp, int *maxp)
+{
+  int min = 0, max = 0;
+  int defined = 0;
+#ifdef HAVE_SYS_NERR
+  min = 1;
+  max = sys_nerr - 1;
+  defined = 1;
+#endif
+
+#ifdef EAGAIN
+  if (!defined) {
+    defined = 1;
+    min = max = EAGAIN;
+  }
+  else {
+    if (EAGAIN < min) min = EAGAIN;
+    if (max < EAGAIN) max = EAGAIN;
+  }
+#endif
+#ifdef ENOTSUP
+  if (!defined) {
+    defined = 1;
+    min = max = ENOTSUP;
+  }
+  else {
+    if (ENOTSUP < min) min = ENOTSUP;
+    if (max < ENOTSUP) max = ENOTSUP;
+  }
+#endif
+#ifdef E2BIG
+  if (!defined) {
+    defined = 1;
+    min = max = E2BIG;
+  }
+  else {
+    if (E2BIG < min) min = E2BIG;
+    if (max < E2BIG) max = E2BIG;
+  }
+#endif
+#ifdef EACCES
+  if (!defined) {
+    defined = 1;
+    min = max = EACCES;
+  }
+  else {
+    if (EACCES < min) min = EACCES;
+    if (max < EACCES) max = EACCES;
+  }
+#endif
+#ifdef EADDRINUSE
+  if (!defined) {
+    defined = 1;
+    min = max = EADDRINUSE;
+  }
+  else {
+    if (EADDRINUSE < min) min = EADDRINUSE;
+    if (max < EADDRINUSE) max = EADDRINUSE;
+  }
+#endif
+#ifdef EADDRNOTAVAIL
+  if (!defined) {
+    defined = 1;
+    min = max = EADDRNOTAVAIL;
+  }
+  else {
+    if (EADDRNOTAVAIL < min) min = EADDRNOTAVAIL;
+    if (max < EADDRNOTAVAIL) max = EADDRNOTAVAIL;
+  }
+#endif
+#ifdef EAFNOSUPPORT
+  if (!defined) {
+    defined = 1;
+    min = max = EAFNOSUPPORT;
+  }
+  else {
+    if (EAFNOSUPPORT < min) min = EAFNOSUPPORT;
+    if (max < EAFNOSUPPORT) max = EAFNOSUPPORT;
+  }
+#endif
+#ifdef EALREADY
+  if (!defined) {
+    defined = 1;
+    min = max = EALREADY;
+  }
+  else {
+    if (EALREADY < min) min = EALREADY;
+    if (max < EALREADY) max = EALREADY;
+  }
+#endif
+#ifdef EBADF
+  if (!defined) {
+    defined = 1;
+    min = max = EBADF;
+  }
+  else {
+    if (EBADF < min) min = EBADF;
+    if (max < EBADF) max = EBADF;
+  }
+#endif
+#ifdef EBADMSG
+  if (!defined) {
+    defined = 1;
+    min = max = EBADMSG;
+  }
+  else {
+    if (EBADMSG < min) min = EBADMSG;
+    if (max < EBADMSG) max = EBADMSG;
+  }
+#endif
+#ifdef EBUSY
+  if (!defined) {
+    defined = 1;
+    min = max = EBUSY;
+  }
+  else {
+    if (EBUSY < min) min = EBUSY;
+    if (max < EBUSY) max = EBUSY;
+  }
+#endif
+#ifdef ECANCELED
+  if (!defined) {
+    defined = 1;
+    min = max = ECANCELED;
+  }
+  else {
+    if (ECANCELED < min) min = ECANCELED;
+    if (max < ECANCELED) max = ECANCELED;
+  }
+#endif
+#ifdef ECHILD
+  if (!defined) {
+    defined = 1;
+    min = max = ECHILD;
+  }
+  else {
+    if (ECHILD < min) min = ECHILD;
+    if (max < ECHILD) max = ECHILD;
+  }
+#endif
+#ifdef ECONNABORTED
+  if (!defined) {
+    defined = 1;
+    min = max = ECONNABORTED;
+  }
+  else {
+    if (ECONNABORTED < min) min = ECONNABORTED;
+    if (max < ECONNABORTED) max = ECONNABORTED;
+  }
+#endif
+#ifdef ECONNREFUSED
+  if (!defined) {
+    defined = 1;
+    min = max = ECONNREFUSED;
+  }
+  else {
+    if (ECONNREFUSED < min) min = ECONNREFUSED;
+    if (max < ECONNREFUSED) max = ECONNREFUSED;
+  }
+#endif
+#ifdef ECONNRESET
+  if (!defined) {
+    defined = 1;
+    min = max = ECONNRESET;
+  }
+  else {
+    if (ECONNRESET < min) min = ECONNRESET;
+    if (max < ECONNRESET) max = ECONNRESET;
+  }
+#endif
+#ifdef EDEADLK
+  if (!defined) {
+    defined = 1;
+    min = max = EDEADLK;
+  }
+  else {
+    if (EDEADLK < min) min = EDEADLK;
+    if (max < EDEADLK) max = EDEADLK;
+  }
+#endif
+#ifdef EDESTADDRREQ
+  if (!defined) {
+    defined = 1;
+    min = max = EDESTADDRREQ;
+  }
+  else {
+    if (EDESTADDRREQ < min) min = EDESTADDRREQ;
+    if (max < EDESTADDRREQ) max = EDESTADDRREQ;
+  }
+#endif
+#ifdef EDOM
+  if (!defined) {
+    defined = 1;
+    min = max = EDOM;
+  }
+  else {
+    if (EDOM < min) min = EDOM;
+    if (max < EDOM) max = EDOM;
+  }
+#endif
+#ifdef EDQUOT
+  if (!defined) {
+    defined = 1;
+    min = max = EDQUOT;
+  }
+  else {
+    if (EDQUOT < min) min = EDQUOT;
+    if (max < EDQUOT) max = EDQUOT;
+  }
+#endif
+#ifdef EEXIST
+  if (!defined) {
+    defined = 1;
+    min = max = EEXIST;
+  }
+  else {
+    if (EEXIST < min) min = EEXIST;
+    if (max < EEXIST) max = EEXIST;
+  }
+#endif
+#ifdef EFAULT
+  if (!defined) {
+    defined = 1;
+    min = max = EFAULT;
+  }
+  else {
+    if (EFAULT < min) min = EFAULT;
+    if (max < EFAULT) max = EFAULT;
+  }
+#endif
+#ifdef EFBIG
+  if (!defined) {
+    defined = 1;
+    min = max = EFBIG;
+  }
+  else {
+    if (EFBIG < min) min = EFBIG;
+    if (max < EFBIG) max = EFBIG;
+  }
+#endif
+#ifdef EHOSTUNREACH
+  if (!defined) {
+    defined = 1;
+    min = max = EHOSTUNREACH;
+  }
+  else {
+    if (EHOSTUNREACH < min) min = EHOSTUNREACH;
+    if (max < EHOSTUNREACH) max = EHOSTUNREACH;
+  }
+#endif
+#ifdef EIDRM
+  if (!defined) {
+    defined = 1;
+    min = max = EIDRM;
+  }
+  else {
+    if (EIDRM < min) min = EIDRM;
+    if (max < EIDRM) max = EIDRM;
+  }
+#endif
+#ifdef EILSEQ
+  if (!defined) {
+    defined = 1;
+    min = max = EILSEQ;
+  }
+  else {
+    if (EILSEQ < min) min = EILSEQ;
+    if (max < EILSEQ) max = EILSEQ;
+  }
+#endif
+#ifdef EINPROGRESS
+  if (!defined) {
+    defined = 1;
+    min = max = EINPROGRESS;
+  }
+  else {
+    if (EINPROGRESS < min) min = EINPROGRESS;
+    if (max < EINPROGRESS) max = EINPROGRESS;
+  }
+#endif
+#ifdef EINTR
+  if (!defined) {
+    defined = 1;
+    min = max = EINTR;
+  }
+  else {
+    if (EINTR < min) min = EINTR;
+    if (max < EINTR) max = EINTR;
+  }
+#endif
+#ifdef EINVAL
+  if (!defined) {
+    defined = 1;
+    min = max = EINVAL;
+  }
+  else {
+    if (EINVAL < min) min = EINVAL;
+    if (max < EINVAL) max = EINVAL;
+  }
+#endif
+#ifdef EIO
+  if (!defined) {
+    defined = 1;
+    min = max = EIO;
+  }
+  else {
+    if (EIO < min) min = EIO;
+    if (max < EIO) max = EIO;
+  }
+#endif
+#ifdef EISCONN
+  if (!defined) {
+    defined = 1;
+    min = max = EISCONN;
+  }
+  else {
+    if (EISCONN < min) min = EISCONN;
+    if (max < EISCONN) max = EISCONN;
+  }
+#endif
+#ifdef EISDIR
+  if (!defined) {
+    defined = 1;
+    min = max = EISDIR;
+  }
+  else {
+    if (EISDIR < min) min = EISDIR;
+    if (max < EISDIR) max = EISDIR;
+  }
+#endif
+#ifdef ELOOP
+  if (!defined) {
+    defined = 1;
+    min = max = ELOOP;
+  }
+  else {
+    if (ELOOP < min) min = ELOOP;
+    if (max < ELOOP) max = ELOOP;
+  }
+#endif
+#ifdef EMFILE
+  if (!defined) {
+    defined = 1;
+    min = max = EMFILE;
+  }
+  else {
+    if (EMFILE < min) min = EMFILE;
+    if (max < EMFILE) max = EMFILE;
+  }
+#endif
+#ifdef EMLINK
+  if (!defined) {
+    defined = 1;
+    min = max = EMLINK;
+  }
+  else {
+    if (EMLINK < min) min = EMLINK;
+    if (max < EMLINK) max = EMLINK;
+  }
+#endif
+#ifdef EMSGSIZE
+  if (!defined) {
+    defined = 1;
+    min = max = EMSGSIZE;
+  }
+  else {
+    if (EMSGSIZE < min) min = EMSGSIZE;
+    if (max < EMSGSIZE) max = EMSGSIZE;
+  }
+#endif
+#ifdef EMULTIHOP
+  if (!defined) {
+    defined = 1;
+    min = max = EMULTIHOP;
+  }
+  else {
+    if (EMULTIHOP < min) min = EMULTIHOP;
+    if (max < EMULTIHOP) max = EMULTIHOP;
+  }
+#endif
+#ifdef ENAMETOOLONG
+  if (!defined) {
+    defined = 1;
+    min = max = ENAMETOOLONG;
+  }
+  else {
+    if (ENAMETOOLONG < min) min = ENAMETOOLONG;
+    if (max < ENAMETOOLONG) max = ENAMETOOLONG;
+  }
+#endif
+#ifdef ENETDOWN
+  if (!defined) {
+    defined = 1;
+    min = max = ENETDOWN;
+  }
+  else {
+    if (ENETDOWN < min) min = ENETDOWN;
+    if (max < ENETDOWN) max = ENETDOWN;
+  }
+#endif
+#ifdef ENETRESET
+  if (!defined) {
+    defined = 1;
+    min = max = ENETRESET;
+  }
+  else {
+    if (ENETRESET < min) min = ENETRESET;
+    if (max < ENETRESET) max = ENETRESET;
+  }
+#endif
+#ifdef ENETUNREACH
+  if (!defined) {
+    defined = 1;
+    min = max = ENETUNREACH;
+  }
+  else {
+    if (ENETUNREACH < min) min = ENETUNREACH;
+    if (max < ENETUNREACH) max = ENETUNREACH;
+  }
+#endif
+#ifdef ENFILE
+  if (!defined) {
+    defined = 1;
+    min = max = ENFILE;
+  }
+  else {
+    if (ENFILE < min) min = ENFILE;
+    if (max < ENFILE) max = ENFILE;
+  }
+#endif
+#ifdef ENOBUFS
+  if (!defined) {
+    defined = 1;
+    min = max = ENOBUFS;
+  }
+  else {
+    if (ENOBUFS < min) min = ENOBUFS;
+    if (max < ENOBUFS) max = ENOBUFS;
+  }
+#endif
+#ifdef ENODATA
+  if (!defined) {
+    defined = 1;
+    min = max = ENODATA;
+  }
+  else {
+    if (ENODATA < min) min = ENODATA;
+    if (max < ENODATA) max = ENODATA;
+  }
+#endif
+#ifdef ENODEV
+  if (!defined) {
+    defined = 1;
+    min = max = ENODEV;
+  }
+  else {
+    if (ENODEV < min) min = ENODEV;
+    if (max < ENODEV) max = ENODEV;
+  }
+#endif
+#ifdef ENOENT
+  if (!defined) {
+    defined = 1;
+    min = max = ENOENT;
+  }
+  else {
+    if (ENOENT < min) min = ENOENT;
+    if (max < ENOENT) max = ENOENT;
+  }
+#endif
+#ifdef ENOEXEC
+  if (!defined) {
+    defined = 1;
+    min = max = ENOEXEC;
+  }
+  else {
+    if (ENOEXEC < min) min = ENOEXEC;
+    if (max < ENOEXEC) max = ENOEXEC;
+  }
+#endif
+#ifdef ENOLCK
+  if (!defined) {
+    defined = 1;
+    min = max = ENOLCK;
+  }
+  else {
+    if (ENOLCK < min) min = ENOLCK;
+    if (max < ENOLCK) max = ENOLCK;
+  }
+#endif
+#ifdef ENOLINK
+  if (!defined) {
+    defined = 1;
+    min = max = ENOLINK;
+  }
+  else {
+    if (ENOLINK < min) min = ENOLINK;
+    if (max < ENOLINK) max = ENOLINK;
+  }
+#endif
+#ifdef ENOMEM
+  if (!defined) {
+    defined = 1;
+    min = max = ENOMEM;
+  }
+  else {
+    if (ENOMEM < min) min = ENOMEM;
+    if (max < ENOMEM) max = ENOMEM;
+  }
+#endif
+#ifdef ENOMSG
+  if (!defined) {
+    defined = 1;
+    min = max = ENOMSG;
+  }
+  else {
+    if (ENOMSG < min) min = ENOMSG;
+    if (max < ENOMSG) max = ENOMSG;
+  }
+#endif
+#ifdef ENOPROTOOPT
+  if (!defined) {
+    defined = 1;
+    min = max = ENOPROTOOPT;
+  }
+  else {
+    if (ENOPROTOOPT < min) min = ENOPROTOOPT;
+    if (max < ENOPROTOOPT) max = ENOPROTOOPT;
+  }
+#endif
+#ifdef ENOSPC
+  if (!defined) {
+    defined = 1;
+    min = max = ENOSPC;
+  }
+  else {
+    if (ENOSPC < min) min = ENOSPC;
+    if (max < ENOSPC) max = ENOSPC;
+  }
+#endif
+#ifdef ENOSR
+  if (!defined) {
+    defined = 1;
+    min = max = ENOSR;
+  }
+  else {
+    if (ENOSR < min) min = ENOSR;
+    if (max < ENOSR) max = ENOSR;
+  }
+#endif
+#ifdef ENOSTR
+  if (!defined) {
+    defined = 1;
+    min = max = ENOSTR;
+  }
+  else {
+    if (ENOSTR < min) min = ENOSTR;
+    if (max < ENOSTR) max = ENOSTR;
+  }
+#endif
+#ifdef ENOSYS
+  if (!defined) {
+    defined = 1;
+    min = max = ENOSYS;
+  }
+  else {
+    if (ENOSYS < min) min = ENOSYS;
+    if (max < ENOSYS) max = ENOSYS;
+  }
+#endif
+#ifdef ENOTCONN
+  if (!defined) {
+    defined = 1;
+    min = max = ENOTCONN;
+  }
+  else {
+    if (ENOTCONN < min) min = ENOTCONN;
+    if (max < ENOTCONN) max = ENOTCONN;
+  }
+#endif
+#ifdef ENOTDIR
+  if (!defined) {
+    defined = 1;
+    min = max = ENOTDIR;
+  }
+  else {
+    if (ENOTDIR < min) min = ENOTDIR;
+    if (max < ENOTDIR) max = ENOTDIR;
+  }
+#endif
+#ifdef ENOTEMPTY
+  if (!defined) {
+    defined = 1;
+    min = max = ENOTEMPTY;
+  }
+  else {
+    if (ENOTEMPTY < min) min = ENOTEMPTY;
+    if (max < ENOTEMPTY) max = ENOTEMPTY;
+  }
+#endif
+#ifdef ENOTRECOVERABLE
+  if (!defined) {
+    defined = 1;
+    min = max = ENOTRECOVERABLE;
+  }
+  else {
+    if (ENOTRECOVERABLE < min) min = ENOTRECOVERABLE;
+    if (max < ENOTRECOVERABLE) max = ENOTRECOVERABLE;
+  }
+#endif
+#ifdef ENOTSOCK
+  if (!defined) {
+    defined = 1;
+    min = max = ENOTSOCK;
+  }
+  else {
+    if (ENOTSOCK < min) min = ENOTSOCK;
+    if (max < ENOTSOCK) max = ENOTSOCK;
+  }
+#endif
+#ifdef ENOTTY
+  if (!defined) {
+    defined = 1;
+    min = max = ENOTTY;
+  }
+  else {
+    if (ENOTTY < min) min = ENOTTY;
+    if (max < ENOTTY) max = ENOTTY;
+  }
+#endif
+#ifdef ENXIO
+  if (!defined) {
+    defined = 1;
+    min = max = ENXIO;
+  }
+  else {
+    if (ENXIO < min) min = ENXIO;
+    if (max < ENXIO) max = ENXIO;
+  }
+#endif
+#ifdef EOPNOTSUPP
+  if (!defined) {
+    defined = 1;
+    min = max = EOPNOTSUPP;
+  }
+  else {
+    if (EOPNOTSUPP < min) min = EOPNOTSUPP;
+    if (max < EOPNOTSUPP) max = EOPNOTSUPP;
+  }
+#endif
+#ifdef EOVERFLOW
+  if (!defined) {
+    defined = 1;
+    min = max = EOVERFLOW;
+  }
+  else {
+    if (EOVERFLOW < min) min = EOVERFLOW;
+    if (max < EOVERFLOW) max = EOVERFLOW;
+  }
+#endif
+#ifdef EOWNERDEAD
+  if (!defined) {
+    defined = 1;
+    min = max = EOWNERDEAD;
+  }
+  else {
+    if (EOWNERDEAD < min) min = EOWNERDEAD;
+    if (max < EOWNERDEAD) max = EOWNERDEAD;
+  }
+#endif
+#ifdef EPERM
+  if (!defined) {
+    defined = 1;
+    min = max = EPERM;
+  }
+  else {
+    if (EPERM < min) min = EPERM;
+    if (max < EPERM) max = EPERM;
+  }
+#endif
+#ifdef EPIPE
+  if (!defined) {
+    defined = 1;
+    min = max = EPIPE;
+  }
+  else {
+    if (EPIPE < min) min = EPIPE;
+    if (max < EPIPE) max = EPIPE;
+  }
+#endif
+#ifdef EPROTO
+  if (!defined) {
+    defined = 1;
+    min = max = EPROTO;
+  }
+  else {
+    if (EPROTO < min) min = EPROTO;
+    if (max < EPROTO) max = EPROTO;
+  }
+#endif
+#ifdef EPROTONOSUPPORT
+  if (!defined) {
+    defined = 1;
+    min = max = EPROTONOSUPPORT;
+  }
+  else {
+    if (EPROTONOSUPPORT < min) min = EPROTONOSUPPORT;
+    if (max < EPROTONOSUPPORT) max = EPROTONOSUPPORT;
+  }
+#endif
+#ifdef EPROTOTYPE
+  if (!defined) {
+    defined = 1;
+    min = max = EPROTOTYPE;
+  }
+  else {
+    if (EPROTOTYPE < min) min = EPROTOTYPE;
+    if (max < EPROTOTYPE) max = EPROTOTYPE;
+  }
+#endif
+#ifdef ERANGE
+  if (!defined) {
+    defined = 1;
+    min = max = ERANGE;
+  }
+  else {
+    if (ERANGE < min) min = ERANGE;
+    if (max < ERANGE) max = ERANGE;
+  }
+#endif
+#ifdef EROFS
+  if (!defined) {
+    defined = 1;
+    min = max = EROFS;
+  }
+  else {
+    if (EROFS < min) min = EROFS;
+    if (max < EROFS) max = EROFS;
+  }
+#endif
+#ifdef ESPIPE
+  if (!defined) {
+    defined = 1;
+    min = max = ESPIPE;
+  }
+  else {
+    if (ESPIPE < min) min = ESPIPE;
+    if (max < ESPIPE) max = ESPIPE;
+  }
+#endif
+#ifdef ESRCH
+  if (!defined) {
+    defined = 1;
+    min = max = ESRCH;
+  }
+  else {
+    if (ESRCH < min) min = ESRCH;
+    if (max < ESRCH) max = ESRCH;
+  }
+#endif
+#ifdef ESTALE
+  if (!defined) {
+    defined = 1;
+    min = max = ESTALE;
+  }
+  else {
+    if (ESTALE < min) min = ESTALE;
+    if (max < ESTALE) max = ESTALE;
+  }
+#endif
+#ifdef ETIME
+  if (!defined) {
+    defined = 1;
+    min = max = ETIME;
+  }
+  else {
+    if (ETIME < min) min = ETIME;
+    if (max < ETIME) max = ETIME;
+  }
+#endif
+#ifdef ETIMEDOUT
+  if (!defined) {
+    defined = 1;
+    min = max = ETIMEDOUT;
+  }
+  else {
+    if (ETIMEDOUT < min) min = ETIMEDOUT;
+    if (max < ETIMEDOUT) max = ETIMEDOUT;
+  }
+#endif
+#ifdef ETXTBSY
+  if (!defined) {
+    defined = 1;
+    min = max = ETXTBSY;
+  }
+  else {
+    if (ETXTBSY < min) min = ETXTBSY;
+    if (max < ETXTBSY) max = ETXTBSY;
+  }
+#endif
+#ifdef EWOULDBLOCK
+  if (!defined) {
+    defined = 1;
+    min = max = EWOULDBLOCK;
+  }
+  else {
+    if (EWOULDBLOCK < min) min = EWOULDBLOCK;
+    if (max < EWOULDBLOCK) max = EWOULDBLOCK;
+  }
+#endif
+#ifdef EXDEV
+  if (!defined) {
+    defined = 1;
+    min = max = EXDEV;
+  }
+  else {
+    if (EXDEV < min) min = EXDEV;
+    if (max < EXDEV) max = EXDEV;
+  }
+#endif
+  if (defined) {
+    *minp = min;
+    *maxp = max;
+    return 0;
+  }
+  else {
+    return -1;
+  }
+}
+

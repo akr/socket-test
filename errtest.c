@@ -28,10 +28,20 @@
 
 void list_errors(void)
 {
-#ifdef HAVE_SYS_NERR
+  int min, max;
+  int ret;
   int i;
+
+  ret = errno_minmax(&min, &max);
+  if (ret == -1) return;
+
+#ifdef HAVE_SYS_NERR
   printf("sys_nerr = %d\n", sys_nerr);
-  for (i = 0; i < sys_nerr; i++) {
+#endif
+  printf("errno_min = %d\n", min);
+  printf("errno_max = %d\n", max);
+
+  for (i = min; i <= max; i++) {
     char *sym = errsym(i);
     char *msg;
     errno = 0;
@@ -43,7 +53,6 @@ void list_errors(void)
         printf("%d = %s\n", i, msg);
     }
   }
-#endif
 }
 
 int main(int argc, char *argv[])
