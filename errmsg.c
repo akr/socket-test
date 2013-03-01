@@ -399,6 +399,10 @@ int main(int argc, char *argv[])
   err = ELOCKED; str = "ELOCKED";
   printf("%s = %s\n", str, strerror(err));
 #endif
+#ifdef ELOCKUNMAPPED
+  err = ELOCKUNMAPPED; str = "ELOCKUNMAPPED";
+  printf("%s = %s\n", str, strerror(err));
+#endif
 #ifdef ELOOP
   err = ELOOP; str = "ELOOP";
   printf("%s = %s\n", str, strerror(err));
@@ -549,6 +553,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef ENOSYS
   err = ENOSYS; str = "ENOSYS";
+  printf("%s = %s\n", str, strerror(err));
+#endif
+#ifdef ENOTACTIVE
+  err = ENOTACTIVE; str = "ENOTACTIVE";
   printf("%s = %s\n", str, strerror(err));
 #endif
 #ifdef ENOTBLK
