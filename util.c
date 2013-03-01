@@ -695,7 +695,7 @@ char *mkchtempdir(char *basename)
   buffer_add_str(buf, basename);
   buffer_add_str(buf, ".XXXXXX");
   buffer_terminate_byte(buf, '\0');
-  suffix = buf->ptr + buf->len - 6;
+  suffix = (char *)buf->ptr + buf->len - 6;
   while (1) {
     int r = get_rand();
     r = r % 1000000;

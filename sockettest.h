@@ -33,7 +33,6 @@
 /* cf. standards(5). */
 #  define _XOPEN_SOURCE
 #  define _XOPEN_SOURCE_EXTENDED 1
-#  define __EXTENSIONS__
 #endif
 
 #ifdef __minix
