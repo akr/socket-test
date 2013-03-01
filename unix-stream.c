@@ -193,9 +193,16 @@ static char *unescape_and_prepend_string(
     return NULL;
 
   if (opt_p) {
+    char *p;
     unescaped_str = xrealloc(unescaped_str, PREPEND_LENGTH+unescaped_len+1);
     memmove(unescaped_str+PREPEND_LENGTH, unescaped_str, unescaped_len+1);
-    memset(unescaped_str, 'Z', PREPEND_LENGTH);
+    p = unescaped_str;
+    while (p+1 < unescaped_str+PREPEND_LENGTH) {
+      *p++ = '.';
+      *p++ = '/';
+    }
+    if (p < unescaped_str+PREPEND_LENGTH)
+      *p = 'Z';
     unescaped_len += PREPEND_LENGTH;
   }
 
