@@ -30,6 +30,10 @@ AC_CONFIG_HEADERS([config.h])
 # Checks for programs.
 AC_PROG_CC
 
+# Determine a compiler mode.
+AC_USE_SYSTEM_EXTENSIONS
+AC_DEFINE(__USE_BSD, [1], [Use sys_nerr in glibc.])
+
 # Checks for libraries.
 AC_CHECK_LIB([xnet], [socketpair]) # SunOS.  cf. libxnet(3LIB) and standards(5)
 AC_CHECK_LIB([network], [socketpair]) # Haiku.
@@ -58,11 +62,15 @@ AC_FUNC_STAT
 AC_CHECK_FUNCS([memset socket])
 
 # Checks for library variables.
+
 AC_DEFUN([SOCKTEST_CHECK_SYS_NERR],
 [AC_CACHE_CHECK([for sys_nerr], [socktest_cv_sys_nerr],
   [AC_LINK_IFELSE(
     [AC_LANG_PROGRAM(
-      [[#include <errno.h>
+      [[
+/* GNU/Linux stdio.h defines sys_nerr if __USE_BSD or __USE_GNU is defined. */
+#include <stdio.h>
+#include <errno.h>
       ]],
       [[int var = sys_nerr;]])],
     [socktest_cv_sys_nerr=yes],
