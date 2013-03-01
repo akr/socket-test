@@ -82,19 +82,37 @@
 #ifdef HAVE_LIMITS_H
 #  include <limits.h>
 #endif
+
+#ifdef HAVE_ERRNO_H
+#  include <errno.h>
+#endif
+#ifdef HAVE_CTYPE_H
+#  include <ctype.h>
+#endif
+#ifdef HAVE_FLOAT_H
+#  include <float.h>
+#endif
+#ifdef HAVE_TIME_H
+#  include <time.h>
+#endif
+#ifdef HAVE_SIGNAL_H
+#  include <signal.h>
+#endif
+#ifdef HAVE_SYS_WAIT_H
+#  include <sys/wait.h>
+#endif
+#ifdef HAVE_SYS_UIO_H
+#  include <sys/uio.h>
+#endif
 #ifdef HAVE_SYS_SOCKET_H
 #  include <sys/socket.h>
 #endif
-
-#include <ctype.h>
-#include <sys/uio.h>
-#include <sys/un.h>
-#include <netinet/in.h>
-#include <errno.h>
-#include <float.h>
-#include <time.h>
-#include <sys/wait.h>
-#include <signal.h>
+#ifdef HAVE_SYS_UN_H
+#  include <sys/un.h>
+#endif
+#ifdef HAVE_NETINET_IN_H
+#  include <netinet/in.h>
+#endif
 
 #define FIELD_SIZE(struct_name, field_name) sizeof(((struct_name *)0)->field_name)
 #define ALIGNOF(type) ((int)offsetof(struct { char f1; type f2; }, f2))

@@ -39,20 +39,32 @@ AC_CHECK_LIB([xnet], [socketpair]) # SunOS.  cf. libxnet(3LIB) and standards(5)
 AC_CHECK_LIB([network], [socketpair]) # Haiku.
 
 # Checks for header files.
-AC_CHECK_HEADERS([limits.h])
-sockettest_includes="AC_INCLUDES_DEFAULT
-#ifdef HAVE_LIMITS_H
-#  include <limits.h>
-#endif
-"
 
-# limits.h is required for sys/socket.h in Minix 3.2.0.
-AC_CHECK_HEADERS([sys/socket.h], [], [], [$sockettest_includes])
-sockettest_includes="$sockettest_includes
-#ifdef HAVE_SYS_SOCKET_H
-#  include <sys/socket.h>
-#endif
+sockettest_includes="AC_INCLUDES_DEFAULT"
+
+# Minix 3.2.0: limits.h is required for sys/socket.h.
+for h in \
+  limits.h errno.h ctype.h float.h time.h signal.h \
+  sys/wait.h sys/uio.h sys/socket.h sys/un.h netinet/in.h
+do
+  AC_CHECK_HEADERS([$h])
+  sockettest_includes="$sockettest_includes
+[#]ifdef AS_TR_CPP([HAVE_$h])
+[#]  include <$h>
+[#]endif
 "
+done
+AH_TEMPLATE([HAVE_LIMITS_H], [Define to 1 if you have the <limits.h> header file.])
+AH_TEMPLATE([HAVE_ERRNO_H], [Define to 1 if you have the <errno.h> header file.])
+AH_TEMPLATE([HAVE_CTYPE_H], [Define to 1 if you have the <ctype.h> header file.])
+AH_TEMPLATE([HAVE_FLOAT_H], [Define to 1 if you have the <float.h> header file.])
+AH_TEMPLATE([HAVE_TIME_H], [Define to 1 if you have the <time.h> header file.])
+AH_TEMPLATE([HAVE_SIGNAL_H], [Define to 1 if you have the <signal.h> header file.])
+AH_TEMPLATE([HAVE_SYS_WAIT_H], [Define to 1 if you have the <sys/wait.h> header file.])
+AH_TEMPLATE([HAVE_SYS_UIO_H], [Define to 1 if you have the <sys/uio.h> header file.])
+AH_TEMPLATE([HAVE_SYS_SOCKET_H], [Define to 1 if you have the <sys/socket.h> header file.])
+AH_TEMPLATE([HAVE_SYS_UN_H], [Define to 1 if you have the <sys/un.h> header file.])
+AH_TEMPLATE([HAVE_NETINET_IN_H], [Define to 1 if you have the <netinet/in.h> header file.])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
@@ -91,3 +103,4 @@ SOCKTEST_CHECK_SYS_NERR
 AC_CONFIG_FILES([compile.sh], [chmod +x compile.sh])
 AC_CONFIG_FILES([link.sh], [chmod +x link.sh])
 AC_OUTPUT
+
