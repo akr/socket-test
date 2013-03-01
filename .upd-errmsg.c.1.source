@@ -59,6 +59,7 @@ int main(int argc, char *argv[])
          * strerror() return value for unknown error:
          * - GNU/Linux: "Unknown error NNN"
          * - NetBSD: "Unknown error: NNN"
+         * - Minix: "Undefined error: NNN"
          * - Haiku:
          *   "Unknown General Error (-NNNNNNNNNN)"
          *   "Unknown OS Error (-NNNNNNNNNN)"
@@ -72,7 +73,8 @@ int main(int argc, char *argv[])
          *   "Unknown POSIX Error (-NNNNNNNNNN)"
          */
 #define START_WITH(prefix) (strncmp(msg, (prefix), sizeof(prefix)-1) == 0)
-        if (START_WITH("Unknown "))
+        if (START_WITH("Unknown ") ||
+            START_WITH("Undefined "))
           continue;
 #undef START_WITH
         printf("%d = %s\n", i, msg);
