@@ -26,53 +26,50 @@
 
 require 'pp'
 include ERB::Util # for ERB::Util#h
+require 'tsort'
 
-def shared_prefix_length(str1, str2)
-  (0..str1.length).find {|i| str1[i] != str2[i] } || str1.length
+class Graph
+  include TSort
+  def initialize
+    @h = {}
+  end
+  def []=(k, v)
+    @h[k] = v
+  end
+  def [](k)
+    @h[k]
+  end
+  def tsort_each_node(&b)
+    @h.each_key(&b)
+  end
+  def tsort_each_child(node, &b)
+    if @h.has_key? node
+      @h[node].each(&b)
+    end
+  end
 end
 
 def merge_orderd(*arys)
-  merged = []
+  g = Graph.new
   arys.each {|ary|
-    ary = ary.dup
     h = Hash.new(0)
-    merged.each {|e| h[e] += 1 }
-    ary.each {|e| h[e] += 1 }
-    merged2 = []
-    while !merged.empty? && !ary.empty?
-      if merged.first == ary.first
-        merged2 << merged.first
-        merged.shift
-        ary.shift
-      elsif h[merged.first] == 1 && h[ary.first] == 1
-        # ambiguous.  needs heuristics.
-        if !merged2.empty?
-          if shared_prefix_length(merged2.last, merged.first) < shared_prefix_length(merged2.last, ary.first)
-            merged2 << ary.first
-            ary.shift
-          else
-            merged2 << merged.first
-            merged.shift
-          end
-        else
-          merged2 << merged.first
-          merged.shift
-        end
-      elsif h[merged.first] == 1
-        merged2 << merged.first
-        merged.shift
-      elsif h[ary.first] == 1
-        merged2 << ary.first
-        ary.shift
+    ary2 = ary.map {|e|
+      h[e] += 1
+      if h[e] == 1
+        e
       else
-        warn "inconsistent elements: #{merged.first.inspect}(#{h[merged.first]}) v.s. #{ary.first.inspect}(#{h[ary.first]})"
-        merged2 << merged.first
-        merged.shift
+        "#{e}(#{h[e]})"
       end
-    end
-    merged2.concat merged
-    merged2.concat ary
-    merged = merged2
+    }
+    1.upto(ary2.length-1) {|i|
+      e1 = ary2[i-1]
+      e2 = ary2[i]
+      (g[e2] ||= []) << e1
+    }
+  }
+  merged = []
+  g.tsort_each {|e|
+    merged << e
   }
   merged
 end
