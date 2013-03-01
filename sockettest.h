@@ -36,6 +36,14 @@
 #  define __EXTENSIONS__
 #endif
 
+#ifdef __minix
+/* Minix require feature test macro for several definitions.
+ * - struct sockaddr_storage needs _XOPEN_SOURCE >= 500
+ * - S_ISSOCK needs _XOPEN_SOURCE >= 600
+ */
+#  define _XOPEN_SOURCE 600
+#endif
+
 #include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -43,6 +51,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <unistd.h>
+#include <limits.h>
 #include <sys/types.h>
 #include <sys/uio.h>
 #include <sys/socket.h>
