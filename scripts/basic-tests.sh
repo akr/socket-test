@@ -221,8 +221,15 @@ uname -mrsv
 ./unix-stream -p '0123456789\0'
 ./unix-stream -p '01234567890\0'
 
-./unix-stream -g 1024 '(25*"0123456789")012\0'
-./unix-stream 'foo\0' 'foo\0' '(200*"b")\0'
+./unix-stream -g2048 -p '01234567890\0'
+./unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
+
+./unix-stream -g255 '(125*"./")ab\0' 
+./unix-stream -g1026 '(511*"./")a\0'
+./unix-stream 'foo\0' 'foo\0' '(125*"./")ab\0'
+./unix-stream 'foo\0' 'foo\0' '(511*"./")a\0'
+./unix-stream -g255 'foo\0' 'foo\0' '(125*"./")ab\0'
+./unix-stream -g1026 'foo\0' 'foo\0' '(511*"./")a\0'
 
 ./unix-stream -s '\0'
 ./unix-stream -s '.\0'

@@ -229,10 +229,15 @@ set -v
 
 ./unix-stream -p '012345678'
 ./unix-stream -p '0123456789'
-./unix-stream -p '01234567890'
+./unix-stream -g2048 -p '01234567890'
+./unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890'
 
-./unix-stream -g 1024 '(25*"0123456789")012'
-./unix-stream 'foo' 'foo' '(200*"b")'
+./unix-stream -g255 '(126*"./")a'
+./unix-stream -g1026 '(511*"./")a'
+./unix-stream 'foo\0' 'foo\0' '(126*"./")a'
+./unix-stream 'foo\0' 'foo\0' '(511*"./")a' 
+./unix-stream -g255 'foo\0' 'foo\0' '(126*"./")a'
+./unix-stream -g1026 'foo\0' 'foo\0' '(511*"./")a'
 
 ./unix-stream -s ''
 ./unix-stream -s '.'
