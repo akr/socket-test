@@ -39,23 +39,29 @@ AC_CHECK_LIB([xnet], [socketpair]) # SunOS.  cf. libxnet(3LIB) and standards(5)
 AC_CHECK_LIB([network], [socketpair]) # Haiku.
 
 # Checks for header files.
-AC_HEADER_STDC
-AC_CHECK_HEADERS([stddef.h stdlib.h string.h sys/socket.h unistd.h])
+AC_CHECK_HEADERS([limits.h])
+sockettest_includes="AC_INCLUDES_DEFAULT
+#ifdef HAVE_LIMITS_H
+#  include <limits.h>
+#endif
+"
+
+# limits.h is required for sys/socket.h in Minix 3.2.0.
+AC_CHECK_HEADERS([sys/socket.h], [], [], [$sockettest_includes])
+sockettest_includes="$sockettest_includes
+#ifdef HAVE_SYS_SOCKET_H
+#  include <sys/socket.h>
+#endif
+"
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
 AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
 
-AC_CHECK_TYPES([sa_family_t], [], [], [[
-#include <sys/types.h>
-#include <sys/socket.h>
-]])
+AC_CHECK_TYPES([sa_family_t], [], [], [$sockettest_includes])
 
-AC_CHECK_MEMBERS([struct sockaddr.sa_len], [], [], [[
-#include <sys/types.h>
-#include <sys/socket.h>
-]])
+AC_CHECK_MEMBERS([struct sockaddr.sa_len], [], [], [$sockettest_includes])
 
 # Checks for library functions.
 AC_FUNC_STAT
