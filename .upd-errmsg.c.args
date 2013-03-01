@@ -1,1 +1,1 @@
-errmsg.c -- errmsg.erb -- sh -c erb -r ./util.rb errmsg.erb > errmsg.c
+errmsg.c -- errmsg.erb util.rb errno.txt -- sh -c erb -r ./util.rb errmsg.erb > errmsg.c

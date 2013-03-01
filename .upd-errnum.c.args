@@ -1,1 +1,1 @@
-errnum.c -- errnum.erb -- sh -c erb -r ./util.rb errnum.erb > errnum.c
+errnum.c -- errnum.erb util.rb errno.txt -- sh -c erb -r ./util.rb errnum.erb > errnum.c
