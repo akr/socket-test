@@ -60,6 +60,7 @@ int main(int argc, char *argv[])
          * - GNU/Linux: "Unknown error NNN"
          * - NetBSD: "Unknown error: NNN"
          * - Minix: "Undefined error: NNN"
+         * - SunOS: "Error NNN"
          * - Haiku:
          *   "Unknown General Error (-NNNNNNNNNN)"
          *   "Unknown OS Error (-NNNNNNNNNN)"
@@ -74,6 +75,7 @@ int main(int argc, char *argv[])
          */
 #define START_WITH(prefix) (strncmp(msg, (prefix), sizeof(prefix)-1) == 0)
         if (START_WITH("Unknown ") ||
+            START_WITH("Error ") ||
             START_WITH("Undefined "))
           continue;
 #undef START_WITH
