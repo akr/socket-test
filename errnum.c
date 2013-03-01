@@ -34,6 +34,10 @@ int main(int argc, char *argv[])
 {
   int err;
   char *str;
+
+  (void)argc;
+  (void)argv;
+
 #ifdef E2BIG
   err = E2BIG; str = "E2BIG";
   printf("%s = %d\n", str, err);
@@ -572,4 +576,3 @@ int main(int argc, char *argv[])
 #endif
   return EXIT_SUCCESS;
 }
-

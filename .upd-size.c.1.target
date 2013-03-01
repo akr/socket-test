@@ -36,14 +36,13 @@
       type_name integer; \
       unsigned char bytes[sizeof(type_name)]; \
     } u; \
-    type_name t; \
     int i; \
     u.integer = 0; \
-    for (i = 0; i < sizeof(type_name); i++) { \
+    for (i = 0; i < (int)sizeof(type_name); i++) { \
       u.integer |= ((type_name)('1' + i)) << (i * CHAR_BIT); \
     } \
     printf("%s.byteorder =%*s", type_name_str, (int)(32-sizeof(type_name_str)), ""); \
-    for (i = 0; i < sizeof(type_name); i++) { \
+    for (i = 0; i < (int)sizeof(type_name); i++) { \
       putc(u.bytes[i], stdout); \
     } \
     putc('\n', stdout); \
@@ -123,6 +122,9 @@
 
 int main(int argc, char *argv[])
 {
+  (void)argc;
+  (void)argv;
+
   SHOW_STRUCT_SIZE(sockaddr);
 #ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
   SHOW_FIELD_SIZE(sockaddr, sa_len);

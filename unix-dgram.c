@@ -241,8 +241,7 @@ static void test_unix_dgram(void)
   struct sockaddr *client_sockaddr_ptr_in_server;
   socklen_t client_sockaddr_len_in_server;
 
-  socklen_t len;
-  int s, c, sc;
+  int s, c;
   int ret;
   ssize_t ss;
 
@@ -385,7 +384,7 @@ static void test_unix_dgram(void)
   else {
     /* ignore truncated part */
     client_sockaddr_len_in_server = sockaddr_get->buflen;
-    printf("address truncation    : %ld bytes\n", sockaddr_get->len-sockaddr_get->buflen);
+    printf("address truncation    : %ld bytes\n", (long)sockaddr_get->len-sockaddr_get->buflen);
   }
   sockaddr_get->addr = NULL;
   after_sockaddr_get_finish(sockaddr_get);

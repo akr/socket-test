@@ -120,18 +120,17 @@ End
 
 int main(int argc, char *argv[])
 {
+  (void)argc;
+  (void)argv;
+
 % integer_const_list.each_line {|sym| sym.chomp!
 #ifdef <%= sym %>
-  if (0 <= <%= sym %>)
+  if (0 < <%= sym %>)
     SHOW_POSITIVE_INTEGER("<%= sym %>", <%= sym %>);
   else
     SHOW_NEGATIVE_INTEGER("<%= sym %>", <%= sym %>);
 #endif
 % }
-
-#ifdef HAVE_SYS_NERR
-  printf("sys_nerr = %d\n", sys_nerr);
-#endif
 
 % float_const_list.each_line {|sym| sym.chomp!
 #ifdef <%= sym %>
@@ -145,6 +144,10 @@ int main(int argc, char *argv[])
     printf("%s = %.*g (%d bytes)\n", "<%= sym %>", DBL_DIG, (double)<%= sym %>, (int)sizeof(<%= sym %>));
 #endif
 % }
+
+#ifdef HAVE_SYS_NERR
+  printf("sys_nerr = %d\n", sys_nerr);
+#endif
 
   return EXIT_SUCCESS;
 }
