@@ -49,8 +49,25 @@ void list_errors(void)
     if (msg && !errno) {
       if (sym)
         printf("%s = %s\n", sym, msg);
-      else
+      else {
+#ifdef __HAIKU__
+#  define START_WITH(prefix) (strncmp(msg, (prefix), sizeof(prefix)-1) == 0)
+        if (START_WITH("Unknown General Error ") ||
+            START_WITH("Unknown OS Error ") ||
+            START_WITH("Unknown MIME type ") ||
+            START_WITH("Unknown Application Kit Error ") ||
+            START_WITH("Unknown Interface Kit Error ") ||
+            START_WITH("Unknown Media Kit Error ") ||
+            START_WITH("Unknown Translation Kit Error ") ||
+            START_WITH("Unknown Midi Kit Error ") ||
+            START_WITH("Unknown Storage Kit Error ") ||
+            START_WITH("Unknown POSIX Error ")) {
+          continue;
+        }
+#  undef START_WITH
+#endif
         printf("%d = %s\n", i, msg);
+      }
     }
   }
 }
