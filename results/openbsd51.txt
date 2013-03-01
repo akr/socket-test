@@ -157,6 +157,7 @@ LDBL_MAX_EXP = 16384 (4 bytes)
 FLT_MAX_10_EXP = 38 (4 bytes)
 DBL_MAX_10_EXP = 308 (4 bytes)
 LDBL_MAX_10_EXP = 4932 (4 bytes)
+sys_nerr = 92
 FLT_MAX = 3.40282e+38 (4 bytes)
 DBL_MAX = 1.79769313486232e+308 (8 bytes)
 LDBL_MAX = 1.18973149535723176508575932662801e+4932 (16 bytes)
@@ -238,6 +239,27 @@ ETIMEDOUT = Connection timed out
 ETXTBSY = Text file busy
 EWOULDBLOCK = Resource temporarily unavailable
 EXDEV = Cross-device link
+15 = Block device required
+44 = Socket type not supported
+46 = Protocol family not supported
+58 = Can't send after socket shutdown
+59 = Too many references: can't splice
+64 = Host is down
+67 = Too many processes
+68 = Too many users
+71 = Too many levels of remote in path
+72 = RPC struct is bad
+73 = RPC version wrong
+74 = RPC prog. not avail
+75 = Program version wrong
+76 = Bad procedure for program
+79 = Inappropriate file type or format
+80 = Authentication error
+81 = Need authenticator
+82 = IPsec processing failure
+83 = Attribute not found
+85 = No medium found
+86 = Wrong medium type
 ./errnum
 E2BIG = 7
 EACCES = 13
@@ -1106,40 +1128,40 @@ bind(server)          <- "(259*"c")\0" (260 bytes)
 bind(server): EINVAL
 
 ./unix-stream -p '01234567\0'
-bind(server)          <- "(94*"Z")01234567\0" (103 bytes)
+bind(server)          <- "(47*"./")01234567\0" (103 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(94*"Z")01234567\0" (103 bytes)
+getsockname(server)   -> "(47*"./")01234567\0" (103 bytes)
 getsockname(client)   -> too short sockaddr_un (0 bytes)
-connect               <- "(94*"Z")01234567\0" (103 bytes)
-getpeername(client)   -> "(94*"Z")01234567\0" (103 bytes)
+connect               <- "(47*"./")01234567\0" (103 bytes)
+getpeername(client)   -> "(47*"./")01234567\0" (103 bytes)
 accept                -> "(14*"\0")" (14 bytes)
-getsockname(accepted) -> "(94*"Z")01234567\0" (103 bytes)
+getsockname(accepted) -> "(47*"./")01234567\0" (103 bytes)
 getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -p '012345678\0'
-bind(server)          <- "(94*"Z")012345678\0" (104 bytes)
+bind(server)          <- "(47*"./")012345678\0" (104 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(94*"Z")012345678\0" (104 bytes)
+getsockname(server)   -> "(47*"./")012345678\0" (104 bytes)
 getsockname(client)   -> too short sockaddr_un (0 bytes)
-connect               <- "(94*"Z")012345678\0" (104 bytes)
-getpeername(client)   -> "(94*"Z")012345678\0" (104 bytes)
+connect               <- "(47*"./")012345678\0" (104 bytes)
+getpeername(client)   -> "(47*"./")012345678\0" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
-getsockname(accepted) -> "(94*"Z")012345678\0" (104 bytes)
+getsockname(accepted) -> "(47*"./")012345678\0" (104 bytes)
 getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -p '0123456789\0'
-bind(server)          <- "(94*"Z")0123456789\0" (105 bytes)
+bind(server)          <- "(47*"./")0123456789\0" (105 bytes)
 bind(server): EINVAL
 ./unix-stream -p '01234567890\0'
-bind(server)          <- "(94*"Z")01234567890\0" (106 bytes)
+bind(server)          <- "(47*"./")01234567890\0" (106 bytes)
 bind(server): EINVAL
 
 ./unix-stream -g2048 -p '01234567890\0'
-bind(server)          <- "(94*"Z")01234567890\0" (106 bytes)
+bind(server)          <- "(47*"./")01234567890\0" (106 bytes)
 bind(server): EINVAL
 ./unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
-bind(server)          <- "(94*"Z")foo\0" (98 bytes)
+bind(server)          <- "(47*"./")foo\0" (98 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(94*"Z")foo\0" (98 bytes)
-bind(client)          <- "(94*"Z")01234567890\0" (106 bytes)
+getsockname(server)   -> "(47*"./")foo\0" (98 bytes)
+bind(client)          <- "(47*"./")01234567890\0" (106 bytes)
 bind(client): EINVAL
 
 ./unix-stream -g255 '(125*"./")ab\0' 
@@ -2005,26 +2027,26 @@ bind(server)          <- "(519*"c")" (519 bytes)
 bind(server): EINVAL
 
 ./unix-stream -p '012345678'
-bind(server)          <- "(94*"Z")012345678" (103 bytes)
+bind(server)          <- "(47*"./")012345678" (103 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(94*"Z")012345678" (103 bytes)
+getsockname(server)   -> "(47*"./")012345678" (103 bytes)
 getsockname(client)   -> too short sockaddr_un (0 bytes)
-connect               <- "(94*"Z")012345678" (103 bytes)
-getpeername(client)   -> "(94*"Z")012345678" (103 bytes)
+connect               <- "(47*"./")012345678" (103 bytes)
+getpeername(client)   -> "(47*"./")012345678" (103 bytes)
 accept                -> "(14*"\0")" (14 bytes)
-getsockname(accepted) -> "(94*"Z")012345678" (103 bytes)
+getsockname(accepted) -> "(47*"./")012345678" (103 bytes)
 getpeername(accepted) -> too short sockaddr_un (0 bytes)
 ./unix-stream -p '0123456789'
-bind(server)          <- "(94*"Z")0123456789" (104 bytes)
+bind(server)          <- "(47*"./")0123456789" (104 bytes)
 bind(server): EINVAL
 ./unix-stream -g2048 -p '01234567890'
-bind(server)          <- "(94*"Z")01234567890" (105 bytes)
+bind(server)          <- "(47*"./")01234567890" (105 bytes)
 bind(server): EINVAL
 ./unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890'
-bind(server)          <- "(94*"Z")foo\0" (98 bytes)
+bind(server)          <- "(47*"./")foo\0" (98 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(94*"Z")foo\0" (98 bytes)
-bind(client)          <- "(94*"Z")01234567890" (105 bytes)
+getsockname(server)   -> "(47*"./")foo\0" (98 bytes)
+bind(client)          <- "(47*"./")01234567890" (105 bytes)
 bind(client): EINVAL
 
 ./unix-stream -g255 '(126*"./")a'

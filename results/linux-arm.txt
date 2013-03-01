@@ -145,6 +145,7 @@ LDBL_MAX_EXP = 1024 (4 bytes)
 FLT_MAX_10_EXP = 38 (4 bytes)
 DBL_MAX_10_EXP = 308 (4 bytes)
 LDBL_MAX_10_EXP = 308 (4 bytes)
+sys_nerr = 132
 FLT_MAX = 3.40282e+38 (4 bytes)
 DBL_MAX = 1.79769313486232e+308 (8 bytes)
 LDBL_MAX = 1.79769313486232e+308 (8 bytes)
@@ -236,6 +237,56 @@ ETIMEDOUT = Connection timed out
 ETXTBSY = Text file busy
 EWOULDBLOCK = Resource temporarily unavailable
 EXDEV = Invalid cross-device link
+15 = Block device required
+44 = Channel number out of range
+45 = Level 2 not synchronized
+46 = Level 3 halted
+47 = Level 3 reset
+48 = Link number out of range
+49 = Protocol driver not attached
+50 = No CSI structure available
+51 = Level 2 halted
+52 = Invalid exchange
+53 = Invalid request descriptor
+54 = Exchange full
+55 = No anode
+56 = Invalid request code
+57 = Invalid slot
+59 = Bad font file format
+64 = Machine is not on the network
+65 = Package not installed
+66 = Object is remote
+68 = Advertise error
+69 = Srmount error
+70 = Communication error on send
+73 = RFS specific error
+76 = Name not unique on network
+77 = File descriptor in bad state
+78 = Remote address changed
+79 = Can not access a needed shared library
+80 = Accessing a corrupted shared library
+81 = .lib section in a.out corrupted
+82 = Attempting to link in too many shared libraries
+83 = Cannot exec a shared library directly
+85 = Interrupted system call should be restarted
+86 = Streams pipe error
+87 = Too many users
+94 = Socket type not supported
+96 = Protocol family not supported
+108 = Cannot send after transport endpoint shutdown
+109 = Too many references: cannot splice
+112 = Host is down
+117 = Structure needs cleaning
+118 = Not a XENIX named type file
+119 = No XENIX semaphores available
+120 = Is a named type file
+121 = Remote I/O error
+123 = No medium found
+124 = Wrong medium type
+126 = Required key not available
+127 = Key has expired
+128 = Key has been revoked
+129 = Key was rejected by service
 ./errnum
 E2BIG = 7
 EACCES = 13
@@ -1170,40 +1221,40 @@ bind(server)          <- "(259*"c")\0" (260 bytes)
 bind(server): EINVAL
 
 ./unix-stream -p '01234567\0'
-bind(server)          <- "(98*"Z")01234567\0" (107 bytes)
+bind(server)          <- "(49*"./")01234567\0" (107 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(98*"Z")01234567\0" (107 bytes)
+getsockname(server)   -> "(49*"./")01234567\0" (107 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(98*"Z")01234567\0" (107 bytes)
-getpeername(client)   -> "(98*"Z")01234567\0" (107 bytes)
+connect               <- "(49*"./")01234567\0" (107 bytes)
+getpeername(client)   -> "(49*"./")01234567\0" (107 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(98*"Z")01234567\0" (107 bytes)
+getsockname(accepted) -> "(49*"./")01234567\0" (107 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream -p '012345678\0'
-bind(server)          <- "(98*"Z")012345678\0" (108 bytes)
+bind(server)          <- "(49*"./")012345678\0" (108 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(98*"Z")012345678\0" (108 bytes)
+getsockname(server)   -> "(49*"./")012345678\0" (108 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(98*"Z")012345678\0" (108 bytes)
-getpeername(client)   -> "(98*"Z")012345678\0" (108 bytes)
+connect               <- "(49*"./")012345678\0" (108 bytes)
+getpeername(client)   -> "(49*"./")012345678\0" (108 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(98*"Z")012345678\0" (108 bytes)
+getsockname(accepted) -> "(49*"./")012345678\0" (108 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream -p '0123456789\0'
-bind(server)          <- "(98*"Z")0123456789\0" (109 bytes)
+bind(server)          <- "(49*"./")0123456789\0" (109 bytes)
 bind(server): EINVAL
 ./unix-stream -p '01234567890\0'
-bind(server)          <- "(98*"Z")01234567890\0" (110 bytes)
+bind(server)          <- "(49*"./")01234567890\0" (110 bytes)
 bind(server): EINVAL
 
 ./unix-stream -g2048 -p '01234567890\0'
-bind(server)          <- "(98*"Z")01234567890\0" (110 bytes)
+bind(server)          <- "(49*"./")01234567890\0" (110 bytes)
 bind(server): EINVAL
 ./unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
-bind(server)          <- "(98*"Z")foo\0" (102 bytes)
+bind(server)          <- "(49*"./")foo\0" (102 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(98*"Z")foo\0" (102 bytes)
-bind(client)          <- "(98*"Z")01234567890\0" (110 bytes)
+getsockname(server)   -> "(49*"./")foo\0" (102 bytes)
+bind(client)          <- "(49*"./")01234567890\0" (110 bytes)
 bind(client): EINVAL
 
 ./unix-stream -g255 '(125*"./")ab\0' 
@@ -2140,33 +2191,33 @@ bind(server)          <- "(519*"c")" (519 bytes)
 bind(server): EINVAL
 
 ./unix-stream -p '012345678'
-bind(server)          <- "(98*"Z")012345678" (107 bytes)
+bind(server)          <- "(49*"./")012345678" (107 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(98*"Z")012345678\0" (108 bytes)
+getsockname(server)   -> "(49*"./")012345678\0" (108 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(98*"Z")012345678" (107 bytes)
-getpeername(client)   -> "(98*"Z")012345678\0" (108 bytes)
+connect               <- "(49*"./")012345678" (107 bytes)
+getpeername(client)   -> "(49*"./")012345678\0" (108 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(98*"Z")012345678\0" (108 bytes)
+getsockname(accepted) -> "(49*"./")012345678\0" (108 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream -p '0123456789'
-bind(server)          <- "(98*"Z")0123456789" (108 bytes)
+bind(server)          <- "(49*"./")0123456789" (108 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(98*"Z")0123456789"... (109 bytes)
+getsockname(server)   -> "(49*"./")0123456789"... (109 bytes)
 getsockname(client)   -> "" (0 bytes)
-connect               <- "(98*"Z")0123456789" (108 bytes)
-getpeername(client)   -> "(98*"Z")0123456789"... (109 bytes)
+connect               <- "(49*"./")0123456789" (108 bytes)
+getpeername(client)   -> "(49*"./")0123456789"... (109 bytes)
 accept                -> "" (0 bytes)
-getsockname(accepted) -> "(98*"Z")0123456789"... (109 bytes)
+getsockname(accepted) -> "(49*"./")0123456789"... (109 bytes)
 getpeername(accepted) -> "" (0 bytes)
 ./unix-stream -g2048 -p '01234567890'
-bind(server)          <- "(98*"Z")01234567890" (109 bytes)
+bind(server)          <- "(49*"./")01234567890" (109 bytes)
 bind(server): EINVAL
 ./unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890'
-bind(server)          <- "(98*"Z")foo\0" (102 bytes)
+bind(server)          <- "(49*"./")foo\0" (102 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(98*"Z")foo\0" (102 bytes)
-bind(client)          <- "(98*"Z")01234567890" (109 bytes)
+getsockname(server)   -> "(49*"./")foo\0" (102 bytes)
+bind(client)          <- "(49*"./")01234567890" (109 bytes)
 bind(client): EINVAL
 
 ./unix-stream -g255 '(126*"./")a'
@@ -2203,7 +2254,7 @@ bind(client): EINVAL
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000003" (6 bytes)
+getsockname(server)   -> "\000007" (6 bytes)
 ./unix-stream -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -2230,7 +2281,7 @@ bind(server): EADDRINUSE
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000004" (6 bytes)
+getsockname(server)   -> "\000008" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist

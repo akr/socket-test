@@ -241,6 +241,94 @@ ETIMEDOUT = Operation timed out
 ETXTBSY = Text file busy
 EWOULDBLOCK = Operation would block
 EXDEV = Cross-device link
+-2147483645 = Index not in range for the data set
+-2147483644 = Bad argument type passed to function
+-2147483642 = Mismatched values passed to function
+-2147483641 = Name not found
+-2147483640 = Name in use
+-2147483636 = Operation canceled
+-2147483635 = Initialization failed
+-2147483632 = Bad data
+-2147479552 = Bad semaphore ID
+-2147479551 = No more semaphores
+-2147479296 = Bad thread ID
+-2147479295 = No more threads
+-2147479294 = Thread is inappropriate state
+-2147479293 = Operation on invalid team
+-2147479292 = No more teams
+-2147479040 = Bad port ID
+-2147479039 = No more ports available
+-2147478784 = Bad image ID
+-2147478781 = Missing library
+-2147478780 = Symbol not found
+-2147478528 = Debugger already installed for this team
+-2147475456 = Invalid or unwanted reply
+-2147475455 = Duplicate reply
+-2147475454 = Can't send message to self
+-2147475453 = Bad handler
+-2147475452 = Already running
+-2147475451 = Launch failed
+-2147475450 = Ambiguous app launch
+-2147475448 = Bad script syntax
+-2147475447 = Could not resolve a link
+-2147475446 = File is mistakenly marked as executable
+-2147475445 = Application could not be found
+-2147475444 = Application is in the trash
+-2147475443 = There is no preferred application for this type of file
+-2147475442 = This file has a preferred app, but it could not be found
+-2147475441 = Bad sniffer rule
+-2147475440 = Data is not a message
+-2147475439 = System shutdown cancelled
+-2147475438 = System shutting down
+-2147467264 = Stream not found
+-2147467263 = Server not found
+-2147467262 = Resource not found
+-2147467261 = Resource unavailable
+-2147467260 = Bad subscriber
+-2147467259 = Subscriber not entered
+-2147467258 = Buffer not available
+-2147467257 = Last buffer
+-2147467164 = System failure
+-2147467163 = Bad media node
+-2147467162 = Media node busy
+-2147467161 = Bad media format
+-2147467160 = Bad buffer
+-2147467159 = Too many nodes
+-2147467158 = Too many buffers
+-2147467157 = Media node already exists
+-2147467156 = Buffer already exists
+-2147467155 = Cannot seek
+-2147467154 = Cannot change run mode
+-2147467153 = Application already registered
+-2147467152 = Application not registered
+-2147467151 = Cannot reclaim buffers
+-2147467150 = Buffers not reclaimed
+-2147467149 = Time source stopped
+-2147467148 = Time source busy
+-2147467147 = Bad source
+-2147467146 = Bad destination
+-2147467145 = Already connected
+-2147467144 = Not connected
+-2147467143 = Bad clipping format
+-2147467142 = Media addon failed
+-2147467141 = Media addon disabled
+-2147467140 = Change in progress
+-2147467139 = Stale change count
+-2147467138 = Media addon restricted
+-2147467137 = No handler
+-2147467136 = Duplicate format
+-2147467135 = Realtime disabled
+-2147467134 = Realtime unavailable
+-2147465215 = No translator found
+-2147465214 = Illegal data
+-2147459071 = No such file or directory
+-2147459058 = Operation not supported
+-2147459057 = Partition too small to contain filesystem
+-2147454976 = Out of memory
+-2147454962 = File Position Error
+-2147454961 = Signal Error
+-2147454956 = Protocol family not supported
+-2147454945 = Can't send after socket shutdown
 ./errnum
 E2BIG = -2147454975
 EACCES = -2147483646
@@ -1425,40 +1513,40 @@ bind(server)          <- "(259*"c")\0" (260 bytes)
 bind(server): EINVAL
 
 ./unix-stream -p '01234567\0'
-bind(server)          <- "(116*"Z")01234567\0" (125 bytes)
+bind(server)          <- "(58*"./")01234567\0" (125 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(116*"Z")01234567\0" (125 bytes)
+getsockname(server)   -> "(58*"./")01234567\0" (125 bytes)
 getsockname(client): ENOTCONN
-connect               <- "(116*"Z")01234567\0" (125 bytes)
-getpeername(client)   -> "(116*"Z")01234567\0" (125 bytes)
+connect               <- "(58*"./")01234567\0" (125 bytes)
+getpeername(client)   -> "(58*"./")01234567\0" (125 bytes)
 accept                -> "\000054" (6 bytes)
-getsockname(accepted) -> "(116*"Z")01234567\0" (125 bytes)
+getsockname(accepted) -> "(58*"./")01234567\0" (125 bytes)
 getpeername(accepted) -> "\000054" (6 bytes)
 ./unix-stream -p '012345678\0'
-bind(server)          <- "(116*"Z")012345678\0" (126 bytes)
+bind(server)          <- "(58*"./")012345678\0" (126 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(116*"Z")012345678\0" (126 bytes)
+getsockname(server)   -> "(58*"./")012345678\0" (126 bytes)
 getsockname(client): ENOTCONN
-connect               <- "(116*"Z")012345678\0" (126 bytes)
-getpeername(client)   -> "(116*"Z")012345678\0" (126 bytes)
+connect               <- "(58*"./")012345678\0" (126 bytes)
+getpeername(client)   -> "(58*"./")012345678\0" (126 bytes)
 accept                -> "\000055" (6 bytes)
-getsockname(accepted) -> "(116*"Z")012345678\0" (126 bytes)
+getsockname(accepted) -> "(58*"./")012345678\0" (126 bytes)
 getpeername(accepted) -> "\000055" (6 bytes)
 ./unix-stream -p '0123456789\0'
-bind(server)          <- "(116*"Z")0123456789\0" (127 bytes)
+bind(server)          <- "(58*"./")0123456789\0" (127 bytes)
 bind(server): EINVAL
 ./unix-stream -p '01234567890\0'
-bind(server)          <- "(116*"Z")01234567890\0" (128 bytes)
+bind(server)          <- "(58*"./")01234567890\0" (128 bytes)
 bind(server): EINVAL
 
 ./unix-stream -g2048 -p '01234567890\0'
-bind(server)          <- "(116*"Z")01234567890\0" (128 bytes)
+bind(server)          <- "(58*"./")01234567890\0" (128 bytes)
 bind(server): EINVAL
 ./unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
-bind(server)          <- "(116*"Z")foo\0" (120 bytes)
+bind(server)          <- "(58*"./")foo\0" (120 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "(116*"Z")foo\0" (120 bytes)
-bind(client)          <- "(116*"Z")01234567890\0" (128 bytes)
+getsockname(server)   -> "(58*"./")foo\0" (120 bytes)
+bind(client)          <- "(58*"./")01234567890\0" (128 bytes)
 bind(client): EINVAL
 
 ./unix-stream -g255 '(125*"./")ab\0' 
@@ -1520,7 +1608,7 @@ bind(server): EADDRINUSE
 ./unix-stream -s 'foobar'
 bind(server)          <- "foobar" (6 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "foobarHOy\xCE*\xE6\0" (13 bytes)
+getsockname(server)   -> "foobar(\xFE\x01\xCEM\xF2\0" (13 bytes)
 
 ./unix-stream -4 '(sun_len=1)abc\0'
 bind(server)          <- "abc\0" (4 bytes)

@@ -244,6 +244,28 @@ ETIMEDOUT = Connection timed out
 ETXTBSY = Text file busy
 EWOULDBLOCK = Resource temporarily unavailable
 EXDEV = Invalid cross-device link
+1073741839 = Block device required
+1073741868 = Socket type not supported
+1073741870 = Protocol family not supported
+1073741882 = Cannot send after transport endpoint shutdown
+1073741883 = Too many references: cannot splice
+1073741888 = Host is down
+1073741891 = Too many processes
+1073741892 = Too many users
+1073741895 = Object is remote
+1073741896 = RPC struct is bad
+1073741897 = RPC version wrong
+1073741898 = RPC program not available
+1073741899 = RPC program version wrong
+1073741900 = RPC bad procedure for program
+1073741903 = Inappropriate file type or format
+1073741904 = Authentication error
+1073741905 = Need authenticator
+1073741924 = Inappropriate operation for background process
+1073741925 = Translator died
+1073741927 = You really blew it this time
+1073741928 = Computer bought the farm
+1073741929 = Gratuitous error
 ./errnum
 E2BIG = 1073741831
 EACCES = 1073741837
@@ -1916,64 +1938,64 @@ bind(server)          <- "(259*"c")\0" (260 bytes)
 bind(server): ENAMETOOLONG
 
 ./unix-stream -p '01234567\0'
-bind(server)          <- "(98*"Z")01234567\0" (107 bytes)
+bind(server)          <- "(49*"./")01234567\0" (107 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
-connect               <- "(98*"Z")01234567\0" (107 bytes)
+connect               <- "(49*"./")01234567\0" (107 bytes)
 getpeername(client): EOPNOTSUPP
 accept                -> "\0" (1 bytes)
 getsockname(accepted) -> "\0" (1 bytes)
 getpeername(accepted): EOPNOTSUPP
 ./unix-stream -p '012345678\0'
-bind(server)          <- "(98*"Z")012345678\0" (108 bytes)
+bind(server)          <- "(49*"./")012345678\0" (108 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
-connect               <- "(98*"Z")012345678\0" (108 bytes)
+connect               <- "(49*"./")012345678\0" (108 bytes)
 getpeername(client): EOPNOTSUPP
 accept                -> "\0" (1 bytes)
 getsockname(accepted) -> "\0" (1 bytes)
 getpeername(accepted): EOPNOTSUPP
 ./unix-stream -p '0123456789\0'
-bind(server)          <- "(98*"Z")0123456789\0" (109 bytes)
+bind(server)          <- "(49*"./")0123456789\0" (109 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
-connect               <- "(98*"Z")0123456789\0" (109 bytes)
+connect               <- "(49*"./")0123456789\0" (109 bytes)
 getpeername(client): EOPNOTSUPP
 accept                -> "\0" (1 bytes)
 getsockname(accepted) -> "\0" (1 bytes)
 getpeername(accepted): EOPNOTSUPP
 ./unix-stream -p '01234567890\0'
-bind(server)          <- "(98*"Z")01234567890\0" (110 bytes)
+bind(server)          <- "(49*"./")01234567890\0" (110 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
-connect               <- "(98*"Z")01234567890\0" (110 bytes)
+connect               <- "(49*"./")01234567890\0" (110 bytes)
 getpeername(client): EOPNOTSUPP
 accept                -> "\0" (1 bytes)
 getsockname(accepted) -> "\0" (1 bytes)
 getpeername(accepted): EOPNOTSUPP
 
 ./unix-stream -g2048 -p '01234567890\0'
-bind(server)          <- "(98*"Z")01234567890\0" (110 bytes)
+bind(server)          <- "(49*"./")01234567890\0" (110 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
-connect               <- "(98*"Z")01234567890\0" (110 bytes)
+connect               <- "(49*"./")01234567890\0" (110 bytes)
 getpeername(client): EOPNOTSUPP
 accept                -> "\0" (1 bytes)
 getsockname(accepted) -> "\0" (1 bytes)
 getpeername(accepted): EOPNOTSUPP
 ./unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
-bind(server)          <- "(98*"Z")foo\0" (102 bytes)
+bind(server)          <- "(49*"./")foo\0" (102 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "\0" (1 bytes)
-bind(client)          <- "(98*"Z")01234567890\0" (110 bytes)
+bind(client)          <- "(49*"./")01234567890\0" (110 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "\0" (1 bytes)
-connect               <- "(98*"Z")foo\0" (102 bytes)
+connect               <- "(49*"./")foo\0" (102 bytes)
 getpeername(client): EOPNOTSUPP
 accept                -> "\0" (1 bytes)
 getsockname(accepted) -> "\0" (1 bytes)
