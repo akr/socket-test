@@ -378,6 +378,8 @@ static void *connect_func(void *arg)
   sockaddr_put_t *sockaddr_put;
   sockaddr_get_t *sockaddr_get;
 
+  (void)arg;
+
   if (client_path_str) {
     sockaddr_put = before_sockaddr_put("bind(client)", (struct sockaddr *)client_sockaddr_ptr, client_sockaddr_len, opt_4);
     ret = bind(client_socket, sockaddr_put->addr, sockaddr_put->len);
@@ -424,6 +426,8 @@ static void *accept_func(void *arg)
 {
   int ret;
   sockaddr_get_t *sockaddr_get;
+
+  (void)arg;
 
   serialized_flow_recv(&server_serialised_flow, 2);
 

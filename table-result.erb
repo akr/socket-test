@@ -25,7 +25,7 @@
 # OF SUCH DAMAGE.
 
 require 'pp'
-include ERB::Util # for ERB::Util#h
+include ERB::Util # for ERB::Util#h and ERB::Util#u
 require 'tsort'
 
 class Graph
@@ -401,6 +401,10 @@ command_action_os_result.each {|command, action_os_result|
 
 #pp command_action_os_result
 
+def command2fragment(command)
+  command.sub(%r{\A\./}, "").gsub(%r{[^a-zA-Z0-9./-]}, "")
+end
+
 %>
 <html>
   <head>
@@ -423,7 +427,16 @@ command_action_os_result.each {|command, action_os_result|
 
 <h1>Unix domain socket behavior comparison</h1>
 
-<h2>uname</h2>
+<h2>contents</h2>
+<ul>
+  <li><a href="#uname">uname</a></li>
+% command_action_os_result.each {|command, action_os_result|
+%   frag = command2fragment(command)
+  <li><a href="#<%= h(u(frag)) %>"><%=h command %></a></li>
+% }
+</ul>
+
+<h2><a name="uname">uname</a></h2>
 <table border>
   <tr> <th align="left">OS</th> <th>uname</th> </tr>
 % uname_results.keys.sort_by {|os| os_order[os] }.each {|os|
@@ -434,7 +447,8 @@ command_action_os_result.each {|command, action_os_result|
 
 % command_action_os_result.each {|command, action_os_result|
 %   os_list = action_os_result.values.map {|os_result| os_result.keys }.inject(&:|).sort_by {|os| os_order[os] }
-<h2><%=h command %></h2>
+%   frag = command2fragment(command)
+<h2><a name="<%= h(u(frag)) %>"><%=h command %></a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>

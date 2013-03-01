@@ -38,6 +38,9 @@ int main(int argc, char *argv[])
   char *str;
   int min, max, ret, i;
 
+  (void)argc;
+  (void)argv;
+
 % errno_list.each {|sym|
 #ifdef <%= sym %>
   err = <%= sym %>; str = "<%= sym %>";
@@ -86,4 +89,3 @@ int main(int argc, char *argv[])
 
   return EXIT_SUCCESS;
 }
-

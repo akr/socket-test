@@ -36,6 +36,9 @@ int main(int argc, char *argv[])
   char *str;
   int min, max, ret, i;
 
+  (void)argc;
+  (void)argv;
+
 #ifdef E2BIG
   err = E2BIG; str = "E2BIG";
   printf("%s = %s\n", str, strerror(err));
@@ -614,4 +617,3 @@ int main(int argc, char *argv[])
 
   return EXIT_SUCCESS;
 }
-

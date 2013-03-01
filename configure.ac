@@ -47,7 +47,7 @@ for h in \
   limits.h errno.h ctype.h float.h time.h signal.h \
   sys/wait.h sys/uio.h sys/socket.h sys/un.h netinet/in.h
 do
-  AC_CHECK_HEADERS([$h])
+  AC_CHECK_HEADERS([$h], [], [], [$SOCKETTEST_INCLUDES])
   SOCKETTEST_INCLUDES="$SOCKETTEST_INCLUDES
 [#]ifdef AS_TR_CPP([HAVE_$h])
 [#]  include <$h>
