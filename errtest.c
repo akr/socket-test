@@ -26,7 +26,7 @@
 
 #include "sockettest.h"
 
-int main(int argc, char *argv[])
+void list_errors(void)
 {
 #ifdef HAVE_SYS_NERR
   int i;
@@ -44,6 +44,49 @@ int main(int argc, char *argv[])
     }
   }
 #endif
+}
+
+int main(int argc, char *argv[])
+{
+  int i;
+
+  if (argc <= 1) {
+    list_errors();
+    return EXIT_SUCCESS;
+  }
+
+  for (i = 1; i < argc; i++) {
+    int n = atoi(argv[i]);
+    char *sym, *msg;
+    int strerror_err;
+    sym = errsym(n);
+    errno = 0;
+    msg = strerror(n);
+    strerror_err = errno;
+    if (sym)
+      if (msg)
+        if (!strerror_err)
+          printf("%s = %s\n", sym, msg);
+        else
+          printf("%s = %s (strerror sets errno as %d)\n", sym, msg, strerror_err);
+      else
+        if (!strerror_err)
+          printf("%s = strerror returns NULL but doesn't set errno.\n", sym);
+        else
+          printf("%s = strerror returns NULL and sets errno as %d.\n", sym, strerror_err);
+    else
+      if (msg)
+        if (!strerror_err)
+          printf("%d = %s\n", n, msg);
+        else
+          printf("%d = %s (strerror sets errno as %d)\n", n, msg, strerror_err);
+      else
+        if (!strerror_err)
+          printf("%d = strerror returns NULL but doesn't set errno.\n", n);
+        else
+          printf("%d = strerror returns NULL and sets errno as %d.\n", n, strerror_err);
+  }
+
   return EXIT_SUCCESS;
 }
 
