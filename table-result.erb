@@ -181,6 +181,200 @@ command_os_action_result_pairs.each {|command, os_action_result_pairs|
   command_action_os_result[command] = action_os_result
 }
 
+#pp command_action_os_result
+
+# substitute /temp.06477/ to /temp.N/
+command_action_os_result2 = {}
+command_action_os_result.each {|command, action_os_result|
+  command_action_os_result2[command] = {}
+  action_os_result.each {|action, os_result|
+    command_action_os_result2[command][action] = {}
+    os_result.each {|os, result|
+      result2 = result.gsub(%r{/temp.\d+/}, '/temp.N/')
+      command_action_os_result2[command][action][os] = result2
+    }
+  }
+}
+command_action_os_result = command_action_os_result2
+
+# remove results people can interpolate.
+#
+# ...
+# ./unix-stream '(44*"./")a\0'
+# ./unix-stream '(44*"./")ab\0'
+# ./unix-stream '(45*"./")a\0'
+# ...
+
+def shell_split_commandline(commandline)
+  args = commandline.split(/\s+/)
+  args.map! {|arg| /\A'(.*)'\z/ =~ arg ? $1 : arg }
+  args
+end
+
+def socket_test_expand_repeatation(str)
+  str.gsub(/\((\d+)\*"(.*?)"\)/) { $2 * $1.to_i }
+end
+
+def generate_nulloverwrite_substs(command1_args, command2_args, command3_args)
+  command1_lens = command1_args.map {|arg| arg.length }
+  command2_lens = command2_args.map {|arg| arg.length }
+  command3_lens = command3_args.map {|arg| arg.length }
+
+  nulloverwrite_subst_12 = command1_args.map.with_index {|arg, i|
+    if command1_lens[i] < command2_lens[i]
+      [Regexp.union(arg + '\\0' * (command2_lens[i] - command1_lens[i])), command2_args[i]]
+    else
+      [Regexp.union(arg), command2_args[i] + '\\0' * (command1_lens[i] - command2_lens[i])]
+    end
+  }
+  nulloverwrite_subst_23 = command2_args.map.with_index {|arg, i|
+    if command2_lens[i] < command3_lens[i]
+      [Regexp.union(arg + '\\0' * (command3_lens[i] - command2_lens[i])), command3_args[i]]
+    else
+      [Regexp.union(arg), command3_args[i] + '\\0' * (command2_lens[i] - command3_lens[i])]
+    end
+  }
+  return nulloverwrite_subst_12, nulloverwrite_subst_23
+end
+
+def interpolatable_result?(command1, action_os_result1, command2, action_os_result2, command3, action_os_result3)
+  command1_ary = shell_split_commandline(command1)
+  command2_ary = shell_split_commandline(command2)
+  command3_ary = shell_split_commandline(command3)
+  if command1_ary.empty? ||
+     command1_ary.length != command2_ary.length || 
+     command1_ary.length != command3_ary.length || 
+     command1_ary[0] != command2_ary[0] ||
+     command1_ary[0] != command3_ary[0]
+    return false
+  end
+  command1_ary.shift
+  command2_ary.shift
+  command3_ary.shift
+  command1_opts, command1_args = command1_ary.partition {|arg| /\A-/ =~ arg }
+  command2_opts, command2_args = command2_ary.partition {|arg| /\A-/ =~ arg }
+  command3_opts, command3_args = command3_ary.partition {|arg| /\A-/ =~ arg }
+  if command1_opts != command2_opts || command2_opts != command3_opts ||
+     command1_args.length != command2_args.length || command1_args.length != command3_args.length
+    return false
+  end
+  command1_args.map! {|arg| socket_test_expand_repeatation(arg) }
+  command2_args.map! {|arg| socket_test_expand_repeatation(arg) }
+  command3_args.map! {|arg| socket_test_expand_repeatation(arg) }
+  (command1_args.length-1).downto(0) {|i|
+    if command1_args[i] == command2_args[i] && command2_args[i] == command3_args[i]
+      command1_args.delete_at(i)
+      command2_args.delete_at(i)
+      command3_args.delete_at(i)
+    elsif command1_args[i] == command2_args[i] || command2_args[i] == command3_args[i]
+      return false
+    end
+  }
+
+  simple_subst_12 = command1_args.map.with_index {|arg, i| [Regexp.union(arg), command2_args[i]] }
+  simple_subst_23 = command2_args.map.with_index {|arg, i| [Regexp.union(arg), command3_args[i]] }
+
+  nulloverwrite_subst_12, nulloverwrite_subst_23 = generate_nulloverwrite_substs(command1_args, command2_args, command3_args)
+
+  command1_unredundant_args = command1_args.map {|arg| arg.sub(%r{\A(\./)*}, '') }
+  command2_unredundant_args = command2_args.map {|arg| arg.sub(%r{\A(\./)*}, '') }
+  command3_unredundant_args = command3_args.map {|arg| arg.sub(%r{\A(\./)*}, '') }
+  nulloverwrite_unredandant_subst_12, nulloverwrite_unredandant_subst_23 =
+    generate_nulloverwrite_substs(command1_unredundant_args, command2_unredundant_args, command3_unredundant_args)
+
+  if action_os_result1.keys.sort != action_os_result2.keys.sort ||
+     action_os_result1.keys.sort != action_os_result3.keys.sort
+    #p __LINE__
+    return false
+  end
+  action_os_result1.each {|action, os_result1|
+    os_result2 = action_os_result2[action]
+    os_result3 = action_os_result3[action]
+    if os_result1.keys.sort != os_result2.keys.sort ||
+       os_result1.keys.sort != os_result3.keys.sort
+      #p [__LINE__, action]
+      return false
+    end
+    os_result1.each {|os, result1|
+      result2 = os_result2[os]
+      result3 = os_result3[os]
+      next if result1 == result2 && result2 == result3
+      if !((m1 = /\A"(.*)" \((\d+) bytes\)\z/.match(result1)) &&
+           (m2 = /\A"(.*)" \((\d+) bytes\)\z/.match(result2)) &&
+           (m3 = /\A"(.*)" \((\d+) bytes\)\z/.match(result3))) &&
+         !((m1 = /\A"(.*)"\.\.\. \((\d+) bytes\)\z/.match(result1)) &&
+           (m2 = /\A"(.*)"\.\.\. \((\d+) bytes\)\z/.match(result2)) &&
+           (m3 = /\A"(.*)"\.\.\. \((\d+) bytes\)\z/.match(result3)))
+        #pp [__LINE__, action, os, result1, result3, result3]
+        return false
+      end
+      socklen1 = m1[2].to_i
+      socklen2 = m2[2].to_i
+      socklen3 = m3[2].to_i
+      if (socklen1 == socklen2) ^ (socklen2 == socklen3)
+        #p [__LINE__, action, os]
+        return false
+      end
+      expanded_sockaddr1 = socket_test_expand_repeatation(m1[1])
+      expanded_sockaddr2 = socket_test_expand_repeatation(m2[1])
+      expanded_sockaddr3 = socket_test_expand_repeatation(m3[1])
+      if simple_subst_12.inject(expanded_sockaddr1) {|str, (pat, repl)| str.gsub(pat) { repl } } == expanded_sockaddr2 &&
+         simple_subst_23.inject(expanded_sockaddr2) {|str, (pat, repl)| str.gsub(pat) { repl } } == expanded_sockaddr3
+        next
+      end
+      if nulloverwrite_subst_12 && nulloverwrite_subst_23 &&
+         nulloverwrite_subst_12.inject(expanded_sockaddr1) {|str, (pat, repl)| str.gsub(pat) { repl } } == expanded_sockaddr2 &&
+         nulloverwrite_subst_23.inject(expanded_sockaddr2) {|str, (pat, repl)| str.gsub(pat) { repl } } == expanded_sockaddr3
+        next
+      end
+      if nulloverwrite_unredandant_subst_12 && nulloverwrite_unredandant_subst_23 &&
+         nulloverwrite_unredandant_subst_12.inject(expanded_sockaddr1) {|str, (pat, repl)| str.gsub(pat) { repl } } == expanded_sockaddr2 &&
+         nulloverwrite_unredandant_subst_23.inject(expanded_sockaddr2) {|str, (pat, repl)| str.gsub(pat) { repl } } == expanded_sockaddr3
+        next
+      end
+      if /haiku/ =~ os &&
+         /\A(\(sun_len=8\))?\\0[0-9a-f]{5}\z/ =~ expanded_sockaddr1 &&
+         /\A(\(sun_len=8\))?\\0[0-9a-f]{5}\z/ =~ expanded_sockaddr2 &&
+         /\A(\(sun_len=8\))?\\0[0-9a-f]{5}\z/ =~ expanded_sockaddr3
+        #p [expanded_sockaddr1, expanded_sockaddr2, expanded_sockaddr3]
+        next
+      end
+      #p [__LINE__, action, os]
+      #p command1
+      #p command2
+      #p command3
+      #pp [command1_args, command2_args, command3_args]
+      #pp [result1, result2, result3]
+      #pp [expanded_sockaddr1, expanded_sockaddr2, expanded_sockaddr3]
+      return false
+    }
+  }
+  true
+end
+
+def remove_interpolatable_commands(command_action_os_result)
+  command_action_os_result2 = {}
+  command_action_os_result_ary = command_action_os_result.to_a
+  command_action_os_result_ary.each_with_index {|(command, action_os_result), i|
+    if i == 0 || i == command_action_os_result_ary.length - 1
+      command_action_os_result2[command] = action_os_result
+    else
+      above_command, above_action_os_result = command_action_os_result_ary[i-1]
+      below_command, below_action_os_result = command_action_os_result_ary[i+1]
+      #next if command != "./unix-stream -4 '(sun_len=2)abc\\0'" # for debug
+      if !interpolatable_result?(above_command, above_action_os_result,
+                                 command, action_os_result,
+                                 below_command, below_action_os_result)
+        command_action_os_result2[command] = action_os_result
+      end
+      #exit # for debug
+    end
+  }
+  command_action_os_result2
+end
+
+command_action_os_result = remove_interpolatable_commands(command_action_os_result)
+
 command_action_os_style = {}
 command_action_os_result.each {|command, action_os_result|
   os_list = action_os_result.values.map {|os_result| os_result.keys }.inject(&:|).sort_by {|os| os_order[os] }
