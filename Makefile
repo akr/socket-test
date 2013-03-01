@@ -53,7 +53,7 @@ config.status: configure
 	  ./configure --no-create; \
 	fi
 
-config.h compile.sh link.sh: config.status config.h.in compile.sh.in link.sh.in
+config.h includes.h compile.sh link.sh: config.status config.h.in includes.h.in compile.sh.in link.sh.in
 	./config.status && \
 	  touch config.h
 
@@ -75,31 +75,31 @@ errnum.c: errnum.erb util.rb errno.txt
 	./update-files errnum.c -- errnum.erb util.rb errno.txt -- \
 	  sh -c 'erb -r ./util.rb errnum.erb > errnum.c'
 
-util.o: util.c sockettest.h config.h compile.sh
+util.o: util.c sockettest.h config.h includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-errsym.o: errsym.c sockettest.h config.h compile.sh
+errsym.o: errsym.c sockettest.h config.h includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-size.o: size.c sockettest.h config.h compile.sh
+size.o: size.c sockettest.h config.h includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-const.o: const.c sockettest.h config.h compile.sh
+const.o: const.c sockettest.h config.h includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-errmsg.o: errmsg.c sockettest.h config.h compile.sh
+errmsg.o: errmsg.c sockettest.h config.h includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-errnum.o: errnum.c sockettest.h config.h compile.sh
+errnum.o: errnum.c sockettest.h config.h includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-errtest.o: errtest.c sockettest.h config.h compile.sh
+errtest.o: errtest.c sockettest.h config.h includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-unix-stream.o: unix-stream.c sockettest.h config.h compile.sh
+unix-stream.o: unix-stream.c sockettest.h config.h includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-unix-dgram.o: unix-dgram.c sockettest.h config.h compile.sh
+unix-dgram.o: unix-dgram.c sockettest.h config.h includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
 size: size.o link.sh
