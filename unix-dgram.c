@@ -445,7 +445,7 @@ void atexit_func()
       unlink_socket(client_path_str);
   }
   if (tmpdir)
-        rmchtmpdir(tmpdir);
+    rmchtmpdir(tmpdir);
 }
 
 int main(int argc, char *argv[])
