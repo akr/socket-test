@@ -219,6 +219,10 @@ int main(int argc, char *argv[])
   err = EIO; str = "EIO";
   printf("%s = %s\n", str, strerror(err));
 #endif
+#ifdef EIPSEC
+  err = EIPSEC; str = "EIPSEC";
+  printf("%s = %s\n", str, strerror(err));
+#endif
 #ifdef EISCONN
   err = EISCONN; str = "EISCONN";
   printf("%s = %s\n", str, strerror(err));

@@ -167,6 +167,9 @@ char *errsym(int err)
 #ifdef EIO
   if (err == EIO) { return "EIO"; } else
 #endif
+#ifdef EIPSEC
+  if (err == EIPSEC) { return "EIPSEC"; } else
+#endif
 #ifdef EISCONN
   if (err == EISCONN) { return "EISCONN"; } else
 #endif
@@ -929,6 +932,16 @@ int errno_minmax(int *minp, int *maxp)
   else {
     if (EIO < min) min = EIO;
     if (max < EIO) max = EIO;
+  }
+#endif
+#ifdef EIPSEC
+  if (!defined) {
+    defined = 1;
+    min = max = EIPSEC;
+  }
+  else {
+    if (EIPSEC < min) min = EIPSEC;
+    if (max < EIPSEC) max = EIPSEC;
   }
 #endif
 #ifdef EISCONN
