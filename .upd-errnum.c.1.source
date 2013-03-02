@@ -27,7 +27,7 @@
  */
 
 <%
-  errno_list = read_errno_list
+  errno_list = read_errno_list.sort
 %>
 
 #include "sockettest.h"

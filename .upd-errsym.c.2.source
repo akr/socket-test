@@ -6,7 +6,6 @@ def read_errno_list
     next if line.empty?
     list << line
   }
-  list.sort!
   list.uniq!
   list
 end
