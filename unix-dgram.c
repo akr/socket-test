@@ -27,6 +27,7 @@
 #include "sockettest.h"
 
 static int opt_U = 0;
+static int opt_T = 0;
 static int opt_c = 0;
 static int opt_m = 0;
 static int opt_4 = 0;
@@ -34,6 +35,8 @@ static int opt_4 = 0;
 static int opt_s = 0;
 static int opt_p = 0;
 static socklen_t opt_g = sizeof(struct sockaddr_un);
+
+static char *tmpdir = NULL;
 
 static char *server_path_str;
 static size_t server_path_len = 0;
@@ -53,6 +56,7 @@ void usage(int status)
       "usage: unix-dgram [options] server-path [sendto-path [client-path]]\n"
       "option: -h : show this help message\n"
       "        -U : don't unlink sockets.\n"
+      "        -T : don't chdir into a temporally directory.\n"
       "        -c : use connect&send instead of sendto.\n"
       "        -m : use recvmsg instead of recvfrom.\n"
       "        -4 : show 4.4BSD sun_len field\n"
@@ -129,7 +133,7 @@ static void parse_args(int argc, char *argv[])
   int opt;
   char *arg;
 
-  while ((opt = getopt(argc, argv, "hUcmspg:4")) != -1) {
+  while ((opt = getopt(argc, argv, "hUTcmspg:4")) != -1) {
     switch (opt) {
       case 'h':
         usage(EXIT_SUCCESS);
@@ -137,6 +141,10 @@ static void parse_args(int argc, char *argv[])
 
       case 'U':
         opt_U = 1;
+        break;
+
+      case 'T':
+        opt_T = 1;
         break;
 
       case 'c':
@@ -283,6 +291,9 @@ static void test_unix_dgram(void)
     if (client_path_str)
       unlink_socket(client_path_str);
   }
+
+  if (!opt_T)
+    tmpdir = mkchtempdir(NULL);
 
   s = socket(AF_UNIX, SOCK_DGRAM, 0);
   if (s == -1) { perrsym("socket(server)"); exit(EXIT_FAILURE); }
@@ -433,6 +444,8 @@ void atexit_func()
     if (client_path_str)
       unlink_socket(client_path_str);
   }
+  if (tmpdir)
+        rmchtmpdir(tmpdir);
 }
 
 int main(int argc, char *argv[])
