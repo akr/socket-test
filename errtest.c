@@ -48,7 +48,7 @@ void list_errors_func(int errcand, void *arg)
           START_WITH("Unknown Midi Kit Error ") ||
           START_WITH("Unknown Storage Kit Error ") ||
           START_WITH("Unknown POSIX Error ")) {
-        continue;
+        return;
       }
 #  undef START_WITH
 #endif
