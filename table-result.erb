@@ -31,20 +31,48 @@ require 'tsort'
 class Graph
   include TSort
   def initialize
-    @h = {}
+    @child_parents = {}
+    @node_order = nil
   end
-  def []=(k, v)
-    @h[k] = v
+  attr_accessor :node_order
+  def []=(child, parents)
+    @child_parents[child] = parents
   end
-  def [](k)
-    @h[k]
+  def [](child)
+    @child_parents[child]
   end
   def tsort_each_node(&b)
-    @h.each_key(&b)
+    if @node_order
+      @node_order.each(&b)
+    else
+      @child_parents.each_key(&b)
+    end
   end
-  def tsort_each_child(node, &b)
-    if @h.has_key? node
-      @h[node].each(&b)
+  def init_node_order
+    return if @node_order
+    distance_from_start = {}
+    self.tsort_each {|e2|
+      d = self[e2].map {|e1| distance_from_start[e1] }.max || 0
+      distance_from_start[e2] = d+1
+    }
+    has_child = {}
+    @child_parents.each_key {|child|
+      has_child[child] = false
+    }
+    @child_parents.each {|child, parents|
+      parents.each {|parent|
+        has_child[parent] = true
+      }
+    }
+    nodes_has_child, nodes_no_child = has_child.keys.partition {|node|
+      has_child[node]
+    }
+    self.node_order = nodes_no_child.sort_by {|node| distance_from_start[node] } + nodes_has_child
+  end
+  def tsort_each_child(child, &b)
+    # child-parent relation is reversed between tsort.rb and this class.
+    if @child_parents.has_key? child
+      @child_parents[child].each(&b)
     end
   end
 end
@@ -68,6 +96,7 @@ def merge_orderd(*arys)
     }
     g[ary[0]] ||= []
   }
+  g.init_node_order
   merged = []
   g.tsort_each {|e|
     merged << e
