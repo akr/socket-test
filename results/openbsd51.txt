@@ -2682,11 +2682,77 @@ getsockname(server)   -> "(47*"./")foo\0" (98 bytes)
 bind(client)          <- "(47*"./")01234567890\0" (106 bytes)
 bind(client): EINVAL
 
+./unix-dgram -g255 '(115*"./")ab\0' '(115*"./")ab\0' 'bar\0'
+bind(server)          <- "(115*"./")ab\0" (233 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(116*"./")a\0' '(116*"./")a\0' 'bar\0'
+bind(server)          <- "(116*"./")a\0" (234 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(116*"./")ab\0' '(116*"./")ab\0' 'bar\0'
+bind(server)          <- "(116*"./")ab\0" (235 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(117*"./")a\0' '(117*"./")a\0' 'bar\0'
+bind(server)          <- "(117*"./")a\0" (236 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(117*"./")ab\0' '(117*"./")ab\0' 'bar\0'
+bind(server)          <- "(117*"./")ab\0" (237 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(118*"./")a\0' '(118*"./")a\0' 'bar\0'
+bind(server)          <- "(118*"./")a\0" (238 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(118*"./")ab\0' '(118*"./")ab\0' 'bar\0'
+bind(server)          <- "(118*"./")ab\0" (239 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(119*"./")a\0' '(119*"./")a\0' 'bar\0'
+bind(server)          <- "(119*"./")a\0" (240 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(119*"./")ab\0' '(119*"./")ab\0' 'bar\0'
+bind(server)          <- "(119*"./")ab\0" (241 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(120*"./")a\0' '(120*"./")a\0' 'bar\0'
+bind(server)          <- "(120*"./")a\0" (242 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(120*"./")ab\0' '(120*"./")ab\0' 'bar\0'
+bind(server)          <- "(120*"./")ab\0" (243 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(121*"./")a\0' '(121*"./")a\0' 'bar\0'
+bind(server)          <- "(121*"./")a\0" (244 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(121*"./")ab\0' '(121*"./")ab\0' 'bar\0'
+bind(server)          <- "(121*"./")ab\0" (245 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(122*"./")a\0' '(122*"./")a\0' 'bar\0'
+bind(server)          <- "(122*"./")a\0" (246 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(122*"./")ab\0' '(122*"./")ab\0' 'bar\0'
+bind(server)          <- "(122*"./")ab\0" (247 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(123*"./")a\0' '(123*"./")a\0' 'bar\0'
+bind(server)          <- "(123*"./")a\0" (248 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(123*"./")ab\0' '(123*"./")ab\0' 'bar\0'
+bind(server)          <- "(123*"./")ab\0" (249 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(124*"./")a\0' '(124*"./")a\0' 'bar\0'
+bind(server)          <- "(124*"./")a\0" (250 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(124*"./")ab\0' '(124*"./")ab\0' 'bar\0'
+bind(server)          <- "(124*"./")ab\0" (251 bytes)
+bind(server): EINVAL
+./unix-dgram -g255 '(125*"./")a\0' '(125*"./")a\0' 'bar\0'
+bind(server)          <- "(125*"./")a\0" (252 bytes)
+bind(server): EINVAL
 ./unix-dgram -g255 '(125*"./")ab\0' '(125*"./")ab\0' 'bar\0'
 bind(server)          <- "(125*"./")ab\0" (253 bytes)
 bind(server): EINVAL
+./unix-dgram -g255 '(126*"./")a\0' '(126*"./")a\0' 'bar\0'
+bind(server)          <- "(126*"./")a\0" (254 bytes)
+bind(server): EINVAL
 ./unix-dgram -g1026 '(511*"./")a\0' '(511*"./")a\0' 'bar\0'
 bind(server)          <- "(511*"./")a\0" (1024 bytes)
+bind(server): EINVAL
+./unix-dgram -g1026 '(511*"./")ab\0' '(511*"./")ab\0' 'bar\0'
+bind(server)          <- "(511*"./")ab\0" (1025 bytes)
 bind(server): EINVAL
 
 ./unix-dgram 'foo\0' 'foo\0' '(125*"./")ab\0'
@@ -2695,11 +2761,23 @@ socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(125*"./")ab\0" (253 bytes)
 bind(client): EINVAL
+./unix-dgram 'foo\0' 'foo\0' '(126*"./")a\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "(126*"./")a\0" (254 bytes)
+bind(client): EINVAL
 ./unix-dgram 'foo\0' 'foo\0' '(511*"./")a\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(511*"./")a\0" (1024 bytes)
+bind(client): EINVAL
+./unix-dgram 'foo\0' 'foo\0' '(511*"./")ab\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "(511*"./")ab\0" (1025 bytes)
 bind(client): EINVAL
 ./unix-dgram -g255 'foo\0' 'foo\0' '(125*"./")ab\0'
 bind(server)          <- "foo\0" (4 bytes)

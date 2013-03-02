@@ -3611,6 +3611,226 @@ recvfrom(server)      -> "\0" (1 bytes)
 sendto(server)        <- "\0" (1 bytes)
 sendto(server): ENOENT
 
+./unix-dgram -g255 '(115*"./")ab\0' '(115*"./")ab\0' 'bar\0'
+bind(server)          <- "(115*"./")ab\0" (233 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(115*"./")ab\0" (233 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(116*"./")a\0' '(116*"./")a\0' 'bar\0'
+bind(server)          <- "(116*"./")a\0" (234 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(116*"./")a\0" (234 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(116*"./")ab\0' '(116*"./")ab\0' 'bar\0'
+bind(server)          <- "(116*"./")ab\0" (235 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(116*"./")ab\0" (235 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(117*"./")a\0' '(117*"./")a\0' 'bar\0'
+bind(server)          <- "(117*"./")a\0" (236 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(117*"./")a\0" (236 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(117*"./")ab\0' '(117*"./")ab\0' 'bar\0'
+bind(server)          <- "(117*"./")ab\0" (237 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(117*"./")ab\0" (237 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(118*"./")a\0' '(118*"./")a\0' 'bar\0'
+bind(server)          <- "(118*"./")a\0" (238 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(118*"./")a\0" (238 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(118*"./")ab\0' '(118*"./")ab\0' 'bar\0'
+bind(server)          <- "(118*"./")ab\0" (239 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(118*"./")ab\0" (239 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(119*"./")a\0' '(119*"./")a\0' 'bar\0'
+bind(server)          <- "(119*"./")a\0" (240 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(119*"./")a\0" (240 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(119*"./")ab\0' '(119*"./")ab\0' 'bar\0'
+bind(server)          <- "(119*"./")ab\0" (241 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(119*"./")ab\0" (241 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(120*"./")a\0' '(120*"./")a\0' 'bar\0'
+bind(server)          <- "(120*"./")a\0" (242 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(120*"./")a\0" (242 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(120*"./")ab\0' '(120*"./")ab\0' 'bar\0'
+bind(server)          <- "(120*"./")ab\0" (243 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(120*"./")ab\0" (243 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(121*"./")a\0' '(121*"./")a\0' 'bar\0'
+bind(server)          <- "(121*"./")a\0" (244 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(121*"./")a\0" (244 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(121*"./")ab\0' '(121*"./")ab\0' 'bar\0'
+bind(server)          <- "(121*"./")ab\0" (245 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(121*"./")ab\0" (245 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(122*"./")a\0' '(122*"./")a\0' 'bar\0'
+bind(server)          <- "(122*"./")a\0" (246 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(122*"./")a\0" (246 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(122*"./")ab\0' '(122*"./")ab\0' 'bar\0'
+bind(server)          <- "(122*"./")ab\0" (247 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(122*"./")ab\0" (247 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(123*"./")a\0' '(123*"./")a\0' 'bar\0'
+bind(server)          <- "(123*"./")a\0" (248 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(123*"./")a\0" (248 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(123*"./")ab\0' '(123*"./")ab\0' 'bar\0'
+bind(server)          <- "(123*"./")ab\0" (249 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(123*"./")ab\0" (249 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(124*"./")a\0' '(124*"./")a\0' 'bar\0'
+bind(server)          <- "(124*"./")a\0" (250 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(124*"./")a\0" (250 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(124*"./")ab\0' '(124*"./")ab\0' 'bar\0'
+bind(server)          <- "(124*"./")ab\0" (251 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(124*"./")ab\0" (251 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(125*"./")a\0' '(125*"./")a\0' 'bar\0'
+bind(server)          <- "(125*"./")a\0" (252 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(125*"./")a\0" (252 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
 ./unix-dgram -g255 '(125*"./")ab\0' '(125*"./")ab\0' 'bar\0'
 bind(server)          <- "(125*"./")ab\0" (253 bytes)
 socket file (server)  : exist
@@ -3619,6 +3839,17 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "\0" (1 bytes)
 sendto(client)        <- "(125*"./")ab\0" (253 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram -g255 '(126*"./")a\0' '(126*"./")a\0' 'bar\0'
+bind(server)          <- "(126*"./")a\0" (254 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(126*"./")a\0" (254 bytes)
 recvfrom(server)      -> "\0" (1 bytes)
 sendto(server)        <- "\0" (1 bytes)
 sendto(server): ENOENT
@@ -3633,6 +3864,15 @@ sendto(client)        <- "(511*"./")a\0" (1024 bytes)
 recvfrom(server)      -> "\0" (1 bytes)
 sendto(server)        <- "\0" (1 bytes)
 sendto(server): ENOENT
+./unix-dgram -g1026 '(511*"./")ab\0' '(511*"./")ab\0' 'bar\0'
+bind(server)          <- "(511*"./")ab\0" (1025 bytes)
+socket file (server)  : not exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "(511*"./")ab\0" (1025 bytes)
+sendto(client): ENOENT
 
 ./unix-dgram 'foo\0' 'foo\0' '(125*"./")ab\0'
 bind(server)          <- "foo\0" (4 bytes)
@@ -3645,12 +3885,34 @@ sendto(client)        <- "foo\0" (4 bytes)
 recvfrom(server)      -> "\0" (1 bytes)
 sendto(server)        <- "\0" (1 bytes)
 sendto(server): ENOENT
+./unix-dgram 'foo\0' 'foo\0' '(126*"./")a\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "(126*"./")a\0" (254 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "foo\0" (4 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
 ./unix-dgram 'foo\0' 'foo\0' '(511*"./")a\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "\0" (1 bytes)
 bind(client)          <- "(511*"./")a\0" (1024 bytes)
 socket file (client)  : exist
+getsockname(client)   -> "\0" (1 bytes)
+sendto(client)        <- "foo\0" (4 bytes)
+recvfrom(server)      -> "\0" (1 bytes)
+sendto(server)        <- "\0" (1 bytes)
+sendto(server): ENOENT
+./unix-dgram 'foo\0' 'foo\0' '(511*"./")ab\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "\0" (1 bytes)
+bind(client)          <- "(511*"./")ab\0" (1025 bytes)
+socket file (client)  : not exist
 getsockname(client)   -> "\0" (1 bytes)
 sendto(client)        <- "foo\0" (4 bytes)
 recvfrom(server)      -> "\0" (1 bytes)

@@ -1200,7 +1200,7 @@ bind(server): EADDRINUSE
 ./unix-stream -s 'foobar'
 bind(server)          <- "foobar" (6 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "foobar\x10d\x04\xCE\xFE\xBC\0" (13 bytes)
+getsockname(server)   -> "foobar\xC0:2\xCE\xFE\xBC\0" (13 bytes)
 
 ./unix-stream -4 '(sun_len=1)abc\0'
 bind(server)          <- "abc\0" (4 bytes)
@@ -1636,14 +1636,62 @@ socket(server): EAFNOSUPPORT
 ./unix-dgram -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
 socket(server): EAFNOSUPPORT
 
+./unix-dgram -g255 '(115*"./")ab\0' '(115*"./")ab\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(116*"./")a\0' '(116*"./")a\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(116*"./")ab\0' '(116*"./")ab\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(117*"./")a\0' '(117*"./")a\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(117*"./")ab\0' '(117*"./")ab\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(118*"./")a\0' '(118*"./")a\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(118*"./")ab\0' '(118*"./")ab\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(119*"./")a\0' '(119*"./")a\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(119*"./")ab\0' '(119*"./")ab\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(120*"./")a\0' '(120*"./")a\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(120*"./")ab\0' '(120*"./")ab\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(121*"./")a\0' '(121*"./")a\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(121*"./")ab\0' '(121*"./")ab\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(122*"./")a\0' '(122*"./")a\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(122*"./")ab\0' '(122*"./")ab\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(123*"./")a\0' '(123*"./")a\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(123*"./")ab\0' '(123*"./")ab\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(124*"./")a\0' '(124*"./")a\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(124*"./")ab\0' '(124*"./")ab\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(125*"./")a\0' '(125*"./")a\0' 'bar\0'
+socket(server): EAFNOSUPPORT
 ./unix-dgram -g255 '(125*"./")ab\0' '(125*"./")ab\0' 'bar\0'
 socket(server): EAFNOSUPPORT
+./unix-dgram -g255 '(126*"./")a\0' '(126*"./")a\0' 'bar\0'
+socket(server): EAFNOSUPPORT
 ./unix-dgram -g1026 '(511*"./")a\0' '(511*"./")a\0' 'bar\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram -g1026 '(511*"./")ab\0' '(511*"./")ab\0' 'bar\0'
 socket(server): EAFNOSUPPORT
 
 ./unix-dgram 'foo\0' 'foo\0' '(125*"./")ab\0'
 socket(server): EAFNOSUPPORT
+./unix-dgram 'foo\0' 'foo\0' '(126*"./")a\0'
+socket(server): EAFNOSUPPORT
 ./unix-dgram 'foo\0' 'foo\0' '(511*"./")a\0'
+socket(server): EAFNOSUPPORT
+./unix-dgram 'foo\0' 'foo\0' '(511*"./")ab\0'
 socket(server): EAFNOSUPPORT
 ./unix-dgram -g255 'foo\0' 'foo\0' '(125*"./")ab\0'
 socket(server): EAFNOSUPPORT
