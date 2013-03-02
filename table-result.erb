@@ -361,18 +361,30 @@ def interpolatable_result?(command1, action_os_result1, command2, action_os_resu
       expanded_sockaddr1 = socket_test_expand_repeatation(m1[1])
       expanded_sockaddr2 = socket_test_expand_repeatation(m2[1])
       expanded_sockaddr3 = socket_test_expand_repeatation(m3[1])
-      if simple_subst_12.inject(expanded_sockaddr1) {|str, (pat, repl)| str.gsub(pat) { repl } } == expanded_sockaddr2 &&
-         simple_subst_23.inject(expanded_sockaddr2) {|str, (pat, repl)| str.gsub(pat) { repl } } == expanded_sockaddr3
+      if (0...simple_subst_12.length).any? {|i|
+           pat12, repl12 = simple_subst_12[i]
+           pat23, repl23 = simple_subst_23[i]
+           expanded_sockaddr1.gsub(pat12) { repl12 } == expanded_sockaddr2 &&
+           expanded_sockaddr2.gsub(pat23) { repl23 } == expanded_sockaddr3
+         }
         next
       end
       if nulloverwrite_subst_12 && nulloverwrite_subst_23 &&
-         nulloverwrite_subst_12.inject(expanded_sockaddr1) {|str, (pat, repl)| str.gsub(pat) { repl } } == expanded_sockaddr2 &&
-         nulloverwrite_subst_23.inject(expanded_sockaddr2) {|str, (pat, repl)| str.gsub(pat) { repl } } == expanded_sockaddr3
+         (0...nulloverwrite_subst_12.length).any? {|i|
+           pat12, repl12 = nulloverwrite_subst_12[i]
+           pat23, repl23 = nulloverwrite_subst_23[i]
+           expanded_sockaddr1.gsub(pat12) { repl12 } == expanded_sockaddr2 &&
+           expanded_sockaddr2.gsub(pat23) { repl23 } == expanded_sockaddr3
+         }
         next
       end
       if nulloverwrite_unredandant_subst_12 && nulloverwrite_unredandant_subst_23 &&
-         nulloverwrite_unredandant_subst_12.inject(expanded_sockaddr1) {|str, (pat, repl)| str.gsub(pat) { repl } } == expanded_sockaddr2 &&
-         nulloverwrite_unredandant_subst_23.inject(expanded_sockaddr2) {|str, (pat, repl)| str.gsub(pat) { repl } } == expanded_sockaddr3
+         (0...nulloverwrite_unredandant_subst_12.length).any? {|i|
+           pat12, repl12 = nulloverwrite_unredandant_subst_12[i]
+           pat23, repl23 = nulloverwrite_unredandant_subst_23[i]
+           expanded_sockaddr1.gsub(pat12) { repl12 } == expanded_sockaddr2 &&
+           expanded_sockaddr2.gsub(pat23) { repl23 } == expanded_sockaddr3
+         }
         next
       end
       if /haiku/ =~ os &&
@@ -382,13 +394,10 @@ def interpolatable_result?(command1, action_os_result1, command2, action_os_resu
         #p [expanded_sockaddr1, expanded_sockaddr2, expanded_sockaddr3]
         next
       end
-      #p [__LINE__, action, os]
-      #p command1
-      #p command2
-      #p command3
-      #pp [command1_args, command2_args, command3_args]
-      #pp [result1, result2, result3]
-      #pp [expanded_sockaddr1, expanded_sockaddr2, expanded_sockaddr3]
+      #pp [__LINE__, action, os, command1, command2, command3, 
+      #    command1_args, command2_args, command3_args,
+      #    result1, result2, result3,
+      #    expanded_sockaddr1, expanded_sockaddr2, expanded_sockaddr3]
       return false
     }
   }
@@ -404,7 +413,7 @@ def remove_interpolatable_commands(command_action_os_result)
     else
       above_command, above_action_os_result = command_action_os_result_ary[i-1]
       below_command, below_action_os_result = command_action_os_result_ary[i+1]
-      #next if command != "./unix-dgram '(44*\"./\")ab\\0' '(44*\"./\")ab\\0' 'bar\\0'"# for debug
+      #next if command != "./unix-dgram '(91*\"c\")\\0'  '(91*\"c\")\\0'  'bar\\0'" # for debug
       if !interpolatable_result?(above_command, above_action_os_result,
                                  command, action_os_result,
                                  below_command, below_action_os_result)
