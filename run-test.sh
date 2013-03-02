@@ -2,26 +2,26 @@
 
 UNAME="`uname -srvm`"
 
-sh scripts/basic-tests.sh
+sh scripts/unix-stream-basic-tests.sh
 
 case "$UNAME" in
 CYGWIN*|Haiku*|Minix*)
-  sh scripts/nullless-simple-tests.sh
+  sh scripts/unix-stream-nullless-simple-tests.sh
   ;;
 *Hurd*)
-  sh scripts/nullless-simple2-tests.sh
+  sh scripts/unix-stream-nullless-simple2-tests.sh
   ;;
 *)
-  sh scripts/nullless-tests.sh
+  sh scripts/unix-stream-nullless-tests.sh
   ;;
 esac
 
 case "$UNAME" in
 Linux*)
-  sh scripts/linux-tests.sh
+  sh scripts/unix-stream-linux-tests.sh
   ;;
 NetBSD*|FreeBSD*|OpenBSD*|DragonFly*|MirBSD*|GNU/kFreeBSD*|*Hurd*|Darwin*|Haiku*)
-  sh scripts/44bsd-tests.sh
+  sh scripts/unix-stream-44bsd-tests.sh
   ;;
 esac
 
