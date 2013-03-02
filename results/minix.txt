@@ -269,6 +269,7 @@ EURG = urgent data present
 EUSERS = Too many users
 EWOULDBLOCK = call would block on nonblocking socket
 EXDEV = improper link
+0 = Undefined error: 0
 ./errnum
 E2BIG = 7
 EACCES = 13
@@ -391,1045 +392,1045 @@ EXDEV = 18
 ./unix-stream 'foo\0' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.38056/foo(108*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.32269/foo(108*"\0")" (127 bytes)
 bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
-getsockname(client)   -> "/tmp/temp.38056/bar(108*"\0")" (127 bytes)
+getsockname(client)   -> "/tmp/temp.32269/bar(108*"\0")" (127 bytes)
 connect               <- "foo\0" (4 bytes)
-getpeername(client)   -> "/tmp/temp.38056/foo(108*"\0")" (127 bytes)
-accept                -> "/tmp/temp.38056/foo(108*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.38056/foo(108*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.38056/foo(108*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.32269/foo(108*"\0")" (127 bytes)
+accept                -> "/tmp/temp.32269/foo(108*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.32269/foo(108*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.32269/foo(108*"\0")" (127 bytes)
 ./unix-stream 'foo\0' './foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.31847/foo(108*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.74425/foo(108*"\0")" (127 bytes)
 bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
-getsockname(client)   -> "/tmp/temp.31847/bar(108*"\0")" (127 bytes)
+getsockname(client)   -> "/tmp/temp.74425/bar(108*"\0")" (127 bytes)
 connect               <- "./foo\0" (6 bytes)
-getpeername(client)   -> "/tmp/temp.31847/foo(108*"\0")" (127 bytes)
-accept                -> "/tmp/temp.31847/foo(108*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.31847/foo(108*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.31847/foo(108*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.74425/foo(108*"\0")" (127 bytes)
+accept                -> "/tmp/temp.74425/foo(108*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.74425/foo(108*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.74425/foo(108*"\0")" (127 bytes)
 ./unix-stream 'foo\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.83372/foo(108*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.68216/foo(108*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "foo\0" (4 bytes)
-getpeername(client)   -> "/tmp/temp.83372/foo(108*"\0")" (127 bytes)
-accept                -> "/tmp/temp.83372/foo(108*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.83372/foo(108*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.83372/foo(108*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.68216/foo(108*"\0")" (127 bytes)
+accept                -> "/tmp/temp.68216/foo(108*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.68216/foo(108*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.68216/foo(108*"\0")" (127 bytes)
 ./unix-stream 'foo\0' './foo\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.77163/foo(108*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.10372/foo(108*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "./foo\0" (6 bytes)
-getpeername(client)   -> "/tmp/temp.77163/foo(108*"\0")" (127 bytes)
-accept                -> "/tmp/temp.77163/foo(108*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.77163/foo(108*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.77163/foo(108*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.10372/foo(108*"\0")" (127 bytes)
+accept                -> "/tmp/temp.10372/foo(108*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.10372/foo(108*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.10372/foo(108*"\0")" (127 bytes)
 
 ./unix-stream 'foo\0hoge' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.09951/foo(108*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.04164/foo(108*"\0")" (127 bytes)
 bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
-getsockname(client)   -> "/tmp/temp.09951/bar(108*"\0")" (127 bytes)
+getsockname(client)   -> "/tmp/temp.04164/bar(108*"\0")" (127 bytes)
 connect               <- "foo\0" (4 bytes)
-getpeername(client)   -> "/tmp/temp.09951/foo(108*"\0")" (127 bytes)
-accept                -> "/tmp/temp.09951/foo(108*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.09951/foo(108*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.09951/foo(108*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.04164/foo(108*"\0")" (127 bytes)
+accept                -> "/tmp/temp.04164/foo(108*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.04164/foo(108*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.04164/foo(108*"\0")" (127 bytes)
 ./unix-stream 'foo\0' 'foo\0fuga' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.53637/foo(108*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.46320/foo(108*"\0")" (127 bytes)
 bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
-getsockname(client)   -> "/tmp/temp.53637/bar(108*"\0")" (127 bytes)
+getsockname(client)   -> "/tmp/temp.46320/bar(108*"\0")" (127 bytes)
 connect               <- "foo\0fuga" (8 bytes)
-getpeername(client)   -> "/tmp/temp.53637/foo(108*"\0")" (127 bytes)
-accept                -> "/tmp/temp.53637/foo(108*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.53637/foo(108*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.53637/foo(108*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.46320/foo(108*"\0")" (127 bytes)
+accept                -> "/tmp/temp.46320/foo(108*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.46320/foo(108*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.46320/foo(108*"\0")" (127 bytes)
 ./unix-stream 'foo\0' 'foo\0' 'bar\0moga'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.56796/foo(108*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.40111/foo(108*"\0")" (127 bytes)
 bind(client)          <- "bar\0moga" (8 bytes)
 socket file (client)  : exist
-getsockname(client)   -> "/tmp/temp.56796/bar(108*"\0")" (127 bytes)
+getsockname(client)   -> "/tmp/temp.40111/bar(108*"\0")" (127 bytes)
 connect               <- "foo\0" (4 bytes)
-getpeername(client)   -> "/tmp/temp.56796/foo(108*"\0")" (127 bytes)
-accept                -> "/tmp/temp.56796/foo(108*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.56796/foo(108*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.56796/foo(108*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.40111/foo(108*"\0")" (127 bytes)
+accept                -> "/tmp/temp.40111/foo(108*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.40111/foo(108*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.40111/foo(108*"\0")" (127 bytes)
 ./unix-stream 'foo\0hoge' './foo\0fuga' 'bar\0moga'
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.98952/foo(108*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.82267/foo(108*"\0")" (127 bytes)
 bind(client)          <- "bar\0moga" (8 bytes)
 socket file (client)  : exist
-getsockname(client)   -> "/tmp/temp.98952/bar(108*"\0")" (127 bytes)
+getsockname(client)   -> "/tmp/temp.82267/bar(108*"\0")" (127 bytes)
 connect               <- "./foo\0fuga" (10 bytes)
-getpeername(client)   -> "/tmp/temp.98952/foo(108*"\0")" (127 bytes)
-accept                -> "/tmp/temp.98952/foo(108*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.98952/foo(108*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.98952/foo(108*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.82267/foo(108*"\0")" (127 bytes)
+accept                -> "/tmp/temp.82267/foo(108*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.82267/foo(108*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.82267/foo(108*"\0")" (127 bytes)
 
 ./unix-stream '(44*"./")a\0'
 bind(server)          <- "(44*"./")a\0" (90 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.83375/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.76059/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(44*"./")a\0" (90 bytes)
-getpeername(client)   -> "/tmp/temp.83375/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.83375/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.83375/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.83375/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.76059/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.76059/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.76059/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.76059/a(110*"\0")" (127 bytes)
 ./unix-stream '(44*"./")ab\0'
 bind(server)          <- "(44*"./")ab\0" (91 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.25531/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.18215/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(44*"./")ab\0" (91 bytes)
-getpeername(client)   -> "/tmp/temp.25531/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.25531/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.25531/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.25531/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.18215/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.18215/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.18215/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.18215/ab(109*"\0")" (127 bytes)
 ./unix-stream '(45*"./")a\0'
 bind(server)          <- "(45*"./")a\0" (92 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.28691/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.60371/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(45*"./")a\0" (92 bytes)
-getpeername(client)   -> "/tmp/temp.28691/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.28691/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.28691/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.28691/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.60371/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.60371/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.60371/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.60371/a(110*"\0")" (127 bytes)
 ./unix-stream '(45*"./")ab\0'
 bind(server)          <- "(45*"./")ab\0" (93 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.70847/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.54162/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(45*"./")ab\0" (93 bytes)
-getpeername(client)   -> "/tmp/temp.70847/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.70847/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.70847/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.70847/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.54162/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.54162/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.54162/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.54162/ab(109*"\0")" (127 bytes)
 ./unix-stream '(46*"./")a\0'
 bind(server)          <- "(46*"./")a\0" (94 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.03635/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.96318/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(46*"./")a\0" (94 bytes)
-getpeername(client)   -> "/tmp/temp.03635/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.03635/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.03635/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.03635/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.96318/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.96318/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.96318/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.96318/a(110*"\0")" (127 bytes)
 ./unix-stream '(46*"./")ab\0'
 bind(server)          <- "(46*"./")ab\0" (95 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.97426/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.90109/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(46*"./")ab\0" (95 bytes)
-getpeername(client)   -> "/tmp/temp.97426/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.97426/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.97426/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.97426/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.90109/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.90109/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.90109/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.90109/ab(109*"\0")" (127 bytes)
 ./unix-stream '(47*"./")a\0'
 bind(server)          <- "(47*"./")a\0" (96 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.48951/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.32266/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(47*"./")a\0" (96 bytes)
-getpeername(client)   -> "/tmp/temp.48951/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.48951/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.48951/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.48951/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.32266/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.32266/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.32266/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.32266/a(110*"\0")" (127 bytes)
 ./unix-stream '(47*"./")ab\0'
 bind(server)          <- "(47*"./")ab\0" (97 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.42742/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.26057/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(47*"./")ab\0" (97 bytes)
-getpeername(client)   -> "/tmp/temp.42742/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.42742/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.42742/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.42742/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.26057/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.26057/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.26057/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.26057/ab(109*"\0")" (127 bytes)
 ./unix-stream '(48*"./")a\0'
 bind(server)          <- "(48*"./")a\0" (98 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.74000/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.68213/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(48*"./")a\0" (98 bytes)
-getpeername(client)   -> "/tmp/temp.74000/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.74000/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.74000/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.74000/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.68213/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.68213/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.68213/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.68213/a(110*"\0")" (127 bytes)
 ./unix-stream '(48*"./")ab\0'
 bind(server)          <- "(48*"./")ab\0" (99 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.67791/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.62004/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(48*"./")ab\0" (99 bytes)
-getpeername(client)   -> "/tmp/temp.67791/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.67791/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.67791/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.67791/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.62004/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.62004/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.62004/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.62004/ab(109*"\0")" (127 bytes)
 ./unix-stream '(49*"./")a\0'
 bind(server)          <- "(49*"./")a\0" (100 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.19316/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.04160/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(49*"./")a\0" (100 bytes)
-getpeername(client)   -> "/tmp/temp.19316/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.19316/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.19316/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.19316/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.04160/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.04160/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.04160/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.04160/a(110*"\0")" (127 bytes)
 ./unix-stream '(49*"./")ab\0'
 bind(server)          <- "(49*"./")ab\0" (101 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.13107/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.97952/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(49*"./")ab\0" (101 bytes)
-getpeername(client)   -> "/tmp/temp.13107/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.13107/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.13107/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.13107/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.97952/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.97952/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.97952/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.97952/ab(109*"\0")" (127 bytes)
 
 ./unix-stream '(50*"./")a\0'
 bind(server)          <- "(50*"./")a\0" (102 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.45895/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.40108/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(50*"./")a\0" (102 bytes)
-getpeername(client)   -> "/tmp/temp.45895/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.45895/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.45895/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.45895/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.40108/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.40108/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.40108/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.40108/a(110*"\0")" (127 bytes)
 ./unix-stream '(50*"./")ab\0'
 bind(server)          <- "(50*"./")ab\0" (103 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.39686/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.33899/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(50*"./")ab\0" (103 bytes)
-getpeername(client)   -> "/tmp/temp.39686/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.39686/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.39686/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.39686/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.33899/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.33899/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.33899/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.33899/ab(109*"\0")" (127 bytes)
 ./unix-stream '(51*"./")a\0'
 bind(server)          <- "(51*"./")a\0" (104 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.91211/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.76055/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(51*"./")a\0" (104 bytes)
-getpeername(client)   -> "/tmp/temp.91211/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.91211/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.91211/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.91211/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.76055/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.76055/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.76055/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.76055/a(110*"\0")" (127 bytes)
 ./unix-stream '(51*"./")ab\0'
 bind(server)          <- "(51*"./")ab\0" (105 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.85002/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.18211/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(51*"./")ab\0" (105 bytes)
-getpeername(client)   -> "/tmp/temp.85002/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.85002/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.85002/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.85002/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.18211/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.18211/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.18211/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.18211/ab(109*"\0")" (127 bytes)
 ./unix-stream '(52*"./")a\0'
 bind(server)          <- "(52*"./")a\0" (106 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.17790/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.12003/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(52*"./")a\0" (106 bytes)
-getpeername(client)   -> "/tmp/temp.17790/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.17790/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.17790/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.17790/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.12003/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.12003/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.12003/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.12003/a(110*"\0")" (127 bytes)
 ./unix-stream '(52*"./")ab\0'
 bind(server)          <- "(52*"./")ab\0" (107 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.11581/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.54159/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(52*"./")ab\0" (107 bytes)
-getpeername(client)   -> "/tmp/temp.11581/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.11581/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.11581/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.11581/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.54159/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.54159/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.54159/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.54159/ab(109*"\0")" (127 bytes)
 ./unix-stream '(53*"./")a\0'
 bind(server)          <- "(53*"./")a\0" (108 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.63105/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.47950/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(53*"./")a\0" (108 bytes)
-getpeername(client)   -> "/tmp/temp.63105/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.63105/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.63105/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.63105/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.47950/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.47950/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.47950/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.47950/a(110*"\0")" (127 bytes)
 ./unix-stream '(53*"./")ab\0'
 bind(server)          <- "(53*"./")ab\0" (109 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.06791/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.90106/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(53*"./")ab\0" (109 bytes)
-getpeername(client)   -> "/tmp/temp.06791/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.06791/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.06791/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.06791/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.90106/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.90106/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.90106/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.90106/ab(109*"\0")" (127 bytes)
 ./unix-stream '(54*"./")a\0'
 bind(server)          <- "(54*"./")a\0" (110 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.91214/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.83897/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(54*"./")a\0" (110 bytes)
-getpeername(client)   -> "/tmp/temp.91214/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.91214/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.91214/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.91214/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.83897/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.83897/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.83897/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.83897/a(110*"\0")" (127 bytes)
 ./unix-stream '(54*"./")ab\0'
 bind(server)          <- "(54*"./")ab\0" (111 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.33370/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.26053/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(54*"./")ab\0" (111 bytes)
-getpeername(client)   -> "/tmp/temp.33370/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.33370/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.33370/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.33370/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.26053/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.26053/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.26053/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.26053/ab(109*"\0")" (127 bytes)
 ./unix-stream '(55*"./")a\0'
 bind(server)          <- "(55*"./")a\0" (112 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.36530/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.19845/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(55*"./")a\0" (112 bytes)
-getpeername(client)   -> "/tmp/temp.36530/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.36530/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.36530/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.36530/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.19845/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.19845/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.19845/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.19845/a(110*"\0")" (127 bytes)
 ./unix-stream '(55*"./")ab\0'
 bind(server)          <- "(55*"./")ab\0" (113 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.78686/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.62001/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(55*"./")ab\0" (113 bytes)
-getpeername(client)   -> "/tmp/temp.78686/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.78686/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.78686/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.78686/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.62001/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.62001/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.62001/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.62001/ab(109*"\0")" (127 bytes)
 ./unix-stream '(56*"./")a\0'
 bind(server)          <- "(56*"./")a\0" (114 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.63109/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.55792/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(56*"./")a\0" (114 bytes)
-getpeername(client)   -> "/tmp/temp.63109/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.63109/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.63109/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.63109/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.55792/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.55792/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.55792/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.55792/a(110*"\0")" (127 bytes)
 ./unix-stream '(56*"./")ab\0'
 bind(server)          <- "(56*"./")ab\0" (115 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.05265/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.97948/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(56*"./")ab\0" (115 bytes)
-getpeername(client)   -> "/tmp/temp.05265/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.05265/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.05265/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.05265/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.97948/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.97948/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.97948/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.97948/ab(109*"\0")" (127 bytes)
 ./unix-stream '(57*"./")a\0'
 bind(server)          <- "(57*"./")a\0" (116 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.08425/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.40104/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(57*"./")a\0" (116 bytes)
-getpeername(client)   -> "/tmp/temp.08425/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.08425/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.08425/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.08425/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.40104/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.40104/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.40104/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.40104/a(110*"\0")" (127 bytes)
 ./unix-stream '(57*"./")ab\0'
 bind(server)          <- "(57*"./")ab\0" (117 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.50581/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.33896/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(57*"./")ab\0" (117 bytes)
-getpeername(client)   -> "/tmp/temp.50581/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.50581/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.50581/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.50581/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.33896/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.33896/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.33896/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.33896/ab(109*"\0")" (127 bytes)
 ./unix-stream '(58*"./")a\0'
 bind(server)          <- "(58*"./")a\0" (118 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.83368/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.76052/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(58*"./")a\0" (118 bytes)
-getpeername(client)   -> "/tmp/temp.83368/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.83368/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.83368/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.83368/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.76052/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.76052/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.76052/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.76052/a(110*"\0")" (127 bytes)
 ./unix-stream '(58*"./")ab\0'
 bind(server)          <- "(58*"./")ab\0" (119 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.12078/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.69843/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(58*"./")ab\0" (119 bytes)
-getpeername(client)   -> "/tmp/temp.12078/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.12078/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.12078/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.12078/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.69843/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.69843/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.69843/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.69843/ab(109*"\0")" (127 bytes)
 ./unix-stream '(59*"./")a\0'
 bind(server)          <- "(59*"./")a\0" (120 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.63603/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.11999/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(59*"./")a\0" (120 bytes)
-getpeername(client)   -> "/tmp/temp.63603/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.63603/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.63603/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.63603/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.11999/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.11999/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.11999/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.11999/a(110*"\0")" (127 bytes)
 ./unix-stream '(59*"./")ab\0'
 bind(server)          <- "(59*"./")ab\0" (121 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.57394/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.05790/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(59*"./")ab\0" (121 bytes)
-getpeername(client)   -> "/tmp/temp.57394/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.57394/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.57394/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.57394/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.05790/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.05790/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.05790/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.05790/ab(109*"\0")" (127 bytes)
 
 ./unix-stream '(60*"./")a\0'
 bind(server)          <- "(60*"./")a\0" (122 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.90182/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.47947/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(60*"./")a\0" (122 bytes)
-getpeername(client)   -> "/tmp/temp.90182/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.90182/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.90182/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.90182/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.47947/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.47947/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.47947/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.47947/a(110*"\0")" (127 bytes)
 ./unix-stream '(60*"./")ab\0'
 bind(server)          <- "(60*"./")ab\0" (123 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.83973/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.41738/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(60*"./")ab\0" (123 bytes)
-getpeername(client)   -> "/tmp/temp.83973/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.83973/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.83973/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.83973/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.41738/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.41738/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.41738/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.41738/ab(109*"\0")" (127 bytes)
 ./unix-stream '(61*"./")a\0'
 bind(server)          <- "(61*"./")a\0" (124 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.35497/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.83894/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(61*"./")a\0" (124 bytes)
-getpeername(client)   -> "/tmp/temp.35497/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.35497/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.35497/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.35497/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.83894/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.83894/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.83894/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.83894/a(110*"\0")" (127 bytes)
 ./unix-stream '(61*"./")ab\0'
 bind(server)          <- "(61*"./")ab\0" (125 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.29289/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.77685/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(61*"./")ab\0" (125 bytes)
-getpeername(client)   -> "/tmp/temp.29289/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.29289/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.29289/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.29289/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.77685/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.77685/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.77685/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.77685/ab(109*"\0")" (127 bytes)
 ./unix-stream '(62*"./")a\0'
 bind(server)          <- "(62*"./")a\0" (126 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.62076/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.91441/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(62*"./")a\0" (126 bytes)
-getpeername(client)   -> "/tmp/temp.62076/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.62076/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.62076/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.62076/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.91441/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.91441/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.91441/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.91441/a(110*"\0")" (127 bytes)
 ./unix-stream '(62*"./")ab\0'
 bind(server)          <- "(62*"./")ab\0" (127 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.55868/ab(109*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.97650/ab(109*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(62*"./")ab\0" (127 bytes)
-getpeername(client)   -> "/tmp/temp.55868/ab(109*"\0")" (127 bytes)
-accept                -> "/tmp/temp.55868/ab(109*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.55868/ab(109*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.55868/ab(109*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.97650/ab(109*"\0")" (127 bytes)
+accept                -> "/tmp/temp.97650/ab(109*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.97650/ab(109*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.97650/ab(109*"\0")" (127 bytes)
 ./unix-stream '(63*"./")a\0'
 bind(server)          <- "(63*"./")a\0" (128 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.07392/a(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.55494/a(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(63*"./")a\0" (128 bytes)
-getpeername(client)   -> "/tmp/temp.07392/a(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.07392/a(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.07392/a(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.07392/a(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.55494/a(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.55494/a(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.55494/a(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.55494/a(110*"\0")" (127 bytes)
 ./unix-stream '(63*"./")ab\0'
 bind(server)          <- "(63*"./")ab\0" (129 bytes)
 bind(server): ENOENT
 ./unix-stream '(64*"./")a\0'
 bind(server)          <- "(64*"./")a\0" (130 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.35501/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.19547/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(64*"./")a\0" (130 bytes)
-getpeername(client)   -> "/tmp/temp.35501/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.35501/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.35501/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.35501/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.19547/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.19547/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.19547/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.19547/.(110*"\0")" (127 bytes)
 ./unix-stream '(64*"./")ab\0'
 bind(server)          <- "(64*"./")ab\0" (131 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.77657/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.77391/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(64*"./")ab\0" (131 bytes)
-getpeername(client)   -> "/tmp/temp.77657/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.77657/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.77657/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.77657/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.77391/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.77391/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.77391/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.77391/.(110*"\0")" (127 bytes)
 ./unix-stream '(65*"./")a\0'
 bind(server)          <- "(65*"./")a\0" (132 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.80817/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.83599/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(65*"./")a\0" (132 bytes)
-getpeername(client)   -> "/tmp/temp.80817/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.80817/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.80817/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.80817/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.83599/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.83599/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.83599/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.83599/.(110*"\0")" (127 bytes)
 ./unix-stream '(65*"./")ab\0'
 bind(server)          <- "(65*"./")ab\0" (133 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.22973/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.41443/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(65*"./")ab\0" (133 bytes)
-getpeername(client)   -> "/tmp/temp.22973/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.22973/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.22973/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.22973/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.41443/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.41443/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.41443/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.41443/.(110*"\0")" (127 bytes)
 ./unix-stream '(66*"./")a\0'
 bind(server)          <- "(66*"./")a\0" (134 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.07396/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.47652/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(66*"./")a\0" (134 bytes)
-getpeername(client)   -> "/tmp/temp.07396/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.07396/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.07396/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.07396/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.47652/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.47652/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.47652/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.47652/.(110*"\0")" (127 bytes)
 ./unix-stream '(66*"./")ab\0'
 bind(server)          <- "(66*"./")ab\0" (135 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.49552/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.05496/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(66*"./")ab\0" (135 bytes)
-getpeername(client)   -> "/tmp/temp.49552/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.49552/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.49552/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.49552/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.05496/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.05496/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.05496/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.05496/.(110*"\0")" (127 bytes)
 ./unix-stream '(67*"./")a\0'
 bind(server)          <- "(67*"./")a\0" (136 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.52711/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.11704/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(67*"./")a\0" (136 bytes)
-getpeername(client)   -> "/tmp/temp.52711/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.52711/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.52711/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.52711/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.11704/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.11704/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.11704/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.11704/.(110*"\0")" (127 bytes)
 ./unix-stream '(67*"./")ab\0'
 bind(server)          <- "(67*"./")ab\0" (137 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.94868/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.69548/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(67*"./")ab\0" (137 bytes)
-getpeername(client)   -> "/tmp/temp.94868/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.94868/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.94868/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.94868/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.69548/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.69548/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.69548/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.69548/.(110*"\0")" (127 bytes)
 ./unix-stream '(68*"./")a\0'
 bind(server)          <- "(68*"./")a\0" (138 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.27655/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.75757/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(68*"./")a\0" (138 bytes)
-getpeername(client)   -> "/tmp/temp.27655/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.27655/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.27655/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.27655/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.75757/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.75757/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.75757/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.75757/.(110*"\0")" (127 bytes)
 ./unix-stream '(68*"./")ab\0'
 bind(server)          <- "(68*"./")ab\0" (139 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.21447/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.33601/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(68*"./")ab\0" (139 bytes)
-getpeername(client)   -> "/tmp/temp.21447/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.21447/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.21447/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.21447/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.33601/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.33601/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.33601/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.33601/.(110*"\0")" (127 bytes)
 ./unix-stream '(69*"./")a\0'
 bind(server)          <- "(69*"./")a\0" (140 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.72971/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.39810/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(69*"./")a\0" (140 bytes)
-getpeername(client)   -> "/tmp/temp.72971/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.72971/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.72971/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.72971/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.39810/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.39810/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.39810/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.39810/.(110*"\0")" (127 bytes)
 ./unix-stream '(69*"./")ab\0'
 bind(server)          <- "(69*"./")ab\0" (141 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.65233/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.97654/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(69*"./")ab\0" (141 bytes)
-getpeername(client)   -> "/tmp/temp.65233/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.65233/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.65233/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.65233/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.97654/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.97654/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.97654/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.97654/.(110*"\0")" (127 bytes)
 
 ./unix-stream '(120*"./")a\0'
 bind(server)          <- "(120*"./")a\0" (242 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.98020/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.03862/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(120*"./")a\0" (242 bytes)
-getpeername(client)   -> "/tmp/temp.98020/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.98020/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.98020/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.98020/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.03862/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.03862/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.03862/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.03862/.(110*"\0")" (127 bytes)
 ./unix-stream '(120*"./")ab\0'
 bind(server)          <- "(120*"./")ab\0" (243 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.91812/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.61706/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(120*"./")ab\0" (243 bytes)
-getpeername(client)   -> "/tmp/temp.91812/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.91812/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.91812/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.91812/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.61706/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.61706/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.61706/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.61706/.(110*"\0")" (127 bytes)
 ./unix-stream '(121*"./")a\0'
 bind(server)          <- "(121*"./")a\0" (244 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.43336/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.19550/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(121*"./")a\0" (244 bytes)
-getpeername(client)   -> "/tmp/temp.43336/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.43336/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.43336/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.43336/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.19550/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.19550/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.19550/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.19550/.(110*"\0")" (127 bytes)
 ./unix-stream '(121*"./")ab\0'
 bind(server)          <- "(121*"./")ab\0" (245 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.37128/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.25759/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(121*"./")ab\0" (245 bytes)
-getpeername(client)   -> "/tmp/temp.37128/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.37128/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.37128/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.37128/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.25759/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.25759/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.25759/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.25759/.(110*"\0")" (127 bytes)
 ./unix-stream '(122*"./")a\0'
 bind(server)          <- "(122*"./")a\0" (246 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.69915/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.83603/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(122*"./")a\0" (246 bytes)
-getpeername(client)   -> "/tmp/temp.69915/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.69915/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.69915/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.69915/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.83603/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.83603/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.83603/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.83603/.(110*"\0")" (127 bytes)
 ./unix-stream '(122*"./")ab\0'
 bind(server)          <- "(122*"./")ab\0" (247 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.63707/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.89811/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(122*"./")ab\0" (247 bytes)
-getpeername(client)   -> "/tmp/temp.63707/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.63707/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.63707/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.63707/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.89811/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.89811/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.89811/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.89811/.(110*"\0")" (127 bytes)
 ./unix-stream '(123*"./")a\0'
 bind(server)          <- "(123*"./")a\0" (248 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.15231/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.47655/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(123*"./")a\0" (248 bytes)
-getpeername(client)   -> "/tmp/temp.15231/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.15231/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.15231/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.15231/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.47655/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.47655/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.47655/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.47655/.(110*"\0")" (127 bytes)
 ./unix-stream '(123*"./")ab\0'
 bind(server)          <- "(123*"./")ab\0" (249 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.09022/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.53864/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(123*"./")ab\0" (249 bytes)
-getpeername(client)   -> "/tmp/temp.09022/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.09022/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.09022/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.09022/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.53864/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.53864/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.53864/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.53864/.(110*"\0")" (127 bytes)
 ./unix-stream '(124*"./")a\0'
 bind(server)          <- "(124*"./")a\0" (250 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.41810/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.11708/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(124*"./")a\0" (250 bytes)
-getpeername(client)   -> "/tmp/temp.41810/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.41810/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.41810/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.41810/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.11708/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.11708/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.11708/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.11708/.(110*"\0")" (127 bytes)
 ./unix-stream '(124*"./")ab\0'
 bind(server)          <- "(124*"./")ab\0" (251 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.85496/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.17917/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(124*"./")ab\0" (251 bytes)
-getpeername(client)   -> "/tmp/temp.85496/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.85496/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.85496/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.85496/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.17917/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.17917/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.17917/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.17917/.(110*"\0")" (127 bytes)
 ./unix-stream '(125*"./")a\0'
 bind(server)          <- "(125*"./")a\0" (252 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.88655/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.75760/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(125*"./")a\0" (252 bytes)
-getpeername(client)   -> "/tmp/temp.88655/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.88655/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.88655/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.88655/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.75760/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.75760/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.75760/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.75760/.(110*"\0")" (127 bytes)
 ./unix-stream '(125*"./")ab\0'
 bind(server)          <- "(125*"./")ab\0" (253 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.30812/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.81969/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(125*"./")ab\0" (253 bytes)
-getpeername(client)   -> "/tmp/temp.30812/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.30812/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.30812/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.30812/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.81969/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.81969/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.81969/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.81969/.(110*"\0")" (127 bytes)
 ./unix-stream '(126*"./")a\0'
 bind(server)          <- "(126*"./")a\0" (254 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.15234/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.39813/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(126*"./")a\0" (254 bytes)
-getpeername(client)   -> "/tmp/temp.15234/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.15234/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.15234/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.15234/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.39813/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.39813/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.39813/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.39813/.(110*"\0")" (127 bytes)
 ./unix-stream '(126*"./")ab\0'
 bind(server)          <- "(126*"./")ab\0" (255 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.57391/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.97657/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(126*"./")ab\0" (255 bytes)
-getpeername(client)   -> "/tmp/temp.57391/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.57391/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.57391/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.57391/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.97657/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.97657/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.97657/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.97657/.(110*"\0")" (127 bytes)
 ./unix-stream '(127*"./")a\0'
 bind(server)          <- "(127*"./")a\0" (256 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.60550/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.03866/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(127*"./")a\0" (256 bytes)
-getpeername(client)   -> "/tmp/temp.60550/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.60550/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.60550/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.60550/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.03866/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.03866/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.03866/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.03866/.(110*"\0")" (127 bytes)
 ./unix-stream '(127*"./")ab\0'
 bind(server)          <- "(127*"./")ab\0" (257 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.02706/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.61710/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(127*"./")ab\0" (257 bytes)
-getpeername(client)   -> "/tmp/temp.02706/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.02706/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.02706/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.02706/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.61710/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.61710/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.61710/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.61710/.(110*"\0")" (127 bytes)
 ./unix-stream '(128*"./")a\0'
 bind(server)          <- "(128*"./")a\0" (258 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.87129/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.67918/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(128*"./")a\0" (258 bytes)
-getpeername(client)   -> "/tmp/temp.87129/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.87129/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.87129/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.87129/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.67918/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.67918/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.67918/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.67918/.(110*"\0")" (127 bytes)
 ./unix-stream '(128*"./")ab\0'
 bind(server)          <- "(128*"./")ab\0" (259 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.29285/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.25762/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(128*"./")ab\0" (259 bytes)
-getpeername(client)   -> "/tmp/temp.29285/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.29285/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.29285/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.29285/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.25762/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.25762/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.25762/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.25762/.(110*"\0")" (127 bytes)
 ./unix-stream '(129*"./")a\0'
 bind(server)          <- "(129*"./")a\0" (260 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.32445/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.31971/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(129*"./")a\0" (260 bytes)
-getpeername(client)   -> "/tmp/temp.32445/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.32445/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.32445/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.32445/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.31971/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.31971/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.31971/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.31971/.(110*"\0")" (127 bytes)
 ./unix-stream '(129*"./")ab\0'
 bind(server)          <- "(129*"./")ab\0" (261 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.74601/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.89815/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(129*"./")ab\0" (261 bytes)
-getpeername(client)   -> "/tmp/temp.74601/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.74601/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.74601/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.74601/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.89815/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.89815/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.89815/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.89815/.(110*"\0")" (127 bytes)
 
 ./unix-stream '(250*"./")a\0'
 bind(server)          <- "(250*"./")a\0" (502 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.57494/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.96023/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(250*"./")a\0" (502 bytes)
-getpeername(client)   -> "/tmp/temp.57494/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.57494/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.57494/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.57494/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.96023/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.96023/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.96023/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.96023/.(110*"\0")" (127 bytes)
 ./unix-stream '(250*"./")ab\0'
 bind(server)          <- "(250*"./")ab\0" (503 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.99651/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.53867/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(250*"./")ab\0" (503 bytes)
-getpeername(client)   -> "/tmp/temp.99651/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.99651/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.99651/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.99651/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.53867/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.53867/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.53867/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.53867/.(110*"\0")" (127 bytes)
 ./unix-stream '(251*"./")a\0'
 bind(server)          <- "(251*"./")a\0" (504 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.02810/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.60076/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(251*"./")a\0" (504 bytes)
-getpeername(client)   -> "/tmp/temp.02810/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.02810/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.02810/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.02810/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.60076/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.60076/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.60076/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.60076/.(110*"\0")" (127 bytes)
 ./unix-stream '(251*"./")ab\0'
 bind(server)          <- "(251*"./")ab\0" (505 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.44966/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.17920/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(251*"./")ab\0" (505 bytes)
-getpeername(client)   -> "/tmp/temp.44966/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.44966/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.44966/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.44966/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.17920/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.17920/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.17920/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.17920/.(110*"\0")" (127 bytes)
 ./unix-stream '(252*"./")a\0'
 bind(server)          <- "(252*"./")a\0" (506 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.77754/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.24129/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(252*"./")a\0" (506 bytes)
-getpeername(client)   -> "/tmp/temp.77754/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.77754/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.77754/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.77754/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.24129/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.24129/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.24129/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.24129/.(110*"\0")" (127 bytes)
 ./unix-stream '(252*"./")ab\0'
 bind(server)          <- "(252*"./")ab\0" (507 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.71545/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.81973/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(252*"./")ab\0" (507 bytes)
-getpeername(client)   -> "/tmp/temp.71545/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.71545/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.71545/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.71545/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.81973/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.81973/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.81973/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.81973/.(110*"\0")" (127 bytes)
 ./unix-stream '(253*"./")a\0'
 bind(server)          <- "(253*"./")a\0" (508 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.23070/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.39816/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(253*"./")a\0" (508 bytes)
-getpeername(client)   -> "/tmp/temp.23070/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.23070/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.23070/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.23070/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.39816/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.39816/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.39816/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.39816/.(110*"\0")" (127 bytes)
 ./unix-stream '(253*"./")ab\0'
 bind(server)          <- "(253*"./")ab\0" (509 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.16861/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.46025/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(253*"./")ab\0" (509 bytes)
-getpeername(client)   -> "/tmp/temp.16861/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.16861/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.16861/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.16861/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.46025/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.46025/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.46025/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.46025/.(110*"\0")" (127 bytes)
 ./unix-stream '(254*"./")a\0'
 bind(server)          <- "(254*"./")a\0" (510 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.49649/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.03869/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(254*"./")a\0" (510 bytes)
-getpeername(client)   -> "/tmp/temp.49649/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.49649/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.49649/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.49649/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.03869/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.03869/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.03869/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.03869/.(110*"\0")" (127 bytes)
 ./unix-stream '(254*"./")ab\0'
 bind(server)          <- "(254*"./")ab\0" (511 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.43440/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.10078/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(254*"./")ab\0" (511 bytes)
-getpeername(client)   -> "/tmp/temp.43440/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.43440/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.43440/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.43440/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.10078/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.10078/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.10078/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.10078/.(110*"\0")" (127 bytes)
 ./unix-stream '(255*"./")a\0'
 bind(server)          <- "(255*"./")a\0" (512 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.94965/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.67922/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(255*"./")a\0" (512 bytes)
-getpeername(client)   -> "/tmp/temp.94965/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.94965/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.94965/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.94965/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.67922/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.67922/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.67922/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.67922/.(110*"\0")" (127 bytes)
 ./unix-stream '(255*"./")ab\0'
 bind(server)          <- "(255*"./")ab\0" (513 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.90286/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.74130/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(255*"./")ab\0" (513 bytes)
-getpeername(client)   -> "/tmp/temp.90286/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.90286/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.90286/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.90286/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.74130/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.74130/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.74130/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.74130/.(110*"\0")" (127 bytes)
 ./unix-stream '(256*"./")a\0'
 bind(server)          <- "(256*"./")a\0" (514 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.23073/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.31974/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(256*"./")a\0" (514 bytes)
-getpeername(client)   -> "/tmp/temp.23073/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.23073/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.23073/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.23073/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.31974/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.31974/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.31974/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.31974/.(110*"\0")" (127 bytes)
 ./unix-stream '(256*"./")ab\0'
 bind(server)          <- "(256*"./")ab\0" (515 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.65229/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.38183/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(256*"./")ab\0" (515 bytes)
-getpeername(client)   -> "/tmp/temp.65229/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.65229/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.65229/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.65229/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.38183/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.38183/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.38183/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.38183/.(110*"\0")" (127 bytes)
 ./unix-stream '(257*"./")a\0'
 bind(server)          <- "(257*"./")a\0" (516 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.68389/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.96027/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(257*"./")a\0" (516 bytes)
-getpeername(client)   -> "/tmp/temp.68389/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.68389/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.68389/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.68389/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.96027/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.96027/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.96027/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.96027/.(110*"\0")" (127 bytes)
 ./unix-stream '(257*"./")ab\0'
 bind(server)          <- "(257*"./")ab\0" (517 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.10545/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.02236/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(257*"./")ab\0" (517 bytes)
-getpeername(client)   -> "/tmp/temp.10545/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.10545/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.10545/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.10545/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.02236/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.02236/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.02236/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.02236/.(110*"\0")" (127 bytes)
 ./unix-stream '(258*"./")a\0'
 bind(server)          <- "(258*"./")a\0" (518 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.94968/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.60079/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(258*"./")a\0" (518 bytes)
-getpeername(client)   -> "/tmp/temp.94968/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.94968/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.94968/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.94968/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.60079/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.60079/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.60079/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.60079/.(110*"\0")" (127 bytes)
 ./unix-stream '(258*"./")ab\0'
 bind(server)          <- "(258*"./")ab\0" (519 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.37124/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.17923/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(258*"./")ab\0" (519 bytes)
-getpeername(client)   -> "/tmp/temp.37124/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.37124/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.37124/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.37124/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.17923/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.17923/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.17923/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.17923/.(110*"\0")" (127 bytes)
 ./unix-stream '(259*"./")a\0'
 bind(server)          <- "(259*"./")a\0" (520 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.40284/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.24132/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(259*"./")a\0" (520 bytes)
-getpeername(client)   -> "/tmp/temp.40284/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.40284/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.40284/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.40284/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.24132/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.24132/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.24132/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.24132/.(110*"\0")" (127 bytes)
 ./unix-stream '(259*"./")ab\0'
 bind(server)          <- "(259*"./")ab\0" (521 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.82440/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.81976/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(259*"./")ab\0" (521 bytes)
-getpeername(client)   -> "/tmp/temp.82440/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.82440/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.82440/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.82440/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.81976/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.81976/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.81976/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.81976/.(110*"\0")" (127 bytes)
 
 ./unix-stream '(510*"./")a\0'
 bind(server)          <- "(510*"./")a\0" (1022 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.66863/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.88185/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(510*"./")a\0" (1022 bytes)
-getpeername(client)   -> "/tmp/temp.66863/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.66863/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.66863/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.66863/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.88185/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.88185/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.88185/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.88185/.(110*"\0")" (127 bytes)
 ./unix-stream '(510*"./")ab\0'
 bind(server)          <- "(510*"./")ab\0" (1023 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.07489/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.46029/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(510*"./")ab\0" (1023 bytes)
-getpeername(client)   -> "/tmp/temp.07489/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.07489/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.07489/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.07489/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.46029/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.46029/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.46029/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.46029/.(110*"\0")" (127 bytes)
 ./unix-stream '(511*"./")a\0'
 bind(server)          <- "(511*"./")a\0" (1024 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.10649/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.52237/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(511*"./")a\0" (1024 bytes)
-getpeername(client)   -> "/tmp/temp.10649/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.10649/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.10649/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.10649/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.52237/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.52237/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.52237/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.52237/.(110*"\0")" (127 bytes)
 ./unix-stream '(511*"./")ab\0'
 bind(server)          <- "(511*"./")ab\0" (1025 bytes)
 bind(server): ENAMETOOLONG
@@ -1485,215 +1486,215 @@ bind(server): ENAMETOOLONG
 ./unix-stream '(90*"c")\0'
 bind(server)          <- "(90*"c")\0" (91 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.74702/(90*"c")(21*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.80346/(90*"c")(21*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(90*"c")\0" (91 bytes)
-getpeername(client)   -> "/tmp/temp.74702/(90*"c")(21*"\0")" (127 bytes)
-accept                -> "/tmp/temp.74702/(90*"c")(21*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.74702/(90*"c")(21*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.74702/(90*"c")(21*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.80346/(90*"c")(21*"\0")" (127 bytes)
+accept                -> "/tmp/temp.80346/(90*"c")(21*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.80346/(90*"c")(21*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.80346/(90*"c")(21*"\0")" (127 bytes)
 ./unix-stream '(91*"c")\0'
 bind(server)          <- "(91*"c")\0" (92 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.16858/(91*"c")(20*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.38190/(91*"c")(20*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(91*"c")\0" (92 bytes)
-getpeername(client)   -> "/tmp/temp.16858/(91*"c")(20*"\0")" (127 bytes)
-accept                -> "/tmp/temp.16858/(91*"c")(20*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.16858/(91*"c")(20*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.16858/(91*"c")(20*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.38190/(91*"c")(20*"\0")" (127 bytes)
+accept                -> "/tmp/temp.38190/(91*"c")(20*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.38190/(91*"c")(20*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.38190/(91*"c")(20*"\0")" (127 bytes)
 ./unix-stream '(92*"c")\0'
 bind(server)          <- "(92*"c")\0" (93 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.20017/(92*"c")(19*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.44398/(92*"c")(19*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(92*"c")\0" (93 bytes)
-getpeername(client)   -> "/tmp/temp.20017/(92*"c")(19*"\0")" (127 bytes)
-accept                -> "/tmp/temp.20017/(92*"c")(19*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.20017/(92*"c")(19*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.20017/(92*"c")(19*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.44398/(92*"c")(19*"\0")" (127 bytes)
+accept                -> "/tmp/temp.44398/(92*"c")(19*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.44398/(92*"c")(19*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.44398/(92*"c")(19*"\0")" (127 bytes)
 ./unix-stream '(93*"c")\0'
 bind(server)          <- "(93*"c")\0" (94 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.60644/(93*"c")(18*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.02242/(93*"c")(18*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(93*"c")\0" (94 bytes)
-getpeername(client)   -> "/tmp/temp.60644/(93*"c")(18*"\0")" (127 bytes)
-accept                -> "/tmp/temp.60644/(93*"c")(18*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.60644/(93*"c")(18*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.60644/(93*"c")(18*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.02242/(93*"c")(18*"\0")" (127 bytes)
+accept                -> "/tmp/temp.02242/(93*"c")(18*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.02242/(93*"c")(18*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.02242/(93*"c")(18*"\0")" (127 bytes)
 ./unix-stream '(94*"c")\0'
 bind(server)          <- "(94*"c")\0" (95 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.45067/(94*"c")(17*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.08451/(94*"c")(17*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(94*"c")\0" (95 bytes)
-getpeername(client)   -> "/tmp/temp.45067/(94*"c")(17*"\0")" (127 bytes)
-accept                -> "/tmp/temp.45067/(94*"c")(17*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.45067/(94*"c")(17*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.45067/(94*"c")(17*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.08451/(94*"c")(17*"\0")" (127 bytes)
+accept                -> "/tmp/temp.08451/(94*"c")(17*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.08451/(94*"c")(17*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.08451/(94*"c")(17*"\0")" (127 bytes)
 ./unix-stream '(95*"c")\0'
 bind(server)          <- "(95*"c")\0" (96 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.87223/(95*"c")(16*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.66295/(95*"c")(16*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(95*"c")\0" (96 bytes)
-getpeername(client)   -> "/tmp/temp.87223/(95*"c")(16*"\0")" (127 bytes)
-accept                -> "/tmp/temp.87223/(95*"c")(16*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.87223/(95*"c")(16*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.87223/(95*"c")(16*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.66295/(95*"c")(16*"\0")" (127 bytes)
+accept                -> "/tmp/temp.66295/(95*"c")(16*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.66295/(95*"c")(16*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.66295/(95*"c")(16*"\0")" (127 bytes)
 ./unix-stream '(96*"c")\0'
 bind(server)          <- "(96*"c")\0" (97 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.90383/(96*"c")(15*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.72504/(96*"c")(15*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(96*"c")\0" (97 bytes)
-getpeername(client)   -> "/tmp/temp.90383/(96*"c")(15*"\0")" (127 bytes)
-accept                -> "/tmp/temp.90383/(96*"c")(15*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.90383/(96*"c")(15*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.90383/(96*"c")(15*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.72504/(96*"c")(15*"\0")" (127 bytes)
+accept                -> "/tmp/temp.72504/(96*"c")(15*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.72504/(96*"c")(15*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.72504/(96*"c")(15*"\0")" (127 bytes)
 ./unix-stream '(97*"c")\0'
 bind(server)          <- "(97*"c")\0" (98 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.32539/(97*"c")(14*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.30348/(97*"c")(14*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(97*"c")\0" (98 bytes)
-getpeername(client)   -> "/tmp/temp.32539/(97*"c")(14*"\0")" (127 bytes)
-accept                -> "/tmp/temp.32539/(97*"c")(14*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.32539/(97*"c")(14*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.32539/(97*"c")(14*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.30348/(97*"c")(14*"\0")" (127 bytes)
+accept                -> "/tmp/temp.30348/(97*"c")(14*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.30348/(97*"c")(14*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.30348/(97*"c")(14*"\0")" (127 bytes)
 ./unix-stream '(98*"c")\0'
 bind(server)          <- "(98*"c")\0" (99 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.16962/(98*"c")(13*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.36556/(98*"c")(13*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(98*"c")\0" (99 bytes)
-getpeername(client)   -> "/tmp/temp.16962/(98*"c")(13*"\0")" (127 bytes)
-accept                -> "/tmp/temp.16962/(98*"c")(13*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.16962/(98*"c")(13*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.16962/(98*"c")(13*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.36556/(98*"c")(13*"\0")" (127 bytes)
+accept                -> "/tmp/temp.36556/(98*"c")(13*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.36556/(98*"c")(13*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.36556/(98*"c")(13*"\0")" (127 bytes)
 ./unix-stream '(99*"c")\0'
 bind(server)          <- "(99*"c")\0" (100 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.59118/(99*"c")(12*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.94400/(99*"c")(12*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(99*"c")\0" (100 bytes)
-getpeername(client)   -> "/tmp/temp.59118/(99*"c")(12*"\0")" (127 bytes)
-accept                -> "/tmp/temp.59118/(99*"c")(12*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.59118/(99*"c")(12*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.59118/(99*"c")(12*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.94400/(99*"c")(12*"\0")" (127 bytes)
+accept                -> "/tmp/temp.94400/(99*"c")(12*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.94400/(99*"c")(12*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.94400/(99*"c")(12*"\0")" (127 bytes)
 
 ./unix-stream '(100*"c")\0'
 bind(server)          <- "(100*"c")\0" (101 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.62277/(100*"c")(11*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.00609/(100*"c")(11*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(100*"c")\0" (101 bytes)
-getpeername(client)   -> "/tmp/temp.62277/(100*"c")(11*"\0")" (127 bytes)
-accept                -> "/tmp/temp.62277/(100*"c")(11*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.62277/(100*"c")(11*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.62277/(100*"c")(11*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.00609/(100*"c")(11*"\0")" (127 bytes)
+accept                -> "/tmp/temp.00609/(100*"c")(11*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.00609/(100*"c")(11*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.00609/(100*"c")(11*"\0")" (127 bytes)
 ./unix-stream '(101*"c")\0'
 bind(server)          <- "(101*"c")\0" (102 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.04434/(101*"c")\0\0\0\0\0\0\0\0\0\0" (127 bytes)
+getsockname(server)   -> "/tmp/temp.58453/(101*"c")\0\0\0\0\0\0\0\0\0\0" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(101*"c")\0" (102 bytes)
-getpeername(client)   -> "/tmp/temp.04434/(101*"c")\0\0\0\0\0\0\0\0\0\0" (127 bytes)
-accept                -> "/tmp/temp.04434/(101*"c")\0\0\0\0\0\0\0\0\0\0" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.04434/(101*"c")\0\0\0\0\0\0\0\0\0\0" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.04434/(101*"c")\0\0\0\0\0\0\0\0\0\0" (127 bytes)
+getpeername(client)   -> "/tmp/temp.58453/(101*"c")\0\0\0\0\0\0\0\0\0\0" (127 bytes)
+accept                -> "/tmp/temp.58453/(101*"c")\0\0\0\0\0\0\0\0\0\0" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.58453/(101*"c")\0\0\0\0\0\0\0\0\0\0" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.58453/(101*"c")\0\0\0\0\0\0\0\0\0\0" (127 bytes)
 ./unix-stream '(102*"c")\0'
 bind(server)          <- "(102*"c")\0" (103 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.37221/(102*"c")\0\0\0\0\0\0\0\0\0" (127 bytes)
+getsockname(server)   -> "/tmp/temp.64661/(102*"c")\0\0\0\0\0\0\0\0\0" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(102*"c")\0" (103 bytes)
-getpeername(client)   -> "/tmp/temp.37221/(102*"c")\0\0\0\0\0\0\0\0\0" (127 bytes)
-accept                -> "/tmp/temp.37221/(102*"c")\0\0\0\0\0\0\0\0\0" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.37221/(102*"c")\0\0\0\0\0\0\0\0\0" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.37221/(102*"c")\0\0\0\0\0\0\0\0\0" (127 bytes)
+getpeername(client)   -> "/tmp/temp.64661/(102*"c")\0\0\0\0\0\0\0\0\0" (127 bytes)
+accept                -> "/tmp/temp.64661/(102*"c")\0\0\0\0\0\0\0\0\0" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.64661/(102*"c")\0\0\0\0\0\0\0\0\0" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.64661/(102*"c")\0\0\0\0\0\0\0\0\0" (127 bytes)
 ./unix-stream '(103*"c")\0'
 bind(server)          <- "(103*"c")\0" (104 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.32542/(103*"c")\0\0\0\0\0\0\0\0" (127 bytes)
+getsockname(server)   -> "/tmp/temp.22505/(103*"c")\0\0\0\0\0\0\0\0" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(103*"c")\0" (104 bytes)
-getpeername(client)   -> "/tmp/temp.32542/(103*"c")\0\0\0\0\0\0\0\0" (127 bytes)
-accept                -> "/tmp/temp.32542/(103*"c")\0\0\0\0\0\0\0\0" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.32542/(103*"c")\0\0\0\0\0\0\0\0" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.32542/(103*"c")\0\0\0\0\0\0\0\0" (127 bytes)
+getpeername(client)   -> "/tmp/temp.22505/(103*"c")\0\0\0\0\0\0\0\0" (127 bytes)
+accept                -> "/tmp/temp.22505/(103*"c")\0\0\0\0\0\0\0\0" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.22505/(103*"c")\0\0\0\0\0\0\0\0" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.22505/(103*"c")\0\0\0\0\0\0\0\0" (127 bytes)
 ./unix-stream '(104*"c")\0'
 bind(server)          <- "(104*"c")\0" (105 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.84067/(104*"c")\0\0\0\0\0\0\0" (127 bytes)
+getsockname(server)   -> "/tmp/temp.80349/(104*"c")\0\0\0\0\0\0\0" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(104*"c")\0" (105 bytes)
-getpeername(client)   -> "/tmp/temp.84067/(104*"c")\0\0\0\0\0\0\0" (127 bytes)
-accept                -> "/tmp/temp.84067/(104*"c")\0\0\0\0\0\0\0" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.84067/(104*"c")\0\0\0\0\0\0\0" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.84067/(104*"c")\0\0\0\0\0\0\0" (127 bytes)
+getpeername(client)   -> "/tmp/temp.80349/(104*"c")\0\0\0\0\0\0\0" (127 bytes)
+accept                -> "/tmp/temp.80349/(104*"c")\0\0\0\0\0\0\0" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.80349/(104*"c")\0\0\0\0\0\0\0" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.80349/(104*"c")\0\0\0\0\0\0\0" (127 bytes)
 ./unix-stream '(105*"c")\0'
 bind(server)          <- "(105*"c")\0" (106 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.77858/(105*"c")\0\0\0\0\0\0" (127 bytes)
+getsockname(server)   -> "/tmp/temp.86558/(105*"c")\0\0\0\0\0\0" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(105*"c")\0" (106 bytes)
-getpeername(client)   -> "/tmp/temp.77858/(105*"c")\0\0\0\0\0\0" (127 bytes)
-accept                -> "/tmp/temp.77858/(105*"c")\0\0\0\0\0\0" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.77858/(105*"c")\0\0\0\0\0\0" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.77858/(105*"c")\0\0\0\0\0\0" (127 bytes)
+getpeername(client)   -> "/tmp/temp.86558/(105*"c")\0\0\0\0\0\0" (127 bytes)
+accept                -> "/tmp/temp.86558/(105*"c")\0\0\0\0\0\0" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.86558/(105*"c")\0\0\0\0\0\0" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.86558/(105*"c")\0\0\0\0\0\0" (127 bytes)
 ./unix-stream '(106*"c")\0'
 bind(server)          <- "(106*"c")\0" (107 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.10646/(106*"c")\0\0\0\0\0" (127 bytes)
+getsockname(server)   -> "/tmp/temp.44402/(106*"c")\0\0\0\0\0" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(106*"c")\0" (107 bytes)
-getpeername(client)   -> "/tmp/temp.10646/(106*"c")\0\0\0\0\0" (127 bytes)
-accept                -> "/tmp/temp.10646/(106*"c")\0\0\0\0\0" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.10646/(106*"c")\0\0\0\0\0" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.10646/(106*"c")\0\0\0\0\0" (127 bytes)
+getpeername(client)   -> "/tmp/temp.44402/(106*"c")\0\0\0\0\0" (127 bytes)
+accept                -> "/tmp/temp.44402/(106*"c")\0\0\0\0\0" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.44402/(106*"c")\0\0\0\0\0" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.44402/(106*"c")\0\0\0\0\0" (127 bytes)
 ./unix-stream '(107*"c")\0'
 bind(server)          <- "(107*"c")\0" (108 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.04437/(107*"c")\0\0\0\0" (127 bytes)
+getsockname(server)   -> "/tmp/temp.50611/(107*"c")\0\0\0\0" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(107*"c")\0" (108 bytes)
-getpeername(client)   -> "/tmp/temp.04437/(107*"c")\0\0\0\0" (127 bytes)
-accept                -> "/tmp/temp.04437/(107*"c")\0\0\0\0" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.04437/(107*"c")\0\0\0\0" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.04437/(107*"c")\0\0\0\0" (127 bytes)
+getpeername(client)   -> "/tmp/temp.50611/(107*"c")\0\0\0\0" (127 bytes)
+accept                -> "/tmp/temp.50611/(107*"c")\0\0\0\0" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.50611/(107*"c")\0\0\0\0" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.50611/(107*"c")\0\0\0\0" (127 bytes)
 ./unix-stream '(108*"c")\0'
 bind(server)          <- "(108*"c")\0" (109 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.55961/(108*"c")\0\0\0" (127 bytes)
+getsockname(server)   -> "/tmp/temp.08454/(108*"c")\0\0\0" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(108*"c")\0" (109 bytes)
-getpeername(client)   -> "/tmp/temp.55961/(108*"c")\0\0\0" (127 bytes)
-accept                -> "/tmp/temp.55961/(108*"c")\0\0\0" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.55961/(108*"c")\0\0\0" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.55961/(108*"c")\0\0\0" (127 bytes)
+getpeername(client)   -> "/tmp/temp.08454/(108*"c")\0\0\0" (127 bytes)
+accept                -> "/tmp/temp.08454/(108*"c")\0\0\0" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.08454/(108*"c")\0\0\0" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.08454/(108*"c")\0\0\0" (127 bytes)
 ./unix-stream '(109*"c")\0'
 bind(server)          <- "(109*"c")\0" (110 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.49753/(109*"c")\0\0" (127 bytes)
+getsockname(server)   -> "/tmp/temp.14663/(109*"c")\0\0" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(109*"c")\0" (110 bytes)
-getpeername(client)   -> "/tmp/temp.49753/(109*"c")\0\0" (127 bytes)
-accept                -> "/tmp/temp.49753/(109*"c")\0\0" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.49753/(109*"c")\0\0" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.49753/(109*"c")\0\0" (127 bytes)
+getpeername(client)   -> "/tmp/temp.14663/(109*"c")\0\0" (127 bytes)
+accept                -> "/tmp/temp.14663/(109*"c")\0\0" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.14663/(109*"c")\0\0" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.14663/(109*"c")\0\0" (127 bytes)
 
 ./unix-stream '(110*"c")\0'
 bind(server)          <- "(110*"c")\0" (111 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.82540/(110*"c")\0" (127 bytes)
+getsockname(server)   -> "/tmp/temp.51304/(110*"c")\0" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(110*"c")\0" (111 bytes)
-getpeername(client)   -> "/tmp/temp.82540/(110*"c")\0" (127 bytes)
-accept                -> "/tmp/temp.82540/(110*"c")\0" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.82540/(110*"c")\0" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.82540/(110*"c")\0" (127 bytes)
+getpeername(client)   -> "/tmp/temp.51304/(110*"c")\0" (127 bytes)
+accept                -> "/tmp/temp.51304/(110*"c")\0" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.51304/(110*"c")\0" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.51304/(110*"c")\0" (127 bytes)
 ./unix-stream '(111*"c")\0'
 bind(server)          <- "(111*"c")\0" (112 bytes)
 bind(server): ENAMETOOLONG
@@ -1787,33 +1788,33 @@ bind(server): ENAMETOOLONG
 ./unix-stream -p '01234567\0'
 bind(server)          <- "(58*"./")Z01234567\0" (126 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.77955/Z01234567(102*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.63728/Z01234567(102*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(58*"./")Z01234567\0" (126 bytes)
-getpeername(client)   -> "/tmp/temp.77955/Z01234567(102*"\0")" (127 bytes)
-accept                -> "/tmp/temp.77955/Z01234567(102*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.77955/Z01234567(102*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.77955/Z01234567(102*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.63728/Z01234567(102*"\0")" (127 bytes)
+accept                -> "/tmp/temp.63728/Z01234567(102*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.63728/Z01234567(102*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.63728/Z01234567(102*"\0")" (127 bytes)
 ./unix-stream -p '012345678\0'
 bind(server)          <- "(58*"./")Z012345678\0" (127 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.20111/Z012345678(101*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.69937/Z012345678(101*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(58*"./")Z012345678\0" (127 bytes)
-getpeername(client)   -> "/tmp/temp.20111/Z012345678(101*"\0")" (127 bytes)
-accept                -> "/tmp/temp.20111/Z012345678(101*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.20111/Z012345678(101*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.20111/Z012345678(101*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.69937/Z012345678(101*"\0")" (127 bytes)
+accept                -> "/tmp/temp.69937/Z012345678(101*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.69937/Z012345678(101*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.69937/Z012345678(101*"\0")" (127 bytes)
 ./unix-stream -p '0123456789\0'
 bind(server)          <- "(58*"./")Z0123456789\0" (128 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.04534/Z0123456789(100*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.27781/Z0123456789(100*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(58*"./")Z0123456789\0" (128 bytes)
-getpeername(client)   -> "/tmp/temp.04534/Z0123456789(100*"\0")" (127 bytes)
-accept                -> "/tmp/temp.04534/Z0123456789(100*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.04534/Z0123456789(100*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.04534/Z0123456789(100*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.27781/Z0123456789(100*"\0")" (127 bytes)
+accept                -> "/tmp/temp.27781/Z0123456789(100*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.27781/Z0123456789(100*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.27781/Z0123456789(100*"\0")" (127 bytes)
 ./unix-stream -p '01234567890\0'
 bind(server)          <- "(58*"./")Z01234567890\0" (129 bytes)
 bind(server): ENOENT
@@ -1824,78 +1825,78 @@ bind(server): ENOENT
 ./unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
 bind(server)          <- "(58*"./")Zfoo\0" (121 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.92006/Zfoo(107*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.49677/Zfoo(107*"\0")" (127 bytes)
 bind(client)          <- "(58*"./")Z01234567890\0" (129 bytes)
 bind(client): ENOENT
 
 ./unix-stream -g255 '(125*"./")ab\0' 
 bind(server)          <- "(125*"./")ab\0" (253 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.26323/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.55886/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(125*"./")ab\0" (253 bytes)
-getpeername(client)   -> "/tmp/temp.26323/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.26323/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.26323/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.26323/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.55886/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.55886/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.55886/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.55886/.(110*"\0")" (127 bytes)
 ./unix-stream -g1026 '(511*"./")a\0'
 bind(server)          <- "(511*"./")a\0" (1024 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.20115/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.13730/.(110*"\0")" (127 bytes)
 getsockname(client): EINVAL
 connect               <- "(511*"./")a\0" (1024 bytes)
-getpeername(client)   -> "/tmp/temp.20115/.(110*"\0")" (127 bytes)
-accept                -> "/tmp/temp.20115/.(110*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.20115/.(110*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.20115/.(110*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.13730/.(110*"\0")" (127 bytes)
+accept                -> "/tmp/temp.13730/.(110*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.13730/.(110*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.13730/.(110*"\0")" (127 bytes)
 ./unix-stream 'foo\0' 'foo\0' '(125*"./")ab\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.71639/foo(108*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.19938/foo(108*"\0")" (127 bytes)
 bind(client)          <- "(125*"./")ab\0" (253 bytes)
 socket file (client)  : exist
-getsockname(client)   -> "/tmp/temp.71639/.(110*"\0")" (127 bytes)
+getsockname(client)   -> "/tmp/temp.19938/.(110*"\0")" (127 bytes)
 connect               <- "foo\0" (4 bytes)
-getpeername(client)   -> "/tmp/temp.71639/foo(108*"\0")" (127 bytes)
-accept                -> "/tmp/temp.71639/foo(108*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.71639/foo(108*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.71639/foo(108*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.19938/foo(108*"\0")" (127 bytes)
+accept                -> "/tmp/temp.19938/foo(108*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.19938/foo(108*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.19938/foo(108*"\0")" (127 bytes)
 ./unix-stream 'foo\0' 'foo\0' '(511*"./")a\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.65430/foo(108*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.77782/foo(108*"\0")" (127 bytes)
 bind(client)          <- "(511*"./")a\0" (1024 bytes)
 socket file (client)  : exist
-getsockname(client)   -> "/tmp/temp.65430/.(110*"\0")" (127 bytes)
+getsockname(client)   -> "/tmp/temp.77782/.(110*"\0")" (127 bytes)
 connect               <- "foo\0" (4 bytes)
-getpeername(client)   -> "/tmp/temp.65430/foo(108*"\0")" (127 bytes)
-accept                -> "/tmp/temp.65430/foo(108*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.65430/foo(108*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.65430/foo(108*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.77782/foo(108*"\0")" (127 bytes)
+accept                -> "/tmp/temp.77782/foo(108*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.77782/foo(108*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.77782/foo(108*"\0")" (127 bytes)
 ./unix-stream -g255 'foo\0' 'foo\0' '(125*"./")ab\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.98218/foo(108*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.83991/foo(108*"\0")" (127 bytes)
 bind(client)          <- "(125*"./")ab\0" (253 bytes)
 socket file (client)  : exist
-getsockname(client)   -> "/tmp/temp.98218/.(110*"\0")" (127 bytes)
+getsockname(client)   -> "/tmp/temp.83991/.(110*"\0")" (127 bytes)
 connect               <- "foo\0" (4 bytes)
-getpeername(client)   -> "/tmp/temp.98218/foo(108*"\0")" (127 bytes)
-accept                -> "/tmp/temp.98218/foo(108*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.98218/foo(108*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.98218/foo(108*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.83991/foo(108*"\0")" (127 bytes)
+accept                -> "/tmp/temp.83991/foo(108*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.83991/foo(108*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.83991/foo(108*"\0")" (127 bytes)
 ./unix-stream -g1026 'foo\0' 'foo\0' '(511*"./")a\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
-getsockname(server)   -> "/tmp/temp.92009/foo(108*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.41835/foo(108*"\0")" (127 bytes)
 bind(client)          <- "(511*"./")a\0" (1024 bytes)
 socket file (client)  : exist
-getsockname(client)   -> "/tmp/temp.92009/.(110*"\0")" (127 bytes)
+getsockname(client)   -> "/tmp/temp.41835/.(110*"\0")" (127 bytes)
 connect               <- "foo\0" (4 bytes)
-getpeername(client)   -> "/tmp/temp.92009/foo(108*"\0")" (127 bytes)
-accept                -> "/tmp/temp.92009/foo(108*"\0")" (127 bytes)
-getsockname(accepted) -> "/tmp/temp.92009/foo(108*"\0")" (127 bytes)
-getpeername(accepted) -> "/tmp/temp.92009/foo(108*"\0")" (127 bytes)
+getpeername(client)   -> "/tmp/temp.41835/foo(108*"\0")" (127 bytes)
+accept                -> "/tmp/temp.41835/foo(108*"\0")" (127 bytes)
+getsockname(accepted) -> "/tmp/temp.41835/foo(108*"\0")" (127 bytes)
+getpeername(accepted) -> "/tmp/temp.41835/foo(108*"\0")" (127 bytes)
 
 ./unix-stream -s '\0'
 bind(server)          <- "\0" (1 bytes)
@@ -1903,7 +1904,7 @@ bind(server): ENOENT
 ./unix-stream -s '.\0'
 bind(server)          <- ".\0" (2 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "/tmp/temp.34165/.(110*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.51203/.(110*"\0")" (127 bytes)
 ./unix-stream -s '/\0'
 bind(server)          <- "/\0" (2 bytes)
 bind(server): EACCES
@@ -1926,4 +1927,4 @@ getsockname(server)   -> "/home/akr/socket-test/README(99*"\0")" (127 bytes)
 ./unix-stream -s 'foobar'
 bind(server)          <- "foobar" (6 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "/tmp/temp.73273/foobar???????(98*"\0")" (127 bytes)
+getsockname(server)   -> "/tmp/temp.66780/foobar???????(98*"\0")" (127 bytes)

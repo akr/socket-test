@@ -185,6 +185,7 @@ EDQUOT = Reserved
 EEXIST = File or Directory already exists
 EFAULT = Bad address
 EFBIG = File too large
+EFPOS = File Position Error
 EHOSTDOWN = Unknown POSIX Error (-2147454931)
 EHOSTUNREACH = No route to host
 EIDRM = Identifier removed
@@ -238,6 +239,7 @@ EPROTOTYPE = Protocol wrong type for socket
 ERANGE = Range Error
 EROFS = Read-only file system
 ESHUTDOWN = Can't send after socket shutdown
+ESIGPARM = Signal Error
 ESPIPE = Seek not allowed on file descriptor
 ESRCH = No such process
 ESTALE = Stale file handle
@@ -246,93 +248,310 @@ ETIMEDOUT = Operation timed out
 ETXTBSY = Text file busy
 EWOULDBLOCK = Operation would block
 EXDEV = Cross-device link
--2147483645 = Index not in range for the data set
--2147483644 = Bad argument type passed to function
--2147483642 = Mismatched values passed to function
--2147483641 = Name not found
--2147483640 = Name in use
--2147483636 = Operation canceled
--2147483635 = Initialization failed
--2147483632 = Bad data
--2147479552 = Bad semaphore ID
--2147479551 = No more semaphores
--2147479296 = Bad thread ID
--2147479295 = No more threads
--2147479294 = Thread is inappropriate state
--2147479293 = Operation on invalid team
--2147479292 = No more teams
--2147479040 = Bad port ID
--2147479039 = No more ports available
--2147478784 = Bad image ID
--2147478781 = Missing library
--2147478780 = Symbol not found
--2147478528 = Debugger already installed for this team
--2147475456 = Invalid or unwanted reply
--2147475455 = Duplicate reply
--2147475454 = Can't send message to self
--2147475453 = Bad handler
--2147475452 = Already running
--2147475451 = Launch failed
--2147475450 = Ambiguous app launch
--2147475448 = Bad script syntax
--2147475447 = Could not resolve a link
--2147475446 = File is mistakenly marked as executable
--2147475445 = Application could not be found
--2147475444 = Application is in the trash
--2147475443 = There is no preferred application for this type of file
--2147475442 = This file has a preferred app, but it could not be found
--2147475441 = Bad sniffer rule
--2147475440 = Data is not a message
--2147475439 = System shutdown cancelled
--2147475438 = System shutting down
--2147467264 = Stream not found
--2147467263 = Server not found
--2147467262 = Resource not found
--2147467261 = Resource unavailable
--2147467260 = Bad subscriber
--2147467259 = Subscriber not entered
--2147467258 = Buffer not available
--2147467257 = Last buffer
--2147467164 = System failure
--2147467163 = Bad media node
--2147467162 = Media node busy
--2147467161 = Bad media format
--2147467160 = Bad buffer
--2147467159 = Too many nodes
--2147467158 = Too many buffers
--2147467157 = Media node already exists
--2147467156 = Buffer already exists
--2147467155 = Cannot seek
--2147467154 = Cannot change run mode
--2147467153 = Application already registered
--2147467152 = Application not registered
--2147467151 = Cannot reclaim buffers
--2147467150 = Buffers not reclaimed
--2147467149 = Time source stopped
--2147467148 = Time source busy
--2147467147 = Bad source
--2147467146 = Bad destination
--2147467145 = Already connected
--2147467144 = Not connected
--2147467143 = Bad clipping format
--2147467142 = Media addon failed
--2147467141 = Media addon disabled
--2147467140 = Change in progress
--2147467139 = Stale change count
--2147467138 = Media addon restricted
--2147467137 = No handler
--2147467136 = Duplicate format
--2147467135 = Realtime disabled
--2147467134 = Realtime unavailable
--2147465215 = No translator found
--2147465214 = Illegal data
--2147459071 = No such file or directory
--2147459058 = Operation not supported
--2147459057 = Partition too small to contain filesystem
--2147454976 = Out of memory
--2147454962 = File Position Error
--2147454961 = Signal Error
+B_ALREADY_RUNNING = Already running
+B_AMBIGUOUS_APP_LAUNCH = Ambiguous app launch
+B_BAD_ADDRESS = Bad address
+B_BAD_DATA = Bad data
+B_BAD_HANDLER = Bad handler
+B_BAD_IMAGE_ID = Bad image ID
+B_BAD_INDEX = Index not in range for the data set
+B_BAD_MIME_SNIFFER_RULE = Bad sniffer rule
+B_BAD_PORT_ID = Bad port ID
+B_BAD_REPLY = Invalid or unwanted reply
+B_BAD_SCRIPT_SYNTAX = Bad script syntax
+B_BAD_SEM_ID = Bad semaphore ID
+B_BAD_SUBSCRIBER = Bad subscriber
+B_BAD_TEAM_ID = Operation on invalid team
+B_BAD_THREAD_ID = Bad thread ID
+B_BAD_THREAD_STATE = Thread is inappropriate state
+B_BAD_TYPE = Bad argument type passed to function
+B_BAD_VALUE = Invalid Argument
+B_BUFFER_NOT_AVAILABLE = Buffer not available
+B_BUSTED_PIPE = Broken pipe
+B_BUSY = Device/File/Resource busy
+B_CANCELED = Operation canceled
+B_CROSS_DEVICE_LINK = Cross-device link
+B_DEBUGGER_ALREADY_INSTALLED = Debugger already installed for this team
+B_DEVICE_FULL = No space left on device
+B_DEV_BAD_DRIVE_NUM = Bad drive number
+B_DEV_BAD_PID = Unknown Device Error (-2147442666)
+B_DEV_CONFIGURATION_ERROR = Configuration error
+B_DEV_CRC_ERROR = Device check-sum error
+B_DEV_DATA_OVERRUN = Device data overrun
+B_DEV_DATA_UNDERRUN = Device data underrun
+B_DEV_DISABLED_BY_USER = Disabled by user
+B_DEV_DOOR_OPEN = Drive door open
+B_DEV_FIFO_OVERRUN = Device FIFO overrun
+B_DEV_FIFO_UNDERRUN = Device FIFO underrun
+B_DEV_FORMAT_ERROR = Device format error
+B_DEV_ID_ERROR = Device ID error
+B_DEV_INVALID_IOCTL = Invalid device ioctl
+B_DEV_INVALID_PIPE = Unknown Device Error (-2147442669)
+B_DEV_MEDIA_CHANGED = Device media changed
+B_DEV_MEDIA_CHANGE_REQUESTED = Device media change requested
+B_DEV_MULTIPLE_ERRORS = Multiple device errors
+B_DEV_NOT_READY = Device not ready
+B_DEV_NO_MEDIA = No media present
+B_DEV_NO_MEMORY = No device memory
+B_DEV_PENDING = Device pending
+B_DEV_READ_ERROR = Device read error
+B_DEV_RECALIBRATE_ERROR = Device recalibrate error
+B_DEV_RESOURCE_CONFLICT = Resource conflict
+B_DEV_SEEK_ERROR = Device seek error
+B_DEV_STALLED = Device stalled
+B_DEV_TIMEOUT = Device timeout
+B_DEV_TOO_LATE = Device too late
+B_DEV_UNEXPECTED_PID = Unknown Device Error (-2147442665)
+B_DEV_UNREADABLE = Device unreadable
+B_DEV_WRITE_ERROR = Device write error
+B_DIRECTORY_NOT_EMPTY = Directory not empty
+B_DUPLICATE_REPLY = Duplicate reply
+B_ENTRY_NOT_FOUND = No such file or directory
+B_ERROR = General system error
+B_FILE_ERROR = Bad file descriptor
+B_FILE_EXISTS = File or Directory already exists
+B_FILE_NOT_FOUND = No such file or directory
+B_ILLEGAL_DATA = Illegal data
+B_INTERRUPTED = Interrupted system call
+B_IO_ERROR = I/O error
+B_IS_A_DIRECTORY = Is a directory
+B_LAST_BUFFER_ERROR = Last buffer
+B_LAUNCH_FAILED = Launch failed
+B_LAUNCH_FAILED_APP_IN_TRASH = Application is in the trash
+B_LAUNCH_FAILED_APP_NOT_FOUND = Application could not be found
+B_LAUNCH_FAILED_EXECUTABLE = File is mistakenly marked as executable
+B_LAUNCH_FAILED_FILES_APP_NOT_FOUND = This file has a preferred app, but it could not be found
+B_LAUNCH_FAILED_NO_PREFERRED_APP = There is no preferred application for this type of file
+B_LAUNCH_FAILED_NO_RESOLVE_LINK = Could not resolve a link
+B_LINK_LIMIT = Too many symbolic links
+B_MAIL_ACCESS_ERROR = Mail access error
+B_MAIL_INVALID_MAIL = Invalid mail
+B_MAIL_NO_DAEMON = No mail daemon
+B_MAIL_NO_RECIPIENT = No mail recipient
+B_MAIL_UNKNOWN_FIELD = Unknown mail field
+B_MAIL_UNKNOWN_HOST = Mail unknown host
+B_MAIL_UNKNOWN_USER = Unknown mail user
+B_MAIL_WRONG_PASSWORD = Wrong password (mail)
+B_MEDIA_ADDON_DISABLED = Media addon disabled
+B_MEDIA_ADDON_FAILED = Media addon failed
+B_MEDIA_ADDON_RESTRICTED = Media addon restricted
+B_MEDIA_ALREADY_CONNECTED = Already connected
+B_MEDIA_APP_ALREADY_REGISTERED = Application already registered
+B_MEDIA_APP_NOT_REGISTERED = Application not registered
+B_MEDIA_BAD_BUFFER = Bad buffer
+B_MEDIA_BAD_CLIP_FORMAT = Bad clipping format
+B_MEDIA_BAD_DESTINATION = Bad destination
+B_MEDIA_BAD_FORMAT = Bad media format
+B_MEDIA_BAD_NODE = Bad media node
+B_MEDIA_BAD_SOURCE = Bad source
+B_MEDIA_BUFFERS_NOT_RECLAIMED = Buffers not reclaimed
+B_MEDIA_BUFFER_ALREADY_EXISTS = Buffer already exists
+B_MEDIA_CANNOT_CHANGE_RUN_MODE = Cannot change run mode
+B_MEDIA_CANNOT_RECLAIM_BUFFERS = Cannot reclaim buffers
+B_MEDIA_CANNOT_SEEK = Cannot seek
+B_MEDIA_CHANGE_IN_PROGRESS = Change in progress
+B_MEDIA_DUPLICATE_FORMAT = Duplicate format
+B_MEDIA_NODE_ALREADY_EXISTS = Media node already exists
+B_MEDIA_NODE_BUSY = Media node busy
+B_MEDIA_NOT_CONNECTED = Not connected
+B_MEDIA_NO_HANDLER = No handler
+B_MEDIA_REALTIME_DISABLED = Realtime disabled
+B_MEDIA_REALTIME_UNAVAILABLE = Realtime unavailable
+B_MEDIA_STALE_CHANGE_COUNT = Stale change count
+B_MEDIA_SYSTEM_FAILURE = System failure
+B_MEDIA_TIME_SOURCE_BUSY = Time source busy
+B_MEDIA_TIME_SOURCE_STOPPED = Time source stopped
+B_MEDIA_TOO_MANY_BUFFERS = Too many buffers
+B_MEDIA_TOO_MANY_NODES = Too many nodes
+B_MESSAGE_TO_SELF = Can't send message to self
+B_MISMATCHED_VALUES = Mismatched values passed to function
+B_MISSING_LIBRARY = Missing library
+B_MISSING_SYMBOL = Symbol not found
+B_NAME_IN_USE = Name in use
+B_NAME_NOT_FOUND = Name not found
+B_NAME_TOO_LONG = File name too long
+B_NOT_ALLOWED = Operation not allowed
+B_NOT_AN_EXECUTABLE = Not an executable
+B_NOT_A_DIRECTORY = Not a directory
+B_NOT_A_MESSAGE = Data is not a message
+B_NO_ERROR = No error
+B_NO_INIT = Initialization failed
+B_NO_MEMORY = Out of memory
+B_NO_MORE_FDS = Too many open files
+B_NO_MORE_PORTS = No more ports available
+B_NO_MORE_SEMS = No more semaphores
+B_NO_MORE_TEAMS = No more teams
+B_NO_MORE_THREADS = No more threads
+B_NO_PRINT_SERVER = No print server
+B_NO_TRANSLATOR = No translator found
+B_PARTITION_TOO_SMALL = Partition too small to contain filesystem
+B_PERMISSION_DENIED = Permission denied
+B_POSIX_ENOMEM = Out of memory
+B_READ_ONLY_DEVICE = Read-only file system
+B_RESOURCE_NOT_FOUND = Resource not found
+B_RESOURCE_UNAVAILABLE = Resource unavailable
+B_SERVER_NOT_FOUND = Server not found
+B_SHUTDOWN_CANCELLED = System shutdown cancelled
+B_SHUTTING_DOWN = System shutting down
+B_STREAM_NOT_FOUND = Stream not found
+B_SUBSCRIBER_NOT_ENTERED = Subscriber not entered
+B_TIMED_OUT = Operation timed out
+B_UNKNOWN_MIME_TYPE = Unknown MIME type
+B_UNSUPPORTED = Operation not supported
+B_WOULD_BLOCK = Operation would block
+0 = No error
 ./errnum
+B_ALREADY_RUNNING = -2147475452
+B_AMBIGUOUS_APP_LAUNCH = -2147475450
+B_BAD_ADDRESS = -2147478783
+B_BAD_DATA = -2147483632
+B_BAD_HANDLER = -2147475453
+B_BAD_IMAGE_ID = -2147478784
+B_BAD_INDEX = -2147483645
+B_BAD_MIME_SNIFFER_RULE = -2147475441
+B_BAD_PORT_ID = -2147479040
+B_BAD_REPLY = -2147475456
+B_BAD_SCRIPT_SYNTAX = -2147475448
+B_BAD_SEM_ID = -2147479552
+B_BAD_SUBSCRIBER = -2147467260
+B_BAD_TEAM_ID = -2147479293
+B_BAD_THREAD_ID = -2147479296
+B_BAD_THREAD_STATE = -2147479294
+B_BAD_TYPE = -2147483644
+B_BAD_VALUE = -2147483643
+B_BUFFER_NOT_AVAILABLE = -2147467258
+B_BUSTED_PIPE = -2147459059
+B_BUSY = -2147483634
+B_CANCELED = -2147483636
+B_CROSS_DEVICE_LINK = -2147459061
+B_DEBUGGER_ALREADY_INSTALLED = -2147478528
+B_DEVICE_FULL = -2147459065
+B_DEV_BAD_DRIVE_NUM = -2147442686
+B_DEV_BAD_PID = -2147442666
+B_DEV_CONFIGURATION_ERROR = -2147442672
+B_DEV_CRC_ERROR = -2147442668
+B_DEV_DATA_OVERRUN = -2147442664
+B_DEV_DATA_UNDERRUN = -2147442663
+B_DEV_DISABLED_BY_USER = -2147442671
+B_DEV_DOOR_OPEN = -2147442670
+B_DEV_FIFO_OVERRUN = -2147442662
+B_DEV_FIFO_UNDERRUN = -2147442661
+B_DEV_FORMAT_ERROR = -2147442683
+B_DEV_ID_ERROR = -2147442679
+B_DEV_INVALID_IOCTL = -2147442688
+B_DEV_INVALID_PIPE = -2147442669
+B_DEV_MEDIA_CHANGED = -2147442675
+B_DEV_MEDIA_CHANGE_REQUESTED = -2147442674
+B_DEV_MULTIPLE_ERRORS = -2147442659
+B_DEV_NOT_READY = -2147442676
+B_DEV_NO_MEDIA = -2147442685
+B_DEV_NO_MEMORY = -2147442687
+B_DEV_PENDING = -2147442660
+B_DEV_READ_ERROR = -2147442678
+B_DEV_RECALIBRATE_ERROR = -2147442681
+B_DEV_RESOURCE_CONFLICT = -2147442673
+B_DEV_SEEK_ERROR = -2147442680
+B_DEV_STALLED = -2147442667
+B_DEV_TIMEOUT = -2147442682
+B_DEV_TOO_LATE = -2147442658
+B_DEV_UNEXPECTED_PID = -2147442665
+B_DEV_UNREADABLE = -2147442684
+B_DEV_WRITE_ERROR = -2147442677
+B_DIRECTORY_NOT_EMPTY = -2147459066
+B_DUPLICATE_REPLY = -2147475455
+B_ENTRY_NOT_FOUND = -2147459069
+B_ERROR = -1
+B_FILE_ERROR = -2147459072
+B_FILE_EXISTS = -2147459070
+B_FILE_NOT_FOUND = -2147459071
+B_ILLEGAL_DATA = -2147465214
+B_INTERRUPTED = -2147483638
+B_IO_ERROR = -2147483647
+B_IS_A_DIRECTORY = -2147459063
+B_LAST_BUFFER_ERROR = -2147467257
+B_LAUNCH_FAILED = -2147475451
+B_LAUNCH_FAILED_APP_IN_TRASH = -2147475444
+B_LAUNCH_FAILED_APP_NOT_FOUND = -2147475445
+B_LAUNCH_FAILED_EXECUTABLE = -2147475446
+B_LAUNCH_FAILED_FILES_APP_NOT_FOUND = -2147475442
+B_LAUNCH_FAILED_NO_PREFERRED_APP = -2147475443
+B_LAUNCH_FAILED_NO_RESOLVE_LINK = -2147475447
+B_LINK_LIMIT = -2147459060
+B_MAIL_ACCESS_ERROR = -2147450876
+B_MAIL_INVALID_MAIL = -2147450873
+B_MAIL_NO_DAEMON = -2147450880
+B_MAIL_NO_RECIPIENT = -2147450874
+B_MAIL_UNKNOWN_FIELD = -2147450875
+B_MAIL_UNKNOWN_HOST = -2147450877
+B_MAIL_UNKNOWN_USER = -2147450879
+B_MAIL_WRONG_PASSWORD = -2147450878
+B_MEDIA_ADDON_DISABLED = -2147467141
+B_MEDIA_ADDON_FAILED = -2147467142
+B_MEDIA_ADDON_RESTRICTED = -2147467138
+B_MEDIA_ALREADY_CONNECTED = -2147467145
+B_MEDIA_APP_ALREADY_REGISTERED = -2147467153
+B_MEDIA_APP_NOT_REGISTERED = -2147467152
+B_MEDIA_BAD_BUFFER = -2147467160
+B_MEDIA_BAD_CLIP_FORMAT = -2147467143
+B_MEDIA_BAD_DESTINATION = -2147467146
+B_MEDIA_BAD_FORMAT = -2147467161
+B_MEDIA_BAD_NODE = -2147467163
+B_MEDIA_BAD_SOURCE = -2147467147
+B_MEDIA_BUFFERS_NOT_RECLAIMED = -2147467150
+B_MEDIA_BUFFER_ALREADY_EXISTS = -2147467156
+B_MEDIA_CANNOT_CHANGE_RUN_MODE = -2147467154
+B_MEDIA_CANNOT_RECLAIM_BUFFERS = -2147467151
+B_MEDIA_CANNOT_SEEK = -2147467155
+B_MEDIA_CHANGE_IN_PROGRESS = -2147467140
+B_MEDIA_DUPLICATE_FORMAT = -2147467136
+B_MEDIA_NODE_ALREADY_EXISTS = -2147467157
+B_MEDIA_NODE_BUSY = -2147467162
+B_MEDIA_NOT_CONNECTED = -2147467144
+B_MEDIA_NO_HANDLER = -2147467137
+B_MEDIA_REALTIME_DISABLED = -2147467135
+B_MEDIA_REALTIME_UNAVAILABLE = -2147467134
+B_MEDIA_STALE_CHANGE_COUNT = -2147467139
+B_MEDIA_SYSTEM_FAILURE = -2147467164
+B_MEDIA_TIME_SOURCE_BUSY = -2147467148
+B_MEDIA_TIME_SOURCE_STOPPED = -2147467149
+B_MEDIA_TOO_MANY_BUFFERS = -2147467158
+B_MEDIA_TOO_MANY_NODES = -2147467159
+B_MESSAGE_TO_SELF = -2147475454
+B_MISMATCHED_VALUES = -2147483642
+B_MISSING_LIBRARY = -2147478781
+B_MISSING_SYMBOL = -2147478780
+B_NAME_IN_USE = -2147483640
+B_NAME_NOT_FOUND = -2147483641
+B_NAME_TOO_LONG = -2147459068
+B_NOT_ALLOWED = -2147483633
+B_NOT_AN_EXECUTABLE = -2147478782
+B_NOT_A_DIRECTORY = -2147459067
+B_NOT_A_MESSAGE = -2147475440
+B_NO_ERROR = 0
+B_NO_INIT = -2147483635
+B_NO_MEMORY = -2147483648
+B_NO_MORE_FDS = -2147459062
+B_NO_MORE_PORTS = -2147479039
+B_NO_MORE_SEMS = -2147479551
+B_NO_MORE_TEAMS = -2147479292
+B_NO_MORE_THREADS = -2147479295
+B_NO_PRINT_SERVER = -2147446784
+B_NO_TRANSLATOR = -2147465215
+B_PARTITION_TOO_SMALL = -2147459057
+B_PERMISSION_DENIED = -2147483646
+B_POSIX_ENOMEM = -2147454976
+B_READ_ONLY_DEVICE = -2147459064
+B_RESOURCE_NOT_FOUND = -2147467262
+B_RESOURCE_UNAVAILABLE = -2147467261
+B_SERVER_NOT_FOUND = -2147467263
+B_SHUTDOWN_CANCELLED = -2147475439
+B_SHUTTING_DOWN = -2147475438
+B_STREAM_NOT_FOUND = -2147467264
+B_SUBSCRIBER_NOT_ENTERED = -2147467259
+B_TIMED_OUT = -2147483639
+B_UNKNOWN_MIME_TYPE = -2147475449
+B_UNSUPPORTED = -2147459058
+B_WOULD_BLOCK = -2147483637
 E2BIG = -2147454975
 EACCES = -2147483646
 EADDRINUSE = -2147454954
@@ -356,6 +575,7 @@ EDQUOT = -2147454927
 EEXIST = -2147459070
 EFAULT = -2147478783
 EFBIG = -2147454972
+EFPOS = -2147454962
 EHOSTDOWN = -2147454931
 EHOSTUNREACH = -2147454943
 EIDRM = -2147454926
@@ -409,6 +629,7 @@ EPROTOTYPE = -2147454958
 ERANGE = -2147454959
 EROFS = -2147459064
 ESHUTDOWN = -2147454945
+ESIGPARM = -2147454961
 ESPIPE = -2147454964
 ESRCH = -2147454963
 ESTALE = -2147454936
@@ -449,9 +670,9 @@ getsockname(server)   -> "foo\0" (4 bytes)
 getsockname(client): ENOTCONN
 connect               <- "foo\0" (4 bytes)
 getpeername(client)   -> "foo\0" (4 bytes)
-accept                -> "\000005" (6 bytes)
+accept                -> "\00000c" (6 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
-getpeername(accepted) -> "\000005" (6 bytes)
+getpeername(accepted) -> "\00000c" (6 bytes)
 ./unix-stream 'foo\0' './foo\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
@@ -459,9 +680,9 @@ getsockname(server)   -> "foo\0" (4 bytes)
 getsockname(client): ENOTCONN
 connect               <- "./foo\0" (6 bytes)
 getpeername(client)   -> "foo\0" (4 bytes)
-accept                -> "\000006" (6 bytes)
+accept                -> "\00000d" (6 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
-getpeername(accepted) -> "\000006" (6 bytes)
+getpeername(accepted) -> "\00000d" (6 bytes)
 
 ./unix-stream 'foo\0hoge' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0hoge" (8 bytes)
@@ -519,9 +740,9 @@ getsockname(server)   -> "(44*"./")a\0" (90 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(44*"./")a\0" (90 bytes)
 getpeername(client)   -> "(44*"./")a\0" (90 bytes)
-accept                -> "\000007" (6 bytes)
+accept                -> "\00000e" (6 bytes)
 getsockname(accepted) -> "(44*"./")a\0" (90 bytes)
-getpeername(accepted) -> "\000007" (6 bytes)
+getpeername(accepted) -> "\00000e" (6 bytes)
 ./unix-stream '(44*"./")ab\0'
 bind(server)          <- "(44*"./")ab\0" (91 bytes)
 socket file (server)  : exist
@@ -529,9 +750,9 @@ getsockname(server)   -> "(44*"./")ab\0" (91 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(44*"./")ab\0" (91 bytes)
 getpeername(client)   -> "(44*"./")ab\0" (91 bytes)
-accept                -> "\000008" (6 bytes)
+accept                -> "\00000f" (6 bytes)
 getsockname(accepted) -> "(44*"./")ab\0" (91 bytes)
-getpeername(accepted) -> "\000008" (6 bytes)
+getpeername(accepted) -> "\00000f" (6 bytes)
 ./unix-stream '(45*"./")a\0'
 bind(server)          <- "(45*"./")a\0" (92 bytes)
 socket file (server)  : exist
@@ -539,9 +760,9 @@ getsockname(server)   -> "(45*"./")a\0" (92 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(45*"./")a\0" (92 bytes)
 getpeername(client)   -> "(45*"./")a\0" (92 bytes)
-accept                -> "\000009" (6 bytes)
+accept                -> "\000010" (6 bytes)
 getsockname(accepted) -> "(45*"./")a\0" (92 bytes)
-getpeername(accepted) -> "\000009" (6 bytes)
+getpeername(accepted) -> "\000010" (6 bytes)
 ./unix-stream '(45*"./")ab\0'
 bind(server)          <- "(45*"./")ab\0" (93 bytes)
 socket file (server)  : exist
@@ -549,9 +770,9 @@ getsockname(server)   -> "(45*"./")ab\0" (93 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(45*"./")ab\0" (93 bytes)
 getpeername(client)   -> "(45*"./")ab\0" (93 bytes)
-accept                -> "\00000a" (6 bytes)
+accept                -> "\000011" (6 bytes)
 getsockname(accepted) -> "(45*"./")ab\0" (93 bytes)
-getpeername(accepted) -> "\00000a" (6 bytes)
+getpeername(accepted) -> "\000011" (6 bytes)
 ./unix-stream '(46*"./")a\0'
 bind(server)          <- "(46*"./")a\0" (94 bytes)
 socket file (server)  : exist
@@ -559,9 +780,9 @@ getsockname(server)   -> "(46*"./")a\0" (94 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(46*"./")a\0" (94 bytes)
 getpeername(client)   -> "(46*"./")a\0" (94 bytes)
-accept                -> "\00000b" (6 bytes)
+accept                -> "\000012" (6 bytes)
 getsockname(accepted) -> "(46*"./")a\0" (94 bytes)
-getpeername(accepted) -> "\00000b" (6 bytes)
+getpeername(accepted) -> "\000012" (6 bytes)
 ./unix-stream '(46*"./")ab\0'
 bind(server)          <- "(46*"./")ab\0" (95 bytes)
 socket file (server)  : exist
@@ -569,9 +790,9 @@ getsockname(server)   -> "(46*"./")ab\0" (95 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(46*"./")ab\0" (95 bytes)
 getpeername(client)   -> "(46*"./")ab\0" (95 bytes)
-accept                -> "\00000c" (6 bytes)
+accept                -> "\000013" (6 bytes)
 getsockname(accepted) -> "(46*"./")ab\0" (95 bytes)
-getpeername(accepted) -> "\00000c" (6 bytes)
+getpeername(accepted) -> "\000013" (6 bytes)
 ./unix-stream '(47*"./")a\0'
 bind(server)          <- "(47*"./")a\0" (96 bytes)
 socket file (server)  : exist
@@ -579,9 +800,9 @@ getsockname(server)   -> "(47*"./")a\0" (96 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(47*"./")a\0" (96 bytes)
 getpeername(client)   -> "(47*"./")a\0" (96 bytes)
-accept                -> "\00000d" (6 bytes)
+accept                -> "\000014" (6 bytes)
 getsockname(accepted) -> "(47*"./")a\0" (96 bytes)
-getpeername(accepted) -> "\00000d" (6 bytes)
+getpeername(accepted) -> "\000014" (6 bytes)
 ./unix-stream '(47*"./")ab\0'
 bind(server)          <- "(47*"./")ab\0" (97 bytes)
 socket file (server)  : exist
@@ -589,9 +810,9 @@ getsockname(server)   -> "(47*"./")ab\0" (97 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(47*"./")ab\0" (97 bytes)
 getpeername(client)   -> "(47*"./")ab\0" (97 bytes)
-accept                -> "\00000e" (6 bytes)
+accept                -> "\000015" (6 bytes)
 getsockname(accepted) -> "(47*"./")ab\0" (97 bytes)
-getpeername(accepted) -> "\00000e" (6 bytes)
+getpeername(accepted) -> "\000015" (6 bytes)
 ./unix-stream '(48*"./")a\0'
 bind(server)          <- "(48*"./")a\0" (98 bytes)
 socket file (server)  : exist
@@ -599,9 +820,9 @@ getsockname(server)   -> "(48*"./")a\0" (98 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(48*"./")a\0" (98 bytes)
 getpeername(client)   -> "(48*"./")a\0" (98 bytes)
-accept                -> "\00000f" (6 bytes)
+accept                -> "\000016" (6 bytes)
 getsockname(accepted) -> "(48*"./")a\0" (98 bytes)
-getpeername(accepted) -> "\00000f" (6 bytes)
+getpeername(accepted) -> "\000016" (6 bytes)
 ./unix-stream '(48*"./")ab\0'
 bind(server)          <- "(48*"./")ab\0" (99 bytes)
 socket file (server)  : exist
@@ -609,9 +830,9 @@ getsockname(server)   -> "(48*"./")ab\0" (99 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(48*"./")ab\0" (99 bytes)
 getpeername(client)   -> "(48*"./")ab\0" (99 bytes)
-accept                -> "\000010" (6 bytes)
+accept                -> "\000017" (6 bytes)
 getsockname(accepted) -> "(48*"./")ab\0" (99 bytes)
-getpeername(accepted) -> "\000010" (6 bytes)
+getpeername(accepted) -> "\000017" (6 bytes)
 ./unix-stream '(49*"./")a\0'
 bind(server)          <- "(49*"./")a\0" (100 bytes)
 socket file (server)  : exist
@@ -619,9 +840,9 @@ getsockname(server)   -> "(49*"./")a\0" (100 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(49*"./")a\0" (100 bytes)
 getpeername(client)   -> "(49*"./")a\0" (100 bytes)
-accept                -> "\000011" (6 bytes)
+accept                -> "\000018" (6 bytes)
 getsockname(accepted) -> "(49*"./")a\0" (100 bytes)
-getpeername(accepted) -> "\000011" (6 bytes)
+getpeername(accepted) -> "\000018" (6 bytes)
 ./unix-stream '(49*"./")ab\0'
 bind(server)          <- "(49*"./")ab\0" (101 bytes)
 socket file (server)  : exist
@@ -629,9 +850,9 @@ getsockname(server)   -> "(49*"./")ab\0" (101 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(49*"./")ab\0" (101 bytes)
 getpeername(client)   -> "(49*"./")ab\0" (101 bytes)
-accept                -> "\000012" (6 bytes)
+accept                -> "\000019" (6 bytes)
 getsockname(accepted) -> "(49*"./")ab\0" (101 bytes)
-getpeername(accepted) -> "\000012" (6 bytes)
+getpeername(accepted) -> "\000019" (6 bytes)
 
 ./unix-stream '(50*"./")a\0'
 bind(server)          <- "(50*"./")a\0" (102 bytes)
@@ -640,9 +861,9 @@ getsockname(server)   -> "(50*"./")a\0" (102 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(50*"./")a\0" (102 bytes)
 getpeername(client)   -> "(50*"./")a\0" (102 bytes)
-accept                -> "\000013" (6 bytes)
+accept                -> "\00001a" (6 bytes)
 getsockname(accepted) -> "(50*"./")a\0" (102 bytes)
-getpeername(accepted) -> "\000013" (6 bytes)
+getpeername(accepted) -> "\00001a" (6 bytes)
 ./unix-stream '(50*"./")ab\0'
 bind(server)          <- "(50*"./")ab\0" (103 bytes)
 socket file (server)  : exist
@@ -650,9 +871,9 @@ getsockname(server)   -> "(50*"./")ab\0" (103 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(50*"./")ab\0" (103 bytes)
 getpeername(client)   -> "(50*"./")ab\0" (103 bytes)
-accept                -> "\000014" (6 bytes)
+accept                -> "\00001b" (6 bytes)
 getsockname(accepted) -> "(50*"./")ab\0" (103 bytes)
-getpeername(accepted) -> "\000014" (6 bytes)
+getpeername(accepted) -> "\00001b" (6 bytes)
 ./unix-stream '(51*"./")a\0'
 bind(server)          <- "(51*"./")a\0" (104 bytes)
 socket file (server)  : exist
@@ -660,9 +881,9 @@ getsockname(server)   -> "(51*"./")a\0" (104 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(51*"./")a\0" (104 bytes)
 getpeername(client)   -> "(51*"./")a\0" (104 bytes)
-accept                -> "\000015" (6 bytes)
+accept                -> "\00001c" (6 bytes)
 getsockname(accepted) -> "(51*"./")a\0" (104 bytes)
-getpeername(accepted) -> "\000015" (6 bytes)
+getpeername(accepted) -> "\00001c" (6 bytes)
 ./unix-stream '(51*"./")ab\0'
 bind(server)          <- "(51*"./")ab\0" (105 bytes)
 socket file (server)  : exist
@@ -670,9 +891,9 @@ getsockname(server)   -> "(51*"./")ab\0" (105 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(51*"./")ab\0" (105 bytes)
 getpeername(client)   -> "(51*"./")ab\0" (105 bytes)
-accept                -> "\000016" (6 bytes)
+accept                -> "\00001d" (6 bytes)
 getsockname(accepted) -> "(51*"./")ab\0" (105 bytes)
-getpeername(accepted) -> "\000016" (6 bytes)
+getpeername(accepted) -> "\00001d" (6 bytes)
 ./unix-stream '(52*"./")a\0'
 bind(server)          <- "(52*"./")a\0" (106 bytes)
 socket file (server)  : exist
@@ -680,9 +901,9 @@ getsockname(server)   -> "(52*"./")a\0" (106 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(52*"./")a\0" (106 bytes)
 getpeername(client)   -> "(52*"./")a\0" (106 bytes)
-accept                -> "\000017" (6 bytes)
+accept                -> "\00001e" (6 bytes)
 getsockname(accepted) -> "(52*"./")a\0" (106 bytes)
-getpeername(accepted) -> "\000017" (6 bytes)
+getpeername(accepted) -> "\00001e" (6 bytes)
 ./unix-stream '(52*"./")ab\0'
 bind(server)          <- "(52*"./")ab\0" (107 bytes)
 socket file (server)  : exist
@@ -690,9 +911,9 @@ getsockname(server)   -> "(52*"./")ab\0" (107 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(52*"./")ab\0" (107 bytes)
 getpeername(client)   -> "(52*"./")ab\0" (107 bytes)
-accept                -> "\000018" (6 bytes)
+accept                -> "\00001f" (6 bytes)
 getsockname(accepted) -> "(52*"./")ab\0" (107 bytes)
-getpeername(accepted) -> "\000018" (6 bytes)
+getpeername(accepted) -> "\00001f" (6 bytes)
 ./unix-stream '(53*"./")a\0'
 bind(server)          <- "(53*"./")a\0" (108 bytes)
 socket file (server)  : exist
@@ -700,9 +921,9 @@ getsockname(server)   -> "(53*"./")a\0" (108 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(53*"./")a\0" (108 bytes)
 getpeername(client)   -> "(53*"./")a\0" (108 bytes)
-accept                -> "\000019" (6 bytes)
+accept                -> "\000020" (6 bytes)
 getsockname(accepted) -> "(53*"./")a\0" (108 bytes)
-getpeername(accepted) -> "\000019" (6 bytes)
+getpeername(accepted) -> "\000020" (6 bytes)
 ./unix-stream '(53*"./")ab\0'
 bind(server)          <- "(53*"./")ab\0" (109 bytes)
 socket file (server)  : exist
@@ -710,9 +931,9 @@ getsockname(server)   -> "(53*"./")ab\0" (109 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(53*"./")ab\0" (109 bytes)
 getpeername(client)   -> "(53*"./")ab\0" (109 bytes)
-accept                -> "\00001a" (6 bytes)
+accept                -> "\000021" (6 bytes)
 getsockname(accepted) -> "(53*"./")ab\0" (109 bytes)
-getpeername(accepted) -> "\00001a" (6 bytes)
+getpeername(accepted) -> "\000021" (6 bytes)
 ./unix-stream '(54*"./")a\0'
 bind(server)          <- "(54*"./")a\0" (110 bytes)
 socket file (server)  : exist
@@ -720,9 +941,9 @@ getsockname(server)   -> "(54*"./")a\0" (110 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(54*"./")a\0" (110 bytes)
 getpeername(client)   -> "(54*"./")a\0" (110 bytes)
-accept                -> "\00001b" (6 bytes)
+accept                -> "\000022" (6 bytes)
 getsockname(accepted) -> "(54*"./")a\0" (110 bytes)
-getpeername(accepted) -> "\00001b" (6 bytes)
+getpeername(accepted) -> "\000022" (6 bytes)
 ./unix-stream '(54*"./")ab\0'
 bind(server)          <- "(54*"./")ab\0" (111 bytes)
 socket file (server)  : exist
@@ -730,9 +951,9 @@ getsockname(server)   -> "(54*"./")ab\0" (111 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(54*"./")ab\0" (111 bytes)
 getpeername(client)   -> "(54*"./")ab\0" (111 bytes)
-accept                -> "\00001c" (6 bytes)
+accept                -> "\000023" (6 bytes)
 getsockname(accepted) -> "(54*"./")ab\0" (111 bytes)
-getpeername(accepted) -> "\00001c" (6 bytes)
+getpeername(accepted) -> "\000023" (6 bytes)
 ./unix-stream '(55*"./")a\0'
 bind(server)          <- "(55*"./")a\0" (112 bytes)
 socket file (server)  : exist
@@ -740,9 +961,9 @@ getsockname(server)   -> "(55*"./")a\0" (112 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(55*"./")a\0" (112 bytes)
 getpeername(client)   -> "(55*"./")a\0" (112 bytes)
-accept                -> "\00001d" (6 bytes)
+accept                -> "\000024" (6 bytes)
 getsockname(accepted) -> "(55*"./")a\0" (112 bytes)
-getpeername(accepted) -> "\00001d" (6 bytes)
+getpeername(accepted) -> "\000024" (6 bytes)
 ./unix-stream '(55*"./")ab\0'
 bind(server)          <- "(55*"./")ab\0" (113 bytes)
 socket file (server)  : exist
@@ -750,9 +971,9 @@ getsockname(server)   -> "(55*"./")ab\0" (113 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(55*"./")ab\0" (113 bytes)
 getpeername(client)   -> "(55*"./")ab\0" (113 bytes)
-accept                -> "\00001e" (6 bytes)
+accept                -> "\000025" (6 bytes)
 getsockname(accepted) -> "(55*"./")ab\0" (113 bytes)
-getpeername(accepted) -> "\00001e" (6 bytes)
+getpeername(accepted) -> "\000025" (6 bytes)
 ./unix-stream '(56*"./")a\0'
 bind(server)          <- "(56*"./")a\0" (114 bytes)
 socket file (server)  : exist
@@ -760,9 +981,9 @@ getsockname(server)   -> "(56*"./")a\0" (114 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(56*"./")a\0" (114 bytes)
 getpeername(client)   -> "(56*"./")a\0" (114 bytes)
-accept                -> "\00001f" (6 bytes)
+accept                -> "\000026" (6 bytes)
 getsockname(accepted) -> "(56*"./")a\0" (114 bytes)
-getpeername(accepted) -> "\00001f" (6 bytes)
+getpeername(accepted) -> "\000026" (6 bytes)
 ./unix-stream '(56*"./")ab\0'
 bind(server)          <- "(56*"./")ab\0" (115 bytes)
 socket file (server)  : exist
@@ -770,9 +991,9 @@ getsockname(server)   -> "(56*"./")ab\0" (115 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(56*"./")ab\0" (115 bytes)
 getpeername(client)   -> "(56*"./")ab\0" (115 bytes)
-accept                -> "\000020" (6 bytes)
+accept                -> "\000027" (6 bytes)
 getsockname(accepted) -> "(56*"./")ab\0" (115 bytes)
-getpeername(accepted) -> "\000020" (6 bytes)
+getpeername(accepted) -> "\000027" (6 bytes)
 ./unix-stream '(57*"./")a\0'
 bind(server)          <- "(57*"./")a\0" (116 bytes)
 socket file (server)  : exist
@@ -780,9 +1001,9 @@ getsockname(server)   -> "(57*"./")a\0" (116 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(57*"./")a\0" (116 bytes)
 getpeername(client)   -> "(57*"./")a\0" (116 bytes)
-accept                -> "\000021" (6 bytes)
+accept                -> "\000028" (6 bytes)
 getsockname(accepted) -> "(57*"./")a\0" (116 bytes)
-getpeername(accepted) -> "\000021" (6 bytes)
+getpeername(accepted) -> "\000028" (6 bytes)
 ./unix-stream '(57*"./")ab\0'
 bind(server)          <- "(57*"./")ab\0" (117 bytes)
 socket file (server)  : exist
@@ -790,9 +1011,9 @@ getsockname(server)   -> "(57*"./")ab\0" (117 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(57*"./")ab\0" (117 bytes)
 getpeername(client)   -> "(57*"./")ab\0" (117 bytes)
-accept                -> "\000022" (6 bytes)
+accept                -> "\000029" (6 bytes)
 getsockname(accepted) -> "(57*"./")ab\0" (117 bytes)
-getpeername(accepted) -> "\000022" (6 bytes)
+getpeername(accepted) -> "\000029" (6 bytes)
 ./unix-stream '(58*"./")a\0'
 bind(server)          <- "(58*"./")a\0" (118 bytes)
 socket file (server)  : exist
@@ -800,9 +1021,9 @@ getsockname(server)   -> "(58*"./")a\0" (118 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(58*"./")a\0" (118 bytes)
 getpeername(client)   -> "(58*"./")a\0" (118 bytes)
-accept                -> "\000023" (6 bytes)
+accept                -> "\00002a" (6 bytes)
 getsockname(accepted) -> "(58*"./")a\0" (118 bytes)
-getpeername(accepted) -> "\000023" (6 bytes)
+getpeername(accepted) -> "\00002a" (6 bytes)
 ./unix-stream '(58*"./")ab\0'
 bind(server)          <- "(58*"./")ab\0" (119 bytes)
 socket file (server)  : exist
@@ -810,9 +1031,9 @@ getsockname(server)   -> "(58*"./")ab\0" (119 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(58*"./")ab\0" (119 bytes)
 getpeername(client)   -> "(58*"./")ab\0" (119 bytes)
-accept                -> "\000024" (6 bytes)
+accept                -> "\00002b" (6 bytes)
 getsockname(accepted) -> "(58*"./")ab\0" (119 bytes)
-getpeername(accepted) -> "\000024" (6 bytes)
+getpeername(accepted) -> "\00002b" (6 bytes)
 ./unix-stream '(59*"./")a\0'
 bind(server)          <- "(59*"./")a\0" (120 bytes)
 socket file (server)  : exist
@@ -820,9 +1041,9 @@ getsockname(server)   -> "(59*"./")a\0" (120 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(59*"./")a\0" (120 bytes)
 getpeername(client)   -> "(59*"./")a\0" (120 bytes)
-accept                -> "\000025" (6 bytes)
+accept                -> "\00002c" (6 bytes)
 getsockname(accepted) -> "(59*"./")a\0" (120 bytes)
-getpeername(accepted) -> "\000025" (6 bytes)
+getpeername(accepted) -> "\00002c" (6 bytes)
 ./unix-stream '(59*"./")ab\0'
 bind(server)          <- "(59*"./")ab\0" (121 bytes)
 socket file (server)  : exist
@@ -830,9 +1051,9 @@ getsockname(server)   -> "(59*"./")ab\0" (121 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(59*"./")ab\0" (121 bytes)
 getpeername(client)   -> "(59*"./")ab\0" (121 bytes)
-accept                -> "\000026" (6 bytes)
+accept                -> "\00002d" (6 bytes)
 getsockname(accepted) -> "(59*"./")ab\0" (121 bytes)
-getpeername(accepted) -> "\000026" (6 bytes)
+getpeername(accepted) -> "\00002d" (6 bytes)
 
 ./unix-stream '(60*"./")a\0'
 bind(server)          <- "(60*"./")a\0" (122 bytes)
@@ -841,9 +1062,9 @@ getsockname(server)   -> "(60*"./")a\0" (122 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(60*"./")a\0" (122 bytes)
 getpeername(client)   -> "(60*"./")a\0" (122 bytes)
-accept                -> "\000027" (6 bytes)
+accept                -> "\00002e" (6 bytes)
 getsockname(accepted) -> "(60*"./")a\0" (122 bytes)
-getpeername(accepted) -> "\000027" (6 bytes)
+getpeername(accepted) -> "\00002e" (6 bytes)
 ./unix-stream '(60*"./")ab\0'
 bind(server)          <- "(60*"./")ab\0" (123 bytes)
 socket file (server)  : exist
@@ -851,9 +1072,9 @@ getsockname(server)   -> "(60*"./")ab\0" (123 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(60*"./")ab\0" (123 bytes)
 getpeername(client)   -> "(60*"./")ab\0" (123 bytes)
-accept                -> "\000028" (6 bytes)
+accept                -> "\00002f" (6 bytes)
 getsockname(accepted) -> "(60*"./")ab\0" (123 bytes)
-getpeername(accepted) -> "\000028" (6 bytes)
+getpeername(accepted) -> "\00002f" (6 bytes)
 ./unix-stream '(61*"./")a\0'
 bind(server)          <- "(61*"./")a\0" (124 bytes)
 socket file (server)  : exist
@@ -861,9 +1082,9 @@ getsockname(server)   -> "(61*"./")a\0" (124 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(61*"./")a\0" (124 bytes)
 getpeername(client)   -> "(61*"./")a\0" (124 bytes)
-accept                -> "\000029" (6 bytes)
+accept                -> "\000030" (6 bytes)
 getsockname(accepted) -> "(61*"./")a\0" (124 bytes)
-getpeername(accepted) -> "\000029" (6 bytes)
+getpeername(accepted) -> "\000030" (6 bytes)
 ./unix-stream '(61*"./")ab\0'
 bind(server)          <- "(61*"./")ab\0" (125 bytes)
 socket file (server)  : exist
@@ -871,9 +1092,9 @@ getsockname(server)   -> "(61*"./")ab\0" (125 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(61*"./")ab\0" (125 bytes)
 getpeername(client)   -> "(61*"./")ab\0" (125 bytes)
-accept                -> "\00002a" (6 bytes)
+accept                -> "\000031" (6 bytes)
 getsockname(accepted) -> "(61*"./")ab\0" (125 bytes)
-getpeername(accepted) -> "\00002a" (6 bytes)
+getpeername(accepted) -> "\000031" (6 bytes)
 ./unix-stream '(62*"./")a\0'
 bind(server)          <- "(62*"./")a\0" (126 bytes)
 socket file (server)  : exist
@@ -881,9 +1102,9 @@ getsockname(server)   -> "(62*"./")a\0" (126 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(62*"./")a\0" (126 bytes)
 getpeername(client)   -> "(62*"./")a\0" (126 bytes)
-accept                -> "\00002b" (6 bytes)
+accept                -> "\000032" (6 bytes)
 getsockname(accepted) -> "(62*"./")a\0" (126 bytes)
-getpeername(accepted) -> "\00002b" (6 bytes)
+getpeername(accepted) -> "\000032" (6 bytes)
 ./unix-stream '(62*"./")ab\0'
 bind(server)          <- "(62*"./")ab\0" (127 bytes)
 bind(server): EINVAL
@@ -1120,9 +1341,9 @@ getsockname(server)   -> "(90*"c")\0" (91 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(90*"c")\0" (91 bytes)
 getpeername(client)   -> "(90*"c")\0" (91 bytes)
-accept                -> "\00002c" (6 bytes)
+accept                -> "\000033" (6 bytes)
 getsockname(accepted) -> "(90*"c")\0" (91 bytes)
-getpeername(accepted) -> "\00002c" (6 bytes)
+getpeername(accepted) -> "\000033" (6 bytes)
 ./unix-stream '(91*"c")\0'
 bind(server)          <- "(91*"c")\0" (92 bytes)
 socket file (server)  : exist
@@ -1130,9 +1351,9 @@ getsockname(server)   -> "(91*"c")\0" (92 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(91*"c")\0" (92 bytes)
 getpeername(client)   -> "(91*"c")\0" (92 bytes)
-accept                -> "\00002d" (6 bytes)
+accept                -> "\000034" (6 bytes)
 getsockname(accepted) -> "(91*"c")\0" (92 bytes)
-getpeername(accepted) -> "\00002d" (6 bytes)
+getpeername(accepted) -> "\000034" (6 bytes)
 ./unix-stream '(92*"c")\0'
 bind(server)          <- "(92*"c")\0" (93 bytes)
 socket file (server)  : exist
@@ -1140,9 +1361,9 @@ getsockname(server)   -> "(92*"c")\0" (93 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(92*"c")\0" (93 bytes)
 getpeername(client)   -> "(92*"c")\0" (93 bytes)
-accept                -> "\00002e" (6 bytes)
+accept                -> "\000035" (6 bytes)
 getsockname(accepted) -> "(92*"c")\0" (93 bytes)
-getpeername(accepted) -> "\00002e" (6 bytes)
+getpeername(accepted) -> "\000035" (6 bytes)
 ./unix-stream '(93*"c")\0'
 bind(server)          <- "(93*"c")\0" (94 bytes)
 socket file (server)  : exist
@@ -1150,9 +1371,9 @@ getsockname(server)   -> "(93*"c")\0" (94 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(93*"c")\0" (94 bytes)
 getpeername(client)   -> "(93*"c")\0" (94 bytes)
-accept                -> "\00002f" (6 bytes)
+accept                -> "\000036" (6 bytes)
 getsockname(accepted) -> "(93*"c")\0" (94 bytes)
-getpeername(accepted) -> "\00002f" (6 bytes)
+getpeername(accepted) -> "\000036" (6 bytes)
 ./unix-stream '(94*"c")\0'
 bind(server)          <- "(94*"c")\0" (95 bytes)
 socket file (server)  : exist
@@ -1160,9 +1381,9 @@ getsockname(server)   -> "(94*"c")\0" (95 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(94*"c")\0" (95 bytes)
 getpeername(client)   -> "(94*"c")\0" (95 bytes)
-accept                -> "\000030" (6 bytes)
+accept                -> "\000037" (6 bytes)
 getsockname(accepted) -> "(94*"c")\0" (95 bytes)
-getpeername(accepted) -> "\000030" (6 bytes)
+getpeername(accepted) -> "\000037" (6 bytes)
 ./unix-stream '(95*"c")\0'
 bind(server)          <- "(95*"c")\0" (96 bytes)
 socket file (server)  : exist
@@ -1170,9 +1391,9 @@ getsockname(server)   -> "(95*"c")\0" (96 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(95*"c")\0" (96 bytes)
 getpeername(client)   -> "(95*"c")\0" (96 bytes)
-accept                -> "\000031" (6 bytes)
+accept                -> "\000038" (6 bytes)
 getsockname(accepted) -> "(95*"c")\0" (96 bytes)
-getpeername(accepted) -> "\000031" (6 bytes)
+getpeername(accepted) -> "\000038" (6 bytes)
 ./unix-stream '(96*"c")\0'
 bind(server)          <- "(96*"c")\0" (97 bytes)
 socket file (server)  : exist
@@ -1180,9 +1401,9 @@ getsockname(server)   -> "(96*"c")\0" (97 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(96*"c")\0" (97 bytes)
 getpeername(client)   -> "(96*"c")\0" (97 bytes)
-accept                -> "\000032" (6 bytes)
+accept                -> "\000039" (6 bytes)
 getsockname(accepted) -> "(96*"c")\0" (97 bytes)
-getpeername(accepted) -> "\000032" (6 bytes)
+getpeername(accepted) -> "\000039" (6 bytes)
 ./unix-stream '(97*"c")\0'
 bind(server)          <- "(97*"c")\0" (98 bytes)
 socket file (server)  : exist
@@ -1190,9 +1411,9 @@ getsockname(server)   -> "(97*"c")\0" (98 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(97*"c")\0" (98 bytes)
 getpeername(client)   -> "(97*"c")\0" (98 bytes)
-accept                -> "\000033" (6 bytes)
+accept                -> "\00003a" (6 bytes)
 getsockname(accepted) -> "(97*"c")\0" (98 bytes)
-getpeername(accepted) -> "\000033" (6 bytes)
+getpeername(accepted) -> "\00003a" (6 bytes)
 ./unix-stream '(98*"c")\0'
 bind(server)          <- "(98*"c")\0" (99 bytes)
 socket file (server)  : exist
@@ -1200,9 +1421,9 @@ getsockname(server)   -> "(98*"c")\0" (99 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(98*"c")\0" (99 bytes)
 getpeername(client)   -> "(98*"c")\0" (99 bytes)
-accept                -> "\000034" (6 bytes)
+accept                -> "\00003b" (6 bytes)
 getsockname(accepted) -> "(98*"c")\0" (99 bytes)
-getpeername(accepted) -> "\000034" (6 bytes)
+getpeername(accepted) -> "\00003b" (6 bytes)
 ./unix-stream '(99*"c")\0'
 bind(server)          <- "(99*"c")\0" (100 bytes)
 socket file (server)  : exist
@@ -1210,9 +1431,9 @@ getsockname(server)   -> "(99*"c")\0" (100 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(99*"c")\0" (100 bytes)
 getpeername(client)   -> "(99*"c")\0" (100 bytes)
-accept                -> "\000035" (6 bytes)
+accept                -> "\00003c" (6 bytes)
 getsockname(accepted) -> "(99*"c")\0" (100 bytes)
-getpeername(accepted) -> "\000035" (6 bytes)
+getpeername(accepted) -> "\00003c" (6 bytes)
 
 ./unix-stream '(100*"c")\0'
 bind(server)          <- "(100*"c")\0" (101 bytes)
@@ -1221,9 +1442,9 @@ getsockname(server)   -> "(100*"c")\0" (101 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(100*"c")\0" (101 bytes)
 getpeername(client)   -> "(100*"c")\0" (101 bytes)
-accept                -> "\000036" (6 bytes)
+accept                -> "\00003d" (6 bytes)
 getsockname(accepted) -> "(100*"c")\0" (101 bytes)
-getpeername(accepted) -> "\000036" (6 bytes)
+getpeername(accepted) -> "\00003d" (6 bytes)
 ./unix-stream '(101*"c")\0'
 bind(server)          <- "(101*"c")\0" (102 bytes)
 socket file (server)  : exist
@@ -1231,9 +1452,9 @@ getsockname(server)   -> "(101*"c")\0" (102 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(101*"c")\0" (102 bytes)
 getpeername(client)   -> "(101*"c")\0" (102 bytes)
-accept                -> "\000037" (6 bytes)
+accept                -> "\00003e" (6 bytes)
 getsockname(accepted) -> "(101*"c")\0" (102 bytes)
-getpeername(accepted) -> "\000037" (6 bytes)
+getpeername(accepted) -> "\00003e" (6 bytes)
 ./unix-stream '(102*"c")\0'
 bind(server)          <- "(102*"c")\0" (103 bytes)
 socket file (server)  : exist
@@ -1241,9 +1462,9 @@ getsockname(server)   -> "(102*"c")\0" (103 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(102*"c")\0" (103 bytes)
 getpeername(client)   -> "(102*"c")\0" (103 bytes)
-accept                -> "\000038" (6 bytes)
+accept                -> "\00003f" (6 bytes)
 getsockname(accepted) -> "(102*"c")\0" (103 bytes)
-getpeername(accepted) -> "\000038" (6 bytes)
+getpeername(accepted) -> "\00003f" (6 bytes)
 ./unix-stream '(103*"c")\0'
 bind(server)          <- "(103*"c")\0" (104 bytes)
 socket file (server)  : exist
@@ -1251,9 +1472,9 @@ getsockname(server)   -> "(103*"c")\0" (104 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(103*"c")\0" (104 bytes)
 getpeername(client)   -> "(103*"c")\0" (104 bytes)
-accept                -> "\000039" (6 bytes)
+accept                -> "\000040" (6 bytes)
 getsockname(accepted) -> "(103*"c")\0" (104 bytes)
-getpeername(accepted) -> "\000039" (6 bytes)
+getpeername(accepted) -> "\000040" (6 bytes)
 ./unix-stream '(104*"c")\0'
 bind(server)          <- "(104*"c")\0" (105 bytes)
 socket file (server)  : exist
@@ -1261,9 +1482,9 @@ getsockname(server)   -> "(104*"c")\0" (105 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(104*"c")\0" (105 bytes)
 getpeername(client)   -> "(104*"c")\0" (105 bytes)
-accept                -> "\00003a" (6 bytes)
+accept                -> "\000041" (6 bytes)
 getsockname(accepted) -> "(104*"c")\0" (105 bytes)
-getpeername(accepted) -> "\00003a" (6 bytes)
+getpeername(accepted) -> "\000041" (6 bytes)
 ./unix-stream '(105*"c")\0'
 bind(server)          <- "(105*"c")\0" (106 bytes)
 socket file (server)  : exist
@@ -1271,9 +1492,9 @@ getsockname(server)   -> "(105*"c")\0" (106 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(105*"c")\0" (106 bytes)
 getpeername(client)   -> "(105*"c")\0" (106 bytes)
-accept                -> "\00003b" (6 bytes)
+accept                -> "\000042" (6 bytes)
 getsockname(accepted) -> "(105*"c")\0" (106 bytes)
-getpeername(accepted) -> "\00003b" (6 bytes)
+getpeername(accepted) -> "\000042" (6 bytes)
 ./unix-stream '(106*"c")\0'
 bind(server)          <- "(106*"c")\0" (107 bytes)
 socket file (server)  : exist
@@ -1281,9 +1502,9 @@ getsockname(server)   -> "(106*"c")\0" (107 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(106*"c")\0" (107 bytes)
 getpeername(client)   -> "(106*"c")\0" (107 bytes)
-accept                -> "\00003c" (6 bytes)
+accept                -> "\000043" (6 bytes)
 getsockname(accepted) -> "(106*"c")\0" (107 bytes)
-getpeername(accepted) -> "\00003c" (6 bytes)
+getpeername(accepted) -> "\000043" (6 bytes)
 ./unix-stream '(107*"c")\0'
 bind(server)          <- "(107*"c")\0" (108 bytes)
 socket file (server)  : exist
@@ -1291,9 +1512,9 @@ getsockname(server)   -> "(107*"c")\0" (108 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(107*"c")\0" (108 bytes)
 getpeername(client)   -> "(107*"c")\0" (108 bytes)
-accept                -> "\00003d" (6 bytes)
+accept                -> "\000044" (6 bytes)
 getsockname(accepted) -> "(107*"c")\0" (108 bytes)
-getpeername(accepted) -> "\00003d" (6 bytes)
+getpeername(accepted) -> "\000044" (6 bytes)
 ./unix-stream '(108*"c")\0'
 bind(server)          <- "(108*"c")\0" (109 bytes)
 socket file (server)  : exist
@@ -1301,9 +1522,9 @@ getsockname(server)   -> "(108*"c")\0" (109 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(108*"c")\0" (109 bytes)
 getpeername(client)   -> "(108*"c")\0" (109 bytes)
-accept                -> "\00003e" (6 bytes)
+accept                -> "\000045" (6 bytes)
 getsockname(accepted) -> "(108*"c")\0" (109 bytes)
-getpeername(accepted) -> "\00003e" (6 bytes)
+getpeername(accepted) -> "\000045" (6 bytes)
 ./unix-stream '(109*"c")\0'
 bind(server)          <- "(109*"c")\0" (110 bytes)
 socket file (server)  : exist
@@ -1311,9 +1532,9 @@ getsockname(server)   -> "(109*"c")\0" (110 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(109*"c")\0" (110 bytes)
 getpeername(client)   -> "(109*"c")\0" (110 bytes)
-accept                -> "\00003f" (6 bytes)
+accept                -> "\000046" (6 bytes)
 getsockname(accepted) -> "(109*"c")\0" (110 bytes)
-getpeername(accepted) -> "\00003f" (6 bytes)
+getpeername(accepted) -> "\000046" (6 bytes)
 
 ./unix-stream '(110*"c")\0'
 bind(server)          <- "(110*"c")\0" (111 bytes)
@@ -1322,9 +1543,9 @@ getsockname(server)   -> "(110*"c")\0" (111 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(110*"c")\0" (111 bytes)
 getpeername(client)   -> "(110*"c")\0" (111 bytes)
-accept                -> "\000040" (6 bytes)
+accept                -> "\000047" (6 bytes)
 getsockname(accepted) -> "(110*"c")\0" (111 bytes)
-getpeername(accepted) -> "\000040" (6 bytes)
+getpeername(accepted) -> "\000047" (6 bytes)
 ./unix-stream '(111*"c")\0'
 bind(server)          <- "(111*"c")\0" (112 bytes)
 socket file (server)  : exist
@@ -1332,9 +1553,9 @@ getsockname(server)   -> "(111*"c")\0" (112 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(111*"c")\0" (112 bytes)
 getpeername(client)   -> "(111*"c")\0" (112 bytes)
-accept                -> "\000041" (6 bytes)
+accept                -> "\000048" (6 bytes)
 getsockname(accepted) -> "(111*"c")\0" (112 bytes)
-getpeername(accepted) -> "\000041" (6 bytes)
+getpeername(accepted) -> "\000048" (6 bytes)
 ./unix-stream '(112*"c")\0'
 bind(server)          <- "(112*"c")\0" (113 bytes)
 socket file (server)  : exist
@@ -1342,9 +1563,9 @@ getsockname(server)   -> "(112*"c")\0" (113 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(112*"c")\0" (113 bytes)
 getpeername(client)   -> "(112*"c")\0" (113 bytes)
-accept                -> "\000042" (6 bytes)
+accept                -> "\000049" (6 bytes)
 getsockname(accepted) -> "(112*"c")\0" (113 bytes)
-getpeername(accepted) -> "\000042" (6 bytes)
+getpeername(accepted) -> "\000049" (6 bytes)
 ./unix-stream '(113*"c")\0'
 bind(server)          <- "(113*"c")\0" (114 bytes)
 socket file (server)  : exist
@@ -1352,9 +1573,9 @@ getsockname(server)   -> "(113*"c")\0" (114 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(113*"c")\0" (114 bytes)
 getpeername(client)   -> "(113*"c")\0" (114 bytes)
-accept                -> "\000043" (6 bytes)
+accept                -> "\00004a" (6 bytes)
 getsockname(accepted) -> "(113*"c")\0" (114 bytes)
-getpeername(accepted) -> "\000043" (6 bytes)
+getpeername(accepted) -> "\00004a" (6 bytes)
 ./unix-stream '(114*"c")\0'
 bind(server)          <- "(114*"c")\0" (115 bytes)
 socket file (server)  : exist
@@ -1362,9 +1583,9 @@ getsockname(server)   -> "(114*"c")\0" (115 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(114*"c")\0" (115 bytes)
 getpeername(client)   -> "(114*"c")\0" (115 bytes)
-accept                -> "\000044" (6 bytes)
+accept                -> "\00004b" (6 bytes)
 getsockname(accepted) -> "(114*"c")\0" (115 bytes)
-getpeername(accepted) -> "\000044" (6 bytes)
+getpeername(accepted) -> "\00004b" (6 bytes)
 ./unix-stream '(115*"c")\0'
 bind(server)          <- "(115*"c")\0" (116 bytes)
 socket file (server)  : exist
@@ -1372,9 +1593,9 @@ getsockname(server)   -> "(115*"c")\0" (116 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(115*"c")\0" (116 bytes)
 getpeername(client)   -> "(115*"c")\0" (116 bytes)
-accept                -> "\000045" (6 bytes)
+accept                -> "\00004c" (6 bytes)
 getsockname(accepted) -> "(115*"c")\0" (116 bytes)
-getpeername(accepted) -> "\000045" (6 bytes)
+getpeername(accepted) -> "\00004c" (6 bytes)
 ./unix-stream '(116*"c")\0'
 bind(server)          <- "(116*"c")\0" (117 bytes)
 socket file (server)  : exist
@@ -1382,9 +1603,9 @@ getsockname(server)   -> "(116*"c")\0" (117 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(116*"c")\0" (117 bytes)
 getpeername(client)   -> "(116*"c")\0" (117 bytes)
-accept                -> "\000046" (6 bytes)
+accept                -> "\00004d" (6 bytes)
 getsockname(accepted) -> "(116*"c")\0" (117 bytes)
-getpeername(accepted) -> "\000046" (6 bytes)
+getpeername(accepted) -> "\00004d" (6 bytes)
 ./unix-stream '(117*"c")\0'
 bind(server)          <- "(117*"c")\0" (118 bytes)
 socket file (server)  : exist
@@ -1392,9 +1613,9 @@ getsockname(server)   -> "(117*"c")\0" (118 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(117*"c")\0" (118 bytes)
 getpeername(client)   -> "(117*"c")\0" (118 bytes)
-accept                -> "\000047" (6 bytes)
+accept                -> "\00004e" (6 bytes)
 getsockname(accepted) -> "(117*"c")\0" (118 bytes)
-getpeername(accepted) -> "\000047" (6 bytes)
+getpeername(accepted) -> "\00004e" (6 bytes)
 ./unix-stream '(118*"c")\0'
 bind(server)          <- "(118*"c")\0" (119 bytes)
 socket file (server)  : exist
@@ -1402,9 +1623,9 @@ getsockname(server)   -> "(118*"c")\0" (119 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(118*"c")\0" (119 bytes)
 getpeername(client)   -> "(118*"c")\0" (119 bytes)
-accept                -> "\000048" (6 bytes)
+accept                -> "\00004f" (6 bytes)
 getsockname(accepted) -> "(118*"c")\0" (119 bytes)
-getpeername(accepted) -> "\000048" (6 bytes)
+getpeername(accepted) -> "\00004f" (6 bytes)
 ./unix-stream '(119*"c")\0'
 bind(server)          <- "(119*"c")\0" (120 bytes)
 socket file (server)  : exist
@@ -1412,9 +1633,9 @@ getsockname(server)   -> "(119*"c")\0" (120 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(119*"c")\0" (120 bytes)
 getpeername(client)   -> "(119*"c")\0" (120 bytes)
-accept                -> "\000049" (6 bytes)
+accept                -> "\000050" (6 bytes)
 getsockname(accepted) -> "(119*"c")\0" (120 bytes)
-getpeername(accepted) -> "\000049" (6 bytes)
+getpeername(accepted) -> "\000050" (6 bytes)
 
 ./unix-stream '(120*"c")\0'
 bind(server)          <- "(120*"c")\0" (121 bytes)
@@ -1423,9 +1644,9 @@ getsockname(server)   -> "(120*"c")\0" (121 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(120*"c")\0" (121 bytes)
 getpeername(client)   -> "(120*"c")\0" (121 bytes)
-accept                -> "\00004a" (6 bytes)
+accept                -> "\000051" (6 bytes)
 getsockname(accepted) -> "(120*"c")\0" (121 bytes)
-getpeername(accepted) -> "\00004a" (6 bytes)
+getpeername(accepted) -> "\000051" (6 bytes)
 ./unix-stream '(121*"c")\0'
 bind(server)          <- "(121*"c")\0" (122 bytes)
 socket file (server)  : exist
@@ -1433,9 +1654,9 @@ getsockname(server)   -> "(121*"c")\0" (122 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(121*"c")\0" (122 bytes)
 getpeername(client)   -> "(121*"c")\0" (122 bytes)
-accept                -> "\00004b" (6 bytes)
+accept                -> "\000052" (6 bytes)
 getsockname(accepted) -> "(121*"c")\0" (122 bytes)
-getpeername(accepted) -> "\00004b" (6 bytes)
+getpeername(accepted) -> "\000052" (6 bytes)
 ./unix-stream '(122*"c")\0'
 bind(server)          <- "(122*"c")\0" (123 bytes)
 socket file (server)  : exist
@@ -1443,9 +1664,9 @@ getsockname(server)   -> "(122*"c")\0" (123 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(122*"c")\0" (123 bytes)
 getpeername(client)   -> "(122*"c")\0" (123 bytes)
-accept                -> "\00004c" (6 bytes)
+accept                -> "\000053" (6 bytes)
 getsockname(accepted) -> "(122*"c")\0" (123 bytes)
-getpeername(accepted) -> "\00004c" (6 bytes)
+getpeername(accepted) -> "\000053" (6 bytes)
 ./unix-stream '(123*"c")\0'
 bind(server)          <- "(123*"c")\0" (124 bytes)
 socket file (server)  : exist
@@ -1453,9 +1674,9 @@ getsockname(server)   -> "(123*"c")\0" (124 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(123*"c")\0" (124 bytes)
 getpeername(client)   -> "(123*"c")\0" (124 bytes)
-accept                -> "\00004d" (6 bytes)
+accept                -> "\000054" (6 bytes)
 getsockname(accepted) -> "(123*"c")\0" (124 bytes)
-getpeername(accepted) -> "\00004d" (6 bytes)
+getpeername(accepted) -> "\000054" (6 bytes)
 ./unix-stream '(124*"c")\0'
 bind(server)          <- "(124*"c")\0" (125 bytes)
 socket file (server)  : exist
@@ -1463,9 +1684,9 @@ getsockname(server)   -> "(124*"c")\0" (125 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(124*"c")\0" (125 bytes)
 getpeername(client)   -> "(124*"c")\0" (125 bytes)
-accept                -> "\00004e" (6 bytes)
+accept                -> "\000055" (6 bytes)
 getsockname(accepted) -> "(124*"c")\0" (125 bytes)
-getpeername(accepted) -> "\00004e" (6 bytes)
+getpeername(accepted) -> "\000055" (6 bytes)
 ./unix-stream '(125*"c")\0'
 bind(server)          <- "(125*"c")\0" (126 bytes)
 socket file (server)  : exist
@@ -1473,9 +1694,9 @@ getsockname(server)   -> "(125*"c")\0" (126 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(125*"c")\0" (126 bytes)
 getpeername(client)   -> "(125*"c")\0" (126 bytes)
-accept                -> "\00004f" (6 bytes)
+accept                -> "\000056" (6 bytes)
 getsockname(accepted) -> "(125*"c")\0" (126 bytes)
-getpeername(accepted) -> "\00004f" (6 bytes)
+getpeername(accepted) -> "\000056" (6 bytes)
 ./unix-stream '(126*"c")\0'
 bind(server)          <- "(126*"c")\0" (127 bytes)
 bind(server): EINVAL
@@ -1527,9 +1748,9 @@ getsockname(server)   -> "(58*"./")01234567\0" (125 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(58*"./")01234567\0" (125 bytes)
 getpeername(client)   -> "(58*"./")01234567\0" (125 bytes)
-accept                -> "\000050" (6 bytes)
+accept                -> "\000057" (6 bytes)
 getsockname(accepted) -> "(58*"./")01234567\0" (125 bytes)
-getpeername(accepted) -> "\000050" (6 bytes)
+getpeername(accepted) -> "\000057" (6 bytes)
 ./unix-stream -p '012345678\0'
 bind(server)          <- "(58*"./")012345678\0" (126 bytes)
 socket file (server)  : exist
@@ -1537,9 +1758,9 @@ getsockname(server)   -> "(58*"./")012345678\0" (126 bytes)
 getsockname(client): ENOTCONN
 connect               <- "(58*"./")012345678\0" (126 bytes)
 getpeername(client)   -> "(58*"./")012345678\0" (126 bytes)
-accept                -> "\000051" (6 bytes)
+accept                -> "\000058" (6 bytes)
 getsockname(accepted) -> "(58*"./")012345678\0" (126 bytes)
-getpeername(accepted) -> "\000051" (6 bytes)
+getpeername(accepted) -> "\000058" (6 bytes)
 ./unix-stream -p '0123456789\0'
 bind(server)          <- "(58*"./")0123456789\0" (127 bytes)
 bind(server): EINVAL
@@ -1615,8 +1836,8 @@ bind(server): EADDRINUSE
 
 ./unix-stream -s 'foobar'
 bind(server)          <- "foobar" (6 bytes)
-socket file (server)  : not exist
-getsockname(server)   -> "foobar\x90\xBE\x05\xCE(\xF3\0" (13 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foobar\0" (7 bytes)
 
 ./unix-stream -4 '(sun_len=1)abc\0'
 bind(server)          <- "abc\0" (4 bytes)
@@ -1625,9 +1846,9 @@ getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
 getsockname(client): ENOTCONN
 connect               <- "abc\0" (4 bytes)
 getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
-accept                -> "(sun_len=8)\000052" (6 bytes)
+accept                -> "(sun_len=8)\000059" (6 bytes)
 getsockname(accepted) -> "(sun_len=6)abc\0" (4 bytes)
-getpeername(accepted) -> "(sun_len=8)\000052" (6 bytes)
+getpeername(accepted) -> "(sun_len=8)\000059" (6 bytes)
 ./unix-stream -4 '(sun_len=2)abc\0'
 bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
@@ -1635,9 +1856,9 @@ getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
 getsockname(client): ENOTCONN
 connect               <- "abc\0" (4 bytes)
 getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
-accept                -> "(sun_len=8)\000053" (6 bytes)
+accept                -> "(sun_len=8)\00005a" (6 bytes)
 getsockname(accepted) -> "(sun_len=6)abc\0" (4 bytes)
-getpeername(accepted) -> "(sun_len=8)\000053" (6 bytes)
+getpeername(accepted) -> "(sun_len=8)\00005a" (6 bytes)
 ./unix-stream -4 '(sun_len=3)abc\0'
 bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
@@ -1645,9 +1866,9 @@ getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
 getsockname(client): ENOTCONN
 connect               <- "abc\0" (4 bytes)
 getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
-accept                -> "(sun_len=8)\000054" (6 bytes)
+accept                -> "(sun_len=8)\00005b" (6 bytes)
 getsockname(accepted) -> "(sun_len=6)abc\0" (4 bytes)
-getpeername(accepted) -> "(sun_len=8)\000054" (6 bytes)
+getpeername(accepted) -> "(sun_len=8)\00005b" (6 bytes)
 ./unix-stream -4 '(sun_len=4)abc\0'
 bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
@@ -1655,9 +1876,9 @@ getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
 getsockname(client): ENOTCONN
 connect               <- "abc\0" (4 bytes)
 getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
-accept                -> "(sun_len=8)\000055" (6 bytes)
+accept                -> "(sun_len=8)\00005c" (6 bytes)
 getsockname(accepted) -> "(sun_len=6)abc\0" (4 bytes)
-getpeername(accepted) -> "(sun_len=8)\000055" (6 bytes)
+getpeername(accepted) -> "(sun_len=8)\00005c" (6 bytes)
 ./unix-stream -4 '(sun_len=5)abc\0'
 bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
@@ -1665,9 +1886,9 @@ getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
 getsockname(client): ENOTCONN
 connect               <- "abc\0" (4 bytes)
 getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
-accept                -> "(sun_len=8)\000056" (6 bytes)
+accept                -> "(sun_len=8)\00005d" (6 bytes)
 getsockname(accepted) -> "(sun_len=6)abc\0" (4 bytes)
-getpeername(accepted) -> "(sun_len=8)\000056" (6 bytes)
+getpeername(accepted) -> "(sun_len=8)\00005d" (6 bytes)
 ./unix-stream -4 '(sun_len=6)abc\0'
 bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
@@ -1675,9 +1896,9 @@ getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
 getsockname(client): ENOTCONN
 connect               <- "abc\0" (4 bytes)
 getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
-accept                -> "(sun_len=8)\000057" (6 bytes)
+accept                -> "(sun_len=8)\00005e" (6 bytes)
 getsockname(accepted) -> "(sun_len=6)abc\0" (4 bytes)
-getpeername(accepted) -> "(sun_len=8)\000057" (6 bytes)
+getpeername(accepted) -> "(sun_len=8)\00005e" (6 bytes)
 ./unix-stream -4 '(sun_len=7)abc\0'
 bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
@@ -1685,6 +1906,6 @@ getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
 getsockname(client): ENOTCONN
 connect               <- "abc\0" (4 bytes)
 getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
-accept                -> "(sun_len=8)\000058" (6 bytes)
+accept                -> "(sun_len=8)\00005f" (6 bytes)
 getsockname(accepted) -> "(sun_len=6)abc\0" (4 bytes)
-getpeername(accepted) -> "(sun_len=8)\000058" (6 bytes)
+getpeername(accepted) -> "(sun_len=8)\00005f" (6 bytes)

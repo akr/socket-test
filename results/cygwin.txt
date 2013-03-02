@@ -284,6 +284,7 @@ EUSERS = Too many users
 EWOULDBLOCK = Resource temporarily unavailable
 EXDEV = Invalid cross-device link
 EXFULL = Exchange full
+0 = No error
 ./errnum
 E2BIG = 7
 EACCES = 13

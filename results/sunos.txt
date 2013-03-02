@@ -276,6 +276,7 @@ EUSERS = Too many users
 EWOULDBLOCK = Resource temporarily unavailable
 EXDEV = Cross-device link
 EXFULL = Message tables full
+0 = Error 0
 135 = Structure needs cleaning
 137 = Not a name file
 138 = Not available

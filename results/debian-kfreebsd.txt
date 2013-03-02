@@ -262,6 +262,7 @@ ETXTBSY = Text file busy
 EUSERS = Too many users
 EWOULDBLOCK = Resource temporarily unavailable
 EXDEV = Invalid cross-device link
+0 = Success
 ./errnum
 E2BIG = 7
 EACCES = 13

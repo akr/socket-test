@@ -289,6 +289,7 @@ EUSERS = Too many users
 EWOULDBLOCK = Resource temporarily unavailable
 EXDEV = Invalid cross-device link
 EXFULL = Exchange full
+0 = Success
 ./errnum
 E2BIG = 7
 EACCES = 13
@@ -2308,7 +2309,7 @@ bind(client): EINVAL
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\00001e" (6 bytes)
+getsockname(server)   -> "\000022" (6 bytes)
 ./unix-stream -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -2335,7 +2336,7 @@ bind(server): EADDRINUSE
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\00001f" (6 bytes)
+getsockname(server)   -> "\000023" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
