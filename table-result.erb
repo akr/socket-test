@@ -66,6 +66,7 @@ def merge_orderd(*arys)
       e2 = ary2[i]
       (g[e2] ||= []) << e1
     }
+    g[ary[0]] ||= []
   }
   merged = []
   g.tsort_each {|e|
@@ -456,7 +457,10 @@ end
     <th><%=h os %></th>
 % }
   </tr>
-% action_os_result.keys.sort_by {|action| command_actions_order[command][action] }.each {|action|
+% sorted_actions = action_os_result.keys.sort_by {|action|
+%   command_actions_order[command][action]
+% }
+% sorted_actions.each {|action|
 %   os_result = action_os_result[action]
   <tr>
     <th align="left"><%=h action %></th>
