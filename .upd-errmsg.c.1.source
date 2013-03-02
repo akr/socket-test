@@ -58,9 +58,11 @@ void func(int errcand, void *arg)
      *   "Unknown Midi Kit Error (-NNNNNNNNNN)"
      *   "Unknown Storage Kit Error (-NNNNNNNNNN)"
      *   "Unknown POSIX Error (-NNNNNNNNNN)"
+     *   "No Error (NNN)"
      */
 #define START_WITH(prefix) (strncmp(msg, (prefix), sizeof(prefix)-1) == 0)
     if (START_WITH("Unknown ") ||
+        START_WITH("No Error (") ||
         START_WITH("Error ") ||
         START_WITH("Undefined "))
       return;
