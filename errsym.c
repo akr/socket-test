@@ -59,14 +59,23 @@ char *errsym(int err)
 #ifdef EAUTH
   if (err == EAUTH) { return "EAUTH"; } else
 #endif
+#ifdef EBADARCH
+  if (err == EBADARCH) { return "EBADARCH"; } else
+#endif
 #ifdef EBADE
   if (err == EBADE) { return "EBADE"; } else
+#endif
+#ifdef EBADEXEC
+  if (err == EBADEXEC) { return "EBADEXEC"; } else
 #endif
 #ifdef EBADF
   if (err == EBADF) { return "EBADF"; } else
 #endif
 #ifdef EBADFD
   if (err == EBADFD) { return "EBADFD"; } else
+#endif
+#ifdef EBADMACHO
+  if (err == EBADMACHO) { return "EBADMACHO"; } else
 #endif
 #ifdef EBADMSG
   if (err == EBADMSG) { return "EBADMSG"; } else
@@ -121,6 +130,9 @@ char *errsym(int err)
 #endif
 #ifdef EDESTADDRREQ
   if (err == EDESTADDRREQ) { return "EDESTADDRREQ"; } else
+#endif
+#ifdef EDEVERR
+  if (err == EDEVERR) { return "EDEVERR"; } else
 #endif
 #ifdef EDOM
   if (err == EDOM) { return "EDOM"; } else
@@ -314,6 +326,9 @@ char *errsym(int err)
 #ifdef ENOPKG
   if (err == ENOPKG) { return "ENOPKG"; } else
 #endif
+#ifdef ENOPOLICY
+  if (err == ENOPOLICY) { return "ENOPOLICY"; } else
+#endif
 #ifdef ENOPROTOOPT
   if (err == ENOPROTOOPT) { return "ENOPROTOOPT"; } else
 #endif
@@ -404,6 +419,9 @@ char *errsym(int err)
 #ifdef EPROTOTYPE
   if (err == EPROTOTYPE) { return "EPROTOTYPE"; } else
 #endif
+#ifdef EPWROFF
+  if (err == EPWROFF) { return "EPWROFF"; } else
+#endif
 #ifdef ERANGE
   if (err == ERANGE) { return "ERANGE"; } else
 #endif
@@ -427,6 +445,9 @@ char *errsym(int err)
 #endif
 #ifdef ERPCMISMATCH
   if (err == ERPCMISMATCH) { return "ERPCMISMATCH"; } else
+#endif
+#ifdef ESHLIBVERS
+  if (err == ESHLIBVERS) { return "ESHLIBVERS"; } else
 #endif
 #ifdef ESHUTDOWN
   if (err == ESHUTDOWN) { return "ESHUTDOWN"; } else
@@ -583,6 +604,16 @@ int errno_minmax(int *minp, int *maxp)
     if (max < EAUTH) max = EAUTH;
   }
 #endif
+#ifdef EBADARCH
+  if (!defined) {
+    defined = 1;
+    min = max = EBADARCH;
+  }
+  else {
+    if (EBADARCH < min) min = EBADARCH;
+    if (max < EBADARCH) max = EBADARCH;
+  }
+#endif
 #ifdef EBADE
   if (!defined) {
     defined = 1;
@@ -591,6 +622,16 @@ int errno_minmax(int *minp, int *maxp)
   else {
     if (EBADE < min) min = EBADE;
     if (max < EBADE) max = EBADE;
+  }
+#endif
+#ifdef EBADEXEC
+  if (!defined) {
+    defined = 1;
+    min = max = EBADEXEC;
+  }
+  else {
+    if (EBADEXEC < min) min = EBADEXEC;
+    if (max < EBADEXEC) max = EBADEXEC;
   }
 #endif
 #ifdef EBADF
@@ -611,6 +652,16 @@ int errno_minmax(int *minp, int *maxp)
   else {
     if (EBADFD < min) min = EBADFD;
     if (max < EBADFD) max = EBADFD;
+  }
+#endif
+#ifdef EBADMACHO
+  if (!defined) {
+    defined = 1;
+    min = max = EBADMACHO;
+  }
+  else {
+    if (EBADMACHO < min) min = EBADMACHO;
+    if (max < EBADMACHO) max = EBADMACHO;
   }
 #endif
 #ifdef EBADMSG
@@ -791,6 +842,16 @@ int errno_minmax(int *minp, int *maxp)
   else {
     if (EDESTADDRREQ < min) min = EDESTADDRREQ;
     if (max < EDESTADDRREQ) max = EDESTADDRREQ;
+  }
+#endif
+#ifdef EDEVERR
+  if (!defined) {
+    defined = 1;
+    min = max = EDEVERR;
+  }
+  else {
+    if (EDEVERR < min) min = EDEVERR;
+    if (max < EDEVERR) max = EDEVERR;
   }
 #endif
 #ifdef EDOM
@@ -1433,6 +1494,16 @@ int errno_minmax(int *minp, int *maxp)
     if (max < ENOPKG) max = ENOPKG;
   }
 #endif
+#ifdef ENOPOLICY
+  if (!defined) {
+    defined = 1;
+    min = max = ENOPOLICY;
+  }
+  else {
+    if (ENOPOLICY < min) min = ENOPOLICY;
+    if (max < ENOPOLICY) max = ENOPOLICY;
+  }
+#endif
 #ifdef ENOPROTOOPT
   if (!defined) {
     defined = 1;
@@ -1733,6 +1804,16 @@ int errno_minmax(int *minp, int *maxp)
     if (max < EPROTOTYPE) max = EPROTOTYPE;
   }
 #endif
+#ifdef EPWROFF
+  if (!defined) {
+    defined = 1;
+    min = max = EPWROFF;
+  }
+  else {
+    if (EPWROFF < min) min = EPWROFF;
+    if (max < EPWROFF) max = EPWROFF;
+  }
+#endif
 #ifdef ERANGE
   if (!defined) {
     defined = 1;
@@ -1811,6 +1892,16 @@ int errno_minmax(int *minp, int *maxp)
   else {
     if (ERPCMISMATCH < min) min = ERPCMISMATCH;
     if (max < ERPCMISMATCH) max = ERPCMISMATCH;
+  }
+#endif
+#ifdef ESHLIBVERS
+  if (!defined) {
+    defined = 1;
+    min = max = ESHLIBVERS;
+  }
+  else {
+    if (ESHLIBVERS < min) min = ESHLIBVERS;
+    if (max < ESHLIBVERS) max = ESHLIBVERS;
   }
 #endif
 #ifdef ESHUTDOWN

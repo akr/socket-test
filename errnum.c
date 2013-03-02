@@ -74,8 +74,16 @@ int main(int argc, char *argv[])
   err = EAUTH; str = "EAUTH";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef EBADARCH
+  err = EBADARCH; str = "EBADARCH";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef EBADE
   err = EBADE; str = "EBADE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef EBADEXEC
+  err = EBADEXEC; str = "EBADEXEC";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef EBADF
@@ -84,6 +92,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef EBADFD
   err = EBADFD; str = "EBADFD";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef EBADMACHO
+  err = EBADMACHO; str = "EBADMACHO";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef EBADMSG
@@ -156,6 +168,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef EDESTADDRREQ
   err = EDESTADDRREQ; str = "EDESTADDRREQ";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef EDEVERR
+  err = EDEVERR; str = "EDEVERR";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef EDOM
@@ -414,6 +430,10 @@ int main(int argc, char *argv[])
   err = ENOPKG; str = "ENOPKG";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef ENOPOLICY
+  err = ENOPOLICY; str = "ENOPOLICY";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef ENOPROTOOPT
   err = ENOPROTOOPT; str = "ENOPROTOOPT";
   printf("%s = %d\n", str, err);
@@ -534,6 +554,10 @@ int main(int argc, char *argv[])
   err = EPROTOTYPE; str = "EPROTOTYPE";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef EPWROFF
+  err = EPWROFF; str = "EPWROFF";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef ERANGE
   err = ERANGE; str = "ERANGE";
   printf("%s = %d\n", str, err);
@@ -564,6 +588,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef ERPCMISMATCH
   err = ERPCMISMATCH; str = "ERPCMISMATCH";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef ESHLIBVERS
+  err = ESHLIBVERS; str = "ESHLIBVERS";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef ESHUTDOWN
