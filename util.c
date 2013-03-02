@@ -521,6 +521,7 @@ static void buffer_add_sockaddr(buffer_t *buf, struct sockaddr *sockaddr_ptr, si
       if (opt_4 && sockaddr_ptr->sa_len != 0) {
         buffer_addf(" (sa_len=%d)", sockaddr_ptr->sa_len);
 #endif
+      buffer_add_byte(buf, ' ');
       buffer_add_quoted_mem(buf, sockaddr_ptr, given_len);
       if (truncated)
         buffer_add_str(buf, "...");
