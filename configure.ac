@@ -42,6 +42,17 @@ AC_CHECK_LIB([network], [socketpair]) # Haiku.
 
 SOCKETTEST_INCLUDES="AC_INCLUDES_DEFAULT"
 
+AH_TEMPLATE([HAVE_LIMITS_H], [Define to 1 if you have the <limits.h> header file.])
+AH_TEMPLATE([HAVE_ERRNO_H], [Define to 1 if you have the <errno.h> header file.])
+AH_TEMPLATE([HAVE_CTYPE_H], [Define to 1 if you have the <ctype.h> header file.])
+AH_TEMPLATE([HAVE_FLOAT_H], [Define to 1 if you have the <float.h> header file.])
+AH_TEMPLATE([HAVE_TIME_H], [Define to 1 if you have the <time.h> header file.])
+AH_TEMPLATE([HAVE_SIGNAL_H], [Define to 1 if you have the <signal.h> header file.])
+AH_TEMPLATE([HAVE_SYS_WAIT_H], [Define to 1 if you have the <sys/wait.h> header file.])
+AH_TEMPLATE([HAVE_SYS_UIO_H], [Define to 1 if you have the <sys/uio.h> header file.])
+AH_TEMPLATE([HAVE_SYS_SOCKET_H], [Define to 1 if you have the <sys/socket.h> header file.])
+AH_TEMPLATE([HAVE_SYS_UN_H], [Define to 1 if you have the <sys/un.h> header file.])
+AH_TEMPLATE([HAVE_NETINET_IN_H], [Define to 1 if you have the <netinet/in.h> header file.])
 # Minix 3.2.0: limits.h is required for sys/socket.h.
 for h in \
   limits.h errno.h ctype.h float.h time.h signal.h \
@@ -54,17 +65,6 @@ do
 [#]endif
 "
 done
-AH_TEMPLATE([HAVE_LIMITS_H], [Define to 1 if you have the <limits.h> header file.])
-AH_TEMPLATE([HAVE_ERRNO_H], [Define to 1 if you have the <errno.h> header file.])
-AH_TEMPLATE([HAVE_CTYPE_H], [Define to 1 if you have the <ctype.h> header file.])
-AH_TEMPLATE([HAVE_FLOAT_H], [Define to 1 if you have the <float.h> header file.])
-AH_TEMPLATE([HAVE_TIME_H], [Define to 1 if you have the <time.h> header file.])
-AH_TEMPLATE([HAVE_SIGNAL_H], [Define to 1 if you have the <signal.h> header file.])
-AH_TEMPLATE([HAVE_SYS_WAIT_H], [Define to 1 if you have the <sys/wait.h> header file.])
-AH_TEMPLATE([HAVE_SYS_UIO_H], [Define to 1 if you have the <sys/uio.h> header file.])
-AH_TEMPLATE([HAVE_SYS_SOCKET_H], [Define to 1 if you have the <sys/socket.h> header file.])
-AH_TEMPLATE([HAVE_SYS_UN_H], [Define to 1 if you have the <sys/un.h> header file.])
-AH_TEMPLATE([HAVE_NETINET_IN_H], [Define to 1 if you have the <netinet/in.h> header file.])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
