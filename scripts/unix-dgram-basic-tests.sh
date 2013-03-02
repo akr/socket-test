@@ -27,8 +27,6 @@
 exec 2>&1
 set -v
 
-uname -mrsv
-
 ./unix-dgram 'foo\0' 'foo\0' 'bar\0'
 ./unix-dgram 'foo\0' './foo\0' 'bar\0'
 
