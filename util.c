@@ -453,6 +453,13 @@ static void report_path_to_kernel(char *key, struct sockaddr_un *sockaddr_ptr, s
     return;
   }
 
+  if (sockaddr_ptr->sun_family != AF_UNIX) {
+    char *escaped_sockaddr = escape_string(NULL, (char *)sockaddr_ptr, sockaddr_len);
+    printf("%-21s -> faimly=%d \"%s\"\n", key, (int)sockaddr_ptr->sun_family, escaped_sockaddr);
+    free(escaped_sockaddr);
+    return;
+  }
+
 #ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
   path_sun_len = sockaddr_ptr->sun_len;
 #else
@@ -476,6 +483,13 @@ static void report_path_from_kernel(char *key, size_t buf_len, struct sockaddr_u
 
   if (sockaddr_len < offsetof(struct sockaddr_un, sun_path)) {
     printf("%-21s -> too short sockaddr_un (%d bytes)\n", key, (int)sockaddr_len);
+    return;
+  }
+
+  if (sockaddr_ptr->sun_family != AF_UNIX) {
+    char *escaped_sockaddr = escape_string(NULL, (char *)sockaddr_ptr, sockaddr_len);
+    printf("%-21s -> faimly=%d \"%s\"\n", key, (int)sockaddr_ptr->sun_family, escaped_sockaddr);
+    free(escaped_sockaddr);
     return;
   }
 
