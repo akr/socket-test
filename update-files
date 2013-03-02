@@ -31,7 +31,7 @@
 #     commandline-to-create-target-files ...
 #
 # hidden-basename-prefix is ".upd" by default.
-# -p option overwrites it.
+# -b option overwrites it.
 
 # example:
 #   update-files dst -- src -- cp src dst
@@ -73,12 +73,17 @@ memo_prefix="`dirname $target1`/$hidden_basename_prefix-`basename $target1`"
 rm -f "$memo_prefix".*.tmp
 
 copyable=true
+uncopyable_reason=
 
+# record the commandline arguments in a temporally file.
 echo "$*" > "$memo_prefix.args.tmp"
 if [ ! -f "$memo_prefix.args" ] || ! cmp -s "$memo_prefix.args" "$memo_prefix.args.tmp"; then
   copyable=false
+  uncopyable_reason="$uncopyable_reason arguments"
 fi
 
+# Record the target filenames in temporally files.
+# Test recorded target files availability.
 i=1
 while [ "$1" != "--" ]; do
   target="$1"
@@ -86,16 +91,20 @@ while [ "$1" != "--" ]; do
   echo "$target" > "$memo_prefix.$i.target.filename.tmp"
   if [ ! -f "$memo_prefix.$i.target" ]; then
     copyable=false
+    uncopyable_reason="$uncopyable_reason $target"
   fi
   i=`expr $i + 1`
 done
 
+# Check the first separator "--".
 if [ "$1" != "--" ]; then
   echo 'update-files: first "--" not found' >&2
   exit 1
 fi
 shift
 
+# Record the source filenames in temporally files.
+# Test recorded source files availability and validity.
 i=1
 while [ "$1" != "--" ]; do
   source="$1"
@@ -103,10 +112,12 @@ while [ "$1" != "--" ]; do
   echo "$source" > "$memo_prefix.$i.source.filename.tmp"
   if [ ! -f "$memo_prefix.$i.source" ] || ! cmp -s "$memo_prefix.$i.source" "$source"; then
     copyable=false
+    uncopyable_reason="$uncopyable_reason $source"
   fi
   i=`expr $i + 1`
 done
 
+# Check the second separator "--".
 if [ "$1" != "--" ]; then
   echo 'update-files: second "--" not found' >&2
   exit 1
@@ -124,6 +135,8 @@ if $copyable; then
   rm -f "$memo_prefix".*.tmp
   true
 else
+  echo "changed:$uncopyable_reason"
+  echo "command: $*"
   for f in "$memo_prefix".*.target.filename.tmp; do
     dst="`cat $f`"
     dstlog="`dirname $f`/`basename $f .filename.tmp`"
