@@ -92,6 +92,9 @@ char *errsym(int err)
 #ifdef ECANCELED
   if (err == ECANCELED) { return "ECANCELED"; } else
 #endif
+#ifdef ECAPMODE
+  if (err == ECAPMODE) { return "ECAPMODE"; } else
+#endif
 #ifdef ECHILD
   if (err == ECHILD) { return "ECHILD"; } else
 #endif
@@ -121,6 +124,9 @@ char *errsym(int err)
 #endif
 #ifdef EDOM
   if (err == EDOM) { return "EDOM"; } else
+#endif
+#ifdef EDOOFUS
+  if (err == EDOOFUS) { return "EDOOFUS"; } else
 #endif
 #ifdef EDOTDOT
   if (err == EDOTDOT) { return "EDOTDOT"; } else
@@ -325,6 +331,9 @@ char *errsym(int err)
 #endif
 #ifdef ENOTBLK
   if (err == ENOTBLK) { return "ENOTBLK"; } else
+#endif
+#ifdef ENOTCAPABLE
+  if (err == ENOTCAPABLE) { return "ENOTCAPABLE"; } else
 #endif
 #ifdef ENOTCONN
   if (err == ENOTCONN) { return "ENOTCONN"; } else
@@ -684,6 +693,16 @@ int errno_minmax(int *minp, int *maxp)
     if (max < ECANCELED) max = ECANCELED;
   }
 #endif
+#ifdef ECAPMODE
+  if (!defined) {
+    defined = 1;
+    min = max = ECAPMODE;
+  }
+  else {
+    if (ECAPMODE < min) min = ECAPMODE;
+    if (max < ECAPMODE) max = ECAPMODE;
+  }
+#endif
 #ifdef ECHILD
   if (!defined) {
     defined = 1;
@@ -782,6 +801,16 @@ int errno_minmax(int *minp, int *maxp)
   else {
     if (EDOM < min) min = EDOM;
     if (max < EDOM) max = EDOM;
+  }
+#endif
+#ifdef EDOOFUS
+  if (!defined) {
+    defined = 1;
+    min = max = EDOOFUS;
+  }
+  else {
+    if (EDOOFUS < min) min = EDOOFUS;
+    if (max < EDOOFUS) max = EDOOFUS;
   }
 #endif
 #ifdef EDOTDOT
@@ -1462,6 +1491,16 @@ int errno_minmax(int *minp, int *maxp)
   else {
     if (ENOTBLK < min) min = ENOTBLK;
     if (max < ENOTBLK) max = ENOTBLK;
+  }
+#endif
+#ifdef ENOTCAPABLE
+  if (!defined) {
+    defined = 1;
+    min = max = ENOTCAPABLE;
+  }
+  else {
+    if (ENOTCAPABLE < min) min = ENOTCAPABLE;
+    if (max < ENOTCAPABLE) max = ENOTCAPABLE;
   }
 #endif
 #ifdef ENOTCONN

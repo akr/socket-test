@@ -119,6 +119,10 @@ int main(int argc, char *argv[])
   err = ECANCELED; str = "ECANCELED";
   printf("%s = %s\n", str, strerror(err));
 #endif
+#ifdef ECAPMODE
+  err = ECAPMODE; str = "ECAPMODE";
+  printf("%s = %s\n", str, strerror(err));
+#endif
 #ifdef ECHILD
   err = ECHILD; str = "ECHILD";
   printf("%s = %s\n", str, strerror(err));
@@ -157,6 +161,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef EDOM
   err = EDOM; str = "EDOM";
+  printf("%s = %s\n", str, strerror(err));
+#endif
+#ifdef EDOOFUS
+  err = EDOOFUS; str = "EDOOFUS";
   printf("%s = %s\n", str, strerror(err));
 #endif
 #ifdef EDOTDOT
@@ -429,6 +437,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef ENOTBLK
   err = ENOTBLK; str = "ENOTBLK";
+  printf("%s = %s\n", str, strerror(err));
+#endif
+#ifdef ENOTCAPABLE
+  err = ENOTCAPABLE; str = "ENOTCAPABLE";
   printf("%s = %s\n", str, strerror(err));
 #endif
 #ifdef ENOTCONN
