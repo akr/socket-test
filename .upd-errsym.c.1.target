@@ -593,6 +593,465 @@ char *errsym(int err)
 #ifdef ENOTACTIVE
   if (err == ENOTACTIVE) { return "ENOTACTIVE"; } else
 #endif
+#ifdef B_NO_ERROR
+  if (err == B_NO_ERROR) { return "B_NO_ERROR"; } else
+#endif
+#ifdef B_ERROR
+  if (err == B_ERROR) { return "B_ERROR"; } else
+#endif
+#ifdef B_NO_MEMORY
+  if (err == B_NO_MEMORY) { return "B_NO_MEMORY"; } else
+#endif
+#ifdef B_POSIX_ENOMEM
+  if (err == B_POSIX_ENOMEM) { return "B_POSIX_ENOMEM"; } else
+#endif
+#ifdef B_IO_ERROR
+  if (err == B_IO_ERROR) { return "B_IO_ERROR"; } else
+#endif
+#ifdef B_PERMISSION_DENIED
+  if (err == B_PERMISSION_DENIED) { return "B_PERMISSION_DENIED"; } else
+#endif
+#ifdef B_BAD_INDEX
+  if (err == B_BAD_INDEX) { return "B_BAD_INDEX"; } else
+#endif
+#ifdef B_BAD_TYPE
+  if (err == B_BAD_TYPE) { return "B_BAD_TYPE"; } else
+#endif
+#ifdef B_BAD_VALUE
+  if (err == B_BAD_VALUE) { return "B_BAD_VALUE"; } else
+#endif
+#ifdef B_MISMATCHED_VALUES
+  if (err == B_MISMATCHED_VALUES) { return "B_MISMATCHED_VALUES"; } else
+#endif
+#ifdef B_NAME_NOT_FOUND
+  if (err == B_NAME_NOT_FOUND) { return "B_NAME_NOT_FOUND"; } else
+#endif
+#ifdef B_NAME_IN_USE
+  if (err == B_NAME_IN_USE) { return "B_NAME_IN_USE"; } else
+#endif
+#ifdef B_TIMED_OUT
+  if (err == B_TIMED_OUT) { return "B_TIMED_OUT"; } else
+#endif
+#ifdef B_INTERRUPTED
+  if (err == B_INTERRUPTED) { return "B_INTERRUPTED"; } else
+#endif
+#ifdef B_WOULD_BLOCK
+  if (err == B_WOULD_BLOCK) { return "B_WOULD_BLOCK"; } else
+#endif
+#ifdef B_CANCELED
+  if (err == B_CANCELED) { return "B_CANCELED"; } else
+#endif
+#ifdef B_NO_INIT
+  if (err == B_NO_INIT) { return "B_NO_INIT"; } else
+#endif
+#ifdef B_BUSY
+  if (err == B_BUSY) { return "B_BUSY"; } else
+#endif
+#ifdef B_NOT_ALLOWED
+  if (err == B_NOT_ALLOWED) { return "B_NOT_ALLOWED"; } else
+#endif
+#ifdef B_BAD_DATA
+  if (err == B_BAD_DATA) { return "B_BAD_DATA"; } else
+#endif
+#ifdef B_BAD_SEM_ID
+  if (err == B_BAD_SEM_ID) { return "B_BAD_SEM_ID"; } else
+#endif
+#ifdef B_NO_MORE_SEMS
+  if (err == B_NO_MORE_SEMS) { return "B_NO_MORE_SEMS"; } else
+#endif
+#ifdef B_BAD_THREAD_ID
+  if (err == B_BAD_THREAD_ID) { return "B_BAD_THREAD_ID"; } else
+#endif
+#ifdef B_NO_MORE_THREADS
+  if (err == B_NO_MORE_THREADS) { return "B_NO_MORE_THREADS"; } else
+#endif
+#ifdef B_BAD_THREAD_STATE
+  if (err == B_BAD_THREAD_STATE) { return "B_BAD_THREAD_STATE"; } else
+#endif
+#ifdef B_BAD_TEAM_ID
+  if (err == B_BAD_TEAM_ID) { return "B_BAD_TEAM_ID"; } else
+#endif
+#ifdef B_NO_MORE_TEAMS
+  if (err == B_NO_MORE_TEAMS) { return "B_NO_MORE_TEAMS"; } else
+#endif
+#ifdef B_BAD_PORT_ID
+  if (err == B_BAD_PORT_ID) { return "B_BAD_PORT_ID"; } else
+#endif
+#ifdef B_NO_MORE_PORTS
+  if (err == B_NO_MORE_PORTS) { return "B_NO_MORE_PORTS"; } else
+#endif
+#ifdef B_BAD_IMAGE_ID
+  if (err == B_BAD_IMAGE_ID) { return "B_BAD_IMAGE_ID"; } else
+#endif
+#ifdef B_BAD_ADDRESS
+  if (err == B_BAD_ADDRESS) { return "B_BAD_ADDRESS"; } else
+#endif
+#ifdef B_NOT_AN_EXECUTABLE
+  if (err == B_NOT_AN_EXECUTABLE) { return "B_NOT_AN_EXECUTABLE"; } else
+#endif
+#ifdef B_MISSING_LIBRARY
+  if (err == B_MISSING_LIBRARY) { return "B_MISSING_LIBRARY"; } else
+#endif
+#ifdef B_MISSING_SYMBOL
+  if (err == B_MISSING_SYMBOL) { return "B_MISSING_SYMBOL"; } else
+#endif
+#ifdef B_DEBUGGER_ALREADY_INSTALLED
+  if (err == B_DEBUGGER_ALREADY_INSTALLED) { return "B_DEBUGGER_ALREADY_INSTALLED"; } else
+#endif
+#ifdef B_BAD_REPLY
+  if (err == B_BAD_REPLY) { return "B_BAD_REPLY"; } else
+#endif
+#ifdef B_DUPLICATE_REPLY
+  if (err == B_DUPLICATE_REPLY) { return "B_DUPLICATE_REPLY"; } else
+#endif
+#ifdef B_MESSAGE_TO_SELF
+  if (err == B_MESSAGE_TO_SELF) { return "B_MESSAGE_TO_SELF"; } else
+#endif
+#ifdef B_BAD_HANDLER
+  if (err == B_BAD_HANDLER) { return "B_BAD_HANDLER"; } else
+#endif
+#ifdef B_ALREADY_RUNNING
+  if (err == B_ALREADY_RUNNING) { return "B_ALREADY_RUNNING"; } else
+#endif
+#ifdef B_LAUNCH_FAILED
+  if (err == B_LAUNCH_FAILED) { return "B_LAUNCH_FAILED"; } else
+#endif
+#ifdef B_AMBIGUOUS_APP_LAUNCH
+  if (err == B_AMBIGUOUS_APP_LAUNCH) { return "B_AMBIGUOUS_APP_LAUNCH"; } else
+#endif
+#ifdef B_UNKNOWN_MIME_TYPE
+  if (err == B_UNKNOWN_MIME_TYPE) { return "B_UNKNOWN_MIME_TYPE"; } else
+#endif
+#ifdef B_BAD_SCRIPT_SYNTAX
+  if (err == B_BAD_SCRIPT_SYNTAX) { return "B_BAD_SCRIPT_SYNTAX"; } else
+#endif
+#ifdef B_LAUNCH_FAILED_NO_RESOLVE_LINK
+  if (err == B_LAUNCH_FAILED_NO_RESOLVE_LINK) { return "B_LAUNCH_FAILED_NO_RESOLVE_LINK"; } else
+#endif
+#ifdef B_LAUNCH_FAILED_EXECUTABLE
+  if (err == B_LAUNCH_FAILED_EXECUTABLE) { return "B_LAUNCH_FAILED_EXECUTABLE"; } else
+#endif
+#ifdef B_LAUNCH_FAILED_APP_NOT_FOUND
+  if (err == B_LAUNCH_FAILED_APP_NOT_FOUND) { return "B_LAUNCH_FAILED_APP_NOT_FOUND"; } else
+#endif
+#ifdef B_LAUNCH_FAILED_APP_IN_TRASH
+  if (err == B_LAUNCH_FAILED_APP_IN_TRASH) { return "B_LAUNCH_FAILED_APP_IN_TRASH"; } else
+#endif
+#ifdef B_LAUNCH_FAILED_NO_PREFERRED_APP
+  if (err == B_LAUNCH_FAILED_NO_PREFERRED_APP) { return "B_LAUNCH_FAILED_NO_PREFERRED_APP"; } else
+#endif
+#ifdef B_LAUNCH_FAILED_FILES_APP_NOT_FOUND
+  if (err == B_LAUNCH_FAILED_FILES_APP_NOT_FOUND) { return "B_LAUNCH_FAILED_FILES_APP_NOT_FOUND"; } else
+#endif
+#ifdef B_BAD_MIME_SNIFFER_RULE
+  if (err == B_BAD_MIME_SNIFFER_RULE) { return "B_BAD_MIME_SNIFFER_RULE"; } else
+#endif
+#ifdef B_NOT_A_MESSAGE
+  if (err == B_NOT_A_MESSAGE) { return "B_NOT_A_MESSAGE"; } else
+#endif
+#ifdef B_SHUTDOWN_CANCELLED
+  if (err == B_SHUTDOWN_CANCELLED) { return "B_SHUTDOWN_CANCELLED"; } else
+#endif
+#ifdef B_SHUTTING_DOWN
+  if (err == B_SHUTTING_DOWN) { return "B_SHUTTING_DOWN"; } else
+#endif
+#ifdef B_FILE_ERROR
+  if (err == B_FILE_ERROR) { return "B_FILE_ERROR"; } else
+#endif
+#ifdef B_FILE_NOT_FOUND
+  if (err == B_FILE_NOT_FOUND) { return "B_FILE_NOT_FOUND"; } else
+#endif
+#ifdef B_ENTRY_NOT_FOUND
+  if (err == B_ENTRY_NOT_FOUND) { return "B_ENTRY_NOT_FOUND"; } else
+#endif
+#ifdef B_FILE_EXISTS
+  if (err == B_FILE_EXISTS) { return "B_FILE_EXISTS"; } else
+#endif
+#ifdef B_NAME_TOO_LONG
+  if (err == B_NAME_TOO_LONG) { return "B_NAME_TOO_LONG"; } else
+#endif
+#ifdef B_NOT_A_DIRECTORY
+  if (err == B_NOT_A_DIRECTORY) { return "B_NOT_A_DIRECTORY"; } else
+#endif
+#ifdef B_DIRECTORY_NOT_EMPTY
+  if (err == B_DIRECTORY_NOT_EMPTY) { return "B_DIRECTORY_NOT_EMPTY"; } else
+#endif
+#ifdef B_DEVICE_FULL
+  if (err == B_DEVICE_FULL) { return "B_DEVICE_FULL"; } else
+#endif
+#ifdef B_READ_ONLY_DEVICE
+  if (err == B_READ_ONLY_DEVICE) { return "B_READ_ONLY_DEVICE"; } else
+#endif
+#ifdef B_IS_A_DIRECTORY
+  if (err == B_IS_A_DIRECTORY) { return "B_IS_A_DIRECTORY"; } else
+#endif
+#ifdef B_NO_MORE_FDS
+  if (err == B_NO_MORE_FDS) { return "B_NO_MORE_FDS"; } else
+#endif
+#ifdef B_CROSS_DEVICE_LINK
+  if (err == B_CROSS_DEVICE_LINK) { return "B_CROSS_DEVICE_LINK"; } else
+#endif
+#ifdef B_LINK_LIMIT
+  if (err == B_LINK_LIMIT) { return "B_LINK_LIMIT"; } else
+#endif
+#ifdef B_BUSTED_PIPE
+  if (err == B_BUSTED_PIPE) { return "B_BUSTED_PIPE"; } else
+#endif
+#ifdef B_UNSUPPORTED
+  if (err == B_UNSUPPORTED) { return "B_UNSUPPORTED"; } else
+#endif
+#ifdef B_PARTITION_TOO_SMALL
+  if (err == B_PARTITION_TOO_SMALL) { return "B_PARTITION_TOO_SMALL"; } else
+#endif
+#ifdef B_STREAM_NOT_FOUND
+  if (err == B_STREAM_NOT_FOUND) { return "B_STREAM_NOT_FOUND"; } else
+#endif
+#ifdef B_SERVER_NOT_FOUND
+  if (err == B_SERVER_NOT_FOUND) { return "B_SERVER_NOT_FOUND"; } else
+#endif
+#ifdef B_RESOURCE_NOT_FOUND
+  if (err == B_RESOURCE_NOT_FOUND) { return "B_RESOURCE_NOT_FOUND"; } else
+#endif
+#ifdef B_RESOURCE_UNAVAILABLE
+  if (err == B_RESOURCE_UNAVAILABLE) { return "B_RESOURCE_UNAVAILABLE"; } else
+#endif
+#ifdef B_BAD_SUBSCRIBER
+  if (err == B_BAD_SUBSCRIBER) { return "B_BAD_SUBSCRIBER"; } else
+#endif
+#ifdef B_SUBSCRIBER_NOT_ENTERED
+  if (err == B_SUBSCRIBER_NOT_ENTERED) { return "B_SUBSCRIBER_NOT_ENTERED"; } else
+#endif
+#ifdef B_BUFFER_NOT_AVAILABLE
+  if (err == B_BUFFER_NOT_AVAILABLE) { return "B_BUFFER_NOT_AVAILABLE"; } else
+#endif
+#ifdef B_LAST_BUFFER_ERROR
+  if (err == B_LAST_BUFFER_ERROR) { return "B_LAST_BUFFER_ERROR"; } else
+#endif
+#ifdef B_MEDIA_SYSTEM_FAILURE
+  if (err == B_MEDIA_SYSTEM_FAILURE) { return "B_MEDIA_SYSTEM_FAILURE"; } else
+#endif
+#ifdef B_MEDIA_BAD_NODE
+  if (err == B_MEDIA_BAD_NODE) { return "B_MEDIA_BAD_NODE"; } else
+#endif
+#ifdef B_MEDIA_NODE_BUSY
+  if (err == B_MEDIA_NODE_BUSY) { return "B_MEDIA_NODE_BUSY"; } else
+#endif
+#ifdef B_MEDIA_BAD_FORMAT
+  if (err == B_MEDIA_BAD_FORMAT) { return "B_MEDIA_BAD_FORMAT"; } else
+#endif
+#ifdef B_MEDIA_BAD_BUFFER
+  if (err == B_MEDIA_BAD_BUFFER) { return "B_MEDIA_BAD_BUFFER"; } else
+#endif
+#ifdef B_MEDIA_TOO_MANY_NODES
+  if (err == B_MEDIA_TOO_MANY_NODES) { return "B_MEDIA_TOO_MANY_NODES"; } else
+#endif
+#ifdef B_MEDIA_TOO_MANY_BUFFERS
+  if (err == B_MEDIA_TOO_MANY_BUFFERS) { return "B_MEDIA_TOO_MANY_BUFFERS"; } else
+#endif
+#ifdef B_MEDIA_NODE_ALREADY_EXISTS
+  if (err == B_MEDIA_NODE_ALREADY_EXISTS) { return "B_MEDIA_NODE_ALREADY_EXISTS"; } else
+#endif
+#ifdef B_MEDIA_BUFFER_ALREADY_EXISTS
+  if (err == B_MEDIA_BUFFER_ALREADY_EXISTS) { return "B_MEDIA_BUFFER_ALREADY_EXISTS"; } else
+#endif
+#ifdef B_MEDIA_CANNOT_SEEK
+  if (err == B_MEDIA_CANNOT_SEEK) { return "B_MEDIA_CANNOT_SEEK"; } else
+#endif
+#ifdef B_MEDIA_CANNOT_CHANGE_RUN_MODE
+  if (err == B_MEDIA_CANNOT_CHANGE_RUN_MODE) { return "B_MEDIA_CANNOT_CHANGE_RUN_MODE"; } else
+#endif
+#ifdef B_MEDIA_APP_ALREADY_REGISTERED
+  if (err == B_MEDIA_APP_ALREADY_REGISTERED) { return "B_MEDIA_APP_ALREADY_REGISTERED"; } else
+#endif
+#ifdef B_MEDIA_APP_NOT_REGISTERED
+  if (err == B_MEDIA_APP_NOT_REGISTERED) { return "B_MEDIA_APP_NOT_REGISTERED"; } else
+#endif
+#ifdef B_MEDIA_CANNOT_RECLAIM_BUFFERS
+  if (err == B_MEDIA_CANNOT_RECLAIM_BUFFERS) { return "B_MEDIA_CANNOT_RECLAIM_BUFFERS"; } else
+#endif
+#ifdef B_MEDIA_BUFFERS_NOT_RECLAIMED
+  if (err == B_MEDIA_BUFFERS_NOT_RECLAIMED) { return "B_MEDIA_BUFFERS_NOT_RECLAIMED"; } else
+#endif
+#ifdef B_MEDIA_TIME_SOURCE_STOPPED
+  if (err == B_MEDIA_TIME_SOURCE_STOPPED) { return "B_MEDIA_TIME_SOURCE_STOPPED"; } else
+#endif
+#ifdef B_MEDIA_TIME_SOURCE_BUSY
+  if (err == B_MEDIA_TIME_SOURCE_BUSY) { return "B_MEDIA_TIME_SOURCE_BUSY"; } else
+#endif
+#ifdef B_MEDIA_BAD_SOURCE
+  if (err == B_MEDIA_BAD_SOURCE) { return "B_MEDIA_BAD_SOURCE"; } else
+#endif
+#ifdef B_MEDIA_BAD_DESTINATION
+  if (err == B_MEDIA_BAD_DESTINATION) { return "B_MEDIA_BAD_DESTINATION"; } else
+#endif
+#ifdef B_MEDIA_ALREADY_CONNECTED
+  if (err == B_MEDIA_ALREADY_CONNECTED) { return "B_MEDIA_ALREADY_CONNECTED"; } else
+#endif
+#ifdef B_MEDIA_NOT_CONNECTED
+  if (err == B_MEDIA_NOT_CONNECTED) { return "B_MEDIA_NOT_CONNECTED"; } else
+#endif
+#ifdef B_MEDIA_BAD_CLIP_FORMAT
+  if (err == B_MEDIA_BAD_CLIP_FORMAT) { return "B_MEDIA_BAD_CLIP_FORMAT"; } else
+#endif
+#ifdef B_MEDIA_ADDON_FAILED
+  if (err == B_MEDIA_ADDON_FAILED) { return "B_MEDIA_ADDON_FAILED"; } else
+#endif
+#ifdef B_MEDIA_ADDON_DISABLED
+  if (err == B_MEDIA_ADDON_DISABLED) { return "B_MEDIA_ADDON_DISABLED"; } else
+#endif
+#ifdef B_MEDIA_CHANGE_IN_PROGRESS
+  if (err == B_MEDIA_CHANGE_IN_PROGRESS) { return "B_MEDIA_CHANGE_IN_PROGRESS"; } else
+#endif
+#ifdef B_MEDIA_STALE_CHANGE_COUNT
+  if (err == B_MEDIA_STALE_CHANGE_COUNT) { return "B_MEDIA_STALE_CHANGE_COUNT"; } else
+#endif
+#ifdef B_MEDIA_ADDON_RESTRICTED
+  if (err == B_MEDIA_ADDON_RESTRICTED) { return "B_MEDIA_ADDON_RESTRICTED"; } else
+#endif
+#ifdef B_MEDIA_NO_HANDLER
+  if (err == B_MEDIA_NO_HANDLER) { return "B_MEDIA_NO_HANDLER"; } else
+#endif
+#ifdef B_MEDIA_DUPLICATE_FORMAT
+  if (err == B_MEDIA_DUPLICATE_FORMAT) { return "B_MEDIA_DUPLICATE_FORMAT"; } else
+#endif
+#ifdef B_MEDIA_REALTIME_DISABLED
+  if (err == B_MEDIA_REALTIME_DISABLED) { return "B_MEDIA_REALTIME_DISABLED"; } else
+#endif
+#ifdef B_MEDIA_REALTIME_UNAVAILABLE
+  if (err == B_MEDIA_REALTIME_UNAVAILABLE) { return "B_MEDIA_REALTIME_UNAVAILABLE"; } else
+#endif
+#ifdef B_MAIL_NO_DAEMON
+  if (err == B_MAIL_NO_DAEMON) { return "B_MAIL_NO_DAEMON"; } else
+#endif
+#ifdef B_MAIL_UNKNOWN_USER
+  if (err == B_MAIL_UNKNOWN_USER) { return "B_MAIL_UNKNOWN_USER"; } else
+#endif
+#ifdef B_MAIL_WRONG_PASSWORD
+  if (err == B_MAIL_WRONG_PASSWORD) { return "B_MAIL_WRONG_PASSWORD"; } else
+#endif
+#ifdef B_MAIL_UNKNOWN_HOST
+  if (err == B_MAIL_UNKNOWN_HOST) { return "B_MAIL_UNKNOWN_HOST"; } else
+#endif
+#ifdef B_MAIL_ACCESS_ERROR
+  if (err == B_MAIL_ACCESS_ERROR) { return "B_MAIL_ACCESS_ERROR"; } else
+#endif
+#ifdef B_MAIL_UNKNOWN_FIELD
+  if (err == B_MAIL_UNKNOWN_FIELD) { return "B_MAIL_UNKNOWN_FIELD"; } else
+#endif
+#ifdef B_MAIL_NO_RECIPIENT
+  if (err == B_MAIL_NO_RECIPIENT) { return "B_MAIL_NO_RECIPIENT"; } else
+#endif
+#ifdef B_MAIL_INVALID_MAIL
+  if (err == B_MAIL_INVALID_MAIL) { return "B_MAIL_INVALID_MAIL"; } else
+#endif
+#ifdef B_NO_PRINT_SERVER
+  if (err == B_NO_PRINT_SERVER) { return "B_NO_PRINT_SERVER"; } else
+#endif
+#ifdef B_DEV_INVALID_IOCTL
+  if (err == B_DEV_INVALID_IOCTL) { return "B_DEV_INVALID_IOCTL"; } else
+#endif
+#ifdef B_DEV_NO_MEMORY
+  if (err == B_DEV_NO_MEMORY) { return "B_DEV_NO_MEMORY"; } else
+#endif
+#ifdef B_DEV_BAD_DRIVE_NUM
+  if (err == B_DEV_BAD_DRIVE_NUM) { return "B_DEV_BAD_DRIVE_NUM"; } else
+#endif
+#ifdef B_DEV_NO_MEDIA
+  if (err == B_DEV_NO_MEDIA) { return "B_DEV_NO_MEDIA"; } else
+#endif
+#ifdef B_DEV_UNREADABLE
+  if (err == B_DEV_UNREADABLE) { return "B_DEV_UNREADABLE"; } else
+#endif
+#ifdef B_DEV_FORMAT_ERROR
+  if (err == B_DEV_FORMAT_ERROR) { return "B_DEV_FORMAT_ERROR"; } else
+#endif
+#ifdef B_DEV_TIMEOUT
+  if (err == B_DEV_TIMEOUT) { return "B_DEV_TIMEOUT"; } else
+#endif
+#ifdef B_DEV_RECALIBRATE_ERROR
+  if (err == B_DEV_RECALIBRATE_ERROR) { return "B_DEV_RECALIBRATE_ERROR"; } else
+#endif
+#ifdef B_DEV_SEEK_ERROR
+  if (err == B_DEV_SEEK_ERROR) { return "B_DEV_SEEK_ERROR"; } else
+#endif
+#ifdef B_DEV_ID_ERROR
+  if (err == B_DEV_ID_ERROR) { return "B_DEV_ID_ERROR"; } else
+#endif
+#ifdef B_DEV_READ_ERROR
+  if (err == B_DEV_READ_ERROR) { return "B_DEV_READ_ERROR"; } else
+#endif
+#ifdef B_DEV_WRITE_ERROR
+  if (err == B_DEV_WRITE_ERROR) { return "B_DEV_WRITE_ERROR"; } else
+#endif
+#ifdef B_DEV_NOT_READY
+  if (err == B_DEV_NOT_READY) { return "B_DEV_NOT_READY"; } else
+#endif
+#ifdef B_DEV_MEDIA_CHANGED
+  if (err == B_DEV_MEDIA_CHANGED) { return "B_DEV_MEDIA_CHANGED"; } else
+#endif
+#ifdef B_DEV_MEDIA_CHANGE_REQUESTED
+  if (err == B_DEV_MEDIA_CHANGE_REQUESTED) { return "B_DEV_MEDIA_CHANGE_REQUESTED"; } else
+#endif
+#ifdef B_DEV_RESOURCE_CONFLICT
+  if (err == B_DEV_RESOURCE_CONFLICT) { return "B_DEV_RESOURCE_CONFLICT"; } else
+#endif
+#ifdef B_DEV_CONFIGURATION_ERROR
+  if (err == B_DEV_CONFIGURATION_ERROR) { return "B_DEV_CONFIGURATION_ERROR"; } else
+#endif
+#ifdef B_DEV_DISABLED_BY_USER
+  if (err == B_DEV_DISABLED_BY_USER) { return "B_DEV_DISABLED_BY_USER"; } else
+#endif
+#ifdef B_DEV_DOOR_OPEN
+  if (err == B_DEV_DOOR_OPEN) { return "B_DEV_DOOR_OPEN"; } else
+#endif
+#ifdef B_DEV_INVALID_PIPE
+  if (err == B_DEV_INVALID_PIPE) { return "B_DEV_INVALID_PIPE"; } else
+#endif
+#ifdef B_DEV_CRC_ERROR
+  if (err == B_DEV_CRC_ERROR) { return "B_DEV_CRC_ERROR"; } else
+#endif
+#ifdef B_DEV_STALLED
+  if (err == B_DEV_STALLED) { return "B_DEV_STALLED"; } else
+#endif
+#ifdef B_DEV_BAD_PID
+  if (err == B_DEV_BAD_PID) { return "B_DEV_BAD_PID"; } else
+#endif
+#ifdef B_DEV_UNEXPECTED_PID
+  if (err == B_DEV_UNEXPECTED_PID) { return "B_DEV_UNEXPECTED_PID"; } else
+#endif
+#ifdef B_DEV_DATA_OVERRUN
+  if (err == B_DEV_DATA_OVERRUN) { return "B_DEV_DATA_OVERRUN"; } else
+#endif
+#ifdef B_DEV_DATA_UNDERRUN
+  if (err == B_DEV_DATA_UNDERRUN) { return "B_DEV_DATA_UNDERRUN"; } else
+#endif
+#ifdef B_DEV_FIFO_OVERRUN
+  if (err == B_DEV_FIFO_OVERRUN) { return "B_DEV_FIFO_OVERRUN"; } else
+#endif
+#ifdef B_DEV_FIFO_UNDERRUN
+  if (err == B_DEV_FIFO_UNDERRUN) { return "B_DEV_FIFO_UNDERRUN"; } else
+#endif
+#ifdef B_DEV_PENDING
+  if (err == B_DEV_PENDING) { return "B_DEV_PENDING"; } else
+#endif
+#ifdef B_DEV_MULTIPLE_ERRORS
+  if (err == B_DEV_MULTIPLE_ERRORS) { return "B_DEV_MULTIPLE_ERRORS"; } else
+#endif
+#ifdef B_DEV_TOO_LATE
+  if (err == B_DEV_TOO_LATE) { return "B_DEV_TOO_LATE"; } else
+#endif
+#ifdef B_NO_TRANSLATOR
+  if (err == B_NO_TRANSLATOR) { return "B_NO_TRANSLATOR"; } else
+#endif
+#ifdef B_ILLEGAL_DATA
+  if (err == B_ILLEGAL_DATA) { return "B_ILLEGAL_DATA"; } else
+#endif
+#ifdef EFPOS
+  if (err == EFPOS) { return "EFPOS"; } else
+#endif
+#ifdef ESIGPARM
+  if (err == ESIGPARM) { return "ESIGPARM"; } else
+#endif
   return NULL;
 }
 
@@ -2475,6 +2934,1536 @@ int errno_minmax(int *minp, int *maxp)
   else {
     if (ENOTACTIVE < min) min = ENOTACTIVE;
     if (max < ENOTACTIVE) max = ENOTACTIVE;
+  }
+#endif
+#ifdef B_NO_ERROR
+  if (!defined) {
+    defined = 1;
+    min = max = B_NO_ERROR;
+  }
+  else {
+    if (B_NO_ERROR < min) min = B_NO_ERROR;
+    if (max < B_NO_ERROR) max = B_NO_ERROR;
+  }
+#endif
+#ifdef B_ERROR
+  if (!defined) {
+    defined = 1;
+    min = max = B_ERROR;
+  }
+  else {
+    if (B_ERROR < min) min = B_ERROR;
+    if (max < B_ERROR) max = B_ERROR;
+  }
+#endif
+#ifdef B_NO_MEMORY
+  if (!defined) {
+    defined = 1;
+    min = max = B_NO_MEMORY;
+  }
+  else {
+    if (B_NO_MEMORY < min) min = B_NO_MEMORY;
+    if (max < B_NO_MEMORY) max = B_NO_MEMORY;
+  }
+#endif
+#ifdef B_POSIX_ENOMEM
+  if (!defined) {
+    defined = 1;
+    min = max = B_POSIX_ENOMEM;
+  }
+  else {
+    if (B_POSIX_ENOMEM < min) min = B_POSIX_ENOMEM;
+    if (max < B_POSIX_ENOMEM) max = B_POSIX_ENOMEM;
+  }
+#endif
+#ifdef B_IO_ERROR
+  if (!defined) {
+    defined = 1;
+    min = max = B_IO_ERROR;
+  }
+  else {
+    if (B_IO_ERROR < min) min = B_IO_ERROR;
+    if (max < B_IO_ERROR) max = B_IO_ERROR;
+  }
+#endif
+#ifdef B_PERMISSION_DENIED
+  if (!defined) {
+    defined = 1;
+    min = max = B_PERMISSION_DENIED;
+  }
+  else {
+    if (B_PERMISSION_DENIED < min) min = B_PERMISSION_DENIED;
+    if (max < B_PERMISSION_DENIED) max = B_PERMISSION_DENIED;
+  }
+#endif
+#ifdef B_BAD_INDEX
+  if (!defined) {
+    defined = 1;
+    min = max = B_BAD_INDEX;
+  }
+  else {
+    if (B_BAD_INDEX < min) min = B_BAD_INDEX;
+    if (max < B_BAD_INDEX) max = B_BAD_INDEX;
+  }
+#endif
+#ifdef B_BAD_TYPE
+  if (!defined) {
+    defined = 1;
+    min = max = B_BAD_TYPE;
+  }
+  else {
+    if (B_BAD_TYPE < min) min = B_BAD_TYPE;
+    if (max < B_BAD_TYPE) max = B_BAD_TYPE;
+  }
+#endif
+#ifdef B_BAD_VALUE
+  if (!defined) {
+    defined = 1;
+    min = max = B_BAD_VALUE;
+  }
+  else {
+    if (B_BAD_VALUE < min) min = B_BAD_VALUE;
+    if (max < B_BAD_VALUE) max = B_BAD_VALUE;
+  }
+#endif
+#ifdef B_MISMATCHED_VALUES
+  if (!defined) {
+    defined = 1;
+    min = max = B_MISMATCHED_VALUES;
+  }
+  else {
+    if (B_MISMATCHED_VALUES < min) min = B_MISMATCHED_VALUES;
+    if (max < B_MISMATCHED_VALUES) max = B_MISMATCHED_VALUES;
+  }
+#endif
+#ifdef B_NAME_NOT_FOUND
+  if (!defined) {
+    defined = 1;
+    min = max = B_NAME_NOT_FOUND;
+  }
+  else {
+    if (B_NAME_NOT_FOUND < min) min = B_NAME_NOT_FOUND;
+    if (max < B_NAME_NOT_FOUND) max = B_NAME_NOT_FOUND;
+  }
+#endif
+#ifdef B_NAME_IN_USE
+  if (!defined) {
+    defined = 1;
+    min = max = B_NAME_IN_USE;
+  }
+  else {
+    if (B_NAME_IN_USE < min) min = B_NAME_IN_USE;
+    if (max < B_NAME_IN_USE) max = B_NAME_IN_USE;
+  }
+#endif
+#ifdef B_TIMED_OUT
+  if (!defined) {
+    defined = 1;
+    min = max = B_TIMED_OUT;
+  }
+  else {
+    if (B_TIMED_OUT < min) min = B_TIMED_OUT;
+    if (max < B_TIMED_OUT) max = B_TIMED_OUT;
+  }
+#endif
+#ifdef B_INTERRUPTED
+  if (!defined) {
+    defined = 1;
+    min = max = B_INTERRUPTED;
+  }
+  else {
+    if (B_INTERRUPTED < min) min = B_INTERRUPTED;
+    if (max < B_INTERRUPTED) max = B_INTERRUPTED;
+  }
+#endif
+#ifdef B_WOULD_BLOCK
+  if (!defined) {
+    defined = 1;
+    min = max = B_WOULD_BLOCK;
+  }
+  else {
+    if (B_WOULD_BLOCK < min) min = B_WOULD_BLOCK;
+    if (max < B_WOULD_BLOCK) max = B_WOULD_BLOCK;
+  }
+#endif
+#ifdef B_CANCELED
+  if (!defined) {
+    defined = 1;
+    min = max = B_CANCELED;
+  }
+  else {
+    if (B_CANCELED < min) min = B_CANCELED;
+    if (max < B_CANCELED) max = B_CANCELED;
+  }
+#endif
+#ifdef B_NO_INIT
+  if (!defined) {
+    defined = 1;
+    min = max = B_NO_INIT;
+  }
+  else {
+    if (B_NO_INIT < min) min = B_NO_INIT;
+    if (max < B_NO_INIT) max = B_NO_INIT;
+  }
+#endif
+#ifdef B_BUSY
+  if (!defined) {
+    defined = 1;
+    min = max = B_BUSY;
+  }
+  else {
+    if (B_BUSY < min) min = B_BUSY;
+    if (max < B_BUSY) max = B_BUSY;
+  }
+#endif
+#ifdef B_NOT_ALLOWED
+  if (!defined) {
+    defined = 1;
+    min = max = B_NOT_ALLOWED;
+  }
+  else {
+    if (B_NOT_ALLOWED < min) min = B_NOT_ALLOWED;
+    if (max < B_NOT_ALLOWED) max = B_NOT_ALLOWED;
+  }
+#endif
+#ifdef B_BAD_DATA
+  if (!defined) {
+    defined = 1;
+    min = max = B_BAD_DATA;
+  }
+  else {
+    if (B_BAD_DATA < min) min = B_BAD_DATA;
+    if (max < B_BAD_DATA) max = B_BAD_DATA;
+  }
+#endif
+#ifdef B_BAD_SEM_ID
+  if (!defined) {
+    defined = 1;
+    min = max = B_BAD_SEM_ID;
+  }
+  else {
+    if (B_BAD_SEM_ID < min) min = B_BAD_SEM_ID;
+    if (max < B_BAD_SEM_ID) max = B_BAD_SEM_ID;
+  }
+#endif
+#ifdef B_NO_MORE_SEMS
+  if (!defined) {
+    defined = 1;
+    min = max = B_NO_MORE_SEMS;
+  }
+  else {
+    if (B_NO_MORE_SEMS < min) min = B_NO_MORE_SEMS;
+    if (max < B_NO_MORE_SEMS) max = B_NO_MORE_SEMS;
+  }
+#endif
+#ifdef B_BAD_THREAD_ID
+  if (!defined) {
+    defined = 1;
+    min = max = B_BAD_THREAD_ID;
+  }
+  else {
+    if (B_BAD_THREAD_ID < min) min = B_BAD_THREAD_ID;
+    if (max < B_BAD_THREAD_ID) max = B_BAD_THREAD_ID;
+  }
+#endif
+#ifdef B_NO_MORE_THREADS
+  if (!defined) {
+    defined = 1;
+    min = max = B_NO_MORE_THREADS;
+  }
+  else {
+    if (B_NO_MORE_THREADS < min) min = B_NO_MORE_THREADS;
+    if (max < B_NO_MORE_THREADS) max = B_NO_MORE_THREADS;
+  }
+#endif
+#ifdef B_BAD_THREAD_STATE
+  if (!defined) {
+    defined = 1;
+    min = max = B_BAD_THREAD_STATE;
+  }
+  else {
+    if (B_BAD_THREAD_STATE < min) min = B_BAD_THREAD_STATE;
+    if (max < B_BAD_THREAD_STATE) max = B_BAD_THREAD_STATE;
+  }
+#endif
+#ifdef B_BAD_TEAM_ID
+  if (!defined) {
+    defined = 1;
+    min = max = B_BAD_TEAM_ID;
+  }
+  else {
+    if (B_BAD_TEAM_ID < min) min = B_BAD_TEAM_ID;
+    if (max < B_BAD_TEAM_ID) max = B_BAD_TEAM_ID;
+  }
+#endif
+#ifdef B_NO_MORE_TEAMS
+  if (!defined) {
+    defined = 1;
+    min = max = B_NO_MORE_TEAMS;
+  }
+  else {
+    if (B_NO_MORE_TEAMS < min) min = B_NO_MORE_TEAMS;
+    if (max < B_NO_MORE_TEAMS) max = B_NO_MORE_TEAMS;
+  }
+#endif
+#ifdef B_BAD_PORT_ID
+  if (!defined) {
+    defined = 1;
+    min = max = B_BAD_PORT_ID;
+  }
+  else {
+    if (B_BAD_PORT_ID < min) min = B_BAD_PORT_ID;
+    if (max < B_BAD_PORT_ID) max = B_BAD_PORT_ID;
+  }
+#endif
+#ifdef B_NO_MORE_PORTS
+  if (!defined) {
+    defined = 1;
+    min = max = B_NO_MORE_PORTS;
+  }
+  else {
+    if (B_NO_MORE_PORTS < min) min = B_NO_MORE_PORTS;
+    if (max < B_NO_MORE_PORTS) max = B_NO_MORE_PORTS;
+  }
+#endif
+#ifdef B_BAD_IMAGE_ID
+  if (!defined) {
+    defined = 1;
+    min = max = B_BAD_IMAGE_ID;
+  }
+  else {
+    if (B_BAD_IMAGE_ID < min) min = B_BAD_IMAGE_ID;
+    if (max < B_BAD_IMAGE_ID) max = B_BAD_IMAGE_ID;
+  }
+#endif
+#ifdef B_BAD_ADDRESS
+  if (!defined) {
+    defined = 1;
+    min = max = B_BAD_ADDRESS;
+  }
+  else {
+    if (B_BAD_ADDRESS < min) min = B_BAD_ADDRESS;
+    if (max < B_BAD_ADDRESS) max = B_BAD_ADDRESS;
+  }
+#endif
+#ifdef B_NOT_AN_EXECUTABLE
+  if (!defined) {
+    defined = 1;
+    min = max = B_NOT_AN_EXECUTABLE;
+  }
+  else {
+    if (B_NOT_AN_EXECUTABLE < min) min = B_NOT_AN_EXECUTABLE;
+    if (max < B_NOT_AN_EXECUTABLE) max = B_NOT_AN_EXECUTABLE;
+  }
+#endif
+#ifdef B_MISSING_LIBRARY
+  if (!defined) {
+    defined = 1;
+    min = max = B_MISSING_LIBRARY;
+  }
+  else {
+    if (B_MISSING_LIBRARY < min) min = B_MISSING_LIBRARY;
+    if (max < B_MISSING_LIBRARY) max = B_MISSING_LIBRARY;
+  }
+#endif
+#ifdef B_MISSING_SYMBOL
+  if (!defined) {
+    defined = 1;
+    min = max = B_MISSING_SYMBOL;
+  }
+  else {
+    if (B_MISSING_SYMBOL < min) min = B_MISSING_SYMBOL;
+    if (max < B_MISSING_SYMBOL) max = B_MISSING_SYMBOL;
+  }
+#endif
+#ifdef B_DEBUGGER_ALREADY_INSTALLED
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEBUGGER_ALREADY_INSTALLED;
+  }
+  else {
+    if (B_DEBUGGER_ALREADY_INSTALLED < min) min = B_DEBUGGER_ALREADY_INSTALLED;
+    if (max < B_DEBUGGER_ALREADY_INSTALLED) max = B_DEBUGGER_ALREADY_INSTALLED;
+  }
+#endif
+#ifdef B_BAD_REPLY
+  if (!defined) {
+    defined = 1;
+    min = max = B_BAD_REPLY;
+  }
+  else {
+    if (B_BAD_REPLY < min) min = B_BAD_REPLY;
+    if (max < B_BAD_REPLY) max = B_BAD_REPLY;
+  }
+#endif
+#ifdef B_DUPLICATE_REPLY
+  if (!defined) {
+    defined = 1;
+    min = max = B_DUPLICATE_REPLY;
+  }
+  else {
+    if (B_DUPLICATE_REPLY < min) min = B_DUPLICATE_REPLY;
+    if (max < B_DUPLICATE_REPLY) max = B_DUPLICATE_REPLY;
+  }
+#endif
+#ifdef B_MESSAGE_TO_SELF
+  if (!defined) {
+    defined = 1;
+    min = max = B_MESSAGE_TO_SELF;
+  }
+  else {
+    if (B_MESSAGE_TO_SELF < min) min = B_MESSAGE_TO_SELF;
+    if (max < B_MESSAGE_TO_SELF) max = B_MESSAGE_TO_SELF;
+  }
+#endif
+#ifdef B_BAD_HANDLER
+  if (!defined) {
+    defined = 1;
+    min = max = B_BAD_HANDLER;
+  }
+  else {
+    if (B_BAD_HANDLER < min) min = B_BAD_HANDLER;
+    if (max < B_BAD_HANDLER) max = B_BAD_HANDLER;
+  }
+#endif
+#ifdef B_ALREADY_RUNNING
+  if (!defined) {
+    defined = 1;
+    min = max = B_ALREADY_RUNNING;
+  }
+  else {
+    if (B_ALREADY_RUNNING < min) min = B_ALREADY_RUNNING;
+    if (max < B_ALREADY_RUNNING) max = B_ALREADY_RUNNING;
+  }
+#endif
+#ifdef B_LAUNCH_FAILED
+  if (!defined) {
+    defined = 1;
+    min = max = B_LAUNCH_FAILED;
+  }
+  else {
+    if (B_LAUNCH_FAILED < min) min = B_LAUNCH_FAILED;
+    if (max < B_LAUNCH_FAILED) max = B_LAUNCH_FAILED;
+  }
+#endif
+#ifdef B_AMBIGUOUS_APP_LAUNCH
+  if (!defined) {
+    defined = 1;
+    min = max = B_AMBIGUOUS_APP_LAUNCH;
+  }
+  else {
+    if (B_AMBIGUOUS_APP_LAUNCH < min) min = B_AMBIGUOUS_APP_LAUNCH;
+    if (max < B_AMBIGUOUS_APP_LAUNCH) max = B_AMBIGUOUS_APP_LAUNCH;
+  }
+#endif
+#ifdef B_UNKNOWN_MIME_TYPE
+  if (!defined) {
+    defined = 1;
+    min = max = B_UNKNOWN_MIME_TYPE;
+  }
+  else {
+    if (B_UNKNOWN_MIME_TYPE < min) min = B_UNKNOWN_MIME_TYPE;
+    if (max < B_UNKNOWN_MIME_TYPE) max = B_UNKNOWN_MIME_TYPE;
+  }
+#endif
+#ifdef B_BAD_SCRIPT_SYNTAX
+  if (!defined) {
+    defined = 1;
+    min = max = B_BAD_SCRIPT_SYNTAX;
+  }
+  else {
+    if (B_BAD_SCRIPT_SYNTAX < min) min = B_BAD_SCRIPT_SYNTAX;
+    if (max < B_BAD_SCRIPT_SYNTAX) max = B_BAD_SCRIPT_SYNTAX;
+  }
+#endif
+#ifdef B_LAUNCH_FAILED_NO_RESOLVE_LINK
+  if (!defined) {
+    defined = 1;
+    min = max = B_LAUNCH_FAILED_NO_RESOLVE_LINK;
+  }
+  else {
+    if (B_LAUNCH_FAILED_NO_RESOLVE_LINK < min) min = B_LAUNCH_FAILED_NO_RESOLVE_LINK;
+    if (max < B_LAUNCH_FAILED_NO_RESOLVE_LINK) max = B_LAUNCH_FAILED_NO_RESOLVE_LINK;
+  }
+#endif
+#ifdef B_LAUNCH_FAILED_EXECUTABLE
+  if (!defined) {
+    defined = 1;
+    min = max = B_LAUNCH_FAILED_EXECUTABLE;
+  }
+  else {
+    if (B_LAUNCH_FAILED_EXECUTABLE < min) min = B_LAUNCH_FAILED_EXECUTABLE;
+    if (max < B_LAUNCH_FAILED_EXECUTABLE) max = B_LAUNCH_FAILED_EXECUTABLE;
+  }
+#endif
+#ifdef B_LAUNCH_FAILED_APP_NOT_FOUND
+  if (!defined) {
+    defined = 1;
+    min = max = B_LAUNCH_FAILED_APP_NOT_FOUND;
+  }
+  else {
+    if (B_LAUNCH_FAILED_APP_NOT_FOUND < min) min = B_LAUNCH_FAILED_APP_NOT_FOUND;
+    if (max < B_LAUNCH_FAILED_APP_NOT_FOUND) max = B_LAUNCH_FAILED_APP_NOT_FOUND;
+  }
+#endif
+#ifdef B_LAUNCH_FAILED_APP_IN_TRASH
+  if (!defined) {
+    defined = 1;
+    min = max = B_LAUNCH_FAILED_APP_IN_TRASH;
+  }
+  else {
+    if (B_LAUNCH_FAILED_APP_IN_TRASH < min) min = B_LAUNCH_FAILED_APP_IN_TRASH;
+    if (max < B_LAUNCH_FAILED_APP_IN_TRASH) max = B_LAUNCH_FAILED_APP_IN_TRASH;
+  }
+#endif
+#ifdef B_LAUNCH_FAILED_NO_PREFERRED_APP
+  if (!defined) {
+    defined = 1;
+    min = max = B_LAUNCH_FAILED_NO_PREFERRED_APP;
+  }
+  else {
+    if (B_LAUNCH_FAILED_NO_PREFERRED_APP < min) min = B_LAUNCH_FAILED_NO_PREFERRED_APP;
+    if (max < B_LAUNCH_FAILED_NO_PREFERRED_APP) max = B_LAUNCH_FAILED_NO_PREFERRED_APP;
+  }
+#endif
+#ifdef B_LAUNCH_FAILED_FILES_APP_NOT_FOUND
+  if (!defined) {
+    defined = 1;
+    min = max = B_LAUNCH_FAILED_FILES_APP_NOT_FOUND;
+  }
+  else {
+    if (B_LAUNCH_FAILED_FILES_APP_NOT_FOUND < min) min = B_LAUNCH_FAILED_FILES_APP_NOT_FOUND;
+    if (max < B_LAUNCH_FAILED_FILES_APP_NOT_FOUND) max = B_LAUNCH_FAILED_FILES_APP_NOT_FOUND;
+  }
+#endif
+#ifdef B_BAD_MIME_SNIFFER_RULE
+  if (!defined) {
+    defined = 1;
+    min = max = B_BAD_MIME_SNIFFER_RULE;
+  }
+  else {
+    if (B_BAD_MIME_SNIFFER_RULE < min) min = B_BAD_MIME_SNIFFER_RULE;
+    if (max < B_BAD_MIME_SNIFFER_RULE) max = B_BAD_MIME_SNIFFER_RULE;
+  }
+#endif
+#ifdef B_NOT_A_MESSAGE
+  if (!defined) {
+    defined = 1;
+    min = max = B_NOT_A_MESSAGE;
+  }
+  else {
+    if (B_NOT_A_MESSAGE < min) min = B_NOT_A_MESSAGE;
+    if (max < B_NOT_A_MESSAGE) max = B_NOT_A_MESSAGE;
+  }
+#endif
+#ifdef B_SHUTDOWN_CANCELLED
+  if (!defined) {
+    defined = 1;
+    min = max = B_SHUTDOWN_CANCELLED;
+  }
+  else {
+    if (B_SHUTDOWN_CANCELLED < min) min = B_SHUTDOWN_CANCELLED;
+    if (max < B_SHUTDOWN_CANCELLED) max = B_SHUTDOWN_CANCELLED;
+  }
+#endif
+#ifdef B_SHUTTING_DOWN
+  if (!defined) {
+    defined = 1;
+    min = max = B_SHUTTING_DOWN;
+  }
+  else {
+    if (B_SHUTTING_DOWN < min) min = B_SHUTTING_DOWN;
+    if (max < B_SHUTTING_DOWN) max = B_SHUTTING_DOWN;
+  }
+#endif
+#ifdef B_FILE_ERROR
+  if (!defined) {
+    defined = 1;
+    min = max = B_FILE_ERROR;
+  }
+  else {
+    if (B_FILE_ERROR < min) min = B_FILE_ERROR;
+    if (max < B_FILE_ERROR) max = B_FILE_ERROR;
+  }
+#endif
+#ifdef B_FILE_NOT_FOUND
+  if (!defined) {
+    defined = 1;
+    min = max = B_FILE_NOT_FOUND;
+  }
+  else {
+    if (B_FILE_NOT_FOUND < min) min = B_FILE_NOT_FOUND;
+    if (max < B_FILE_NOT_FOUND) max = B_FILE_NOT_FOUND;
+  }
+#endif
+#ifdef B_ENTRY_NOT_FOUND
+  if (!defined) {
+    defined = 1;
+    min = max = B_ENTRY_NOT_FOUND;
+  }
+  else {
+    if (B_ENTRY_NOT_FOUND < min) min = B_ENTRY_NOT_FOUND;
+    if (max < B_ENTRY_NOT_FOUND) max = B_ENTRY_NOT_FOUND;
+  }
+#endif
+#ifdef B_FILE_EXISTS
+  if (!defined) {
+    defined = 1;
+    min = max = B_FILE_EXISTS;
+  }
+  else {
+    if (B_FILE_EXISTS < min) min = B_FILE_EXISTS;
+    if (max < B_FILE_EXISTS) max = B_FILE_EXISTS;
+  }
+#endif
+#ifdef B_NAME_TOO_LONG
+  if (!defined) {
+    defined = 1;
+    min = max = B_NAME_TOO_LONG;
+  }
+  else {
+    if (B_NAME_TOO_LONG < min) min = B_NAME_TOO_LONG;
+    if (max < B_NAME_TOO_LONG) max = B_NAME_TOO_LONG;
+  }
+#endif
+#ifdef B_NOT_A_DIRECTORY
+  if (!defined) {
+    defined = 1;
+    min = max = B_NOT_A_DIRECTORY;
+  }
+  else {
+    if (B_NOT_A_DIRECTORY < min) min = B_NOT_A_DIRECTORY;
+    if (max < B_NOT_A_DIRECTORY) max = B_NOT_A_DIRECTORY;
+  }
+#endif
+#ifdef B_DIRECTORY_NOT_EMPTY
+  if (!defined) {
+    defined = 1;
+    min = max = B_DIRECTORY_NOT_EMPTY;
+  }
+  else {
+    if (B_DIRECTORY_NOT_EMPTY < min) min = B_DIRECTORY_NOT_EMPTY;
+    if (max < B_DIRECTORY_NOT_EMPTY) max = B_DIRECTORY_NOT_EMPTY;
+  }
+#endif
+#ifdef B_DEVICE_FULL
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEVICE_FULL;
+  }
+  else {
+    if (B_DEVICE_FULL < min) min = B_DEVICE_FULL;
+    if (max < B_DEVICE_FULL) max = B_DEVICE_FULL;
+  }
+#endif
+#ifdef B_READ_ONLY_DEVICE
+  if (!defined) {
+    defined = 1;
+    min = max = B_READ_ONLY_DEVICE;
+  }
+  else {
+    if (B_READ_ONLY_DEVICE < min) min = B_READ_ONLY_DEVICE;
+    if (max < B_READ_ONLY_DEVICE) max = B_READ_ONLY_DEVICE;
+  }
+#endif
+#ifdef B_IS_A_DIRECTORY
+  if (!defined) {
+    defined = 1;
+    min = max = B_IS_A_DIRECTORY;
+  }
+  else {
+    if (B_IS_A_DIRECTORY < min) min = B_IS_A_DIRECTORY;
+    if (max < B_IS_A_DIRECTORY) max = B_IS_A_DIRECTORY;
+  }
+#endif
+#ifdef B_NO_MORE_FDS
+  if (!defined) {
+    defined = 1;
+    min = max = B_NO_MORE_FDS;
+  }
+  else {
+    if (B_NO_MORE_FDS < min) min = B_NO_MORE_FDS;
+    if (max < B_NO_MORE_FDS) max = B_NO_MORE_FDS;
+  }
+#endif
+#ifdef B_CROSS_DEVICE_LINK
+  if (!defined) {
+    defined = 1;
+    min = max = B_CROSS_DEVICE_LINK;
+  }
+  else {
+    if (B_CROSS_DEVICE_LINK < min) min = B_CROSS_DEVICE_LINK;
+    if (max < B_CROSS_DEVICE_LINK) max = B_CROSS_DEVICE_LINK;
+  }
+#endif
+#ifdef B_LINK_LIMIT
+  if (!defined) {
+    defined = 1;
+    min = max = B_LINK_LIMIT;
+  }
+  else {
+    if (B_LINK_LIMIT < min) min = B_LINK_LIMIT;
+    if (max < B_LINK_LIMIT) max = B_LINK_LIMIT;
+  }
+#endif
+#ifdef B_BUSTED_PIPE
+  if (!defined) {
+    defined = 1;
+    min = max = B_BUSTED_PIPE;
+  }
+  else {
+    if (B_BUSTED_PIPE < min) min = B_BUSTED_PIPE;
+    if (max < B_BUSTED_PIPE) max = B_BUSTED_PIPE;
+  }
+#endif
+#ifdef B_UNSUPPORTED
+  if (!defined) {
+    defined = 1;
+    min = max = B_UNSUPPORTED;
+  }
+  else {
+    if (B_UNSUPPORTED < min) min = B_UNSUPPORTED;
+    if (max < B_UNSUPPORTED) max = B_UNSUPPORTED;
+  }
+#endif
+#ifdef B_PARTITION_TOO_SMALL
+  if (!defined) {
+    defined = 1;
+    min = max = B_PARTITION_TOO_SMALL;
+  }
+  else {
+    if (B_PARTITION_TOO_SMALL < min) min = B_PARTITION_TOO_SMALL;
+    if (max < B_PARTITION_TOO_SMALL) max = B_PARTITION_TOO_SMALL;
+  }
+#endif
+#ifdef B_STREAM_NOT_FOUND
+  if (!defined) {
+    defined = 1;
+    min = max = B_STREAM_NOT_FOUND;
+  }
+  else {
+    if (B_STREAM_NOT_FOUND < min) min = B_STREAM_NOT_FOUND;
+    if (max < B_STREAM_NOT_FOUND) max = B_STREAM_NOT_FOUND;
+  }
+#endif
+#ifdef B_SERVER_NOT_FOUND
+  if (!defined) {
+    defined = 1;
+    min = max = B_SERVER_NOT_FOUND;
+  }
+  else {
+    if (B_SERVER_NOT_FOUND < min) min = B_SERVER_NOT_FOUND;
+    if (max < B_SERVER_NOT_FOUND) max = B_SERVER_NOT_FOUND;
+  }
+#endif
+#ifdef B_RESOURCE_NOT_FOUND
+  if (!defined) {
+    defined = 1;
+    min = max = B_RESOURCE_NOT_FOUND;
+  }
+  else {
+    if (B_RESOURCE_NOT_FOUND < min) min = B_RESOURCE_NOT_FOUND;
+    if (max < B_RESOURCE_NOT_FOUND) max = B_RESOURCE_NOT_FOUND;
+  }
+#endif
+#ifdef B_RESOURCE_UNAVAILABLE
+  if (!defined) {
+    defined = 1;
+    min = max = B_RESOURCE_UNAVAILABLE;
+  }
+  else {
+    if (B_RESOURCE_UNAVAILABLE < min) min = B_RESOURCE_UNAVAILABLE;
+    if (max < B_RESOURCE_UNAVAILABLE) max = B_RESOURCE_UNAVAILABLE;
+  }
+#endif
+#ifdef B_BAD_SUBSCRIBER
+  if (!defined) {
+    defined = 1;
+    min = max = B_BAD_SUBSCRIBER;
+  }
+  else {
+    if (B_BAD_SUBSCRIBER < min) min = B_BAD_SUBSCRIBER;
+    if (max < B_BAD_SUBSCRIBER) max = B_BAD_SUBSCRIBER;
+  }
+#endif
+#ifdef B_SUBSCRIBER_NOT_ENTERED
+  if (!defined) {
+    defined = 1;
+    min = max = B_SUBSCRIBER_NOT_ENTERED;
+  }
+  else {
+    if (B_SUBSCRIBER_NOT_ENTERED < min) min = B_SUBSCRIBER_NOT_ENTERED;
+    if (max < B_SUBSCRIBER_NOT_ENTERED) max = B_SUBSCRIBER_NOT_ENTERED;
+  }
+#endif
+#ifdef B_BUFFER_NOT_AVAILABLE
+  if (!defined) {
+    defined = 1;
+    min = max = B_BUFFER_NOT_AVAILABLE;
+  }
+  else {
+    if (B_BUFFER_NOT_AVAILABLE < min) min = B_BUFFER_NOT_AVAILABLE;
+    if (max < B_BUFFER_NOT_AVAILABLE) max = B_BUFFER_NOT_AVAILABLE;
+  }
+#endif
+#ifdef B_LAST_BUFFER_ERROR
+  if (!defined) {
+    defined = 1;
+    min = max = B_LAST_BUFFER_ERROR;
+  }
+  else {
+    if (B_LAST_BUFFER_ERROR < min) min = B_LAST_BUFFER_ERROR;
+    if (max < B_LAST_BUFFER_ERROR) max = B_LAST_BUFFER_ERROR;
+  }
+#endif
+#ifdef B_MEDIA_SYSTEM_FAILURE
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_SYSTEM_FAILURE;
+  }
+  else {
+    if (B_MEDIA_SYSTEM_FAILURE < min) min = B_MEDIA_SYSTEM_FAILURE;
+    if (max < B_MEDIA_SYSTEM_FAILURE) max = B_MEDIA_SYSTEM_FAILURE;
+  }
+#endif
+#ifdef B_MEDIA_BAD_NODE
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_BAD_NODE;
+  }
+  else {
+    if (B_MEDIA_BAD_NODE < min) min = B_MEDIA_BAD_NODE;
+    if (max < B_MEDIA_BAD_NODE) max = B_MEDIA_BAD_NODE;
+  }
+#endif
+#ifdef B_MEDIA_NODE_BUSY
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_NODE_BUSY;
+  }
+  else {
+    if (B_MEDIA_NODE_BUSY < min) min = B_MEDIA_NODE_BUSY;
+    if (max < B_MEDIA_NODE_BUSY) max = B_MEDIA_NODE_BUSY;
+  }
+#endif
+#ifdef B_MEDIA_BAD_FORMAT
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_BAD_FORMAT;
+  }
+  else {
+    if (B_MEDIA_BAD_FORMAT < min) min = B_MEDIA_BAD_FORMAT;
+    if (max < B_MEDIA_BAD_FORMAT) max = B_MEDIA_BAD_FORMAT;
+  }
+#endif
+#ifdef B_MEDIA_BAD_BUFFER
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_BAD_BUFFER;
+  }
+  else {
+    if (B_MEDIA_BAD_BUFFER < min) min = B_MEDIA_BAD_BUFFER;
+    if (max < B_MEDIA_BAD_BUFFER) max = B_MEDIA_BAD_BUFFER;
+  }
+#endif
+#ifdef B_MEDIA_TOO_MANY_NODES
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_TOO_MANY_NODES;
+  }
+  else {
+    if (B_MEDIA_TOO_MANY_NODES < min) min = B_MEDIA_TOO_MANY_NODES;
+    if (max < B_MEDIA_TOO_MANY_NODES) max = B_MEDIA_TOO_MANY_NODES;
+  }
+#endif
+#ifdef B_MEDIA_TOO_MANY_BUFFERS
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_TOO_MANY_BUFFERS;
+  }
+  else {
+    if (B_MEDIA_TOO_MANY_BUFFERS < min) min = B_MEDIA_TOO_MANY_BUFFERS;
+    if (max < B_MEDIA_TOO_MANY_BUFFERS) max = B_MEDIA_TOO_MANY_BUFFERS;
+  }
+#endif
+#ifdef B_MEDIA_NODE_ALREADY_EXISTS
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_NODE_ALREADY_EXISTS;
+  }
+  else {
+    if (B_MEDIA_NODE_ALREADY_EXISTS < min) min = B_MEDIA_NODE_ALREADY_EXISTS;
+    if (max < B_MEDIA_NODE_ALREADY_EXISTS) max = B_MEDIA_NODE_ALREADY_EXISTS;
+  }
+#endif
+#ifdef B_MEDIA_BUFFER_ALREADY_EXISTS
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_BUFFER_ALREADY_EXISTS;
+  }
+  else {
+    if (B_MEDIA_BUFFER_ALREADY_EXISTS < min) min = B_MEDIA_BUFFER_ALREADY_EXISTS;
+    if (max < B_MEDIA_BUFFER_ALREADY_EXISTS) max = B_MEDIA_BUFFER_ALREADY_EXISTS;
+  }
+#endif
+#ifdef B_MEDIA_CANNOT_SEEK
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_CANNOT_SEEK;
+  }
+  else {
+    if (B_MEDIA_CANNOT_SEEK < min) min = B_MEDIA_CANNOT_SEEK;
+    if (max < B_MEDIA_CANNOT_SEEK) max = B_MEDIA_CANNOT_SEEK;
+  }
+#endif
+#ifdef B_MEDIA_CANNOT_CHANGE_RUN_MODE
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_CANNOT_CHANGE_RUN_MODE;
+  }
+  else {
+    if (B_MEDIA_CANNOT_CHANGE_RUN_MODE < min) min = B_MEDIA_CANNOT_CHANGE_RUN_MODE;
+    if (max < B_MEDIA_CANNOT_CHANGE_RUN_MODE) max = B_MEDIA_CANNOT_CHANGE_RUN_MODE;
+  }
+#endif
+#ifdef B_MEDIA_APP_ALREADY_REGISTERED
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_APP_ALREADY_REGISTERED;
+  }
+  else {
+    if (B_MEDIA_APP_ALREADY_REGISTERED < min) min = B_MEDIA_APP_ALREADY_REGISTERED;
+    if (max < B_MEDIA_APP_ALREADY_REGISTERED) max = B_MEDIA_APP_ALREADY_REGISTERED;
+  }
+#endif
+#ifdef B_MEDIA_APP_NOT_REGISTERED
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_APP_NOT_REGISTERED;
+  }
+  else {
+    if (B_MEDIA_APP_NOT_REGISTERED < min) min = B_MEDIA_APP_NOT_REGISTERED;
+    if (max < B_MEDIA_APP_NOT_REGISTERED) max = B_MEDIA_APP_NOT_REGISTERED;
+  }
+#endif
+#ifdef B_MEDIA_CANNOT_RECLAIM_BUFFERS
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_CANNOT_RECLAIM_BUFFERS;
+  }
+  else {
+    if (B_MEDIA_CANNOT_RECLAIM_BUFFERS < min) min = B_MEDIA_CANNOT_RECLAIM_BUFFERS;
+    if (max < B_MEDIA_CANNOT_RECLAIM_BUFFERS) max = B_MEDIA_CANNOT_RECLAIM_BUFFERS;
+  }
+#endif
+#ifdef B_MEDIA_BUFFERS_NOT_RECLAIMED
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_BUFFERS_NOT_RECLAIMED;
+  }
+  else {
+    if (B_MEDIA_BUFFERS_NOT_RECLAIMED < min) min = B_MEDIA_BUFFERS_NOT_RECLAIMED;
+    if (max < B_MEDIA_BUFFERS_NOT_RECLAIMED) max = B_MEDIA_BUFFERS_NOT_RECLAIMED;
+  }
+#endif
+#ifdef B_MEDIA_TIME_SOURCE_STOPPED
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_TIME_SOURCE_STOPPED;
+  }
+  else {
+    if (B_MEDIA_TIME_SOURCE_STOPPED < min) min = B_MEDIA_TIME_SOURCE_STOPPED;
+    if (max < B_MEDIA_TIME_SOURCE_STOPPED) max = B_MEDIA_TIME_SOURCE_STOPPED;
+  }
+#endif
+#ifdef B_MEDIA_TIME_SOURCE_BUSY
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_TIME_SOURCE_BUSY;
+  }
+  else {
+    if (B_MEDIA_TIME_SOURCE_BUSY < min) min = B_MEDIA_TIME_SOURCE_BUSY;
+    if (max < B_MEDIA_TIME_SOURCE_BUSY) max = B_MEDIA_TIME_SOURCE_BUSY;
+  }
+#endif
+#ifdef B_MEDIA_BAD_SOURCE
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_BAD_SOURCE;
+  }
+  else {
+    if (B_MEDIA_BAD_SOURCE < min) min = B_MEDIA_BAD_SOURCE;
+    if (max < B_MEDIA_BAD_SOURCE) max = B_MEDIA_BAD_SOURCE;
+  }
+#endif
+#ifdef B_MEDIA_BAD_DESTINATION
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_BAD_DESTINATION;
+  }
+  else {
+    if (B_MEDIA_BAD_DESTINATION < min) min = B_MEDIA_BAD_DESTINATION;
+    if (max < B_MEDIA_BAD_DESTINATION) max = B_MEDIA_BAD_DESTINATION;
+  }
+#endif
+#ifdef B_MEDIA_ALREADY_CONNECTED
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_ALREADY_CONNECTED;
+  }
+  else {
+    if (B_MEDIA_ALREADY_CONNECTED < min) min = B_MEDIA_ALREADY_CONNECTED;
+    if (max < B_MEDIA_ALREADY_CONNECTED) max = B_MEDIA_ALREADY_CONNECTED;
+  }
+#endif
+#ifdef B_MEDIA_NOT_CONNECTED
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_NOT_CONNECTED;
+  }
+  else {
+    if (B_MEDIA_NOT_CONNECTED < min) min = B_MEDIA_NOT_CONNECTED;
+    if (max < B_MEDIA_NOT_CONNECTED) max = B_MEDIA_NOT_CONNECTED;
+  }
+#endif
+#ifdef B_MEDIA_BAD_CLIP_FORMAT
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_BAD_CLIP_FORMAT;
+  }
+  else {
+    if (B_MEDIA_BAD_CLIP_FORMAT < min) min = B_MEDIA_BAD_CLIP_FORMAT;
+    if (max < B_MEDIA_BAD_CLIP_FORMAT) max = B_MEDIA_BAD_CLIP_FORMAT;
+  }
+#endif
+#ifdef B_MEDIA_ADDON_FAILED
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_ADDON_FAILED;
+  }
+  else {
+    if (B_MEDIA_ADDON_FAILED < min) min = B_MEDIA_ADDON_FAILED;
+    if (max < B_MEDIA_ADDON_FAILED) max = B_MEDIA_ADDON_FAILED;
+  }
+#endif
+#ifdef B_MEDIA_ADDON_DISABLED
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_ADDON_DISABLED;
+  }
+  else {
+    if (B_MEDIA_ADDON_DISABLED < min) min = B_MEDIA_ADDON_DISABLED;
+    if (max < B_MEDIA_ADDON_DISABLED) max = B_MEDIA_ADDON_DISABLED;
+  }
+#endif
+#ifdef B_MEDIA_CHANGE_IN_PROGRESS
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_CHANGE_IN_PROGRESS;
+  }
+  else {
+    if (B_MEDIA_CHANGE_IN_PROGRESS < min) min = B_MEDIA_CHANGE_IN_PROGRESS;
+    if (max < B_MEDIA_CHANGE_IN_PROGRESS) max = B_MEDIA_CHANGE_IN_PROGRESS;
+  }
+#endif
+#ifdef B_MEDIA_STALE_CHANGE_COUNT
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_STALE_CHANGE_COUNT;
+  }
+  else {
+    if (B_MEDIA_STALE_CHANGE_COUNT < min) min = B_MEDIA_STALE_CHANGE_COUNT;
+    if (max < B_MEDIA_STALE_CHANGE_COUNT) max = B_MEDIA_STALE_CHANGE_COUNT;
+  }
+#endif
+#ifdef B_MEDIA_ADDON_RESTRICTED
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_ADDON_RESTRICTED;
+  }
+  else {
+    if (B_MEDIA_ADDON_RESTRICTED < min) min = B_MEDIA_ADDON_RESTRICTED;
+    if (max < B_MEDIA_ADDON_RESTRICTED) max = B_MEDIA_ADDON_RESTRICTED;
+  }
+#endif
+#ifdef B_MEDIA_NO_HANDLER
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_NO_HANDLER;
+  }
+  else {
+    if (B_MEDIA_NO_HANDLER < min) min = B_MEDIA_NO_HANDLER;
+    if (max < B_MEDIA_NO_HANDLER) max = B_MEDIA_NO_HANDLER;
+  }
+#endif
+#ifdef B_MEDIA_DUPLICATE_FORMAT
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_DUPLICATE_FORMAT;
+  }
+  else {
+    if (B_MEDIA_DUPLICATE_FORMAT < min) min = B_MEDIA_DUPLICATE_FORMAT;
+    if (max < B_MEDIA_DUPLICATE_FORMAT) max = B_MEDIA_DUPLICATE_FORMAT;
+  }
+#endif
+#ifdef B_MEDIA_REALTIME_DISABLED
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_REALTIME_DISABLED;
+  }
+  else {
+    if (B_MEDIA_REALTIME_DISABLED < min) min = B_MEDIA_REALTIME_DISABLED;
+    if (max < B_MEDIA_REALTIME_DISABLED) max = B_MEDIA_REALTIME_DISABLED;
+  }
+#endif
+#ifdef B_MEDIA_REALTIME_UNAVAILABLE
+  if (!defined) {
+    defined = 1;
+    min = max = B_MEDIA_REALTIME_UNAVAILABLE;
+  }
+  else {
+    if (B_MEDIA_REALTIME_UNAVAILABLE < min) min = B_MEDIA_REALTIME_UNAVAILABLE;
+    if (max < B_MEDIA_REALTIME_UNAVAILABLE) max = B_MEDIA_REALTIME_UNAVAILABLE;
+  }
+#endif
+#ifdef B_MAIL_NO_DAEMON
+  if (!defined) {
+    defined = 1;
+    min = max = B_MAIL_NO_DAEMON;
+  }
+  else {
+    if (B_MAIL_NO_DAEMON < min) min = B_MAIL_NO_DAEMON;
+    if (max < B_MAIL_NO_DAEMON) max = B_MAIL_NO_DAEMON;
+  }
+#endif
+#ifdef B_MAIL_UNKNOWN_USER
+  if (!defined) {
+    defined = 1;
+    min = max = B_MAIL_UNKNOWN_USER;
+  }
+  else {
+    if (B_MAIL_UNKNOWN_USER < min) min = B_MAIL_UNKNOWN_USER;
+    if (max < B_MAIL_UNKNOWN_USER) max = B_MAIL_UNKNOWN_USER;
+  }
+#endif
+#ifdef B_MAIL_WRONG_PASSWORD
+  if (!defined) {
+    defined = 1;
+    min = max = B_MAIL_WRONG_PASSWORD;
+  }
+  else {
+    if (B_MAIL_WRONG_PASSWORD < min) min = B_MAIL_WRONG_PASSWORD;
+    if (max < B_MAIL_WRONG_PASSWORD) max = B_MAIL_WRONG_PASSWORD;
+  }
+#endif
+#ifdef B_MAIL_UNKNOWN_HOST
+  if (!defined) {
+    defined = 1;
+    min = max = B_MAIL_UNKNOWN_HOST;
+  }
+  else {
+    if (B_MAIL_UNKNOWN_HOST < min) min = B_MAIL_UNKNOWN_HOST;
+    if (max < B_MAIL_UNKNOWN_HOST) max = B_MAIL_UNKNOWN_HOST;
+  }
+#endif
+#ifdef B_MAIL_ACCESS_ERROR
+  if (!defined) {
+    defined = 1;
+    min = max = B_MAIL_ACCESS_ERROR;
+  }
+  else {
+    if (B_MAIL_ACCESS_ERROR < min) min = B_MAIL_ACCESS_ERROR;
+    if (max < B_MAIL_ACCESS_ERROR) max = B_MAIL_ACCESS_ERROR;
+  }
+#endif
+#ifdef B_MAIL_UNKNOWN_FIELD
+  if (!defined) {
+    defined = 1;
+    min = max = B_MAIL_UNKNOWN_FIELD;
+  }
+  else {
+    if (B_MAIL_UNKNOWN_FIELD < min) min = B_MAIL_UNKNOWN_FIELD;
+    if (max < B_MAIL_UNKNOWN_FIELD) max = B_MAIL_UNKNOWN_FIELD;
+  }
+#endif
+#ifdef B_MAIL_NO_RECIPIENT
+  if (!defined) {
+    defined = 1;
+    min = max = B_MAIL_NO_RECIPIENT;
+  }
+  else {
+    if (B_MAIL_NO_RECIPIENT < min) min = B_MAIL_NO_RECIPIENT;
+    if (max < B_MAIL_NO_RECIPIENT) max = B_MAIL_NO_RECIPIENT;
+  }
+#endif
+#ifdef B_MAIL_INVALID_MAIL
+  if (!defined) {
+    defined = 1;
+    min = max = B_MAIL_INVALID_MAIL;
+  }
+  else {
+    if (B_MAIL_INVALID_MAIL < min) min = B_MAIL_INVALID_MAIL;
+    if (max < B_MAIL_INVALID_MAIL) max = B_MAIL_INVALID_MAIL;
+  }
+#endif
+#ifdef B_NO_PRINT_SERVER
+  if (!defined) {
+    defined = 1;
+    min = max = B_NO_PRINT_SERVER;
+  }
+  else {
+    if (B_NO_PRINT_SERVER < min) min = B_NO_PRINT_SERVER;
+    if (max < B_NO_PRINT_SERVER) max = B_NO_PRINT_SERVER;
+  }
+#endif
+#ifdef B_DEV_INVALID_IOCTL
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_INVALID_IOCTL;
+  }
+  else {
+    if (B_DEV_INVALID_IOCTL < min) min = B_DEV_INVALID_IOCTL;
+    if (max < B_DEV_INVALID_IOCTL) max = B_DEV_INVALID_IOCTL;
+  }
+#endif
+#ifdef B_DEV_NO_MEMORY
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_NO_MEMORY;
+  }
+  else {
+    if (B_DEV_NO_MEMORY < min) min = B_DEV_NO_MEMORY;
+    if (max < B_DEV_NO_MEMORY) max = B_DEV_NO_MEMORY;
+  }
+#endif
+#ifdef B_DEV_BAD_DRIVE_NUM
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_BAD_DRIVE_NUM;
+  }
+  else {
+    if (B_DEV_BAD_DRIVE_NUM < min) min = B_DEV_BAD_DRIVE_NUM;
+    if (max < B_DEV_BAD_DRIVE_NUM) max = B_DEV_BAD_DRIVE_NUM;
+  }
+#endif
+#ifdef B_DEV_NO_MEDIA
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_NO_MEDIA;
+  }
+  else {
+    if (B_DEV_NO_MEDIA < min) min = B_DEV_NO_MEDIA;
+    if (max < B_DEV_NO_MEDIA) max = B_DEV_NO_MEDIA;
+  }
+#endif
+#ifdef B_DEV_UNREADABLE
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_UNREADABLE;
+  }
+  else {
+    if (B_DEV_UNREADABLE < min) min = B_DEV_UNREADABLE;
+    if (max < B_DEV_UNREADABLE) max = B_DEV_UNREADABLE;
+  }
+#endif
+#ifdef B_DEV_FORMAT_ERROR
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_FORMAT_ERROR;
+  }
+  else {
+    if (B_DEV_FORMAT_ERROR < min) min = B_DEV_FORMAT_ERROR;
+    if (max < B_DEV_FORMAT_ERROR) max = B_DEV_FORMAT_ERROR;
+  }
+#endif
+#ifdef B_DEV_TIMEOUT
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_TIMEOUT;
+  }
+  else {
+    if (B_DEV_TIMEOUT < min) min = B_DEV_TIMEOUT;
+    if (max < B_DEV_TIMEOUT) max = B_DEV_TIMEOUT;
+  }
+#endif
+#ifdef B_DEV_RECALIBRATE_ERROR
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_RECALIBRATE_ERROR;
+  }
+  else {
+    if (B_DEV_RECALIBRATE_ERROR < min) min = B_DEV_RECALIBRATE_ERROR;
+    if (max < B_DEV_RECALIBRATE_ERROR) max = B_DEV_RECALIBRATE_ERROR;
+  }
+#endif
+#ifdef B_DEV_SEEK_ERROR
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_SEEK_ERROR;
+  }
+  else {
+    if (B_DEV_SEEK_ERROR < min) min = B_DEV_SEEK_ERROR;
+    if (max < B_DEV_SEEK_ERROR) max = B_DEV_SEEK_ERROR;
+  }
+#endif
+#ifdef B_DEV_ID_ERROR
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_ID_ERROR;
+  }
+  else {
+    if (B_DEV_ID_ERROR < min) min = B_DEV_ID_ERROR;
+    if (max < B_DEV_ID_ERROR) max = B_DEV_ID_ERROR;
+  }
+#endif
+#ifdef B_DEV_READ_ERROR
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_READ_ERROR;
+  }
+  else {
+    if (B_DEV_READ_ERROR < min) min = B_DEV_READ_ERROR;
+    if (max < B_DEV_READ_ERROR) max = B_DEV_READ_ERROR;
+  }
+#endif
+#ifdef B_DEV_WRITE_ERROR
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_WRITE_ERROR;
+  }
+  else {
+    if (B_DEV_WRITE_ERROR < min) min = B_DEV_WRITE_ERROR;
+    if (max < B_DEV_WRITE_ERROR) max = B_DEV_WRITE_ERROR;
+  }
+#endif
+#ifdef B_DEV_NOT_READY
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_NOT_READY;
+  }
+  else {
+    if (B_DEV_NOT_READY < min) min = B_DEV_NOT_READY;
+    if (max < B_DEV_NOT_READY) max = B_DEV_NOT_READY;
+  }
+#endif
+#ifdef B_DEV_MEDIA_CHANGED
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_MEDIA_CHANGED;
+  }
+  else {
+    if (B_DEV_MEDIA_CHANGED < min) min = B_DEV_MEDIA_CHANGED;
+    if (max < B_DEV_MEDIA_CHANGED) max = B_DEV_MEDIA_CHANGED;
+  }
+#endif
+#ifdef B_DEV_MEDIA_CHANGE_REQUESTED
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_MEDIA_CHANGE_REQUESTED;
+  }
+  else {
+    if (B_DEV_MEDIA_CHANGE_REQUESTED < min) min = B_DEV_MEDIA_CHANGE_REQUESTED;
+    if (max < B_DEV_MEDIA_CHANGE_REQUESTED) max = B_DEV_MEDIA_CHANGE_REQUESTED;
+  }
+#endif
+#ifdef B_DEV_RESOURCE_CONFLICT
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_RESOURCE_CONFLICT;
+  }
+  else {
+    if (B_DEV_RESOURCE_CONFLICT < min) min = B_DEV_RESOURCE_CONFLICT;
+    if (max < B_DEV_RESOURCE_CONFLICT) max = B_DEV_RESOURCE_CONFLICT;
+  }
+#endif
+#ifdef B_DEV_CONFIGURATION_ERROR
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_CONFIGURATION_ERROR;
+  }
+  else {
+    if (B_DEV_CONFIGURATION_ERROR < min) min = B_DEV_CONFIGURATION_ERROR;
+    if (max < B_DEV_CONFIGURATION_ERROR) max = B_DEV_CONFIGURATION_ERROR;
+  }
+#endif
+#ifdef B_DEV_DISABLED_BY_USER
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_DISABLED_BY_USER;
+  }
+  else {
+    if (B_DEV_DISABLED_BY_USER < min) min = B_DEV_DISABLED_BY_USER;
+    if (max < B_DEV_DISABLED_BY_USER) max = B_DEV_DISABLED_BY_USER;
+  }
+#endif
+#ifdef B_DEV_DOOR_OPEN
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_DOOR_OPEN;
+  }
+  else {
+    if (B_DEV_DOOR_OPEN < min) min = B_DEV_DOOR_OPEN;
+    if (max < B_DEV_DOOR_OPEN) max = B_DEV_DOOR_OPEN;
+  }
+#endif
+#ifdef B_DEV_INVALID_PIPE
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_INVALID_PIPE;
+  }
+  else {
+    if (B_DEV_INVALID_PIPE < min) min = B_DEV_INVALID_PIPE;
+    if (max < B_DEV_INVALID_PIPE) max = B_DEV_INVALID_PIPE;
+  }
+#endif
+#ifdef B_DEV_CRC_ERROR
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_CRC_ERROR;
+  }
+  else {
+    if (B_DEV_CRC_ERROR < min) min = B_DEV_CRC_ERROR;
+    if (max < B_DEV_CRC_ERROR) max = B_DEV_CRC_ERROR;
+  }
+#endif
+#ifdef B_DEV_STALLED
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_STALLED;
+  }
+  else {
+    if (B_DEV_STALLED < min) min = B_DEV_STALLED;
+    if (max < B_DEV_STALLED) max = B_DEV_STALLED;
+  }
+#endif
+#ifdef B_DEV_BAD_PID
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_BAD_PID;
+  }
+  else {
+    if (B_DEV_BAD_PID < min) min = B_DEV_BAD_PID;
+    if (max < B_DEV_BAD_PID) max = B_DEV_BAD_PID;
+  }
+#endif
+#ifdef B_DEV_UNEXPECTED_PID
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_UNEXPECTED_PID;
+  }
+  else {
+    if (B_DEV_UNEXPECTED_PID < min) min = B_DEV_UNEXPECTED_PID;
+    if (max < B_DEV_UNEXPECTED_PID) max = B_DEV_UNEXPECTED_PID;
+  }
+#endif
+#ifdef B_DEV_DATA_OVERRUN
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_DATA_OVERRUN;
+  }
+  else {
+    if (B_DEV_DATA_OVERRUN < min) min = B_DEV_DATA_OVERRUN;
+    if (max < B_DEV_DATA_OVERRUN) max = B_DEV_DATA_OVERRUN;
+  }
+#endif
+#ifdef B_DEV_DATA_UNDERRUN
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_DATA_UNDERRUN;
+  }
+  else {
+    if (B_DEV_DATA_UNDERRUN < min) min = B_DEV_DATA_UNDERRUN;
+    if (max < B_DEV_DATA_UNDERRUN) max = B_DEV_DATA_UNDERRUN;
+  }
+#endif
+#ifdef B_DEV_FIFO_OVERRUN
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_FIFO_OVERRUN;
+  }
+  else {
+    if (B_DEV_FIFO_OVERRUN < min) min = B_DEV_FIFO_OVERRUN;
+    if (max < B_DEV_FIFO_OVERRUN) max = B_DEV_FIFO_OVERRUN;
+  }
+#endif
+#ifdef B_DEV_FIFO_UNDERRUN
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_FIFO_UNDERRUN;
+  }
+  else {
+    if (B_DEV_FIFO_UNDERRUN < min) min = B_DEV_FIFO_UNDERRUN;
+    if (max < B_DEV_FIFO_UNDERRUN) max = B_DEV_FIFO_UNDERRUN;
+  }
+#endif
+#ifdef B_DEV_PENDING
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_PENDING;
+  }
+  else {
+    if (B_DEV_PENDING < min) min = B_DEV_PENDING;
+    if (max < B_DEV_PENDING) max = B_DEV_PENDING;
+  }
+#endif
+#ifdef B_DEV_MULTIPLE_ERRORS
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_MULTIPLE_ERRORS;
+  }
+  else {
+    if (B_DEV_MULTIPLE_ERRORS < min) min = B_DEV_MULTIPLE_ERRORS;
+    if (max < B_DEV_MULTIPLE_ERRORS) max = B_DEV_MULTIPLE_ERRORS;
+  }
+#endif
+#ifdef B_DEV_TOO_LATE
+  if (!defined) {
+    defined = 1;
+    min = max = B_DEV_TOO_LATE;
+  }
+  else {
+    if (B_DEV_TOO_LATE < min) min = B_DEV_TOO_LATE;
+    if (max < B_DEV_TOO_LATE) max = B_DEV_TOO_LATE;
+  }
+#endif
+#ifdef B_NO_TRANSLATOR
+  if (!defined) {
+    defined = 1;
+    min = max = B_NO_TRANSLATOR;
+  }
+  else {
+    if (B_NO_TRANSLATOR < min) min = B_NO_TRANSLATOR;
+    if (max < B_NO_TRANSLATOR) max = B_NO_TRANSLATOR;
+  }
+#endif
+#ifdef B_ILLEGAL_DATA
+  if (!defined) {
+    defined = 1;
+    min = max = B_ILLEGAL_DATA;
+  }
+  else {
+    if (B_ILLEGAL_DATA < min) min = B_ILLEGAL_DATA;
+    if (max < B_ILLEGAL_DATA) max = B_ILLEGAL_DATA;
+  }
+#endif
+#ifdef EFPOS
+  if (!defined) {
+    defined = 1;
+    min = max = EFPOS;
+  }
+  else {
+    if (EFPOS < min) min = EFPOS;
+    if (max < EFPOS) max = EFPOS;
+  }
+#endif
+#ifdef ESIGPARM
+  if (!defined) {
+    defined = 1;
+    min = max = ESIGPARM;
+  }
+  else {
+    if (ESIGPARM < min) min = ESIGPARM;
+    if (max < ESIGPARM) max = ESIGPARM;
   }
 #endif
   if (defined) {

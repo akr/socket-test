@@ -27,7 +27,7 @@
  */
 
 <%
-   errno_list = read_errno_list.sort
+   errno_list = read_errno_list.partition {|n| /\AE/ =~ n }.map {|ary| ary.sort }.flatten
 %>
 
 #include "sockettest.h"

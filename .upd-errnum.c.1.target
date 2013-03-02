@@ -38,6 +38,610 @@ int main(int argc, char *argv[])
   (void)argc;
   (void)argv;
 
+#ifdef B_ALREADY_RUNNING
+  err = B_ALREADY_RUNNING; str = "B_ALREADY_RUNNING";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_AMBIGUOUS_APP_LAUNCH
+  err = B_AMBIGUOUS_APP_LAUNCH; str = "B_AMBIGUOUS_APP_LAUNCH";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BAD_ADDRESS
+  err = B_BAD_ADDRESS; str = "B_BAD_ADDRESS";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BAD_DATA
+  err = B_BAD_DATA; str = "B_BAD_DATA";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BAD_HANDLER
+  err = B_BAD_HANDLER; str = "B_BAD_HANDLER";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BAD_IMAGE_ID
+  err = B_BAD_IMAGE_ID; str = "B_BAD_IMAGE_ID";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BAD_INDEX
+  err = B_BAD_INDEX; str = "B_BAD_INDEX";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BAD_MIME_SNIFFER_RULE
+  err = B_BAD_MIME_SNIFFER_RULE; str = "B_BAD_MIME_SNIFFER_RULE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BAD_PORT_ID
+  err = B_BAD_PORT_ID; str = "B_BAD_PORT_ID";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BAD_REPLY
+  err = B_BAD_REPLY; str = "B_BAD_REPLY";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BAD_SCRIPT_SYNTAX
+  err = B_BAD_SCRIPT_SYNTAX; str = "B_BAD_SCRIPT_SYNTAX";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BAD_SEM_ID
+  err = B_BAD_SEM_ID; str = "B_BAD_SEM_ID";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BAD_SUBSCRIBER
+  err = B_BAD_SUBSCRIBER; str = "B_BAD_SUBSCRIBER";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BAD_TEAM_ID
+  err = B_BAD_TEAM_ID; str = "B_BAD_TEAM_ID";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BAD_THREAD_ID
+  err = B_BAD_THREAD_ID; str = "B_BAD_THREAD_ID";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BAD_THREAD_STATE
+  err = B_BAD_THREAD_STATE; str = "B_BAD_THREAD_STATE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BAD_TYPE
+  err = B_BAD_TYPE; str = "B_BAD_TYPE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BAD_VALUE
+  err = B_BAD_VALUE; str = "B_BAD_VALUE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BUFFER_NOT_AVAILABLE
+  err = B_BUFFER_NOT_AVAILABLE; str = "B_BUFFER_NOT_AVAILABLE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BUSTED_PIPE
+  err = B_BUSTED_PIPE; str = "B_BUSTED_PIPE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_BUSY
+  err = B_BUSY; str = "B_BUSY";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_CANCELED
+  err = B_CANCELED; str = "B_CANCELED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_CROSS_DEVICE_LINK
+  err = B_CROSS_DEVICE_LINK; str = "B_CROSS_DEVICE_LINK";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEBUGGER_ALREADY_INSTALLED
+  err = B_DEBUGGER_ALREADY_INSTALLED; str = "B_DEBUGGER_ALREADY_INSTALLED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEVICE_FULL
+  err = B_DEVICE_FULL; str = "B_DEVICE_FULL";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_BAD_DRIVE_NUM
+  err = B_DEV_BAD_DRIVE_NUM; str = "B_DEV_BAD_DRIVE_NUM";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_BAD_PID
+  err = B_DEV_BAD_PID; str = "B_DEV_BAD_PID";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_CONFIGURATION_ERROR
+  err = B_DEV_CONFIGURATION_ERROR; str = "B_DEV_CONFIGURATION_ERROR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_CRC_ERROR
+  err = B_DEV_CRC_ERROR; str = "B_DEV_CRC_ERROR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_DATA_OVERRUN
+  err = B_DEV_DATA_OVERRUN; str = "B_DEV_DATA_OVERRUN";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_DATA_UNDERRUN
+  err = B_DEV_DATA_UNDERRUN; str = "B_DEV_DATA_UNDERRUN";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_DISABLED_BY_USER
+  err = B_DEV_DISABLED_BY_USER; str = "B_DEV_DISABLED_BY_USER";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_DOOR_OPEN
+  err = B_DEV_DOOR_OPEN; str = "B_DEV_DOOR_OPEN";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_FIFO_OVERRUN
+  err = B_DEV_FIFO_OVERRUN; str = "B_DEV_FIFO_OVERRUN";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_FIFO_UNDERRUN
+  err = B_DEV_FIFO_UNDERRUN; str = "B_DEV_FIFO_UNDERRUN";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_FORMAT_ERROR
+  err = B_DEV_FORMAT_ERROR; str = "B_DEV_FORMAT_ERROR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_ID_ERROR
+  err = B_DEV_ID_ERROR; str = "B_DEV_ID_ERROR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_INVALID_IOCTL
+  err = B_DEV_INVALID_IOCTL; str = "B_DEV_INVALID_IOCTL";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_INVALID_PIPE
+  err = B_DEV_INVALID_PIPE; str = "B_DEV_INVALID_PIPE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_MEDIA_CHANGED
+  err = B_DEV_MEDIA_CHANGED; str = "B_DEV_MEDIA_CHANGED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_MEDIA_CHANGE_REQUESTED
+  err = B_DEV_MEDIA_CHANGE_REQUESTED; str = "B_DEV_MEDIA_CHANGE_REQUESTED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_MULTIPLE_ERRORS
+  err = B_DEV_MULTIPLE_ERRORS; str = "B_DEV_MULTIPLE_ERRORS";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_NOT_READY
+  err = B_DEV_NOT_READY; str = "B_DEV_NOT_READY";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_NO_MEDIA
+  err = B_DEV_NO_MEDIA; str = "B_DEV_NO_MEDIA";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_NO_MEMORY
+  err = B_DEV_NO_MEMORY; str = "B_DEV_NO_MEMORY";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_PENDING
+  err = B_DEV_PENDING; str = "B_DEV_PENDING";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_READ_ERROR
+  err = B_DEV_READ_ERROR; str = "B_DEV_READ_ERROR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_RECALIBRATE_ERROR
+  err = B_DEV_RECALIBRATE_ERROR; str = "B_DEV_RECALIBRATE_ERROR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_RESOURCE_CONFLICT
+  err = B_DEV_RESOURCE_CONFLICT; str = "B_DEV_RESOURCE_CONFLICT";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_SEEK_ERROR
+  err = B_DEV_SEEK_ERROR; str = "B_DEV_SEEK_ERROR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_STALLED
+  err = B_DEV_STALLED; str = "B_DEV_STALLED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_TIMEOUT
+  err = B_DEV_TIMEOUT; str = "B_DEV_TIMEOUT";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_TOO_LATE
+  err = B_DEV_TOO_LATE; str = "B_DEV_TOO_LATE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_UNEXPECTED_PID
+  err = B_DEV_UNEXPECTED_PID; str = "B_DEV_UNEXPECTED_PID";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_UNREADABLE
+  err = B_DEV_UNREADABLE; str = "B_DEV_UNREADABLE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DEV_WRITE_ERROR
+  err = B_DEV_WRITE_ERROR; str = "B_DEV_WRITE_ERROR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DIRECTORY_NOT_EMPTY
+  err = B_DIRECTORY_NOT_EMPTY; str = "B_DIRECTORY_NOT_EMPTY";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_DUPLICATE_REPLY
+  err = B_DUPLICATE_REPLY; str = "B_DUPLICATE_REPLY";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_ENTRY_NOT_FOUND
+  err = B_ENTRY_NOT_FOUND; str = "B_ENTRY_NOT_FOUND";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_ERROR
+  err = B_ERROR; str = "B_ERROR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_FILE_ERROR
+  err = B_FILE_ERROR; str = "B_FILE_ERROR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_FILE_EXISTS
+  err = B_FILE_EXISTS; str = "B_FILE_EXISTS";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_FILE_NOT_FOUND
+  err = B_FILE_NOT_FOUND; str = "B_FILE_NOT_FOUND";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_ILLEGAL_DATA
+  err = B_ILLEGAL_DATA; str = "B_ILLEGAL_DATA";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_INTERRUPTED
+  err = B_INTERRUPTED; str = "B_INTERRUPTED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_IO_ERROR
+  err = B_IO_ERROR; str = "B_IO_ERROR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_IS_A_DIRECTORY
+  err = B_IS_A_DIRECTORY; str = "B_IS_A_DIRECTORY";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_LAST_BUFFER_ERROR
+  err = B_LAST_BUFFER_ERROR; str = "B_LAST_BUFFER_ERROR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_LAUNCH_FAILED
+  err = B_LAUNCH_FAILED; str = "B_LAUNCH_FAILED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_LAUNCH_FAILED_APP_IN_TRASH
+  err = B_LAUNCH_FAILED_APP_IN_TRASH; str = "B_LAUNCH_FAILED_APP_IN_TRASH";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_LAUNCH_FAILED_APP_NOT_FOUND
+  err = B_LAUNCH_FAILED_APP_NOT_FOUND; str = "B_LAUNCH_FAILED_APP_NOT_FOUND";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_LAUNCH_FAILED_EXECUTABLE
+  err = B_LAUNCH_FAILED_EXECUTABLE; str = "B_LAUNCH_FAILED_EXECUTABLE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_LAUNCH_FAILED_FILES_APP_NOT_FOUND
+  err = B_LAUNCH_FAILED_FILES_APP_NOT_FOUND; str = "B_LAUNCH_FAILED_FILES_APP_NOT_FOUND";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_LAUNCH_FAILED_NO_PREFERRED_APP
+  err = B_LAUNCH_FAILED_NO_PREFERRED_APP; str = "B_LAUNCH_FAILED_NO_PREFERRED_APP";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_LAUNCH_FAILED_NO_RESOLVE_LINK
+  err = B_LAUNCH_FAILED_NO_RESOLVE_LINK; str = "B_LAUNCH_FAILED_NO_RESOLVE_LINK";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_LINK_LIMIT
+  err = B_LINK_LIMIT; str = "B_LINK_LIMIT";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MAIL_ACCESS_ERROR
+  err = B_MAIL_ACCESS_ERROR; str = "B_MAIL_ACCESS_ERROR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MAIL_INVALID_MAIL
+  err = B_MAIL_INVALID_MAIL; str = "B_MAIL_INVALID_MAIL";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MAIL_NO_DAEMON
+  err = B_MAIL_NO_DAEMON; str = "B_MAIL_NO_DAEMON";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MAIL_NO_RECIPIENT
+  err = B_MAIL_NO_RECIPIENT; str = "B_MAIL_NO_RECIPIENT";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MAIL_UNKNOWN_FIELD
+  err = B_MAIL_UNKNOWN_FIELD; str = "B_MAIL_UNKNOWN_FIELD";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MAIL_UNKNOWN_HOST
+  err = B_MAIL_UNKNOWN_HOST; str = "B_MAIL_UNKNOWN_HOST";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MAIL_UNKNOWN_USER
+  err = B_MAIL_UNKNOWN_USER; str = "B_MAIL_UNKNOWN_USER";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MAIL_WRONG_PASSWORD
+  err = B_MAIL_WRONG_PASSWORD; str = "B_MAIL_WRONG_PASSWORD";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_ADDON_DISABLED
+  err = B_MEDIA_ADDON_DISABLED; str = "B_MEDIA_ADDON_DISABLED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_ADDON_FAILED
+  err = B_MEDIA_ADDON_FAILED; str = "B_MEDIA_ADDON_FAILED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_ADDON_RESTRICTED
+  err = B_MEDIA_ADDON_RESTRICTED; str = "B_MEDIA_ADDON_RESTRICTED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_ALREADY_CONNECTED
+  err = B_MEDIA_ALREADY_CONNECTED; str = "B_MEDIA_ALREADY_CONNECTED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_APP_ALREADY_REGISTERED
+  err = B_MEDIA_APP_ALREADY_REGISTERED; str = "B_MEDIA_APP_ALREADY_REGISTERED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_APP_NOT_REGISTERED
+  err = B_MEDIA_APP_NOT_REGISTERED; str = "B_MEDIA_APP_NOT_REGISTERED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_BAD_BUFFER
+  err = B_MEDIA_BAD_BUFFER; str = "B_MEDIA_BAD_BUFFER";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_BAD_CLIP_FORMAT
+  err = B_MEDIA_BAD_CLIP_FORMAT; str = "B_MEDIA_BAD_CLIP_FORMAT";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_BAD_DESTINATION
+  err = B_MEDIA_BAD_DESTINATION; str = "B_MEDIA_BAD_DESTINATION";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_BAD_FORMAT
+  err = B_MEDIA_BAD_FORMAT; str = "B_MEDIA_BAD_FORMAT";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_BAD_NODE
+  err = B_MEDIA_BAD_NODE; str = "B_MEDIA_BAD_NODE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_BAD_SOURCE
+  err = B_MEDIA_BAD_SOURCE; str = "B_MEDIA_BAD_SOURCE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_BUFFERS_NOT_RECLAIMED
+  err = B_MEDIA_BUFFERS_NOT_RECLAIMED; str = "B_MEDIA_BUFFERS_NOT_RECLAIMED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_BUFFER_ALREADY_EXISTS
+  err = B_MEDIA_BUFFER_ALREADY_EXISTS; str = "B_MEDIA_BUFFER_ALREADY_EXISTS";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_CANNOT_CHANGE_RUN_MODE
+  err = B_MEDIA_CANNOT_CHANGE_RUN_MODE; str = "B_MEDIA_CANNOT_CHANGE_RUN_MODE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_CANNOT_RECLAIM_BUFFERS
+  err = B_MEDIA_CANNOT_RECLAIM_BUFFERS; str = "B_MEDIA_CANNOT_RECLAIM_BUFFERS";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_CANNOT_SEEK
+  err = B_MEDIA_CANNOT_SEEK; str = "B_MEDIA_CANNOT_SEEK";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_CHANGE_IN_PROGRESS
+  err = B_MEDIA_CHANGE_IN_PROGRESS; str = "B_MEDIA_CHANGE_IN_PROGRESS";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_DUPLICATE_FORMAT
+  err = B_MEDIA_DUPLICATE_FORMAT; str = "B_MEDIA_DUPLICATE_FORMAT";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_NODE_ALREADY_EXISTS
+  err = B_MEDIA_NODE_ALREADY_EXISTS; str = "B_MEDIA_NODE_ALREADY_EXISTS";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_NODE_BUSY
+  err = B_MEDIA_NODE_BUSY; str = "B_MEDIA_NODE_BUSY";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_NOT_CONNECTED
+  err = B_MEDIA_NOT_CONNECTED; str = "B_MEDIA_NOT_CONNECTED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_NO_HANDLER
+  err = B_MEDIA_NO_HANDLER; str = "B_MEDIA_NO_HANDLER";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_REALTIME_DISABLED
+  err = B_MEDIA_REALTIME_DISABLED; str = "B_MEDIA_REALTIME_DISABLED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_REALTIME_UNAVAILABLE
+  err = B_MEDIA_REALTIME_UNAVAILABLE; str = "B_MEDIA_REALTIME_UNAVAILABLE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_STALE_CHANGE_COUNT
+  err = B_MEDIA_STALE_CHANGE_COUNT; str = "B_MEDIA_STALE_CHANGE_COUNT";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_SYSTEM_FAILURE
+  err = B_MEDIA_SYSTEM_FAILURE; str = "B_MEDIA_SYSTEM_FAILURE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_TIME_SOURCE_BUSY
+  err = B_MEDIA_TIME_SOURCE_BUSY; str = "B_MEDIA_TIME_SOURCE_BUSY";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_TIME_SOURCE_STOPPED
+  err = B_MEDIA_TIME_SOURCE_STOPPED; str = "B_MEDIA_TIME_SOURCE_STOPPED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_TOO_MANY_BUFFERS
+  err = B_MEDIA_TOO_MANY_BUFFERS; str = "B_MEDIA_TOO_MANY_BUFFERS";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MEDIA_TOO_MANY_NODES
+  err = B_MEDIA_TOO_MANY_NODES; str = "B_MEDIA_TOO_MANY_NODES";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MESSAGE_TO_SELF
+  err = B_MESSAGE_TO_SELF; str = "B_MESSAGE_TO_SELF";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MISMATCHED_VALUES
+  err = B_MISMATCHED_VALUES; str = "B_MISMATCHED_VALUES";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MISSING_LIBRARY
+  err = B_MISSING_LIBRARY; str = "B_MISSING_LIBRARY";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_MISSING_SYMBOL
+  err = B_MISSING_SYMBOL; str = "B_MISSING_SYMBOL";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NAME_IN_USE
+  err = B_NAME_IN_USE; str = "B_NAME_IN_USE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NAME_NOT_FOUND
+  err = B_NAME_NOT_FOUND; str = "B_NAME_NOT_FOUND";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NAME_TOO_LONG
+  err = B_NAME_TOO_LONG; str = "B_NAME_TOO_LONG";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NOT_ALLOWED
+  err = B_NOT_ALLOWED; str = "B_NOT_ALLOWED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NOT_AN_EXECUTABLE
+  err = B_NOT_AN_EXECUTABLE; str = "B_NOT_AN_EXECUTABLE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NOT_A_DIRECTORY
+  err = B_NOT_A_DIRECTORY; str = "B_NOT_A_DIRECTORY";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NOT_A_MESSAGE
+  err = B_NOT_A_MESSAGE; str = "B_NOT_A_MESSAGE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NO_ERROR
+  err = B_NO_ERROR; str = "B_NO_ERROR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NO_INIT
+  err = B_NO_INIT; str = "B_NO_INIT";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NO_MEMORY
+  err = B_NO_MEMORY; str = "B_NO_MEMORY";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NO_MORE_FDS
+  err = B_NO_MORE_FDS; str = "B_NO_MORE_FDS";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NO_MORE_PORTS
+  err = B_NO_MORE_PORTS; str = "B_NO_MORE_PORTS";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NO_MORE_SEMS
+  err = B_NO_MORE_SEMS; str = "B_NO_MORE_SEMS";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NO_MORE_TEAMS
+  err = B_NO_MORE_TEAMS; str = "B_NO_MORE_TEAMS";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NO_MORE_THREADS
+  err = B_NO_MORE_THREADS; str = "B_NO_MORE_THREADS";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NO_PRINT_SERVER
+  err = B_NO_PRINT_SERVER; str = "B_NO_PRINT_SERVER";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_NO_TRANSLATOR
+  err = B_NO_TRANSLATOR; str = "B_NO_TRANSLATOR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_PARTITION_TOO_SMALL
+  err = B_PARTITION_TOO_SMALL; str = "B_PARTITION_TOO_SMALL";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_PERMISSION_DENIED
+  err = B_PERMISSION_DENIED; str = "B_PERMISSION_DENIED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_POSIX_ENOMEM
+  err = B_POSIX_ENOMEM; str = "B_POSIX_ENOMEM";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_READ_ONLY_DEVICE
+  err = B_READ_ONLY_DEVICE; str = "B_READ_ONLY_DEVICE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_RESOURCE_NOT_FOUND
+  err = B_RESOURCE_NOT_FOUND; str = "B_RESOURCE_NOT_FOUND";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_RESOURCE_UNAVAILABLE
+  err = B_RESOURCE_UNAVAILABLE; str = "B_RESOURCE_UNAVAILABLE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_SERVER_NOT_FOUND
+  err = B_SERVER_NOT_FOUND; str = "B_SERVER_NOT_FOUND";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_SHUTDOWN_CANCELLED
+  err = B_SHUTDOWN_CANCELLED; str = "B_SHUTDOWN_CANCELLED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_SHUTTING_DOWN
+  err = B_SHUTTING_DOWN; str = "B_SHUTTING_DOWN";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_STREAM_NOT_FOUND
+  err = B_STREAM_NOT_FOUND; str = "B_STREAM_NOT_FOUND";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_SUBSCRIBER_NOT_ENTERED
+  err = B_SUBSCRIBER_NOT_ENTERED; str = "B_SUBSCRIBER_NOT_ENTERED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_TIMED_OUT
+  err = B_TIMED_OUT; str = "B_TIMED_OUT";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_UNKNOWN_MIME_TYPE
+  err = B_UNKNOWN_MIME_TYPE; str = "B_UNKNOWN_MIME_TYPE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_UNSUPPORTED
+  err = B_UNSUPPORTED; str = "B_UNSUPPORTED";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef B_WOULD_BLOCK
+  err = B_WOULD_BLOCK; str = "B_WOULD_BLOCK";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef E2BIG
   err = E2BIG; str = "E2BIG";
   printf("%s = %d\n", str, err);
@@ -260,6 +864,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef EFBIG
   err = EFBIG; str = "EFBIG";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef EFPOS
+  err = EFPOS; str = "EFPOS";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef EFTYPE
@@ -712,6 +1320,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef ESHUTDOWN
   err = ESHUTDOWN; str = "ESHUTDOWN";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef ESIGPARM
+  err = ESIGPARM; str = "ESIGPARM";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef ESOCKTNOSUPPORT
