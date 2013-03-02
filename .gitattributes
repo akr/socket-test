@@ -6,3 +6,4 @@ size.c binary merge=ours
 const.c binary merge=ours
 errmsg.c binary merge=ours
 errnum.c binary merge=ours
+results.html merge=ours
