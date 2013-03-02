@@ -788,6 +788,13 @@ int main(int argc, char *argv[])
   printf("%s = %s\n", str, strerror(err));
 #endif
 
+  {
+    char *msg;
+    msg = strerror(0);
+    if (msg)
+      printf("0 = %s\n", msg);
+  }
+
   ret = errno_minmax(&min, &max);
   if (ret == 0) {
     for (i = min; i <= max; i++) {
