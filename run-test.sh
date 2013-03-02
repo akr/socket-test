@@ -24,3 +24,5 @@ NetBSD*|FreeBSD*|OpenBSD*|DragonFly*|MirBSD*|GNU/kFreeBSD*|*Hurd*|Darwin*|Haiku*
   sh scripts/44bsd-tests.sh
   ;;
 esac
+
+sh scripts/additional-tests.sh
