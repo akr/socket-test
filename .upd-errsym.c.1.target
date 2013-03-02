@@ -56,6 +56,9 @@ char *errsym(int err)
 #ifdef EALREADY
   if (err == EALREADY) { return "EALREADY"; } else
 #endif
+#ifdef EAUTH
+  if (err == EAUTH) { return "EAUTH"; } else
+#endif
 #ifdef EBADE
   if (err == EBADE) { return "EBADE"; } else
 #endif
@@ -70,6 +73,9 @@ char *errsym(int err)
 #endif
 #ifdef EBADR
   if (err == EBADR) { return "EBADR"; } else
+#endif
+#ifdef EBADRPC
+  if (err == EBADRPC) { return "EBADRPC"; } else
 #endif
 #ifdef EBADRQC
   if (err == EBADRQC) { return "EBADRQC"; } else
@@ -131,6 +137,9 @@ char *errsym(int err)
 #ifdef EFBIG
   if (err == EFBIG) { return "EFBIG"; } else
 #endif
+#ifdef EFTYPE
+  if (err == EFTYPE) { return "EFTYPE"; } else
+#endif
 #ifdef EHOSTDOWN
   if (err == EHOSTDOWN) { return "EHOSTDOWN"; } else
 #endif
@@ -188,6 +197,9 @@ char *errsym(int err)
 #ifdef EL3RST
   if (err == EL3RST) { return "EL3RST"; } else
 #endif
+#ifdef ELAST
+  if (err == ELAST) { return "ELAST"; } else
+#endif
 #ifdef ELIBACC
   if (err == ELIBACC) { return "ELIBACC"; } else
 #endif
@@ -230,6 +242,9 @@ char *errsym(int err)
 #ifdef ENAVAIL
   if (err == ENAVAIL) { return "ENAVAIL"; } else
 #endif
+#ifdef ENEEDAUTH
+  if (err == ENEEDAUTH) { return "ENEEDAUTH"; } else
+#endif
 #ifdef ENETDOWN
   if (err == ENETDOWN) { return "ENETDOWN"; } else
 #endif
@@ -244,6 +259,9 @@ char *errsym(int err)
 #endif
 #ifdef ENOANO
   if (err == ENOANO) { return "ENOANO"; } else
+#endif
+#ifdef ENOATTR
+  if (err == ENOATTR) { return "ENOATTR"; } else
 #endif
 #ifdef ENOBUFS
   if (err == ENOBUFS) { return "ENOBUFS"; } else
@@ -353,6 +371,18 @@ char *errsym(int err)
 #ifdef EPIPE
   if (err == EPIPE) { return "EPIPE"; } else
 #endif
+#ifdef EPROCLIM
+  if (err == EPROCLIM) { return "EPROCLIM"; } else
+#endif
+#ifdef EPROCUNAVAIL
+  if (err == EPROCUNAVAIL) { return "EPROCUNAVAIL"; } else
+#endif
+#ifdef EPROGMISMATCH
+  if (err == EPROGMISMATCH) { return "EPROGMISMATCH"; } else
+#endif
+#ifdef EPROGUNAVAIL
+  if (err == EPROGUNAVAIL) { return "EPROGUNAVAIL"; } else
+#endif
 #ifdef EPROTO
   if (err == EPROTO) { return "EPROTO"; } else
 #endif
@@ -382,6 +412,9 @@ char *errsym(int err)
 #endif
 #ifdef EROFS
   if (err == EROFS) { return "EROFS"; } else
+#endif
+#ifdef ERPCMISMATCH
+  if (err == ERPCMISMATCH) { return "ERPCMISMATCH"; } else
 #endif
 #ifdef ESHUTDOWN
   if (err == ESHUTDOWN) { return "ESHUTDOWN"; } else
@@ -528,6 +561,16 @@ int errno_minmax(int *minp, int *maxp)
     if (max < EALREADY) max = EALREADY;
   }
 #endif
+#ifdef EAUTH
+  if (!defined) {
+    defined = 1;
+    min = max = EAUTH;
+  }
+  else {
+    if (EAUTH < min) min = EAUTH;
+    if (max < EAUTH) max = EAUTH;
+  }
+#endif
 #ifdef EBADE
   if (!defined) {
     defined = 1;
@@ -576,6 +619,16 @@ int errno_minmax(int *minp, int *maxp)
   else {
     if (EBADR < min) min = EBADR;
     if (max < EBADR) max = EBADR;
+  }
+#endif
+#ifdef EBADRPC
+  if (!defined) {
+    defined = 1;
+    min = max = EBADRPC;
+  }
+  else {
+    if (EBADRPC < min) min = EBADRPC;
+    if (max < EBADRPC) max = EBADRPC;
   }
 #endif
 #ifdef EBADRQC
@@ -778,6 +831,16 @@ int errno_minmax(int *minp, int *maxp)
     if (max < EFBIG) max = EFBIG;
   }
 #endif
+#ifdef EFTYPE
+  if (!defined) {
+    defined = 1;
+    min = max = EFTYPE;
+  }
+  else {
+    if (EFTYPE < min) min = EFTYPE;
+    if (max < EFTYPE) max = EFTYPE;
+  }
+#endif
 #ifdef EHOSTDOWN
   if (!defined) {
     defined = 1;
@@ -968,6 +1031,16 @@ int errno_minmax(int *minp, int *maxp)
     if (max < EL3RST) max = EL3RST;
   }
 #endif
+#ifdef ELAST
+  if (!defined) {
+    defined = 1;
+    min = max = ELAST;
+  }
+  else {
+    if (ELAST < min) min = ELAST;
+    if (max < ELAST) max = ELAST;
+  }
+#endif
 #ifdef ELIBACC
   if (!defined) {
     defined = 1;
@@ -1108,6 +1181,16 @@ int errno_minmax(int *minp, int *maxp)
     if (max < ENAVAIL) max = ENAVAIL;
   }
 #endif
+#ifdef ENEEDAUTH
+  if (!defined) {
+    defined = 1;
+    min = max = ENEEDAUTH;
+  }
+  else {
+    if (ENEEDAUTH < min) min = ENEEDAUTH;
+    if (max < ENEEDAUTH) max = ENEEDAUTH;
+  }
+#endif
 #ifdef ENETDOWN
   if (!defined) {
     defined = 1;
@@ -1156,6 +1239,16 @@ int errno_minmax(int *minp, int *maxp)
   else {
     if (ENOANO < min) min = ENOANO;
     if (max < ENOANO) max = ENOANO;
+  }
+#endif
+#ifdef ENOATTR
+  if (!defined) {
+    defined = 1;
+    min = max = ENOATTR;
+  }
+  else {
+    if (ENOATTR < min) min = ENOATTR;
+    if (max < ENOATTR) max = ENOATTR;
   }
 #endif
 #ifdef ENOBUFS
@@ -1518,6 +1611,46 @@ int errno_minmax(int *minp, int *maxp)
     if (max < EPIPE) max = EPIPE;
   }
 #endif
+#ifdef EPROCLIM
+  if (!defined) {
+    defined = 1;
+    min = max = EPROCLIM;
+  }
+  else {
+    if (EPROCLIM < min) min = EPROCLIM;
+    if (max < EPROCLIM) max = EPROCLIM;
+  }
+#endif
+#ifdef EPROCUNAVAIL
+  if (!defined) {
+    defined = 1;
+    min = max = EPROCUNAVAIL;
+  }
+  else {
+    if (EPROCUNAVAIL < min) min = EPROCUNAVAIL;
+    if (max < EPROCUNAVAIL) max = EPROCUNAVAIL;
+  }
+#endif
+#ifdef EPROGMISMATCH
+  if (!defined) {
+    defined = 1;
+    min = max = EPROGMISMATCH;
+  }
+  else {
+    if (EPROGMISMATCH < min) min = EPROGMISMATCH;
+    if (max < EPROGMISMATCH) max = EPROGMISMATCH;
+  }
+#endif
+#ifdef EPROGUNAVAIL
+  if (!defined) {
+    defined = 1;
+    min = max = EPROGUNAVAIL;
+  }
+  else {
+    if (EPROGUNAVAIL < min) min = EPROGUNAVAIL;
+    if (max < EPROGUNAVAIL) max = EPROGUNAVAIL;
+  }
+#endif
 #ifdef EPROTO
   if (!defined) {
     defined = 1;
@@ -1616,6 +1749,16 @@ int errno_minmax(int *minp, int *maxp)
   else {
     if (EROFS < min) min = EROFS;
     if (max < EROFS) max = EROFS;
+  }
+#endif
+#ifdef ERPCMISMATCH
+  if (!defined) {
+    defined = 1;
+    min = max = ERPCMISMATCH;
+  }
+  else {
+    if (ERPCMISMATCH < min) min = ERPCMISMATCH;
+    if (max < ERPCMISMATCH) max = ERPCMISMATCH;
   }
 #endif
 #ifdef ESHUTDOWN

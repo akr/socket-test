@@ -71,6 +71,10 @@ int main(int argc, char *argv[])
   err = EALREADY; str = "EALREADY";
   printf("%s = %s\n", str, strerror(err));
 #endif
+#ifdef EAUTH
+  err = EAUTH; str = "EAUTH";
+  printf("%s = %s\n", str, strerror(err));
+#endif
 #ifdef EBADE
   err = EBADE; str = "EBADE";
   printf("%s = %s\n", str, strerror(err));
@@ -89,6 +93,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef EBADR
   err = EBADR; str = "EBADR";
+  printf("%s = %s\n", str, strerror(err));
+#endif
+#ifdef EBADRPC
+  err = EBADRPC; str = "EBADRPC";
   printf("%s = %s\n", str, strerror(err));
 #endif
 #ifdef EBADRQC
@@ -171,6 +179,10 @@ int main(int argc, char *argv[])
   err = EFBIG; str = "EFBIG";
   printf("%s = %s\n", str, strerror(err));
 #endif
+#ifdef EFTYPE
+  err = EFTYPE; str = "EFTYPE";
+  printf("%s = %s\n", str, strerror(err));
+#endif
 #ifdef EHOSTDOWN
   err = EHOSTDOWN; str = "EHOSTDOWN";
   printf("%s = %s\n", str, strerror(err));
@@ -247,6 +259,10 @@ int main(int argc, char *argv[])
   err = EL3RST; str = "EL3RST";
   printf("%s = %s\n", str, strerror(err));
 #endif
+#ifdef ELAST
+  err = ELAST; str = "ELAST";
+  printf("%s = %s\n", str, strerror(err));
+#endif
 #ifdef ELIBACC
   err = ELIBACC; str = "ELIBACC";
   printf("%s = %s\n", str, strerror(err));
@@ -303,6 +319,10 @@ int main(int argc, char *argv[])
   err = ENAVAIL; str = "ENAVAIL";
   printf("%s = %s\n", str, strerror(err));
 #endif
+#ifdef ENEEDAUTH
+  err = ENEEDAUTH; str = "ENEEDAUTH";
+  printf("%s = %s\n", str, strerror(err));
+#endif
 #ifdef ENETDOWN
   err = ENETDOWN; str = "ENETDOWN";
   printf("%s = %s\n", str, strerror(err));
@@ -321,6 +341,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef ENOANO
   err = ENOANO; str = "ENOANO";
+  printf("%s = %s\n", str, strerror(err));
+#endif
+#ifdef ENOATTR
+  err = ENOATTR; str = "ENOATTR";
   printf("%s = %s\n", str, strerror(err));
 #endif
 #ifdef ENOBUFS
@@ -467,6 +491,22 @@ int main(int argc, char *argv[])
   err = EPIPE; str = "EPIPE";
   printf("%s = %s\n", str, strerror(err));
 #endif
+#ifdef EPROCLIM
+  err = EPROCLIM; str = "EPROCLIM";
+  printf("%s = %s\n", str, strerror(err));
+#endif
+#ifdef EPROCUNAVAIL
+  err = EPROCUNAVAIL; str = "EPROCUNAVAIL";
+  printf("%s = %s\n", str, strerror(err));
+#endif
+#ifdef EPROGMISMATCH
+  err = EPROGMISMATCH; str = "EPROGMISMATCH";
+  printf("%s = %s\n", str, strerror(err));
+#endif
+#ifdef EPROGUNAVAIL
+  err = EPROGUNAVAIL; str = "EPROGUNAVAIL";
+  printf("%s = %s\n", str, strerror(err));
+#endif
 #ifdef EPROTO
   err = EPROTO; str = "EPROTO";
   printf("%s = %s\n", str, strerror(err));
@@ -505,6 +545,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef EROFS
   err = EROFS; str = "EROFS";
+  printf("%s = %s\n", str, strerror(err));
+#endif
+#ifdef ERPCMISMATCH
+  err = ERPCMISMATCH; str = "ERPCMISMATCH";
   printf("%s = %s\n", str, strerror(err));
 #endif
 #ifdef ESHUTDOWN
