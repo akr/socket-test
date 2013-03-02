@@ -265,6 +265,9 @@ def generate_nulloverwrite_substs(command1_args, command2_args, command3_args)
 end
 
 def interpolatable_result?(command1, action_os_result1, command2, action_os_result2, command3, action_os_result3)
+  #p [:command1, command1]
+  #p [:command2, command2]
+  #p [:command3, command3]
   command1_ary = shell_split_commandline(command1)
   command2_ary = shell_split_commandline(command2)
   command3_ary = shell_split_commandline(command3)
@@ -273,6 +276,7 @@ def interpolatable_result?(command1, action_os_result1, command2, action_os_resu
      command1_ary.length != command3_ary.length || 
      command1_ary[0] != command2_ary[0] ||
      command1_ary[0] != command3_ary[0]
+    #p [__LINE__, :command_length]
     return false
   end
   command1_ary.shift
@@ -283,6 +287,7 @@ def interpolatable_result?(command1, action_os_result1, command2, action_os_resu
   command3_opts, command3_args = command3_ary.partition {|arg| /\A-/ =~ arg }
   if command1_opts != command2_opts || command2_opts != command3_opts ||
      command1_args.length != command2_args.length || command1_args.length != command3_args.length
+    #p [__LINE__, :command_args]
     return false
   end
   command1_args.map! {|arg| socket_test_expand_repeatation(arg) }
@@ -294,6 +299,7 @@ def interpolatable_result?(command1, action_os_result1, command2, action_os_resu
       command2_args.delete_at(i)
       command3_args.delete_at(i)
     elsif command1_args[i] == command2_args[i] || command2_args[i] == command3_args[i]
+      #p [__LINE__, :command_args2]
       return false
     end
   }
@@ -311,7 +317,7 @@ def interpolatable_result?(command1, action_os_result1, command2, action_os_resu
 
   if action_os_result1.keys.sort != action_os_result2.keys.sort ||
      action_os_result1.keys.sort != action_os_result3.keys.sort
-    #p __LINE__
+    #p [__LINE__, :not_interpolatable, :action_os]
     return false
   end
   action_os_result1.each {|action, os_result1|
@@ -319,7 +325,7 @@ def interpolatable_result?(command1, action_os_result1, command2, action_os_resu
     os_result3 = action_os_result3[action]
     if os_result1.keys.sort != os_result2.keys.sort ||
        os_result1.keys.sort != os_result3.keys.sort
-      #p [__LINE__, action]
+      #p [__LINE__, :not_interpolatable, :action, action]
       return false
     end
     os_result1.each {|os, result1|
@@ -332,7 +338,7 @@ def interpolatable_result?(command1, action_os_result1, command2, action_os_resu
          !((m1 = /\A"(.*)"\.\.\. \((\d+) bytes\)\z/.match(result1)) &&
            (m2 = /\A"(.*)"\.\.\. \((\d+) bytes\)\z/.match(result2)) &&
            (m3 = /\A"(.*)"\.\.\. \((\d+) bytes\)\z/.match(result3)))
-        #pp [__LINE__, action, os, result1, result3, result3]
+        #pp [__LINE__, action, os, result1, result2, result3]
         return false
       end
       socklen1 = m1[2].to_i
@@ -388,11 +394,14 @@ def remove_interpolatable_commands(command_action_os_result)
     else
       above_command, above_action_os_result = command_action_os_result_ary[i-1]
       below_command, below_action_os_result = command_action_os_result_ary[i+1]
-      #next if command != "./unix-stream -4 '(sun_len=2)abc\\0'" # for debug
+      #next if command != "./unix-dgram '(44*\"./\")ab\\0' '(44*\"./\")ab\\0' 'bar\\0'"# for debug
       if !interpolatable_result?(above_command, above_action_os_result,
                                  command, action_os_result,
                                  below_command, below_action_os_result)
         command_action_os_result2[command] = action_os_result
+        #puts "not interpolatable: #{command.inspect}" # for debug
+      else
+        #puts "interpolatable: #{command.inspect}" # for debug
       end
       #exit # for debug
     end
