@@ -233,6 +233,6 @@ uname -mrsv
 ./unix-stream -s '/foo\0'
 ./unix-stream -s '/foo/bar\0'
 ./unix-stream -s '/etc\0'
-./unix-stream -c -s 'README\0'
+./unix-stream -T -s 'README\0'
 
 

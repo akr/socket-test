@@ -246,4 +246,4 @@ set -v
 ./unix-stream -s '/foo/bar'
 ./unix-stream -s '/etc'
 ./unix-stream -s 'foo'
-./unix-stream -c -s 'README'
+./unix-stream -T -s 'README'

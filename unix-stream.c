@@ -50,7 +50,7 @@ typedef struct { int pipe[2]; } serialized_flow_t;
 #endif
 
 static int opt_U = 0;
-static int opt_c = 0;
+static int opt_T = 0;
 static int opt_s = 0;
 static int opt_p = 0;
 static socklen_t opt_g = sizeof(struct sockaddr_un);
@@ -100,7 +100,7 @@ void usage(int status)
       "usage: unix-stream [options] server-path [connect-path [client-path]]\n"
       "option: -h : show this help message\n"
       "        -U : don't unlink sockets.\n"
-      "        -c : test in the current directory.\n"
+      "        -T : don't chdir into a temporally directory.\n"
       "        -s : server only test mode.\n"
       "        -p : prepend sizeof(sun_path)-10 characters for socket-path.\n"
       "        -g N : buffer size for getsockname/getpeername/accept (no sign means exact.  +N for increase and -N for decrease from sockaddr_un)\n"
@@ -218,7 +218,7 @@ static void parse_args(int argc, char *argv[])
   int opt;
   char *arg;
 
-  while ((opt = getopt(argc, argv, "hUcspg:4")) != -1) {
+  while ((opt = getopt(argc, argv, "hUTspg:4")) != -1) {
     switch (opt) {
       case 'h':
         usage(EXIT_SUCCESS);
@@ -228,8 +228,8 @@ static void parse_args(int argc, char *argv[])
         opt_U = 1;
         break;
 
-      case 'c':
-        opt_c = 1;
+      case 'T':
+        opt_T = 1;
         break;
 
       case 's':
@@ -475,7 +475,7 @@ static void test_unix_stream(void)
       unlink_socket(client_path_str);
   }
 
-  if (!opt_c)
+  if (!opt_T)
     tmpdir = mkchtempdir(NULL);
 
   if (opt_s) {
