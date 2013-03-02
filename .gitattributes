@@ -1,8 +1,8 @@
-.upd-* binary
-configure binary
-config.h.in binary
-errsym.c binary
-size.c binary
-const.c binary
-errmsg.c binary
-errnum.c binary
+.upd-* binary merge=ours
+configure binary merge=ours
+config.h.in binary merge=ours
+errsym.c binary merge=ours
+size.c binary merge=ours
+const.c binary merge=ours
+errmsg.c binary merge=ours
+errnum.c binary merge=ours
