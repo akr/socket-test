@@ -180,6 +180,7 @@ ECONNRESET = Connection reset by peer
 EDEADLK = Resource deadlock
 EDESTADDRREQ = Destination address required
 EDOM = Numerical argument out of range
+EDOOFUS = Invalid Argument
 EDQUOT = Reserved
 EEXIST = File or Directory already exists
 EFAULT = Bad address
@@ -204,6 +205,7 @@ ENETDOWN = Network is down
 ENETRESET = Network dropped connection on reset
 ENETUNREACH = Network is unreachable
 ENFILE = File table overflow
+ENOATTR = No such attribute
 ENOBUFS = No buffer space available
 ENODATA = No message available
 ENODEV = No such device
@@ -349,6 +351,7 @@ ECONNRESET = -2147454948
 EDEADLK = -2147454973
 EDESTADDRREQ = -2147454928
 EDOM = -2147454960
+EDOOFUS = -2147483643
 EDQUOT = -2147454927
 EEXIST = -2147459070
 EFAULT = -2147478783
@@ -373,6 +376,7 @@ ENETDOWN = -2147454952
 ENETRESET = -2147454950
 ENETUNREACH = -2147454951
 ENFILE = -2147454970
+ENOATTR = -2147454916
 ENOBUFS = -2147454941
 ENODATA = -2147454924
 ENODEV = -2147454969
@@ -1612,7 +1616,7 @@ bind(server): EADDRINUSE
 ./unix-stream -s 'foobar'
 bind(server)          <- "foobar" (6 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "foobar\x98Z#\xCE\xC5\xF2\0" (13 bytes)
+getsockname(server)   -> "foobar\x90\xBE\x05\xCE(\xF3\0" (13 bytes)
 
 ./unix-stream -4 '(sun_len=1)abc\0'
 bind(server)          <- "abc\0" (4 bytes)
