@@ -3554,9 +3554,10 @@ SOCKETTEST_INCLUDES="$ac_includes_default"
 
 
 
+
 # Minix 3.2.0: limits.h is required for sys/socket.h.
 for h in \
-  limits.h errno.h ctype.h float.h time.h signal.h \
+  stdarg.h limits.h errno.h ctype.h float.h time.h signal.h \
   sys/wait.h sys/uio.h sys/socket.h sys/un.h netinet/in.h
 do
   for ac_header in $h

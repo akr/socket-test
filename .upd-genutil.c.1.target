@@ -2123,3 +2123,510 @@ void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg)
     }
   }
 }
+
+
+
+int constant_name2int(char *name, int *ret)
+{
+#ifdef AF_INET
+  if (sizeof(AF_INET) <= sizeof(int) && strcmp("AF_INET", name) == 0) {
+    *ret = AF_INET;
+    return 0;
+  }
+#endif
+#ifdef AF_INET6
+  if (sizeof(AF_INET6) <= sizeof(int) && strcmp("AF_INET6", name) == 0) {
+    *ret = AF_INET6;
+    return 0;
+  }
+#endif
+#ifdef AF_UNIX
+  if (sizeof(AF_UNIX) <= sizeof(int) && strcmp("AF_UNIX", name) == 0) {
+    *ret = AF_UNIX;
+    return 0;
+  }
+#endif
+#ifdef AF_UNSPEC
+  if (sizeof(AF_UNSPEC) <= sizeof(int) && strcmp("AF_UNSPEC", name) == 0) {
+    *ret = AF_UNSPEC;
+    return 0;
+  }
+#endif
+#ifdef SOCK_DGRAM
+  if (sizeof(SOCK_DGRAM) <= sizeof(int) && strcmp("SOCK_DGRAM", name) == 0) {
+    *ret = SOCK_DGRAM;
+    return 0;
+  }
+#endif
+#ifdef SOCK_RAW
+  if (sizeof(SOCK_RAW) <= sizeof(int) && strcmp("SOCK_RAW", name) == 0) {
+    *ret = SOCK_RAW;
+    return 0;
+  }
+#endif
+#ifdef SOCK_SEQPACKET
+  if (sizeof(SOCK_SEQPACKET) <= sizeof(int) && strcmp("SOCK_SEQPACKET", name) == 0) {
+    *ret = SOCK_SEQPACKET;
+    return 0;
+  }
+#endif
+#ifdef SOCK_STREAM
+  if (sizeof(SOCK_STREAM) <= sizeof(int) && strcmp("SOCK_STREAM", name) == 0) {
+    *ret = SOCK_STREAM;
+    return 0;
+  }
+#endif
+#ifdef SHUT_RD
+  if (sizeof(SHUT_RD) <= sizeof(int) && strcmp("SHUT_RD", name) == 0) {
+    *ret = SHUT_RD;
+    return 0;
+  }
+#endif
+#ifdef SHUT_RDWR
+  if (sizeof(SHUT_RDWR) <= sizeof(int) && strcmp("SHUT_RDWR", name) == 0) {
+    *ret = SHUT_RDWR;
+    return 0;
+  }
+#endif
+#ifdef SHUT_WR
+  if (sizeof(SHUT_WR) <= sizeof(int) && strcmp("SHUT_WR", name) == 0) {
+    *ret = SHUT_WR;
+    return 0;
+  }
+#endif
+#ifdef MSG_CTRUNC
+  if (sizeof(MSG_CTRUNC) <= sizeof(int) && strcmp("MSG_CTRUNC", name) == 0) {
+    *ret = MSG_CTRUNC;
+    return 0;
+  }
+#endif
+#ifdef MSG_DONTROUTE
+  if (sizeof(MSG_DONTROUTE) <= sizeof(int) && strcmp("MSG_DONTROUTE", name) == 0) {
+    *ret = MSG_DONTROUTE;
+    return 0;
+  }
+#endif
+#ifdef MSG_EOR
+  if (sizeof(MSG_EOR) <= sizeof(int) && strcmp("MSG_EOR", name) == 0) {
+    *ret = MSG_EOR;
+    return 0;
+  }
+#endif
+#ifdef MSG_OOB
+  if (sizeof(MSG_OOB) <= sizeof(int) && strcmp("MSG_OOB", name) == 0) {
+    *ret = MSG_OOB;
+    return 0;
+  }
+#endif
+#ifdef MSG_NOSIGNAL
+  if (sizeof(MSG_NOSIGNAL) <= sizeof(int) && strcmp("MSG_NOSIGNAL", name) == 0) {
+    *ret = MSG_NOSIGNAL;
+    return 0;
+  }
+#endif
+#ifdef MSG_PEEK
+  if (sizeof(MSG_PEEK) <= sizeof(int) && strcmp("MSG_PEEK", name) == 0) {
+    *ret = MSG_PEEK;
+    return 0;
+  }
+#endif
+#ifdef MSG_TRUNC
+  if (sizeof(MSG_TRUNC) <= sizeof(int) && strcmp("MSG_TRUNC", name) == 0) {
+    *ret = MSG_TRUNC;
+    return 0;
+  }
+#endif
+#ifdef MSG_WAITALL
+  if (sizeof(MSG_WAITALL) <= sizeof(int) && strcmp("MSG_WAITALL", name) == 0) {
+    *ret = MSG_WAITALL;
+    return 0;
+  }
+#endif
+#ifdef SOL_SOCKET
+  if (sizeof(SOL_SOCKET) <= sizeof(int) && strcmp("SOL_SOCKET", name) == 0) {
+    *ret = SOL_SOCKET;
+    return 0;
+  }
+#endif
+#ifdef SO_ACCEPTCONN
+  if (sizeof(SO_ACCEPTCONN) <= sizeof(int) && strcmp("SO_ACCEPTCONN", name) == 0) {
+    *ret = SO_ACCEPTCONN;
+    return 0;
+  }
+#endif
+#ifdef SO_BROADCAST
+  if (sizeof(SO_BROADCAST) <= sizeof(int) && strcmp("SO_BROADCAST", name) == 0) {
+    *ret = SO_BROADCAST;
+    return 0;
+  }
+#endif
+#ifdef SO_DEBUG
+  if (sizeof(SO_DEBUG) <= sizeof(int) && strcmp("SO_DEBUG", name) == 0) {
+    *ret = SO_DEBUG;
+    return 0;
+  }
+#endif
+#ifdef SO_DONTROUTE
+  if (sizeof(SO_DONTROUTE) <= sizeof(int) && strcmp("SO_DONTROUTE", name) == 0) {
+    *ret = SO_DONTROUTE;
+    return 0;
+  }
+#endif
+#ifdef SO_ERROR
+  if (sizeof(SO_ERROR) <= sizeof(int) && strcmp("SO_ERROR", name) == 0) {
+    *ret = SO_ERROR;
+    return 0;
+  }
+#endif
+#ifdef SO_KEEPALIVE
+  if (sizeof(SO_KEEPALIVE) <= sizeof(int) && strcmp("SO_KEEPALIVE", name) == 0) {
+    *ret = SO_KEEPALIVE;
+    return 0;
+  }
+#endif
+#ifdef SO_LINGER
+  if (sizeof(SO_LINGER) <= sizeof(int) && strcmp("SO_LINGER", name) == 0) {
+    *ret = SO_LINGER;
+    return 0;
+  }
+#endif
+#ifdef SO_OOBINLINE
+  if (sizeof(SO_OOBINLINE) <= sizeof(int) && strcmp("SO_OOBINLINE", name) == 0) {
+    *ret = SO_OOBINLINE;
+    return 0;
+  }
+#endif
+#ifdef SO_RCVBUF
+  if (sizeof(SO_RCVBUF) <= sizeof(int) && strcmp("SO_RCVBUF", name) == 0) {
+    *ret = SO_RCVBUF;
+    return 0;
+  }
+#endif
+#ifdef SO_RCVLOWAT
+  if (sizeof(SO_RCVLOWAT) <= sizeof(int) && strcmp("SO_RCVLOWAT", name) == 0) {
+    *ret = SO_RCVLOWAT;
+    return 0;
+  }
+#endif
+#ifdef SO_RCVTIMEO
+  if (sizeof(SO_RCVTIMEO) <= sizeof(int) && strcmp("SO_RCVTIMEO", name) == 0) {
+    *ret = SO_RCVTIMEO;
+    return 0;
+  }
+#endif
+#ifdef SO_REUSEADDR
+  if (sizeof(SO_REUSEADDR) <= sizeof(int) && strcmp("SO_REUSEADDR", name) == 0) {
+    *ret = SO_REUSEADDR;
+    return 0;
+  }
+#endif
+#ifdef SO_SNDBUF
+  if (sizeof(SO_SNDBUF) <= sizeof(int) && strcmp("SO_SNDBUF", name) == 0) {
+    *ret = SO_SNDBUF;
+    return 0;
+  }
+#endif
+#ifdef SO_SNDLOWAT
+  if (sizeof(SO_SNDLOWAT) <= sizeof(int) && strcmp("SO_SNDLOWAT", name) == 0) {
+    *ret = SO_SNDLOWAT;
+    return 0;
+  }
+#endif
+#ifdef SO_SNDTIMEO
+  if (sizeof(SO_SNDTIMEO) <= sizeof(int) && strcmp("SO_SNDTIMEO", name) == 0) {
+    *ret = SO_SNDTIMEO;
+    return 0;
+  }
+#endif
+#ifdef SO_TYPE
+  if (sizeof(SO_TYPE) <= sizeof(int) && strcmp("SO_TYPE", name) == 0) {
+    *ret = SO_TYPE;
+    return 0;
+  }
+#endif
+#ifdef SCM_RIGHTS
+  if (sizeof(SCM_RIGHTS) <= sizeof(int) && strcmp("SCM_RIGHTS", name) == 0) {
+    *ret = SCM_RIGHTS;
+    return 0;
+  }
+#endif
+#ifdef SOMAXCONN
+  if (sizeof(SOMAXCONN) <= sizeof(int) && strcmp("SOMAXCONN", name) == 0) {
+    *ret = SOMAXCONN;
+    return 0;
+  }
+#endif
+  return -1;
+}
+
+void *constant_search_names(char *prefix, void *(*func)(char *name, int val, void *arg), void *arg)
+{
+  size_t prefixlen = strlen(prefix);
+#ifdef AF_INET
+  if (sizeof(AF_INET) <= sizeof(int) && strncmp("AF_INET", prefix, prefixlen) == 0) {
+    void *ret = func("AF_INET", AF_INET, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef AF_INET6
+  if (sizeof(AF_INET6) <= sizeof(int) && strncmp("AF_INET6", prefix, prefixlen) == 0) {
+    void *ret = func("AF_INET6", AF_INET6, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef AF_UNIX
+  if (sizeof(AF_UNIX) <= sizeof(int) && strncmp("AF_UNIX", prefix, prefixlen) == 0) {
+    void *ret = func("AF_UNIX", AF_UNIX, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef AF_UNSPEC
+  if (sizeof(AF_UNSPEC) <= sizeof(int) && strncmp("AF_UNSPEC", prefix, prefixlen) == 0) {
+    void *ret = func("AF_UNSPEC", AF_UNSPEC, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef MSG_CTRUNC
+  if (sizeof(MSG_CTRUNC) <= sizeof(int) && strncmp("MSG_CTRUNC", prefix, prefixlen) == 0) {
+    void *ret = func("MSG_CTRUNC", MSG_CTRUNC, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef MSG_DONTROUTE
+  if (sizeof(MSG_DONTROUTE) <= sizeof(int) && strncmp("MSG_DONTROUTE", prefix, prefixlen) == 0) {
+    void *ret = func("MSG_DONTROUTE", MSG_DONTROUTE, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef MSG_EOR
+  if (sizeof(MSG_EOR) <= sizeof(int) && strncmp("MSG_EOR", prefix, prefixlen) == 0) {
+    void *ret = func("MSG_EOR", MSG_EOR, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef MSG_NOSIGNAL
+  if (sizeof(MSG_NOSIGNAL) <= sizeof(int) && strncmp("MSG_NOSIGNAL", prefix, prefixlen) == 0) {
+    void *ret = func("MSG_NOSIGNAL", MSG_NOSIGNAL, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef MSG_OOB
+  if (sizeof(MSG_OOB) <= sizeof(int) && strncmp("MSG_OOB", prefix, prefixlen) == 0) {
+    void *ret = func("MSG_OOB", MSG_OOB, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef MSG_PEEK
+  if (sizeof(MSG_PEEK) <= sizeof(int) && strncmp("MSG_PEEK", prefix, prefixlen) == 0) {
+    void *ret = func("MSG_PEEK", MSG_PEEK, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef MSG_TRUNC
+  if (sizeof(MSG_TRUNC) <= sizeof(int) && strncmp("MSG_TRUNC", prefix, prefixlen) == 0) {
+    void *ret = func("MSG_TRUNC", MSG_TRUNC, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef MSG_WAITALL
+  if (sizeof(MSG_WAITALL) <= sizeof(int) && strncmp("MSG_WAITALL", prefix, prefixlen) == 0) {
+    void *ret = func("MSG_WAITALL", MSG_WAITALL, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SCM_RIGHTS
+  if (sizeof(SCM_RIGHTS) <= sizeof(int) && strncmp("SCM_RIGHTS", prefix, prefixlen) == 0) {
+    void *ret = func("SCM_RIGHTS", SCM_RIGHTS, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SHUT_RD
+  if (sizeof(SHUT_RD) <= sizeof(int) && strncmp("SHUT_RD", prefix, prefixlen) == 0) {
+    void *ret = func("SHUT_RD", SHUT_RD, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SHUT_RDWR
+  if (sizeof(SHUT_RDWR) <= sizeof(int) && strncmp("SHUT_RDWR", prefix, prefixlen) == 0) {
+    void *ret = func("SHUT_RDWR", SHUT_RDWR, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SHUT_WR
+  if (sizeof(SHUT_WR) <= sizeof(int) && strncmp("SHUT_WR", prefix, prefixlen) == 0) {
+    void *ret = func("SHUT_WR", SHUT_WR, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SOCK_DGRAM
+  if (sizeof(SOCK_DGRAM) <= sizeof(int) && strncmp("SOCK_DGRAM", prefix, prefixlen) == 0) {
+    void *ret = func("SOCK_DGRAM", SOCK_DGRAM, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SOCK_RAW
+  if (sizeof(SOCK_RAW) <= sizeof(int) && strncmp("SOCK_RAW", prefix, prefixlen) == 0) {
+    void *ret = func("SOCK_RAW", SOCK_RAW, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SOCK_SEQPACKET
+  if (sizeof(SOCK_SEQPACKET) <= sizeof(int) && strncmp("SOCK_SEQPACKET", prefix, prefixlen) == 0) {
+    void *ret = func("SOCK_SEQPACKET", SOCK_SEQPACKET, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SOCK_STREAM
+  if (sizeof(SOCK_STREAM) <= sizeof(int) && strncmp("SOCK_STREAM", prefix, prefixlen) == 0) {
+    void *ret = func("SOCK_STREAM", SOCK_STREAM, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SOL_SOCKET
+  if (sizeof(SOL_SOCKET) <= sizeof(int) && strncmp("SOL_SOCKET", prefix, prefixlen) == 0) {
+    void *ret = func("SOL_SOCKET", SOL_SOCKET, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SOMAXCONN
+  if (sizeof(SOMAXCONN) <= sizeof(int) && strncmp("SOMAXCONN", prefix, prefixlen) == 0) {
+    void *ret = func("SOMAXCONN", SOMAXCONN, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SO_ACCEPTCONN
+  if (sizeof(SO_ACCEPTCONN) <= sizeof(int) && strncmp("SO_ACCEPTCONN", prefix, prefixlen) == 0) {
+    void *ret = func("SO_ACCEPTCONN", SO_ACCEPTCONN, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SO_BROADCAST
+  if (sizeof(SO_BROADCAST) <= sizeof(int) && strncmp("SO_BROADCAST", prefix, prefixlen) == 0) {
+    void *ret = func("SO_BROADCAST", SO_BROADCAST, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SO_DEBUG
+  if (sizeof(SO_DEBUG) <= sizeof(int) && strncmp("SO_DEBUG", prefix, prefixlen) == 0) {
+    void *ret = func("SO_DEBUG", SO_DEBUG, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SO_DONTROUTE
+  if (sizeof(SO_DONTROUTE) <= sizeof(int) && strncmp("SO_DONTROUTE", prefix, prefixlen) == 0) {
+    void *ret = func("SO_DONTROUTE", SO_DONTROUTE, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SO_ERROR
+  if (sizeof(SO_ERROR) <= sizeof(int) && strncmp("SO_ERROR", prefix, prefixlen) == 0) {
+    void *ret = func("SO_ERROR", SO_ERROR, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SO_KEEPALIVE
+  if (sizeof(SO_KEEPALIVE) <= sizeof(int) && strncmp("SO_KEEPALIVE", prefix, prefixlen) == 0) {
+    void *ret = func("SO_KEEPALIVE", SO_KEEPALIVE, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SO_LINGER
+  if (sizeof(SO_LINGER) <= sizeof(int) && strncmp("SO_LINGER", prefix, prefixlen) == 0) {
+    void *ret = func("SO_LINGER", SO_LINGER, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SO_OOBINLINE
+  if (sizeof(SO_OOBINLINE) <= sizeof(int) && strncmp("SO_OOBINLINE", prefix, prefixlen) == 0) {
+    void *ret = func("SO_OOBINLINE", SO_OOBINLINE, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SO_RCVBUF
+  if (sizeof(SO_RCVBUF) <= sizeof(int) && strncmp("SO_RCVBUF", prefix, prefixlen) == 0) {
+    void *ret = func("SO_RCVBUF", SO_RCVBUF, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SO_RCVLOWAT
+  if (sizeof(SO_RCVLOWAT) <= sizeof(int) && strncmp("SO_RCVLOWAT", prefix, prefixlen) == 0) {
+    void *ret = func("SO_RCVLOWAT", SO_RCVLOWAT, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SO_RCVTIMEO
+  if (sizeof(SO_RCVTIMEO) <= sizeof(int) && strncmp("SO_RCVTIMEO", prefix, prefixlen) == 0) {
+    void *ret = func("SO_RCVTIMEO", SO_RCVTIMEO, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SO_REUSEADDR
+  if (sizeof(SO_REUSEADDR) <= sizeof(int) && strncmp("SO_REUSEADDR", prefix, prefixlen) == 0) {
+    void *ret = func("SO_REUSEADDR", SO_REUSEADDR, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SO_SNDBUF
+  if (sizeof(SO_SNDBUF) <= sizeof(int) && strncmp("SO_SNDBUF", prefix, prefixlen) == 0) {
+    void *ret = func("SO_SNDBUF", SO_SNDBUF, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SO_SNDLOWAT
+  if (sizeof(SO_SNDLOWAT) <= sizeof(int) && strncmp("SO_SNDLOWAT", prefix, prefixlen) == 0) {
+    void *ret = func("SO_SNDLOWAT", SO_SNDLOWAT, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SO_SNDTIMEO
+  if (sizeof(SO_SNDTIMEO) <= sizeof(int) && strncmp("SO_SNDTIMEO", prefix, prefixlen) == 0) {
+    void *ret = func("SO_SNDTIMEO", SO_SNDTIMEO, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+#ifdef SO_TYPE
+  if (sizeof(SO_TYPE) <= sizeof(int) && strncmp("SO_TYPE", prefix, prefixlen) == 0) {
+    void *ret = func("SO_TYPE", SO_TYPE, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+  return NULL;
+}

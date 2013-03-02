@@ -107,6 +107,16 @@ void buffer_add_buf(buffer_t *buf, buffer_t *buf2)
   buffer_add_mem(buf, buf2->ptr, buf2->len);
 }
 
+void buffer_addf(buffer_t *buf, char *fmt, ...)
+{
+  va_list ap;
+  char tmp[4096];
+  va_start(ap, fmt);
+  vsnprintf(tmp, sizeof(tmp)-1, fmt, ap);
+  tmp[sizeof(tmp)-1] = '\0';
+  buffer_add_str(buf, tmp);
+}
+
 void buffer_terminate_mem(buffer_t *buf, void *mem, size_t size)
 {
   buffer_enlarge(buf, size);
@@ -215,6 +225,11 @@ void escape_string_content(char *unescaped_ptr, size_t unescaped_len, buffer_t *
 #undef NO_NEXT
 }
 
+void buffer_add_escaped_mem(buffer_t *buf, void *mem, size_t size)
+{
+  escape_string_content(mem, size, buf);
+}
+
 /*
  * Escape a string (TAB to \t, etc.) pointed by _unescaped_ptr_ with length _unescaped_len_.
  * The result (NUL-terminated string) is stored in a buffer newly allcated by malloc.
@@ -234,15 +249,20 @@ char *escape_string(size_t *escaped_len_ret, char *unescaped_ptr, size_t unescap
   return buffer_unwrap(buf);
 }
 
+void buffer_add_quoted_mem(buffer_t *buf, void *mem, size_t size)
+{
+  buffer_add_byte(buf, '"');
+  escape_string_content(mem, size, buf);
+  buffer_add_byte(buf, '"');
+}
+
 char *quote_string(size_t *quoted_len_ret, char *unquoted_ptr, size_t unquoted_len)
 {
   buffer_t *buf = buffer_new(unquoted_len+1);
-  buffer_add_byte(buf, '"');
-  escape_string_content(unquoted_ptr, unquoted_len, buf);
+  buffer_add_quoted_mem(buf, unquoted_ptr, unquoted_len);
   if (quoted_len_ret) {
     *quoted_len_ret = buf->len;
   }
-  buffer_add_byte(buf, '"');
   buffer_add_byte(buf, '\0');
   return buffer_unwrap(buf);
 }
@@ -440,81 +460,100 @@ char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escap
   return buffer_unwrap(buf);
 }
 
+static void buffer_add_sockaddr(buffer_t *buf, struct sockaddr *sockaddr_ptr, size_t sockaddr_len, size_t buf_len, int opt_4)
+{
+  int truncated;
+  size_t given_len;
+
+  if (buf_len < sockaddr_len) {
+    truncated = 1;
+    given_len = buf_len;
+  }
+  else {
+    truncated = 0;
+    given_len = sockaddr_len;
+  }
+    
+  if (given_len < offsetof(struct sockaddr, sa_family) + FIELD_SIZE(struct sockaddr, sa_family)) {
+    if (given_len == 0) {
+      if (sockaddr_len == 0)
+        buffer_add_str(buf, "empty sockaddr");
+      else
+        buffer_addf(buf, "too short sockaddr \"\"... (%d bytes)", (int)sockaddr_len);
+    }
+    else {
+      buffer_add_str(buf, "too short sockaddr ");
+      buffer_add_quoted_mem(buf, sockaddr_ptr, given_len);
+      if (truncated)
+        buffer_add_str(buf, "...");
+      buffer_addf(buf, " (%d bytes)", (int)sockaddr_len);
+    }
+    return;
+  }
+
+  switch (sockaddr_ptr->sa_family) {
+    case AF_UNIX:
+    {
+      struct sockaddr_un *addr_un = (struct sockaddr_un *)sockaddr_ptr;
+      buffer_add_byte(buf, '"');
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+      if (opt_4 && addr_un->sun_len != 0) {
+        buffer_addf("(sun_len=%d)", addr_un->sun_len);
+#endif
+      buffer_add_escaped_mem(buf, addr_un->sun_path, given_len - offsetof(struct sockaddr_un, sun_path));
+      buffer_add_byte(buf, '"');
+      if (truncated)
+        buffer_add_str(buf, "...");
+      buffer_addf(buf, " (%d bytes)", (int)(sockaddr_len - offsetof(struct sockaddr_un, sun_path)));
+    }
+    break;
+
+    default:
+    {
+      char *family_name = constant_int2name("AF_", sockaddr_ptr->sa_family);
+      if (family_name) {
+        buffer_add_str(buf, family_name);
+      }
+      else {
+        buffer_addf(buf, "family=%d", sockaddr_ptr->sa_family);
+      }
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+      if (opt_4 && sockaddr_ptr->sa_len != 0) {
+        buffer_addf(" (sa_len=%d)", sockaddr_ptr->sa_len);
+#endif
+      buffer_add_quoted_mem(buf, sockaddr_ptr, given_len);
+      if (truncated)
+        buffer_add_str(buf, "...");
+      buffer_addf(buf, " (%d bytes)", (int)sockaddr_len);
+    }
+    break;
+  }
+
+  return;
+}
+
 static void report_sockaddr_to_kernel(char *key, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4)
 {
-  char *escaped_path;
-  char path_sun_len_prefix[sizeof("(sun_len=NNN)")] = "";
-  char *path_ptr = sockaddr_ptr->sun_path;
-  size_t path_len = sockaddr_len - offsetof(struct sockaddr_un, sun_path);
-  int path_sun_len;
-
-  if (sockaddr_len < offsetof(struct sockaddr_un, sun_path)) {
-    printf("%-21s -> too short sockaddr_un (%d bytes)\n", key, (int)sockaddr_len);
-    return;
-  }
-
-  if (sockaddr_ptr->sun_family != AF_UNIX) {
-    char *escaped_sockaddr = escape_string(NULL, (char *)sockaddr_ptr, sockaddr_len);
-    printf("%-21s -> faimly=%d \"%s\"\n", key, (int)sockaddr_ptr->sun_family, escaped_sockaddr);
-    free(escaped_sockaddr);
-    return;
-  }
-
-#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
-  path_sun_len = sockaddr_ptr->sun_len;
-#else
-  path_sun_len = 0;
-#endif
-  escaped_path = escape_string(NULL, path_ptr, path_len);
-  if (opt_4 && path_sun_len != 0) {
-    snprintf(path_sun_len_prefix, sizeof(path_sun_len_prefix),
-        "(sun_len=%d)", path_sun_len);
-  }
-  printf("%-21s <- \"%s%s\" (%d bytes)\n", key, path_sun_len_prefix, escaped_path, (int)path_len);
-  free(escaped_path);
+  buffer_t *buf = buffer_new(30);
+  buffer_addf(buf, "%-21s <- ", key);
+  buffer_add_sockaddr(buf, (struct sockaddr *)sockaddr_ptr, sockaddr_len, sockaddr_len, opt_4);
+  buffer_add_byte(buf, '\n');
+  buffer_terminate_byte(buf, '\0');
+  fputs(buf->ptr, stdout);
+  buffer_free(buf);
 }
 
 static void report_sockaddr_from_kernel(char *key, size_t buf_len, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4)
 {
   int truncated;
-  size_t len;
-  char *escaped_path;
-  char path_sun_len_prefix[sizeof("(sun_len=NNN)")] = "";
 
-  if (sockaddr_len < offsetof(struct sockaddr_un, sun_path)) {
-    printf("%-21s -> too short sockaddr_un (%d bytes)\n", key, (int)sockaddr_len);
-    return;
-  }
-
-  if (sockaddr_ptr->sun_family != AF_UNIX) {
-    char *escaped_sockaddr = escape_string(NULL, (char *)sockaddr_ptr, sockaddr_len);
-    printf("%-21s -> faimly=%d \"%s\"\n", key, (int)sockaddr_ptr->sun_family, escaped_sockaddr);
-    free(escaped_sockaddr);
-    return;
-  }
-
-#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
-  if (opt_4 && sockaddr_ptr->sun_len != 0) {
-    snprintf(path_sun_len_prefix, sizeof(path_sun_len_prefix),
-        "(sun_len=%d)", (int)sockaddr_ptr->sun_len);
-  }
-#endif
-
-  if (sockaddr_len <= buf_len) {
-    truncated = 0;
-    len = sockaddr_len - offsetof(struct sockaddr_un, sun_path);
-  }
-  else {
-    truncated = 1;
-    len = buf_len - offsetof(struct sockaddr_un, sun_path);
-  }
-
-  escaped_path = escape_string(NULL, sockaddr_ptr->sun_path, len);
-  printf("%-21s -> \"%s%s\"%s (%d bytes)\n",
-      key, path_sun_len_prefix, escaped_path,
-      truncated ? "..." : "",
-      (int)(sockaddr_len - offsetof(struct sockaddr_un, sun_path)));
-  free(escaped_path);
+  buffer_t *buf = buffer_new(30);
+  buffer_addf(buf, "%-21s -> ", key);
+  buffer_add_sockaddr(buf, (struct sockaddr *)sockaddr_ptr, sockaddr_len, buf_len, opt_4);
+  buffer_add_byte(buf, '\n');
+  buffer_terminate_byte(buf, '\0');
+  fputs(buf->ptr, stdout);
+  buffer_free(buf);
 }
 
 #define CANARY_STR "???????"
@@ -764,3 +803,17 @@ void perrsym(const char *s)
   else
     fprintf(stderr, "%s%serrno=%d\n", s, sep, err);
 }
+
+static void *constant_int2name_func(char *name, int val, void *arg)
+{
+  int arg_value = *(int *)arg;
+  if (val == arg_value)
+    return name;
+  return NULL;
+}
+
+char *constant_int2name(char *prefix, int value)
+{
+  return constant_search_names(prefix, constant_int2name_func, &value);
+}
+

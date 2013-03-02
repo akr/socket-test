@@ -95,3 +95,47 @@ void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg)
     }
   }
 }
+
+<%
+  constants = %w[
+    AF_INET AF_INET6 AF_UNIX AF_UNSPEC
+    SOCK_DGRAM SOCK_RAW SOCK_SEQPACKET SOCK_STREAM
+    SHUT_RD SHUT_RDWR SHUT_WR
+    MSG_CTRUNC MSG_DONTROUTE MSG_EOR MSG_OOB
+    MSG_NOSIGNAL MSG_PEEK MSG_TRUNC MSG_WAITALL
+    SOL_SOCKET
+    SO_ACCEPTCONN SO_BROADCAST SO_DEBUG SO_DONTROUTE SO_ERROR SO_KEEPALIVE
+    SO_LINGER SO_OOBINLINE SO_RCVBUF SO_RCVLOWAT SO_RCVTIMEO SO_REUSEADDR
+    SO_SNDBUF SO_SNDLOWAT SO_SNDTIMEO SO_TYPE
+    SCM_RIGHTS
+    SOMAXCONN
+  ]
+%>
+
+int constant_name2int(char *name, int *ret)
+{
+% constants.each {|str|
+#ifdef <%= str %>
+  if (sizeof(<%= str %>) <= sizeof(int) && strcmp("<%= str %>", name) == 0) {
+    *ret = <%= str %>;
+    return 0;
+  }
+#endif
+% }
+  return -1;
+}
+
+void *constant_search_names(char *prefix, void *(*func)(char *name, int val, void *arg), void *arg)
+{
+  size_t prefixlen = strlen(prefix);
+% constants.sort.each {|str|
+#ifdef <%= str %>
+  if (sizeof(<%= str %>) <= sizeof(int) && strncmp("<%= str %>", prefix, prefixlen) == 0) {
+    void *ret = func("<%= str %>", <%= str %>, arg);
+    if (ret)
+      return ret;
+  }
+#endif
+% }
+  return NULL;
+}
