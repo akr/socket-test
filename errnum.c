@@ -78,8 +78,20 @@ int main(int argc, char *argv[])
   err = EBADARCH; str = "EBADARCH";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef EBADCALL
+  err = EBADCALL; str = "EBADCALL";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef EBADCPU
+  err = EBADCPU; str = "EBADCPU";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef EBADE
   err = EBADE; str = "EBADE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef EBADEPT
+  err = EBADEPT; str = "EBADEPT";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef EBADEXEC
@@ -94,8 +106,16 @@ int main(int argc, char *argv[])
   err = EBADFD; str = "EBADFD";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef EBADIOCTL
+  err = EBADIOCTL; str = "EBADIOCTL";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef EBADMACHO
   err = EBADMACHO; str = "EBADMACHO";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef EBADMODE
+  err = EBADMODE; str = "EBADMODE";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef EBADMSG
@@ -104,6 +124,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef EBADR
   err = EBADR; str = "EBADR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef EBADREQUEST
+  err = EBADREQUEST; str = "EBADREQUEST";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef EBADRPC
@@ -118,12 +142,20 @@ int main(int argc, char *argv[])
   err = EBADSLT; str = "EBADSLT";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef EBADSRCDST
+  err = EBADSRCDST; str = "EBADSRCDST";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef EBFONT
   err = EBFONT; str = "EBFONT";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef EBUSY
   err = EBUSY; str = "EBUSY";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef ECALLDENIED
+  err = ECALLDENIED; str = "ECALLDENIED";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef ECANCELED
@@ -158,12 +190,20 @@ int main(int argc, char *argv[])
   err = ECONNRESET; str = "ECONNRESET";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef EDEADEPT
+  err = EDEADEPT; str = "EDEADEPT";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef EDEADLK
   err = EDEADLK; str = "EDEADLK";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef EDEADLOCK
   err = EDEADLOCK; str = "EDEADLOCK";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef EDEADSRCDST
+  err = EDEADSRCDST; str = "EDEADSRCDST";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef EDESTADDRREQ
@@ -176,6 +216,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef EDOM
   err = EDOM; str = "EDOM";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef EDONTREPLY
+  err = EDONTREPLY; str = "EDONTREPLY";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef EDOOFUS
@@ -204,6 +248,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef EFTYPE
   err = EFTYPE; str = "EFTYPE";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef EGENERIC
+  err = EGENERIC; str = "EGENERIC";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef EHOSTDOWN
@@ -314,6 +362,10 @@ int main(int argc, char *argv[])
   err = ELNRNG; str = "ELNRNG";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef ELOCKED
+  err = ELOCKED; str = "ELOCKED";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef ELOOP
   err = ELOOP; str = "ELOOP";
   printf("%s = %d\n", str, err);
@@ -376,6 +428,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef ENOBUFS
   err = ENOBUFS; str = "ENOBUFS";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef ENOCONN
+  err = ENOCONN; str = "ENOCONN";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef ENOCSI
@@ -478,6 +534,10 @@ int main(int argc, char *argv[])
   err = ENOTNAM; str = "ENOTNAM";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef ENOTREADY
+  err = ENOTREADY; str = "ENOTREADY";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef ENOTRECOVERABLE
   err = ENOTRECOVERABLE; str = "ENOTRECOVERABLE";
   printf("%s = %d\n", str, err);
@@ -498,6 +558,10 @@ int main(int argc, char *argv[])
   err = ENOTUNIQ; str = "ENOTUNIQ";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef ENOURG
+  err = ENOURG; str = "ENOURG";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef ENXIO
   err = ENXIO; str = "ENXIO";
   printf("%s = %d\n", str, err);
@@ -512,6 +576,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef EOWNERDEAD
   err = EOWNERDEAD; str = "EOWNERDEAD";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef EPACKSIZE
+  err = EPACKSIZE; str = "EPACKSIZE";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef EPERM
@@ -634,6 +702,10 @@ int main(int argc, char *argv[])
   err = ETOOMANYREFS; str = "ETOOMANYREFS";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef ETRAPDENIED
+  err = ETRAPDENIED; str = "ETRAPDENIED";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef ETXTBSY
   err = ETXTBSY; str = "ETXTBSY";
   printf("%s = %d\n", str, err);
@@ -644,6 +716,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef EUNATCH
   err = EUNATCH; str = "EUNATCH";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef EURG
+  err = EURG; str = "EURG";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef EUSERS
