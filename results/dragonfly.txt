@@ -30,7 +30,7 @@ getpeername(accepted) -> "bar\0" (4 bytes)
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "foo\0" (4 bytes)
 getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -40,7 +40,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "./foo\0" (6 bytes)
 getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -100,7 +100,7 @@ getpeername(accepted) -> "bar\0moga" (8 bytes)
 bind(server)          <- "(44*"./")a\0" (90 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(44*"./")a\0" (90 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(44*"./")a\0" (90 bytes)
 getpeername(client)   -> "(44*"./")a\0" (90 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -110,7 +110,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(44*"./")ab\0" (91 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(44*"./")ab\0" (91 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(44*"./")ab\0" (91 bytes)
 getpeername(client)   -> "(44*"./")ab\0" (91 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -120,7 +120,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(45*"./")a\0" (92 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(45*"./")a\0" (92 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(45*"./")a\0" (92 bytes)
 getpeername(client)   -> "(45*"./")a\0" (92 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -130,7 +130,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(45*"./")ab\0" (93 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(45*"./")ab\0" (93 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(45*"./")ab\0" (93 bytes)
 getpeername(client)   -> "(45*"./")ab\0" (93 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -140,7 +140,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(46*"./")a\0" (94 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(46*"./")a\0" (94 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(46*"./")a\0" (94 bytes)
 getpeername(client)   -> "(46*"./")a\0" (94 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -150,7 +150,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(46*"./")ab\0" (95 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(46*"./")ab\0" (95 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(46*"./")ab\0" (95 bytes)
 getpeername(client)   -> "(46*"./")ab\0" (95 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -160,7 +160,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(47*"./")a\0" (96 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(47*"./")a\0" (96 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(47*"./")a\0" (96 bytes)
 getpeername(client)   -> "(47*"./")a\0" (96 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -170,7 +170,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(47*"./")ab\0" (97 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(47*"./")ab\0" (97 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(47*"./")ab\0" (97 bytes)
 getpeername(client)   -> "(47*"./")ab\0" (97 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -180,7 +180,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(48*"./")a\0" (98 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(48*"./")a\0" (98 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(48*"./")a\0" (98 bytes)
 getpeername(client)   -> "(48*"./")a\0" (98 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -190,7 +190,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(48*"./")ab\0" (99 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(48*"./")ab\0" (99 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(48*"./")ab\0" (99 bytes)
 getpeername(client)   -> "(48*"./")ab\0" (99 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -200,7 +200,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(49*"./")a\0" (100 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")a\0" (100 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(49*"./")a\0" (100 bytes)
 getpeername(client)   -> "(49*"./")a\0" (100 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -210,7 +210,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(49*"./")ab\0" (101 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")ab\0" (101 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(49*"./")ab\0" (101 bytes)
 getpeername(client)   -> "(49*"./")ab\0" (101 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -221,7 +221,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(50*"./")a\0" (102 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(50*"./")a\0" (102 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(50*"./")a\0" (102 bytes)
 getpeername(client)   -> "(50*"./")a\0" (102 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -231,7 +231,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(50*"./")ab\0" (103 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(50*"./")ab\0" (103 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(50*"./")ab\0" (103 bytes)
 getpeername(client)   -> "(50*"./")ab\0" (103 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -241,7 +241,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(51*"./")a\0" (104 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(51*"./")a\0" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(51*"./")a\0" (104 bytes)
 getpeername(client)   -> "(51*"./")a\0" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -251,7 +251,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(51*"./")ab\0" (105 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(51*"./")ab" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(51*"./")ab\0" (105 bytes)
 getpeername(client)   -> "(51*"./")ab" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -261,7 +261,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(52*"./")a\0" (106 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(52*"./")a\0" (106 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -271,7 +271,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(52*"./")ab\0" (107 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(52*"./")ab\0" (107 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -281,7 +281,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(53*"./")a\0" (108 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(53*"./")a\0" (108 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -291,7 +291,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(53*"./")ab\0" (109 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(53*"./")ab\0" (109 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -301,7 +301,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(54*"./")a\0" (110 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(54*"./")a\0" (110 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -311,7 +311,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(54*"./")ab\0" (111 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(54*"./")ab\0" (111 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -321,7 +321,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(55*"./")a\0" (112 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(55*"./")a\0" (112 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -331,7 +331,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(55*"./")ab\0" (113 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(55*"./")ab\0" (113 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -341,7 +341,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(56*"./")a\0" (114 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(56*"./")a\0" (114 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -351,7 +351,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(56*"./")ab\0" (115 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(56*"./")ab\0" (115 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -361,7 +361,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(57*"./")a\0" (116 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(57*"./")a\0" (116 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -371,7 +371,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(57*"./")ab\0" (117 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(57*"./")ab\0" (117 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -381,7 +381,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(58*"./")a\0" (118 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(58*"./")a\0" (118 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -391,7 +391,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(58*"./")ab\0" (119 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(58*"./")ab\0" (119 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -401,7 +401,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(59*"./")a\0" (120 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(59*"./")a\0" (120 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -411,7 +411,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(59*"./")ab\0" (121 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(59*"./")ab\0" (121 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -422,7 +422,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(60*"./")a\0" (122 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(60*"./")a\0" (122 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -432,7 +432,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(60*"./")ab\0" (123 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(60*"./")ab\0" (123 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -442,7 +442,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(61*"./")a\0" (124 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(61*"./")a\0" (124 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -452,7 +452,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(61*"./")ab\0" (125 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(61*"./")ab\0" (125 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -462,7 +462,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(62*"./")a\0" (126 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(62*"./")a\0" (126 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -472,7 +472,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(62*"./")ab\0" (127 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(62*"./")ab\0" (127 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -482,7 +482,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(63*"./")a\0" (128 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(63*"./")a\0" (128 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -492,7 +492,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(63*"./")ab\0" (129 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(63*"./")ab\0" (129 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -502,7 +502,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(64*"./")a\0" (130 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(64*"./")a\0" (130 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -512,7 +512,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(64*"./")ab\0" (131 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(64*"./")ab\0" (131 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -522,7 +522,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(65*"./")a\0" (132 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(65*"./")a\0" (132 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -532,7 +532,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(65*"./")ab\0" (133 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(65*"./")ab\0" (133 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -542,7 +542,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(66*"./")a\0" (134 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(66*"./")a\0" (134 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -552,7 +552,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(66*"./")ab\0" (135 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(66*"./")ab\0" (135 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -562,7 +562,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(67*"./")a\0" (136 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(67*"./")a\0" (136 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -572,7 +572,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(67*"./")ab\0" (137 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(67*"./")ab\0" (137 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -582,7 +582,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(68*"./")a\0" (138 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(68*"./")a\0" (138 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -592,7 +592,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(68*"./")ab\0" (139 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(68*"./")ab\0" (139 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -602,7 +602,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(69*"./")a\0" (140 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(69*"./")a\0" (140 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -612,7 +612,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(69*"./")ab\0" (141 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(69*"./")ab\0" (141 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -623,7 +623,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(120*"./")a\0" (242 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(120*"./")a\0" (242 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -633,7 +633,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(120*"./")ab\0" (243 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(120*"./")ab\0" (243 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -643,7 +643,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(121*"./")a\0" (244 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(121*"./")a\0" (244 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -653,7 +653,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(121*"./")ab\0" (245 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(121*"./")ab\0" (245 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -663,7 +663,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(122*"./")a\0" (246 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(122*"./")a\0" (246 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -673,7 +673,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(122*"./")ab\0" (247 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(122*"./")ab\0" (247 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -683,7 +683,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(123*"./")a\0" (248 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(123*"./")a\0" (248 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -693,7 +693,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(123*"./")ab\0" (249 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(123*"./")ab\0" (249 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -703,7 +703,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(124*"./")a\0" (250 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(124*"./")a\0" (250 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -713,7 +713,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(124*"./")ab\0" (251 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(124*"./")ab\0" (251 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -723,7 +723,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(125*"./")a\0" (252 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(125*"./")a\0" (252 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -733,7 +733,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(125*"./")ab\0" (253 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(125*"./")ab\0" (253 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -890,7 +890,7 @@ bind(server): ENAMETOOLONG
 bind(server)          <- "(90*"c")\0" (91 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(90*"c")\0" (91 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(90*"c")\0" (91 bytes)
 getpeername(client)   -> "(90*"c")\0" (91 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -900,7 +900,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(91*"c")\0" (92 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(91*"c")\0" (92 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(91*"c")\0" (92 bytes)
 getpeername(client)   -> "(91*"c")\0" (92 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -910,7 +910,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(92*"c")\0" (93 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(92*"c")\0" (93 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(92*"c")\0" (93 bytes)
 getpeername(client)   -> "(92*"c")\0" (93 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -920,7 +920,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(93*"c")\0" (94 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(93*"c")\0" (94 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(93*"c")\0" (94 bytes)
 getpeername(client)   -> "(93*"c")\0" (94 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -930,7 +930,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(94*"c")\0" (95 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(94*"c")\0" (95 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(94*"c")\0" (95 bytes)
 getpeername(client)   -> "(94*"c")\0" (95 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -940,7 +940,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(95*"c")\0" (96 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(95*"c")\0" (96 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(95*"c")\0" (96 bytes)
 getpeername(client)   -> "(95*"c")\0" (96 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -950,7 +950,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(96*"c")\0" (97 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(96*"c")\0" (97 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(96*"c")\0" (97 bytes)
 getpeername(client)   -> "(96*"c")\0" (97 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -960,7 +960,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(97*"c")\0" (98 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(97*"c")\0" (98 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(97*"c")\0" (98 bytes)
 getpeername(client)   -> "(97*"c")\0" (98 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -970,7 +970,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(98*"c")\0" (99 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(98*"c")\0" (99 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(98*"c")\0" (99 bytes)
 getpeername(client)   -> "(98*"c")\0" (99 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -980,7 +980,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(99*"c")\0" (100 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(99*"c")\0" (100 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(99*"c")\0" (100 bytes)
 getpeername(client)   -> "(99*"c")\0" (100 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -991,7 +991,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(100*"c")\0" (101 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(100*"c")\0" (101 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(100*"c")\0" (101 bytes)
 getpeername(client)   -> "(100*"c")\0" (101 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1001,7 +1001,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(101*"c")\0" (102 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(101*"c")\0" (102 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(101*"c")\0" (102 bytes)
 getpeername(client)   -> "(101*"c")\0" (102 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1011,7 +1011,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(102*"c")\0" (103 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(102*"c")\0" (103 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(102*"c")\0" (103 bytes)
 getpeername(client)   -> "(102*"c")\0" (103 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1021,7 +1021,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(103*"c")\0" (104 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(103*"c")\0" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(103*"c")\0" (104 bytes)
 getpeername(client)   -> "(103*"c")\0" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1031,7 +1031,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(104*"c")\0" (105 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(104*"c")\0" (105 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1041,7 +1041,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(105*"c")\0" (106 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(105*"c")\0" (106 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1051,7 +1051,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(106*"c")\0" (107 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(106*"c")\0" (107 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1061,7 +1061,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(107*"c")\0" (108 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(107*"c")\0" (108 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1071,7 +1071,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(108*"c")\0" (109 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(108*"c")\0" (109 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1081,7 +1081,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(109*"c")\0" (110 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(109*"c")\0" (110 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1092,7 +1092,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(110*"c")\0" (111 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(110*"c")\0" (111 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1102,7 +1102,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(111*"c")\0" (112 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(111*"c")\0" (112 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1112,7 +1112,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(112*"c")\0" (113 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(112*"c")\0" (113 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1122,7 +1122,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(113*"c")\0" (114 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(113*"c")\0" (114 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1132,7 +1132,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(114*"c")\0" (115 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(114*"c")\0" (115 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1142,7 +1142,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(115*"c")\0" (116 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(115*"c")\0" (116 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1152,7 +1152,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(116*"c")\0" (117 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(116*"c")\0" (117 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1162,7 +1162,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(117*"c")\0" (118 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(117*"c")\0" (118 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1172,7 +1172,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(118*"c")\0" (119 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(118*"c")\0" (119 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1182,7 +1182,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(119*"c")\0" (120 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(119*"c")\0" (120 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1193,7 +1193,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(120*"c")\0" (121 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(120*"c")\0" (121 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1203,7 +1203,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(121*"c")\0" (122 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(121*"c")\0" (122 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1213,7 +1213,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(122*"c")\0" (123 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(122*"c")\0" (123 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1223,7 +1223,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(123*"c")\0" (124 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(123*"c")\0" (124 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1233,7 +1233,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(124*"c")\0" (125 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(124*"c")\0" (125 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1243,7 +1243,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(125*"c")\0" (126 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(125*"c")\0" (126 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1253,7 +1253,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(126*"c")\0" (127 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(126*"c")\0" (127 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1263,7 +1263,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(127*"c")\0" (128 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(127*"c")\0" (128 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1273,7 +1273,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(128*"c")\0" (129 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(128*"c")\0" (129 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1283,7 +1283,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(129*"c")\0" (130 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(129*"c")\0" (130 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1294,7 +1294,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(250*"c")\0" (251 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(250*"c")\0" (251 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1304,7 +1304,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(251*"c")\0" (252 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(251*"c")\0" (252 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1314,7 +1314,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(252*"c")\0" (253 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(252*"c")\0" (253 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1346,7 +1346,7 @@ bind(server): ENAMETOOLONG
 bind(server)          <- "(47*"./")01234567\0" (103 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(47*"./")01234567\0" (103 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(47*"./")01234567\0" (103 bytes)
 getpeername(client)   -> "(47*"./")01234567\0" (103 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1356,7 +1356,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(47*"./")012345678\0" (104 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(47*"./")012345678\0" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(47*"./")012345678\0" (104 bytes)
 getpeername(client)   -> "(47*"./")012345678\0" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1366,7 +1366,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(47*"./")0123456789\0" (105 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(47*"./")0123456789" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(47*"./")0123456789\0" (105 bytes)
 getpeername(client)   -> "(47*"./")0123456789" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1376,7 +1376,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(47*"./")01234567890\0" (106 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(47*"./")0123456789" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(47*"./")01234567890\0" (106 bytes)
 getpeername(client)   -> "(47*"./")0123456789" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1387,7 +1387,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(47*"./")01234567890\0" (106 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(47*"./")01234567890\0" (106 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(47*"./")01234567890\0" (106 bytes)
 getpeername(client)   -> "(47*"./")01234567890\0" (106 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1410,7 +1410,7 @@ getpeername(accepted) -> "(47*"./")01234567890\0" (106 bytes)
 bind(server)          <- "(125*"./")ab\0" (253 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(125*"./")ab\0" (253 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(125*"./")ab\0" (253 bytes)
 getpeername(client)   -> "(125*"./")ab\0" (253 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1508,7 +1508,7 @@ getpeername(accepted) -> "bar" (3 bytes)
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo" (3 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "foo" (3 bytes)
 getpeername(client)   -> "foo" (3 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1518,7 +1518,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo" (3 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "./foo" (5 bytes)
 getpeername(client)   -> "foo" (3 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1529,7 +1529,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(44*"./")a" (89 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(44*"./")a" (89 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(44*"./")a" (89 bytes)
 getpeername(client)   -> "(44*"./")a" (89 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1539,7 +1539,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(44*"./")ab" (90 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(44*"./")ab" (90 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(44*"./")ab" (90 bytes)
 getpeername(client)   -> "(44*"./")ab" (90 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1549,7 +1549,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(45*"./")a" (91 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(45*"./")a" (91 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(45*"./")a" (91 bytes)
 getpeername(client)   -> "(45*"./")a" (91 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1559,7 +1559,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(45*"./")ab" (92 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(45*"./")ab" (92 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(45*"./")ab" (92 bytes)
 getpeername(client)   -> "(45*"./")ab" (92 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1569,7 +1569,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(46*"./")a" (93 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(46*"./")a" (93 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(46*"./")a" (93 bytes)
 getpeername(client)   -> "(46*"./")a" (93 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1579,7 +1579,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(46*"./")ab" (94 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(46*"./")ab" (94 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(46*"./")ab" (94 bytes)
 getpeername(client)   -> "(46*"./")ab" (94 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1589,7 +1589,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(47*"./")a" (95 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(47*"./")a" (95 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(47*"./")a" (95 bytes)
 getpeername(client)   -> "(47*"./")a" (95 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1599,7 +1599,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(47*"./")ab" (96 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(47*"./")ab" (96 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(47*"./")ab" (96 bytes)
 getpeername(client)   -> "(47*"./")ab" (96 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1609,7 +1609,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(48*"./")a" (97 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(48*"./")a" (97 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(48*"./")a" (97 bytes)
 getpeername(client)   -> "(48*"./")a" (97 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1619,7 +1619,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(48*"./")ab" (98 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(48*"./")ab" (98 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(48*"./")ab" (98 bytes)
 getpeername(client)   -> "(48*"./")ab" (98 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1629,7 +1629,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(49*"./")a" (99 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")a" (99 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(49*"./")a" (99 bytes)
 getpeername(client)   -> "(49*"./")a" (99 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1639,7 +1639,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(49*"./")ab" (100 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")ab" (100 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(49*"./")ab" (100 bytes)
 getpeername(client)   -> "(49*"./")ab" (100 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1650,7 +1650,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(50*"./")a" (101 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(50*"./")a" (101 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(50*"./")a" (101 bytes)
 getpeername(client)   -> "(50*"./")a" (101 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1660,7 +1660,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(50*"./")ab" (102 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(50*"./")ab" (102 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(50*"./")ab" (102 bytes)
 getpeername(client)   -> "(50*"./")ab" (102 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1670,7 +1670,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(51*"./")a" (103 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(51*"./")a" (103 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(51*"./")a" (103 bytes)
 getpeername(client)   -> "(51*"./")a" (103 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1680,7 +1680,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(51*"./")ab" (104 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(51*"./")ab" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(51*"./")ab" (104 bytes)
 getpeername(client)   -> "(51*"./")ab" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1690,7 +1690,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(52*"./")a" (105 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(52*"./")a" (105 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1700,7 +1700,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(52*"./")ab" (106 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(52*"./")ab" (106 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1710,7 +1710,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(53*"./")a" (107 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(53*"./")a" (107 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1720,7 +1720,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(53*"./")ab" (108 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(53*"./")ab" (108 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1730,7 +1730,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(54*"./")a" (109 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(54*"./")a" (109 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1740,7 +1740,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(54*"./")ab" (110 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(54*"./")ab" (110 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1750,7 +1750,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(55*"./")a" (111 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(55*"./")a" (111 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1760,7 +1760,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(55*"./")ab" (112 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(55*"./")ab" (112 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1770,7 +1770,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(56*"./")a" (113 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(56*"./")a" (113 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1780,7 +1780,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(56*"./")ab" (114 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(56*"./")ab" (114 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1790,7 +1790,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(57*"./")a" (115 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(57*"./")a" (115 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1800,7 +1800,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(57*"./")ab" (116 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(57*"./")ab" (116 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1810,7 +1810,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(58*"./")a" (117 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(58*"./")a" (117 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1820,7 +1820,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(58*"./")ab" (118 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(58*"./")ab" (118 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1830,7 +1830,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(59*"./")a" (119 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(59*"./")a" (119 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1840,7 +1840,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(59*"./")ab" (120 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(59*"./")ab" (120 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1851,7 +1851,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(60*"./")a" (121 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(60*"./")a" (121 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1861,7 +1861,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(60*"./")ab" (122 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(60*"./")ab" (122 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1871,7 +1871,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(61*"./")a" (123 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(61*"./")a" (123 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1881,7 +1881,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(61*"./")ab" (124 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(61*"./")ab" (124 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1891,7 +1891,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(62*"./")a" (125 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(62*"./")a" (125 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1901,7 +1901,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(62*"./")ab" (126 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(62*"./")ab" (126 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1911,7 +1911,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(63*"./")a" (127 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(63*"./")a" (127 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1921,7 +1921,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(63*"./")ab" (128 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(63*"./")ab" (128 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1931,7 +1931,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(64*"./")a" (129 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(64*"./")a" (129 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1941,7 +1941,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(64*"./")ab" (130 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(64*"./")ab" (130 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1951,7 +1951,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(65*"./")a" (131 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(65*"./")a" (131 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1961,7 +1961,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(65*"./")ab" (132 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(65*"./")ab" (132 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1971,7 +1971,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(66*"./")a" (133 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(66*"./")a" (133 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1981,7 +1981,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(66*"./")ab" (134 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(66*"./")ab" (134 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -1991,7 +1991,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(67*"./")a" (135 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(67*"./")a" (135 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2001,7 +2001,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(67*"./")ab" (136 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(67*"./")ab" (136 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2011,7 +2011,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(68*"./")a" (137 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(68*"./")a" (137 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2021,7 +2021,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(68*"./")ab" (138 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(68*"./")ab" (138 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2031,7 +2031,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(69*"./")a" (139 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(69*"./")a" (139 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2041,7 +2041,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(69*"./")ab" (140 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(69*"./")ab" (140 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2052,7 +2052,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(120*"./")a" (241 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(120*"./")a" (241 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2062,7 +2062,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(120*"./")ab" (242 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(120*"./")ab" (242 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2072,7 +2072,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(121*"./")a" (243 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(121*"./")a" (243 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2082,7 +2082,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(121*"./")ab" (244 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(121*"./")ab" (244 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2092,7 +2092,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(122*"./")a" (245 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(122*"./")a" (245 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2102,7 +2102,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(122*"./")ab" (246 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(122*"./")ab" (246 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2112,7 +2112,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(123*"./")a" (247 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(123*"./")a" (247 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2122,7 +2122,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(123*"./")ab" (248 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(123*"./")ab" (248 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2132,7 +2132,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(124*"./")a" (249 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(124*"./")a" (249 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2142,7 +2142,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(124*"./")ab" (250 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(124*"./")ab" (250 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2152,7 +2152,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(125*"./")a" (251 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(125*"./")a" (251 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2162,7 +2162,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(125*"./")ab" (252 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(125*"./")ab" (252 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2172,7 +2172,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(126*"./")a" (253 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(126*"./")a" (253 bytes)
 getpeername(client)   -> "(52*"./")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2326,7 +2326,7 @@ bind(server): ENAMETOOLONG
 bind(server)          <- "(90*"c")" (90 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(90*"c")" (90 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(90*"c")" (90 bytes)
 getpeername(client)   -> "(90*"c")" (90 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2336,7 +2336,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(91*"c")" (91 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(91*"c")" (91 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(91*"c")" (91 bytes)
 getpeername(client)   -> "(91*"c")" (91 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2346,7 +2346,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(92*"c")" (92 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(92*"c")" (92 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(92*"c")" (92 bytes)
 getpeername(client)   -> "(92*"c")" (92 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2356,7 +2356,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(93*"c")" (93 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(93*"c")" (93 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(93*"c")" (93 bytes)
 getpeername(client)   -> "(93*"c")" (93 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2366,7 +2366,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(94*"c")" (94 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(94*"c")" (94 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(94*"c")" (94 bytes)
 getpeername(client)   -> "(94*"c")" (94 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2376,7 +2376,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(95*"c")" (95 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(95*"c")" (95 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(95*"c")" (95 bytes)
 getpeername(client)   -> "(95*"c")" (95 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2386,7 +2386,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(96*"c")" (96 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(96*"c")" (96 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(96*"c")" (96 bytes)
 getpeername(client)   -> "(96*"c")" (96 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2396,7 +2396,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(97*"c")" (97 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(97*"c")" (97 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(97*"c")" (97 bytes)
 getpeername(client)   -> "(97*"c")" (97 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2406,7 +2406,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(98*"c")" (98 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(98*"c")" (98 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(98*"c")" (98 bytes)
 getpeername(client)   -> "(98*"c")" (98 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2416,7 +2416,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(99*"c")" (99 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(99*"c")" (99 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(99*"c")" (99 bytes)
 getpeername(client)   -> "(99*"c")" (99 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2427,7 +2427,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(100*"c")" (100 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(100*"c")" (100 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(100*"c")" (100 bytes)
 getpeername(client)   -> "(100*"c")" (100 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2437,7 +2437,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(101*"c")" (101 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(101*"c")" (101 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(101*"c")" (101 bytes)
 getpeername(client)   -> "(101*"c")" (101 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2447,7 +2447,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(102*"c")" (102 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(102*"c")" (102 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(102*"c")" (102 bytes)
 getpeername(client)   -> "(102*"c")" (102 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2457,7 +2457,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(103*"c")" (103 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(103*"c")" (103 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(103*"c")" (103 bytes)
 getpeername(client)   -> "(103*"c")" (103 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2467,7 +2467,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(104*"c")" (104 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(104*"c")" (104 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2477,7 +2477,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(105*"c")" (105 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(105*"c")" (105 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2487,7 +2487,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(106*"c")" (106 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(106*"c")" (106 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2497,7 +2497,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(107*"c")" (107 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(107*"c")" (107 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2507,7 +2507,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(108*"c")" (108 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(108*"c")" (108 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2517,7 +2517,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(109*"c")" (109 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(109*"c")" (109 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2528,7 +2528,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(110*"c")" (110 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(110*"c")" (110 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2538,7 +2538,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(111*"c")" (111 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(111*"c")" (111 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2548,7 +2548,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(112*"c")" (112 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(112*"c")" (112 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2558,7 +2558,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(113*"c")" (113 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(113*"c")" (113 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2568,7 +2568,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(114*"c")" (114 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(114*"c")" (114 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2578,7 +2578,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(115*"c")" (115 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(115*"c")" (115 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2588,7 +2588,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(116*"c")" (116 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(116*"c")" (116 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2598,7 +2598,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(117*"c")" (117 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(117*"c")" (117 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2608,7 +2608,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(118*"c")" (118 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(118*"c")" (118 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2618,7 +2618,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(119*"c")" (119 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(119*"c")" (119 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2629,7 +2629,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(120*"c")" (120 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(120*"c")" (120 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2639,7 +2639,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(121*"c")" (121 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(121*"c")" (121 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2649,7 +2649,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(122*"c")" (122 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(122*"c")" (122 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2659,7 +2659,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(123*"c")" (123 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(123*"c")" (123 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2669,7 +2669,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(124*"c")" (124 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(124*"c")" (124 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2679,7 +2679,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(125*"c")" (125 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(125*"c")" (125 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2689,7 +2689,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(126*"c")" (126 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(126*"c")" (126 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2699,7 +2699,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(127*"c")" (127 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(127*"c")" (127 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2709,7 +2709,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(128*"c")" (128 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(128*"c")" (128 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2719,7 +2719,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(129*"c")" (129 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(129*"c")" (129 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2730,7 +2730,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(250*"c")" (250 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(250*"c")" (250 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2740,7 +2740,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(251*"c")" (251 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(251*"c")" (251 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2750,7 +2750,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(252*"c")" (252 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(252*"c")" (252 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2760,7 +2760,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(253*"c")" (253 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(253*"c")" (253 bytes)
 getpeername(client)   -> "(104*"c")" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2851,7 +2851,7 @@ bind(server): ENAMETOOLONG
 bind(server)          <- "(47*"./")012345678" (103 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(47*"./")012345678" (103 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(47*"./")012345678" (103 bytes)
 getpeername(client)   -> "(47*"./")012345678" (103 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2861,7 +2861,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(47*"./")0123456789" (104 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(47*"./")0123456789" (104 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(47*"./")0123456789" (104 bytes)
 getpeername(client)   -> "(47*"./")0123456789" (104 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2871,7 +2871,7 @@ getpeername(accepted) -> "(14*"\0")" (14 bytes)
 bind(server)          <- "(47*"./")01234567890" (105 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(47*"./")01234567890" (105 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(47*"./")01234567890" (105 bytes)
 getpeername(client)   -> "(47*"./")01234567890" (105 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2894,7 +2894,7 @@ getpeername(accepted) -> "(47*"./")01234567890" (105 bytes)
 bind(server)          <- "(126*"./")a" (253 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(126*"./")a" (253 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "(126*"./")a" (253 bytes)
 getpeername(client)   -> "(126*"./")a" (253 bytes)
 accept                -> "(14*"\0")" (14 bytes)
@@ -2970,7 +2970,7 @@ bind(server): EADDRINUSE
 bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "abc\0" (4 bytes)
 getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
@@ -2980,7 +2980,7 @@ getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
 bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "abc\0" (4 bytes)
 getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
@@ -2990,7 +2990,7 @@ getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
 bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "abc\0" (4 bytes)
 getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
@@ -3000,7 +3000,7 @@ getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
 bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "abc\0" (4 bytes)
 getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
@@ -3010,7 +3010,7 @@ getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
 bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "abc\0" (4 bytes)
 getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
@@ -3020,7 +3020,7 @@ getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
 bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "abc\0" (4 bytes)
 getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
@@ -3030,15 +3030,12 @@ getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
 bind(server)          <- "abc\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(sun_len=6)abc\0" (4 bytes)
-getsockname(client)   -> too short sockaddr_un (0 bytes)
+getsockname(client)   -> empty sockaddr
 connect               <- "abc\0" (4 bytes)
 getpeername(client)   -> "(sun_len=6)abc\0" (4 bytes)
 accept                -> "(sun_len=16)(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(sun_len=6)abc\0" (4 bytes)
 getpeername(accepted) -> "(sun_len=16)(14*"\0")" (14 bytes)
-
-uname -mrsv
-DragonFly 3.2-RELEASE DragonFly v3.2.2-RELEASE #0: Sun Dec 16 13:26:10 PST 2012     root@pkgbox64.dragonflybsd.org:/usr/obj/build/home/justin/src/sys/X86_64_GENERIC  x86_64
 
 ./unix-dgram 'foo\0' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
@@ -4628,6 +4625,8 @@ sockaddr_in6.sin6_scope_id.size =          4
 sockaddr_storage.size =                    128
 sockaddr_storage.ss_len.size =             1
 sockaddr_storage.ss_family.size =          1
+in_addr.size =                             4
+in_addr.s_addr.size =                      4
 sockaddr.align =                           1
 sockaddr.sa_len.offset =                   0
 sockaddr.sa_family.offset =                1
@@ -4651,6 +4650,8 @@ sockaddr_in6.sin6_scope_id.offset =        24
 sockaddr_storage.align =                   8
 sockaddr_storage.ss_len.offset =           0
 sockaddr_storage.ss_family.offset =        1
+in_addr.align =                            4
+in_addr.s_addr.offset =                    0
 char.size =                                1
 char.align =                               1
 char.sign =                                signed
@@ -4683,6 +4684,14 @@ sa_family_t.size =                         1
 sa_family_t.align =                        1
 sa_family_t.sign =                         unsigned
 sa_family_t.byteorder =                    1
+in_port_t.size =                           2
+in_port_t.align =                          2
+in_port_t.sign =                           unsigned
+in_port_t.byteorder =                      12
+in_addr_t.size =                           4
+in_addr_t.align =                          4
+in_addr_t.sign =                           unsigned
+in_addr_t.byteorder =                      1234
 size_t.size =                              8
 size_t.align =                             8
 size_t.sign =                              unsigned

@@ -1832,9 +1832,6 @@ accept                -> "(sun_len=3)\0" (1 bytes)
 getsockname(accepted) -> "(sun_len=3)\0" (1 bytes)
 getpeername(accepted): EOPNOTSUPP
 
-uname -mrsv
-GNU 0.3 GNU-Mach 1.3.99-486/Hurd-0.3 i686-AT386
-
 ./unix-dgram 'foo\0' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
@@ -3731,6 +3728,8 @@ sockaddr_in6.sin6_scope_id.size =          4
 sockaddr_storage.size =                    128
 sockaddr_storage.ss_len.size =             1
 sockaddr_storage.ss_family.size =          1
+in_addr.size =                             4
+in_addr.s_addr.size =                      4
 sockaddr.align =                           1
 sockaddr.sa_len.offset =                   0
 sockaddr.sa_family.offset =                1
@@ -3754,6 +3753,8 @@ sockaddr_in6.sin6_scope_id.offset =        24
 sockaddr_storage.align =                   4
 sockaddr_storage.ss_len.offset =           0
 sockaddr_storage.ss_family.offset =        1
+in_addr.align =                            4
+in_addr.s_addr.offset =                    0
 char.size =                                1
 char.align =                               1
 char.sign =                                signed
@@ -3786,6 +3787,14 @@ sa_family_t.size =                         1
 sa_family_t.align =                        1
 sa_family_t.sign =                         unsigned
 sa_family_t.byteorder =                    1
+in_port_t.size =                           2
+in_port_t.align =                          2
+in_port_t.sign =                           unsigned
+in_port_t.byteorder =                      12
+in_addr_t.size =                           4
+in_addr_t.align =                          4
+in_addr_t.sign =                           unsigned
+in_addr_t.byteorder =                      1234
 size_t.size =                              4
 size_t.align =                             4
 size_t.sign =                              unsigned

@@ -1886,7 +1886,7 @@ bind(client): EINVAL
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000011" (6 bytes)
+getsockname(server)   -> "\000015" (6 bytes)
 ./unix-stream -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -1913,7 +1913,7 @@ bind(server): EADDRINUSE
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000012" (6 bytes)
+getsockname(server)   -> "\000016" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
@@ -1956,9 +1956,6 @@ accept                -> "non-abstract\0" (13 bytes)
 getsockname(accepted) -> "\0abstract" (9 bytes)
 getpeername(accepted) -> "non-abstract\0" (13 bytes)
 
-
-uname -mrsv
-Linux 2.6.32-5-versatile #1 Mon Sep 24 07:26:43 UTC 2012 armv5tejl
 
 ./unix-dgram 'foo\0' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
@@ -2937,6 +2934,8 @@ sockaddr_in6.sin6_addr.size =              16
 sockaddr_in6.sin6_scope_id.size =          4
 sockaddr_storage.size =                    128
 sockaddr_storage.ss_family.size =          2
+in_addr.size =                             4
+in_addr.s_addr.size =                      4
 sockaddr.align =                           2
 sockaddr.sa_family.offset =                0
 sockaddr.sa_data.offset =                  2
@@ -2955,6 +2954,8 @@ sockaddr_in6.sin6_addr.offset =            8
 sockaddr_in6.sin6_scope_id.offset =        24
 sockaddr_storage.align =                   4
 sockaddr_storage.ss_family.offset =        0
+in_addr.align =                            4
+in_addr.s_addr.offset =                    0
 char.size =                                1
 char.align =                               1
 char.sign =                                unsigned
@@ -2987,6 +2988,14 @@ sa_family_t.size =                         2
 sa_family_t.align =                        2
 sa_family_t.sign =                         unsigned
 sa_family_t.byteorder =                    12
+in_port_t.size =                           2
+in_port_t.align =                          2
+in_port_t.sign =                           unsigned
+in_port_t.byteorder =                      12
+in_addr_t.size =                           4
+in_addr_t.align =                          4
+in_addr_t.sign =                           unsigned
+in_addr_t.byteorder =                      1234
 size_t.size =                              4
 size_t.align =                             4
 size_t.sign =                              unsigned

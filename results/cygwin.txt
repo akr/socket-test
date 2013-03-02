@@ -950,9 +950,6 @@ bind(server)          <- "foobar" (6 bytes)
 socket file (server)  : not exist
 getsockname(server)   -> "foobar???????\0" (14 bytes)
 
-uname -mrsv
-CYGWIN_NT-5.1 1.7.18s(0.263/5/3) 20130131 05:33:37 i686
-
 ./unix-dgram 'foo\0' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
@@ -961,9 +958,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "foo\0" (4 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v^\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v^\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v]\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3170 (16 bytes)
+sendto(server)        <- 127.0.0.1:3170 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3169 (16 bytes)
 ./unix-dgram 'foo\0' './foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
@@ -972,9 +969,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "./foo\0" (6 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v`\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v`\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v_\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3172 (16 bytes)
+sendto(server)        <- 127.0.0.1:3172 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3171 (16 bytes)
 
 ./unix-dgram 'foo\0hoge' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0hoge" (8 bytes)
@@ -984,9 +981,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "foo\0" (4 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\vb\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\vb\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\va\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3174 (16 bytes)
+sendto(server)        <- 127.0.0.1:3174 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3173 (16 bytes)
 ./unix-dgram 'foo\0' 'foo\0fuga' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
@@ -995,9 +992,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "foo\0fuga" (8 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\vd\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\vd\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\vc\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3176 (16 bytes)
+sendto(server)        <- 127.0.0.1:3176 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3175 (16 bytes)
 ./unix-dgram 'foo\0' 'foo\0' 'bar\0moga'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
@@ -1006,9 +1003,9 @@ bind(client)          <- "bar\0moga" (8 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "foo\0" (4 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\vf\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\vf\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\ve\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3178 (16 bytes)
+sendto(server)        <- 127.0.0.1:3178 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3177 (16 bytes)
 ./unix-dgram 'foo\0hoge' './foo\0fuga' 'bar\0moga'
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
@@ -1017,9 +1014,9 @@ bind(client)          <- "bar\0moga" (8 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "./foo\0fuga" (10 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\vh\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\vh\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\vg\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3180 (16 bytes)
+sendto(server)        <- 127.0.0.1:3180 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3179 (16 bytes)
 
 ./unix-dgram '(44*"./")a\0'  '(44*"./")a\0'  'bar\0'
 bind(server)          <- "(44*"./")a\0" (90 bytes)
@@ -1029,9 +1026,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(44*"./")a\0" (90 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\vj\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\vj\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\vi\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3182 (16 bytes)
+sendto(server)        <- 127.0.0.1:3182 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3181 (16 bytes)
 ./unix-dgram '(44*"./")ab\0' '(44*"./")ab\0' 'bar\0'
 bind(server)          <- "(44*"./")ab\0" (91 bytes)
 socket file (server)  : exist
@@ -1040,9 +1037,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(44*"./")ab\0" (91 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\vl\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\vl\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\vk\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3184 (16 bytes)
+sendto(server)        <- 127.0.0.1:3184 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3183 (16 bytes)
 ./unix-dgram '(45*"./")a\0'  '(45*"./")a\0'  'bar\0'
 bind(server)          <- "(45*"./")a\0" (92 bytes)
 socket file (server)  : exist
@@ -1051,9 +1048,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(45*"./")a\0" (92 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\vn\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\vn\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\vm\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3186 (16 bytes)
+sendto(server)        <- 127.0.0.1:3186 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3185 (16 bytes)
 ./unix-dgram '(45*"./")ab\0' '(45*"./")ab\0' 'bar\0'
 bind(server)          <- "(45*"./")ab\0" (93 bytes)
 socket file (server)  : exist
@@ -1062,9 +1059,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(45*"./")ab\0" (93 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\vp\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\vp\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\vo\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3188 (16 bytes)
+sendto(server)        <- 127.0.0.1:3188 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3187 (16 bytes)
 ./unix-dgram '(46*"./")a\0'  '(46*"./")a\0'  'bar\0'
 bind(server)          <- "(46*"./")a\0" (94 bytes)
 socket file (server)  : exist
@@ -1073,9 +1070,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(46*"./")a\0" (94 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\vr\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\vr\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\vq\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3190 (16 bytes)
+sendto(server)        <- 127.0.0.1:3190 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3189 (16 bytes)
 ./unix-dgram '(46*"./")ab\0' '(46*"./")ab\0' 'bar\0'
 bind(server)          <- "(46*"./")ab\0" (95 bytes)
 socket file (server)  : exist
@@ -1084,9 +1081,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(46*"./")ab\0" (95 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\vt\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\vt\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\vs\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3192 (16 bytes)
+sendto(server)        <- 127.0.0.1:3192 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3191 (16 bytes)
 ./unix-dgram '(47*"./")a\0'  '(47*"./")a\0'  'bar\0'
 bind(server)          <- "(47*"./")a\0" (96 bytes)
 socket file (server)  : exist
@@ -1095,9 +1092,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(47*"./")a\0" (96 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\vv\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\vv\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\vu\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3194 (16 bytes)
+sendto(server)        <- 127.0.0.1:3194 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3193 (16 bytes)
 ./unix-dgram '(47*"./")ab\0' '(47*"./")ab\0' 'bar\0'
 bind(server)          <- "(47*"./")ab\0" (97 bytes)
 socket file (server)  : exist
@@ -1106,9 +1103,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(47*"./")ab\0" (97 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\vx\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\vx\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\vw\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3196 (16 bytes)
+sendto(server)        <- 127.0.0.1:3196 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3195 (16 bytes)
 ./unix-dgram '(48*"./")a\0'  '(48*"./")a\0'  'bar\0'
 bind(server)          <- "(48*"./")a\0" (98 bytes)
 socket file (server)  : exist
@@ -1117,9 +1114,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(48*"./")a\0" (98 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\vz\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\vz\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\vy\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3198 (16 bytes)
+sendto(server)        <- 127.0.0.1:3198 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3197 (16 bytes)
 ./unix-dgram '(48*"./")ab\0' '(48*"./")ab\0' 'bar\0'
 bind(server)          <- "(48*"./")ab\0" (99 bytes)
 socket file (server)  : exist
@@ -1128,9 +1125,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(48*"./")ab\0" (99 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v|\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v|\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v{\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3200 (16 bytes)
+sendto(server)        <- 127.0.0.1:3200 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3199 (16 bytes)
 ./unix-dgram '(49*"./")a\0'  '(49*"./")a\0'  'bar\0'
 bind(server)          <- "(49*"./")a\0" (100 bytes)
 socket file (server)  : exist
@@ -1139,9 +1136,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(49*"./")a\0" (100 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v~\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v~\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v}\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3202 (16 bytes)
+sendto(server)        <- 127.0.0.1:3202 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3201 (16 bytes)
 ./unix-dgram '(49*"./")ab\0' '(49*"./")ab\0' 'bar\0'
 bind(server)          <- "(49*"./")ab\0" (101 bytes)
 socket file (server)  : exist
@@ -1150,9 +1147,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(49*"./")ab\0" (101 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\x80\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\x80\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x7F\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3204 (16 bytes)
+sendto(server)        <- 127.0.0.1:3204 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3203 (16 bytes)
 
 ./unix-dgram '(50*"./")a\0'   '(50*"./")a\0'     'bar\0'
 bind(server)          <- "(50*"./")a\0" (102 bytes)
@@ -1162,9 +1159,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(50*"./")a\0" (102 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\x82\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\x82\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x81\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3206 (16 bytes)
+sendto(server)        <- 127.0.0.1:3206 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3205 (16 bytes)
 ./unix-dgram '(50*"./")ab\0'  '(50*"./")ab\0'    'bar\0'
 bind(server)          <- "(50*"./")ab\0" (103 bytes)
 socket file (server)  : exist
@@ -1173,9 +1170,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(50*"./")ab\0" (103 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\x84\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\x84\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x83\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3208 (16 bytes)
+sendto(server)        <- 127.0.0.1:3208 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3207 (16 bytes)
 ./unix-dgram '(51*"./")a\0'   '(51*"./")a\0'     'bar\0'
 bind(server)          <- "(51*"./")a\0" (104 bytes)
 socket file (server)  : exist
@@ -1184,9 +1181,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(51*"./")a\0" (104 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\x86\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\x86\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x85\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3210 (16 bytes)
+sendto(server)        <- 127.0.0.1:3210 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3209 (16 bytes)
 ./unix-dgram '(51*"./")ab\0'  '(51*"./")ab\0'    'bar\0'
 bind(server)          <- "(51*"./")ab\0" (105 bytes)
 socket file (server)  : exist
@@ -1195,9 +1192,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(51*"./")ab\0" (105 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\x88\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\x88\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x87\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3212 (16 bytes)
+sendto(server)        <- 127.0.0.1:3212 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3211 (16 bytes)
 ./unix-dgram '(52*"./")a\0'   '(52*"./")a\0'     'bar\0'
 bind(server)          <- "(52*"./")a\0" (106 bytes)
 socket file (server)  : exist
@@ -1206,9 +1203,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(52*"./")a\0" (106 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\x8A\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\x8A\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x89\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3214 (16 bytes)
+sendto(server)        <- 127.0.0.1:3214 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3213 (16 bytes)
 ./unix-dgram '(52*"./")ab\0'  '(52*"./")ab\0'    'bar\0'
 bind(server)          <- "(52*"./")ab\0" (107 bytes)
 socket file (server)  : exist
@@ -1217,9 +1214,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(52*"./")ab\0" (107 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\x8C\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\x8C\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x8B\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3216 (16 bytes)
+sendto(server)        <- 127.0.0.1:3216 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3215 (16 bytes)
 ./unix-dgram '(53*"./")a\0'   '(53*"./")a\0'     'bar\0'
 bind(server)          <- "(53*"./")a\0" (108 bytes)
 socket file (server)  : exist
@@ -1228,9 +1225,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(53*"./")a\0" (108 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\x8E\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\x8E\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x8D\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3218 (16 bytes)
+sendto(server)        <- 127.0.0.1:3218 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3217 (16 bytes)
 ./unix-dgram '(53*"./")ab\0'  '(53*"./")ab\0'    'bar\0'
 bind(server)          <- "(53*"./")ab\0" (109 bytes)
 bind(server): ENAMETOOLONG
@@ -1523,9 +1520,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(90*"c")\0" (91 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\x90\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\x90\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x8F\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3220 (16 bytes)
+sendto(server)        <- 127.0.0.1:3220 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3219 (16 bytes)
 ./unix-dgram '(91*"c")\0'  '(91*"c")\0'  'bar\0'
 bind(server)          <- "(91*"c")\0" (92 bytes)
 socket file (server)  : exist
@@ -1534,9 +1531,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(91*"c")\0" (92 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\x92\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\x92\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x91\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3222 (16 bytes)
+sendto(server)        <- 127.0.0.1:3222 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3221 (16 bytes)
 ./unix-dgram '(92*"c")\0'  '(92*"c")\0'  'bar\0'
 bind(server)          <- "(92*"c")\0" (93 bytes)
 socket file (server)  : exist
@@ -1545,9 +1542,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(92*"c")\0" (93 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\x94\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\x94\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x93\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3224 (16 bytes)
+sendto(server)        <- 127.0.0.1:3224 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3223 (16 bytes)
 ./unix-dgram '(93*"c")\0'  '(93*"c")\0'  'bar\0'
 bind(server)          <- "(93*"c")\0" (94 bytes)
 socket file (server)  : exist
@@ -1556,9 +1553,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(93*"c")\0" (94 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\x96\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\x96\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x95\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3226 (16 bytes)
+sendto(server)        <- 127.0.0.1:3226 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3225 (16 bytes)
 ./unix-dgram '(94*"c")\0'  '(94*"c")\0'  'bar\0'
 bind(server)          <- "(94*"c")\0" (95 bytes)
 socket file (server)  : exist
@@ -1567,9 +1564,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(94*"c")\0" (95 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\x98\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\x98\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x97\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3228 (16 bytes)
+sendto(server)        <- 127.0.0.1:3228 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3227 (16 bytes)
 ./unix-dgram '(95*"c")\0'  '(95*"c")\0'  'bar\0'
 bind(server)          <- "(95*"c")\0" (96 bytes)
 socket file (server)  : exist
@@ -1578,9 +1575,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(95*"c")\0" (96 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\x9A\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\x9A\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x99\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3230 (16 bytes)
+sendto(server)        <- 127.0.0.1:3230 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3229 (16 bytes)
 ./unix-dgram '(96*"c")\0'  '(96*"c")\0'  'bar\0'
 bind(server)          <- "(96*"c")\0" (97 bytes)
 socket file (server)  : exist
@@ -1589,9 +1586,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(96*"c")\0" (97 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\x9C\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\x9C\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x9B\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3232 (16 bytes)
+sendto(server)        <- 127.0.0.1:3232 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3231 (16 bytes)
 ./unix-dgram '(97*"c")\0'  '(97*"c")\0'  'bar\0'
 bind(server)          <- "(97*"c")\0" (98 bytes)
 socket file (server)  : exist
@@ -1600,9 +1597,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(97*"c")\0" (98 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\x9E\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\x9E\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x9D\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3234 (16 bytes)
+sendto(server)        <- 127.0.0.1:3234 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3233 (16 bytes)
 ./unix-dgram '(98*"c")\0'  '(98*"c")\0'  'bar\0'
 bind(server)          <- "(98*"c")\0" (99 bytes)
 socket file (server)  : exist
@@ -1611,9 +1608,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(98*"c")\0" (99 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\xA0\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\xA0\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\x9F\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3236 (16 bytes)
+sendto(server)        <- 127.0.0.1:3236 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3235 (16 bytes)
 ./unix-dgram '(99*"c")\0'  '(99*"c")\0'  'bar\0'
 bind(server)          <- "(99*"c")\0" (100 bytes)
 socket file (server)  : exist
@@ -1622,9 +1619,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(99*"c")\0" (100 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\xA2\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\xA2\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\xA1\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3238 (16 bytes)
+sendto(server)        <- 127.0.0.1:3238 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3237 (16 bytes)
                                          
 ./unix-dgram '(100*"c")\0' '(100*"c")\0' 'bar\0'
 bind(server)          <- "(100*"c")\0" (101 bytes)
@@ -1634,9 +1631,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(100*"c")\0" (101 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\xA4\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\xA4\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\xA3\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3240 (16 bytes)
+sendto(server)        <- 127.0.0.1:3240 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3239 (16 bytes)
 ./unix-dgram '(101*"c")\0' '(101*"c")\0' 'bar\0'
 bind(server)          <- "(101*"c")\0" (102 bytes)
 socket file (server)  : exist
@@ -1645,9 +1642,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(101*"c")\0" (102 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\xA6\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\xA6\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\xA5\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3242 (16 bytes)
+sendto(server)        <- 127.0.0.1:3242 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3241 (16 bytes)
 ./unix-dgram '(102*"c")\0' '(102*"c")\0' 'bar\0'
 bind(server)          <- "(102*"c")\0" (103 bytes)
 socket file (server)  : exist
@@ -1656,9 +1653,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(102*"c")\0" (103 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\xA8\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\xA8\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\xA7\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3244 (16 bytes)
+sendto(server)        <- 127.0.0.1:3244 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3243 (16 bytes)
 ./unix-dgram '(103*"c")\0' '(103*"c")\0' 'bar\0'
 bind(server)          <- "(103*"c")\0" (104 bytes)
 socket file (server)  : exist
@@ -1667,9 +1664,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(103*"c")\0" (104 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\xAA\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\xAA\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\xA9\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3246 (16 bytes)
+sendto(server)        <- 127.0.0.1:3246 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3245 (16 bytes)
 ./unix-dgram '(104*"c")\0' '(104*"c")\0' 'bar\0'
 bind(server)          <- "(104*"c")\0" (105 bytes)
 socket file (server)  : exist
@@ -1678,9 +1675,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(104*"c")\0" (105 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\xAC\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\xAC\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\xAB\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3248 (16 bytes)
+sendto(server)        <- 127.0.0.1:3248 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3247 (16 bytes)
 ./unix-dgram '(105*"c")\0' '(105*"c")\0' 'bar\0'
 bind(server)          <- "(105*"c")\0" (106 bytes)
 socket file (server)  : exist
@@ -1689,9 +1686,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(105*"c")\0" (106 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\xAE\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\xAE\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\xAD\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3250 (16 bytes)
+sendto(server)        <- 127.0.0.1:3250 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3249 (16 bytes)
 ./unix-dgram '(106*"c")\0' '(106*"c")\0' 'bar\0'
 bind(server)          <- "(106*"c")\0" (107 bytes)
 socket file (server)  : exist
@@ -1700,9 +1697,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(106*"c")\0" (107 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\xB0\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\xB0\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\xAF\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3252 (16 bytes)
+sendto(server)        <- 127.0.0.1:3252 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3251 (16 bytes)
 ./unix-dgram '(107*"c")\0' '(107*"c")\0' 'bar\0'
 bind(server)          <- "(107*"c")\0" (108 bytes)
 socket file (server)  : exist
@@ -1711,9 +1708,9 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(107*"c")\0" (108 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\xB2\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\xB2\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\xB1\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3254 (16 bytes)
+sendto(server)        <- 127.0.0.1:3254 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3253 (16 bytes)
 ./unix-dgram '(108*"c")\0' '(108*"c")\0' 'bar\0'
 bind(server)          <- "(108*"c")\0" (109 bytes)
 bind(server): ENAMETOOLONG
@@ -1822,9 +1819,9 @@ bind(client)          <- "(49*"./")bar\0" (102 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "(49*"./")bar\0" (102 bytes)
 sendto(client)        <- "(49*"./")01234567\0" (107 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\xB4\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\xB4\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\xB3\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3256 (16 bytes)
+sendto(server)        <- 127.0.0.1:3256 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3255 (16 bytes)
 ./unix-dgram -p '012345678\0'   '012345678\0'   'bar\0'
 bind(server)          <- "(49*"./")012345678\0" (108 bytes)
 socket file (server)  : exist
@@ -1833,9 +1830,9 @@ bind(client)          <- "(49*"./")bar\0" (102 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "(49*"./")bar\0" (102 bytes)
 sendto(client)        <- "(49*"./")012345678\0" (108 bytes)
-recvfrom(server)      -> faimly=2 "\x02\0\v\xB6\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-sendto(server)        -> faimly=2 "\x02\0\v\xB6\x7F\0\0\x01\0\0\0\0\0\0\0\0"
-recvfrom(client)      -> faimly=2 "\x02\0\v\xB5\x7F\0\0\x01\0\0\0\0\0\0\0\0"
+recvfrom(server)      -> 127.0.0.1:3258 (16 bytes)
+sendto(server)        <- 127.0.0.1:3258 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3257 (16 bytes)
 ./unix-dgram -p '0123456789\0'  '0123456789\0'  'bar\0'
 bind(server)          <- "(49*"./")0123456789\0" (109 bytes)
 bind(server): ENAMETOOLONG
@@ -1930,6 +1927,8 @@ sockaddr_in6.sin6_addr.size =              16
 sockaddr_in6.sin6_scope_id.size =          4
 sockaddr_storage.size =                    128
 sockaddr_storage.ss_family.size =          2
+in_addr.size =                             4
+in_addr.s_addr.size =                      4
 sockaddr.align =                           2
 sockaddr.sa_family.offset =                0
 sockaddr.sa_data.offset =                  2
@@ -1948,6 +1947,8 @@ sockaddr_in6.sin6_addr.offset =            8
 sockaddr_in6.sin6_scope_id.offset =        24
 sockaddr_storage.align =                   8
 sockaddr_storage.ss_family.offset =        0
+in_addr.align =                            4
+in_addr.s_addr.offset =                    0
 char.size =                                1
 char.align =                               1
 char.sign =                                signed
@@ -1980,6 +1981,14 @@ sa_family_t.size =                         2
 sa_family_t.align =                        2
 sa_family_t.sign =                         unsigned
 sa_family_t.byteorder =                    12
+in_port_t.size =                           2
+in_port_t.align =                          2
+in_port_t.sign =                           unsigned
+in_port_t.byteorder =                      12
+in_addr_t.size =                           4
+in_addr_t.align =                          4
+in_addr_t.sign =                           unsigned
+in_addr_t.byteorder =                      1234
 size_t.size =                              4
 size_t.align =                             4
 size_t.sign =                              unsigned
