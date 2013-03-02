@@ -17,11 +17,10 @@
   usage: unix-stream [options] server-path [connect-path [client-path]]
   option: -h : show this help message
           -U : don't unlink sockets.
+          -c : test in the current directory.
           -s : server only test mode.
           -p : prepend sizeof(sun_path)-10 characters for socket-path.
           -g N : buffer size for getsockname/getpeername/accept (no sign means exact.  +N for increase and -N for decrease from sockaddr_un)
-          -f N : ASCII code to fill for getsockname buffer
-          -e N : number of extra bytes for getsockname buffer
           -4 : show 4.4BSD sun_len field
 
 == Results
