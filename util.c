@@ -440,7 +440,7 @@ char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escap
   return buffer_unwrap(buf);
 }
 
-static void report_path_to_kernel(char *key, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4)
+static void report_sockaddr_to_kernel(char *key, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4)
 {
   char *escaped_path;
   char path_sun_len_prefix[sizeof("(sun_len=NNN)")] = "";
@@ -474,7 +474,7 @@ static void report_path_to_kernel(char *key, struct sockaddr_un *sockaddr_ptr, s
   free(escaped_path);
 }
 
-static void report_path_from_kernel(char *key, size_t buf_len, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4)
+static void report_sockaddr_from_kernel(char *key, size_t buf_len, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4)
 {
   int truncated;
   size_t len;
@@ -529,7 +529,7 @@ sockaddr_put_t *before_sockaddr_put(char *key, struct sockaddr *addr, socklen_t 
   memcpy(p, addr, len);
   memcpy(p+len, CANARY_STR, CANARY_LEN);
   memcpy(p+len+CANARY_LEN, addr, len);
-  report_path_to_kernel(key, (struct sockaddr_un *)p, len, opt_4);
+  report_sockaddr_to_kernel(key, (struct sockaddr_un *)p, len, opt_4);
   sockaddr_put->key = key;
   sockaddr_put->addr = (struct sockaddr *)p;
   sockaddr_put->len = len;
@@ -591,7 +591,7 @@ void after_sockaddr_get_report(sockaddr_get_t *sockaddr_get, int get_succeed, in
   socklen_t len = sockaddr_get->len;
   char *p = (char *)addr;
   if (get_succeed) {
-    report_path_from_kernel(key, buflen, (struct sockaddr_un *)addr, len, sockaddr_get->opt_4);
+    report_sockaddr_from_kernel(key, buflen, (struct sockaddr_un *)addr, len, sockaddr_get->opt_4);
     if (memcmp(p+buflen, CANARY_STR, CANARY_LEN) != 0) {
       char *c1 = quote_string(NULL, CANARY_STR, CANARY_LEN);
       char *c2 = quote_string(NULL, p+buflen, CANARY_LEN);
