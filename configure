@@ -3841,10 +3841,7 @@ if ${socktest_cv_sys_nerr+:} false; then :
 else
   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
-
-/* GNU/Linux stdio.h defines sys_nerr if __USE_BSD or __USE_GNU is defined. */
 $SOCKETTEST_INCLUDES
-
 int
 main ()
 {

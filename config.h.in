@@ -142,7 +142,7 @@
 /* Define to 1 if you need to in order for `stat' and other things to work. */
 #undef _POSIX_SOURCE
 
-/* Use sys_nerr in glibc. */
+/* Declare sys_nerr by stdio.h in glibc. */
 #undef __USE_BSD
 
 /* Define to empty if `const' does not conform to ANSI C. */

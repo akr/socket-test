@@ -32,7 +32,7 @@ AC_PROG_CC
 
 # Determine a compiler mode.
 AC_USE_SYSTEM_EXTENSIONS
-AC_DEFINE(__USE_BSD, [1], [Use sys_nerr in glibc.])
+AC_DEFINE(__USE_BSD, [1], [Declare sys_nerr by stdio.h in glibc.])
 
 # Checks for libraries.
 AC_CHECK_LIB([xnet], [socketpair]) # SunOS.  cf. libxnet(3LIB) and standards(5)
@@ -85,10 +85,7 @@ AC_DEFUN([SOCKTEST_CHECK_SYS_NERR],
 [AC_CACHE_CHECK([for sys_nerr], [socktest_cv_sys_nerr],
   [AC_LINK_IFELSE(
     [AC_LANG_PROGRAM(
-      [[
-/* GNU/Linux stdio.h defines sys_nerr if __USE_BSD or __USE_GNU is defined. */
-$SOCKETTEST_INCLUDES
-      ]],
+      [[$SOCKETTEST_INCLUDES]],
       [[int var = sys_nerr;]])],
     [socktest_cv_sys_nerr=yes],
     [socktest_cv_sys_nerr=no])])
