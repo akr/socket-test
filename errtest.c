@@ -26,50 +26,45 @@
 
 #include "sockettest.h"
 
+void list_errors_func(int errcand, void *arg)
+{
+  char *sym = errsym(errcand);
+  char *msg;
+  errno = 0;
+  msg = strerror(errcand);
+  if (msg && !errno) {
+    if (sym)
+      printf("%s = %s\n", sym, msg);
+    else {
+#ifdef __HAIKU__
+#  define START_WITH(prefix) (strncmp(msg, (prefix), sizeof(prefix)-1) == 0)
+      if (START_WITH("Unknown General Error ") ||
+          START_WITH("Unknown OS Error ") ||
+          START_WITH("Unknown MIME type ") ||
+          START_WITH("Unknown Application Kit Error ") ||
+          START_WITH("Unknown Interface Kit Error ") ||
+          START_WITH("Unknown Media Kit Error ") ||
+          START_WITH("Unknown Translation Kit Error ") ||
+          START_WITH("Unknown Midi Kit Error ") ||
+          START_WITH("Unknown Storage Kit Error ") ||
+          START_WITH("Unknown POSIX Error ")) {
+        continue;
+      }
+#  undef START_WITH
+#endif
+      printf("%d = %s\n", errcand, msg);
+    }
+  }
+}
+
 void list_errors(void)
 {
-  int min, max;
-  int ret;
-  int i;
-
-  ret = errno_minmax(&min, &max);
-  if (ret == -1) return;
-
 #ifdef HAVE_SYS_NERR
   printf("sys_nerr = %d\n", sys_nerr);
 #endif
-  printf("errno_min = %d\n", min);
-  printf("errno_max = %d\n", max);
 
-  for (i = min; i <= max; i++) {
-    char *sym = errsym(i);
-    char *msg;
-    errno = 0;
-    msg = strerror(i);
-    if (msg && !errno) {
-      if (sym)
-        printf("%s = %s\n", sym, msg);
-      else {
-#ifdef __HAIKU__
-#  define START_WITH(prefix) (strncmp(msg, (prefix), sizeof(prefix)-1) == 0)
-        if (START_WITH("Unknown General Error ") ||
-            START_WITH("Unknown OS Error ") ||
-            START_WITH("Unknown MIME type ") ||
-            START_WITH("Unknown Application Kit Error ") ||
-            START_WITH("Unknown Interface Kit Error ") ||
-            START_WITH("Unknown Media Kit Error ") ||
-            START_WITH("Unknown Translation Kit Error ") ||
-            START_WITH("Unknown Midi Kit Error ") ||
-            START_WITH("Unknown Storage Kit Error ") ||
-            START_WITH("Unknown POSIX Error ")) {
-          continue;
-        }
-#  undef START_WITH
-#endif
-        printf("%d = %s\n", i, msg);
-      }
-    }
-  }
+  errno_candidate_each(list_errors_func, NULL);
+
 }
 
 int main(int argc, char *argv[])

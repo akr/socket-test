@@ -30,6 +30,44 @@
 
 #include "sockettest.h"
 
+void func(int errcand, void *arg)
+{
+  char *sym = errsym(errcand);
+  char *msg;
+  if (sym)
+    return;
+  errno = 0;
+  msg = strerror(errcand);
+  if (msg && !errno) {
+    /*
+     * strerror() return value for unknown errors:
+     * - GNU/Linux: "Unknown error NNN"
+     * - NetBSD: "Unknown error: NNN"
+     * - Minix: "Undefined error: NNN"
+     * - SunOS: "Error NNN"
+     * - Haiku:
+     *   "Unknown General Error (-NNNNNNNNNN)"
+     *   "Unknown OS Error (-NNNNNNNNNN)"
+     *   "Unknown MIME type"
+     *   "Unknown Application Kit Error (-NNNNNNNNNN)"
+     *   "Unknown Interface Kit Error (-NNNNNNNNNN)"
+     *   "Unknown Media Kit Error (-NNNNNNNNNN)"
+     *   "Unknown Translation Kit Error (-NNNNNNNNNN)"
+     *   "Unknown Midi Kit Error (-NNNNNNNNNN)"
+     *   "Unknown Storage Kit Error (-NNNNNNNNNN)"
+     *   "Unknown POSIX Error (-NNNNNNNNNN)"
+     */
+#define START_WITH(prefix) (strncmp(msg, (prefix), sizeof(prefix)-1) == 0)
+    if (START_WITH("Unknown ") ||
+        START_WITH("Error ") ||
+        START_WITH("Undefined "))
+      return;
+#undef START_WITH
+    printf("%d = %s\n", errcand, msg);
+  }
+}
+
+
 int main(int argc, char *argv[])
 {
   int err;
@@ -1407,44 +1445,7 @@ int main(int argc, char *argv[])
       printf("0 = %s\n", msg);
   }
 
-  ret = errno_minmax(&min, &max);
-  if (ret == 0) {
-    for (i = min; i <= max; i++) {
-      char *sym = errsym(i);
-      char *msg;
-      if (sym)
-        continue;
-      errno = 0;
-      msg = strerror(i);
-      if (msg && !errno) {
-        /*
-         * strerror() return value for unknown error:
-         * - GNU/Linux: "Unknown error NNN"
-         * - NetBSD: "Unknown error: NNN"
-         * - Minix: "Undefined error: NNN"
-         * - SunOS: "Error NNN"
-         * - Haiku:
-         *   "Unknown General Error (-NNNNNNNNNN)"
-         *   "Unknown OS Error (-NNNNNNNNNN)"
-         *   "Unknown MIME type"
-         *   "Unknown Application Kit Error (-NNNNNNNNNN)"
-         *   "Unknown Interface Kit Error (-NNNNNNNNNN)"
-         *   "Unknown Media Kit Error (-NNNNNNNNNN)"
-         *   "Unknown Translation Kit Error (-NNNNNNNNNN)"
-         *   "Unknown Midi Kit Error (-NNNNNNNNNN)"
-         *   "Unknown Storage Kit Error (-NNNNNNNNNN)"
-         *   "Unknown POSIX Error (-NNNNNNNNNN)"
-         */
-#define START_WITH(prefix) (strncmp(msg, (prefix), sizeof(prefix)-1) == 0)
-        if (START_WITH("Unknown ") ||
-            START_WITH("Error ") ||
-            START_WITH("Undefined "))
-          continue;
-#undef START_WITH
-        printf("%d = %s\n", i, msg);
-      }
-    }
-  }
+  errno_candidate_each(func, NULL);
 
   return EXIT_SUCCESS;
 }
