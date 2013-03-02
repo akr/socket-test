@@ -131,6 +131,9 @@ char *errsym(int err)
 #ifdef ECAPMODE
   if (err == ECAPMODE) { return "ECAPMODE"; } else
 #endif
+#ifdef ECASECLASH
+  if (err == ECASECLASH) { return "ECASECLASH"; } else
+#endif
 #ifdef ECHILD
   if (err == ECHILD) { return "ECHILD"; } else
 #endif
@@ -275,6 +278,9 @@ char *errsym(int err)
 #ifdef ELAST
   if (err == ELAST) { return "ELAST"; } else
 #endif
+#ifdef ELBIN
+  if (err == ELBIN) { return "ELBIN"; } else
+#endif
 #ifdef ELIBACC
   if (err == ELIBACC) { return "ELIBACC"; } else
 #endif
@@ -335,6 +341,9 @@ char *errsym(int err)
 #ifdef ENFILE
   if (err == ENFILE) { return "ENFILE"; } else
 #endif
+#ifdef ENMFILE
+  if (err == ENMFILE) { return "ENMFILE"; } else
+#endif
 #ifdef ENOANO
   if (err == ENOANO) { return "ENOANO"; } else
 #endif
@@ -391,6 +400,9 @@ char *errsym(int err)
 #endif
 #ifdef ENOPROTOOPT
   if (err == ENOPROTOOPT) { return "ENOPROTOOPT"; } else
+#endif
+#ifdef ENOSHARE
+  if (err == ENOSHARE) { return "ENOSHARE"; } else
 #endif
 #ifdef ENOSPC
   if (err == ENOSPC) { return "ENOSPC"; } else
@@ -919,6 +931,16 @@ int errno_minmax(int *minp, int *maxp)
     if (max < ECAPMODE) max = ECAPMODE;
   }
 #endif
+#ifdef ECASECLASH
+  if (!defined) {
+    defined = 1;
+    min = max = ECASECLASH;
+  }
+  else {
+    if (ECASECLASH < min) min = ECASECLASH;
+    if (max < ECASECLASH) max = ECASECLASH;
+  }
+#endif
 #ifdef ECHILD
   if (!defined) {
     defined = 1;
@@ -1399,6 +1421,16 @@ int errno_minmax(int *minp, int *maxp)
     if (max < ELAST) max = ELAST;
   }
 #endif
+#ifdef ELBIN
+  if (!defined) {
+    defined = 1;
+    min = max = ELBIN;
+  }
+  else {
+    if (ELBIN < min) min = ELBIN;
+    if (max < ELBIN) max = ELBIN;
+  }
+#endif
 #ifdef ELIBACC
   if (!defined) {
     defined = 1;
@@ -1599,6 +1631,16 @@ int errno_minmax(int *minp, int *maxp)
     if (max < ENFILE) max = ENFILE;
   }
 #endif
+#ifdef ENMFILE
+  if (!defined) {
+    defined = 1;
+    min = max = ENMFILE;
+  }
+  else {
+    if (ENMFILE < min) min = ENMFILE;
+    if (max < ENMFILE) max = ENMFILE;
+  }
+#endif
 #ifdef ENOANO
   if (!defined) {
     defined = 1;
@@ -1787,6 +1829,16 @@ int errno_minmax(int *minp, int *maxp)
   else {
     if (ENOPROTOOPT < min) min = ENOPROTOOPT;
     if (max < ENOPROTOOPT) max = ENOPROTOOPT;
+  }
+#endif
+#ifdef ENOSHARE
+  if (!defined) {
+    defined = 1;
+    min = max = ENOSHARE;
+  }
+  else {
+    if (ENOSHARE < min) min = ENOSHARE;
+    if (max < ENOSHARE) max = ENOSHARE;
   }
 #endif
 #ifdef ENOSPC

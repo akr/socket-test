@@ -170,6 +170,10 @@ int main(int argc, char *argv[])
   err = ECAPMODE; str = "ECAPMODE";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef ECASECLASH
+  err = ECASECLASH; str = "ECASECLASH";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef ECHILD
   err = ECHILD; str = "ECHILD";
   printf("%s = %d\n", str, err);
@@ -362,6 +366,10 @@ int main(int argc, char *argv[])
   err = ELAST; str = "ELAST";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef ELBIN
+  err = ELBIN; str = "ELBIN";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef ELIBACC
   err = ELIBACC; str = "ELIBACC";
   printf("%s = %d\n", str, err);
@@ -442,6 +450,10 @@ int main(int argc, char *argv[])
   err = ENFILE; str = "ENFILE";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef ENMFILE
+  err = ENMFILE; str = "ENMFILE";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef ENOANO
   err = ENOANO; str = "ENOANO";
   printf("%s = %d\n", str, err);
@@ -516,6 +528,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef ENOPROTOOPT
   err = ENOPROTOOPT; str = "ENOPROTOOPT";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef ENOSHARE
+  err = ENOSHARE; str = "ENOSHARE";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef ENOSPC

@@ -1,6 +1,7 @@
 *~
 *.bak
 *.o
+*.exe
 autom4te.cache
 config.h
 config.log
