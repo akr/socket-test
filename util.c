@@ -497,8 +497,8 @@ static void buffer_add_sockaddr(buffer_t *buf, struct sockaddr *sockaddr_ptr, si
       struct sockaddr_un *addr_un = (struct sockaddr_un *)sockaddr_ptr;
       buffer_add_byte(buf, '"');
 #ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
-      if (opt_4 && addr_un->sun_len != 0) {
-        buffer_addf("(sun_len=%d)", addr_un->sun_len);
+      if (opt_4 && addr_un->sun_len != 0)
+        buffer_addf(buf, "(sun_len=%d)", addr_un->sun_len);
 #endif
       buffer_add_escaped_mem(buf, addr_un->sun_path, given_len - offsetof(struct sockaddr_un, sun_path));
       buffer_add_byte(buf, '"');
@@ -533,8 +533,8 @@ static void buffer_add_sockaddr(buffer_t *buf, struct sockaddr *sockaddr_ptr, si
         buffer_addf(buf, "family=%d", sockaddr_ptr->sa_family);
       }
 #ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
-      if (opt_4 && sockaddr_ptr->sa_len != 0) {
-        buffer_addf(" (sa_len=%d)", sockaddr_ptr->sa_len);
+      if (opt_4 && sockaddr_ptr->sa_len != 0)
+        buffer_addf(buf, " (sa_len=%d)", sockaddr_ptr->sa_len);
 #endif
       buffer_add_byte(buf, ' ');
       buffer_add_quoted_mem(buf, sockaddr_ptr, given_len);
