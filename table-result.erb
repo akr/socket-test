@@ -279,7 +279,7 @@ def interpolatable_result?(command1, action_os_result1, command2, action_os_resu
     #p [__LINE__, :command_length]
     return false
   end
-  command1_ary.shift
+  command = command1_ary.shift
   command2_ary.shift
   command3_ary.shift
   command1_opts, command1_args = command1_ary.partition {|arg| /\A-/ =~ arg }
@@ -332,6 +332,16 @@ def interpolatable_result?(command1, action_os_result1, command2, action_os_resu
       result2 = os_result2[os]
       result3 = os_result3[os]
       next if result1 == result2 && result2 == result3
+      if /unix/ =~ command &&
+        (m1 = /\A(\d+\.\d+\.\d+\.\d+):(\d+) \((\d+) bytes\)\z/.match(result1)) &&
+        (m2 = /\A(\d+\.\d+\.\d+\.\d+):(\d+) \((\d+) bytes\)\z/.match(result2)) &&
+        (m3 = /\A(\d+\.\d+\.\d+\.\d+):(\d+) \((\d+) bytes\)\z/.match(result3)) &&
+        m1[1] == m2[1] && m2[1] == m3[1] &&
+        m1[2] != m2[2] && m2[2] != m3[2] && m3[2] != m1[2] &&
+        m1[3] == m2[3] && m2[3] == m3[3]
+        # Cygwin can return AF_INET sockaddr for AF_UNIX socket operations.
+        next
+      end
       if !((m1 = /\A"(.*)" \((\d+) bytes\)\z/.match(result1)) &&
            (m2 = /\A"(.*)" \((\d+) bytes\)\z/.match(result2)) &&
            (m3 = /\A"(.*)" \((\d+) bytes\)\z/.match(result3))) &&
