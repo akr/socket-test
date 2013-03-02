@@ -108,6 +108,7 @@ int socket_file_p(char *path);
 void unlink_socket(char *path);
 void perrsym(const char *s);
 char *errsym(int err);
+void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg);
 
 int constant_name2int(char *name, int *ret);
 void *constant_search_names(char *prefix, void *(*func)(char *name, int val, void *arg), void *arg);

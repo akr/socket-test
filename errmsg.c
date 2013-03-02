@@ -74,7 +74,6 @@ int main(int argc, char *argv[])
 {
   int err;
   char *str;
-  int min, max, ret, i;
 
   (void)argc;
   (void)argv;

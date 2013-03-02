@@ -76,7 +76,7 @@ void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg)
 
   first = 1;
   errcand = 0;
-  for (i = 0; i < sizeof(errno_ary)/sizeof(int); i++) {
+  for (i = 0; i < (int)(sizeof(errno_ary)/sizeof(int)); i++) {
     guess_lo = errno_ary[i] < INT_MIN+100 ? INT_MIN : errno_ary[i]-100;
     guess_hi = INT_MAX-100 < errno_ary[i] ? INT_MAX : errno_ary[i]+100;
 

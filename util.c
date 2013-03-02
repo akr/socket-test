@@ -561,8 +561,6 @@ static void report_sockaddr_to_kernel(char *key, struct sockaddr_un *sockaddr_pt
 
 static void report_sockaddr_from_kernel(char *key, size_t buf_len, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4)
 {
-  int truncated;
-
   buffer_t *buf = buffer_new(30);
   buffer_addf(buf, "%-21s -> ", key);
   buffer_add_sockaddr(buf, (struct sockaddr *)sockaddr_ptr, sockaddr_len, buf_len, opt_4);
