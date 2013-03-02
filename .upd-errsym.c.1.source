@@ -55,13 +55,15 @@ int errno_minmax(int *minp, int *maxp)
 
 % errno_list.each {|sym|
 #ifdef <%= sym %>
-  if (!defined) {
-    defined = 1;
-    min = max = <%= sym %>;
-  }
-  else {
-    if (<%= sym %> < min) min = <%= sym %>;
-    if (max < <%= sym %>) max = <%= sym %>;
+  if (<%= sym %> != 0) {
+    if (!defined) {
+      defined = 1;
+      min = max = <%= sym %>;
+    }
+    else {
+      if (<%= sym %> < min) min = <%= sym %>;
+      if (max < <%= sym %>) max = <%= sym %>;
+    }
   }
 #endif
 % }
