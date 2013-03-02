@@ -73,6 +73,8 @@ AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
 
 AC_CHECK_TYPES([sa_family_t], [], [], [$SOCKETTEST_INCLUDES])
+AC_CHECK_TYPES([in_port_t], [], [], [$SOCKETTEST_INCLUDES])
+AC_CHECK_TYPES([in_addr_t], [], [], [$SOCKETTEST_INCLUDES])
 
 AC_CHECK_MEMBERS([struct sockaddr.sa_len], [], [], [$SOCKETTEST_INCLUDES])
 

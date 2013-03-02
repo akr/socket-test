@@ -508,6 +508,21 @@ static void buffer_add_sockaddr(buffer_t *buf, struct sockaddr *sockaddr_ptr, si
     }
     break;
 
+    case AF_INET:
+    {
+      struct sockaddr_in *addr_in = (struct sockaddr_in *)sockaddr_ptr;
+      int a, b, c, d, port_hi, port_lo, port;
+      a = ((unsigned char *)&addr_in->sin_addr)[0];
+      b = ((unsigned char *)&addr_in->sin_addr)[1];
+      c = ((unsigned char *)&addr_in->sin_addr)[2];
+      d = ((unsigned char *)&addr_in->sin_addr)[3];
+      port_hi = ((unsigned char *)&addr_in->sin_port)[0];
+      port_lo = ((unsigned char *)&addr_in->sin_port)[1];
+      port = (port_hi << 8) | port_lo;
+      buffer_addf(buf, "%d.%d.%d.%d:%d (%d bytes)", a, b, c, d, port);
+    }
+    break;
+
     default:
     {
       char *family_name = constant_int2name("AF_", sockaddr_ptr->sa_family);

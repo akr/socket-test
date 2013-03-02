@@ -3697,6 +3697,28 @@ _ACEOF
 
 fi
 
+ac_fn_c_check_type "$LINENO" "in_port_t" "ac_cv_type_in_port_t" "$SOCKETTEST_INCLUDES
+"
+if test "x$ac_cv_type_in_port_t" = xyes; then :
+
+cat >>confdefs.h <<_ACEOF
+#define HAVE_IN_PORT_T 1
+_ACEOF
+
+
+fi
+
+ac_fn_c_check_type "$LINENO" "in_addr_t" "ac_cv_type_in_addr_t" "$SOCKETTEST_INCLUDES
+"
+if test "x$ac_cv_type_in_addr_t" = xyes; then :
+
+cat >>confdefs.h <<_ACEOF
+#define HAVE_IN_ADDR_T 1
+_ACEOF
+
+
+fi
+
 
 ac_fn_c_check_member "$LINENO" "struct sockaddr" "sa_len" "ac_cv_member_struct_sockaddr_sa_len" "$SOCKETTEST_INCLUDES
 "

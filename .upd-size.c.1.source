@@ -33,6 +33,7 @@
     %w[sockaddr_in sin_len sin_family sin_port sin_addr],
     %w[sockaddr_in6 sin6_len sin6_family sin6_port sin6_flowinfo sin6_addr sin6_scope_id],
     %w[sockaddr_storage ss_len ss_family],
+    %w[in_addr s_addr],
   ]
 %>
 
@@ -165,6 +166,12 @@ int main(int argc, char *argv[])
   SHOW_INTEGER_TYPE(socklen_t);
 #ifdef HAVE_SA_FAMILY_T
   SHOW_INTEGER_TYPE(sa_family_t);
+#endif
+#ifdef HAVE_IN_PORT_T
+  SHOW_INTEGER_TYPE(in_port_t);
+#endif
+#ifdef HAVE_IN_ADDR_T
+  SHOW_INTEGER_TYPE(in_addr_t);
 #endif
   SHOW_INTEGER_TYPE(size_t);
   SHOW_INTEGER_TYPE(ssize_t);

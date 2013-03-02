@@ -184,6 +184,10 @@ int main(int argc, char *argv[])
 
   SHOW_FIELD_SIZE(sockaddr_storage, ss_family);
 
+  SHOW_STRUCT_SIZE(in_addr);
+
+  SHOW_FIELD_SIZE(in_addr, s_addr);
+
 
   SHOW_STRUCT_ALIGNMENT(sockaddr);
 #ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
@@ -244,6 +248,10 @@ int main(int argc, char *argv[])
 
   SHOW_FIELD_OFFSET(sockaddr_storage, ss_family);
 
+  SHOW_STRUCT_ALIGNMENT(in_addr);
+
+  SHOW_FIELD_OFFSET(in_addr, s_addr);
+
 
 
   SHOW_INTEGER_TYPE(char);
@@ -255,6 +263,12 @@ int main(int argc, char *argv[])
   SHOW_INTEGER_TYPE(socklen_t);
 #ifdef HAVE_SA_FAMILY_T
   SHOW_INTEGER_TYPE(sa_family_t);
+#endif
+#ifdef HAVE_IN_PORT_T
+  SHOW_INTEGER_TYPE(in_port_t);
+#endif
+#ifdef HAVE_IN_ADDR_T
+  SHOW_INTEGER_TYPE(in_addr_t);
 #endif
   SHOW_INTEGER_TYPE(size_t);
   SHOW_INTEGER_TYPE(ssize_t);
