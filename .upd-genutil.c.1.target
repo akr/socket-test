@@ -1,4 +1,4 @@
-/* errsym.c is generated from errsym.erb. */
+/* genutil.c is generated from genutil.erb. */
 
 /*
  * Copyright (C) 2013 Tanaka Akira  <akr@fsij.org>

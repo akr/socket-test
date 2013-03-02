@@ -23,7 +23,7 @@
 # OF SUCH DAMAGE.
 
 TARGETS = size const errmsg errnum errtest unix-stream unix-dgram
-UTILOBJS = util.o errsym.o
+UTILOBJS = util.o genutil.o
 
 all: $(TARGETS)
 
@@ -32,7 +32,7 @@ complete-clean: maintainer-clean
 
 maintainer-clean: clean
 	rm -f .upd-*.args .upd-*.source .upd-*.target
-	rm -f errsym.c const.c size.c
+	rm -f genutil.c const.c size.c
 	rm -rf autom4te.cache
 	rm -f config.status config.log
 	rm -f config.h compile.sh link.sh
@@ -57,9 +57,9 @@ config.h includes.h compile.sh link.sh: config.status config.h.in includes.h.in 
 	./config.status && \
 	  touch config.h
 
-errsym.c: errsym.erb util.rb errno.txt
-	./update-files errsym.c -- errsym.erb util.rb errno.txt -- \
-	  sh -c 'erb -r ./util.rb errsym.erb > errsym.c'
+genutil.c: genutil.erb util.rb errno.txt
+	./update-files genutil.c -- genutil.erb util.rb errno.txt -- \
+	  sh -c 'erb -r ./util.rb genutil.erb > genutil.c'
 
 size.c: size.erb
 	./update-files size.c -- size.erb -- sh -c 'erb size.erb > size.c'
@@ -78,7 +78,7 @@ errnum.c: errnum.erb util.rb errno.txt
 util.o: util.c sockettest.h config.h includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-errsym.o: errsym.c sockettest.h config.h includes.h compile.sh
+genutil.o: genutil.c sockettest.h config.h includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
 size.o: size.c sockettest.h config.h includes.h compile.sh
@@ -108,14 +108,14 @@ size: size.o link.sh
 const: const.o link.sh
 	sh ./link.sh const.o -o $@
 
-errmsg: errmsg.o errsym.o link.sh
-	sh ./link.sh errmsg.o errsym.o -o $@
+errmsg: errmsg.o genutil.o link.sh
+	sh ./link.sh errmsg.o genutil.o -o $@
 
 errnum: errnum.o link.sh
 	sh ./link.sh errnum.o -o $@
 
-errtest: errtest.o errsym.o link.sh
-	sh ./link.sh errtest.o errsym.o -o $@
+errtest: errtest.o genutil.o link.sh
+	sh ./link.sh errtest.o genutil.o -o $@
 
 unix-stream: unix-stream.o $(UTILOBJS) link.sh
 	sh ./link.sh unix-stream.o $(UTILOBJS) -o $@
