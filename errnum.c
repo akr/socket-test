@@ -74,6 +74,10 @@ int main(int argc, char *argv[])
   err = EAUTH; str = "EAUTH";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef EBACKGROUND
+  err = EBACKGROUND; str = "EBACKGROUND";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef EBADARCH
   err = EBADARCH; str = "EBADARCH";
   printf("%s = %d\n", str, err);
@@ -190,6 +194,10 @@ int main(int argc, char *argv[])
   err = ECONNRESET; str = "ECONNRESET";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef ED
+  err = ED; str = "ED";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef EDEADEPT
   err = EDEADEPT; str = "EDEADEPT";
   printf("%s = %d\n", str, err);
@@ -212,6 +220,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef EDEVERR
   err = EDEVERR; str = "EDEVERR";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef EDIED
+  err = EDIED; str = "EDIED";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef EDOM
@@ -254,6 +266,14 @@ int main(int argc, char *argv[])
   err = EGENERIC; str = "EGENERIC";
   printf("%s = %d\n", str, err);
 #endif
+#ifdef EGRATUITOUS
+  err = EGRATUITOUS; str = "EGRATUITOUS";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef EGREGIOUS
+  err = EGREGIOUS; str = "EGREGIOUS";
+  printf("%s = %d\n", str, err);
+#endif
 #ifdef EHOSTDOWN
   err = EHOSTDOWN; str = "EHOSTDOWN";
   printf("%s = %d\n", str, err);
@@ -268,6 +288,10 @@ int main(int argc, char *argv[])
 #endif
 #ifdef EIDRM
   err = EIDRM; str = "EIDRM";
+  printf("%s = %d\n", str, err);
+#endif
+#ifdef EIEIO
+  err = EIEIO; str = "EIEIO";
   printf("%s = %d\n", str, err);
 #endif
 #ifdef EILSEQ

@@ -59,6 +59,9 @@ char *errsym(int err)
 #ifdef EAUTH
   if (err == EAUTH) { return "EAUTH"; } else
 #endif
+#ifdef EBACKGROUND
+  if (err == EBACKGROUND) { return "EBACKGROUND"; } else
+#endif
 #ifdef EBADARCH
   if (err == EBADARCH) { return "EBADARCH"; } else
 #endif
@@ -146,6 +149,9 @@ char *errsym(int err)
 #ifdef ECONNRESET
   if (err == ECONNRESET) { return "ECONNRESET"; } else
 #endif
+#ifdef ED
+  if (err == ED) { return "ED"; } else
+#endif
 #ifdef EDEADEPT
   if (err == EDEADEPT) { return "EDEADEPT"; } else
 #endif
@@ -163,6 +169,9 @@ char *errsym(int err)
 #endif
 #ifdef EDEVERR
   if (err == EDEVERR) { return "EDEVERR"; } else
+#endif
+#ifdef EDIED
+  if (err == EDIED) { return "EDIED"; } else
 #endif
 #ifdef EDOM
   if (err == EDOM) { return "EDOM"; } else
@@ -194,6 +203,12 @@ char *errsym(int err)
 #ifdef EGENERIC
   if (err == EGENERIC) { return "EGENERIC"; } else
 #endif
+#ifdef EGRATUITOUS
+  if (err == EGRATUITOUS) { return "EGRATUITOUS"; } else
+#endif
+#ifdef EGREGIOUS
+  if (err == EGREGIOUS) { return "EGREGIOUS"; } else
+#endif
 #ifdef EHOSTDOWN
   if (err == EHOSTDOWN) { return "EHOSTDOWN"; } else
 #endif
@@ -205,6 +220,9 @@ char *errsym(int err)
 #endif
 #ifdef EIDRM
   if (err == EIDRM) { return "EIDRM"; } else
+#endif
+#ifdef EIEIO
+  if (err == EIEIO) { return "EIEIO"; } else
 #endif
 #ifdef EILSEQ
   if (err == EILSEQ) { return "EILSEQ"; } else
@@ -661,6 +679,16 @@ int errno_minmax(int *minp, int *maxp)
     if (max < EAUTH) max = EAUTH;
   }
 #endif
+#ifdef EBACKGROUND
+  if (!defined) {
+    defined = 1;
+    min = max = EBACKGROUND;
+  }
+  else {
+    if (EBACKGROUND < min) min = EBACKGROUND;
+    if (max < EBACKGROUND) max = EBACKGROUND;
+  }
+#endif
 #ifdef EBADARCH
   if (!defined) {
     defined = 1;
@@ -951,6 +979,16 @@ int errno_minmax(int *minp, int *maxp)
     if (max < ECONNRESET) max = ECONNRESET;
   }
 #endif
+#ifdef ED
+  if (!defined) {
+    defined = 1;
+    min = max = ED;
+  }
+  else {
+    if (ED < min) min = ED;
+    if (max < ED) max = ED;
+  }
+#endif
 #ifdef EDEADEPT
   if (!defined) {
     defined = 1;
@@ -1009,6 +1047,16 @@ int errno_minmax(int *minp, int *maxp)
   else {
     if (EDEVERR < min) min = EDEVERR;
     if (max < EDEVERR) max = EDEVERR;
+  }
+#endif
+#ifdef EDIED
+  if (!defined) {
+    defined = 1;
+    min = max = EDIED;
+  }
+  else {
+    if (EDIED < min) min = EDIED;
+    if (max < EDIED) max = EDIED;
   }
 #endif
 #ifdef EDOM
@@ -1111,6 +1159,26 @@ int errno_minmax(int *minp, int *maxp)
     if (max < EGENERIC) max = EGENERIC;
   }
 #endif
+#ifdef EGRATUITOUS
+  if (!defined) {
+    defined = 1;
+    min = max = EGRATUITOUS;
+  }
+  else {
+    if (EGRATUITOUS < min) min = EGRATUITOUS;
+    if (max < EGRATUITOUS) max = EGRATUITOUS;
+  }
+#endif
+#ifdef EGREGIOUS
+  if (!defined) {
+    defined = 1;
+    min = max = EGREGIOUS;
+  }
+  else {
+    if (EGREGIOUS < min) min = EGREGIOUS;
+    if (max < EGREGIOUS) max = EGREGIOUS;
+  }
+#endif
 #ifdef EHOSTDOWN
   if (!defined) {
     defined = 1;
@@ -1149,6 +1217,16 @@ int errno_minmax(int *minp, int *maxp)
   else {
     if (EIDRM < min) min = EIDRM;
     if (max < EIDRM) max = EIDRM;
+  }
+#endif
+#ifdef EIEIO
+  if (!defined) {
+    defined = 1;
+    min = max = EIEIO;
+  }
+  else {
+    if (EIEIO < min) min = EIEIO;
+    if (max < EIEIO) max = EIEIO;
   }
 #endif
 #ifdef EILSEQ
