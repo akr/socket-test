@@ -25,4 +25,6 @@ NetBSD*|FreeBSD*|OpenBSD*|DragonFly*|MirBSD*|GNU/kFreeBSD*|*Hurd*|Darwin*|Haiku*
   ;;
 esac
 
+sh scripts/unix-dgram-basic-tests.sh
+
 sh scripts/additional-tests.sh
