@@ -1,9 +1,9 @@
-.upd-* binary merge=ours
-configure binary merge=ours
-config.h.in binary merge=ours
-genutil.c binary merge=ours
-size.c binary merge=ours
-const.c binary merge=ours
-errmsg.c binary merge=ours
-errnum.c binary merge=ours
-results.html merge=ours
+.upd-* binary -merge
+configure binary -merge
+config.h.in binary -merge
+genutil.c binary -merge
+size.c binary -merge
+const.c binary -merge
+errmsg.c binary -merge
+errnum.c binary -merge
+results.html -merge
