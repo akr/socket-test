@@ -27,4 +27,6 @@ esac
 
 sh scripts/unix-dgram-basic-tests.sh
 
+sh scripts/unix-dgram-nullless-tests.sh
+
 sh scripts/additional-tests.sh
