@@ -494,14 +494,16 @@ end
 % }
 </ul>
 
+% if uname_results
 <h2><a name="uname">uname</a></h2>
 <table border>
   <tr> <th align="left">OS</th> <th>uname</th> </tr>
-% uname_results.keys.sort_by {|os| os_order[os] }.each {|os|
-%   uname = uname_results[os].join
+%   uname_results.keys.sort_by {|os| os_order[os] }.each {|os|
+%     uname = uname_results[os].join
   <tr> <th align="left"><%=h os %></th> <td><%=h uname %></td> </tr>
-% }
+%   }
 </table>
+% end
 
 % command_action_os_result.each {|command, action_os_result|
 %   os_list = action_os_result.values.map {|os_result| os_result.keys }.inject(&:|).sort_by {|os| os_order[os] }
