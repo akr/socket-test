@@ -1886,7 +1886,7 @@ bind(client): EINVAL
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\00002d" (6 bytes)
+getsockname(server)   -> "\000030" (6 bytes)
 ./unix-stream -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -1913,7 +1913,7 @@ bind(server): EADDRINUSE
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\00002e" (6 bytes)
+getsockname(server)   -> "\000031" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
@@ -4072,7 +4072,7 @@ bind(client): EINVAL
 ./unix-dgram -s ''    
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\00002f" (6 bytes)
+getsockname(server)   -> "\000032" (6 bytes)
 ./unix-dgram -s '.'   
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -4091,6 +4091,54 @@ bind(server): EADDRINUSE
 ./unix-dgram -T -s 'README'   
 bind(server)          <- "README" (6 bytes)
 bind(server): EADDRINUSE
+
+
+./unix-dgram -s ''
+bind(server)          <- "" (0 bytes)
+socket file (server)  : not exist
+getsockname(server)   -> "\000033" (6 bytes)
+./unix-dgram '\0abc' '\0abc' 'bar'
+bind(server)          <- "\0abc" (4 bytes)
+socket file (server)  : not exist
+getsockname(server)   -> "\0abc" (4 bytes)
+bind(client)          <- "bar" (3 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar\0" (4 bytes)
+sendto(client)        <- "\0abc" (4 bytes)
+recvfrom(server)      -> "bar\0" (4 bytes)
+sendto(server)        <- "bar\0" (4 bytes)
+recvfrom(client)      -> "\0abc" (4 bytes)
+./unix-dgram '\0abc' '\0abc\0' 'bar'
+bind(server)          <- "\0abc" (4 bytes)
+socket file (server)  : not exist
+getsockname(server)   -> "\0abc" (4 bytes)
+bind(client)          <- "bar" (3 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar\0" (4 bytes)
+sendto(client)        <- "\0abc\0" (5 bytes)
+sendto(client): ECONNREFUSED
+./unix-dgram 'non-abstract' 'non-abstract' '\0abstract'
+bind(server)          <- "non-abstract" (12 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "non-abstract\0" (13 bytes)
+bind(client)          <- "\0abstract" (9 bytes)
+socket file (client)  : not exist
+getsockname(client)   -> "\0abstract" (9 bytes)
+sendto(client)        <- "non-abstract" (12 bytes)
+recvfrom(server)      -> "\0abstract" (9 bytes)
+sendto(server)        <- "\0abstract" (9 bytes)
+recvfrom(client)      -> "non-abstract\0" (13 bytes)
+./unix-dgram '\0abstract' '\0abstract' 'non-abstract'
+bind(server)          <- "\0abstract" (9 bytes)
+socket file (server)  : not exist
+getsockname(server)   -> "\0abstract" (9 bytes)
+bind(client)          <- "non-abstract" (12 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "non-abstract\0" (13 bytes)
+sendto(client)        <- "\0abstract" (9 bytes)
+recvfrom(server)      -> "non-abstract\0" (13 bytes)
+sendto(server)        <- "non-abstract\0" (13 bytes)
+recvfrom(client)      -> "\0abstract" (9 bytes)
 
 
 uname -mrsv
