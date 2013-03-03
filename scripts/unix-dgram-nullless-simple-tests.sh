@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # Copyright (C) 2013 Tanaka Akira  <akr@fsij.org>
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# 
+#
 #  1. Redistributions of source code must retain the above copyright notice, this
 #     list of conditions and the following disclaimer.
 #  2. Redistributions in binary form must reproduce the above copyright notice,
@@ -27,18 +27,4 @@
 exec 2>&1
 set -v
 
-./unix-stream -4 '(sun_len=1)abc\0'
-./unix-stream -4 '(sun_len=2)abc\0'
-./unix-stream -4 '(sun_len=3)abc\0'
-./unix-stream -4 '(sun_len=4)abc\0'
-./unix-stream -4 '(sun_len=5)abc\0'
-./unix-stream -4 '(sun_len=6)abc\0'
-./unix-stream -4 '(sun_len=7)abc\0'
-
-./unix-stream -4 '(sun_len=1)abc\0' '(sun_len=7)abc\0'
-./unix-stream -4 '(sun_len=2)abc\0' '(sun_len=6)abc\0'
-./unix-stream -4 '(sun_len=3)abc\0' '(sun_len=5)abc\0'
-./unix-stream -4 '(sun_len=4)abc\0' '(sun_len=4)abc\0'
-./unix-stream -4 '(sun_len=5)abc\0' '(sun_len=3)abc\0'
-./unix-stream -4 '(sun_len=6)abc\0' '(sun_len=2)abc\0'
-./unix-stream -4 '(sun_len=7)abc\0' '(sun_len=1)abc\0'
+./unix-dgram -s 'foobar' 'foobar' 'baz'

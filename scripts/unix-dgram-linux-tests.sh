@@ -27,18 +27,9 @@
 exec 2>&1
 set -v
 
-./unix-stream -4 '(sun_len=1)abc\0'
-./unix-stream -4 '(sun_len=2)abc\0'
-./unix-stream -4 '(sun_len=3)abc\0'
-./unix-stream -4 '(sun_len=4)abc\0'
-./unix-stream -4 '(sun_len=5)abc\0'
-./unix-stream -4 '(sun_len=6)abc\0'
-./unix-stream -4 '(sun_len=7)abc\0'
+./unix-dgram -s ''
+./unix-dgram '\0abc' '\0abc' 'bar'
+./unix-dgram '\0abc' '\0abc\0' 'bar'
+./unix-dgram 'non-abstract' 'non-abstract' '\0abstract'
+./unix-dgram '\0abstract' '\0abstract' 'non-abstract'
 
-./unix-stream -4 '(sun_len=1)abc\0' '(sun_len=7)abc\0'
-./unix-stream -4 '(sun_len=2)abc\0' '(sun_len=6)abc\0'
-./unix-stream -4 '(sun_len=3)abc\0' '(sun_len=5)abc\0'
-./unix-stream -4 '(sun_len=4)abc\0' '(sun_len=4)abc\0'
-./unix-stream -4 '(sun_len=5)abc\0' '(sun_len=3)abc\0'
-./unix-stream -4 '(sun_len=6)abc\0' '(sun_len=2)abc\0'
-./unix-stream -4 '(sun_len=7)abc\0' '(sun_len=1)abc\0'
