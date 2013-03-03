@@ -86,7 +86,7 @@ class Graph
   end
 end
 
-def merge_orderd(*arys)
+def merge_ordered(*arys)
   g = Graph.new
   arys.each {|ary|
     h = Hash.new(0)
@@ -159,7 +159,7 @@ files.keys.sort_by {|os| os_order[os] }.each {|os|
     commands_ary.last << command
   }
 }
-command_list = merge_orderd(*commands_ary)
+command_list = merge_ordered(*commands_ary)
 
 uname_results = command_os_lines.delete 'uname -mrsv'
 #pp uname_results
@@ -199,7 +199,7 @@ command_os_action_result_pairs.each {|command, os_action_result_pairs|
     }
   }
   command_actions_order[command] = {}
-  merged_actions = merge_orderd(*actions_list)
+  merged_actions = merge_ordered(*actions_list)
   command_actions[command] = merged_actions
   merged_actions.each_with_index {|action, i|
     command_actions_order[command][action] = i
