@@ -487,7 +487,9 @@ end
 
 <h2>contents</h2>
 <ul>
+% if uname_results
   <li><a href="#uname">uname</a></li>
+% end
 % command_action_os_result.each {|command, action_os_result|
 %   frag = command2fragment(command)
   <li><a href="#<%= h(u(frag)) %>"><%=h command %></a></li>
