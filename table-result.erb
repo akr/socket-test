@@ -145,8 +145,10 @@ files.keys.sort.each_with_index {|os, i|
   os_order[os] ||= -i
 }
 
+commands_ary = []
 command_os_lines = {}
 files.keys.sort_by {|os| os_order[os] }.each {|os|
+  commands_ary << []
   content = files[os]
   content.lines.slice_before(/\A(uname|\.\/)/).each {|lines|
     lines = lines.reject {|line| /\A\s*\z/ =~ line }
@@ -154,9 +156,10 @@ files.keys.sort_by {|os| os_order[os] }.each {|os|
     command = lines.shift.chomp.rstrip
     command_os_lines[command] ||= {}
     command_os_lines[command][os] = lines
+    commands_ary.last << command
   }
 }
-
+command_list = merge_orderd(*commands_ary)
 
 uname_results = command_os_lines.delete 'uname -mrsv'
 #pp uname_results
@@ -439,6 +442,12 @@ end
 
 command_action_os_result = remove_interpolatable_commands(command_action_os_result)
 
+#pp command_action_os_result
+
+command_list.reject! {|command|
+  !command_action_os_result.has_key?(command)
+}
+
 command_action_os_style = {}
 command_action_os_result.each {|command, action_os_result|
   os_list = action_os_result.values.map {|os_result| os_result.keys }.inject(&:|).sort_by {|os| os_order[os] }
@@ -465,8 +474,6 @@ command_action_os_result.each {|command, action_os_result|
     }
   }
 }
-
-#pp command_action_os_result
 
 def command2fragment(command)
   command.sub(%r{\A\./}, "").gsub(%r{[^a-zA-Z0-9./-]}, "")
@@ -499,7 +506,8 @@ end
 % if uname_results
   <li><a href="#uname">uname</a></li>
 % end
-% command_action_os_result.each {|command, action_os_result|
+% command_list.each {|command|
+%   action_os_result = command_action_os_result[command]
 %   frag = command2fragment(command)
   <li><a href="#<%= h(u(frag)) %>"><%=h command %></a></li>
 % }
@@ -516,7 +524,8 @@ end
 </table>
 % end
 
-% command_action_os_result.each {|command, action_os_result|
+% command_list.each {|command|
+%   action_os_result = command_action_os_result[command]
 %   os_list = action_os_result.values.map {|os_result| os_result.keys }.inject(&:|).sort_by {|os| os_order[os] }
 %   frag = command2fragment(command)
 <h2><a name="<%= h(u(frag)) %>"><%=h command %></a></h2>
