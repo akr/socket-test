@@ -28,6 +28,10 @@ require 'pp'
 include ERB::Util # for ERB::Util#h and ERB::Util#u
 require 'tsort'
 
+def shared_prefix_length(str1, str2)
+  (0..str1.length).find {|i| str1[i] != str2[i] } || str1.length
+end
+
 class Graph
   include TSort
   def initialize
@@ -67,7 +71,12 @@ class Graph
     nodes_has_child, nodes_no_child = has_child.keys.partition {|node|
       has_child[node]
     }
-    self.node_order = nodes_no_child.sort_by {|node| distance_from_start[node] } + nodes_has_child
+    self.node_order = nodes_no_child.sort_by {|node|
+      shprefixlen = @child_parents[node].map {|parent|
+        shared_prefix_length(node, parent)
+      }.min || 0
+      [distance_from_start[node], -shprefixlen]
+    } + nodes_has_child
   end
   def tsort_each_child(child, &b)
     # child-parent relation is reversed between tsort.rb and this class.
