@@ -20,278 +20,6 @@
 
 <h1>Unix domain socket behavior comparison</h1>
 
-<h2>contents</h2>
-<ul>
-  <li><a href="#uname">uname</a></li>
-  <li><a href="#unix-streamfoo0foo0bar0">./unix-stream &#39;foo\0&#39; &#39;foo\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-streamfoo0.%2Ffoo0bar0">./unix-stream &#39;foo\0&#39; &#39;./foo\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-streamfoo0">./unix-stream &#39;foo\0&#39;</a></li>
-  <li><a href="#unix-streamfoo0.%2Ffoo0">./unix-stream &#39;foo\0&#39; &#39;./foo\0&#39;</a></li>
-  <li><a href="#unix-streamfoo0hogefoo0bar0">./unix-stream &#39;foo\0hoge&#39; &#39;foo\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-streamfoo0foo0fugabar0">./unix-stream &#39;foo\0&#39; &#39;foo\0fuga&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-streamfoo0foo0bar0moga">./unix-stream &#39;foo\0&#39; &#39;foo\0&#39; &#39;bar\0moga&#39;</a></li>
-  <li><a href="#unix-streamfoo0hoge.%2Ffoo0fugabar0moga">./unix-stream &#39;foo\0hoge&#39; &#39;./foo\0fuga&#39; &#39;bar\0moga&#39;</a></li>
-  <li><a href="#unix-stream44.%2Fa0">./unix-stream &#39;(44*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-stream51.%2Fa0">./unix-stream &#39;(51*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-stream51.%2Fab0">./unix-stream &#39;(51*&quot;./&quot;)ab\0&#39;</a></li>
-  <li><a href="#unix-stream52.%2Fa0">./unix-stream &#39;(52*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-stream53.%2Fa0">./unix-stream &#39;(53*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-stream53.%2Fab0">./unix-stream &#39;(53*&quot;./&quot;)ab\0&#39;</a></li>
-  <li><a href="#unix-stream54.%2Fa0">./unix-stream &#39;(54*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-stream62.%2Fa0">./unix-stream &#39;(62*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-stream62.%2Fab0">./unix-stream &#39;(62*&quot;./&quot;)ab\0&#39;</a></li>
-  <li><a href="#unix-stream63.%2Fa0">./unix-stream &#39;(63*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-stream63.%2Fab0">./unix-stream &#39;(63*&quot;./&quot;)ab\0&#39;</a></li>
-  <li><a href="#unix-stream64.%2Fa0">./unix-stream &#39;(64*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-stream69.%2Fab0">./unix-stream &#39;(69*&quot;./&quot;)ab\0&#39;</a></li>
-  <li><a href="#unix-stream120.%2Fa0">./unix-stream &#39;(120*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-stream125.%2Fab0">./unix-stream &#39;(125*&quot;./&quot;)ab\0&#39;</a></li>
-  <li><a href="#unix-stream126.%2Fa0">./unix-stream &#39;(126*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-stream511.%2Fa0">./unix-stream &#39;(511*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-stream511.%2Fab0">./unix-stream &#39;(511*&quot;./&quot;)ab\0&#39;</a></li>
-  <li><a href="#unix-stream512.%2Fab0">./unix-stream &#39;(512*&quot;./&quot;)ab\0&#39;</a></li>
-  <li><a href="#unix-stream513.%2Fa0">./unix-stream &#39;(513*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-stream519.%2Fab0">./unix-stream &#39;(519*&quot;./&quot;)ab\0&#39;</a></li>
-  <li><a href="#unix-stream90c0">./unix-stream &#39;(90*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream103c0">./unix-stream &#39;(103*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream104c0">./unix-stream &#39;(104*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream105c0">./unix-stream &#39;(105*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream107c0">./unix-stream &#39;(107*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream108c0">./unix-stream &#39;(108*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream110c0">./unix-stream &#39;(110*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream111c0">./unix-stream &#39;(111*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream125c0">./unix-stream &#39;(125*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream126c0">./unix-stream &#39;(126*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream129c0">./unix-stream &#39;(129*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream250c0">./unix-stream &#39;(250*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream252c0">./unix-stream &#39;(252*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream253c0">./unix-stream &#39;(253*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream255c0">./unix-stream &#39;(255*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream256c0">./unix-stream &#39;(256*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream259c0">./unix-stream &#39;(259*&quot;c&quot;)\0&#39;</a></li>
-  <li><a href="#unix-stream-p012345670">./unix-stream -p &#39;01234567\0&#39;</a></li>
-  <li><a href="#unix-stream-p0123456780">./unix-stream -p &#39;012345678\0&#39;</a></li>
-  <li><a href="#unix-stream-p01234567890">./unix-stream -p &#39;0123456789\0&#39;</a></li>
-  <li><a href="#unix-stream-p012345678900">./unix-stream -p &#39;01234567890\0&#39;</a></li>
-  <li><a href="#unix-stream-g2048-p012345678900">./unix-stream -g2048 -p &#39;01234567890\0&#39;</a></li>
-  <li><a href="#unix-stream-g2048-pfoo0foo0012345678900">./unix-stream -g2048 -p &#39;foo\0&#39; &#39;foo\0&#39; &#39;01234567890\0&#39;</a></li>
-  <li><a href="#unix-stream-g255125.%2Fab0">./unix-stream -g255 &#39;(125*&quot;./&quot;)ab\0&#39;</a></li>
-  <li><a href="#unix-stream-g1026511.%2Fa0">./unix-stream -g1026 &#39;(511*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-streamfoo0foo0125.%2Fab0">./unix-stream &#39;foo\0&#39; &#39;foo\0&#39; &#39;(125*&quot;./&quot;)ab\0&#39;</a></li>
-  <li><a href="#unix-streamfoo0foo0511.%2Fa0">./unix-stream &#39;foo\0&#39; &#39;foo\0&#39; &#39;(511*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-stream-g255foo0foo0125.%2Fab0">./unix-stream -g255 &#39;foo\0&#39; &#39;foo\0&#39; &#39;(125*&quot;./&quot;)ab\0&#39;</a></li>
-  <li><a href="#unix-stream-g1026foo0foo0511.%2Fa0">./unix-stream -g1026 &#39;foo\0&#39; &#39;foo\0&#39; &#39;(511*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-stream-s0">./unix-stream -s &#39;\0&#39;</a></li>
-  <li><a href="#unix-stream-s.0">./unix-stream -s &#39;.\0&#39;</a></li>
-  <li><a href="#unix-stream-s%2F0">./unix-stream -s &#39;/\0&#39;</a></li>
-  <li><a href="#unix-stream-s%2Ffoo0">./unix-stream -s &#39;/foo\0&#39;</a></li>
-  <li><a href="#unix-stream-s%2Ffoo%2Fbar0">./unix-stream -s &#39;/foo/bar\0&#39;</a></li>
-  <li><a href="#unix-stream-s%2Fetc0">./unix-stream -s &#39;/etc\0&#39;</a></li>
-  <li><a href="#unix-stream-T-sREADME0">./unix-stream -T -s &#39;README\0&#39;</a></li>
-  <li><a href="#unix-streamfoofoobar">./unix-stream &#39;foo&#39; &#39;foo&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-streamfoo.%2Ffoobar">./unix-stream &#39;foo&#39; &#39;./foo&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-streamfoo">./unix-stream &#39;foo&#39;</a></li>
-  <li><a href="#unix-streamfoo.%2Ffoo">./unix-stream &#39;foo&#39; &#39;./foo&#39;</a></li>
-  <li><a href="#unix-stream44.%2Fa">./unix-stream &#39;(44*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-stream51.%2Fa">./unix-stream &#39;(51*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-stream51.%2Fab">./unix-stream &#39;(51*&quot;./&quot;)ab&#39;</a></li>
-  <li><a href="#unix-stream52.%2Fa">./unix-stream &#39;(52*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-stream53.%2Fa">./unix-stream &#39;(53*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-stream53.%2Fab">./unix-stream &#39;(53*&quot;./&quot;)ab&#39;</a></li>
-  <li><a href="#unix-stream54.%2Fa">./unix-stream &#39;(54*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-stream69.%2Fab">./unix-stream &#39;(69*&quot;./&quot;)ab&#39;</a></li>
-  <li><a href="#unix-stream120.%2Fa">./unix-stream &#39;(120*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-stream126.%2Fa">./unix-stream &#39;(126*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-stream126.%2Fab">./unix-stream &#39;(126*&quot;./&quot;)ab&#39;</a></li>
-  <li><a href="#unix-stream511.%2Fa">./unix-stream &#39;(511*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-stream511.%2Fab">./unix-stream &#39;(511*&quot;./&quot;)ab&#39;</a></li>
-  <li><a href="#unix-stream519.%2Fab">./unix-stream &#39;(519*&quot;./&quot;)ab&#39;</a></li>
-  <li><a href="#unix-stream90c">./unix-stream &#39;(90*&quot;c&quot;)&#39;</a></li>
-  <li><a href="#unix-stream103c">./unix-stream &#39;(103*&quot;c&quot;)&#39;</a></li>
-  <li><a href="#unix-stream104c">./unix-stream &#39;(104*&quot;c&quot;)&#39;</a></li>
-  <li><a href="#unix-stream105c">./unix-stream &#39;(105*&quot;c&quot;)&#39;</a></li>
-  <li><a href="#unix-stream107c">./unix-stream &#39;(107*&quot;c&quot;)&#39;</a></li>
-  <li><a href="#unix-stream108c">./unix-stream &#39;(108*&quot;c&quot;)&#39;</a></li>
-  <li><a href="#unix-stream109c">./unix-stream &#39;(109*&quot;c&quot;)&#39;</a></li>
-  <li><a href="#unix-stream129c">./unix-stream &#39;(129*&quot;c&quot;)&#39;</a></li>
-  <li><a href="#unix-stream250c">./unix-stream &#39;(250*&quot;c&quot;)&#39;</a></li>
-  <li><a href="#unix-stream253c">./unix-stream &#39;(253*&quot;c&quot;)&#39;</a></li>
-  <li><a href="#unix-stream254c">./unix-stream &#39;(254*&quot;c&quot;)&#39;</a></li>
-  <li><a href="#unix-stream255c">./unix-stream &#39;(255*&quot;c&quot;)&#39;</a></li>
-  <li><a href="#unix-stream256c">./unix-stream &#39;(256*&quot;c&quot;)&#39;</a></li>
-  <li><a href="#unix-stream519c">./unix-stream &#39;(519*&quot;c&quot;)&#39;</a></li>
-  <li><a href="#unix-stream-p012345678">./unix-stream -p &#39;012345678&#39;</a></li>
-  <li><a href="#unix-stream-p0123456789">./unix-stream -p &#39;0123456789&#39;</a></li>
-  <li><a href="#unix-stream-g2048-p01234567890">./unix-stream -g2048 -p &#39;01234567890&#39;</a></li>
-  <li><a href="#unix-stream-g2048-pfoo0foo001234567890">./unix-stream -g2048 -p &#39;foo\0&#39; &#39;foo\0&#39; &#39;01234567890&#39;</a></li>
-  <li><a href="#unix-stream-g255126.%2Fa">./unix-stream -g255 &#39;(126*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-stream-g1026511.%2Fa">./unix-stream -g1026 &#39;(511*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-streamfoo0foo0126.%2Fa">./unix-stream &#39;foo\0&#39; &#39;foo\0&#39; &#39;(126*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-streamfoo0foo0511.%2Fa">./unix-stream &#39;foo\0&#39; &#39;foo\0&#39; &#39;(511*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-stream-g255foo0foo0126.%2Fa">./unix-stream -g255 &#39;foo\0&#39; &#39;foo\0&#39; &#39;(126*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-stream-g1026foo0foo0511.%2Fa">./unix-stream -g1026 &#39;foo\0&#39; &#39;foo\0&#39; &#39;(511*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-stream-s">./unix-stream -s &#39;&#39;</a></li>
-  <li><a href="#unix-stream-s.">./unix-stream -s &#39;.&#39;</a></li>
-  <li><a href="#unix-stream-s%2F">./unix-stream -s &#39;/&#39;</a></li>
-  <li><a href="#unix-stream-s%2Ffoo">./unix-stream -s &#39;/foo&#39;</a></li>
-  <li><a href="#unix-stream-s%2Ffoo%2Fbar">./unix-stream -s &#39;/foo/bar&#39;</a></li>
-  <li><a href="#unix-stream-s%2Fetc">./unix-stream -s &#39;/etc&#39;</a></li>
-  <li><a href="#unix-stream-sfoo">./unix-stream -s &#39;foo&#39;</a></li>
-  <li><a href="#unix-stream-T-sREADME">./unix-stream -T -s &#39;README&#39;</a></li>
-  <li><a href="#unix-stream-sfoobar">./unix-stream -s &#39;foobar&#39;</a></li>
-  <li><a href="#unix-streamfoobar">./unix-stream &#39;foobar&#39;</a></li>
-  <li><a href="#unix-stream-4sunlen1abc0">./unix-stream -4 &#39;(sun_len=1)abc\0&#39;</a></li>
-  <li><a href="#unix-stream-4sunlen7abc0">./unix-stream -4 &#39;(sun_len=7)abc\0&#39;</a></li>
-  <li><a href="#unix-stream-4sunlen1abc0sunlen7abc0">./unix-stream -4 &#39;(sun_len=1)abc\0&#39; &#39;(sun_len=7)abc\0&#39;</a></li>
-  <li><a href="#unix-stream-4sunlen7abc0sunlen1abc0">./unix-stream -4 &#39;(sun_len=7)abc\0&#39; &#39;(sun_len=1)abc\0&#39;</a></li>
-  <li><a href="#unix-stream0abc">./unix-stream &#39;\0abc&#39;</a></li>
-  <li><a href="#unix-stream0abc0abc0">./unix-stream &#39;\0abc&#39; &#39;\0abc\0&#39;</a></li>
-  <li><a href="#unix-streamnon-abstractnon-abstract0abstract">./unix-stream &#39;non-abstract&#39; &#39;non-abstract&#39; &#39;\0abstract&#39;</a></li>
-  <li><a href="#unix-stream0abstract0abstractnon-abstract">./unix-stream &#39;\0abstract&#39; &#39;\0abstract&#39; &#39;non-abstract&#39;</a></li>
-  <li><a href="#unix-dgramfoo0foo0bar0">./unix-dgram &#39;foo\0&#39; &#39;foo\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgramfoo0.%2Ffoo0bar0">./unix-dgram &#39;foo\0&#39; &#39;./foo\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgramfoo0hogefoo0bar0">./unix-dgram &#39;foo\0hoge&#39; &#39;foo\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgramfoo0foo0fugabar0">./unix-dgram &#39;foo\0&#39; &#39;foo\0fuga&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgramfoo0foo0bar0moga">./unix-dgram &#39;foo\0&#39; &#39;foo\0&#39; &#39;bar\0moga&#39;</a></li>
-  <li><a href="#unix-dgramfoo0hoge.%2Ffoo0fugabar0moga">./unix-dgram &#39;foo\0hoge&#39; &#39;./foo\0fuga&#39; &#39;bar\0moga&#39;</a></li>
-  <li><a href="#unix-dgram44.%2Fa044.%2Fa0bar0">./unix-dgram &#39;(44*&quot;./&quot;)a\0&#39;  &#39;(44*&quot;./&quot;)a\0&#39;  &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram51.%2Fa051.%2Fa0bar0">./unix-dgram &#39;(51*&quot;./&quot;)a\0&#39;   &#39;(51*&quot;./&quot;)a\0&#39;     &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram51.%2Fab051.%2Fab0bar0">./unix-dgram &#39;(51*&quot;./&quot;)ab\0&#39;  &#39;(51*&quot;./&quot;)ab\0&#39;    &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram52.%2Fa052.%2Fa0bar0">./unix-dgram &#39;(52*&quot;./&quot;)a\0&#39;   &#39;(52*&quot;./&quot;)a\0&#39;     &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram53.%2Fa053.%2Fa0bar0">./unix-dgram &#39;(53*&quot;./&quot;)a\0&#39;   &#39;(53*&quot;./&quot;)a\0&#39;     &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram53.%2Fab053.%2Fab0bar0">./unix-dgram &#39;(53*&quot;./&quot;)ab\0&#39;  &#39;(53*&quot;./&quot;)ab\0&#39;    &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram54.%2Fa054.%2Fa0bar0">./unix-dgram &#39;(54*&quot;./&quot;)a\0&#39;   &#39;(54*&quot;./&quot;)a\0&#39;     &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram63.%2Fa063.%2Fa0bar0">./unix-dgram &#39;(63*&quot;./&quot;)a\0&#39;   &#39;(63*&quot;./&quot;)a\0&#39;     &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram63.%2Fab063.%2Fab0bar0">./unix-dgram &#39;(63*&quot;./&quot;)ab\0&#39;  &#39;(63*&quot;./&quot;)ab\0&#39;    &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram64.%2Fa064.%2Fa0bar0">./unix-dgram &#39;(64*&quot;./&quot;)a\0&#39;   &#39;(64*&quot;./&quot;)a\0&#39;     &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram69.%2Fab069.%2Fab0bar0">./unix-dgram &#39;(69*&quot;./&quot;)ab\0&#39;  &#39;(69*&quot;./&quot;)ab\0&#39;    &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram120.%2Fa0120.%2Fa0bar0">./unix-dgram &#39;(120*&quot;./&quot;)a\0&#39;  &#39;(120*&quot;./&quot;)a\0&#39;    &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram125.%2Fab0125.%2Fab0bar0">./unix-dgram &#39;(125*&quot;./&quot;)ab\0&#39; &#39;(125*&quot;./&quot;)ab\0&#39;   &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram126.%2Fa0126.%2Fa0bar0">./unix-dgram &#39;(126*&quot;./&quot;)a\0&#39;  &#39;(126*&quot;./&quot;)a\0&#39;    &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram511.%2Fa0511.%2Fa0bar0">./unix-dgram &#39;(511*&quot;./&quot;)a\0&#39;  &#39;(511*&quot;./&quot;)a\0&#39;    &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram511.%2Fab0511.%2Fab0bar0">./unix-dgram &#39;(511*&quot;./&quot;)ab\0&#39; &#39;(511*&quot;./&quot;)ab\0&#39;   &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram519.%2Fab0519.%2Fab0bar0">./unix-dgram &#39;(519*&quot;./&quot;)ab\0&#39; &#39;(519*&quot;./&quot;)ab\0&#39;   &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram90c090c0bar0">./unix-dgram &#39;(90*&quot;c&quot;)\0&#39;  &#39;(90*&quot;c&quot;)\0&#39;  &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram103c0103c0bar0">./unix-dgram &#39;(103*&quot;c&quot;)\0&#39; &#39;(103*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram104c0104c0bar0">./unix-dgram &#39;(104*&quot;c&quot;)\0&#39; &#39;(104*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram105c0105c0bar0">./unix-dgram &#39;(105*&quot;c&quot;)\0&#39; &#39;(105*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram107c0107c0bar0">./unix-dgram &#39;(107*&quot;c&quot;)\0&#39; &#39;(107*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram108c0108c0bar0">./unix-dgram &#39;(108*&quot;c&quot;)\0&#39; &#39;(108*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram110c0110c0bar0">./unix-dgram &#39;(110*&quot;c&quot;)\0&#39; &#39;(110*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram111c0111c0bar0">./unix-dgram &#39;(111*&quot;c&quot;)\0&#39; &#39;(111*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram129c0129c0bar0">./unix-dgram &#39;(129*&quot;c&quot;)\0&#39; &#39;(129*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram250c0250c0bar0">./unix-dgram &#39;(250*&quot;c&quot;)\0&#39; &#39;(250*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram252c0252c0bar0">./unix-dgram &#39;(252*&quot;c&quot;)\0&#39; &#39;(252*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram253c0253c0bar0">./unix-dgram &#39;(253*&quot;c&quot;)\0&#39; &#39;(253*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram255c0255c0bar0">./unix-dgram &#39;(255*&quot;c&quot;)\0&#39; &#39;(255*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram256c0256c0bar0">./unix-dgram &#39;(256*&quot;c&quot;)\0&#39; &#39;(256*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram259c0259c0bar0">./unix-dgram &#39;(259*&quot;c&quot;)\0&#39; &#39;(259*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-p012345670012345670bar0">./unix-dgram -p &#39;01234567\0&#39;    &#39;01234567\0&#39;    &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-p01234567800123456780bar0">./unix-dgram -p &#39;012345678\0&#39;   &#39;012345678\0&#39;   &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-p0123456789001234567890bar0">./unix-dgram -p &#39;0123456789\0&#39;  &#39;0123456789\0&#39;  &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-p012345678900012345678900bar0">./unix-dgram -p &#39;01234567890\0&#39; &#39;01234567890\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-g2048-p012345678900012345678900bar0">./unix-dgram -g2048 -p &#39;01234567890\0&#39; &#39;01234567890\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-g2048-pfoo0foo0012345678900">./unix-dgram -g2048 -p &#39;foo\0&#39; &#39;foo\0&#39; &#39;01234567890\0&#39;</a></li>
-  <li><a href="#unix-dgram-g255115.%2Fab0115.%2Fab0bar0">./unix-dgram -g255 &#39;(115*&quot;./&quot;)ab\0&#39; &#39;(115*&quot;./&quot;)ab\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-g255116.%2Fa0116.%2Fa0bar0">./unix-dgram -g255 &#39;(116*&quot;./&quot;)a\0&#39; &#39;(116*&quot;./&quot;)a\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-g255116.%2Fab0116.%2Fab0bar0">./unix-dgram -g255 &#39;(116*&quot;./&quot;)ab\0&#39; &#39;(116*&quot;./&quot;)ab\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-g255117.%2Fa0117.%2Fa0bar0">./unix-dgram -g255 &#39;(117*&quot;./&quot;)a\0&#39; &#39;(117*&quot;./&quot;)a\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-g255125.%2Fab0125.%2Fab0bar0">./unix-dgram -g255 &#39;(125*&quot;./&quot;)ab\0&#39; &#39;(125*&quot;./&quot;)ab\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-g255126.%2Fa0126.%2Fa0bar0">./unix-dgram -g255 &#39;(126*&quot;./&quot;)a\0&#39; &#39;(126*&quot;./&quot;)a\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-g1026511.%2Fa0511.%2Fa0bar0">./unix-dgram -g1026 &#39;(511*&quot;./&quot;)a\0&#39; &#39;(511*&quot;./&quot;)a\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-g1026511.%2Fab0511.%2Fab0bar0">./unix-dgram -g1026 &#39;(511*&quot;./&quot;)ab\0&#39; &#39;(511*&quot;./&quot;)ab\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgramfoo0foo0125.%2Fab0">./unix-dgram &#39;foo\0&#39; &#39;foo\0&#39; &#39;(125*&quot;./&quot;)ab\0&#39;</a></li>
-  <li><a href="#unix-dgramfoo0foo0126.%2Fa0">./unix-dgram &#39;foo\0&#39; &#39;foo\0&#39; &#39;(126*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-dgramfoo0foo0511.%2Fa0">./unix-dgram &#39;foo\0&#39; &#39;foo\0&#39; &#39;(511*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-dgramfoo0foo0511.%2Fab0">./unix-dgram &#39;foo\0&#39; &#39;foo\0&#39; &#39;(511*&quot;./&quot;)ab\0&#39;</a></li>
-  <li><a href="#unix-dgram-g255foo0foo0125.%2Fab0">./unix-dgram -g255 &#39;foo\0&#39; &#39;foo\0&#39; &#39;(125*&quot;./&quot;)ab\0&#39;</a></li>
-  <li><a href="#unix-dgram-g1026foo0foo0511.%2Fa0">./unix-dgram -g1026 &#39;foo\0&#39; &#39;foo\0&#39; &#39;(511*&quot;./&quot;)a\0&#39;</a></li>
-  <li><a href="#unix-dgram-s0">./unix-dgram -s &#39;\0&#39;</a></li>
-  <li><a href="#unix-dgram-s.0">./unix-dgram -s &#39;.\0&#39;</a></li>
-  <li><a href="#unix-dgram-s%2F0">./unix-dgram -s &#39;/\0&#39;</a></li>
-  <li><a href="#unix-dgram-s%2Ffoo0">./unix-dgram -s &#39;/foo\0&#39;</a></li>
-  <li><a href="#unix-dgram-s%2Ffoo%2Fbar0">./unix-dgram -s &#39;/foo/bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-s%2Fetc0">./unix-dgram -s &#39;/etc\0&#39;</a></li>
-  <li><a href="#unix-dgram-T-sREADME0">./unix-dgram -T -s &#39;README\0&#39;</a></li>
-  <li><a href="#unix-dgramfoofoo0bar0">./unix-dgram &#39;foo&#39; &#39;foo\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgramfoo0foobar0">./unix-dgram &#39;foo\0&#39; &#39;foo&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgramfoo0foo0bar">./unix-dgram &#39;foo\0&#39; &#39;foo\0&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgramfoofoobar">./unix-dgram &#39;foo&#39; &#39;foo&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgramfoo.%2Ffoo0bar0">./unix-dgram &#39;foo&#39; &#39;./foo\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgramfoo0.%2Ffoobar0">./unix-dgram &#39;foo\0&#39; &#39;./foo&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgramfoo0.%2Ffoo0bar">./unix-dgram &#39;foo\0&#39; &#39;./foo\0&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgramfoo.%2Ffoobar">./unix-dgram &#39;foo&#39; &#39;./foo&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram51.%2Fa51.%2Fabar">./unix-dgram &#39;(51*&quot;./&quot;)a&#39;   &#39;(51*&quot;./&quot;)a&#39;     &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram51.%2Fab51.%2Fabbar">./unix-dgram &#39;(51*&quot;./&quot;)ab&#39;  &#39;(51*&quot;./&quot;)ab&#39;    &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram52.%2Fa52.%2Fabar">./unix-dgram &#39;(52*&quot;./&quot;)a&#39;   &#39;(52*&quot;./&quot;)a&#39;     &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram53.%2Fa53.%2Fabar">./unix-dgram &#39;(53*&quot;./&quot;)a&#39;   &#39;(53*&quot;./&quot;)a&#39;     &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram53.%2Fab53.%2Fabbar">./unix-dgram &#39;(53*&quot;./&quot;)ab&#39;  &#39;(53*&quot;./&quot;)ab&#39;    &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram54.%2Fa54.%2Fabar">./unix-dgram &#39;(54*&quot;./&quot;)a&#39;   &#39;(54*&quot;./&quot;)a&#39;     &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram69.%2Fab69.%2Fabbar">./unix-dgram &#39;(69*&quot;./&quot;)ab&#39;  &#39;(69*&quot;./&quot;)ab&#39;    &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram120.%2Fa120.%2Fabar">./unix-dgram &#39;(120*&quot;./&quot;)a&#39;  &#39;(120*&quot;./&quot;)a&#39;    &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram126.%2Fa126.%2Fabar">./unix-dgram &#39;(126*&quot;./&quot;)a&#39;  &#39;(126*&quot;./&quot;)a&#39;    &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram126.%2Fab126.%2Fabbar">./unix-dgram &#39;(126*&quot;./&quot;)ab&#39; &#39;(126*&quot;./&quot;)ab&#39;   &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram511.%2Fa511.%2Fabar">./unix-dgram &#39;(511*&quot;./&quot;)a&#39;  &#39;(511*&quot;./&quot;)a&#39;    &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram511.%2Fab511.%2Fabbar">./unix-dgram &#39;(511*&quot;./&quot;)ab&#39; &#39;(511*&quot;./&quot;)ab&#39;   &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram519.%2Fab519.%2Fabbar">./unix-dgram &#39;(519*&quot;./&quot;)ab&#39; &#39;(519*&quot;./&quot;)ab&#39;   &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram90c90cbar">./unix-dgram &#39;(90*&quot;c&quot;)&#39;  &#39;(90*&quot;c&quot;)&#39;  &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram103c103cbar">./unix-dgram &#39;(103*&quot;c&quot;)&#39; &#39;(103*&quot;c&quot;)&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram104c104cbar">./unix-dgram &#39;(104*&quot;c&quot;)&#39; &#39;(104*&quot;c&quot;)&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram105c105cbar">./unix-dgram &#39;(105*&quot;c&quot;)&#39; &#39;(105*&quot;c&quot;)&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram107c107cbar">./unix-dgram &#39;(107*&quot;c&quot;)&#39; &#39;(107*&quot;c&quot;)&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram108c108cbar">./unix-dgram &#39;(108*&quot;c&quot;)&#39; &#39;(108*&quot;c&quot;)&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram109c109cbar">./unix-dgram &#39;(109*&quot;c&quot;)&#39; &#39;(109*&quot;c&quot;)&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram129c129cbar">./unix-dgram &#39;(129*&quot;c&quot;)&#39; &#39;(129*&quot;c&quot;)&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram250c250cbar">./unix-dgram &#39;(250*&quot;c&quot;)&#39; &#39;(250*&quot;c&quot;)&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram253c253cbar">./unix-dgram &#39;(253*&quot;c&quot;)&#39; &#39;(253*&quot;c&quot;)&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram254c254cbar">./unix-dgram &#39;(254*&quot;c&quot;)&#39; &#39;(254*&quot;c&quot;)&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram255c255cbar">./unix-dgram &#39;(255*&quot;c&quot;)&#39; &#39;(255*&quot;c&quot;)&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram256c256cbar">./unix-dgram &#39;(256*&quot;c&quot;)&#39; &#39;(256*&quot;c&quot;)&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram259c259cbar">./unix-dgram &#39;(259*&quot;c&quot;)&#39; &#39;(259*&quot;c&quot;)&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram-p0123456701234567bar">./unix-dgram -p &#39;01234567&#39;    &#39;01234567&#39;    &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram-p012345678012345678bar">./unix-dgram -p &#39;012345678&#39;   &#39;012345678&#39;   &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram-p01234567890123456789bar">./unix-dgram -p &#39;0123456789&#39;  &#39;0123456789&#39;  &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram-p0123456789001234567890bar">./unix-dgram -p &#39;01234567890&#39; &#39;01234567890&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram-g2048-p0123456789001234567890bar">./unix-dgram -g2048 -p &#39;01234567890&#39; &#39;01234567890&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram-g2048-pfoofoo01234567890">./unix-dgram -g2048 -p &#39;foo&#39; &#39;foo&#39; &#39;01234567890&#39;</a></li>
-  <li><a href="#unix-dgram-g255115.%2Fab115.%2Fabbar">./unix-dgram -g255 &#39;(115*&quot;./&quot;)ab&#39; &#39;(115*&quot;./&quot;)ab&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram-g255116.%2Fa116.%2Fabar">./unix-dgram -g255 &#39;(116*&quot;./&quot;)a&#39; &#39;(116*&quot;./&quot;)a&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram-g255116.%2Fab116.%2Fabbar">./unix-dgram -g255 &#39;(116*&quot;./&quot;)ab&#39; &#39;(116*&quot;./&quot;)ab&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram-g255117.%2Fa117.%2Fabar">./unix-dgram -g255 &#39;(117*&quot;./&quot;)a&#39; &#39;(117*&quot;./&quot;)a&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram-g255117.%2Fab117.%2Fabbar">./unix-dgram -g255 &#39;(117*&quot;./&quot;)ab&#39; &#39;(117*&quot;./&quot;)ab&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram-g255125.%2Fab125.%2Fabbar">./unix-dgram -g255 &#39;(125*&quot;./&quot;)ab&#39; &#39;(125*&quot;./&quot;)ab&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram-g255126.%2Fa126.%2Fabar">./unix-dgram -g255 &#39;(126*&quot;./&quot;)a&#39; &#39;(126*&quot;./&quot;)a&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram-g1026511.%2Fa511.%2Fabar">./unix-dgram -g1026 &#39;(511*&quot;./&quot;)a&#39; &#39;(511*&quot;./&quot;)a&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram-g1026511.%2Fab511.%2Fabbar">./unix-dgram -g1026 &#39;(511*&quot;./&quot;)ab&#39; &#39;(511*&quot;./&quot;)ab&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgramfoofoo125.%2Fab">./unix-dgram &#39;foo&#39; &#39;foo&#39; &#39;(125*&quot;./&quot;)ab&#39;</a></li>
-  <li><a href="#unix-dgramfoofoo126.%2Fa">./unix-dgram &#39;foo&#39; &#39;foo&#39; &#39;(126*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-dgramfoofoo511.%2Fa">./unix-dgram &#39;foo&#39; &#39;foo&#39; &#39;(511*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-dgramfoofoo511.%2Fab">./unix-dgram &#39;foo&#39; &#39;foo&#39; &#39;(511*&quot;./&quot;)ab&#39;</a></li>
-  <li><a href="#unix-dgram-g255foofoo125.%2Fab">./unix-dgram -g255 &#39;foo&#39; &#39;foo&#39; &#39;(125*&quot;./&quot;)ab&#39;</a></li>
-  <li><a href="#unix-dgram-g1026foofoo511.%2Fa">./unix-dgram -g1026 &#39;foo&#39; &#39;foo&#39; &#39;(511*&quot;./&quot;)a&#39;</a></li>
-  <li><a href="#unix-dgram-s">./unix-dgram -s &#39;&#39;</a></li>
-  <li><a href="#unix-dgram-s.">./unix-dgram -s &#39;.&#39;</a></li>
-  <li><a href="#unix-dgram-s%2F">./unix-dgram -s &#39;/&#39;</a></li>
-  <li><a href="#unix-dgram-s%2Ffoo">./unix-dgram -s &#39;/foo&#39;</a></li>
-  <li><a href="#unix-dgram-s%2Ffoo%2Fbar">./unix-dgram -s &#39;/foo/bar&#39;</a></li>
-  <li><a href="#unix-dgram-s%2Fetc">./unix-dgram -s &#39;/etc&#39;</a></li>
-  <li><a href="#unix-dgram-T-sREADME">./unix-dgram -T -s &#39;README&#39;</a></li>
-  <li><a href="#unix-dgram-sfoobarfoobarbaz">./unix-dgram -s &#39;foobar&#39; &#39;foobar&#39; &#39;baz&#39;</a></li>
-  <li><a href="#unix-dgramfoobarfoobarbaz">./unix-dgram &#39;foobar&#39; &#39;foobar&#39; &#39;baz&#39;</a></li>
-  <li><a href="#unix-dgram-4sunlen1abc0sunlen1abc0bar0">./unix-dgram -4 &#39;(sun_len=1)abc\0&#39; &#39;(sun_len=1)abc\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-4sunlen7abc0sunlen7abc0bar0">./unix-dgram -4 &#39;(sun_len=7)abc\0&#39; &#39;(sun_len=7)abc\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-4sunlen1abc0sunlen7abc0bar0">./unix-dgram -4 &#39;(sun_len=1)abc\0&#39; &#39;(sun_len=7)abc\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-4sunlen7abc0sunlen1abc0bar0">./unix-dgram -4 &#39;(sun_len=7)abc\0&#39; &#39;(sun_len=1)abc\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram0abc0abcbar">./unix-dgram &#39;\0abc&#39; &#39;\0abc&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgram0abc0abc0bar">./unix-dgram &#39;\0abc&#39; &#39;\0abc\0&#39; &#39;bar&#39;</a></li>
-  <li><a href="#unix-dgramnon-abstractnon-abstract0abstract">./unix-dgram &#39;non-abstract&#39; &#39;non-abstract&#39; &#39;\0abstract&#39;</a></li>
-  <li><a href="#unix-dgram0abstract0abstractnon-abstract">./unix-dgram &#39;\0abstract&#39; &#39;\0abstract&#39; &#39;non-abstract&#39;</a></li>
-  <li><a href="#size">./size</a></li>
-  <li><a href="#const">./const</a></li>
-  <li><a href="#errmsg">./errmsg</a></li>
-  <li><a href="#errnum">./errnum</a></li>
-</ul>
-
 <h2><a name="uname">uname</a></h2>
 <table border>
   <tr> <th align="left">OS</th> <th>uname</th> </tr>
@@ -327,7 +55,279 @@
 </td> </tr>
 </table>
 
-<h2><a name="unix-streamfoo0foo0bar0">./unix-stream &#39;foo\0&#39; &#39;foo\0&#39; &#39;bar\0&#39;</a></h2>
+<h2>contents</h2>
+
+<ul>
+  <li><a href="#unix-streamfoo0foo0bar0">./unix-stream &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-streamfoo0.%2Ffoo0bar0">./unix-stream &#x27;foo\0&#x27; &#x27;./foo\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-streamfoo0">./unix-stream &#x27;foo\0&#x27;</a></li>
+  <li><a href="#unix-streamfoo0.%2Ffoo0">./unix-stream &#x27;foo\0&#x27; &#x27;./foo\0&#x27;</a></li>
+  <li><a href="#unix-streamfoo0hogefoo0bar0">./unix-stream &#x27;foo\0hoge&#x27; &#x27;foo\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-streamfoo0foo0fugabar0">./unix-stream &#x27;foo\0&#x27; &#x27;foo\0fuga&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-streamfoo0foo0bar0moga">./unix-stream &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;bar\0moga&#x27;</a></li>
+  <li><a href="#unix-streamfoo0hoge.%2Ffoo0fugabar0moga">./unix-stream &#x27;foo\0hoge&#x27; &#x27;./foo\0fuga&#x27; &#x27;bar\0moga&#x27;</a></li>
+  <li><a href="#unix-stream44.%2Fa0">./unix-stream &#x27;(44*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-stream51.%2Fa0">./unix-stream &#x27;(51*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-stream51.%2Fab0">./unix-stream &#x27;(51*&quot;./&quot;)ab\0&#x27;</a></li>
+  <li><a href="#unix-stream52.%2Fa0">./unix-stream &#x27;(52*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-stream53.%2Fa0">./unix-stream &#x27;(53*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-stream53.%2Fab0">./unix-stream &#x27;(53*&quot;./&quot;)ab\0&#x27;</a></li>
+  <li><a href="#unix-stream54.%2Fa0">./unix-stream &#x27;(54*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-stream62.%2Fa0">./unix-stream &#x27;(62*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-stream62.%2Fab0">./unix-stream &#x27;(62*&quot;./&quot;)ab\0&#x27;</a></li>
+  <li><a href="#unix-stream63.%2Fa0">./unix-stream &#x27;(63*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-stream63.%2Fab0">./unix-stream &#x27;(63*&quot;./&quot;)ab\0&#x27;</a></li>
+  <li><a href="#unix-stream64.%2Fa0">./unix-stream &#x27;(64*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-stream69.%2Fab0">./unix-stream &#x27;(69*&quot;./&quot;)ab\0&#x27;</a></li>
+  <li><a href="#unix-stream120.%2Fa0">./unix-stream &#x27;(120*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-stream125.%2Fab0">./unix-stream &#x27;(125*&quot;./&quot;)ab\0&#x27;</a></li>
+  <li><a href="#unix-stream126.%2Fa0">./unix-stream &#x27;(126*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-stream511.%2Fa0">./unix-stream &#x27;(511*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-stream511.%2Fab0">./unix-stream &#x27;(511*&quot;./&quot;)ab\0&#x27;</a></li>
+  <li><a href="#unix-stream512.%2Fab0">./unix-stream &#x27;(512*&quot;./&quot;)ab\0&#x27;</a></li>
+  <li><a href="#unix-stream513.%2Fa0">./unix-stream &#x27;(513*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-stream519.%2Fab0">./unix-stream &#x27;(519*&quot;./&quot;)ab\0&#x27;</a></li>
+  <li><a href="#unix-stream90c0">./unix-stream &#x27;(90*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream103c0">./unix-stream &#x27;(103*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream104c0">./unix-stream &#x27;(104*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream105c0">./unix-stream &#x27;(105*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream107c0">./unix-stream &#x27;(107*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream108c0">./unix-stream &#x27;(108*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream110c0">./unix-stream &#x27;(110*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream111c0">./unix-stream &#x27;(111*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream125c0">./unix-stream &#x27;(125*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream126c0">./unix-stream &#x27;(126*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream129c0">./unix-stream &#x27;(129*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream250c0">./unix-stream &#x27;(250*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream252c0">./unix-stream &#x27;(252*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream253c0">./unix-stream &#x27;(253*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream255c0">./unix-stream &#x27;(255*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream256c0">./unix-stream &#x27;(256*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream259c0">./unix-stream &#x27;(259*&quot;c&quot;)\0&#x27;</a></li>
+  <li><a href="#unix-stream-p012345670">./unix-stream -p &#x27;01234567\0&#x27;</a></li>
+  <li><a href="#unix-stream-p0123456780">./unix-stream -p &#x27;012345678\0&#x27;</a></li>
+  <li><a href="#unix-stream-p01234567890">./unix-stream -p &#x27;0123456789\0&#x27;</a></li>
+  <li><a href="#unix-stream-p012345678900">./unix-stream -p &#x27;01234567890\0&#x27;</a></li>
+  <li><a href="#unix-stream-g2048-p012345678900">./unix-stream -g2048 -p &#x27;01234567890\0&#x27;</a></li>
+  <li><a href="#unix-stream-g2048-pfoo0foo0012345678900">./unix-stream -g2048 -p &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;01234567890\0&#x27;</a></li>
+  <li><a href="#unix-stream-g255125.%2Fab0">./unix-stream -g255 &#x27;(125*&quot;./&quot;)ab\0&#x27;</a></li>
+  <li><a href="#unix-stream-g1026511.%2Fa0">./unix-stream -g1026 &#x27;(511*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-streamfoo0foo0125.%2Fab0">./unix-stream &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(125*&quot;./&quot;)ab\0&#x27;</a></li>
+  <li><a href="#unix-streamfoo0foo0511.%2Fa0">./unix-stream &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(511*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-stream-g255foo0foo0125.%2Fab0">./unix-stream -g255 &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(125*&quot;./&quot;)ab\0&#x27;</a></li>
+  <li><a href="#unix-stream-g1026foo0foo0511.%2Fa0">./unix-stream -g1026 &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(511*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-stream-s0">./unix-stream -s &#x27;\0&#x27;</a></li>
+  <li><a href="#unix-stream-s.0">./unix-stream -s &#x27;.\0&#x27;</a></li>
+  <li><a href="#unix-stream-s%2F0">./unix-stream -s &#x27;/\0&#x27;</a></li>
+  <li><a href="#unix-stream-s%2Ffoo0">./unix-stream -s &#x27;/foo\0&#x27;</a></li>
+  <li><a href="#unix-stream-s%2Ffoo%2Fbar0">./unix-stream -s &#x27;/foo/bar\0&#x27;</a></li>
+  <li><a href="#unix-stream-s%2Fetc0">./unix-stream -s &#x27;/etc\0&#x27;</a></li>
+  <li><a href="#unix-stream-T-sREADME0">./unix-stream -T -s &#x27;README\0&#x27;</a></li>
+  <li><a href="#unix-streamfoofoobar">./unix-stream &#x27;foo&#x27; &#x27;foo&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-streamfoo.%2Ffoobar">./unix-stream &#x27;foo&#x27; &#x27;./foo&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-streamfoo">./unix-stream &#x27;foo&#x27;</a></li>
+  <li><a href="#unix-streamfoo.%2Ffoo">./unix-stream &#x27;foo&#x27; &#x27;./foo&#x27;</a></li>
+  <li><a href="#unix-stream44.%2Fa">./unix-stream &#x27;(44*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-stream51.%2Fa">./unix-stream &#x27;(51*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-stream51.%2Fab">./unix-stream &#x27;(51*&quot;./&quot;)ab&#x27;</a></li>
+  <li><a href="#unix-stream52.%2Fa">./unix-stream &#x27;(52*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-stream53.%2Fa">./unix-stream &#x27;(53*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-stream53.%2Fab">./unix-stream &#x27;(53*&quot;./&quot;)ab&#x27;</a></li>
+  <li><a href="#unix-stream54.%2Fa">./unix-stream &#x27;(54*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-stream69.%2Fab">./unix-stream &#x27;(69*&quot;./&quot;)ab&#x27;</a></li>
+  <li><a href="#unix-stream120.%2Fa">./unix-stream &#x27;(120*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-stream126.%2Fa">./unix-stream &#x27;(126*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-stream126.%2Fab">./unix-stream &#x27;(126*&quot;./&quot;)ab&#x27;</a></li>
+  <li><a href="#unix-stream511.%2Fa">./unix-stream &#x27;(511*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-stream511.%2Fab">./unix-stream &#x27;(511*&quot;./&quot;)ab&#x27;</a></li>
+  <li><a href="#unix-stream519.%2Fab">./unix-stream &#x27;(519*&quot;./&quot;)ab&#x27;</a></li>
+  <li><a href="#unix-stream90c">./unix-stream &#x27;(90*&quot;c&quot;)&#x27;</a></li>
+  <li><a href="#unix-stream103c">./unix-stream &#x27;(103*&quot;c&quot;)&#x27;</a></li>
+  <li><a href="#unix-stream104c">./unix-stream &#x27;(104*&quot;c&quot;)&#x27;</a></li>
+  <li><a href="#unix-stream105c">./unix-stream &#x27;(105*&quot;c&quot;)&#x27;</a></li>
+  <li><a href="#unix-stream107c">./unix-stream &#x27;(107*&quot;c&quot;)&#x27;</a></li>
+  <li><a href="#unix-stream108c">./unix-stream &#x27;(108*&quot;c&quot;)&#x27;</a></li>
+  <li><a href="#unix-stream109c">./unix-stream &#x27;(109*&quot;c&quot;)&#x27;</a></li>
+  <li><a href="#unix-stream129c">./unix-stream &#x27;(129*&quot;c&quot;)&#x27;</a></li>
+  <li><a href="#unix-stream250c">./unix-stream &#x27;(250*&quot;c&quot;)&#x27;</a></li>
+  <li><a href="#unix-stream253c">./unix-stream &#x27;(253*&quot;c&quot;)&#x27;</a></li>
+  <li><a href="#unix-stream254c">./unix-stream &#x27;(254*&quot;c&quot;)&#x27;</a></li>
+  <li><a href="#unix-stream255c">./unix-stream &#x27;(255*&quot;c&quot;)&#x27;</a></li>
+  <li><a href="#unix-stream256c">./unix-stream &#x27;(256*&quot;c&quot;)&#x27;</a></li>
+  <li><a href="#unix-stream519c">./unix-stream &#x27;(519*&quot;c&quot;)&#x27;</a></li>
+  <li><a href="#unix-stream-p012345678">./unix-stream -p &#x27;012345678&#x27;</a></li>
+  <li><a href="#unix-stream-p0123456789">./unix-stream -p &#x27;0123456789&#x27;</a></li>
+  <li><a href="#unix-stream-g2048-p01234567890">./unix-stream -g2048 -p &#x27;01234567890&#x27;</a></li>
+  <li><a href="#unix-stream-g2048-pfoo0foo001234567890">./unix-stream -g2048 -p &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;01234567890&#x27;</a></li>
+  <li><a href="#unix-stream-g255126.%2Fa">./unix-stream -g255 &#x27;(126*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-stream-g1026511.%2Fa">./unix-stream -g1026 &#x27;(511*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-streamfoo0foo0126.%2Fa">./unix-stream &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(126*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-streamfoo0foo0511.%2Fa">./unix-stream &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(511*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-stream-g255foo0foo0126.%2Fa">./unix-stream -g255 &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(126*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-stream-g1026foo0foo0511.%2Fa">./unix-stream -g1026 &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(511*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-stream-s">./unix-stream -s &#x27;&#x27;</a></li>
+  <li><a href="#unix-stream-s.">./unix-stream -s &#x27;.&#x27;</a></li>
+  <li><a href="#unix-stream-s%2F">./unix-stream -s &#x27;/&#x27;</a></li>
+  <li><a href="#unix-stream-s%2Ffoo">./unix-stream -s &#x27;/foo&#x27;</a></li>
+  <li><a href="#unix-stream-s%2Ffoo%2Fbar">./unix-stream -s &#x27;/foo/bar&#x27;</a></li>
+  <li><a href="#unix-stream-s%2Fetc">./unix-stream -s &#x27;/etc&#x27;</a></li>
+  <li><a href="#unix-stream-sfoo">./unix-stream -s &#x27;foo&#x27;</a></li>
+  <li><a href="#unix-stream-T-sREADME">./unix-stream -T -s &#x27;README&#x27;</a></li>
+  <li><a href="#unix-stream-sfoobar">./unix-stream -s &#x27;foobar&#x27;</a></li>
+  <li><a href="#unix-streamfoobar">./unix-stream &#x27;foobar&#x27;</a></li>
+  <li><a href="#unix-stream-4sunlen1abc0">./unix-stream -4 &#x27;(sun_len=1)abc\0&#x27;</a></li>
+  <li><a href="#unix-stream-4sunlen7abc0">./unix-stream -4 &#x27;(sun_len=7)abc\0&#x27;</a></li>
+  <li><a href="#unix-stream-4sunlen1abc0sunlen7abc0">./unix-stream -4 &#x27;(sun_len=1)abc\0&#x27; &#x27;(sun_len=7)abc\0&#x27;</a></li>
+  <li><a href="#unix-stream-4sunlen7abc0sunlen1abc0">./unix-stream -4 &#x27;(sun_len=7)abc\0&#x27; &#x27;(sun_len=1)abc\0&#x27;</a></li>
+  <li><a href="#unix-stream0abc">./unix-stream &#x27;\0abc&#x27;</a></li>
+  <li><a href="#unix-stream0abc0abc0">./unix-stream &#x27;\0abc&#x27; &#x27;\0abc\0&#x27;</a></li>
+  <li><a href="#unix-streamnon-abstractnon-abstract0abstract">./unix-stream &#x27;non-abstract&#x27; &#x27;non-abstract&#x27; &#x27;\0abstract&#x27;</a></li>
+  <li><a href="#unix-stream0abstract0abstractnon-abstract">./unix-stream &#x27;\0abstract&#x27; &#x27;\0abstract&#x27; &#x27;non-abstract&#x27;</a></li>
+  <li><a href="#unix-dgramfoo0foo0bar0">./unix-dgram &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgramfoo0.%2Ffoo0bar0">./unix-dgram &#x27;foo\0&#x27; &#x27;./foo\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgramfoo0hogefoo0bar0">./unix-dgram &#x27;foo\0hoge&#x27; &#x27;foo\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgramfoo0foo0fugabar0">./unix-dgram &#x27;foo\0&#x27; &#x27;foo\0fuga&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgramfoo0foo0bar0moga">./unix-dgram &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;bar\0moga&#x27;</a></li>
+  <li><a href="#unix-dgramfoo0hoge.%2Ffoo0fugabar0moga">./unix-dgram &#x27;foo\0hoge&#x27; &#x27;./foo\0fuga&#x27; &#x27;bar\0moga&#x27;</a></li>
+  <li><a href="#unix-dgram44.%2Fa044.%2Fa0bar0">./unix-dgram &#x27;(44*&quot;./&quot;)a\0&#x27;  &#x27;(44*&quot;./&quot;)a\0&#x27;  &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram51.%2Fa051.%2Fa0bar0">./unix-dgram &#x27;(51*&quot;./&quot;)a\0&#x27;   &#x27;(51*&quot;./&quot;)a\0&#x27;     &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram51.%2Fab051.%2Fab0bar0">./unix-dgram &#x27;(51*&quot;./&quot;)ab\0&#x27;  &#x27;(51*&quot;./&quot;)ab\0&#x27;    &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram52.%2Fa052.%2Fa0bar0">./unix-dgram &#x27;(52*&quot;./&quot;)a\0&#x27;   &#x27;(52*&quot;./&quot;)a\0&#x27;     &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram53.%2Fa053.%2Fa0bar0">./unix-dgram &#x27;(53*&quot;./&quot;)a\0&#x27;   &#x27;(53*&quot;./&quot;)a\0&#x27;     &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram53.%2Fab053.%2Fab0bar0">./unix-dgram &#x27;(53*&quot;./&quot;)ab\0&#x27;  &#x27;(53*&quot;./&quot;)ab\0&#x27;    &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram54.%2Fa054.%2Fa0bar0">./unix-dgram &#x27;(54*&quot;./&quot;)a\0&#x27;   &#x27;(54*&quot;./&quot;)a\0&#x27;     &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram63.%2Fa063.%2Fa0bar0">./unix-dgram &#x27;(63*&quot;./&quot;)a\0&#x27;   &#x27;(63*&quot;./&quot;)a\0&#x27;     &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram63.%2Fab063.%2Fab0bar0">./unix-dgram &#x27;(63*&quot;./&quot;)ab\0&#x27;  &#x27;(63*&quot;./&quot;)ab\0&#x27;    &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram64.%2Fa064.%2Fa0bar0">./unix-dgram &#x27;(64*&quot;./&quot;)a\0&#x27;   &#x27;(64*&quot;./&quot;)a\0&#x27;     &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram69.%2Fab069.%2Fab0bar0">./unix-dgram &#x27;(69*&quot;./&quot;)ab\0&#x27;  &#x27;(69*&quot;./&quot;)ab\0&#x27;    &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram120.%2Fa0120.%2Fa0bar0">./unix-dgram &#x27;(120*&quot;./&quot;)a\0&#x27;  &#x27;(120*&quot;./&quot;)a\0&#x27;    &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram125.%2Fab0125.%2Fab0bar0">./unix-dgram &#x27;(125*&quot;./&quot;)ab\0&#x27; &#x27;(125*&quot;./&quot;)ab\0&#x27;   &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram126.%2Fa0126.%2Fa0bar0">./unix-dgram &#x27;(126*&quot;./&quot;)a\0&#x27;  &#x27;(126*&quot;./&quot;)a\0&#x27;    &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram511.%2Fa0511.%2Fa0bar0">./unix-dgram &#x27;(511*&quot;./&quot;)a\0&#x27;  &#x27;(511*&quot;./&quot;)a\0&#x27;    &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram511.%2Fab0511.%2Fab0bar0">./unix-dgram &#x27;(511*&quot;./&quot;)ab\0&#x27; &#x27;(511*&quot;./&quot;)ab\0&#x27;   &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram519.%2Fab0519.%2Fab0bar0">./unix-dgram &#x27;(519*&quot;./&quot;)ab\0&#x27; &#x27;(519*&quot;./&quot;)ab\0&#x27;   &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram90c090c0bar0">./unix-dgram &#x27;(90*&quot;c&quot;)\0&#x27;  &#x27;(90*&quot;c&quot;)\0&#x27;  &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram103c0103c0bar0">./unix-dgram &#x27;(103*&quot;c&quot;)\0&#x27; &#x27;(103*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram104c0104c0bar0">./unix-dgram &#x27;(104*&quot;c&quot;)\0&#x27; &#x27;(104*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram105c0105c0bar0">./unix-dgram &#x27;(105*&quot;c&quot;)\0&#x27; &#x27;(105*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram107c0107c0bar0">./unix-dgram &#x27;(107*&quot;c&quot;)\0&#x27; &#x27;(107*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram108c0108c0bar0">./unix-dgram &#x27;(108*&quot;c&quot;)\0&#x27; &#x27;(108*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram110c0110c0bar0">./unix-dgram &#x27;(110*&quot;c&quot;)\0&#x27; &#x27;(110*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram111c0111c0bar0">./unix-dgram &#x27;(111*&quot;c&quot;)\0&#x27; &#x27;(111*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram129c0129c0bar0">./unix-dgram &#x27;(129*&quot;c&quot;)\0&#x27; &#x27;(129*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram250c0250c0bar0">./unix-dgram &#x27;(250*&quot;c&quot;)\0&#x27; &#x27;(250*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram252c0252c0bar0">./unix-dgram &#x27;(252*&quot;c&quot;)\0&#x27; &#x27;(252*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram253c0253c0bar0">./unix-dgram &#x27;(253*&quot;c&quot;)\0&#x27; &#x27;(253*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram255c0255c0bar0">./unix-dgram &#x27;(255*&quot;c&quot;)\0&#x27; &#x27;(255*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram256c0256c0bar0">./unix-dgram &#x27;(256*&quot;c&quot;)\0&#x27; &#x27;(256*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram259c0259c0bar0">./unix-dgram &#x27;(259*&quot;c&quot;)\0&#x27; &#x27;(259*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-p012345670012345670bar0">./unix-dgram -p &#x27;01234567\0&#x27;    &#x27;01234567\0&#x27;    &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-p01234567800123456780bar0">./unix-dgram -p &#x27;012345678\0&#x27;   &#x27;012345678\0&#x27;   &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-p0123456789001234567890bar0">./unix-dgram -p &#x27;0123456789\0&#x27;  &#x27;0123456789\0&#x27;  &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-p012345678900012345678900bar0">./unix-dgram -p &#x27;01234567890\0&#x27; &#x27;01234567890\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-g2048-p012345678900012345678900bar0">./unix-dgram -g2048 -p &#x27;01234567890\0&#x27; &#x27;01234567890\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-g2048-pfoo0foo0012345678900">./unix-dgram -g2048 -p &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;01234567890\0&#x27;</a></li>
+  <li><a href="#unix-dgram-g255115.%2Fab0115.%2Fab0bar0">./unix-dgram -g255 &#x27;(115*&quot;./&quot;)ab\0&#x27; &#x27;(115*&quot;./&quot;)ab\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-g255116.%2Fa0116.%2Fa0bar0">./unix-dgram -g255 &#x27;(116*&quot;./&quot;)a\0&#x27; &#x27;(116*&quot;./&quot;)a\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-g255116.%2Fab0116.%2Fab0bar0">./unix-dgram -g255 &#x27;(116*&quot;./&quot;)ab\0&#x27; &#x27;(116*&quot;./&quot;)ab\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-g255117.%2Fa0117.%2Fa0bar0">./unix-dgram -g255 &#x27;(117*&quot;./&quot;)a\0&#x27; &#x27;(117*&quot;./&quot;)a\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-g255125.%2Fab0125.%2Fab0bar0">./unix-dgram -g255 &#x27;(125*&quot;./&quot;)ab\0&#x27; &#x27;(125*&quot;./&quot;)ab\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-g255126.%2Fa0126.%2Fa0bar0">./unix-dgram -g255 &#x27;(126*&quot;./&quot;)a\0&#x27; &#x27;(126*&quot;./&quot;)a\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-g1026511.%2Fa0511.%2Fa0bar0">./unix-dgram -g1026 &#x27;(511*&quot;./&quot;)a\0&#x27; &#x27;(511*&quot;./&quot;)a\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-g1026511.%2Fab0511.%2Fab0bar0">./unix-dgram -g1026 &#x27;(511*&quot;./&quot;)ab\0&#x27; &#x27;(511*&quot;./&quot;)ab\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgramfoo0foo0125.%2Fab0">./unix-dgram &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(125*&quot;./&quot;)ab\0&#x27;</a></li>
+  <li><a href="#unix-dgramfoo0foo0126.%2Fa0">./unix-dgram &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(126*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-dgramfoo0foo0511.%2Fa0">./unix-dgram &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(511*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-dgramfoo0foo0511.%2Fab0">./unix-dgram &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(511*&quot;./&quot;)ab\0&#x27;</a></li>
+  <li><a href="#unix-dgram-g255foo0foo0125.%2Fab0">./unix-dgram -g255 &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(125*&quot;./&quot;)ab\0&#x27;</a></li>
+  <li><a href="#unix-dgram-g1026foo0foo0511.%2Fa0">./unix-dgram -g1026 &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(511*&quot;./&quot;)a\0&#x27;</a></li>
+  <li><a href="#unix-dgram-s0">./unix-dgram -s &#x27;\0&#x27;</a></li>
+  <li><a href="#unix-dgram-s.0">./unix-dgram -s &#x27;.\0&#x27;</a></li>
+  <li><a href="#unix-dgram-s%2F0">./unix-dgram -s &#x27;/\0&#x27;</a></li>
+  <li><a href="#unix-dgram-s%2Ffoo0">./unix-dgram -s &#x27;/foo\0&#x27;</a></li>
+  <li><a href="#unix-dgram-s%2Ffoo%2Fbar0">./unix-dgram -s &#x27;/foo/bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-s%2Fetc0">./unix-dgram -s &#x27;/etc\0&#x27;</a></li>
+  <li><a href="#unix-dgram-T-sREADME0">./unix-dgram -T -s &#x27;README\0&#x27;</a></li>
+  <li><a href="#unix-dgramfoofoo0bar0">./unix-dgram &#x27;foo&#x27; &#x27;foo\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgramfoo0foobar0">./unix-dgram &#x27;foo\0&#x27; &#x27;foo&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgramfoo0foo0bar">./unix-dgram &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgramfoofoobar">./unix-dgram &#x27;foo&#x27; &#x27;foo&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgramfoo.%2Ffoo0bar0">./unix-dgram &#x27;foo&#x27; &#x27;./foo\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgramfoo0.%2Ffoobar0">./unix-dgram &#x27;foo\0&#x27; &#x27;./foo&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgramfoo0.%2Ffoo0bar">./unix-dgram &#x27;foo\0&#x27; &#x27;./foo\0&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgramfoo.%2Ffoobar">./unix-dgram &#x27;foo&#x27; &#x27;./foo&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram51.%2Fa51.%2Fabar">./unix-dgram &#x27;(51*&quot;./&quot;)a&#x27;   &#x27;(51*&quot;./&quot;)a&#x27;     &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram51.%2Fab51.%2Fabbar">./unix-dgram &#x27;(51*&quot;./&quot;)ab&#x27;  &#x27;(51*&quot;./&quot;)ab&#x27;    &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram52.%2Fa52.%2Fabar">./unix-dgram &#x27;(52*&quot;./&quot;)a&#x27;   &#x27;(52*&quot;./&quot;)a&#x27;     &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram53.%2Fa53.%2Fabar">./unix-dgram &#x27;(53*&quot;./&quot;)a&#x27;   &#x27;(53*&quot;./&quot;)a&#x27;     &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram53.%2Fab53.%2Fabbar">./unix-dgram &#x27;(53*&quot;./&quot;)ab&#x27;  &#x27;(53*&quot;./&quot;)ab&#x27;    &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram54.%2Fa54.%2Fabar">./unix-dgram &#x27;(54*&quot;./&quot;)a&#x27;   &#x27;(54*&quot;./&quot;)a&#x27;     &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram69.%2Fab69.%2Fabbar">./unix-dgram &#x27;(69*&quot;./&quot;)ab&#x27;  &#x27;(69*&quot;./&quot;)ab&#x27;    &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram120.%2Fa120.%2Fabar">./unix-dgram &#x27;(120*&quot;./&quot;)a&#x27;  &#x27;(120*&quot;./&quot;)a&#x27;    &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram126.%2Fa126.%2Fabar">./unix-dgram &#x27;(126*&quot;./&quot;)a&#x27;  &#x27;(126*&quot;./&quot;)a&#x27;    &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram126.%2Fab126.%2Fabbar">./unix-dgram &#x27;(126*&quot;./&quot;)ab&#x27; &#x27;(126*&quot;./&quot;)ab&#x27;   &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram511.%2Fa511.%2Fabar">./unix-dgram &#x27;(511*&quot;./&quot;)a&#x27;  &#x27;(511*&quot;./&quot;)a&#x27;    &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram511.%2Fab511.%2Fabbar">./unix-dgram &#x27;(511*&quot;./&quot;)ab&#x27; &#x27;(511*&quot;./&quot;)ab&#x27;   &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram519.%2Fab519.%2Fabbar">./unix-dgram &#x27;(519*&quot;./&quot;)ab&#x27; &#x27;(519*&quot;./&quot;)ab&#x27;   &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram90c90cbar">./unix-dgram &#x27;(90*&quot;c&quot;)&#x27;  &#x27;(90*&quot;c&quot;)&#x27;  &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram103c103cbar">./unix-dgram &#x27;(103*&quot;c&quot;)&#x27; &#x27;(103*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram104c104cbar">./unix-dgram &#x27;(104*&quot;c&quot;)&#x27; &#x27;(104*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram105c105cbar">./unix-dgram &#x27;(105*&quot;c&quot;)&#x27; &#x27;(105*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram107c107cbar">./unix-dgram &#x27;(107*&quot;c&quot;)&#x27; &#x27;(107*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram108c108cbar">./unix-dgram &#x27;(108*&quot;c&quot;)&#x27; &#x27;(108*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram109c109cbar">./unix-dgram &#x27;(109*&quot;c&quot;)&#x27; &#x27;(109*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram129c129cbar">./unix-dgram &#x27;(129*&quot;c&quot;)&#x27; &#x27;(129*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram250c250cbar">./unix-dgram &#x27;(250*&quot;c&quot;)&#x27; &#x27;(250*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram253c253cbar">./unix-dgram &#x27;(253*&quot;c&quot;)&#x27; &#x27;(253*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram254c254cbar">./unix-dgram &#x27;(254*&quot;c&quot;)&#x27; &#x27;(254*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram255c255cbar">./unix-dgram &#x27;(255*&quot;c&quot;)&#x27; &#x27;(255*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram256c256cbar">./unix-dgram &#x27;(256*&quot;c&quot;)&#x27; &#x27;(256*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram259c259cbar">./unix-dgram &#x27;(259*&quot;c&quot;)&#x27; &#x27;(259*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram-p0123456701234567bar">./unix-dgram -p &#x27;01234567&#x27;    &#x27;01234567&#x27;    &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram-p012345678012345678bar">./unix-dgram -p &#x27;012345678&#x27;   &#x27;012345678&#x27;   &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram-p01234567890123456789bar">./unix-dgram -p &#x27;0123456789&#x27;  &#x27;0123456789&#x27;  &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram-p0123456789001234567890bar">./unix-dgram -p &#x27;01234567890&#x27; &#x27;01234567890&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram-g2048-p0123456789001234567890bar">./unix-dgram -g2048 -p &#x27;01234567890&#x27; &#x27;01234567890&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram-g2048-pfoofoo01234567890">./unix-dgram -g2048 -p &#x27;foo&#x27; &#x27;foo&#x27; &#x27;01234567890&#x27;</a></li>
+  <li><a href="#unix-dgram-g255115.%2Fab115.%2Fabbar">./unix-dgram -g255 &#x27;(115*&quot;./&quot;)ab&#x27; &#x27;(115*&quot;./&quot;)ab&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram-g255116.%2Fa116.%2Fabar">./unix-dgram -g255 &#x27;(116*&quot;./&quot;)a&#x27; &#x27;(116*&quot;./&quot;)a&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram-g255116.%2Fab116.%2Fabbar">./unix-dgram -g255 &#x27;(116*&quot;./&quot;)ab&#x27; &#x27;(116*&quot;./&quot;)ab&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram-g255117.%2Fa117.%2Fabar">./unix-dgram -g255 &#x27;(117*&quot;./&quot;)a&#x27; &#x27;(117*&quot;./&quot;)a&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram-g255117.%2Fab117.%2Fabbar">./unix-dgram -g255 &#x27;(117*&quot;./&quot;)ab&#x27; &#x27;(117*&quot;./&quot;)ab&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram-g255125.%2Fab125.%2Fabbar">./unix-dgram -g255 &#x27;(125*&quot;./&quot;)ab&#x27; &#x27;(125*&quot;./&quot;)ab&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram-g255126.%2Fa126.%2Fabar">./unix-dgram -g255 &#x27;(126*&quot;./&quot;)a&#x27; &#x27;(126*&quot;./&quot;)a&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram-g1026511.%2Fa511.%2Fabar">./unix-dgram -g1026 &#x27;(511*&quot;./&quot;)a&#x27; &#x27;(511*&quot;./&quot;)a&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram-g1026511.%2Fab511.%2Fabbar">./unix-dgram -g1026 &#x27;(511*&quot;./&quot;)ab&#x27; &#x27;(511*&quot;./&quot;)ab&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgramfoofoo125.%2Fab">./unix-dgram &#x27;foo&#x27; &#x27;foo&#x27; &#x27;(125*&quot;./&quot;)ab&#x27;</a></li>
+  <li><a href="#unix-dgramfoofoo126.%2Fa">./unix-dgram &#x27;foo&#x27; &#x27;foo&#x27; &#x27;(126*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-dgramfoofoo511.%2Fa">./unix-dgram &#x27;foo&#x27; &#x27;foo&#x27; &#x27;(511*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-dgramfoofoo511.%2Fab">./unix-dgram &#x27;foo&#x27; &#x27;foo&#x27; &#x27;(511*&quot;./&quot;)ab&#x27;</a></li>
+  <li><a href="#unix-dgram-g255foofoo125.%2Fab">./unix-dgram -g255 &#x27;foo&#x27; &#x27;foo&#x27; &#x27;(125*&quot;./&quot;)ab&#x27;</a></li>
+  <li><a href="#unix-dgram-g1026foofoo511.%2Fa">./unix-dgram -g1026 &#x27;foo&#x27; &#x27;foo&#x27; &#x27;(511*&quot;./&quot;)a&#x27;</a></li>
+  <li><a href="#unix-dgram-s">./unix-dgram -s &#x27;&#x27;</a></li>
+  <li><a href="#unix-dgram-s.">./unix-dgram -s &#x27;.&#x27;</a></li>
+  <li><a href="#unix-dgram-s%2F">./unix-dgram -s &#x27;/&#x27;</a></li>
+  <li><a href="#unix-dgram-s%2Ffoo">./unix-dgram -s &#x27;/foo&#x27;</a></li>
+  <li><a href="#unix-dgram-s%2Ffoo%2Fbar">./unix-dgram -s &#x27;/foo/bar&#x27;</a></li>
+  <li><a href="#unix-dgram-s%2Fetc">./unix-dgram -s &#x27;/etc&#x27;</a></li>
+  <li><a href="#unix-dgram-T-sREADME">./unix-dgram -T -s &#x27;README&#x27;</a></li>
+  <li><a href="#unix-dgram-sfoobarfoobarbaz">./unix-dgram -s &#x27;foobar&#x27; &#x27;foobar&#x27; &#x27;baz&#x27;</a></li>
+  <li><a href="#unix-dgramfoobarfoobarbaz">./unix-dgram &#x27;foobar&#x27; &#x27;foobar&#x27; &#x27;baz&#x27;</a></li>
+  <li><a href="#unix-dgram-4sunlen1abc0sunlen1abc0bar0">./unix-dgram -4 &#x27;(sun_len=1)abc\0&#x27; &#x27;(sun_len=1)abc\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-4sunlen7abc0sunlen7abc0bar0">./unix-dgram -4 &#x27;(sun_len=7)abc\0&#x27; &#x27;(sun_len=7)abc\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-4sunlen1abc0sunlen7abc0bar0">./unix-dgram -4 &#x27;(sun_len=1)abc\0&#x27; &#x27;(sun_len=7)abc\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram-4sunlen7abc0sunlen1abc0bar0">./unix-dgram -4 &#x27;(sun_len=7)abc\0&#x27; &#x27;(sun_len=1)abc\0&#x27; &#x27;bar\0&#x27;</a></li>
+  <li><a href="#unix-dgram0abc0abcbar">./unix-dgram &#x27;\0abc&#x27; &#x27;\0abc&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgram0abc0abc0bar">./unix-dgram &#x27;\0abc&#x27; &#x27;\0abc\0&#x27; &#x27;bar&#x27;</a></li>
+  <li><a href="#unix-dgramnon-abstractnon-abstract0abstract">./unix-dgram &#x27;non-abstract&#x27; &#x27;non-abstract&#x27; &#x27;\0abstract&#x27;</a></li>
+  <li><a href="#unix-dgram0abstract0abstractnon-abstract">./unix-dgram &#x27;\0abstract&#x27; &#x27;\0abstract&#x27; &#x27;non-abstract&#x27;</a></li>
+  <li><a href="#size">./size</a></li>
+  <li><a href="#const">./const</a></li>
+  <li><a href="#errmsg">./errmsg</a></li>
+  <li><a href="#errnum">./errnum</a></li>
+</ul>
+
+<h2><a name="unix-streamfoo0foo0bar0">./unix-stream &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -547,7 +547,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamfoo0.%2Ffoo0bar0">./unix-stream &#39;foo\0&#39; &#39;./foo\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-streamfoo0.%2Ffoo0bar0">./unix-stream &#x27;foo\0&#x27; &#x27;./foo\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -767,7 +767,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamfoo0">./unix-stream &#39;foo\0&#39;</a></h2>
+<h2><a name="unix-streamfoo0">./unix-stream &#x27;foo\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -951,7 +951,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamfoo0.%2Ffoo0">./unix-stream &#39;foo\0&#39; &#39;./foo\0&#39;</a></h2>
+<h2><a name="unix-streamfoo0.%2Ffoo0">./unix-stream &#x27;foo\0&#x27; &#x27;./foo\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -1135,7 +1135,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamfoo0hogefoo0bar0">./unix-stream &#39;foo\0hoge&#39; &#39;foo\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-streamfoo0hogefoo0bar0">./unix-stream &#x27;foo\0hoge&#x27; &#x27;foo\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -1355,7 +1355,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamfoo0foo0fugabar0">./unix-stream &#39;foo\0&#39; &#39;foo\0fuga&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-streamfoo0foo0fugabar0">./unix-stream &#x27;foo\0&#x27; &#x27;foo\0fuga&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -1575,7 +1575,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamfoo0foo0bar0moga">./unix-stream &#39;foo\0&#39; &#39;foo\0&#39; &#39;bar\0moga&#39;</a></h2>
+<h2><a name="unix-streamfoo0foo0bar0moga">./unix-stream &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;bar\0moga&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -1795,7 +1795,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamfoo0hoge.%2Ffoo0fugabar0moga">./unix-stream &#39;foo\0hoge&#39; &#39;./foo\0fuga&#39; &#39;bar\0moga&#39;</a></h2>
+<h2><a name="unix-streamfoo0hoge.%2Ffoo0fugabar0moga">./unix-stream &#x27;foo\0hoge&#x27; &#x27;./foo\0fuga&#x27; &#x27;bar\0moga&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -2015,7 +2015,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream44.%2Fa0">./unix-stream &#39;(44*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-stream44.%2Fa0">./unix-stream &#x27;(44*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -2199,7 +2199,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream51.%2Fa0">./unix-stream &#39;(51*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-stream51.%2Fa0">./unix-stream &#x27;(51*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -2383,7 +2383,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream51.%2Fab0">./unix-stream &#39;(51*&quot;./&quot;)ab\0&#39;</a></h2>
+<h2><a name="unix-stream51.%2Fab0">./unix-stream &#x27;(51*&quot;./&quot;)ab\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -2585,7 +2585,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream52.%2Fa0">./unix-stream &#39;(52*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-stream52.%2Fa0">./unix-stream &#x27;(52*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -2787,7 +2787,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream53.%2Fa0">./unix-stream &#39;(53*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-stream53.%2Fa0">./unix-stream &#x27;(53*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -2989,7 +2989,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream53.%2Fab0">./unix-stream &#39;(53*&quot;./&quot;)ab\0&#39;</a></h2>
+<h2><a name="unix-stream53.%2Fab0">./unix-stream &#x27;(53*&quot;./&quot;)ab\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -3191,7 +3191,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream54.%2Fa0">./unix-stream &#39;(54*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-stream54.%2Fa0">./unix-stream &#x27;(54*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -3393,7 +3393,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream62.%2Fa0">./unix-stream &#39;(62*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-stream62.%2Fa0">./unix-stream &#x27;(62*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -3595,7 +3595,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream62.%2Fab0">./unix-stream &#39;(62*&quot;./&quot;)ab\0&#39;</a></h2>
+<h2><a name="unix-stream62.%2Fab0">./unix-stream &#x27;(62*&quot;./&quot;)ab\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -3797,7 +3797,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream63.%2Fa0">./unix-stream &#39;(63*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-stream63.%2Fa0">./unix-stream &#x27;(63*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -3999,7 +3999,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream63.%2Fab0">./unix-stream &#39;(63*&quot;./&quot;)ab\0&#39;</a></h2>
+<h2><a name="unix-stream63.%2Fab0">./unix-stream &#x27;(63*&quot;./&quot;)ab\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -4201,7 +4201,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream64.%2Fa0">./unix-stream &#39;(64*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-stream64.%2Fa0">./unix-stream &#x27;(64*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -4403,7 +4403,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream69.%2Fab0">./unix-stream &#39;(69*&quot;./&quot;)ab\0&#39;</a></h2>
+<h2><a name="unix-stream69.%2Fab0">./unix-stream &#x27;(69*&quot;./&quot;)ab\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -4605,7 +4605,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream120.%2Fa0">./unix-stream &#39;(120*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-stream120.%2Fa0">./unix-stream &#x27;(120*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -4807,7 +4807,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream125.%2Fab0">./unix-stream &#39;(125*&quot;./&quot;)ab\0&#39;</a></h2>
+<h2><a name="unix-stream125.%2Fab0">./unix-stream &#x27;(125*&quot;./&quot;)ab\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -5009,7 +5009,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream126.%2Fa0">./unix-stream &#39;(126*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-stream126.%2Fa0">./unix-stream &#x27;(126*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -5211,7 +5211,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream511.%2Fa0">./unix-stream &#39;(511*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-stream511.%2Fa0">./unix-stream &#x27;(511*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -5413,7 +5413,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream511.%2Fab0">./unix-stream &#39;(511*&quot;./&quot;)ab\0&#39;</a></h2>
+<h2><a name="unix-stream511.%2Fab0">./unix-stream &#x27;(511*&quot;./&quot;)ab\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -5561,7 +5561,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream512.%2Fab0">./unix-stream &#39;(512*&quot;./&quot;)ab\0&#39;</a></h2>
+<h2><a name="unix-stream512.%2Fab0">./unix-stream &#x27;(512*&quot;./&quot;)ab\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -5709,7 +5709,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream513.%2Fa0">./unix-stream &#39;(513*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-stream513.%2Fa0">./unix-stream &#x27;(513*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -5767,7 +5767,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream519.%2Fab0">./unix-stream &#39;(519*&quot;./&quot;)ab\0&#39;</a></h2>
+<h2><a name="unix-stream519.%2Fab0">./unix-stream &#x27;(519*&quot;./&quot;)ab\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -5825,7 +5825,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream90c0">./unix-stream &#39;(90*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream90c0">./unix-stream &#x27;(90*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -6009,7 +6009,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream103c0">./unix-stream &#39;(103*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream103c0">./unix-stream &#x27;(103*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -6193,7 +6193,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream104c0">./unix-stream &#39;(104*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream104c0">./unix-stream &#x27;(104*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -6395,7 +6395,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream105c0">./unix-stream &#39;(105*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream105c0">./unix-stream &#x27;(105*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -6597,7 +6597,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream107c0">./unix-stream &#39;(107*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream107c0">./unix-stream &#x27;(107*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -6799,7 +6799,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream108c0">./unix-stream &#39;(108*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream108c0">./unix-stream &#x27;(108*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -7001,7 +7001,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream110c0">./unix-stream &#39;(110*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream110c0">./unix-stream &#x27;(110*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -7203,7 +7203,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream111c0">./unix-stream &#39;(111*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream111c0">./unix-stream &#x27;(111*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -7405,7 +7405,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream125c0">./unix-stream &#39;(125*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream125c0">./unix-stream &#x27;(125*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -7607,7 +7607,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream126c0">./unix-stream &#39;(126*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream126c0">./unix-stream &#x27;(126*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -7809,7 +7809,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream129c0">./unix-stream &#39;(129*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream129c0">./unix-stream &#x27;(129*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -8011,7 +8011,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream250c0">./unix-stream &#39;(250*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream250c0">./unix-stream &#x27;(250*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -8213,7 +8213,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream252c0">./unix-stream &#39;(252*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream252c0">./unix-stream &#x27;(252*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -8415,7 +8415,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream253c0">./unix-stream &#39;(253*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream253c0">./unix-stream &#x27;(253*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -8617,7 +8617,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream255c0">./unix-stream &#39;(255*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream255c0">./unix-stream &#x27;(255*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -8819,7 +8819,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream256c0">./unix-stream &#39;(256*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream256c0">./unix-stream &#x27;(256*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -9021,7 +9021,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream259c0">./unix-stream &#39;(259*&quot;c&quot;)\0&#39;</a></h2>
+<h2><a name="unix-stream259c0">./unix-stream &#x27;(259*&quot;c&quot;)\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -9223,7 +9223,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-p012345670">./unix-stream -p &#39;01234567\0&#39;</a></h2>
+<h2><a name="unix-stream-p012345670">./unix-stream -p &#x27;01234567\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -9407,7 +9407,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-p0123456780">./unix-stream -p &#39;012345678\0&#39;</a></h2>
+<h2><a name="unix-stream-p0123456780">./unix-stream -p &#x27;012345678\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -9591,7 +9591,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-p01234567890">./unix-stream -p &#39;0123456789\0&#39;</a></h2>
+<h2><a name="unix-stream-p01234567890">./unix-stream -p &#x27;0123456789\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -9793,7 +9793,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-p012345678900">./unix-stream -p &#39;01234567890\0&#39;</a></h2>
+<h2><a name="unix-stream-p012345678900">./unix-stream -p &#x27;01234567890\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -9995,7 +9995,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-g2048-p012345678900">./unix-stream -g2048 -p &#39;01234567890\0&#39;</a></h2>
+<h2><a name="unix-stream-g2048-p012345678900">./unix-stream -g2048 -p &#x27;01234567890\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -10197,7 +10197,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-g2048-pfoo0foo0012345678900">./unix-stream -g2048 -p &#39;foo\0&#39; &#39;foo\0&#39; &#39;01234567890\0&#39;</a></h2>
+<h2><a name="unix-stream-g2048-pfoo0foo0012345678900">./unix-stream -g2048 -p &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;01234567890\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -10435,7 +10435,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-g255125.%2Fab0">./unix-stream -g255 &#39;(125*&quot;./&quot;)ab\0&#39;</a></h2>
+<h2><a name="unix-stream-g255125.%2Fab0">./unix-stream -g255 &#x27;(125*&quot;./&quot;)ab\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -10637,7 +10637,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-g1026511.%2Fa0">./unix-stream -g1026 &#39;(511*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-stream-g1026511.%2Fa0">./unix-stream -g1026 &#x27;(511*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -10839,7 +10839,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamfoo0foo0125.%2Fab0">./unix-stream &#39;foo\0&#39; &#39;foo\0&#39; &#39;(125*&quot;./&quot;)ab\0&#39;</a></h2>
+<h2><a name="unix-streamfoo0foo0125.%2Fab0">./unix-stream &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(125*&quot;./&quot;)ab\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -11077,7 +11077,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamfoo0foo0511.%2Fa0">./unix-stream &#39;foo\0&#39; &#39;foo\0&#39; &#39;(511*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-streamfoo0foo0511.%2Fa0">./unix-stream &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(511*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -11315,7 +11315,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-g255foo0foo0125.%2Fab0">./unix-stream -g255 &#39;foo\0&#39; &#39;foo\0&#39; &#39;(125*&quot;./&quot;)ab\0&#39;</a></h2>
+<h2><a name="unix-stream-g255foo0foo0125.%2Fab0">./unix-stream -g255 &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(125*&quot;./&quot;)ab\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -11553,7 +11553,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-g1026foo0foo0511.%2Fa0">./unix-stream -g1026 &#39;foo\0&#39; &#39;foo\0&#39; &#39;(511*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-stream-g1026foo0foo0511.%2Fa0">./unix-stream -g1026 &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(511*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -11791,7 +11791,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-s0">./unix-stream -s &#39;\0&#39;</a></h2>
+<h2><a name="unix-stream-s0">./unix-stream -s &#x27;\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -11885,7 +11885,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-s.0">./unix-stream -s &#39;.\0&#39;</a></h2>
+<h2><a name="unix-stream-s.0">./unix-stream -s &#x27;.\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -11979,7 +11979,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-s%2F0">./unix-stream -s &#39;/\0&#39;</a></h2>
+<h2><a name="unix-stream-s%2F0">./unix-stream -s &#x27;/\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -12037,7 +12037,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-s%2Ffoo0">./unix-stream -s &#39;/foo\0&#39;</a></h2>
+<h2><a name="unix-stream-s%2Ffoo0">./unix-stream -s &#x27;/foo\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -12131,7 +12131,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-s%2Ffoo%2Fbar0">./unix-stream -s &#39;/foo/bar\0&#39;</a></h2>
+<h2><a name="unix-stream-s%2Ffoo%2Fbar0">./unix-stream -s &#x27;/foo/bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -12189,7 +12189,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-s%2Fetc0">./unix-stream -s &#39;/etc\0&#39;</a></h2>
+<h2><a name="unix-stream-s%2Fetc0">./unix-stream -s &#x27;/etc\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -12247,7 +12247,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-T-sREADME0">./unix-stream -T -s &#39;README\0&#39;</a></h2>
+<h2><a name="unix-stream-T-sREADME0">./unix-stream -T -s &#x27;README\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -12341,7 +12341,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamfoofoobar">./unix-stream &#39;foo&#39; &#39;foo&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-streamfoofoobar">./unix-stream &#x27;foo&#x27; &#x27;foo&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -12513,7 +12513,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamfoo.%2Ffoobar">./unix-stream &#39;foo&#39; &#39;./foo&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-streamfoo.%2Ffoobar">./unix-stream &#x27;foo&#x27; &#x27;./foo&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -12685,7 +12685,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamfoo">./unix-stream &#39;foo&#39;</a></h2>
+<h2><a name="unix-streamfoo">./unix-stream &#x27;foo&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -12829,7 +12829,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamfoo.%2Ffoo">./unix-stream &#39;foo&#39; &#39;./foo&#39;</a></h2>
+<h2><a name="unix-streamfoo.%2Ffoo">./unix-stream &#x27;foo&#x27; &#x27;./foo&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -12973,7 +12973,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream44.%2Fa">./unix-stream &#39;(44*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-stream44.%2Fa">./unix-stream &#x27;(44*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -13117,7 +13117,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream51.%2Fa">./unix-stream &#39;(51*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-stream51.%2Fa">./unix-stream &#x27;(51*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -13261,7 +13261,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream51.%2Fab">./unix-stream &#39;(51*&quot;./&quot;)ab&#39;</a></h2>
+<h2><a name="unix-stream51.%2Fab">./unix-stream &#x27;(51*&quot;./&quot;)ab&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -13419,7 +13419,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream52.%2Fa">./unix-stream &#39;(52*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-stream52.%2Fa">./unix-stream &#x27;(52*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -13577,7 +13577,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream53.%2Fa">./unix-stream &#39;(53*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-stream53.%2Fa">./unix-stream &#x27;(53*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -13735,7 +13735,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream53.%2Fab">./unix-stream &#39;(53*&quot;./&quot;)ab&#39;</a></h2>
+<h2><a name="unix-stream53.%2Fab">./unix-stream &#x27;(53*&quot;./&quot;)ab&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -13893,7 +13893,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream54.%2Fa">./unix-stream &#39;(54*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-stream54.%2Fa">./unix-stream &#x27;(54*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -14051,7 +14051,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream69.%2Fab">./unix-stream &#39;(69*&quot;./&quot;)ab&#39;</a></h2>
+<h2><a name="unix-stream69.%2Fab">./unix-stream &#x27;(69*&quot;./&quot;)ab&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -14209,7 +14209,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream120.%2Fa">./unix-stream &#39;(120*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-stream120.%2Fa">./unix-stream &#x27;(120*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -14367,7 +14367,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream126.%2Fa">./unix-stream &#39;(126*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-stream126.%2Fa">./unix-stream &#x27;(126*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -14525,7 +14525,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream126.%2Fab">./unix-stream &#39;(126*&quot;./&quot;)ab&#39;</a></h2>
+<h2><a name="unix-stream126.%2Fab">./unix-stream &#x27;(126*&quot;./&quot;)ab&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -14683,7 +14683,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream511.%2Fa">./unix-stream &#39;(511*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-stream511.%2Fa">./unix-stream &#x27;(511*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -14841,7 +14841,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream511.%2Fab">./unix-stream &#39;(511*&quot;./&quot;)ab&#39;</a></h2>
+<h2><a name="unix-stream511.%2Fab">./unix-stream &#x27;(511*&quot;./&quot;)ab&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -14887,7 +14887,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream519.%2Fab">./unix-stream &#39;(519*&quot;./&quot;)ab&#39;</a></h2>
+<h2><a name="unix-stream519.%2Fab">./unix-stream &#x27;(519*&quot;./&quot;)ab&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -14933,7 +14933,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream90c">./unix-stream &#39;(90*&quot;c&quot;)&#39;</a></h2>
+<h2><a name="unix-stream90c">./unix-stream &#x27;(90*&quot;c&quot;)&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -15077,7 +15077,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream103c">./unix-stream &#39;(103*&quot;c&quot;)&#39;</a></h2>
+<h2><a name="unix-stream103c">./unix-stream &#x27;(103*&quot;c&quot;)&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -15221,7 +15221,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream104c">./unix-stream &#39;(104*&quot;c&quot;)&#39;</a></h2>
+<h2><a name="unix-stream104c">./unix-stream &#x27;(104*&quot;c&quot;)&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -15379,7 +15379,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream105c">./unix-stream &#39;(105*&quot;c&quot;)&#39;</a></h2>
+<h2><a name="unix-stream105c">./unix-stream &#x27;(105*&quot;c&quot;)&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -15537,7 +15537,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream107c">./unix-stream &#39;(107*&quot;c&quot;)&#39;</a></h2>
+<h2><a name="unix-stream107c">./unix-stream &#x27;(107*&quot;c&quot;)&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -15695,7 +15695,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream108c">./unix-stream &#39;(108*&quot;c&quot;)&#39;</a></h2>
+<h2><a name="unix-stream108c">./unix-stream &#x27;(108*&quot;c&quot;)&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -15853,7 +15853,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream109c">./unix-stream &#39;(109*&quot;c&quot;)&#39;</a></h2>
+<h2><a name="unix-stream109c">./unix-stream &#x27;(109*&quot;c&quot;)&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -16011,7 +16011,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream129c">./unix-stream &#39;(129*&quot;c&quot;)&#39;</a></h2>
+<h2><a name="unix-stream129c">./unix-stream &#x27;(129*&quot;c&quot;)&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -16169,7 +16169,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream250c">./unix-stream &#39;(250*&quot;c&quot;)&#39;</a></h2>
+<h2><a name="unix-stream250c">./unix-stream &#x27;(250*&quot;c&quot;)&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -16327,7 +16327,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream253c">./unix-stream &#39;(253*&quot;c&quot;)&#39;</a></h2>
+<h2><a name="unix-stream253c">./unix-stream &#x27;(253*&quot;c&quot;)&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -16485,7 +16485,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream254c">./unix-stream &#39;(254*&quot;c&quot;)&#39;</a></h2>
+<h2><a name="unix-stream254c">./unix-stream &#x27;(254*&quot;c&quot;)&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -16643,7 +16643,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream255c">./unix-stream &#39;(255*&quot;c&quot;)&#39;</a></h2>
+<h2><a name="unix-stream255c">./unix-stream &#x27;(255*&quot;c&quot;)&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -16801,7 +16801,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream256c">./unix-stream &#39;(256*&quot;c&quot;)&#39;</a></h2>
+<h2><a name="unix-stream256c">./unix-stream &#x27;(256*&quot;c&quot;)&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -16959,7 +16959,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream519c">./unix-stream &#39;(519*&quot;c&quot;)&#39;</a></h2>
+<h2><a name="unix-stream519c">./unix-stream &#x27;(519*&quot;c&quot;)&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -17117,7 +17117,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-p012345678">./unix-stream -p &#39;012345678&#39;</a></h2>
+<h2><a name="unix-stream-p012345678">./unix-stream -p &#x27;012345678&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -17261,7 +17261,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-p0123456789">./unix-stream -p &#39;0123456789&#39;</a></h2>
+<h2><a name="unix-stream-p0123456789">./unix-stream -p &#x27;0123456789&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -17419,7 +17419,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-g2048-p01234567890">./unix-stream -g2048 -p &#39;01234567890&#39;</a></h2>
+<h2><a name="unix-stream-g2048-p01234567890">./unix-stream -g2048 -p &#x27;01234567890&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -17577,7 +17577,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-g2048-pfoo0foo001234567890">./unix-stream -g2048 -p &#39;foo\0&#39; &#39;foo\0&#39; &#39;01234567890&#39;</a></h2>
+<h2><a name="unix-stream-g2048-pfoo0foo001234567890">./unix-stream -g2048 -p &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;01234567890&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -17763,7 +17763,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-g255126.%2Fa">./unix-stream -g255 &#39;(126*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-stream-g255126.%2Fa">./unix-stream -g255 &#x27;(126*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -17921,7 +17921,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-g1026511.%2Fa">./unix-stream -g1026 &#39;(511*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-stream-g1026511.%2Fa">./unix-stream -g1026 &#x27;(511*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -18079,7 +18079,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamfoo0foo0126.%2Fa">./unix-stream &#39;foo\0&#39; &#39;foo\0&#39; &#39;(126*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-streamfoo0foo0126.%2Fa">./unix-stream &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(126*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -18265,7 +18265,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamfoo0foo0511.%2Fa">./unix-stream &#39;foo\0&#39; &#39;foo\0&#39; &#39;(511*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-streamfoo0foo0511.%2Fa">./unix-stream &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(511*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -18451,7 +18451,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-g255foo0foo0126.%2Fa">./unix-stream -g255 &#39;foo\0&#39; &#39;foo\0&#39; &#39;(126*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-stream-g255foo0foo0126.%2Fa">./unix-stream -g255 &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(126*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -18637,7 +18637,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-g1026foo0foo0511.%2Fa">./unix-stream -g1026 &#39;foo\0&#39; &#39;foo\0&#39; &#39;(511*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-stream-g1026foo0foo0511.%2Fa">./unix-stream -g1026 &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(511*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -18823,7 +18823,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-s">./unix-stream -s &#39;&#39;</a></h2>
+<h2><a name="unix-stream-s">./unix-stream -s &#x27;&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -18897,7 +18897,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-s.">./unix-stream -s &#39;.&#39;</a></h2>
+<h2><a name="unix-stream-s.">./unix-stream -s &#x27;.&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -18943,7 +18943,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-s%2F">./unix-stream -s &#39;/&#39;</a></h2>
+<h2><a name="unix-stream-s%2F">./unix-stream -s &#x27;/&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -18989,7 +18989,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-s%2Ffoo">./unix-stream -s &#39;/foo&#39;</a></h2>
+<h2><a name="unix-stream-s%2Ffoo">./unix-stream -s &#x27;/foo&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -19035,7 +19035,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-s%2Ffoo%2Fbar">./unix-stream -s &#39;/foo/bar&#39;</a></h2>
+<h2><a name="unix-stream-s%2Ffoo%2Fbar">./unix-stream -s &#x27;/foo/bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -19081,7 +19081,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-s%2Fetc">./unix-stream -s &#39;/etc&#39;</a></h2>
+<h2><a name="unix-stream-s%2Fetc">./unix-stream -s &#x27;/etc&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -19127,7 +19127,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-sfoo">./unix-stream -s &#39;foo&#39;</a></h2>
+<h2><a name="unix-stream-sfoo">./unix-stream -s &#x27;foo&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -19187,7 +19187,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-T-sREADME">./unix-stream -T -s &#39;README&#39;</a></h2>
+<h2><a name="unix-stream-T-sREADME">./unix-stream -T -s &#x27;README&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -19233,7 +19233,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-sfoobar">./unix-stream -s &#39;foobar&#39;</a></h2>
+<h2><a name="unix-stream-sfoobar">./unix-stream -s &#x27;foobar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -19265,7 +19265,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamfoobar">./unix-stream &#39;foobar&#39;</a></h2>
+<h2><a name="unix-streamfoobar">./unix-stream &#x27;foobar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -19297,7 +19297,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-4sunlen1abc0">./unix-stream -4 &#39;(sun_len=1)abc\0&#39;</a></h2>
+<h2><a name="unix-stream-4sunlen1abc0">./unix-stream -4 &#x27;(sun_len=1)abc\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -19431,7 +19431,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-4sunlen7abc0">./unix-stream -4 &#39;(sun_len=7)abc\0&#39;</a></h2>
+<h2><a name="unix-stream-4sunlen7abc0">./unix-stream -4 &#x27;(sun_len=7)abc\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -19565,7 +19565,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-4sunlen1abc0sunlen7abc0">./unix-stream -4 &#39;(sun_len=1)abc\0&#39; &#39;(sun_len=7)abc\0&#39;</a></h2>
+<h2><a name="unix-stream-4sunlen1abc0sunlen7abc0">./unix-stream -4 &#x27;(sun_len=1)abc\0&#x27; &#x27;(sun_len=7)abc\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -19699,7 +19699,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream-4sunlen7abc0sunlen1abc0">./unix-stream -4 &#39;(sun_len=7)abc\0&#39; &#39;(sun_len=1)abc\0&#39;</a></h2>
+<h2><a name="unix-stream-4sunlen7abc0sunlen1abc0">./unix-stream -4 &#x27;(sun_len=7)abc\0&#x27; &#x27;(sun_len=1)abc\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -19833,7 +19833,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream0abc">./unix-stream &#39;\0abc&#39;</a></h2>
+<h2><a name="unix-stream0abc">./unix-stream &#x27;\0abc&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -19887,7 +19887,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream0abc0abc0">./unix-stream &#39;\0abc&#39; &#39;\0abc\0&#39;</a></h2>
+<h2><a name="unix-stream0abc0abc0">./unix-stream &#x27;\0abc&#x27; &#x27;\0abc\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -19926,7 +19926,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-streamnon-abstractnon-abstract0abstract">./unix-stream &#39;non-abstract&#39; &#39;non-abstract&#39; &#39;\0abstract&#39;</a></h2>
+<h2><a name="unix-streamnon-abstractnon-abstract0abstract">./unix-stream &#x27;non-abstract&#x27; &#x27;non-abstract&#x27; &#x27;\0abstract&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -19990,7 +19990,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-stream0abstract0abstractnon-abstract">./unix-stream &#39;\0abstract&#39; &#39;\0abstract&#39; &#39;non-abstract&#39;</a></h2>
+<h2><a name="unix-stream0abstract0abstractnon-abstract">./unix-stream &#x27;\0abstract&#x27; &#x27;\0abstract&#x27; &#x27;non-abstract&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -20054,7 +20054,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoo0foo0bar0">./unix-dgram &#39;foo\0&#39; &#39;foo\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgramfoo0foo0bar0">./unix-dgram &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -20234,7 +20234,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoo0.%2Ffoo0bar0">./unix-dgram &#39;foo\0&#39; &#39;./foo\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgramfoo0.%2Ffoo0bar0">./unix-dgram &#x27;foo\0&#x27; &#x27;./foo\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -20414,7 +20414,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoo0hogefoo0bar0">./unix-dgram &#39;foo\0hoge&#39; &#39;foo\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgramfoo0hogefoo0bar0">./unix-dgram &#x27;foo\0hoge&#x27; &#x27;foo\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -20594,7 +20594,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoo0foo0fugabar0">./unix-dgram &#39;foo\0&#39; &#39;foo\0fuga&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgramfoo0foo0fugabar0">./unix-dgram &#x27;foo\0&#x27; &#x27;foo\0fuga&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -20774,7 +20774,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoo0foo0bar0moga">./unix-dgram &#39;foo\0&#39; &#39;foo\0&#39; &#39;bar\0moga&#39;</a></h2>
+<h2><a name="unix-dgramfoo0foo0bar0moga">./unix-dgram &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;bar\0moga&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -20954,7 +20954,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoo0hoge.%2Ffoo0fugabar0moga">./unix-dgram &#39;foo\0hoge&#39; &#39;./foo\0fuga&#39; &#39;bar\0moga&#39;</a></h2>
+<h2><a name="unix-dgramfoo0hoge.%2Ffoo0fugabar0moga">./unix-dgram &#x27;foo\0hoge&#x27; &#x27;./foo\0fuga&#x27; &#x27;bar\0moga&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -21134,7 +21134,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram44.%2Fa044.%2Fa0bar0">./unix-dgram &#39;(44*&quot;./&quot;)a\0&#39;  &#39;(44*&quot;./&quot;)a\0&#39;  &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram44.%2Fa044.%2Fa0bar0">./unix-dgram &#x27;(44*&quot;./&quot;)a\0&#x27;  &#x27;(44*&quot;./&quot;)a\0&#x27;  &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -21314,7 +21314,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram51.%2Fa051.%2Fa0bar0">./unix-dgram &#39;(51*&quot;./&quot;)a\0&#39;   &#39;(51*&quot;./&quot;)a\0&#39;     &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram51.%2Fa051.%2Fa0bar0">./unix-dgram &#x27;(51*&quot;./&quot;)a\0&#x27;   &#x27;(51*&quot;./&quot;)a\0&#x27;     &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -21494,7 +21494,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram51.%2Fab051.%2Fab0bar0">./unix-dgram &#39;(51*&quot;./&quot;)ab\0&#39;  &#39;(51*&quot;./&quot;)ab\0&#39;    &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram51.%2Fab051.%2Fab0bar0">./unix-dgram &#x27;(51*&quot;./&quot;)ab\0&#x27;  &#x27;(51*&quot;./&quot;)ab\0&#x27;    &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -21690,7 +21690,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram52.%2Fa052.%2Fa0bar0">./unix-dgram &#39;(52*&quot;./&quot;)a\0&#39;   &#39;(52*&quot;./&quot;)a\0&#39;     &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram52.%2Fa052.%2Fa0bar0">./unix-dgram &#x27;(52*&quot;./&quot;)a\0&#x27;   &#x27;(52*&quot;./&quot;)a\0&#x27;     &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -21886,7 +21886,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram53.%2Fa053.%2Fa0bar0">./unix-dgram &#39;(53*&quot;./&quot;)a\0&#39;   &#39;(53*&quot;./&quot;)a\0&#39;     &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram53.%2Fa053.%2Fa0bar0">./unix-dgram &#x27;(53*&quot;./&quot;)a\0&#x27;   &#x27;(53*&quot;./&quot;)a\0&#x27;     &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -22082,7 +22082,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram53.%2Fab053.%2Fab0bar0">./unix-dgram &#39;(53*&quot;./&quot;)ab\0&#39;  &#39;(53*&quot;./&quot;)ab\0&#39;    &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram53.%2Fab053.%2Fab0bar0">./unix-dgram &#x27;(53*&quot;./&quot;)ab\0&#x27;  &#x27;(53*&quot;./&quot;)ab\0&#x27;    &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -22278,7 +22278,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram54.%2Fa054.%2Fa0bar0">./unix-dgram &#39;(54*&quot;./&quot;)a\0&#39;   &#39;(54*&quot;./&quot;)a\0&#39;     &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram54.%2Fa054.%2Fa0bar0">./unix-dgram &#x27;(54*&quot;./&quot;)a\0&#x27;   &#x27;(54*&quot;./&quot;)a\0&#x27;     &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -22474,7 +22474,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram63.%2Fa063.%2Fa0bar0">./unix-dgram &#39;(63*&quot;./&quot;)a\0&#39;   &#39;(63*&quot;./&quot;)a\0&#39;     &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram63.%2Fa063.%2Fa0bar0">./unix-dgram &#x27;(63*&quot;./&quot;)a\0&#x27;   &#x27;(63*&quot;./&quot;)a\0&#x27;     &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -22670,7 +22670,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram63.%2Fab063.%2Fab0bar0">./unix-dgram &#39;(63*&quot;./&quot;)ab\0&#39;  &#39;(63*&quot;./&quot;)ab\0&#39;    &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram63.%2Fab063.%2Fab0bar0">./unix-dgram &#x27;(63*&quot;./&quot;)ab\0&#x27;  &#x27;(63*&quot;./&quot;)ab\0&#x27;    &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -22866,7 +22866,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram64.%2Fa064.%2Fa0bar0">./unix-dgram &#39;(64*&quot;./&quot;)a\0&#39;   &#39;(64*&quot;./&quot;)a\0&#39;     &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram64.%2Fa064.%2Fa0bar0">./unix-dgram &#x27;(64*&quot;./&quot;)a\0&#x27;   &#x27;(64*&quot;./&quot;)a\0&#x27;     &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -23062,7 +23062,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram69.%2Fab069.%2Fab0bar0">./unix-dgram &#39;(69*&quot;./&quot;)ab\0&#39;  &#39;(69*&quot;./&quot;)ab\0&#39;    &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram69.%2Fab069.%2Fab0bar0">./unix-dgram &#x27;(69*&quot;./&quot;)ab\0&#x27;  &#x27;(69*&quot;./&quot;)ab\0&#x27;    &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -23258,7 +23258,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram120.%2Fa0120.%2Fa0bar0">./unix-dgram &#39;(120*&quot;./&quot;)a\0&#39;  &#39;(120*&quot;./&quot;)a\0&#39;    &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram120.%2Fa0120.%2Fa0bar0">./unix-dgram &#x27;(120*&quot;./&quot;)a\0&#x27;  &#x27;(120*&quot;./&quot;)a\0&#x27;    &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -23470,7 +23470,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram125.%2Fab0125.%2Fab0bar0">./unix-dgram &#39;(125*&quot;./&quot;)ab\0&#39; &#39;(125*&quot;./&quot;)ab\0&#39;   &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram125.%2Fab0125.%2Fab0bar0">./unix-dgram &#x27;(125*&quot;./&quot;)ab\0&#x27; &#x27;(125*&quot;./&quot;)ab\0&#x27;   &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -23682,7 +23682,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram126.%2Fa0126.%2Fa0bar0">./unix-dgram &#39;(126*&quot;./&quot;)a\0&#39;  &#39;(126*&quot;./&quot;)a\0&#39;    &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram126.%2Fa0126.%2Fa0bar0">./unix-dgram &#x27;(126*&quot;./&quot;)a\0&#x27;  &#x27;(126*&quot;./&quot;)a\0&#x27;    &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -23878,7 +23878,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram511.%2Fa0511.%2Fa0bar0">./unix-dgram &#39;(511*&quot;./&quot;)a\0&#39;  &#39;(511*&quot;./&quot;)a\0&#39;    &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram511.%2Fa0511.%2Fa0bar0">./unix-dgram &#x27;(511*&quot;./&quot;)a\0&#x27;  &#x27;(511*&quot;./&quot;)a\0&#x27;    &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -24074,7 +24074,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram511.%2Fab0511.%2Fab0bar0">./unix-dgram &#39;(511*&quot;./&quot;)ab\0&#39; &#39;(511*&quot;./&quot;)ab\0&#39;   &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram511.%2Fab0511.%2Fab0bar0">./unix-dgram &#x27;(511*&quot;./&quot;)ab\0&#x27; &#x27;(511*&quot;./&quot;)ab\0&#x27;   &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -24126,7 +24126,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram519.%2Fab0519.%2Fab0bar0">./unix-dgram &#39;(519*&quot;./&quot;)ab\0&#39; &#39;(519*&quot;./&quot;)ab\0&#39;   &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram519.%2Fab0519.%2Fab0bar0">./unix-dgram &#x27;(519*&quot;./&quot;)ab\0&#x27; &#x27;(519*&quot;./&quot;)ab\0&#x27;   &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -24178,7 +24178,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram90c090c0bar0">./unix-dgram &#39;(90*&quot;c&quot;)\0&#39;  &#39;(90*&quot;c&quot;)\0&#39;  &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram90c090c0bar0">./unix-dgram &#x27;(90*&quot;c&quot;)\0&#x27;  &#x27;(90*&quot;c&quot;)\0&#x27;  &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -24358,7 +24358,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram103c0103c0bar0">./unix-dgram &#39;(103*&quot;c&quot;)\0&#39; &#39;(103*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram103c0103c0bar0">./unix-dgram &#x27;(103*&quot;c&quot;)\0&#x27; &#x27;(103*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -24538,7 +24538,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram104c0104c0bar0">./unix-dgram &#39;(104*&quot;c&quot;)\0&#39; &#39;(104*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram104c0104c0bar0">./unix-dgram &#x27;(104*&quot;c&quot;)\0&#x27; &#x27;(104*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -24734,7 +24734,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram105c0105c0bar0">./unix-dgram &#39;(105*&quot;c&quot;)\0&#39; &#39;(105*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram105c0105c0bar0">./unix-dgram &#x27;(105*&quot;c&quot;)\0&#x27; &#x27;(105*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -24930,7 +24930,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram107c0107c0bar0">./unix-dgram &#39;(107*&quot;c&quot;)\0&#39; &#39;(107*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram107c0107c0bar0">./unix-dgram &#x27;(107*&quot;c&quot;)\0&#x27; &#x27;(107*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -25126,7 +25126,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram108c0108c0bar0">./unix-dgram &#39;(108*&quot;c&quot;)\0&#39; &#39;(108*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram108c0108c0bar0">./unix-dgram &#x27;(108*&quot;c&quot;)\0&#x27; &#x27;(108*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -25322,7 +25322,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram110c0110c0bar0">./unix-dgram &#39;(110*&quot;c&quot;)\0&#39; &#39;(110*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram110c0110c0bar0">./unix-dgram &#x27;(110*&quot;c&quot;)\0&#x27; &#x27;(110*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -25518,7 +25518,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram111c0111c0bar0">./unix-dgram &#39;(111*&quot;c&quot;)\0&#39; &#39;(111*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram111c0111c0bar0">./unix-dgram &#x27;(111*&quot;c&quot;)\0&#x27; &#x27;(111*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -25714,7 +25714,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram129c0129c0bar0">./unix-dgram &#39;(129*&quot;c&quot;)\0&#39; &#39;(129*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram129c0129c0bar0">./unix-dgram &#x27;(129*&quot;c&quot;)\0&#x27; &#x27;(129*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -25910,7 +25910,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram250c0250c0bar0">./unix-dgram &#39;(250*&quot;c&quot;)\0&#39; &#39;(250*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram250c0250c0bar0">./unix-dgram &#x27;(250*&quot;c&quot;)\0&#x27; &#x27;(250*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -26122,7 +26122,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram252c0252c0bar0">./unix-dgram &#39;(252*&quot;c&quot;)\0&#39; &#39;(252*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram252c0252c0bar0">./unix-dgram &#x27;(252*&quot;c&quot;)\0&#x27; &#x27;(252*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -26334,7 +26334,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram253c0253c0bar0">./unix-dgram &#39;(253*&quot;c&quot;)\0&#39; &#39;(253*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram253c0253c0bar0">./unix-dgram &#x27;(253*&quot;c&quot;)\0&#x27; &#x27;(253*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -26530,7 +26530,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram255c0255c0bar0">./unix-dgram &#39;(255*&quot;c&quot;)\0&#39; &#39;(255*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram255c0255c0bar0">./unix-dgram &#x27;(255*&quot;c&quot;)\0&#x27; &#x27;(255*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -26726,7 +26726,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram256c0256c0bar0">./unix-dgram &#39;(256*&quot;c&quot;)\0&#39; &#39;(256*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram256c0256c0bar0">./unix-dgram &#x27;(256*&quot;c&quot;)\0&#x27; &#x27;(256*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -26922,7 +26922,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram259c0259c0bar0">./unix-dgram &#39;(259*&quot;c&quot;)\0&#39; &#39;(259*&quot;c&quot;)\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram259c0259c0bar0">./unix-dgram &#x27;(259*&quot;c&quot;)\0&#x27; &#x27;(259*&quot;c&quot;)\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -27118,7 +27118,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-p012345670012345670bar0">./unix-dgram -p &#39;01234567\0&#39;    &#39;01234567\0&#39;    &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-p012345670012345670bar0">./unix-dgram -p &#x27;01234567\0&#x27;    &#x27;01234567\0&#x27;    &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -27298,7 +27298,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-p01234567800123456780bar0">./unix-dgram -p &#39;012345678\0&#39;   &#39;012345678\0&#39;   &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-p01234567800123456780bar0">./unix-dgram -p &#x27;012345678\0&#x27;   &#x27;012345678\0&#x27;   &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -27478,7 +27478,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-p0123456789001234567890bar0">./unix-dgram -p &#39;0123456789\0&#39;  &#39;0123456789\0&#39;  &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-p0123456789001234567890bar0">./unix-dgram -p &#x27;0123456789\0&#x27;  &#x27;0123456789\0&#x27;  &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -27674,7 +27674,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-p012345678900012345678900bar0">./unix-dgram -p &#39;01234567890\0&#39; &#39;01234567890\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-p012345678900012345678900bar0">./unix-dgram -p &#x27;01234567890\0&#x27; &#x27;01234567890\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -27870,7 +27870,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g2048-p012345678900012345678900bar0">./unix-dgram -g2048 -p &#39;01234567890\0&#39; &#39;01234567890\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-g2048-p012345678900012345678900bar0">./unix-dgram -g2048 -p &#x27;01234567890\0&#x27; &#x27;01234567890\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -28066,7 +28066,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g2048-pfoo0foo0012345678900">./unix-dgram -g2048 -p &#39;foo\0&#39; &#39;foo\0&#39; &#39;01234567890\0&#39;</a></h2>
+<h2><a name="unix-dgram-g2048-pfoo0foo0012345678900">./unix-dgram -g2048 -p &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;01234567890\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -28262,7 +28262,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g255115.%2Fab0115.%2Fab0bar0">./unix-dgram -g255 &#39;(115*&quot;./&quot;)ab\0&#39; &#39;(115*&quot;./&quot;)ab\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-g255115.%2Fab0115.%2Fab0bar0">./unix-dgram -g255 &#x27;(115*&quot;./&quot;)ab\0&#x27; &#x27;(115*&quot;./&quot;)ab\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -28458,7 +28458,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g255116.%2Fa0116.%2Fa0bar0">./unix-dgram -g255 &#39;(116*&quot;./&quot;)a\0&#39; &#39;(116*&quot;./&quot;)a\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-g255116.%2Fa0116.%2Fa0bar0">./unix-dgram -g255 &#x27;(116*&quot;./&quot;)a\0&#x27; &#x27;(116*&quot;./&quot;)a\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -28654,7 +28654,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g255116.%2Fab0116.%2Fab0bar0">./unix-dgram -g255 &#39;(116*&quot;./&quot;)ab\0&#39; &#39;(116*&quot;./&quot;)ab\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-g255116.%2Fab0116.%2Fab0bar0">./unix-dgram -g255 &#x27;(116*&quot;./&quot;)ab\0&#x27; &#x27;(116*&quot;./&quot;)ab\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -28866,7 +28866,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g255117.%2Fa0117.%2Fa0bar0">./unix-dgram -g255 &#39;(117*&quot;./&quot;)a\0&#39; &#39;(117*&quot;./&quot;)a\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-g255117.%2Fa0117.%2Fa0bar0">./unix-dgram -g255 &#x27;(117*&quot;./&quot;)a\0&#x27; &#x27;(117*&quot;./&quot;)a\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -29078,7 +29078,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g255125.%2Fab0125.%2Fab0bar0">./unix-dgram -g255 &#39;(125*&quot;./&quot;)ab\0&#39; &#39;(125*&quot;./&quot;)ab\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-g255125.%2Fab0125.%2Fab0bar0">./unix-dgram -g255 &#x27;(125*&quot;./&quot;)ab\0&#x27; &#x27;(125*&quot;./&quot;)ab\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -29290,7 +29290,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g255126.%2Fa0126.%2Fa0bar0">./unix-dgram -g255 &#39;(126*&quot;./&quot;)a\0&#39; &#39;(126*&quot;./&quot;)a\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-g255126.%2Fa0126.%2Fa0bar0">./unix-dgram -g255 &#x27;(126*&quot;./&quot;)a\0&#x27; &#x27;(126*&quot;./&quot;)a\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -29486,7 +29486,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g1026511.%2Fa0511.%2Fa0bar0">./unix-dgram -g1026 &#39;(511*&quot;./&quot;)a\0&#39; &#39;(511*&quot;./&quot;)a\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-g1026511.%2Fa0511.%2Fa0bar0">./unix-dgram -g1026 &#x27;(511*&quot;./&quot;)a\0&#x27; &#x27;(511*&quot;./&quot;)a\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -29682,7 +29682,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g1026511.%2Fab0511.%2Fab0bar0">./unix-dgram -g1026 &#39;(511*&quot;./&quot;)ab\0&#39; &#39;(511*&quot;./&quot;)ab\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-g1026511.%2Fab0511.%2Fab0bar0">./unix-dgram -g1026 &#x27;(511*&quot;./&quot;)ab\0&#x27; &#x27;(511*&quot;./&quot;)ab\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -29734,7 +29734,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoo0foo0125.%2Fab0">./unix-dgram &#39;foo\0&#39; &#39;foo\0&#39; &#39;(125*&quot;./&quot;)ab\0&#39;</a></h2>
+<h2><a name="unix-dgramfoo0foo0125.%2Fab0">./unix-dgram &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(125*&quot;./&quot;)ab\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -29978,7 +29978,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoo0foo0126.%2Fa0">./unix-dgram &#39;foo\0&#39; &#39;foo\0&#39; &#39;(126*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-dgramfoo0foo0126.%2Fa0">./unix-dgram &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(126*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -30206,7 +30206,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoo0foo0511.%2Fa0">./unix-dgram &#39;foo\0&#39; &#39;foo\0&#39; &#39;(511*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-dgramfoo0foo0511.%2Fa0">./unix-dgram &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(511*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -30434,7 +30434,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoo0foo0511.%2Fab0">./unix-dgram &#39;foo\0&#39; &#39;foo\0&#39; &#39;(511*&quot;./&quot;)ab\0&#39;</a></h2>
+<h2><a name="unix-dgramfoo0foo0511.%2Fab0">./unix-dgram &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(511*&quot;./&quot;)ab\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -30534,7 +30534,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g255foo0foo0125.%2Fab0">./unix-dgram -g255 &#39;foo\0&#39; &#39;foo\0&#39; &#39;(125*&quot;./&quot;)ab\0&#39;</a></h2>
+<h2><a name="unix-dgram-g255foo0foo0125.%2Fab0">./unix-dgram -g255 &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(125*&quot;./&quot;)ab\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -30746,7 +30746,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g1026foo0foo0511.%2Fa0">./unix-dgram -g1026 &#39;foo\0&#39; &#39;foo\0&#39; &#39;(511*&quot;./&quot;)a\0&#39;</a></h2>
+<h2><a name="unix-dgram-g1026foo0foo0511.%2Fa0">./unix-dgram -g1026 &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;(511*&quot;./&quot;)a\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -30942,7 +30942,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-s0">./unix-dgram -s &#39;\0&#39;</a></h2>
+<h2><a name="unix-dgram-s0">./unix-dgram -s &#x27;\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -31026,7 +31026,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-s.0">./unix-dgram -s &#39;.\0&#39;</a></h2>
+<h2><a name="unix-dgram-s.0">./unix-dgram -s &#x27;.\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -31110,7 +31110,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-s%2F0">./unix-dgram -s &#39;/\0&#39;</a></h2>
+<h2><a name="unix-dgram-s%2F0">./unix-dgram -s &#x27;/\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -31162,7 +31162,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-s%2Ffoo0">./unix-dgram -s &#39;/foo\0&#39;</a></h2>
+<h2><a name="unix-dgram-s%2Ffoo0">./unix-dgram -s &#x27;/foo\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -31246,7 +31246,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-s%2Ffoo%2Fbar0">./unix-dgram -s &#39;/foo/bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-s%2Ffoo%2Fbar0">./unix-dgram -s &#x27;/foo/bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -31298,7 +31298,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-s%2Fetc0">./unix-dgram -s &#39;/etc\0&#39;</a></h2>
+<h2><a name="unix-dgram-s%2Fetc0">./unix-dgram -s &#x27;/etc\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -31350,7 +31350,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-T-sREADME0">./unix-dgram -T -s &#39;README\0&#39;</a></h2>
+<h2><a name="unix-dgram-T-sREADME0">./unix-dgram -T -s &#x27;README\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -31434,7 +31434,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoofoo0bar0">./unix-dgram &#39;foo&#39; &#39;foo\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgramfoofoo0bar0">./unix-dgram &#x27;foo&#x27; &#x27;foo\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -31592,7 +31592,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoo0foobar0">./unix-dgram &#39;foo\0&#39; &#39;foo&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgramfoo0foobar0">./unix-dgram &#x27;foo\0&#x27; &#x27;foo&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -31750,7 +31750,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoo0foo0bar">./unix-dgram &#39;foo\0&#39; &#39;foo\0&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgramfoo0foo0bar">./unix-dgram &#x27;foo\0&#x27; &#x27;foo\0&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -31908,7 +31908,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoofoobar">./unix-dgram &#39;foo&#39; &#39;foo&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgramfoofoobar">./unix-dgram &#x27;foo&#x27; &#x27;foo&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -32066,7 +32066,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoo.%2Ffoo0bar0">./unix-dgram &#39;foo&#39; &#39;./foo\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgramfoo.%2Ffoo0bar0">./unix-dgram &#x27;foo&#x27; &#x27;./foo\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -32224,7 +32224,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoo0.%2Ffoobar0">./unix-dgram &#39;foo\0&#39; &#39;./foo&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgramfoo0.%2Ffoobar0">./unix-dgram &#x27;foo\0&#x27; &#x27;./foo&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -32382,7 +32382,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoo0.%2Ffoo0bar">./unix-dgram &#39;foo\0&#39; &#39;./foo\0&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgramfoo0.%2Ffoo0bar">./unix-dgram &#x27;foo\0&#x27; &#x27;./foo\0&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -32540,7 +32540,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoo.%2Ffoobar">./unix-dgram &#39;foo&#39; &#39;./foo&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgramfoo.%2Ffoobar">./unix-dgram &#x27;foo&#x27; &#x27;./foo&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -32698,7 +32698,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram51.%2Fa51.%2Fabar">./unix-dgram &#39;(51*&quot;./&quot;)a&#39;   &#39;(51*&quot;./&quot;)a&#39;     &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram51.%2Fa51.%2Fabar">./unix-dgram &#x27;(51*&quot;./&quot;)a&#x27;   &#x27;(51*&quot;./&quot;)a&#x27;     &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -32856,7 +32856,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram51.%2Fab51.%2Fabbar">./unix-dgram &#39;(51*&quot;./&quot;)ab&#39;  &#39;(51*&quot;./&quot;)ab&#39;    &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram51.%2Fab51.%2Fabbar">./unix-dgram &#x27;(51*&quot;./&quot;)ab&#x27;  &#x27;(51*&quot;./&quot;)ab&#x27;    &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -33028,7 +33028,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram52.%2Fa52.%2Fabar">./unix-dgram &#39;(52*&quot;./&quot;)a&#39;   &#39;(52*&quot;./&quot;)a&#39;     &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram52.%2Fa52.%2Fabar">./unix-dgram &#x27;(52*&quot;./&quot;)a&#x27;   &#x27;(52*&quot;./&quot;)a&#x27;     &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -33200,7 +33200,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram53.%2Fa53.%2Fabar">./unix-dgram &#39;(53*&quot;./&quot;)a&#39;   &#39;(53*&quot;./&quot;)a&#39;     &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram53.%2Fa53.%2Fabar">./unix-dgram &#x27;(53*&quot;./&quot;)a&#x27;   &#x27;(53*&quot;./&quot;)a&#x27;     &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -33372,7 +33372,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram53.%2Fab53.%2Fabbar">./unix-dgram &#39;(53*&quot;./&quot;)ab&#39;  &#39;(53*&quot;./&quot;)ab&#39;    &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram53.%2Fab53.%2Fabbar">./unix-dgram &#x27;(53*&quot;./&quot;)ab&#x27;  &#x27;(53*&quot;./&quot;)ab&#x27;    &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -33544,7 +33544,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram54.%2Fa54.%2Fabar">./unix-dgram &#39;(54*&quot;./&quot;)a&#39;   &#39;(54*&quot;./&quot;)a&#39;     &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram54.%2Fa54.%2Fabar">./unix-dgram &#x27;(54*&quot;./&quot;)a&#x27;   &#x27;(54*&quot;./&quot;)a&#x27;     &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -33716,7 +33716,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram69.%2Fab69.%2Fabbar">./unix-dgram &#39;(69*&quot;./&quot;)ab&#39;  &#39;(69*&quot;./&quot;)ab&#39;    &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram69.%2Fab69.%2Fabbar">./unix-dgram &#x27;(69*&quot;./&quot;)ab&#x27;  &#x27;(69*&quot;./&quot;)ab&#x27;    &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -33888,7 +33888,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram120.%2Fa120.%2Fabar">./unix-dgram &#39;(120*&quot;./&quot;)a&#39;  &#39;(120*&quot;./&quot;)a&#39;    &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram120.%2Fa120.%2Fabar">./unix-dgram &#x27;(120*&quot;./&quot;)a&#x27;  &#x27;(120*&quot;./&quot;)a&#x27;    &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -34074,7 +34074,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram126.%2Fa126.%2Fabar">./unix-dgram &#39;(126*&quot;./&quot;)a&#39;  &#39;(126*&quot;./&quot;)a&#39;    &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram126.%2Fa126.%2Fabar">./unix-dgram &#x27;(126*&quot;./&quot;)a&#x27;  &#x27;(126*&quot;./&quot;)a&#x27;    &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -34260,7 +34260,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram126.%2Fab126.%2Fabbar">./unix-dgram &#39;(126*&quot;./&quot;)ab&#39; &#39;(126*&quot;./&quot;)ab&#39;   &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram126.%2Fab126.%2Fabbar">./unix-dgram &#x27;(126*&quot;./&quot;)ab&#x27; &#x27;(126*&quot;./&quot;)ab&#x27;   &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -34432,7 +34432,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram511.%2Fa511.%2Fabar">./unix-dgram &#39;(511*&quot;./&quot;)a&#39;  &#39;(511*&quot;./&quot;)a&#39;    &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram511.%2Fa511.%2Fabar">./unix-dgram &#x27;(511*&quot;./&quot;)a&#x27;  &#x27;(511*&quot;./&quot;)a&#x27;    &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -34604,7 +34604,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram511.%2Fab511.%2Fabbar">./unix-dgram &#39;(511*&quot;./&quot;)ab&#39; &#39;(511*&quot;./&quot;)ab&#39;   &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram511.%2Fab511.%2Fabbar">./unix-dgram &#x27;(511*&quot;./&quot;)ab&#x27; &#x27;(511*&quot;./&quot;)ab&#x27;   &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -34650,7 +34650,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram519.%2Fab519.%2Fabbar">./unix-dgram &#39;(519*&quot;./&quot;)ab&#39; &#39;(519*&quot;./&quot;)ab&#39;   &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram519.%2Fab519.%2Fabbar">./unix-dgram &#x27;(519*&quot;./&quot;)ab&#x27; &#x27;(519*&quot;./&quot;)ab&#x27;   &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -34696,7 +34696,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram90c90cbar">./unix-dgram &#39;(90*&quot;c&quot;)&#39;  &#39;(90*&quot;c&quot;)&#39;  &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram90c90cbar">./unix-dgram &#x27;(90*&quot;c&quot;)&#x27;  &#x27;(90*&quot;c&quot;)&#x27;  &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -34854,7 +34854,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram103c103cbar">./unix-dgram &#39;(103*&quot;c&quot;)&#39; &#39;(103*&quot;c&quot;)&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram103c103cbar">./unix-dgram &#x27;(103*&quot;c&quot;)&#x27; &#x27;(103*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -35012,7 +35012,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram104c104cbar">./unix-dgram &#39;(104*&quot;c&quot;)&#39; &#39;(104*&quot;c&quot;)&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram104c104cbar">./unix-dgram &#x27;(104*&quot;c&quot;)&#x27; &#x27;(104*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -35184,7 +35184,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram105c105cbar">./unix-dgram &#39;(105*&quot;c&quot;)&#39; &#39;(105*&quot;c&quot;)&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram105c105cbar">./unix-dgram &#x27;(105*&quot;c&quot;)&#x27; &#x27;(105*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -35356,7 +35356,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram107c107cbar">./unix-dgram &#39;(107*&quot;c&quot;)&#39; &#39;(107*&quot;c&quot;)&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram107c107cbar">./unix-dgram &#x27;(107*&quot;c&quot;)&#x27; &#x27;(107*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -35528,7 +35528,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram108c108cbar">./unix-dgram &#39;(108*&quot;c&quot;)&#39; &#39;(108*&quot;c&quot;)&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram108c108cbar">./unix-dgram &#x27;(108*&quot;c&quot;)&#x27; &#x27;(108*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -35700,7 +35700,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram109c109cbar">./unix-dgram &#39;(109*&quot;c&quot;)&#39; &#39;(109*&quot;c&quot;)&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram109c109cbar">./unix-dgram &#x27;(109*&quot;c&quot;)&#x27; &#x27;(109*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -35872,7 +35872,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram129c129cbar">./unix-dgram &#39;(129*&quot;c&quot;)&#39; &#39;(129*&quot;c&quot;)&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram129c129cbar">./unix-dgram &#x27;(129*&quot;c&quot;)&#x27; &#x27;(129*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -36044,7 +36044,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram250c250cbar">./unix-dgram &#39;(250*&quot;c&quot;)&#39; &#39;(250*&quot;c&quot;)&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram250c250cbar">./unix-dgram &#x27;(250*&quot;c&quot;)&#x27; &#x27;(250*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -36230,7 +36230,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram253c253cbar">./unix-dgram &#39;(253*&quot;c&quot;)&#39; &#39;(253*&quot;c&quot;)&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram253c253cbar">./unix-dgram &#x27;(253*&quot;c&quot;)&#x27; &#x27;(253*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -36416,7 +36416,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram254c254cbar">./unix-dgram &#39;(254*&quot;c&quot;)&#39; &#39;(254*&quot;c&quot;)&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram254c254cbar">./unix-dgram &#x27;(254*&quot;c&quot;)&#x27; &#x27;(254*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -36588,7 +36588,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram255c255cbar">./unix-dgram &#39;(255*&quot;c&quot;)&#39; &#39;(255*&quot;c&quot;)&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram255c255cbar">./unix-dgram &#x27;(255*&quot;c&quot;)&#x27; &#x27;(255*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -36760,7 +36760,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram256c256cbar">./unix-dgram &#39;(256*&quot;c&quot;)&#39; &#39;(256*&quot;c&quot;)&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram256c256cbar">./unix-dgram &#x27;(256*&quot;c&quot;)&#x27; &#x27;(256*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -36932,7 +36932,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram259c259cbar">./unix-dgram &#39;(259*&quot;c&quot;)&#39; &#39;(259*&quot;c&quot;)&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram259c259cbar">./unix-dgram &#x27;(259*&quot;c&quot;)&#x27; &#x27;(259*&quot;c&quot;)&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -37104,7 +37104,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-p0123456701234567bar">./unix-dgram -p &#39;01234567&#39;    &#39;01234567&#39;    &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram-p0123456701234567bar">./unix-dgram -p &#x27;01234567&#x27;    &#x27;01234567&#x27;    &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -37262,7 +37262,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-p012345678012345678bar">./unix-dgram -p &#39;012345678&#39;   &#39;012345678&#39;   &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram-p012345678012345678bar">./unix-dgram -p &#x27;012345678&#x27;   &#x27;012345678&#x27;   &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -37420,7 +37420,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-p01234567890123456789bar">./unix-dgram -p &#39;0123456789&#39;  &#39;0123456789&#39;  &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram-p01234567890123456789bar">./unix-dgram -p &#x27;0123456789&#x27;  &#x27;0123456789&#x27;  &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -37592,7 +37592,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-p0123456789001234567890bar">./unix-dgram -p &#39;01234567890&#39; &#39;01234567890&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram-p0123456789001234567890bar">./unix-dgram -p &#x27;01234567890&#x27; &#x27;01234567890&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -37764,7 +37764,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g2048-p0123456789001234567890bar">./unix-dgram -g2048 -p &#39;01234567890&#39; &#39;01234567890&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram-g2048-p0123456789001234567890bar">./unix-dgram -g2048 -p &#x27;01234567890&#x27; &#x27;01234567890&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -37936,7 +37936,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g2048-pfoofoo01234567890">./unix-dgram -g2048 -p &#39;foo&#39; &#39;foo&#39; &#39;01234567890&#39;</a></h2>
+<h2><a name="unix-dgram-g2048-pfoofoo01234567890">./unix-dgram -g2048 -p &#x27;foo&#x27; &#x27;foo&#x27; &#x27;01234567890&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -38108,7 +38108,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g255115.%2Fab115.%2Fabbar">./unix-dgram -g255 &#39;(115*&quot;./&quot;)ab&#39; &#39;(115*&quot;./&quot;)ab&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram-g255115.%2Fab115.%2Fabbar">./unix-dgram -g255 &#x27;(115*&quot;./&quot;)ab&#x27; &#x27;(115*&quot;./&quot;)ab&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -38280,7 +38280,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g255116.%2Fa116.%2Fabar">./unix-dgram -g255 &#39;(116*&quot;./&quot;)a&#39; &#39;(116*&quot;./&quot;)a&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram-g255116.%2Fa116.%2Fabar">./unix-dgram -g255 &#x27;(116*&quot;./&quot;)a&#x27; &#x27;(116*&quot;./&quot;)a&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -38452,7 +38452,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g255116.%2Fab116.%2Fabbar">./unix-dgram -g255 &#39;(116*&quot;./&quot;)ab&#39; &#39;(116*&quot;./&quot;)ab&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram-g255116.%2Fab116.%2Fabbar">./unix-dgram -g255 &#x27;(116*&quot;./&quot;)ab&#x27; &#x27;(116*&quot;./&quot;)ab&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -38638,7 +38638,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g255117.%2Fa117.%2Fabar">./unix-dgram -g255 &#39;(117*&quot;./&quot;)a&#39; &#39;(117*&quot;./&quot;)a&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram-g255117.%2Fa117.%2Fabar">./unix-dgram -g255 &#x27;(117*&quot;./&quot;)a&#x27; &#x27;(117*&quot;./&quot;)a&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -38824,7 +38824,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g255117.%2Fab117.%2Fabbar">./unix-dgram -g255 &#39;(117*&quot;./&quot;)ab&#39; &#39;(117*&quot;./&quot;)ab&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram-g255117.%2Fab117.%2Fabbar">./unix-dgram -g255 &#x27;(117*&quot;./&quot;)ab&#x27; &#x27;(117*&quot;./&quot;)ab&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -39010,7 +39010,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g255125.%2Fab125.%2Fabbar">./unix-dgram -g255 &#39;(125*&quot;./&quot;)ab&#39; &#39;(125*&quot;./&quot;)ab&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram-g255125.%2Fab125.%2Fabbar">./unix-dgram -g255 &#x27;(125*&quot;./&quot;)ab&#x27; &#x27;(125*&quot;./&quot;)ab&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -39196,7 +39196,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g255126.%2Fa126.%2Fabar">./unix-dgram -g255 &#39;(126*&quot;./&quot;)a&#39; &#39;(126*&quot;./&quot;)a&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram-g255126.%2Fa126.%2Fabar">./unix-dgram -g255 &#x27;(126*&quot;./&quot;)a&#x27; &#x27;(126*&quot;./&quot;)a&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -39382,7 +39382,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g1026511.%2Fa511.%2Fabar">./unix-dgram -g1026 &#39;(511*&quot;./&quot;)a&#39; &#39;(511*&quot;./&quot;)a&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram-g1026511.%2Fa511.%2Fabar">./unix-dgram -g1026 &#x27;(511*&quot;./&quot;)a&#x27; &#x27;(511*&quot;./&quot;)a&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -39554,7 +39554,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g1026511.%2Fab511.%2Fabbar">./unix-dgram -g1026 &#39;(511*&quot;./&quot;)ab&#39; &#39;(511*&quot;./&quot;)ab&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram-g1026511.%2Fab511.%2Fabbar">./unix-dgram -g1026 &#x27;(511*&quot;./&quot;)ab&#x27; &#x27;(511*&quot;./&quot;)ab&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -39600,7 +39600,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoofoo125.%2Fab">./unix-dgram &#39;foo&#39; &#39;foo&#39; &#39;(125*&quot;./&quot;)ab&#39;</a></h2>
+<h2><a name="unix-dgramfoofoo125.%2Fab">./unix-dgram &#x27;foo&#x27; &#x27;foo&#x27; &#x27;(125*&quot;./&quot;)ab&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -39800,7 +39800,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoofoo126.%2Fa">./unix-dgram &#39;foo&#39; &#39;foo&#39; &#39;(126*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-dgramfoofoo126.%2Fa">./unix-dgram &#x27;foo&#x27; &#x27;foo&#x27; &#x27;(126*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -40000,7 +40000,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoofoo511.%2Fa">./unix-dgram &#39;foo&#39; &#39;foo&#39; &#39;(511*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-dgramfoofoo511.%2Fa">./unix-dgram &#x27;foo&#x27; &#x27;foo&#x27; &#x27;(511*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -40186,7 +40186,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoofoo511.%2Fab">./unix-dgram &#39;foo&#39; &#39;foo&#39; &#39;(511*&quot;./&quot;)ab&#39;</a></h2>
+<h2><a name="unix-dgramfoofoo511.%2Fab">./unix-dgram &#x27;foo&#x27; &#x27;foo&#x27; &#x27;(511*&quot;./&quot;)ab&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -40274,7 +40274,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g255foofoo125.%2Fab">./unix-dgram -g255 &#39;foo&#39; &#39;foo&#39; &#39;(125*&quot;./&quot;)ab&#39;</a></h2>
+<h2><a name="unix-dgram-g255foofoo125.%2Fab">./unix-dgram -g255 &#x27;foo&#x27; &#x27;foo&#x27; &#x27;(125*&quot;./&quot;)ab&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -40460,7 +40460,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-g1026foofoo511.%2Fa">./unix-dgram -g1026 &#39;foo&#39; &#39;foo&#39; &#39;(511*&quot;./&quot;)a&#39;</a></h2>
+<h2><a name="unix-dgram-g1026foofoo511.%2Fa">./unix-dgram -g1026 &#x27;foo&#x27; &#x27;foo&#x27; &#x27;(511*&quot;./&quot;)a&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -40632,7 +40632,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-s">./unix-dgram -s &#39;&#39;</a></h2>
+<h2><a name="unix-dgram-s">./unix-dgram -s &#x27;&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -40706,7 +40706,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-s.">./unix-dgram -s &#39;.&#39;</a></h2>
+<h2><a name="unix-dgram-s.">./unix-dgram -s &#x27;.&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -40752,7 +40752,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-s%2F">./unix-dgram -s &#39;/&#39;</a></h2>
+<h2><a name="unix-dgram-s%2F">./unix-dgram -s &#x27;/&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -40798,7 +40798,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-s%2Ffoo">./unix-dgram -s &#39;/foo&#39;</a></h2>
+<h2><a name="unix-dgram-s%2Ffoo">./unix-dgram -s &#x27;/foo&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -40844,7 +40844,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-s%2Ffoo%2Fbar">./unix-dgram -s &#39;/foo/bar&#39;</a></h2>
+<h2><a name="unix-dgram-s%2Ffoo%2Fbar">./unix-dgram -s &#x27;/foo/bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -40890,7 +40890,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-s%2Fetc">./unix-dgram -s &#39;/etc&#39;</a></h2>
+<h2><a name="unix-dgram-s%2Fetc">./unix-dgram -s &#x27;/etc&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -40936,7 +40936,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-T-sREADME">./unix-dgram -T -s &#39;README&#39;</a></h2>
+<h2><a name="unix-dgram-T-sREADME">./unix-dgram -T -s &#x27;README&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -40982,7 +40982,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-sfoobarfoobarbaz">./unix-dgram -s &#39;foobar&#39; &#39;foobar&#39; &#39;baz&#39;</a></h2>
+<h2><a name="unix-dgram-sfoobarfoobarbaz">./unix-dgram -s &#x27;foobar&#x27; &#x27;foobar&#x27; &#x27;baz&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -41021,7 +41021,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramfoobarfoobarbaz">./unix-dgram &#39;foobar&#39; &#39;foobar&#39; &#39;baz&#39;</a></h2>
+<h2><a name="unix-dgramfoobarfoobarbaz">./unix-dgram &#x27;foobar&#x27; &#x27;foobar&#x27; &#x27;baz&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -41061,7 +41061,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-4sunlen1abc0sunlen1abc0bar0">./unix-dgram -4 &#39;(sun_len=1)abc\0&#39; &#39;(sun_len=1)abc\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-4sunlen1abc0sunlen1abc0bar0">./unix-dgram -4 &#x27;(sun_len=1)abc\0&#x27; &#x27;(sun_len=1)abc\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -41234,7 +41234,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-4sunlen7abc0sunlen7abc0bar0">./unix-dgram -4 &#39;(sun_len=7)abc\0&#39; &#39;(sun_len=7)abc\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-4sunlen7abc0sunlen7abc0bar0">./unix-dgram -4 &#x27;(sun_len=7)abc\0&#x27; &#x27;(sun_len=7)abc\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -41407,7 +41407,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-4sunlen1abc0sunlen7abc0bar0">./unix-dgram -4 &#39;(sun_len=1)abc\0&#39; &#39;(sun_len=7)abc\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-4sunlen1abc0sunlen7abc0bar0">./unix-dgram -4 &#x27;(sun_len=1)abc\0&#x27; &#x27;(sun_len=7)abc\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -41580,7 +41580,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-4sunlen7abc0sunlen1abc0bar0">./unix-dgram -4 &#39;(sun_len=7)abc\0&#39; &#39;(sun_len=1)abc\0&#39; &#39;bar\0&#39;</a></h2>
+<h2><a name="unix-dgram-4sunlen7abc0sunlen1abc0bar0">./unix-dgram -4 &#x27;(sun_len=7)abc\0&#x27; &#x27;(sun_len=1)abc\0&#x27; &#x27;bar\0&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -41753,7 +41753,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram0abc0abcbar">./unix-dgram &#39;\0abc&#39; &#39;\0abc&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram0abc0abcbar">./unix-dgram &#x27;\0abc&#x27; &#x27;\0abc&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -41812,7 +41812,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram0abc0abc0bar">./unix-dgram &#39;\0abc&#39; &#39;\0abc\0&#39; &#39;bar&#39;</a></h2>
+<h2><a name="unix-dgram0abc0abc0bar">./unix-dgram &#x27;\0abc&#x27; &#x27;\0abc\0&#x27; &#x27;bar&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -41861,7 +41861,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgramnon-abstractnon-abstract0abstract">./unix-dgram &#39;non-abstract&#39; &#39;non-abstract&#39; &#39;\0abstract&#39;</a></h2>
+<h2><a name="unix-dgramnon-abstractnon-abstract0abstract">./unix-dgram &#x27;non-abstract&#x27; &#x27;non-abstract&#x27; &#x27;\0abstract&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -41920,7 +41920,7 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram0abstract0abstractnon-abstract">./unix-dgram &#39;\0abstract&#39; &#39;\0abstract&#39; &#39;non-abstract&#39;</a></h2>
+<h2><a name="unix-dgram0abstract0abstractnon-abstract">./unix-dgram &#x27;\0abstract&#x27; &#x27;\0abstract&#x27; &#x27;non-abstract&#x27;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
@@ -45267,17 +45267,17 @@
   </tr>
   <tr>
     <th align="left">EADDRNOTAVAIL</th>
-      <td class="socket-normal">Can&#39;t assign requested address</td>
+      <td class="socket-normal">Can&#x27;t assign requested address</td>
       <td class="socket-abnormal">Cannot assign requested address</td>
-      <td class="socket-normal">Can&#39;t assign requested address</td>
-      <td class="socket-normal">Can&#39;t assign requested address</td>
-      <td class="socket-normal">Can&#39;t assign requested address</td>
-      <td class="socket-normal">Can&#39;t assign requested address</td>
-      <td class="socket-normal">Can&#39;t assign requested address</td>
-      <td class="socket-normal">Can&#39;t assign requested address</td>
+      <td class="socket-normal">Can&#x27;t assign requested address</td>
+      <td class="socket-normal">Can&#x27;t assign requested address</td>
+      <td class="socket-normal">Can&#x27;t assign requested address</td>
+      <td class="socket-normal">Can&#x27;t assign requested address</td>
+      <td class="socket-normal">Can&#x27;t assign requested address</td>
+      <td class="socket-normal">Can&#x27;t assign requested address</td>
       <td class="socket-abnormal">Cannot assign requested address</td>
-      <td class="socket-normal">Can&#39;t assign requested address</td>
-      <td class="socket-normal">Can&#39;t assign requested address</td>
+      <td class="socket-normal">Can&#x27;t assign requested address</td>
+      <td class="socket-normal">Can&#x27;t assign requested address</td>
       <td class="socket-abnormal">Cannot assign requested address</td>
       <td class="socket-abnormal">Cannot assign requested address</td>
       <td class="socket-abnormal">Cannot assign requested address</td>
@@ -46105,7 +46105,7 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">pseudo-code: don&#39;t send a reply</td>
+      <td class="socket-normal">pseudo-code: don&#x27;t send a reply</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -46537,7 +46537,7 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">can&#39;t send message due to deadlock</td>
+      <td class="socket-normal">can&#x27;t send message due to deadlock</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -48219,16 +48219,16 @@
   </tr>
   <tr>
     <th align="left">ESHUTDOWN</th>
-      <td class="socket-normal">Can&#39;t send after socket shutdown</td>
+      <td class="socket-normal">Can&#x27;t send after socket shutdown</td>
       <td class="socket-abnormal">Cannot send after transport endpoint shutdown</td>
-      <td class="socket-normal">Can&#39;t send after socket shutdown</td>
-      <td class="socket-normal">Can&#39;t send after socket shutdown</td>
-      <td class="socket-normal">Can&#39;t send after socket shutdown</td>
-      <td class="socket-normal">Can&#39;t send after socket shutdown</td>
-      <td class="socket-normal">Can&#39;t send after socket shutdown</td>
-      <td class="socket-normal">Can&#39;t send after socket shutdown</td>
+      <td class="socket-normal">Can&#x27;t send after socket shutdown</td>
+      <td class="socket-normal">Can&#x27;t send after socket shutdown</td>
+      <td class="socket-normal">Can&#x27;t send after socket shutdown</td>
+      <td class="socket-normal">Can&#x27;t send after socket shutdown</td>
+      <td class="socket-normal">Can&#x27;t send after socket shutdown</td>
+      <td class="socket-normal">Can&#x27;t send after socket shutdown</td>
       <td class="socket-abnormal">Cannot send after transport endpoint shutdown</td>
-      <td class="socket-normal">Can&#39;t send after socket shutdown</td>
+      <td class="socket-normal">Can&#x27;t send after socket shutdown</td>
       <td class="socket-abnormal">a write call to a shutdown connection</td>
       <td class="socket-abnormal">Cannot send after transport endpoint shutdown</td>
       <td class="socket-abnormal">Cannot send after transport endpoint shutdown</td>
@@ -48399,17 +48399,17 @@
   </tr>
   <tr>
     <th align="left">ETOOMANYREFS</th>
-      <td class="socket-normal">Too many references: can&#39;t splice</td>
+      <td class="socket-normal">Too many references: can&#x27;t splice</td>
       <td class="socket-abnormal">Too many references: cannot splice</td>
-      <td class="socket-normal">Too many references: can&#39;t splice</td>
-      <td class="socket-normal">Too many references: can&#39;t splice</td>
-      <td class="socket-normal">Too many references: can&#39;t splice</td>
-      <td class="socket-normal">Too many references: can&#39;t splice</td>
-      <td class="socket-normal">Too many references: can&#39;t splice</td>
-      <td class="socket-normal">Too many references: can&#39;t splice</td>
+      <td class="socket-normal">Too many references: can&#x27;t splice</td>
+      <td class="socket-normal">Too many references: can&#x27;t splice</td>
+      <td class="socket-normal">Too many references: can&#x27;t splice</td>
+      <td class="socket-normal">Too many references: can&#x27;t splice</td>
+      <td class="socket-normal">Too many references: can&#x27;t splice</td>
+      <td class="socket-normal">Too many references: can&#x27;t splice</td>
       <td class="socket-abnormal">Too many references: cannot splice</td>
       <td class="socket-none"></td>
-      <td class="socket-normal">Too many references: can&#39;t splice</td>
+      <td class="socket-normal">Too many references: can&#x27;t splice</td>
       <td class="socket-abnormal">Too many references: cannot splice</td>
       <td class="socket-abnormal">Too many references: cannot splice</td>
       <td class="socket-abnormal">Too many references: cannot splice</td>
@@ -50640,7 +50640,7 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-normal">Can&#39;t send message to self</td>
+      <td class="socket-normal">Can&#x27;t send message to self</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>

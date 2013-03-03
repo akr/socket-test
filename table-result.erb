@@ -501,18 +501,6 @@ end
 
 <h1>Unix domain socket behavior comparison</h1>
 
-<h2>contents</h2>
-<ul>
-% if uname_results
-  <li><a href="#uname">uname</a></li>
-% end
-% command_list.each {|command|
-%   action_os_result = command_action_os_result[command]
-%   frag = command2fragment(command)
-  <li><a href="#<%= h(u(frag)) %>"><%=h command %></a></li>
-% }
-</ul>
-
 % if uname_results
 <h2><a name="uname">uname</a></h2>
 <table border>
@@ -523,6 +511,16 @@ end
 %   }
 </table>
 % end
+
+<h2>contents</h2>
+
+<ul>
+% command_list.each {|command|
+%   action_os_result = command_action_os_result[command]
+%   frag = command2fragment(command)
+  <li><a href="#<%= h(u(frag)) %>"><%=h command %></a></li>
+% }
+</ul>
 
 % command_list.each {|command|
 %   action_os_result = command_action_os_result[command]
