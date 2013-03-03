@@ -1886,7 +1886,7 @@ bind(client): EINVAL
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\00001c" (6 bytes)
+getsockname(server)   -> "\000020" (6 bytes)
 ./unix-stream -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -1913,7 +1913,7 @@ bind(server): EADDRINUSE
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\00001d" (6 bytes)
+getsockname(server)   -> "\000021" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
@@ -4072,7 +4072,7 @@ bind(client): EINVAL
 ./unix-dgram -s ''    
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\00001e" (6 bytes)
+getsockname(server)   -> "\000022" (6 bytes)
 ./unix-dgram -s '.'   
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -4096,7 +4096,7 @@ bind(server): EADDRINUSE
 ./unix-dgram -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\00001f" (6 bytes)
+getsockname(server)   -> "\000023" (6 bytes)
 ./unix-dgram '\0abc' '\0abc' 'bar'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
