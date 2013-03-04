@@ -26,6 +26,8 @@
 
 exec 2>&1
 
+UNAME="`uname -srvm`"
+
 cat <<'End' | sh -sv
 ./unix-dgram 'foo\0' 'foo\0' 'bar\0'
 ./unix-dgram 'foo' 'foo\0' 'bar\0'
@@ -73,11 +75,19 @@ cat <<End | sh -sv
 ./unix-dgram -p '01234567890' '01234567890' 'bar'
 End
 
+case "$UNAME" in
+MirBSD*) : ;;
+*)
 cat <<End | sh -sv
 ./unix-dgram -g2048 -p '01234567890' '01234567890' 'bar'
 ./unix-dgram -g2048 -p 'foo' 'foo' '01234567890'
 End
+;;
+esac
 
+case "$UNAME" in
+MirBSD*) : ;;
+*)
 for n in \
   115 116 117 118 119 \
   120 121 122 123 124 125 126 127 128 129 \
@@ -88,7 +98,12 @@ do
 ./unix-dgram -g255 '($n*"./")ab' '($n*"./")ab' 'bar'
 End
 done
+;;
+esac
 
+case "$UNAME" in
+MirBSD*) : ;;
+*)
 for n in \
   510 511 512 513 514 515 516 517 518 519
 do
@@ -97,6 +112,8 @@ do
 ./unix-dgram -g1026 '($n*"./")ab' '($n*"./")ab' 'bar'
 End
 done
+;;
+esac
 
 cat <<End | sh -sv
 ./unix-dgram 'foo' 'foo' '(125*"./")ab'
@@ -105,10 +122,15 @@ cat <<End | sh -sv
 ./unix-dgram 'foo' 'foo' '(511*"./")ab'
 End
 
+case "$UNAME" in
+MirBSD*) : ;;
+*)
 cat <<End | sh -sv
 ./unix-dgram -g255 'foo' 'foo' '(125*"./")ab'
 ./unix-dgram -g1026 'foo' 'foo' '(511*"./")a'
 End
+;;
+esac
 
 cat <<End | sh -sv
 ./unix-dgram -s ''
