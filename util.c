@@ -828,6 +828,56 @@ void perrsym(const char *s)
     fprintf(stderr, "%s%serrno=%d\n", s, sep, err);
 }
 
+static int intcmp(const void *vp1, const void *vp2)
+{
+  const int *ip1 =vp1;
+  const int *ip2 =vp2;
+  if (*ip1 < *ip2)
+    return -1;
+  if (*ip1 > *ip2)
+    return 1;
+  return 0;
+}
+
+void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg)
+{
+  static int *errno_ary = NULL;
+
+  int guess_lo, guess_hi;
+  int i;
+  int first;
+  int errcand;
+
+  if (errno_ary == NULL) {
+    errno_ary = xmalloc(sizeof(int) * num_errno);
+    for (i = 0; i < num_errno; i++)
+      errno_ary[i] = internal_errno_to_name[i].num;
+    qsort(errno_ary, sizeof(errno_ary)/sizeof(int), sizeof(int), intcmp);
+  }
+
+  first = 1;
+  errcand = 0;
+  for (i = 0; i < (int)(sizeof(errno_ary)/sizeof(int)); i++) {
+    guess_lo = errno_ary[i] < INT_MIN+100 ? INT_MIN : errno_ary[i]-100;
+    guess_hi = INT_MAX-100 < errno_ary[i] ? INT_MAX : errno_ary[i]+100;
+
+    if (first) {
+      errcand = guess_lo;
+      first = 0;
+    }
+    else {
+      if (errcand < guess_lo)
+        errcand = guess_lo;
+    }
+    while (errcand <= guess_hi) {
+      if (errcand != 0)
+        func(errcand, arg);
+      errcand++;
+    }
+  }
+}
+
+
 static void *constant_int2name_func(char *name, int val, void *arg)
 {
   int arg_value = *(int *)arg;
