@@ -2074,8 +2074,6 @@ sendto(server)        <- "(sun_len=3)\0" (1 bytes)
 sendto(server): ENOENT
 
 
-uname -mrsv
-GNU 0.3 GNU-Mach 1.3.99-486/Hurd-0.3 i686-AT386
 ./size
 sockaddr.size =                            16
 sockaddr.sa_len.size =                     1
