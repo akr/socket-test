@@ -27,7 +27,6 @@
 exec 2>&1
 set -v
 
-uname -mrsv
 ./size
 ./const
 ./errmsg
