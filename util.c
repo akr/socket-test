@@ -559,17 +559,6 @@ static void report_sockaddr_to_kernel(char *key, struct sockaddr_un *sockaddr_pt
   buffer_free(buf);
 }
 
-static void report_sockaddr_from_kernel(char *key, size_t buf_len, struct sockaddr_un *sockaddr_ptr, size_t sockaddr_len, int opt_4)
-{
-  buffer_t *buf = buffer_new(30);
-  buffer_addf(buf, "%-21s -> ", key);
-  buffer_add_sockaddr(buf, (struct sockaddr *)sockaddr_ptr, sockaddr_len, buf_len, opt_4);
-  buffer_add_byte(buf, '\n');
-  buffer_terminate_byte(buf, '\0');
-  fputs(buf->ptr, stdout);
-  buffer_free(buf);
-}
-
 #define CANARY_STR "???????"
 #define CANARY_LEN 8
 
@@ -645,20 +634,24 @@ void after_sockaddr_get_report(sockaddr_get_t *sockaddr_get, int get_succeed, in
   char *p = (char *)addr;
   char *q;
   if (get_succeed) {
-    report_sockaddr_from_kernel(key, buflen, (struct sockaddr_un *)addr, len, sockaddr_get->opt_4);
+    buffer_t *buf = buffer_new(30);
+    buffer_addf(buf, "%-21s -> ", key);
+    buffer_add_sockaddr(buf, (struct sockaddr *)addr, len, buflen, sockaddr_get->opt_4);
     for (q = p + buflen - 1; p + len <= q; q--)
       if (*q != '?') {
         char *c0 = quote_string(NULL, p + len, q - (p + len) + 1);
-        fprintf(stderr, "%s : remaining buffer modified.  %s\n", key, c0);
+        buffer_addf(buf, " rest:%s\n", c0);
         break;
       }
     if (memcmp(p+buflen, CANARY_STR, CANARY_LEN) != 0) {
-      char *c1 = quote_string(NULL, CANARY_STR, CANARY_LEN);
       char *c2 = quote_string(NULL, p+buflen, CANARY_LEN);
-      fprintf(stderr, "%s : canary modified.  %s -> %s\n", key, c1, c2);
-      free(c1);
+      buffer_addf(buf, " canary:%s\n", c2);
       free(c2);
     }
+    buffer_add_byte(buf, '\n');
+    buffer_terminate_byte(buf, '\0');
+    fputs(buf->ptr, stdout);
+    buffer_free(buf);
   }
   else {
     perrsym(key);
