@@ -124,3 +124,7 @@ extern const int num_errno;
 
 string_integer_pair_t *get_name_to_errno(void);
 string_integer_pair_t *get_errno_to_name(void);
+
+extern const string_integer_pair_t internal_constant_val_to_name[];
+extern const int num_constants;
+

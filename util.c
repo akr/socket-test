@@ -877,6 +877,19 @@ void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg)
   }
 }
 
+int constant_name2int(char *name, int *ret)
+{
+  int i;
+  for (i = 0; i < num_constants; i++) {
+    const string_integer_pair_t *pair = &internal_constant_val_to_name[i];
+    if (INT_MIN <= pair->num && pair->num <= INT_MAX &&
+        strcmp(pair->str, name) == 0) {
+      *ret = pair->num;
+    return 0;
+    }
+  }
+  return -1;
+}
 
 static void *constant_int2name_func(char *name, int val, void *arg)
 {

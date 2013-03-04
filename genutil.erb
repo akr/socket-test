@@ -59,18 +59,16 @@ const int num_errno = sizeof(internal_errno_to_name) / sizeof(*internal_errno_to
   ]
 %>
 
-int constant_name2int(char *name, int *ret)
-{
-% constants.each {|str|
-#ifdef <%= str %>
-  if (sizeof(<%= str %>) <= sizeof(int) && strcmp("<%= str %>", name) == 0) {
-    *ret = <%= str %>;
-    return 0;
-  }
+const string_integer_pair_t internal_constant_val_to_name[] = {
+% constants.each {|sym|
+#ifdef <%= sym %>
+  { "<%= sym %>", <%= sym %> },
 #endif
 % }
-  return -1;
-}
+  { NULL, 0 }
+};
+
+const int num_constants = sizeof(internal_constant_val_to_name) / sizeof(*internal_constant_val_to_name) - 1;
 
 void *constant_search_names(char *prefix, void *(*func)(char *name, int val, void *arg), void *arg)
 {

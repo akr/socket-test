@@ -1058,238 +1058,125 @@ const int num_errno = sizeof(internal_errno_to_name) / sizeof(*internal_errno_to
 
 
 
-int constant_name2int(char *name, int *ret)
-{
+const string_integer_pair_t internal_constant_val_to_name[] = {
 #ifdef AF_INET
-  if (sizeof(AF_INET) <= sizeof(int) && strcmp("AF_INET", name) == 0) {
-    *ret = AF_INET;
-    return 0;
-  }
+  { "AF_INET", AF_INET },
 #endif
 #ifdef AF_INET6
-  if (sizeof(AF_INET6) <= sizeof(int) && strcmp("AF_INET6", name) == 0) {
-    *ret = AF_INET6;
-    return 0;
-  }
+  { "AF_INET6", AF_INET6 },
 #endif
 #ifdef AF_UNIX
-  if (sizeof(AF_UNIX) <= sizeof(int) && strcmp("AF_UNIX", name) == 0) {
-    *ret = AF_UNIX;
-    return 0;
-  }
+  { "AF_UNIX", AF_UNIX },
 #endif
 #ifdef AF_UNSPEC
-  if (sizeof(AF_UNSPEC) <= sizeof(int) && strcmp("AF_UNSPEC", name) == 0) {
-    *ret = AF_UNSPEC;
-    return 0;
-  }
+  { "AF_UNSPEC", AF_UNSPEC },
 #endif
 #ifdef SOCK_DGRAM
-  if (sizeof(SOCK_DGRAM) <= sizeof(int) && strcmp("SOCK_DGRAM", name) == 0) {
-    *ret = SOCK_DGRAM;
-    return 0;
-  }
+  { "SOCK_DGRAM", SOCK_DGRAM },
 #endif
 #ifdef SOCK_RAW
-  if (sizeof(SOCK_RAW) <= sizeof(int) && strcmp("SOCK_RAW", name) == 0) {
-    *ret = SOCK_RAW;
-    return 0;
-  }
+  { "SOCK_RAW", SOCK_RAW },
 #endif
 #ifdef SOCK_SEQPACKET
-  if (sizeof(SOCK_SEQPACKET) <= sizeof(int) && strcmp("SOCK_SEQPACKET", name) == 0) {
-    *ret = SOCK_SEQPACKET;
-    return 0;
-  }
+  { "SOCK_SEQPACKET", SOCK_SEQPACKET },
 #endif
 #ifdef SOCK_STREAM
-  if (sizeof(SOCK_STREAM) <= sizeof(int) && strcmp("SOCK_STREAM", name) == 0) {
-    *ret = SOCK_STREAM;
-    return 0;
-  }
+  { "SOCK_STREAM", SOCK_STREAM },
 #endif
 #ifdef SHUT_RD
-  if (sizeof(SHUT_RD) <= sizeof(int) && strcmp("SHUT_RD", name) == 0) {
-    *ret = SHUT_RD;
-    return 0;
-  }
+  { "SHUT_RD", SHUT_RD },
 #endif
 #ifdef SHUT_RDWR
-  if (sizeof(SHUT_RDWR) <= sizeof(int) && strcmp("SHUT_RDWR", name) == 0) {
-    *ret = SHUT_RDWR;
-    return 0;
-  }
+  { "SHUT_RDWR", SHUT_RDWR },
 #endif
 #ifdef SHUT_WR
-  if (sizeof(SHUT_WR) <= sizeof(int) && strcmp("SHUT_WR", name) == 0) {
-    *ret = SHUT_WR;
-    return 0;
-  }
+  { "SHUT_WR", SHUT_WR },
 #endif
 #ifdef MSG_CTRUNC
-  if (sizeof(MSG_CTRUNC) <= sizeof(int) && strcmp("MSG_CTRUNC", name) == 0) {
-    *ret = MSG_CTRUNC;
-    return 0;
-  }
+  { "MSG_CTRUNC", MSG_CTRUNC },
 #endif
 #ifdef MSG_DONTROUTE
-  if (sizeof(MSG_DONTROUTE) <= sizeof(int) && strcmp("MSG_DONTROUTE", name) == 0) {
-    *ret = MSG_DONTROUTE;
-    return 0;
-  }
+  { "MSG_DONTROUTE", MSG_DONTROUTE },
 #endif
 #ifdef MSG_EOR
-  if (sizeof(MSG_EOR) <= sizeof(int) && strcmp("MSG_EOR", name) == 0) {
-    *ret = MSG_EOR;
-    return 0;
-  }
+  { "MSG_EOR", MSG_EOR },
 #endif
 #ifdef MSG_OOB
-  if (sizeof(MSG_OOB) <= sizeof(int) && strcmp("MSG_OOB", name) == 0) {
-    *ret = MSG_OOB;
-    return 0;
-  }
+  { "MSG_OOB", MSG_OOB },
 #endif
 #ifdef MSG_NOSIGNAL
-  if (sizeof(MSG_NOSIGNAL) <= sizeof(int) && strcmp("MSG_NOSIGNAL", name) == 0) {
-    *ret = MSG_NOSIGNAL;
-    return 0;
-  }
+  { "MSG_NOSIGNAL", MSG_NOSIGNAL },
 #endif
 #ifdef MSG_PEEK
-  if (sizeof(MSG_PEEK) <= sizeof(int) && strcmp("MSG_PEEK", name) == 0) {
-    *ret = MSG_PEEK;
-    return 0;
-  }
+  { "MSG_PEEK", MSG_PEEK },
 #endif
 #ifdef MSG_TRUNC
-  if (sizeof(MSG_TRUNC) <= sizeof(int) && strcmp("MSG_TRUNC", name) == 0) {
-    *ret = MSG_TRUNC;
-    return 0;
-  }
+  { "MSG_TRUNC", MSG_TRUNC },
 #endif
 #ifdef MSG_WAITALL
-  if (sizeof(MSG_WAITALL) <= sizeof(int) && strcmp("MSG_WAITALL", name) == 0) {
-    *ret = MSG_WAITALL;
-    return 0;
-  }
+  { "MSG_WAITALL", MSG_WAITALL },
 #endif
 #ifdef SOL_SOCKET
-  if (sizeof(SOL_SOCKET) <= sizeof(int) && strcmp("SOL_SOCKET", name) == 0) {
-    *ret = SOL_SOCKET;
-    return 0;
-  }
+  { "SOL_SOCKET", SOL_SOCKET },
 #endif
 #ifdef SO_ACCEPTCONN
-  if (sizeof(SO_ACCEPTCONN) <= sizeof(int) && strcmp("SO_ACCEPTCONN", name) == 0) {
-    *ret = SO_ACCEPTCONN;
-    return 0;
-  }
+  { "SO_ACCEPTCONN", SO_ACCEPTCONN },
 #endif
 #ifdef SO_BROADCAST
-  if (sizeof(SO_BROADCAST) <= sizeof(int) && strcmp("SO_BROADCAST", name) == 0) {
-    *ret = SO_BROADCAST;
-    return 0;
-  }
+  { "SO_BROADCAST", SO_BROADCAST },
 #endif
 #ifdef SO_DEBUG
-  if (sizeof(SO_DEBUG) <= sizeof(int) && strcmp("SO_DEBUG", name) == 0) {
-    *ret = SO_DEBUG;
-    return 0;
-  }
+  { "SO_DEBUG", SO_DEBUG },
 #endif
 #ifdef SO_DONTROUTE
-  if (sizeof(SO_DONTROUTE) <= sizeof(int) && strcmp("SO_DONTROUTE", name) == 0) {
-    *ret = SO_DONTROUTE;
-    return 0;
-  }
+  { "SO_DONTROUTE", SO_DONTROUTE },
 #endif
 #ifdef SO_ERROR
-  if (sizeof(SO_ERROR) <= sizeof(int) && strcmp("SO_ERROR", name) == 0) {
-    *ret = SO_ERROR;
-    return 0;
-  }
+  { "SO_ERROR", SO_ERROR },
 #endif
 #ifdef SO_KEEPALIVE
-  if (sizeof(SO_KEEPALIVE) <= sizeof(int) && strcmp("SO_KEEPALIVE", name) == 0) {
-    *ret = SO_KEEPALIVE;
-    return 0;
-  }
+  { "SO_KEEPALIVE", SO_KEEPALIVE },
 #endif
 #ifdef SO_LINGER
-  if (sizeof(SO_LINGER) <= sizeof(int) && strcmp("SO_LINGER", name) == 0) {
-    *ret = SO_LINGER;
-    return 0;
-  }
+  { "SO_LINGER", SO_LINGER },
 #endif
 #ifdef SO_OOBINLINE
-  if (sizeof(SO_OOBINLINE) <= sizeof(int) && strcmp("SO_OOBINLINE", name) == 0) {
-    *ret = SO_OOBINLINE;
-    return 0;
-  }
+  { "SO_OOBINLINE", SO_OOBINLINE },
 #endif
 #ifdef SO_RCVBUF
-  if (sizeof(SO_RCVBUF) <= sizeof(int) && strcmp("SO_RCVBUF", name) == 0) {
-    *ret = SO_RCVBUF;
-    return 0;
-  }
+  { "SO_RCVBUF", SO_RCVBUF },
 #endif
 #ifdef SO_RCVLOWAT
-  if (sizeof(SO_RCVLOWAT) <= sizeof(int) && strcmp("SO_RCVLOWAT", name) == 0) {
-    *ret = SO_RCVLOWAT;
-    return 0;
-  }
+  { "SO_RCVLOWAT", SO_RCVLOWAT },
 #endif
 #ifdef SO_RCVTIMEO
-  if (sizeof(SO_RCVTIMEO) <= sizeof(int) && strcmp("SO_RCVTIMEO", name) == 0) {
-    *ret = SO_RCVTIMEO;
-    return 0;
-  }
+  { "SO_RCVTIMEO", SO_RCVTIMEO },
 #endif
 #ifdef SO_REUSEADDR
-  if (sizeof(SO_REUSEADDR) <= sizeof(int) && strcmp("SO_REUSEADDR", name) == 0) {
-    *ret = SO_REUSEADDR;
-    return 0;
-  }
+  { "SO_REUSEADDR", SO_REUSEADDR },
 #endif
 #ifdef SO_SNDBUF
-  if (sizeof(SO_SNDBUF) <= sizeof(int) && strcmp("SO_SNDBUF", name) == 0) {
-    *ret = SO_SNDBUF;
-    return 0;
-  }
+  { "SO_SNDBUF", SO_SNDBUF },
 #endif
 #ifdef SO_SNDLOWAT
-  if (sizeof(SO_SNDLOWAT) <= sizeof(int) && strcmp("SO_SNDLOWAT", name) == 0) {
-    *ret = SO_SNDLOWAT;
-    return 0;
-  }
+  { "SO_SNDLOWAT", SO_SNDLOWAT },
 #endif
 #ifdef SO_SNDTIMEO
-  if (sizeof(SO_SNDTIMEO) <= sizeof(int) && strcmp("SO_SNDTIMEO", name) == 0) {
-    *ret = SO_SNDTIMEO;
-    return 0;
-  }
+  { "SO_SNDTIMEO", SO_SNDTIMEO },
 #endif
 #ifdef SO_TYPE
-  if (sizeof(SO_TYPE) <= sizeof(int) && strcmp("SO_TYPE", name) == 0) {
-    *ret = SO_TYPE;
-    return 0;
-  }
+  { "SO_TYPE", SO_TYPE },
 #endif
 #ifdef SCM_RIGHTS
-  if (sizeof(SCM_RIGHTS) <= sizeof(int) && strcmp("SCM_RIGHTS", name) == 0) {
-    *ret = SCM_RIGHTS;
-    return 0;
-  }
+  { "SCM_RIGHTS", SCM_RIGHTS },
 #endif
 #ifdef SOMAXCONN
-  if (sizeof(SOMAXCONN) <= sizeof(int) && strcmp("SOMAXCONN", name) == 0) {
-    *ret = SOMAXCONN;
-    return 0;
-  }
+  { "SOMAXCONN", SOMAXCONN },
 #endif
-  return -1;
-}
+  { NULL, 0 }
+};
+
+const int num_constants = sizeof(internal_constant_val_to_name) / sizeof(*internal_constant_val_to_name) - 1;
 
 void *constant_search_names(char *prefix, void *(*func)(char *name, int val, void *arg), void *arg)
 {
