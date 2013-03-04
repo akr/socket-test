@@ -643,8 +643,15 @@ void after_sockaddr_get_report(sockaddr_get_t *sockaddr_get, int get_succeed, in
   struct sockaddr *addr = sockaddr_get->addr;
   socklen_t len = sockaddr_get->len;
   char *p = (char *)addr;
+  char *q;
   if (get_succeed) {
     report_sockaddr_from_kernel(key, buflen, (struct sockaddr_un *)addr, len, sockaddr_get->opt_4);
+    for (q = p + buflen - 1; p + len <= q; q--)
+      if (*q != '?') {
+        char *c0 = quote_string(NULL, p + len, q - (p + len) + 1);
+        fprintf(stderr, "%s : remaining buffer modified.  %s\n", key, c0);
+        break;
+      }
     if (memcmp(p+buflen, CANARY_STR, CANARY_LEN) != 0) {
       char *c1 = quote_string(NULL, CANARY_STR, CANARY_LEN);
       char *c2 = quote_string(NULL, p+buflen, CANARY_LEN);
