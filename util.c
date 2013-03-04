@@ -891,6 +891,22 @@ int constant_name2int(char *name, int *ret)
   return -1;
 }
 
+void *constant_search_names(char *prefix, void *(*func)(char *name, int val, void *arg), void *arg)
+{
+  size_t prefixlen = strlen(prefix);
+  int i;
+  for (i = 0; i < num_constants; i++) {
+    const string_integer_pair_t *pair = &internal_constant_val_to_name[i];
+    if (INT_MIN <= pair->num && pair->num <= INT_MAX &&
+        strncmp(pair->str, prefix, prefixlen) == 0) {
+      void *ret = func(pair->str, pair->num, arg);
+      if (ret)
+        return ret;
+    }
+  }
+  return NULL;
+}
+
 static void *constant_int2name_func(char *name, int val, void *arg)
 {
   int arg_value = *(int *)arg;

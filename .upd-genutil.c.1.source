@@ -70,17 +70,3 @@ const string_integer_pair_t internal_constant_val_to_name[] = {
 
 const int num_constants = sizeof(internal_constant_val_to_name) / sizeof(*internal_constant_val_to_name) - 1;
 
-void *constant_search_names(char *prefix, void *(*func)(char *name, int val, void *arg), void *arg)
-{
-  size_t prefixlen = strlen(prefix);
-% constants.sort.each {|str|
-#ifdef <%= str %>
-  if (sizeof(<%= str %>) <= sizeof(int) && strncmp("<%= str %>", prefix, prefixlen) == 0) {
-    void *ret = func("<%= str %>", <%= str %>, arg);
-    if (ret)
-      return ret;
-  }
-#endif
-% }
-  return NULL;
-}
