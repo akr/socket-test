@@ -30,7 +30,7 @@
 
 #include "sockettest.h"
 
-string_integer_pair_t internal_errno_to_name[] = {
+const string_integer_pair_t internal_errno_to_name[] = {
 #ifdef EAGAIN
   { "EAGAIN", EAGAIN },
 #endif
@@ -1054,7 +1054,7 @@ string_integer_pair_t internal_errno_to_name[] = {
   { NULL, 0 }
 };
 
-int num_errno = sizeof(internal_errno_to_name) / sizeof(*internal_errno_to_name) - 1;
+const int num_errno = sizeof(internal_errno_to_name) / sizeof(*internal_errno_to_name) - 1;
 
 
 
