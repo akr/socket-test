@@ -803,6 +803,16 @@ void rmchtmpdir(char *tmpdir)
   }
 }
 
+char *errsym(int err)
+{
+  int i;
+  for (i = 0; i < num_errno; i++) {
+    if (err == internal_errno_to_name[i].num)
+      return internal_errno_to_name[i].str;
+  }
+  return NULL;
+}
+
 void perrsym(const char *s)
 {
   int err = errno;

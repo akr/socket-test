@@ -32,15 +32,16 @@
 
 #include "sockettest.h"
 
-char *errsym(int err)
-{
+string_integer_pair_t internal_errno_to_name[] = {
 % errno_list.each {|sym|
 #ifdef <%= sym %>
-  if (err == <%= sym %>) { return "<%= sym %>"; } else
+  { "<%= sym %>", <%= sym %> },
 #endif
 % }
-  return NULL;
-}
+  { NULL, 0 }
+};
+
+int num_errno = sizeof(internal_errno_to_name) / sizeof(*internal_errno_to_name) - 1;
 
 static int intcmp(const void *vp1, const void *vp2)
 {

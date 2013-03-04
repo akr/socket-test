@@ -108,14 +108,14 @@ size: size.o link.sh
 const: const.o link.sh
 	sh ./link.sh const.o -o $@
 
-errmsg: errmsg.o genutil.o link.sh
-	sh ./link.sh errmsg.o genutil.o -o $@
+errmsg: errmsg.o $(UTILOBJS) link.sh
+	sh ./link.sh errmsg.o $(UTILOBJS) -o $@
 
 errnum: errnum.o link.sh
 	sh ./link.sh errnum.o -o $@
 
-errtest: errtest.o genutil.o link.sh
-	sh ./link.sh errtest.o genutil.o -o $@
+errtest: errtest.o $(UTILOBJS) link.sh
+	sh ./link.sh errtest.o $(UTILOBJS) -o $@
 
 unix-stream: unix-stream.o $(UTILOBJS) link.sh
 	sh ./link.sh unix-stream.o $(UTILOBJS) -o $@
