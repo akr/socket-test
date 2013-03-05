@@ -104,19 +104,31 @@ End
 
 #ifdef PRIuMAX
 #  define SHOW_POSITIVE_INTEGER(name, num) \
-     printf("%s = %"PRIuMAX" (%d bytes)\n", name, (uintmax_t)num, (int)sizeof(num))
+     printf("%"PRIuMAX, (uintmax_t)num)
 #else
 #  define SHOW_POSITIVE_INTEGER(name, num) \
-     printf("%s = %lu (%d bytes)\n", name, (unsigned long)num, (int)sizeof(num))
+     printf("%lu", (unsigned long)num)
 #endif
 
 #ifdef PRIdMAX
 #  define SHOW_NEGATIVE_INTEGER(name, num) \
-     printf("%s = %"PRIdMAX" (%d bytes)\n", name, (intmax_t)num, (int)sizeof(num))
+     printf("%"PRIdMAX, (intmax_t)num)
 #else
 #  define SHOW_POSITIVE_INTEGER(name, num) \
-     printf("%s = %ld (%d bytes)\n", name, (long)num, (int)sizeof(num))
+     printf("%ld", (long)num)
 #endif
+
+#define SHOW_INTEGER(name, num) \
+  do { \
+     printf("%s = ", name); \
+    if (0 < num) \
+      SHOW_POSITIVE_INTEGER(name, num); \
+    else \
+      SHOW_NEGATIVE_INTEGER(name, num); \
+    if (sizeof(num) != sizeof(int)) \
+      printf(" (%d bytes)", (int)sizeof(num)); \
+    printf("\n"); \
+  } while (0)
 
 int main(int argc, char *argv[])
 {
@@ -125,10 +137,7 @@ int main(int argc, char *argv[])
 
 % integer_const_list.each_line {|sym| sym.chomp!
 #ifdef <%= sym %>
-  if (0 < <%= sym %>)
-    SHOW_POSITIVE_INTEGER("<%= sym %>", <%= sym %>);
-  else
-    SHOW_NEGATIVE_INTEGER("<%= sym %>", <%= sym %>);
+  SHOW_INTEGER("<%= sym %>", <%= sym %>);
 #endif
 % }
 
