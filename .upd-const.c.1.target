@@ -53,7 +53,9 @@
       SHOW_POSITIVE_INTEGER(name, num); \
     else \
       SHOW_NEGATIVE_INTEGER(name, num); \
-    printf(" (%d bytes)\n", (int)sizeof(num)); \
+    if (sizeof(num) != sizeof(int)) \
+      printf(" (%d bytes)", (int)sizeof(num)); \
+    printf("\n"); \
   } while (0)
 
 int main(int argc, char *argv[])
