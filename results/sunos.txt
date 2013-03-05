@@ -1,6 +1,6 @@
 uname -mrsv
-
 SunOS 5.11 oi_151a7 i86pc
+
 ./unix-stream 'foo\0' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
@@ -36,7 +36,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream 'foo\0' './foo\0'
-
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -46,6 +45,7 @@ getpeername(client)   -> "./foo\0" (6 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
+
 ./unix-stream 'foo\0hoge' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
@@ -83,7 +83,6 @@ accept                -> "bar\0moga" (8 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "bar\0moga" (8 bytes)
 ./unix-stream 'foo\0hoge' './foo\0fuga' 'bar\0moga'
-
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0hoge" (8 bytes)
@@ -206,7 +205,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(49*"./")a\0" (100 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(49*"./")ab\0'
-
 bind(server)          <- "(49*"./")ab\0" (101 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")ab\0" (101 bytes)
@@ -407,7 +405,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(54*"./")"... (120 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(59*"./")ab\0'
-
 bind(server)          <- "(59*"./")ab\0" (121 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(54*"./")"... (121 bytes)
@@ -608,7 +605,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(54*"./")"... (140 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(69*"./")ab\0'
-
 bind(server)          <- "(69*"./")ab\0" (141 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(54*"./")"... (141 bytes)
@@ -809,7 +805,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(54*"./")"... (260 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(129*"./")ab\0'
-
 bind(server)          <- "(129*"./")ab\0" (261 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(54*"./")"... (261 bytes)
@@ -1010,7 +1005,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(54*"./")"... (520 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(259*"./")ab\0'
-
 bind(server)          <- "(259*"./")ab\0" (521 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(54*"./")"... (521 bytes)
@@ -1099,7 +1093,6 @@ bind(server): ENAMETOOLONG
 bind(server)          <- "(519*"./")a\0" (1040 bytes)
 bind(server): ENAMETOOLONG
 ./unix-stream '(519*"./")ab\0'
-
 bind(server)          <- "(519*"./")ab\0" (1041 bytes)
 bind(server): ENAMETOOLONG
 ./unix-stream '(90*"c")\0'
@@ -1193,7 +1186,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(98*"c")\0" (99 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(99*"c")\0'
-
 bind(server)          <- "(99*"c")\0" (100 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(99*"c")\0" (100 bytes)
@@ -1294,7 +1286,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(108*"c")"... (109 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(109*"c")\0'
-
 bind(server)          <- "(109*"c")\0" (110 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(108*"c")"... (110 bytes)
@@ -1395,7 +1386,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(108*"c")"... (119 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(119*"c")\0'
-
 bind(server)          <- "(119*"c")\0" (120 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(108*"c")"... (120 bytes)
@@ -1496,7 +1486,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(108*"c")"... (129 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(129*"c")\0'
-
 bind(server)          <- "(129*"c")\0" (130 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(108*"c")"... (130 bytes)
@@ -1576,7 +1565,6 @@ bind(server): ENAMETOOLONG
 bind(server)          <- "(258*"c")\0" (259 bytes)
 bind(server): ENAMETOOLONG
 ./unix-stream '(259*"c")\0'
-
 bind(server)          <- "(259*"c")\0" (260 bytes)
 bind(server): ENAMETOOLONG
 ./unix-stream -p '01234567\0'
@@ -1610,7 +1598,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(49*"./")0123456789"... (109 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream -p '01234567890\0'
-
 bind(server)          <- "(49*"./")01234567890\0" (110 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")0123456789"... (110 bytes)
@@ -1620,6 +1607,7 @@ getpeername(client)   -> "(49*"./")0123456789"... (110 bytes)
 accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(49*"./")0123456789"... (110 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
+
 ./unix-stream -g2048 -p '01234567890\0'
 bind(server)          <- "(49*"./")01234567890\0" (110 bytes)
 socket file (server)  : exist
@@ -1631,7 +1619,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(49*"./")01234567890\0" (110 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
-
 bind(server)          <- "(49*"./")foo\0" (102 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")foo\0" (102 bytes)
@@ -1643,6 +1630,7 @@ getpeername(client)   -> "(49*"./")foo\0" (102 bytes)
 accept                -> "(49*"./")01234567890\0" (110 bytes)
 getsockname(accepted) -> "(49*"./")foo\0" (102 bytes)
 getpeername(accepted) -> "(49*"./")01234567890\0" (110 bytes)
+
 ./unix-stream -g255 '(125*"./")ab\0' 
 bind(server)          <- "(125*"./")ab\0" (253 bytes)
 socket file (server)  : exist
@@ -1700,7 +1688,6 @@ accept                -> "(125*"./")ab\0" (253 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "(125*"./")ab\0" (253 bytes)
 ./unix-stream -g1026 'foo\0' 'foo\0' '(511*"./")a\0'
-
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -1712,6 +1699,7 @@ getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "(511*"./")a\0" (1024 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "(511*"./")a\0" (1024 bytes)
+
 ./unix-stream -s '\0'
 bind(server)          <- "\0" (1 bytes)
 bind(server): EISDIR
@@ -1731,8 +1719,6 @@ bind(server): ENOENT
 bind(server)          <- "/etc\0" (5 bytes)
 bind(server): EADDRINUSE
 ./unix-stream -T -s 'README\0'
-
-
 bind(server)          <- "README\0" (7 bytes)
 bind(server): EADDRINUSE
 ./unix-stream 'foo' 'foo' 'bar'
@@ -1770,7 +1756,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream 'foo' './foo'
-
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -1891,7 +1876,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(49*"./")a\0" (100 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(49*"./")ab'
-
 bind(server)          <- "(49*"./")ab" (100 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")ab\0" (101 bytes)
@@ -2092,7 +2076,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(54*"./")"... (120 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(59*"./")ab'
-
 bind(server)          <- "(59*"./")ab" (120 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(54*"./")"... (121 bytes)
@@ -2293,7 +2276,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(54*"./")"... (140 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(69*"./")ab'
-
 bind(server)          <- "(69*"./")ab" (140 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(54*"./")"... (141 bytes)
@@ -2494,7 +2476,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(54*"./")"... (260 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(129*"./")ab'
-
 bind(server)          <- "(129*"./")ab" (260 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(54*"./")"... (261 bytes)
@@ -2695,7 +2676,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(54*"./")"... (520 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(259*"./")ab'
-
 bind(server)          <- "(259*"./")ab" (520 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(54*"./")"... (521 bytes)
@@ -2784,7 +2764,6 @@ bind(server): ENAMETOOLONG
 bind(server)          <- "(519*"./")a" (1039 bytes)
 bind(server): ENAMETOOLONG
 ./unix-stream '(519*"./")ab'
-
 bind(server)          <- "(519*"./")ab" (1040 bytes)
 bind(server): ENAMETOOLONG
 ./unix-stream '(90*"c")'
@@ -2878,7 +2857,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(98*"c")\0" (99 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(99*"c")'
-
 bind(server)          <- "(99*"c")" (99 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(99*"c")\0" (100 bytes)
@@ -2979,7 +2957,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(108*"c")"... (109 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(109*"c")'
-
 bind(server)          <- "(109*"c")" (109 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(108*"c")"... (110 bytes)
@@ -3080,7 +3057,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(108*"c")"... (119 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(119*"c")'
-
 bind(server)          <- "(119*"c")" (119 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(108*"c")"... (120 bytes)
@@ -3181,7 +3157,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(108*"c")"... (129 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream '(129*"c")'
-
 bind(server)          <- "(129*"c")" (129 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(108*"c")"... (130 bytes)
@@ -3261,7 +3236,6 @@ bind(server): ENAMETOOLONG
 bind(server)          <- "(258*"c")" (258 bytes)
 bind(server): ENAMETOOLONG
 ./unix-stream '(259*"c")'
-
 bind(server)          <- "(259*"c")" (259 bytes)
 bind(server): ENAMETOOLONG
 ./unix-stream '(500*"c")'
@@ -3292,7 +3266,6 @@ bind(server): ENAMETOOLONG
 bind(server)          <- "(508*"c")" (508 bytes)
 bind(server): ENAMETOOLONG
 ./unix-stream '(509*"c")'
-
 bind(server)          <- "(509*"c")" (509 bytes)
 bind(server): ENAMETOOLONG
 ./unix-stream '(510*"c")'
@@ -3323,7 +3296,6 @@ bind(server): ENAMETOOLONG
 bind(server)          <- "(518*"c")" (518 bytes)
 bind(server): ENAMETOOLONG
 ./unix-stream '(519*"c")'
-
 bind(server)          <- "(519*"c")" (519 bytes)
 bind(server): ENAMETOOLONG
 ./unix-stream -p '012345678'
@@ -3357,7 +3329,6 @@ accept                -> "(14*"\0")" (14 bytes)
 getsockname(accepted) -> "(49*"./")01234567890\0" (110 bytes)
 getpeername(accepted) -> "(14*"\0")" (14 bytes)
 ./unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890'
-
 bind(server)          <- "(49*"./")foo\0" (102 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")foo\0" (102 bytes)
@@ -3369,6 +3340,7 @@ getpeername(client)   -> "(49*"./")foo\0" (102 bytes)
 accept                -> "(49*"./")01234567890\0" (110 bytes)
 getsockname(accepted) -> "(49*"./")foo\0" (102 bytes)
 getpeername(accepted) -> "(49*"./")01234567890\0" (110 bytes)
+
 ./unix-stream -g255 '(126*"./")a'
 bind(server)          <- "(126*"./")a" (253 bytes)
 socket file (server)  : exist
@@ -3426,7 +3398,6 @@ accept                -> "(126*"./")a"... (254 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "(126*"./")a"... (254 bytes)
 ./unix-stream -g1026 'foo\0' 'foo\0' '(511*"./")a'
-
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -3438,6 +3409,7 @@ getpeername(client)   -> "foo\0" (4 bytes)
 accept                -> "(511*"./")a\0" (1024 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "(511*"./")a\0" (1024 bytes)
+
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 bind(server): EISDIR
