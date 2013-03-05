@@ -27,6 +27,10 @@ AC_INIT(socket-test, 0.1)
 AC_CONFIG_SRCDIR([unix-stream.c])
 AC_CONFIG_HEADERS([config.h])
 
+AC_CANONICAL_BUILD
+AC_CANONICAL_HOST
+AC_CANONICAL_TARGET
+
 # Checks for programs.
 AC_PROG_CC
 
