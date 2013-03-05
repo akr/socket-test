@@ -30,7 +30,7 @@
 
 #include "sockettest.h"
 
-const string_integer_pair_t internal_errno_to_name[] = {
+const integer_constant_t internal_errno_to_name[] = {
 #ifdef EAGAIN
   { "EAGAIN", (uintmax_t)EAGAIN, 0 < EAGAIN },
 #endif
@@ -1058,7 +1058,7 @@ const int num_errno = sizeof(internal_errno_to_name) / sizeof(*internal_errno_to
 
 
 
-const string_integer_pair_t internal_constant_val_to_name[] = {
+const integer_constant_t internal_constant_val_to_name[] = {
 #ifdef AF_INET
   { "AF_INET", AF_INET, 0 <  AF_INET },
 #endif

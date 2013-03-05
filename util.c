@@ -906,7 +906,7 @@ int constant_name2int(char *name, int *ret)
 {
   int i;
   for (i = 0; i < num_constants; i++) {
-    const string_integer_pair_t *pair = &internal_constant_val_to_name[i];
+    const integer_constant_t *pair = &internal_constant_val_to_name[i];
     intmax_t im;
     if (uintmax2intmax(pair->num, pair->positive_p, &im) == 0 &&
         INT_MIN <= im && im <= INT_MAX &&
@@ -923,7 +923,7 @@ void *constant_search_names(char *prefix, void *(*func)(char *name, int val, voi
   size_t prefixlen = strlen(prefix);
   int i;
   for (i = 0; i < num_constants; i++) {
-    const string_integer_pair_t *pair = &internal_constant_val_to_name[i];
+    const integer_constant_t *pair = &internal_constant_val_to_name[i];
     intmax_t im;
     if (uintmax2intmax(pair->num, pair->positive_p, &im) == 0 &&
         INT_MIN <= im && im <= INT_MAX &&

@@ -32,7 +32,7 @@
 
 #include "sockettest.h"
 
-const string_integer_pair_t internal_errno_to_name[] = {
+const integer_constant_t internal_errno_to_name[] = {
 % errno_list.each {|sym|
 #ifdef <%= sym %>
   { "<%= sym %>", (uintmax_t)<%= sym %>, 0 < <%= sym %> },
@@ -59,7 +59,7 @@ const int num_errno = sizeof(internal_errno_to_name) / sizeof(*internal_errno_to
   ]
 %>
 
-const string_integer_pair_t internal_constant_val_to_name[] = {
+const integer_constant_t internal_constant_val_to_name[] = {
 % constants.each {|sym|
 #ifdef <%= sym %>
   { "<%= sym %>", <%= sym %>, 0 <  <%= sym %> },

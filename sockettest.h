@@ -120,11 +120,11 @@ typedef struct {
   char *str;
   uintmax_t num;
   int positive_p;
-} string_integer_pair_t;
+} integer_constant_t;
 
-extern const string_integer_pair_t internal_errno_to_name[];
+extern const integer_constant_t internal_errno_to_name[];
 extern const int num_errno;
 
-extern const string_integer_pair_t internal_constant_val_to_name[];
+extern const integer_constant_t internal_constant_val_to_name[];
 extern const int num_constants;
 
