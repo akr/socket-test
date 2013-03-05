@@ -32,1026 +32,1026 @@
 
 const integer_constant_t internal_errno_to_name[] = {
 #ifdef EAGAIN
-  { "EAGAIN", (uintmax_t)EAGAIN, 0 < EAGAIN },
+  { "EAGAIN", (uintmax_t)EAGAIN, 0 < EAGAIN, sizeof(EAGAIN), SIGNED_TYPE_VALUE(EAGAIN) },
 #endif
 #ifdef ENOTSUP
-  { "ENOTSUP", (uintmax_t)ENOTSUP, 0 < ENOTSUP },
+  { "ENOTSUP", (uintmax_t)ENOTSUP, 0 < ENOTSUP, sizeof(ENOTSUP), SIGNED_TYPE_VALUE(ENOTSUP) },
 #endif
 #ifdef E2BIG
-  { "E2BIG", (uintmax_t)E2BIG, 0 < E2BIG },
+  { "E2BIG", (uintmax_t)E2BIG, 0 < E2BIG, sizeof(E2BIG), SIGNED_TYPE_VALUE(E2BIG) },
 #endif
 #ifdef EACCES
-  { "EACCES", (uintmax_t)EACCES, 0 < EACCES },
+  { "EACCES", (uintmax_t)EACCES, 0 < EACCES, sizeof(EACCES), SIGNED_TYPE_VALUE(EACCES) },
 #endif
 #ifdef EADDRINUSE
-  { "EADDRINUSE", (uintmax_t)EADDRINUSE, 0 < EADDRINUSE },
+  { "EADDRINUSE", (uintmax_t)EADDRINUSE, 0 < EADDRINUSE, sizeof(EADDRINUSE), SIGNED_TYPE_VALUE(EADDRINUSE) },
 #endif
 #ifdef EADDRNOTAVAIL
-  { "EADDRNOTAVAIL", (uintmax_t)EADDRNOTAVAIL, 0 < EADDRNOTAVAIL },
+  { "EADDRNOTAVAIL", (uintmax_t)EADDRNOTAVAIL, 0 < EADDRNOTAVAIL, sizeof(EADDRNOTAVAIL), SIGNED_TYPE_VALUE(EADDRNOTAVAIL) },
 #endif
 #ifdef EAFNOSUPPORT
-  { "EAFNOSUPPORT", (uintmax_t)EAFNOSUPPORT, 0 < EAFNOSUPPORT },
+  { "EAFNOSUPPORT", (uintmax_t)EAFNOSUPPORT, 0 < EAFNOSUPPORT, sizeof(EAFNOSUPPORT), SIGNED_TYPE_VALUE(EAFNOSUPPORT) },
 #endif
 #ifdef EALREADY
-  { "EALREADY", (uintmax_t)EALREADY, 0 < EALREADY },
+  { "EALREADY", (uintmax_t)EALREADY, 0 < EALREADY, sizeof(EALREADY), SIGNED_TYPE_VALUE(EALREADY) },
 #endif
 #ifdef EBADF
-  { "EBADF", (uintmax_t)EBADF, 0 < EBADF },
+  { "EBADF", (uintmax_t)EBADF, 0 < EBADF, sizeof(EBADF), SIGNED_TYPE_VALUE(EBADF) },
 #endif
 #ifdef EBADMSG
-  { "EBADMSG", (uintmax_t)EBADMSG, 0 < EBADMSG },
+  { "EBADMSG", (uintmax_t)EBADMSG, 0 < EBADMSG, sizeof(EBADMSG), SIGNED_TYPE_VALUE(EBADMSG) },
 #endif
 #ifdef EBUSY
-  { "EBUSY", (uintmax_t)EBUSY, 0 < EBUSY },
+  { "EBUSY", (uintmax_t)EBUSY, 0 < EBUSY, sizeof(EBUSY), SIGNED_TYPE_VALUE(EBUSY) },
 #endif
 #ifdef ECANCELED
-  { "ECANCELED", (uintmax_t)ECANCELED, 0 < ECANCELED },
+  { "ECANCELED", (uintmax_t)ECANCELED, 0 < ECANCELED, sizeof(ECANCELED), SIGNED_TYPE_VALUE(ECANCELED) },
 #endif
 #ifdef ECHILD
-  { "ECHILD", (uintmax_t)ECHILD, 0 < ECHILD },
+  { "ECHILD", (uintmax_t)ECHILD, 0 < ECHILD, sizeof(ECHILD), SIGNED_TYPE_VALUE(ECHILD) },
 #endif
 #ifdef ECONNABORTED
-  { "ECONNABORTED", (uintmax_t)ECONNABORTED, 0 < ECONNABORTED },
+  { "ECONNABORTED", (uintmax_t)ECONNABORTED, 0 < ECONNABORTED, sizeof(ECONNABORTED), SIGNED_TYPE_VALUE(ECONNABORTED) },
 #endif
 #ifdef ECONNREFUSED
-  { "ECONNREFUSED", (uintmax_t)ECONNREFUSED, 0 < ECONNREFUSED },
+  { "ECONNREFUSED", (uintmax_t)ECONNREFUSED, 0 < ECONNREFUSED, sizeof(ECONNREFUSED), SIGNED_TYPE_VALUE(ECONNREFUSED) },
 #endif
 #ifdef ECONNRESET
-  { "ECONNRESET", (uintmax_t)ECONNRESET, 0 < ECONNRESET },
+  { "ECONNRESET", (uintmax_t)ECONNRESET, 0 < ECONNRESET, sizeof(ECONNRESET), SIGNED_TYPE_VALUE(ECONNRESET) },
 #endif
 #ifdef EDEADLK
-  { "EDEADLK", (uintmax_t)EDEADLK, 0 < EDEADLK },
+  { "EDEADLK", (uintmax_t)EDEADLK, 0 < EDEADLK, sizeof(EDEADLK), SIGNED_TYPE_VALUE(EDEADLK) },
 #endif
 #ifdef EDESTADDRREQ
-  { "EDESTADDRREQ", (uintmax_t)EDESTADDRREQ, 0 < EDESTADDRREQ },
+  { "EDESTADDRREQ", (uintmax_t)EDESTADDRREQ, 0 < EDESTADDRREQ, sizeof(EDESTADDRREQ), SIGNED_TYPE_VALUE(EDESTADDRREQ) },
 #endif
 #ifdef EDOM
-  { "EDOM", (uintmax_t)EDOM, 0 < EDOM },
+  { "EDOM", (uintmax_t)EDOM, 0 < EDOM, sizeof(EDOM), SIGNED_TYPE_VALUE(EDOM) },
 #endif
 #ifdef EDQUOT
-  { "EDQUOT", (uintmax_t)EDQUOT, 0 < EDQUOT },
+  { "EDQUOT", (uintmax_t)EDQUOT, 0 < EDQUOT, sizeof(EDQUOT), SIGNED_TYPE_VALUE(EDQUOT) },
 #endif
 #ifdef EEXIST
-  { "EEXIST", (uintmax_t)EEXIST, 0 < EEXIST },
+  { "EEXIST", (uintmax_t)EEXIST, 0 < EEXIST, sizeof(EEXIST), SIGNED_TYPE_VALUE(EEXIST) },
 #endif
 #ifdef EFAULT
-  { "EFAULT", (uintmax_t)EFAULT, 0 < EFAULT },
+  { "EFAULT", (uintmax_t)EFAULT, 0 < EFAULT, sizeof(EFAULT), SIGNED_TYPE_VALUE(EFAULT) },
 #endif
 #ifdef EFBIG
-  { "EFBIG", (uintmax_t)EFBIG, 0 < EFBIG },
+  { "EFBIG", (uintmax_t)EFBIG, 0 < EFBIG, sizeof(EFBIG), SIGNED_TYPE_VALUE(EFBIG) },
 #endif
 #ifdef EHOSTUNREACH
-  { "EHOSTUNREACH", (uintmax_t)EHOSTUNREACH, 0 < EHOSTUNREACH },
+  { "EHOSTUNREACH", (uintmax_t)EHOSTUNREACH, 0 < EHOSTUNREACH, sizeof(EHOSTUNREACH), SIGNED_TYPE_VALUE(EHOSTUNREACH) },
 #endif
 #ifdef EIDRM
-  { "EIDRM", (uintmax_t)EIDRM, 0 < EIDRM },
+  { "EIDRM", (uintmax_t)EIDRM, 0 < EIDRM, sizeof(EIDRM), SIGNED_TYPE_VALUE(EIDRM) },
 #endif
 #ifdef EILSEQ
-  { "EILSEQ", (uintmax_t)EILSEQ, 0 < EILSEQ },
+  { "EILSEQ", (uintmax_t)EILSEQ, 0 < EILSEQ, sizeof(EILSEQ), SIGNED_TYPE_VALUE(EILSEQ) },
 #endif
 #ifdef EINPROGRESS
-  { "EINPROGRESS", (uintmax_t)EINPROGRESS, 0 < EINPROGRESS },
+  { "EINPROGRESS", (uintmax_t)EINPROGRESS, 0 < EINPROGRESS, sizeof(EINPROGRESS), SIGNED_TYPE_VALUE(EINPROGRESS) },
 #endif
 #ifdef EINTR
-  { "EINTR", (uintmax_t)EINTR, 0 < EINTR },
+  { "EINTR", (uintmax_t)EINTR, 0 < EINTR, sizeof(EINTR), SIGNED_TYPE_VALUE(EINTR) },
 #endif
 #ifdef EINVAL
-  { "EINVAL", (uintmax_t)EINVAL, 0 < EINVAL },
+  { "EINVAL", (uintmax_t)EINVAL, 0 < EINVAL, sizeof(EINVAL), SIGNED_TYPE_VALUE(EINVAL) },
 #endif
 #ifdef EIO
-  { "EIO", (uintmax_t)EIO, 0 < EIO },
+  { "EIO", (uintmax_t)EIO, 0 < EIO, sizeof(EIO), SIGNED_TYPE_VALUE(EIO) },
 #endif
 #ifdef EISCONN
-  { "EISCONN", (uintmax_t)EISCONN, 0 < EISCONN },
+  { "EISCONN", (uintmax_t)EISCONN, 0 < EISCONN, sizeof(EISCONN), SIGNED_TYPE_VALUE(EISCONN) },
 #endif
 #ifdef EISDIR
-  { "EISDIR", (uintmax_t)EISDIR, 0 < EISDIR },
+  { "EISDIR", (uintmax_t)EISDIR, 0 < EISDIR, sizeof(EISDIR), SIGNED_TYPE_VALUE(EISDIR) },
 #endif
 #ifdef ELOOP
-  { "ELOOP", (uintmax_t)ELOOP, 0 < ELOOP },
+  { "ELOOP", (uintmax_t)ELOOP, 0 < ELOOP, sizeof(ELOOP), SIGNED_TYPE_VALUE(ELOOP) },
 #endif
 #ifdef EMFILE
-  { "EMFILE", (uintmax_t)EMFILE, 0 < EMFILE },
+  { "EMFILE", (uintmax_t)EMFILE, 0 < EMFILE, sizeof(EMFILE), SIGNED_TYPE_VALUE(EMFILE) },
 #endif
 #ifdef EMLINK
-  { "EMLINK", (uintmax_t)EMLINK, 0 < EMLINK },
+  { "EMLINK", (uintmax_t)EMLINK, 0 < EMLINK, sizeof(EMLINK), SIGNED_TYPE_VALUE(EMLINK) },
 #endif
 #ifdef EMSGSIZE
-  { "EMSGSIZE", (uintmax_t)EMSGSIZE, 0 < EMSGSIZE },
+  { "EMSGSIZE", (uintmax_t)EMSGSIZE, 0 < EMSGSIZE, sizeof(EMSGSIZE), SIGNED_TYPE_VALUE(EMSGSIZE) },
 #endif
 #ifdef EMULTIHOP
-  { "EMULTIHOP", (uintmax_t)EMULTIHOP, 0 < EMULTIHOP },
+  { "EMULTIHOP", (uintmax_t)EMULTIHOP, 0 < EMULTIHOP, sizeof(EMULTIHOP), SIGNED_TYPE_VALUE(EMULTIHOP) },
 #endif
 #ifdef ENAMETOOLONG
-  { "ENAMETOOLONG", (uintmax_t)ENAMETOOLONG, 0 < ENAMETOOLONG },
+  { "ENAMETOOLONG", (uintmax_t)ENAMETOOLONG, 0 < ENAMETOOLONG, sizeof(ENAMETOOLONG), SIGNED_TYPE_VALUE(ENAMETOOLONG) },
 #endif
 #ifdef ENETDOWN
-  { "ENETDOWN", (uintmax_t)ENETDOWN, 0 < ENETDOWN },
+  { "ENETDOWN", (uintmax_t)ENETDOWN, 0 < ENETDOWN, sizeof(ENETDOWN), SIGNED_TYPE_VALUE(ENETDOWN) },
 #endif
 #ifdef ENETRESET
-  { "ENETRESET", (uintmax_t)ENETRESET, 0 < ENETRESET },
+  { "ENETRESET", (uintmax_t)ENETRESET, 0 < ENETRESET, sizeof(ENETRESET), SIGNED_TYPE_VALUE(ENETRESET) },
 #endif
 #ifdef ENETUNREACH
-  { "ENETUNREACH", (uintmax_t)ENETUNREACH, 0 < ENETUNREACH },
+  { "ENETUNREACH", (uintmax_t)ENETUNREACH, 0 < ENETUNREACH, sizeof(ENETUNREACH), SIGNED_TYPE_VALUE(ENETUNREACH) },
 #endif
 #ifdef ENFILE
-  { "ENFILE", (uintmax_t)ENFILE, 0 < ENFILE },
+  { "ENFILE", (uintmax_t)ENFILE, 0 < ENFILE, sizeof(ENFILE), SIGNED_TYPE_VALUE(ENFILE) },
 #endif
 #ifdef ENOBUFS
-  { "ENOBUFS", (uintmax_t)ENOBUFS, 0 < ENOBUFS },
+  { "ENOBUFS", (uintmax_t)ENOBUFS, 0 < ENOBUFS, sizeof(ENOBUFS), SIGNED_TYPE_VALUE(ENOBUFS) },
 #endif
 #ifdef ENODATA
-  { "ENODATA", (uintmax_t)ENODATA, 0 < ENODATA },
+  { "ENODATA", (uintmax_t)ENODATA, 0 < ENODATA, sizeof(ENODATA), SIGNED_TYPE_VALUE(ENODATA) },
 #endif
 #ifdef ENODEV
-  { "ENODEV", (uintmax_t)ENODEV, 0 < ENODEV },
+  { "ENODEV", (uintmax_t)ENODEV, 0 < ENODEV, sizeof(ENODEV), SIGNED_TYPE_VALUE(ENODEV) },
 #endif
 #ifdef ENOENT
-  { "ENOENT", (uintmax_t)ENOENT, 0 < ENOENT },
+  { "ENOENT", (uintmax_t)ENOENT, 0 < ENOENT, sizeof(ENOENT), SIGNED_TYPE_VALUE(ENOENT) },
 #endif
 #ifdef ENOEXEC
-  { "ENOEXEC", (uintmax_t)ENOEXEC, 0 < ENOEXEC },
+  { "ENOEXEC", (uintmax_t)ENOEXEC, 0 < ENOEXEC, sizeof(ENOEXEC), SIGNED_TYPE_VALUE(ENOEXEC) },
 #endif
 #ifdef ENOLCK
-  { "ENOLCK", (uintmax_t)ENOLCK, 0 < ENOLCK },
+  { "ENOLCK", (uintmax_t)ENOLCK, 0 < ENOLCK, sizeof(ENOLCK), SIGNED_TYPE_VALUE(ENOLCK) },
 #endif
 #ifdef ENOLINK
-  { "ENOLINK", (uintmax_t)ENOLINK, 0 < ENOLINK },
+  { "ENOLINK", (uintmax_t)ENOLINK, 0 < ENOLINK, sizeof(ENOLINK), SIGNED_TYPE_VALUE(ENOLINK) },
 #endif
 #ifdef ENOMEM
-  { "ENOMEM", (uintmax_t)ENOMEM, 0 < ENOMEM },
+  { "ENOMEM", (uintmax_t)ENOMEM, 0 < ENOMEM, sizeof(ENOMEM), SIGNED_TYPE_VALUE(ENOMEM) },
 #endif
 #ifdef ENOMSG
-  { "ENOMSG", (uintmax_t)ENOMSG, 0 < ENOMSG },
+  { "ENOMSG", (uintmax_t)ENOMSG, 0 < ENOMSG, sizeof(ENOMSG), SIGNED_TYPE_VALUE(ENOMSG) },
 #endif
 #ifdef ENOPROTOOPT
-  { "ENOPROTOOPT", (uintmax_t)ENOPROTOOPT, 0 < ENOPROTOOPT },
+  { "ENOPROTOOPT", (uintmax_t)ENOPROTOOPT, 0 < ENOPROTOOPT, sizeof(ENOPROTOOPT), SIGNED_TYPE_VALUE(ENOPROTOOPT) },
 #endif
 #ifdef ENOSPC
-  { "ENOSPC", (uintmax_t)ENOSPC, 0 < ENOSPC },
+  { "ENOSPC", (uintmax_t)ENOSPC, 0 < ENOSPC, sizeof(ENOSPC), SIGNED_TYPE_VALUE(ENOSPC) },
 #endif
 #ifdef ENOSR
-  { "ENOSR", (uintmax_t)ENOSR, 0 < ENOSR },
+  { "ENOSR", (uintmax_t)ENOSR, 0 < ENOSR, sizeof(ENOSR), SIGNED_TYPE_VALUE(ENOSR) },
 #endif
 #ifdef ENOSTR
-  { "ENOSTR", (uintmax_t)ENOSTR, 0 < ENOSTR },
+  { "ENOSTR", (uintmax_t)ENOSTR, 0 < ENOSTR, sizeof(ENOSTR), SIGNED_TYPE_VALUE(ENOSTR) },
 #endif
 #ifdef ENOSYS
-  { "ENOSYS", (uintmax_t)ENOSYS, 0 < ENOSYS },
+  { "ENOSYS", (uintmax_t)ENOSYS, 0 < ENOSYS, sizeof(ENOSYS), SIGNED_TYPE_VALUE(ENOSYS) },
 #endif
 #ifdef ENOTCONN
-  { "ENOTCONN", (uintmax_t)ENOTCONN, 0 < ENOTCONN },
+  { "ENOTCONN", (uintmax_t)ENOTCONN, 0 < ENOTCONN, sizeof(ENOTCONN), SIGNED_TYPE_VALUE(ENOTCONN) },
 #endif
 #ifdef ENOTDIR
-  { "ENOTDIR", (uintmax_t)ENOTDIR, 0 < ENOTDIR },
+  { "ENOTDIR", (uintmax_t)ENOTDIR, 0 < ENOTDIR, sizeof(ENOTDIR), SIGNED_TYPE_VALUE(ENOTDIR) },
 #endif
 #ifdef ENOTEMPTY
-  { "ENOTEMPTY", (uintmax_t)ENOTEMPTY, 0 < ENOTEMPTY },
+  { "ENOTEMPTY", (uintmax_t)ENOTEMPTY, 0 < ENOTEMPTY, sizeof(ENOTEMPTY), SIGNED_TYPE_VALUE(ENOTEMPTY) },
 #endif
 #ifdef ENOTRECOVERABLE
-  { "ENOTRECOVERABLE", (uintmax_t)ENOTRECOVERABLE, 0 < ENOTRECOVERABLE },
+  { "ENOTRECOVERABLE", (uintmax_t)ENOTRECOVERABLE, 0 < ENOTRECOVERABLE, sizeof(ENOTRECOVERABLE), SIGNED_TYPE_VALUE(ENOTRECOVERABLE) },
 #endif
 #ifdef ENOTSOCK
-  { "ENOTSOCK", (uintmax_t)ENOTSOCK, 0 < ENOTSOCK },
+  { "ENOTSOCK", (uintmax_t)ENOTSOCK, 0 < ENOTSOCK, sizeof(ENOTSOCK), SIGNED_TYPE_VALUE(ENOTSOCK) },
 #endif
 #ifdef ENOTTY
-  { "ENOTTY", (uintmax_t)ENOTTY, 0 < ENOTTY },
+  { "ENOTTY", (uintmax_t)ENOTTY, 0 < ENOTTY, sizeof(ENOTTY), SIGNED_TYPE_VALUE(ENOTTY) },
 #endif
 #ifdef ENXIO
-  { "ENXIO", (uintmax_t)ENXIO, 0 < ENXIO },
+  { "ENXIO", (uintmax_t)ENXIO, 0 < ENXIO, sizeof(ENXIO), SIGNED_TYPE_VALUE(ENXIO) },
 #endif
 #ifdef EOPNOTSUPP
-  { "EOPNOTSUPP", (uintmax_t)EOPNOTSUPP, 0 < EOPNOTSUPP },
+  { "EOPNOTSUPP", (uintmax_t)EOPNOTSUPP, 0 < EOPNOTSUPP, sizeof(EOPNOTSUPP), SIGNED_TYPE_VALUE(EOPNOTSUPP) },
 #endif
 #ifdef EOVERFLOW
-  { "EOVERFLOW", (uintmax_t)EOVERFLOW, 0 < EOVERFLOW },
+  { "EOVERFLOW", (uintmax_t)EOVERFLOW, 0 < EOVERFLOW, sizeof(EOVERFLOW), SIGNED_TYPE_VALUE(EOVERFLOW) },
 #endif
 #ifdef EOWNERDEAD
-  { "EOWNERDEAD", (uintmax_t)EOWNERDEAD, 0 < EOWNERDEAD },
+  { "EOWNERDEAD", (uintmax_t)EOWNERDEAD, 0 < EOWNERDEAD, sizeof(EOWNERDEAD), SIGNED_TYPE_VALUE(EOWNERDEAD) },
 #endif
 #ifdef EPERM
-  { "EPERM", (uintmax_t)EPERM, 0 < EPERM },
+  { "EPERM", (uintmax_t)EPERM, 0 < EPERM, sizeof(EPERM), SIGNED_TYPE_VALUE(EPERM) },
 #endif
 #ifdef EPIPE
-  { "EPIPE", (uintmax_t)EPIPE, 0 < EPIPE },
+  { "EPIPE", (uintmax_t)EPIPE, 0 < EPIPE, sizeof(EPIPE), SIGNED_TYPE_VALUE(EPIPE) },
 #endif
 #ifdef EPROTO
-  { "EPROTO", (uintmax_t)EPROTO, 0 < EPROTO },
+  { "EPROTO", (uintmax_t)EPROTO, 0 < EPROTO, sizeof(EPROTO), SIGNED_TYPE_VALUE(EPROTO) },
 #endif
 #ifdef EPROTONOSUPPORT
-  { "EPROTONOSUPPORT", (uintmax_t)EPROTONOSUPPORT, 0 < EPROTONOSUPPORT },
+  { "EPROTONOSUPPORT", (uintmax_t)EPROTONOSUPPORT, 0 < EPROTONOSUPPORT, sizeof(EPROTONOSUPPORT), SIGNED_TYPE_VALUE(EPROTONOSUPPORT) },
 #endif
 #ifdef EPROTOTYPE
-  { "EPROTOTYPE", (uintmax_t)EPROTOTYPE, 0 < EPROTOTYPE },
+  { "EPROTOTYPE", (uintmax_t)EPROTOTYPE, 0 < EPROTOTYPE, sizeof(EPROTOTYPE), SIGNED_TYPE_VALUE(EPROTOTYPE) },
 #endif
 #ifdef ERANGE
-  { "ERANGE", (uintmax_t)ERANGE, 0 < ERANGE },
+  { "ERANGE", (uintmax_t)ERANGE, 0 < ERANGE, sizeof(ERANGE), SIGNED_TYPE_VALUE(ERANGE) },
 #endif
 #ifdef EROFS
-  { "EROFS", (uintmax_t)EROFS, 0 < EROFS },
+  { "EROFS", (uintmax_t)EROFS, 0 < EROFS, sizeof(EROFS), SIGNED_TYPE_VALUE(EROFS) },
 #endif
 #ifdef ESPIPE
-  { "ESPIPE", (uintmax_t)ESPIPE, 0 < ESPIPE },
+  { "ESPIPE", (uintmax_t)ESPIPE, 0 < ESPIPE, sizeof(ESPIPE), SIGNED_TYPE_VALUE(ESPIPE) },
 #endif
 #ifdef ESRCH
-  { "ESRCH", (uintmax_t)ESRCH, 0 < ESRCH },
+  { "ESRCH", (uintmax_t)ESRCH, 0 < ESRCH, sizeof(ESRCH), SIGNED_TYPE_VALUE(ESRCH) },
 #endif
 #ifdef ESTALE
-  { "ESTALE", (uintmax_t)ESTALE, 0 < ESTALE },
+  { "ESTALE", (uintmax_t)ESTALE, 0 < ESTALE, sizeof(ESTALE), SIGNED_TYPE_VALUE(ESTALE) },
 #endif
 #ifdef ETIME
-  { "ETIME", (uintmax_t)ETIME, 0 < ETIME },
+  { "ETIME", (uintmax_t)ETIME, 0 < ETIME, sizeof(ETIME), SIGNED_TYPE_VALUE(ETIME) },
 #endif
 #ifdef ETIMEDOUT
-  { "ETIMEDOUT", (uintmax_t)ETIMEDOUT, 0 < ETIMEDOUT },
+  { "ETIMEDOUT", (uintmax_t)ETIMEDOUT, 0 < ETIMEDOUT, sizeof(ETIMEDOUT), SIGNED_TYPE_VALUE(ETIMEDOUT) },
 #endif
 #ifdef ETXTBSY
-  { "ETXTBSY", (uintmax_t)ETXTBSY, 0 < ETXTBSY },
+  { "ETXTBSY", (uintmax_t)ETXTBSY, 0 < ETXTBSY, sizeof(ETXTBSY), SIGNED_TYPE_VALUE(ETXTBSY) },
 #endif
 #ifdef EWOULDBLOCK
-  { "EWOULDBLOCK", (uintmax_t)EWOULDBLOCK, 0 < EWOULDBLOCK },
+  { "EWOULDBLOCK", (uintmax_t)EWOULDBLOCK, 0 < EWOULDBLOCK, sizeof(EWOULDBLOCK), SIGNED_TYPE_VALUE(EWOULDBLOCK) },
 #endif
 #ifdef EXDEV
-  { "EXDEV", (uintmax_t)EXDEV, 0 < EXDEV },
+  { "EXDEV", (uintmax_t)EXDEV, 0 < EXDEV, sizeof(EXDEV), SIGNED_TYPE_VALUE(EXDEV) },
 #endif
 #ifdef ENOTBLK
-  { "ENOTBLK", (uintmax_t)ENOTBLK, 0 < ENOTBLK },
+  { "ENOTBLK", (uintmax_t)ENOTBLK, 0 < ENOTBLK, sizeof(ENOTBLK), SIGNED_TYPE_VALUE(ENOTBLK) },
 #endif
 #ifdef ECHRNG
-  { "ECHRNG", (uintmax_t)ECHRNG, 0 < ECHRNG },
+  { "ECHRNG", (uintmax_t)ECHRNG, 0 < ECHRNG, sizeof(ECHRNG), SIGNED_TYPE_VALUE(ECHRNG) },
 #endif
 #ifdef EL2NSYNC
-  { "EL2NSYNC", (uintmax_t)EL2NSYNC, 0 < EL2NSYNC },
+  { "EL2NSYNC", (uintmax_t)EL2NSYNC, 0 < EL2NSYNC, sizeof(EL2NSYNC), SIGNED_TYPE_VALUE(EL2NSYNC) },
 #endif
 #ifdef EL3HLT
-  { "EL3HLT", (uintmax_t)EL3HLT, 0 < EL3HLT },
+  { "EL3HLT", (uintmax_t)EL3HLT, 0 < EL3HLT, sizeof(EL3HLT), SIGNED_TYPE_VALUE(EL3HLT) },
 #endif
 #ifdef EL3RST
-  { "EL3RST", (uintmax_t)EL3RST, 0 < EL3RST },
+  { "EL3RST", (uintmax_t)EL3RST, 0 < EL3RST, sizeof(EL3RST), SIGNED_TYPE_VALUE(EL3RST) },
 #endif
 #ifdef ELNRNG
-  { "ELNRNG", (uintmax_t)ELNRNG, 0 < ELNRNG },
+  { "ELNRNG", (uintmax_t)ELNRNG, 0 < ELNRNG, sizeof(ELNRNG), SIGNED_TYPE_VALUE(ELNRNG) },
 #endif
 #ifdef EUNATCH
-  { "EUNATCH", (uintmax_t)EUNATCH, 0 < EUNATCH },
+  { "EUNATCH", (uintmax_t)EUNATCH, 0 < EUNATCH, sizeof(EUNATCH), SIGNED_TYPE_VALUE(EUNATCH) },
 #endif
 #ifdef ENOCSI
-  { "ENOCSI", (uintmax_t)ENOCSI, 0 < ENOCSI },
+  { "ENOCSI", (uintmax_t)ENOCSI, 0 < ENOCSI, sizeof(ENOCSI), SIGNED_TYPE_VALUE(ENOCSI) },
 #endif
 #ifdef EL2HLT
-  { "EL2HLT", (uintmax_t)EL2HLT, 0 < EL2HLT },
+  { "EL2HLT", (uintmax_t)EL2HLT, 0 < EL2HLT, sizeof(EL2HLT), SIGNED_TYPE_VALUE(EL2HLT) },
 #endif
 #ifdef EBADE
-  { "EBADE", (uintmax_t)EBADE, 0 < EBADE },
+  { "EBADE", (uintmax_t)EBADE, 0 < EBADE, sizeof(EBADE), SIGNED_TYPE_VALUE(EBADE) },
 #endif
 #ifdef EBADR
-  { "EBADR", (uintmax_t)EBADR, 0 < EBADR },
+  { "EBADR", (uintmax_t)EBADR, 0 < EBADR, sizeof(EBADR), SIGNED_TYPE_VALUE(EBADR) },
 #endif
 #ifdef EXFULL
-  { "EXFULL", (uintmax_t)EXFULL, 0 < EXFULL },
+  { "EXFULL", (uintmax_t)EXFULL, 0 < EXFULL, sizeof(EXFULL), SIGNED_TYPE_VALUE(EXFULL) },
 #endif
 #ifdef ENOANO
-  { "ENOANO", (uintmax_t)ENOANO, 0 < ENOANO },
+  { "ENOANO", (uintmax_t)ENOANO, 0 < ENOANO, sizeof(ENOANO), SIGNED_TYPE_VALUE(ENOANO) },
 #endif
 #ifdef EBADRQC
-  { "EBADRQC", (uintmax_t)EBADRQC, 0 < EBADRQC },
+  { "EBADRQC", (uintmax_t)EBADRQC, 0 < EBADRQC, sizeof(EBADRQC), SIGNED_TYPE_VALUE(EBADRQC) },
 #endif
 #ifdef EBADSLT
-  { "EBADSLT", (uintmax_t)EBADSLT, 0 < EBADSLT },
+  { "EBADSLT", (uintmax_t)EBADSLT, 0 < EBADSLT, sizeof(EBADSLT), SIGNED_TYPE_VALUE(EBADSLT) },
 #endif
 #ifdef EDEADLOCK
-  { "EDEADLOCK", (uintmax_t)EDEADLOCK, 0 < EDEADLOCK },
+  { "EDEADLOCK", (uintmax_t)EDEADLOCK, 0 < EDEADLOCK, sizeof(EDEADLOCK), SIGNED_TYPE_VALUE(EDEADLOCK) },
 #endif
 #ifdef EBFONT
-  { "EBFONT", (uintmax_t)EBFONT, 0 < EBFONT },
+  { "EBFONT", (uintmax_t)EBFONT, 0 < EBFONT, sizeof(EBFONT), SIGNED_TYPE_VALUE(EBFONT) },
 #endif
 #ifdef ENONET
-  { "ENONET", (uintmax_t)ENONET, 0 < ENONET },
+  { "ENONET", (uintmax_t)ENONET, 0 < ENONET, sizeof(ENONET), SIGNED_TYPE_VALUE(ENONET) },
 #endif
 #ifdef ENOPKG
-  { "ENOPKG", (uintmax_t)ENOPKG, 0 < ENOPKG },
+  { "ENOPKG", (uintmax_t)ENOPKG, 0 < ENOPKG, sizeof(ENOPKG), SIGNED_TYPE_VALUE(ENOPKG) },
 #endif
 #ifdef EREMOTE
-  { "EREMOTE", (uintmax_t)EREMOTE, 0 < EREMOTE },
+  { "EREMOTE", (uintmax_t)EREMOTE, 0 < EREMOTE, sizeof(EREMOTE), SIGNED_TYPE_VALUE(EREMOTE) },
 #endif
 #ifdef EADV
-  { "EADV", (uintmax_t)EADV, 0 < EADV },
+  { "EADV", (uintmax_t)EADV, 0 < EADV, sizeof(EADV), SIGNED_TYPE_VALUE(EADV) },
 #endif
 #ifdef ESRMNT
-  { "ESRMNT", (uintmax_t)ESRMNT, 0 < ESRMNT },
+  { "ESRMNT", (uintmax_t)ESRMNT, 0 < ESRMNT, sizeof(ESRMNT), SIGNED_TYPE_VALUE(ESRMNT) },
 #endif
 #ifdef ECOMM
-  { "ECOMM", (uintmax_t)ECOMM, 0 < ECOMM },
+  { "ECOMM", (uintmax_t)ECOMM, 0 < ECOMM, sizeof(ECOMM), SIGNED_TYPE_VALUE(ECOMM) },
 #endif
 #ifdef EDOTDOT
-  { "EDOTDOT", (uintmax_t)EDOTDOT, 0 < EDOTDOT },
+  { "EDOTDOT", (uintmax_t)EDOTDOT, 0 < EDOTDOT, sizeof(EDOTDOT), SIGNED_TYPE_VALUE(EDOTDOT) },
 #endif
 #ifdef ENOTUNIQ
-  { "ENOTUNIQ", (uintmax_t)ENOTUNIQ, 0 < ENOTUNIQ },
+  { "ENOTUNIQ", (uintmax_t)ENOTUNIQ, 0 < ENOTUNIQ, sizeof(ENOTUNIQ), SIGNED_TYPE_VALUE(ENOTUNIQ) },
 #endif
 #ifdef EBADFD
-  { "EBADFD", (uintmax_t)EBADFD, 0 < EBADFD },
+  { "EBADFD", (uintmax_t)EBADFD, 0 < EBADFD, sizeof(EBADFD), SIGNED_TYPE_VALUE(EBADFD) },
 #endif
 #ifdef EREMCHG
-  { "EREMCHG", (uintmax_t)EREMCHG, 0 < EREMCHG },
+  { "EREMCHG", (uintmax_t)EREMCHG, 0 < EREMCHG, sizeof(EREMCHG), SIGNED_TYPE_VALUE(EREMCHG) },
 #endif
 #ifdef ELIBACC
-  { "ELIBACC", (uintmax_t)ELIBACC, 0 < ELIBACC },
+  { "ELIBACC", (uintmax_t)ELIBACC, 0 < ELIBACC, sizeof(ELIBACC), SIGNED_TYPE_VALUE(ELIBACC) },
 #endif
 #ifdef ELIBBAD
-  { "ELIBBAD", (uintmax_t)ELIBBAD, 0 < ELIBBAD },
+  { "ELIBBAD", (uintmax_t)ELIBBAD, 0 < ELIBBAD, sizeof(ELIBBAD), SIGNED_TYPE_VALUE(ELIBBAD) },
 #endif
 #ifdef ELIBSCN
-  { "ELIBSCN", (uintmax_t)ELIBSCN, 0 < ELIBSCN },
+  { "ELIBSCN", (uintmax_t)ELIBSCN, 0 < ELIBSCN, sizeof(ELIBSCN), SIGNED_TYPE_VALUE(ELIBSCN) },
 #endif
 #ifdef ELIBMAX
-  { "ELIBMAX", (uintmax_t)ELIBMAX, 0 < ELIBMAX },
+  { "ELIBMAX", (uintmax_t)ELIBMAX, 0 < ELIBMAX, sizeof(ELIBMAX), SIGNED_TYPE_VALUE(ELIBMAX) },
 #endif
 #ifdef ELIBEXEC
-  { "ELIBEXEC", (uintmax_t)ELIBEXEC, 0 < ELIBEXEC },
+  { "ELIBEXEC", (uintmax_t)ELIBEXEC, 0 < ELIBEXEC, sizeof(ELIBEXEC), SIGNED_TYPE_VALUE(ELIBEXEC) },
 #endif
 #ifdef ERESTART
-  { "ERESTART", (uintmax_t)ERESTART, 0 < ERESTART },
+  { "ERESTART", (uintmax_t)ERESTART, 0 < ERESTART, sizeof(ERESTART), SIGNED_TYPE_VALUE(ERESTART) },
 #endif
 #ifdef ESTRPIPE
-  { "ESTRPIPE", (uintmax_t)ESTRPIPE, 0 < ESTRPIPE },
+  { "ESTRPIPE", (uintmax_t)ESTRPIPE, 0 < ESTRPIPE, sizeof(ESTRPIPE), SIGNED_TYPE_VALUE(ESTRPIPE) },
 #endif
 #ifdef EUSERS
-  { "EUSERS", (uintmax_t)EUSERS, 0 < EUSERS },
+  { "EUSERS", (uintmax_t)EUSERS, 0 < EUSERS, sizeof(EUSERS), SIGNED_TYPE_VALUE(EUSERS) },
 #endif
 #ifdef ESOCKTNOSUPPORT
-  { "ESOCKTNOSUPPORT", (uintmax_t)ESOCKTNOSUPPORT, 0 < ESOCKTNOSUPPORT },
+  { "ESOCKTNOSUPPORT", (uintmax_t)ESOCKTNOSUPPORT, 0 < ESOCKTNOSUPPORT, sizeof(ESOCKTNOSUPPORT), SIGNED_TYPE_VALUE(ESOCKTNOSUPPORT) },
 #endif
 #ifdef EPFNOSUPPORT
-  { "EPFNOSUPPORT", (uintmax_t)EPFNOSUPPORT, 0 < EPFNOSUPPORT },
+  { "EPFNOSUPPORT", (uintmax_t)EPFNOSUPPORT, 0 < EPFNOSUPPORT, sizeof(EPFNOSUPPORT), SIGNED_TYPE_VALUE(EPFNOSUPPORT) },
 #endif
 #ifdef ESHUTDOWN
-  { "ESHUTDOWN", (uintmax_t)ESHUTDOWN, 0 < ESHUTDOWN },
+  { "ESHUTDOWN", (uintmax_t)ESHUTDOWN, 0 < ESHUTDOWN, sizeof(ESHUTDOWN), SIGNED_TYPE_VALUE(ESHUTDOWN) },
 #endif
 #ifdef ETOOMANYREFS
-  { "ETOOMANYREFS", (uintmax_t)ETOOMANYREFS, 0 < ETOOMANYREFS },
+  { "ETOOMANYREFS", (uintmax_t)ETOOMANYREFS, 0 < ETOOMANYREFS, sizeof(ETOOMANYREFS), SIGNED_TYPE_VALUE(ETOOMANYREFS) },
 #endif
 #ifdef EHOSTDOWN
-  { "EHOSTDOWN", (uintmax_t)EHOSTDOWN, 0 < EHOSTDOWN },
+  { "EHOSTDOWN", (uintmax_t)EHOSTDOWN, 0 < EHOSTDOWN, sizeof(EHOSTDOWN), SIGNED_TYPE_VALUE(EHOSTDOWN) },
 #endif
 #ifdef EUCLEAN
-  { "EUCLEAN", (uintmax_t)EUCLEAN, 0 < EUCLEAN },
+  { "EUCLEAN", (uintmax_t)EUCLEAN, 0 < EUCLEAN, sizeof(EUCLEAN), SIGNED_TYPE_VALUE(EUCLEAN) },
 #endif
 #ifdef ENOTNAM
-  { "ENOTNAM", (uintmax_t)ENOTNAM, 0 < ENOTNAM },
+  { "ENOTNAM", (uintmax_t)ENOTNAM, 0 < ENOTNAM, sizeof(ENOTNAM), SIGNED_TYPE_VALUE(ENOTNAM) },
 #endif
 #ifdef ENAVAIL
-  { "ENAVAIL", (uintmax_t)ENAVAIL, 0 < ENAVAIL },
+  { "ENAVAIL", (uintmax_t)ENAVAIL, 0 < ENAVAIL, sizeof(ENAVAIL), SIGNED_TYPE_VALUE(ENAVAIL) },
 #endif
 #ifdef EISNAM
-  { "EISNAM", (uintmax_t)EISNAM, 0 < EISNAM },
+  { "EISNAM", (uintmax_t)EISNAM, 0 < EISNAM, sizeof(EISNAM), SIGNED_TYPE_VALUE(EISNAM) },
 #endif
 #ifdef EREMOTEIO
-  { "EREMOTEIO", (uintmax_t)EREMOTEIO, 0 < EREMOTEIO },
+  { "EREMOTEIO", (uintmax_t)EREMOTEIO, 0 < EREMOTEIO, sizeof(EREMOTEIO), SIGNED_TYPE_VALUE(EREMOTEIO) },
 #endif
 #ifdef ENOMEDIUM
-  { "ENOMEDIUM", (uintmax_t)ENOMEDIUM, 0 < ENOMEDIUM },
+  { "ENOMEDIUM", (uintmax_t)ENOMEDIUM, 0 < ENOMEDIUM, sizeof(ENOMEDIUM), SIGNED_TYPE_VALUE(ENOMEDIUM) },
 #endif
 #ifdef EMEDIUMTYPE
-  { "EMEDIUMTYPE", (uintmax_t)EMEDIUMTYPE, 0 < EMEDIUMTYPE },
+  { "EMEDIUMTYPE", (uintmax_t)EMEDIUMTYPE, 0 < EMEDIUMTYPE, sizeof(EMEDIUMTYPE), SIGNED_TYPE_VALUE(EMEDIUMTYPE) },
 #endif
 #ifdef ENOKEY
-  { "ENOKEY", (uintmax_t)ENOKEY, 0 < ENOKEY },
+  { "ENOKEY", (uintmax_t)ENOKEY, 0 < ENOKEY, sizeof(ENOKEY), SIGNED_TYPE_VALUE(ENOKEY) },
 #endif
 #ifdef EKEYEXPIRED
-  { "EKEYEXPIRED", (uintmax_t)EKEYEXPIRED, 0 < EKEYEXPIRED },
+  { "EKEYEXPIRED", (uintmax_t)EKEYEXPIRED, 0 < EKEYEXPIRED, sizeof(EKEYEXPIRED), SIGNED_TYPE_VALUE(EKEYEXPIRED) },
 #endif
 #ifdef EKEYREVOKED
-  { "EKEYREVOKED", (uintmax_t)EKEYREVOKED, 0 < EKEYREVOKED },
+  { "EKEYREVOKED", (uintmax_t)EKEYREVOKED, 0 < EKEYREVOKED, sizeof(EKEYREVOKED), SIGNED_TYPE_VALUE(EKEYREVOKED) },
 #endif
 #ifdef EKEYREJECTED
-  { "EKEYREJECTED", (uintmax_t)EKEYREJECTED, 0 < EKEYREJECTED },
+  { "EKEYREJECTED", (uintmax_t)EKEYREJECTED, 0 < EKEYREJECTED, sizeof(EKEYREJECTED), SIGNED_TYPE_VALUE(EKEYREJECTED) },
 #endif
 #ifdef ERFKILL
-  { "ERFKILL", (uintmax_t)ERFKILL, 0 < ERFKILL },
+  { "ERFKILL", (uintmax_t)ERFKILL, 0 < ERFKILL, sizeof(ERFKILL), SIGNED_TYPE_VALUE(ERFKILL) },
 #endif
 #ifdef EHWPOISON
-  { "EHWPOISON", (uintmax_t)EHWPOISON, 0 < EHWPOISON },
+  { "EHWPOISON", (uintmax_t)EHWPOISON, 0 < EHWPOISON, sizeof(EHWPOISON), SIGNED_TYPE_VALUE(EHWPOISON) },
 #endif
 #ifdef EAUTH
-  { "EAUTH", (uintmax_t)EAUTH, 0 < EAUTH },
+  { "EAUTH", (uintmax_t)EAUTH, 0 < EAUTH, sizeof(EAUTH), SIGNED_TYPE_VALUE(EAUTH) },
 #endif
 #ifdef EBACKGROUND
-  { "EBACKGROUND", (uintmax_t)EBACKGROUND, 0 < EBACKGROUND },
+  { "EBACKGROUND", (uintmax_t)EBACKGROUND, 0 < EBACKGROUND, sizeof(EBACKGROUND), SIGNED_TYPE_VALUE(EBACKGROUND) },
 #endif
 #ifdef EBADRPC
-  { "EBADRPC", (uintmax_t)EBADRPC, 0 < EBADRPC },
+  { "EBADRPC", (uintmax_t)EBADRPC, 0 < EBADRPC, sizeof(EBADRPC), SIGNED_TYPE_VALUE(EBADRPC) },
 #endif
 #ifdef ED
-  { "ED", (uintmax_t)ED, 0 < ED },
+  { "ED", (uintmax_t)ED, 0 < ED, sizeof(ED), SIGNED_TYPE_VALUE(ED) },
 #endif
 #ifdef EDIED
-  { "EDIED", (uintmax_t)EDIED, 0 < EDIED },
+  { "EDIED", (uintmax_t)EDIED, 0 < EDIED, sizeof(EDIED), SIGNED_TYPE_VALUE(EDIED) },
 #endif
 #ifdef EFTYPE
-  { "EFTYPE", (uintmax_t)EFTYPE, 0 < EFTYPE },
+  { "EFTYPE", (uintmax_t)EFTYPE, 0 < EFTYPE, sizeof(EFTYPE), SIGNED_TYPE_VALUE(EFTYPE) },
 #endif
 #ifdef EGRATUITOUS
-  { "EGRATUITOUS", (uintmax_t)EGRATUITOUS, 0 < EGRATUITOUS },
+  { "EGRATUITOUS", (uintmax_t)EGRATUITOUS, 0 < EGRATUITOUS, sizeof(EGRATUITOUS), SIGNED_TYPE_VALUE(EGRATUITOUS) },
 #endif
 #ifdef EGREGIOUS
-  { "EGREGIOUS", (uintmax_t)EGREGIOUS, 0 < EGREGIOUS },
+  { "EGREGIOUS", (uintmax_t)EGREGIOUS, 0 < EGREGIOUS, sizeof(EGREGIOUS), SIGNED_TYPE_VALUE(EGREGIOUS) },
 #endif
 #ifdef EIEIO
-  { "EIEIO", (uintmax_t)EIEIO, 0 < EIEIO },
+  { "EIEIO", (uintmax_t)EIEIO, 0 < EIEIO, sizeof(EIEIO), SIGNED_TYPE_VALUE(EIEIO) },
 #endif
 #ifdef ELAST
-  { "ELAST", (uintmax_t)ELAST, 0 < ELAST },
+  { "ELAST", (uintmax_t)ELAST, 0 < ELAST, sizeof(ELAST), SIGNED_TYPE_VALUE(ELAST) },
 #endif
 #ifdef ENEEDAUTH
-  { "ENEEDAUTH", (uintmax_t)ENEEDAUTH, 0 < ENEEDAUTH },
+  { "ENEEDAUTH", (uintmax_t)ENEEDAUTH, 0 < ENEEDAUTH, sizeof(ENEEDAUTH), SIGNED_TYPE_VALUE(ENEEDAUTH) },
 #endif
 #ifdef EPROCLIM
-  { "EPROCLIM", (uintmax_t)EPROCLIM, 0 < EPROCLIM },
+  { "EPROCLIM", (uintmax_t)EPROCLIM, 0 < EPROCLIM, sizeof(EPROCLIM), SIGNED_TYPE_VALUE(EPROCLIM) },
 #endif
 #ifdef EPROCUNAVAIL
-  { "EPROCUNAVAIL", (uintmax_t)EPROCUNAVAIL, 0 < EPROCUNAVAIL },
+  { "EPROCUNAVAIL", (uintmax_t)EPROCUNAVAIL, 0 < EPROCUNAVAIL, sizeof(EPROCUNAVAIL), SIGNED_TYPE_VALUE(EPROCUNAVAIL) },
 #endif
 #ifdef EPROGMISMATCH
-  { "EPROGMISMATCH", (uintmax_t)EPROGMISMATCH, 0 < EPROGMISMATCH },
+  { "EPROGMISMATCH", (uintmax_t)EPROGMISMATCH, 0 < EPROGMISMATCH, sizeof(EPROGMISMATCH), SIGNED_TYPE_VALUE(EPROGMISMATCH) },
 #endif
 #ifdef EPROGUNAVAIL
-  { "EPROGUNAVAIL", (uintmax_t)EPROGUNAVAIL, 0 < EPROGUNAVAIL },
+  { "EPROGUNAVAIL", (uintmax_t)EPROGUNAVAIL, 0 < EPROGUNAVAIL, sizeof(EPROGUNAVAIL), SIGNED_TYPE_VALUE(EPROGUNAVAIL) },
 #endif
 #ifdef ERPCMISMATCH
-  { "ERPCMISMATCH", (uintmax_t)ERPCMISMATCH, 0 < ERPCMISMATCH },
+  { "ERPCMISMATCH", (uintmax_t)ERPCMISMATCH, 0 < ERPCMISMATCH, sizeof(ERPCMISMATCH), SIGNED_TYPE_VALUE(ERPCMISMATCH) },
 #endif
 #ifdef ENOATTR
-  { "ENOATTR", (uintmax_t)ENOATTR, 0 < ENOATTR },
+  { "ENOATTR", (uintmax_t)ENOATTR, 0 < ENOATTR, sizeof(ENOATTR), SIGNED_TYPE_VALUE(ENOATTR) },
 #endif
 #ifdef EIPSEC
-  { "EIPSEC", (uintmax_t)EIPSEC, 0 < EIPSEC },
+  { "EIPSEC", (uintmax_t)EIPSEC, 0 < EIPSEC, sizeof(EIPSEC), SIGNED_TYPE_VALUE(EIPSEC) },
 #endif
 #ifdef EDOOFUS
-  { "EDOOFUS", (uintmax_t)EDOOFUS, 0 < EDOOFUS },
+  { "EDOOFUS", (uintmax_t)EDOOFUS, 0 < EDOOFUS, sizeof(EDOOFUS), SIGNED_TYPE_VALUE(EDOOFUS) },
 #endif
 #ifdef ENOTCAPABLE
-  { "ENOTCAPABLE", (uintmax_t)ENOTCAPABLE, 0 < ENOTCAPABLE },
+  { "ENOTCAPABLE", (uintmax_t)ENOTCAPABLE, 0 < ENOTCAPABLE, sizeof(ENOTCAPABLE), SIGNED_TYPE_VALUE(ENOTCAPABLE) },
 #endif
 #ifdef ECAPMODE
-  { "ECAPMODE", (uintmax_t)ECAPMODE, 0 < ECAPMODE },
+  { "ECAPMODE", (uintmax_t)ECAPMODE, 0 < ECAPMODE, sizeof(ECAPMODE), SIGNED_TYPE_VALUE(ECAPMODE) },
 #endif
 #ifdef EPWROFF
-  { "EPWROFF", (uintmax_t)EPWROFF, 0 < EPWROFF },
+  { "EPWROFF", (uintmax_t)EPWROFF, 0 < EPWROFF, sizeof(EPWROFF), SIGNED_TYPE_VALUE(EPWROFF) },
 #endif
 #ifdef EDEVERR
-  { "EDEVERR", (uintmax_t)EDEVERR, 0 < EDEVERR },
+  { "EDEVERR", (uintmax_t)EDEVERR, 0 < EDEVERR, sizeof(EDEVERR), SIGNED_TYPE_VALUE(EDEVERR) },
 #endif
 #ifdef EBADEXEC
-  { "EBADEXEC", (uintmax_t)EBADEXEC, 0 < EBADEXEC },
+  { "EBADEXEC", (uintmax_t)EBADEXEC, 0 < EBADEXEC, sizeof(EBADEXEC), SIGNED_TYPE_VALUE(EBADEXEC) },
 #endif
 #ifdef EBADARCH
-  { "EBADARCH", (uintmax_t)EBADARCH, 0 < EBADARCH },
+  { "EBADARCH", (uintmax_t)EBADARCH, 0 < EBADARCH, sizeof(EBADARCH), SIGNED_TYPE_VALUE(EBADARCH) },
 #endif
 #ifdef ESHLIBVERS
-  { "ESHLIBVERS", (uintmax_t)ESHLIBVERS, 0 < ESHLIBVERS },
+  { "ESHLIBVERS", (uintmax_t)ESHLIBVERS, 0 < ESHLIBVERS, sizeof(ESHLIBVERS), SIGNED_TYPE_VALUE(ESHLIBVERS) },
 #endif
 #ifdef EBADMACHO
-  { "EBADMACHO", (uintmax_t)EBADMACHO, 0 < EBADMACHO },
+  { "EBADMACHO", (uintmax_t)EBADMACHO, 0 < EBADMACHO, sizeof(EBADMACHO), SIGNED_TYPE_VALUE(EBADMACHO) },
 #endif
 #ifdef ENOPOLICY
-  { "ENOPOLICY", (uintmax_t)ENOPOLICY, 0 < ENOPOLICY },
+  { "ENOPOLICY", (uintmax_t)ENOPOLICY, 0 < ENOPOLICY, sizeof(ENOPOLICY), SIGNED_TYPE_VALUE(ENOPOLICY) },
 #endif
 #ifdef EPACKSIZE
-  { "EPACKSIZE", (uintmax_t)EPACKSIZE, 0 < EPACKSIZE },
+  { "EPACKSIZE", (uintmax_t)EPACKSIZE, 0 < EPACKSIZE, sizeof(EPACKSIZE), SIGNED_TYPE_VALUE(EPACKSIZE) },
 #endif
 #ifdef EBADIOCTL
-  { "EBADIOCTL", (uintmax_t)EBADIOCTL, 0 < EBADIOCTL },
+  { "EBADIOCTL", (uintmax_t)EBADIOCTL, 0 < EBADIOCTL, sizeof(EBADIOCTL), SIGNED_TYPE_VALUE(EBADIOCTL) },
 #endif
 #ifdef EBADMODE
-  { "EBADMODE", (uintmax_t)EBADMODE, 0 < EBADMODE },
+  { "EBADMODE", (uintmax_t)EBADMODE, 0 < EBADMODE, sizeof(EBADMODE), SIGNED_TYPE_VALUE(EBADMODE) },
 #endif
 #ifdef EURG
-  { "EURG", (uintmax_t)EURG, 0 < EURG },
+  { "EURG", (uintmax_t)EURG, 0 < EURG, sizeof(EURG), SIGNED_TYPE_VALUE(EURG) },
 #endif
 #ifdef ENOURG
-  { "ENOURG", (uintmax_t)ENOURG, 0 < ENOURG },
+  { "ENOURG", (uintmax_t)ENOURG, 0 < ENOURG, sizeof(ENOURG), SIGNED_TYPE_VALUE(ENOURG) },
 #endif
 #ifdef ENOCONN
-  { "ENOCONN", (uintmax_t)ENOCONN, 0 < ENOCONN },
+  { "ENOCONN", (uintmax_t)ENOCONN, 0 < ENOCONN, sizeof(ENOCONN), SIGNED_TYPE_VALUE(ENOCONN) },
 #endif
 #ifdef EGENERIC
-  { "EGENERIC", (uintmax_t)EGENERIC, 0 < EGENERIC },
+  { "EGENERIC", (uintmax_t)EGENERIC, 0 < EGENERIC, sizeof(EGENERIC), SIGNED_TYPE_VALUE(EGENERIC) },
 #endif
 #ifdef ELOCKED
-  { "ELOCKED", (uintmax_t)ELOCKED, 0 < ELOCKED },
+  { "ELOCKED", (uintmax_t)ELOCKED, 0 < ELOCKED, sizeof(ELOCKED), SIGNED_TYPE_VALUE(ELOCKED) },
 #endif
 #ifdef EBADCALL
-  { "EBADCALL", (uintmax_t)EBADCALL, 0 < EBADCALL },
+  { "EBADCALL", (uintmax_t)EBADCALL, 0 < EBADCALL, sizeof(EBADCALL), SIGNED_TYPE_VALUE(EBADCALL) },
 #endif
 #ifdef EBADSRCDST
-  { "EBADSRCDST", (uintmax_t)EBADSRCDST, 0 < EBADSRCDST },
+  { "EBADSRCDST", (uintmax_t)EBADSRCDST, 0 < EBADSRCDST, sizeof(EBADSRCDST), SIGNED_TYPE_VALUE(EBADSRCDST) },
 #endif
 #ifdef ECALLDENIED
-  { "ECALLDENIED", (uintmax_t)ECALLDENIED, 0 < ECALLDENIED },
+  { "ECALLDENIED", (uintmax_t)ECALLDENIED, 0 < ECALLDENIED, sizeof(ECALLDENIED), SIGNED_TYPE_VALUE(ECALLDENIED) },
 #endif
 #ifdef EDEADSRCDST
-  { "EDEADSRCDST", (uintmax_t)EDEADSRCDST, 0 < EDEADSRCDST },
+  { "EDEADSRCDST", (uintmax_t)EDEADSRCDST, 0 < EDEADSRCDST, sizeof(EDEADSRCDST), SIGNED_TYPE_VALUE(EDEADSRCDST) },
 #endif
 #ifdef ENOTREADY
-  { "ENOTREADY", (uintmax_t)ENOTREADY, 0 < ENOTREADY },
+  { "ENOTREADY", (uintmax_t)ENOTREADY, 0 < ENOTREADY, sizeof(ENOTREADY), SIGNED_TYPE_VALUE(ENOTREADY) },
 #endif
 #ifdef EBADREQUEST
-  { "EBADREQUEST", (uintmax_t)EBADREQUEST, 0 < EBADREQUEST },
+  { "EBADREQUEST", (uintmax_t)EBADREQUEST, 0 < EBADREQUEST, sizeof(EBADREQUEST), SIGNED_TYPE_VALUE(EBADREQUEST) },
 #endif
 #ifdef ETRAPDENIED
-  { "ETRAPDENIED", (uintmax_t)ETRAPDENIED, 0 < ETRAPDENIED },
+  { "ETRAPDENIED", (uintmax_t)ETRAPDENIED, 0 < ETRAPDENIED, sizeof(ETRAPDENIED), SIGNED_TYPE_VALUE(ETRAPDENIED) },
 #endif
 #ifdef EDONTREPLY
-  { "EDONTREPLY", (uintmax_t)EDONTREPLY, 0 < EDONTREPLY },
+  { "EDONTREPLY", (uintmax_t)EDONTREPLY, 0 < EDONTREPLY, sizeof(EDONTREPLY), SIGNED_TYPE_VALUE(EDONTREPLY) },
 #endif
 #ifdef EBADEPT
-  { "EBADEPT", (uintmax_t)EBADEPT, 0 < EBADEPT },
+  { "EBADEPT", (uintmax_t)EBADEPT, 0 < EBADEPT, sizeof(EBADEPT), SIGNED_TYPE_VALUE(EBADEPT) },
 #endif
 #ifdef EDEADEPT
-  { "EDEADEPT", (uintmax_t)EDEADEPT, 0 < EDEADEPT },
+  { "EDEADEPT", (uintmax_t)EDEADEPT, 0 < EDEADEPT, sizeof(EDEADEPT), SIGNED_TYPE_VALUE(EDEADEPT) },
 #endif
 #ifdef EBADCPU
-  { "EBADCPU", (uintmax_t)EBADCPU, 0 < EBADCPU },
+  { "EBADCPU", (uintmax_t)EBADCPU, 0 < EBADCPU, sizeof(EBADCPU), SIGNED_TYPE_VALUE(EBADCPU) },
 #endif
 #ifdef ELBIN
-  { "ELBIN", (uintmax_t)ELBIN, 0 < ELBIN },
+  { "ELBIN", (uintmax_t)ELBIN, 0 < ELBIN, sizeof(ELBIN), SIGNED_TYPE_VALUE(ELBIN) },
 #endif
 #ifdef ENMFILE
-  { "ENMFILE", (uintmax_t)ENMFILE, 0 < ENMFILE },
+  { "ENMFILE", (uintmax_t)ENMFILE, 0 < ENMFILE, sizeof(ENMFILE), SIGNED_TYPE_VALUE(ENMFILE) },
 #endif
 #ifdef ENOSHARE
-  { "ENOSHARE", (uintmax_t)ENOSHARE, 0 < ENOSHARE },
+  { "ENOSHARE", (uintmax_t)ENOSHARE, 0 < ENOSHARE, sizeof(ENOSHARE), SIGNED_TYPE_VALUE(ENOSHARE) },
 #endif
 #ifdef ECASECLASH
-  { "ECASECLASH", (uintmax_t)ECASECLASH, 0 < ECASECLASH },
+  { "ECASECLASH", (uintmax_t)ECASECLASH, 0 < ECASECLASH, sizeof(ECASECLASH), SIGNED_TYPE_VALUE(ECASECLASH) },
 #endif
 #ifdef ELOCKUNMAPPED
-  { "ELOCKUNMAPPED", (uintmax_t)ELOCKUNMAPPED, 0 < ELOCKUNMAPPED },
+  { "ELOCKUNMAPPED", (uintmax_t)ELOCKUNMAPPED, 0 < ELOCKUNMAPPED, sizeof(ELOCKUNMAPPED), SIGNED_TYPE_VALUE(ELOCKUNMAPPED) },
 #endif
 #ifdef ENOTACTIVE
-  { "ENOTACTIVE", (uintmax_t)ENOTACTIVE, 0 < ENOTACTIVE },
+  { "ENOTACTIVE", (uintmax_t)ENOTACTIVE, 0 < ENOTACTIVE, sizeof(ENOTACTIVE), SIGNED_TYPE_VALUE(ENOTACTIVE) },
 #endif
 #ifdef B_NO_ERROR
-  { "B_NO_ERROR", (uintmax_t)B_NO_ERROR, 0 < B_NO_ERROR },
+  { "B_NO_ERROR", (uintmax_t)B_NO_ERROR, 0 < B_NO_ERROR, sizeof(B_NO_ERROR), SIGNED_TYPE_VALUE(B_NO_ERROR) },
 #endif
 #ifdef B_ERROR
-  { "B_ERROR", (uintmax_t)B_ERROR, 0 < B_ERROR },
+  { "B_ERROR", (uintmax_t)B_ERROR, 0 < B_ERROR, sizeof(B_ERROR), SIGNED_TYPE_VALUE(B_ERROR) },
 #endif
 #ifdef B_NO_MEMORY
-  { "B_NO_MEMORY", (uintmax_t)B_NO_MEMORY, 0 < B_NO_MEMORY },
+  { "B_NO_MEMORY", (uintmax_t)B_NO_MEMORY, 0 < B_NO_MEMORY, sizeof(B_NO_MEMORY), SIGNED_TYPE_VALUE(B_NO_MEMORY) },
 #endif
 #ifdef B_POSIX_ENOMEM
-  { "B_POSIX_ENOMEM", (uintmax_t)B_POSIX_ENOMEM, 0 < B_POSIX_ENOMEM },
+  { "B_POSIX_ENOMEM", (uintmax_t)B_POSIX_ENOMEM, 0 < B_POSIX_ENOMEM, sizeof(B_POSIX_ENOMEM), SIGNED_TYPE_VALUE(B_POSIX_ENOMEM) },
 #endif
 #ifdef B_IO_ERROR
-  { "B_IO_ERROR", (uintmax_t)B_IO_ERROR, 0 < B_IO_ERROR },
+  { "B_IO_ERROR", (uintmax_t)B_IO_ERROR, 0 < B_IO_ERROR, sizeof(B_IO_ERROR), SIGNED_TYPE_VALUE(B_IO_ERROR) },
 #endif
 #ifdef B_PERMISSION_DENIED
-  { "B_PERMISSION_DENIED", (uintmax_t)B_PERMISSION_DENIED, 0 < B_PERMISSION_DENIED },
+  { "B_PERMISSION_DENIED", (uintmax_t)B_PERMISSION_DENIED, 0 < B_PERMISSION_DENIED, sizeof(B_PERMISSION_DENIED), SIGNED_TYPE_VALUE(B_PERMISSION_DENIED) },
 #endif
 #ifdef B_BAD_INDEX
-  { "B_BAD_INDEX", (uintmax_t)B_BAD_INDEX, 0 < B_BAD_INDEX },
+  { "B_BAD_INDEX", (uintmax_t)B_BAD_INDEX, 0 < B_BAD_INDEX, sizeof(B_BAD_INDEX), SIGNED_TYPE_VALUE(B_BAD_INDEX) },
 #endif
 #ifdef B_BAD_TYPE
-  { "B_BAD_TYPE", (uintmax_t)B_BAD_TYPE, 0 < B_BAD_TYPE },
+  { "B_BAD_TYPE", (uintmax_t)B_BAD_TYPE, 0 < B_BAD_TYPE, sizeof(B_BAD_TYPE), SIGNED_TYPE_VALUE(B_BAD_TYPE) },
 #endif
 #ifdef B_BAD_VALUE
-  { "B_BAD_VALUE", (uintmax_t)B_BAD_VALUE, 0 < B_BAD_VALUE },
+  { "B_BAD_VALUE", (uintmax_t)B_BAD_VALUE, 0 < B_BAD_VALUE, sizeof(B_BAD_VALUE), SIGNED_TYPE_VALUE(B_BAD_VALUE) },
 #endif
 #ifdef B_MISMATCHED_VALUES
-  { "B_MISMATCHED_VALUES", (uintmax_t)B_MISMATCHED_VALUES, 0 < B_MISMATCHED_VALUES },
+  { "B_MISMATCHED_VALUES", (uintmax_t)B_MISMATCHED_VALUES, 0 < B_MISMATCHED_VALUES, sizeof(B_MISMATCHED_VALUES), SIGNED_TYPE_VALUE(B_MISMATCHED_VALUES) },
 #endif
 #ifdef B_NAME_NOT_FOUND
-  { "B_NAME_NOT_FOUND", (uintmax_t)B_NAME_NOT_FOUND, 0 < B_NAME_NOT_FOUND },
+  { "B_NAME_NOT_FOUND", (uintmax_t)B_NAME_NOT_FOUND, 0 < B_NAME_NOT_FOUND, sizeof(B_NAME_NOT_FOUND), SIGNED_TYPE_VALUE(B_NAME_NOT_FOUND) },
 #endif
 #ifdef B_NAME_IN_USE
-  { "B_NAME_IN_USE", (uintmax_t)B_NAME_IN_USE, 0 < B_NAME_IN_USE },
+  { "B_NAME_IN_USE", (uintmax_t)B_NAME_IN_USE, 0 < B_NAME_IN_USE, sizeof(B_NAME_IN_USE), SIGNED_TYPE_VALUE(B_NAME_IN_USE) },
 #endif
 #ifdef B_TIMED_OUT
-  { "B_TIMED_OUT", (uintmax_t)B_TIMED_OUT, 0 < B_TIMED_OUT },
+  { "B_TIMED_OUT", (uintmax_t)B_TIMED_OUT, 0 < B_TIMED_OUT, sizeof(B_TIMED_OUT), SIGNED_TYPE_VALUE(B_TIMED_OUT) },
 #endif
 #ifdef B_INTERRUPTED
-  { "B_INTERRUPTED", (uintmax_t)B_INTERRUPTED, 0 < B_INTERRUPTED },
+  { "B_INTERRUPTED", (uintmax_t)B_INTERRUPTED, 0 < B_INTERRUPTED, sizeof(B_INTERRUPTED), SIGNED_TYPE_VALUE(B_INTERRUPTED) },
 #endif
 #ifdef B_WOULD_BLOCK
-  { "B_WOULD_BLOCK", (uintmax_t)B_WOULD_BLOCK, 0 < B_WOULD_BLOCK },
+  { "B_WOULD_BLOCK", (uintmax_t)B_WOULD_BLOCK, 0 < B_WOULD_BLOCK, sizeof(B_WOULD_BLOCK), SIGNED_TYPE_VALUE(B_WOULD_BLOCK) },
 #endif
 #ifdef B_CANCELED
-  { "B_CANCELED", (uintmax_t)B_CANCELED, 0 < B_CANCELED },
+  { "B_CANCELED", (uintmax_t)B_CANCELED, 0 < B_CANCELED, sizeof(B_CANCELED), SIGNED_TYPE_VALUE(B_CANCELED) },
 #endif
 #ifdef B_NO_INIT
-  { "B_NO_INIT", (uintmax_t)B_NO_INIT, 0 < B_NO_INIT },
+  { "B_NO_INIT", (uintmax_t)B_NO_INIT, 0 < B_NO_INIT, sizeof(B_NO_INIT), SIGNED_TYPE_VALUE(B_NO_INIT) },
 #endif
 #ifdef B_BUSY
-  { "B_BUSY", (uintmax_t)B_BUSY, 0 < B_BUSY },
+  { "B_BUSY", (uintmax_t)B_BUSY, 0 < B_BUSY, sizeof(B_BUSY), SIGNED_TYPE_VALUE(B_BUSY) },
 #endif
 #ifdef B_NOT_ALLOWED
-  { "B_NOT_ALLOWED", (uintmax_t)B_NOT_ALLOWED, 0 < B_NOT_ALLOWED },
+  { "B_NOT_ALLOWED", (uintmax_t)B_NOT_ALLOWED, 0 < B_NOT_ALLOWED, sizeof(B_NOT_ALLOWED), SIGNED_TYPE_VALUE(B_NOT_ALLOWED) },
 #endif
 #ifdef B_BAD_DATA
-  { "B_BAD_DATA", (uintmax_t)B_BAD_DATA, 0 < B_BAD_DATA },
+  { "B_BAD_DATA", (uintmax_t)B_BAD_DATA, 0 < B_BAD_DATA, sizeof(B_BAD_DATA), SIGNED_TYPE_VALUE(B_BAD_DATA) },
 #endif
 #ifdef B_BAD_SEM_ID
-  { "B_BAD_SEM_ID", (uintmax_t)B_BAD_SEM_ID, 0 < B_BAD_SEM_ID },
+  { "B_BAD_SEM_ID", (uintmax_t)B_BAD_SEM_ID, 0 < B_BAD_SEM_ID, sizeof(B_BAD_SEM_ID), SIGNED_TYPE_VALUE(B_BAD_SEM_ID) },
 #endif
 #ifdef B_NO_MORE_SEMS
-  { "B_NO_MORE_SEMS", (uintmax_t)B_NO_MORE_SEMS, 0 < B_NO_MORE_SEMS },
+  { "B_NO_MORE_SEMS", (uintmax_t)B_NO_MORE_SEMS, 0 < B_NO_MORE_SEMS, sizeof(B_NO_MORE_SEMS), SIGNED_TYPE_VALUE(B_NO_MORE_SEMS) },
 #endif
 #ifdef B_BAD_THREAD_ID
-  { "B_BAD_THREAD_ID", (uintmax_t)B_BAD_THREAD_ID, 0 < B_BAD_THREAD_ID },
+  { "B_BAD_THREAD_ID", (uintmax_t)B_BAD_THREAD_ID, 0 < B_BAD_THREAD_ID, sizeof(B_BAD_THREAD_ID), SIGNED_TYPE_VALUE(B_BAD_THREAD_ID) },
 #endif
 #ifdef B_NO_MORE_THREADS
-  { "B_NO_MORE_THREADS", (uintmax_t)B_NO_MORE_THREADS, 0 < B_NO_MORE_THREADS },
+  { "B_NO_MORE_THREADS", (uintmax_t)B_NO_MORE_THREADS, 0 < B_NO_MORE_THREADS, sizeof(B_NO_MORE_THREADS), SIGNED_TYPE_VALUE(B_NO_MORE_THREADS) },
 #endif
 #ifdef B_BAD_THREAD_STATE
-  { "B_BAD_THREAD_STATE", (uintmax_t)B_BAD_THREAD_STATE, 0 < B_BAD_THREAD_STATE },
+  { "B_BAD_THREAD_STATE", (uintmax_t)B_BAD_THREAD_STATE, 0 < B_BAD_THREAD_STATE, sizeof(B_BAD_THREAD_STATE), SIGNED_TYPE_VALUE(B_BAD_THREAD_STATE) },
 #endif
 #ifdef B_BAD_TEAM_ID
-  { "B_BAD_TEAM_ID", (uintmax_t)B_BAD_TEAM_ID, 0 < B_BAD_TEAM_ID },
+  { "B_BAD_TEAM_ID", (uintmax_t)B_BAD_TEAM_ID, 0 < B_BAD_TEAM_ID, sizeof(B_BAD_TEAM_ID), SIGNED_TYPE_VALUE(B_BAD_TEAM_ID) },
 #endif
 #ifdef B_NO_MORE_TEAMS
-  { "B_NO_MORE_TEAMS", (uintmax_t)B_NO_MORE_TEAMS, 0 < B_NO_MORE_TEAMS },
+  { "B_NO_MORE_TEAMS", (uintmax_t)B_NO_MORE_TEAMS, 0 < B_NO_MORE_TEAMS, sizeof(B_NO_MORE_TEAMS), SIGNED_TYPE_VALUE(B_NO_MORE_TEAMS) },
 #endif
 #ifdef B_BAD_PORT_ID
-  { "B_BAD_PORT_ID", (uintmax_t)B_BAD_PORT_ID, 0 < B_BAD_PORT_ID },
+  { "B_BAD_PORT_ID", (uintmax_t)B_BAD_PORT_ID, 0 < B_BAD_PORT_ID, sizeof(B_BAD_PORT_ID), SIGNED_TYPE_VALUE(B_BAD_PORT_ID) },
 #endif
 #ifdef B_NO_MORE_PORTS
-  { "B_NO_MORE_PORTS", (uintmax_t)B_NO_MORE_PORTS, 0 < B_NO_MORE_PORTS },
+  { "B_NO_MORE_PORTS", (uintmax_t)B_NO_MORE_PORTS, 0 < B_NO_MORE_PORTS, sizeof(B_NO_MORE_PORTS), SIGNED_TYPE_VALUE(B_NO_MORE_PORTS) },
 #endif
 #ifdef B_BAD_IMAGE_ID
-  { "B_BAD_IMAGE_ID", (uintmax_t)B_BAD_IMAGE_ID, 0 < B_BAD_IMAGE_ID },
+  { "B_BAD_IMAGE_ID", (uintmax_t)B_BAD_IMAGE_ID, 0 < B_BAD_IMAGE_ID, sizeof(B_BAD_IMAGE_ID), SIGNED_TYPE_VALUE(B_BAD_IMAGE_ID) },
 #endif
 #ifdef B_BAD_ADDRESS
-  { "B_BAD_ADDRESS", (uintmax_t)B_BAD_ADDRESS, 0 < B_BAD_ADDRESS },
+  { "B_BAD_ADDRESS", (uintmax_t)B_BAD_ADDRESS, 0 < B_BAD_ADDRESS, sizeof(B_BAD_ADDRESS), SIGNED_TYPE_VALUE(B_BAD_ADDRESS) },
 #endif
 #ifdef B_NOT_AN_EXECUTABLE
-  { "B_NOT_AN_EXECUTABLE", (uintmax_t)B_NOT_AN_EXECUTABLE, 0 < B_NOT_AN_EXECUTABLE },
+  { "B_NOT_AN_EXECUTABLE", (uintmax_t)B_NOT_AN_EXECUTABLE, 0 < B_NOT_AN_EXECUTABLE, sizeof(B_NOT_AN_EXECUTABLE), SIGNED_TYPE_VALUE(B_NOT_AN_EXECUTABLE) },
 #endif
 #ifdef B_MISSING_LIBRARY
-  { "B_MISSING_LIBRARY", (uintmax_t)B_MISSING_LIBRARY, 0 < B_MISSING_LIBRARY },
+  { "B_MISSING_LIBRARY", (uintmax_t)B_MISSING_LIBRARY, 0 < B_MISSING_LIBRARY, sizeof(B_MISSING_LIBRARY), SIGNED_TYPE_VALUE(B_MISSING_LIBRARY) },
 #endif
 #ifdef B_MISSING_SYMBOL
-  { "B_MISSING_SYMBOL", (uintmax_t)B_MISSING_SYMBOL, 0 < B_MISSING_SYMBOL },
+  { "B_MISSING_SYMBOL", (uintmax_t)B_MISSING_SYMBOL, 0 < B_MISSING_SYMBOL, sizeof(B_MISSING_SYMBOL), SIGNED_TYPE_VALUE(B_MISSING_SYMBOL) },
 #endif
 #ifdef B_DEBUGGER_ALREADY_INSTALLED
-  { "B_DEBUGGER_ALREADY_INSTALLED", (uintmax_t)B_DEBUGGER_ALREADY_INSTALLED, 0 < B_DEBUGGER_ALREADY_INSTALLED },
+  { "B_DEBUGGER_ALREADY_INSTALLED", (uintmax_t)B_DEBUGGER_ALREADY_INSTALLED, 0 < B_DEBUGGER_ALREADY_INSTALLED, sizeof(B_DEBUGGER_ALREADY_INSTALLED), SIGNED_TYPE_VALUE(B_DEBUGGER_ALREADY_INSTALLED) },
 #endif
 #ifdef B_BAD_REPLY
-  { "B_BAD_REPLY", (uintmax_t)B_BAD_REPLY, 0 < B_BAD_REPLY },
+  { "B_BAD_REPLY", (uintmax_t)B_BAD_REPLY, 0 < B_BAD_REPLY, sizeof(B_BAD_REPLY), SIGNED_TYPE_VALUE(B_BAD_REPLY) },
 #endif
 #ifdef B_DUPLICATE_REPLY
-  { "B_DUPLICATE_REPLY", (uintmax_t)B_DUPLICATE_REPLY, 0 < B_DUPLICATE_REPLY },
+  { "B_DUPLICATE_REPLY", (uintmax_t)B_DUPLICATE_REPLY, 0 < B_DUPLICATE_REPLY, sizeof(B_DUPLICATE_REPLY), SIGNED_TYPE_VALUE(B_DUPLICATE_REPLY) },
 #endif
 #ifdef B_MESSAGE_TO_SELF
-  { "B_MESSAGE_TO_SELF", (uintmax_t)B_MESSAGE_TO_SELF, 0 < B_MESSAGE_TO_SELF },
+  { "B_MESSAGE_TO_SELF", (uintmax_t)B_MESSAGE_TO_SELF, 0 < B_MESSAGE_TO_SELF, sizeof(B_MESSAGE_TO_SELF), SIGNED_TYPE_VALUE(B_MESSAGE_TO_SELF) },
 #endif
 #ifdef B_BAD_HANDLER
-  { "B_BAD_HANDLER", (uintmax_t)B_BAD_HANDLER, 0 < B_BAD_HANDLER },
+  { "B_BAD_HANDLER", (uintmax_t)B_BAD_HANDLER, 0 < B_BAD_HANDLER, sizeof(B_BAD_HANDLER), SIGNED_TYPE_VALUE(B_BAD_HANDLER) },
 #endif
 #ifdef B_ALREADY_RUNNING
-  { "B_ALREADY_RUNNING", (uintmax_t)B_ALREADY_RUNNING, 0 < B_ALREADY_RUNNING },
+  { "B_ALREADY_RUNNING", (uintmax_t)B_ALREADY_RUNNING, 0 < B_ALREADY_RUNNING, sizeof(B_ALREADY_RUNNING), SIGNED_TYPE_VALUE(B_ALREADY_RUNNING) },
 #endif
 #ifdef B_LAUNCH_FAILED
-  { "B_LAUNCH_FAILED", (uintmax_t)B_LAUNCH_FAILED, 0 < B_LAUNCH_FAILED },
+  { "B_LAUNCH_FAILED", (uintmax_t)B_LAUNCH_FAILED, 0 < B_LAUNCH_FAILED, sizeof(B_LAUNCH_FAILED), SIGNED_TYPE_VALUE(B_LAUNCH_FAILED) },
 #endif
 #ifdef B_AMBIGUOUS_APP_LAUNCH
-  { "B_AMBIGUOUS_APP_LAUNCH", (uintmax_t)B_AMBIGUOUS_APP_LAUNCH, 0 < B_AMBIGUOUS_APP_LAUNCH },
+  { "B_AMBIGUOUS_APP_LAUNCH", (uintmax_t)B_AMBIGUOUS_APP_LAUNCH, 0 < B_AMBIGUOUS_APP_LAUNCH, sizeof(B_AMBIGUOUS_APP_LAUNCH), SIGNED_TYPE_VALUE(B_AMBIGUOUS_APP_LAUNCH) },
 #endif
 #ifdef B_UNKNOWN_MIME_TYPE
-  { "B_UNKNOWN_MIME_TYPE", (uintmax_t)B_UNKNOWN_MIME_TYPE, 0 < B_UNKNOWN_MIME_TYPE },
+  { "B_UNKNOWN_MIME_TYPE", (uintmax_t)B_UNKNOWN_MIME_TYPE, 0 < B_UNKNOWN_MIME_TYPE, sizeof(B_UNKNOWN_MIME_TYPE), SIGNED_TYPE_VALUE(B_UNKNOWN_MIME_TYPE) },
 #endif
 #ifdef B_BAD_SCRIPT_SYNTAX
-  { "B_BAD_SCRIPT_SYNTAX", (uintmax_t)B_BAD_SCRIPT_SYNTAX, 0 < B_BAD_SCRIPT_SYNTAX },
+  { "B_BAD_SCRIPT_SYNTAX", (uintmax_t)B_BAD_SCRIPT_SYNTAX, 0 < B_BAD_SCRIPT_SYNTAX, sizeof(B_BAD_SCRIPT_SYNTAX), SIGNED_TYPE_VALUE(B_BAD_SCRIPT_SYNTAX) },
 #endif
 #ifdef B_LAUNCH_FAILED_NO_RESOLVE_LINK
-  { "B_LAUNCH_FAILED_NO_RESOLVE_LINK", (uintmax_t)B_LAUNCH_FAILED_NO_RESOLVE_LINK, 0 < B_LAUNCH_FAILED_NO_RESOLVE_LINK },
+  { "B_LAUNCH_FAILED_NO_RESOLVE_LINK", (uintmax_t)B_LAUNCH_FAILED_NO_RESOLVE_LINK, 0 < B_LAUNCH_FAILED_NO_RESOLVE_LINK, sizeof(B_LAUNCH_FAILED_NO_RESOLVE_LINK), SIGNED_TYPE_VALUE(B_LAUNCH_FAILED_NO_RESOLVE_LINK) },
 #endif
 #ifdef B_LAUNCH_FAILED_EXECUTABLE
-  { "B_LAUNCH_FAILED_EXECUTABLE", (uintmax_t)B_LAUNCH_FAILED_EXECUTABLE, 0 < B_LAUNCH_FAILED_EXECUTABLE },
+  { "B_LAUNCH_FAILED_EXECUTABLE", (uintmax_t)B_LAUNCH_FAILED_EXECUTABLE, 0 < B_LAUNCH_FAILED_EXECUTABLE, sizeof(B_LAUNCH_FAILED_EXECUTABLE), SIGNED_TYPE_VALUE(B_LAUNCH_FAILED_EXECUTABLE) },
 #endif
 #ifdef B_LAUNCH_FAILED_APP_NOT_FOUND
-  { "B_LAUNCH_FAILED_APP_NOT_FOUND", (uintmax_t)B_LAUNCH_FAILED_APP_NOT_FOUND, 0 < B_LAUNCH_FAILED_APP_NOT_FOUND },
+  { "B_LAUNCH_FAILED_APP_NOT_FOUND", (uintmax_t)B_LAUNCH_FAILED_APP_NOT_FOUND, 0 < B_LAUNCH_FAILED_APP_NOT_FOUND, sizeof(B_LAUNCH_FAILED_APP_NOT_FOUND), SIGNED_TYPE_VALUE(B_LAUNCH_FAILED_APP_NOT_FOUND) },
 #endif
 #ifdef B_LAUNCH_FAILED_APP_IN_TRASH
-  { "B_LAUNCH_FAILED_APP_IN_TRASH", (uintmax_t)B_LAUNCH_FAILED_APP_IN_TRASH, 0 < B_LAUNCH_FAILED_APP_IN_TRASH },
+  { "B_LAUNCH_FAILED_APP_IN_TRASH", (uintmax_t)B_LAUNCH_FAILED_APP_IN_TRASH, 0 < B_LAUNCH_FAILED_APP_IN_TRASH, sizeof(B_LAUNCH_FAILED_APP_IN_TRASH), SIGNED_TYPE_VALUE(B_LAUNCH_FAILED_APP_IN_TRASH) },
 #endif
 #ifdef B_LAUNCH_FAILED_NO_PREFERRED_APP
-  { "B_LAUNCH_FAILED_NO_PREFERRED_APP", (uintmax_t)B_LAUNCH_FAILED_NO_PREFERRED_APP, 0 < B_LAUNCH_FAILED_NO_PREFERRED_APP },
+  { "B_LAUNCH_FAILED_NO_PREFERRED_APP", (uintmax_t)B_LAUNCH_FAILED_NO_PREFERRED_APP, 0 < B_LAUNCH_FAILED_NO_PREFERRED_APP, sizeof(B_LAUNCH_FAILED_NO_PREFERRED_APP), SIGNED_TYPE_VALUE(B_LAUNCH_FAILED_NO_PREFERRED_APP) },
 #endif
 #ifdef B_LAUNCH_FAILED_FILES_APP_NOT_FOUND
-  { "B_LAUNCH_FAILED_FILES_APP_NOT_FOUND", (uintmax_t)B_LAUNCH_FAILED_FILES_APP_NOT_FOUND, 0 < B_LAUNCH_FAILED_FILES_APP_NOT_FOUND },
+  { "B_LAUNCH_FAILED_FILES_APP_NOT_FOUND", (uintmax_t)B_LAUNCH_FAILED_FILES_APP_NOT_FOUND, 0 < B_LAUNCH_FAILED_FILES_APP_NOT_FOUND, sizeof(B_LAUNCH_FAILED_FILES_APP_NOT_FOUND), SIGNED_TYPE_VALUE(B_LAUNCH_FAILED_FILES_APP_NOT_FOUND) },
 #endif
 #ifdef B_BAD_MIME_SNIFFER_RULE
-  { "B_BAD_MIME_SNIFFER_RULE", (uintmax_t)B_BAD_MIME_SNIFFER_RULE, 0 < B_BAD_MIME_SNIFFER_RULE },
+  { "B_BAD_MIME_SNIFFER_RULE", (uintmax_t)B_BAD_MIME_SNIFFER_RULE, 0 < B_BAD_MIME_SNIFFER_RULE, sizeof(B_BAD_MIME_SNIFFER_RULE), SIGNED_TYPE_VALUE(B_BAD_MIME_SNIFFER_RULE) },
 #endif
 #ifdef B_NOT_A_MESSAGE
-  { "B_NOT_A_MESSAGE", (uintmax_t)B_NOT_A_MESSAGE, 0 < B_NOT_A_MESSAGE },
+  { "B_NOT_A_MESSAGE", (uintmax_t)B_NOT_A_MESSAGE, 0 < B_NOT_A_MESSAGE, sizeof(B_NOT_A_MESSAGE), SIGNED_TYPE_VALUE(B_NOT_A_MESSAGE) },
 #endif
 #ifdef B_SHUTDOWN_CANCELLED
-  { "B_SHUTDOWN_CANCELLED", (uintmax_t)B_SHUTDOWN_CANCELLED, 0 < B_SHUTDOWN_CANCELLED },
+  { "B_SHUTDOWN_CANCELLED", (uintmax_t)B_SHUTDOWN_CANCELLED, 0 < B_SHUTDOWN_CANCELLED, sizeof(B_SHUTDOWN_CANCELLED), SIGNED_TYPE_VALUE(B_SHUTDOWN_CANCELLED) },
 #endif
 #ifdef B_SHUTTING_DOWN
-  { "B_SHUTTING_DOWN", (uintmax_t)B_SHUTTING_DOWN, 0 < B_SHUTTING_DOWN },
+  { "B_SHUTTING_DOWN", (uintmax_t)B_SHUTTING_DOWN, 0 < B_SHUTTING_DOWN, sizeof(B_SHUTTING_DOWN), SIGNED_TYPE_VALUE(B_SHUTTING_DOWN) },
 #endif
 #ifdef B_FILE_ERROR
-  { "B_FILE_ERROR", (uintmax_t)B_FILE_ERROR, 0 < B_FILE_ERROR },
+  { "B_FILE_ERROR", (uintmax_t)B_FILE_ERROR, 0 < B_FILE_ERROR, sizeof(B_FILE_ERROR), SIGNED_TYPE_VALUE(B_FILE_ERROR) },
 #endif
 #ifdef B_FILE_NOT_FOUND
-  { "B_FILE_NOT_FOUND", (uintmax_t)B_FILE_NOT_FOUND, 0 < B_FILE_NOT_FOUND },
+  { "B_FILE_NOT_FOUND", (uintmax_t)B_FILE_NOT_FOUND, 0 < B_FILE_NOT_FOUND, sizeof(B_FILE_NOT_FOUND), SIGNED_TYPE_VALUE(B_FILE_NOT_FOUND) },
 #endif
 #ifdef B_ENTRY_NOT_FOUND
-  { "B_ENTRY_NOT_FOUND", (uintmax_t)B_ENTRY_NOT_FOUND, 0 < B_ENTRY_NOT_FOUND },
+  { "B_ENTRY_NOT_FOUND", (uintmax_t)B_ENTRY_NOT_FOUND, 0 < B_ENTRY_NOT_FOUND, sizeof(B_ENTRY_NOT_FOUND), SIGNED_TYPE_VALUE(B_ENTRY_NOT_FOUND) },
 #endif
 #ifdef B_FILE_EXISTS
-  { "B_FILE_EXISTS", (uintmax_t)B_FILE_EXISTS, 0 < B_FILE_EXISTS },
+  { "B_FILE_EXISTS", (uintmax_t)B_FILE_EXISTS, 0 < B_FILE_EXISTS, sizeof(B_FILE_EXISTS), SIGNED_TYPE_VALUE(B_FILE_EXISTS) },
 #endif
 #ifdef B_NAME_TOO_LONG
-  { "B_NAME_TOO_LONG", (uintmax_t)B_NAME_TOO_LONG, 0 < B_NAME_TOO_LONG },
+  { "B_NAME_TOO_LONG", (uintmax_t)B_NAME_TOO_LONG, 0 < B_NAME_TOO_LONG, sizeof(B_NAME_TOO_LONG), SIGNED_TYPE_VALUE(B_NAME_TOO_LONG) },
 #endif
 #ifdef B_NOT_A_DIRECTORY
-  { "B_NOT_A_DIRECTORY", (uintmax_t)B_NOT_A_DIRECTORY, 0 < B_NOT_A_DIRECTORY },
+  { "B_NOT_A_DIRECTORY", (uintmax_t)B_NOT_A_DIRECTORY, 0 < B_NOT_A_DIRECTORY, sizeof(B_NOT_A_DIRECTORY), SIGNED_TYPE_VALUE(B_NOT_A_DIRECTORY) },
 #endif
 #ifdef B_DIRECTORY_NOT_EMPTY
-  { "B_DIRECTORY_NOT_EMPTY", (uintmax_t)B_DIRECTORY_NOT_EMPTY, 0 < B_DIRECTORY_NOT_EMPTY },
+  { "B_DIRECTORY_NOT_EMPTY", (uintmax_t)B_DIRECTORY_NOT_EMPTY, 0 < B_DIRECTORY_NOT_EMPTY, sizeof(B_DIRECTORY_NOT_EMPTY), SIGNED_TYPE_VALUE(B_DIRECTORY_NOT_EMPTY) },
 #endif
 #ifdef B_DEVICE_FULL
-  { "B_DEVICE_FULL", (uintmax_t)B_DEVICE_FULL, 0 < B_DEVICE_FULL },
+  { "B_DEVICE_FULL", (uintmax_t)B_DEVICE_FULL, 0 < B_DEVICE_FULL, sizeof(B_DEVICE_FULL), SIGNED_TYPE_VALUE(B_DEVICE_FULL) },
 #endif
 #ifdef B_READ_ONLY_DEVICE
-  { "B_READ_ONLY_DEVICE", (uintmax_t)B_READ_ONLY_DEVICE, 0 < B_READ_ONLY_DEVICE },
+  { "B_READ_ONLY_DEVICE", (uintmax_t)B_READ_ONLY_DEVICE, 0 < B_READ_ONLY_DEVICE, sizeof(B_READ_ONLY_DEVICE), SIGNED_TYPE_VALUE(B_READ_ONLY_DEVICE) },
 #endif
 #ifdef B_IS_A_DIRECTORY
-  { "B_IS_A_DIRECTORY", (uintmax_t)B_IS_A_DIRECTORY, 0 < B_IS_A_DIRECTORY },
+  { "B_IS_A_DIRECTORY", (uintmax_t)B_IS_A_DIRECTORY, 0 < B_IS_A_DIRECTORY, sizeof(B_IS_A_DIRECTORY), SIGNED_TYPE_VALUE(B_IS_A_DIRECTORY) },
 #endif
 #ifdef B_NO_MORE_FDS
-  { "B_NO_MORE_FDS", (uintmax_t)B_NO_MORE_FDS, 0 < B_NO_MORE_FDS },
+  { "B_NO_MORE_FDS", (uintmax_t)B_NO_MORE_FDS, 0 < B_NO_MORE_FDS, sizeof(B_NO_MORE_FDS), SIGNED_TYPE_VALUE(B_NO_MORE_FDS) },
 #endif
 #ifdef B_CROSS_DEVICE_LINK
-  { "B_CROSS_DEVICE_LINK", (uintmax_t)B_CROSS_DEVICE_LINK, 0 < B_CROSS_DEVICE_LINK },
+  { "B_CROSS_DEVICE_LINK", (uintmax_t)B_CROSS_DEVICE_LINK, 0 < B_CROSS_DEVICE_LINK, sizeof(B_CROSS_DEVICE_LINK), SIGNED_TYPE_VALUE(B_CROSS_DEVICE_LINK) },
 #endif
 #ifdef B_LINK_LIMIT
-  { "B_LINK_LIMIT", (uintmax_t)B_LINK_LIMIT, 0 < B_LINK_LIMIT },
+  { "B_LINK_LIMIT", (uintmax_t)B_LINK_LIMIT, 0 < B_LINK_LIMIT, sizeof(B_LINK_LIMIT), SIGNED_TYPE_VALUE(B_LINK_LIMIT) },
 #endif
 #ifdef B_BUSTED_PIPE
-  { "B_BUSTED_PIPE", (uintmax_t)B_BUSTED_PIPE, 0 < B_BUSTED_PIPE },
+  { "B_BUSTED_PIPE", (uintmax_t)B_BUSTED_PIPE, 0 < B_BUSTED_PIPE, sizeof(B_BUSTED_PIPE), SIGNED_TYPE_VALUE(B_BUSTED_PIPE) },
 #endif
 #ifdef B_UNSUPPORTED
-  { "B_UNSUPPORTED", (uintmax_t)B_UNSUPPORTED, 0 < B_UNSUPPORTED },
+  { "B_UNSUPPORTED", (uintmax_t)B_UNSUPPORTED, 0 < B_UNSUPPORTED, sizeof(B_UNSUPPORTED), SIGNED_TYPE_VALUE(B_UNSUPPORTED) },
 #endif
 #ifdef B_PARTITION_TOO_SMALL
-  { "B_PARTITION_TOO_SMALL", (uintmax_t)B_PARTITION_TOO_SMALL, 0 < B_PARTITION_TOO_SMALL },
+  { "B_PARTITION_TOO_SMALL", (uintmax_t)B_PARTITION_TOO_SMALL, 0 < B_PARTITION_TOO_SMALL, sizeof(B_PARTITION_TOO_SMALL), SIGNED_TYPE_VALUE(B_PARTITION_TOO_SMALL) },
 #endif
 #ifdef B_STREAM_NOT_FOUND
-  { "B_STREAM_NOT_FOUND", (uintmax_t)B_STREAM_NOT_FOUND, 0 < B_STREAM_NOT_FOUND },
+  { "B_STREAM_NOT_FOUND", (uintmax_t)B_STREAM_NOT_FOUND, 0 < B_STREAM_NOT_FOUND, sizeof(B_STREAM_NOT_FOUND), SIGNED_TYPE_VALUE(B_STREAM_NOT_FOUND) },
 #endif
 #ifdef B_SERVER_NOT_FOUND
-  { "B_SERVER_NOT_FOUND", (uintmax_t)B_SERVER_NOT_FOUND, 0 < B_SERVER_NOT_FOUND },
+  { "B_SERVER_NOT_FOUND", (uintmax_t)B_SERVER_NOT_FOUND, 0 < B_SERVER_NOT_FOUND, sizeof(B_SERVER_NOT_FOUND), SIGNED_TYPE_VALUE(B_SERVER_NOT_FOUND) },
 #endif
 #ifdef B_RESOURCE_NOT_FOUND
-  { "B_RESOURCE_NOT_FOUND", (uintmax_t)B_RESOURCE_NOT_FOUND, 0 < B_RESOURCE_NOT_FOUND },
+  { "B_RESOURCE_NOT_FOUND", (uintmax_t)B_RESOURCE_NOT_FOUND, 0 < B_RESOURCE_NOT_FOUND, sizeof(B_RESOURCE_NOT_FOUND), SIGNED_TYPE_VALUE(B_RESOURCE_NOT_FOUND) },
 #endif
 #ifdef B_RESOURCE_UNAVAILABLE
-  { "B_RESOURCE_UNAVAILABLE", (uintmax_t)B_RESOURCE_UNAVAILABLE, 0 < B_RESOURCE_UNAVAILABLE },
+  { "B_RESOURCE_UNAVAILABLE", (uintmax_t)B_RESOURCE_UNAVAILABLE, 0 < B_RESOURCE_UNAVAILABLE, sizeof(B_RESOURCE_UNAVAILABLE), SIGNED_TYPE_VALUE(B_RESOURCE_UNAVAILABLE) },
 #endif
 #ifdef B_BAD_SUBSCRIBER
-  { "B_BAD_SUBSCRIBER", (uintmax_t)B_BAD_SUBSCRIBER, 0 < B_BAD_SUBSCRIBER },
+  { "B_BAD_SUBSCRIBER", (uintmax_t)B_BAD_SUBSCRIBER, 0 < B_BAD_SUBSCRIBER, sizeof(B_BAD_SUBSCRIBER), SIGNED_TYPE_VALUE(B_BAD_SUBSCRIBER) },
 #endif
 #ifdef B_SUBSCRIBER_NOT_ENTERED
-  { "B_SUBSCRIBER_NOT_ENTERED", (uintmax_t)B_SUBSCRIBER_NOT_ENTERED, 0 < B_SUBSCRIBER_NOT_ENTERED },
+  { "B_SUBSCRIBER_NOT_ENTERED", (uintmax_t)B_SUBSCRIBER_NOT_ENTERED, 0 < B_SUBSCRIBER_NOT_ENTERED, sizeof(B_SUBSCRIBER_NOT_ENTERED), SIGNED_TYPE_VALUE(B_SUBSCRIBER_NOT_ENTERED) },
 #endif
 #ifdef B_BUFFER_NOT_AVAILABLE
-  { "B_BUFFER_NOT_AVAILABLE", (uintmax_t)B_BUFFER_NOT_AVAILABLE, 0 < B_BUFFER_NOT_AVAILABLE },
+  { "B_BUFFER_NOT_AVAILABLE", (uintmax_t)B_BUFFER_NOT_AVAILABLE, 0 < B_BUFFER_NOT_AVAILABLE, sizeof(B_BUFFER_NOT_AVAILABLE), SIGNED_TYPE_VALUE(B_BUFFER_NOT_AVAILABLE) },
 #endif
 #ifdef B_LAST_BUFFER_ERROR
-  { "B_LAST_BUFFER_ERROR", (uintmax_t)B_LAST_BUFFER_ERROR, 0 < B_LAST_BUFFER_ERROR },
+  { "B_LAST_BUFFER_ERROR", (uintmax_t)B_LAST_BUFFER_ERROR, 0 < B_LAST_BUFFER_ERROR, sizeof(B_LAST_BUFFER_ERROR), SIGNED_TYPE_VALUE(B_LAST_BUFFER_ERROR) },
 #endif
 #ifdef B_MEDIA_SYSTEM_FAILURE
-  { "B_MEDIA_SYSTEM_FAILURE", (uintmax_t)B_MEDIA_SYSTEM_FAILURE, 0 < B_MEDIA_SYSTEM_FAILURE },
+  { "B_MEDIA_SYSTEM_FAILURE", (uintmax_t)B_MEDIA_SYSTEM_FAILURE, 0 < B_MEDIA_SYSTEM_FAILURE, sizeof(B_MEDIA_SYSTEM_FAILURE), SIGNED_TYPE_VALUE(B_MEDIA_SYSTEM_FAILURE) },
 #endif
 #ifdef B_MEDIA_BAD_NODE
-  { "B_MEDIA_BAD_NODE", (uintmax_t)B_MEDIA_BAD_NODE, 0 < B_MEDIA_BAD_NODE },
+  { "B_MEDIA_BAD_NODE", (uintmax_t)B_MEDIA_BAD_NODE, 0 < B_MEDIA_BAD_NODE, sizeof(B_MEDIA_BAD_NODE), SIGNED_TYPE_VALUE(B_MEDIA_BAD_NODE) },
 #endif
 #ifdef B_MEDIA_NODE_BUSY
-  { "B_MEDIA_NODE_BUSY", (uintmax_t)B_MEDIA_NODE_BUSY, 0 < B_MEDIA_NODE_BUSY },
+  { "B_MEDIA_NODE_BUSY", (uintmax_t)B_MEDIA_NODE_BUSY, 0 < B_MEDIA_NODE_BUSY, sizeof(B_MEDIA_NODE_BUSY), SIGNED_TYPE_VALUE(B_MEDIA_NODE_BUSY) },
 #endif
 #ifdef B_MEDIA_BAD_FORMAT
-  { "B_MEDIA_BAD_FORMAT", (uintmax_t)B_MEDIA_BAD_FORMAT, 0 < B_MEDIA_BAD_FORMAT },
+  { "B_MEDIA_BAD_FORMAT", (uintmax_t)B_MEDIA_BAD_FORMAT, 0 < B_MEDIA_BAD_FORMAT, sizeof(B_MEDIA_BAD_FORMAT), SIGNED_TYPE_VALUE(B_MEDIA_BAD_FORMAT) },
 #endif
 #ifdef B_MEDIA_BAD_BUFFER
-  { "B_MEDIA_BAD_BUFFER", (uintmax_t)B_MEDIA_BAD_BUFFER, 0 < B_MEDIA_BAD_BUFFER },
+  { "B_MEDIA_BAD_BUFFER", (uintmax_t)B_MEDIA_BAD_BUFFER, 0 < B_MEDIA_BAD_BUFFER, sizeof(B_MEDIA_BAD_BUFFER), SIGNED_TYPE_VALUE(B_MEDIA_BAD_BUFFER) },
 #endif
 #ifdef B_MEDIA_TOO_MANY_NODES
-  { "B_MEDIA_TOO_MANY_NODES", (uintmax_t)B_MEDIA_TOO_MANY_NODES, 0 < B_MEDIA_TOO_MANY_NODES },
+  { "B_MEDIA_TOO_MANY_NODES", (uintmax_t)B_MEDIA_TOO_MANY_NODES, 0 < B_MEDIA_TOO_MANY_NODES, sizeof(B_MEDIA_TOO_MANY_NODES), SIGNED_TYPE_VALUE(B_MEDIA_TOO_MANY_NODES) },
 #endif
 #ifdef B_MEDIA_TOO_MANY_BUFFERS
-  { "B_MEDIA_TOO_MANY_BUFFERS", (uintmax_t)B_MEDIA_TOO_MANY_BUFFERS, 0 < B_MEDIA_TOO_MANY_BUFFERS },
+  { "B_MEDIA_TOO_MANY_BUFFERS", (uintmax_t)B_MEDIA_TOO_MANY_BUFFERS, 0 < B_MEDIA_TOO_MANY_BUFFERS, sizeof(B_MEDIA_TOO_MANY_BUFFERS), SIGNED_TYPE_VALUE(B_MEDIA_TOO_MANY_BUFFERS) },
 #endif
 #ifdef B_MEDIA_NODE_ALREADY_EXISTS
-  { "B_MEDIA_NODE_ALREADY_EXISTS", (uintmax_t)B_MEDIA_NODE_ALREADY_EXISTS, 0 < B_MEDIA_NODE_ALREADY_EXISTS },
+  { "B_MEDIA_NODE_ALREADY_EXISTS", (uintmax_t)B_MEDIA_NODE_ALREADY_EXISTS, 0 < B_MEDIA_NODE_ALREADY_EXISTS, sizeof(B_MEDIA_NODE_ALREADY_EXISTS), SIGNED_TYPE_VALUE(B_MEDIA_NODE_ALREADY_EXISTS) },
 #endif
 #ifdef B_MEDIA_BUFFER_ALREADY_EXISTS
-  { "B_MEDIA_BUFFER_ALREADY_EXISTS", (uintmax_t)B_MEDIA_BUFFER_ALREADY_EXISTS, 0 < B_MEDIA_BUFFER_ALREADY_EXISTS },
+  { "B_MEDIA_BUFFER_ALREADY_EXISTS", (uintmax_t)B_MEDIA_BUFFER_ALREADY_EXISTS, 0 < B_MEDIA_BUFFER_ALREADY_EXISTS, sizeof(B_MEDIA_BUFFER_ALREADY_EXISTS), SIGNED_TYPE_VALUE(B_MEDIA_BUFFER_ALREADY_EXISTS) },
 #endif
 #ifdef B_MEDIA_CANNOT_SEEK
-  { "B_MEDIA_CANNOT_SEEK", (uintmax_t)B_MEDIA_CANNOT_SEEK, 0 < B_MEDIA_CANNOT_SEEK },
+  { "B_MEDIA_CANNOT_SEEK", (uintmax_t)B_MEDIA_CANNOT_SEEK, 0 < B_MEDIA_CANNOT_SEEK, sizeof(B_MEDIA_CANNOT_SEEK), SIGNED_TYPE_VALUE(B_MEDIA_CANNOT_SEEK) },
 #endif
 #ifdef B_MEDIA_CANNOT_CHANGE_RUN_MODE
-  { "B_MEDIA_CANNOT_CHANGE_RUN_MODE", (uintmax_t)B_MEDIA_CANNOT_CHANGE_RUN_MODE, 0 < B_MEDIA_CANNOT_CHANGE_RUN_MODE },
+  { "B_MEDIA_CANNOT_CHANGE_RUN_MODE", (uintmax_t)B_MEDIA_CANNOT_CHANGE_RUN_MODE, 0 < B_MEDIA_CANNOT_CHANGE_RUN_MODE, sizeof(B_MEDIA_CANNOT_CHANGE_RUN_MODE), SIGNED_TYPE_VALUE(B_MEDIA_CANNOT_CHANGE_RUN_MODE) },
 #endif
 #ifdef B_MEDIA_APP_ALREADY_REGISTERED
-  { "B_MEDIA_APP_ALREADY_REGISTERED", (uintmax_t)B_MEDIA_APP_ALREADY_REGISTERED, 0 < B_MEDIA_APP_ALREADY_REGISTERED },
+  { "B_MEDIA_APP_ALREADY_REGISTERED", (uintmax_t)B_MEDIA_APP_ALREADY_REGISTERED, 0 < B_MEDIA_APP_ALREADY_REGISTERED, sizeof(B_MEDIA_APP_ALREADY_REGISTERED), SIGNED_TYPE_VALUE(B_MEDIA_APP_ALREADY_REGISTERED) },
 #endif
 #ifdef B_MEDIA_APP_NOT_REGISTERED
-  { "B_MEDIA_APP_NOT_REGISTERED", (uintmax_t)B_MEDIA_APP_NOT_REGISTERED, 0 < B_MEDIA_APP_NOT_REGISTERED },
+  { "B_MEDIA_APP_NOT_REGISTERED", (uintmax_t)B_MEDIA_APP_NOT_REGISTERED, 0 < B_MEDIA_APP_NOT_REGISTERED, sizeof(B_MEDIA_APP_NOT_REGISTERED), SIGNED_TYPE_VALUE(B_MEDIA_APP_NOT_REGISTERED) },
 #endif
 #ifdef B_MEDIA_CANNOT_RECLAIM_BUFFERS
-  { "B_MEDIA_CANNOT_RECLAIM_BUFFERS", (uintmax_t)B_MEDIA_CANNOT_RECLAIM_BUFFERS, 0 < B_MEDIA_CANNOT_RECLAIM_BUFFERS },
+  { "B_MEDIA_CANNOT_RECLAIM_BUFFERS", (uintmax_t)B_MEDIA_CANNOT_RECLAIM_BUFFERS, 0 < B_MEDIA_CANNOT_RECLAIM_BUFFERS, sizeof(B_MEDIA_CANNOT_RECLAIM_BUFFERS), SIGNED_TYPE_VALUE(B_MEDIA_CANNOT_RECLAIM_BUFFERS) },
 #endif
 #ifdef B_MEDIA_BUFFERS_NOT_RECLAIMED
-  { "B_MEDIA_BUFFERS_NOT_RECLAIMED", (uintmax_t)B_MEDIA_BUFFERS_NOT_RECLAIMED, 0 < B_MEDIA_BUFFERS_NOT_RECLAIMED },
+  { "B_MEDIA_BUFFERS_NOT_RECLAIMED", (uintmax_t)B_MEDIA_BUFFERS_NOT_RECLAIMED, 0 < B_MEDIA_BUFFERS_NOT_RECLAIMED, sizeof(B_MEDIA_BUFFERS_NOT_RECLAIMED), SIGNED_TYPE_VALUE(B_MEDIA_BUFFERS_NOT_RECLAIMED) },
 #endif
 #ifdef B_MEDIA_TIME_SOURCE_STOPPED
-  { "B_MEDIA_TIME_SOURCE_STOPPED", (uintmax_t)B_MEDIA_TIME_SOURCE_STOPPED, 0 < B_MEDIA_TIME_SOURCE_STOPPED },
+  { "B_MEDIA_TIME_SOURCE_STOPPED", (uintmax_t)B_MEDIA_TIME_SOURCE_STOPPED, 0 < B_MEDIA_TIME_SOURCE_STOPPED, sizeof(B_MEDIA_TIME_SOURCE_STOPPED), SIGNED_TYPE_VALUE(B_MEDIA_TIME_SOURCE_STOPPED) },
 #endif
 #ifdef B_MEDIA_TIME_SOURCE_BUSY
-  { "B_MEDIA_TIME_SOURCE_BUSY", (uintmax_t)B_MEDIA_TIME_SOURCE_BUSY, 0 < B_MEDIA_TIME_SOURCE_BUSY },
+  { "B_MEDIA_TIME_SOURCE_BUSY", (uintmax_t)B_MEDIA_TIME_SOURCE_BUSY, 0 < B_MEDIA_TIME_SOURCE_BUSY, sizeof(B_MEDIA_TIME_SOURCE_BUSY), SIGNED_TYPE_VALUE(B_MEDIA_TIME_SOURCE_BUSY) },
 #endif
 #ifdef B_MEDIA_BAD_SOURCE
-  { "B_MEDIA_BAD_SOURCE", (uintmax_t)B_MEDIA_BAD_SOURCE, 0 < B_MEDIA_BAD_SOURCE },
+  { "B_MEDIA_BAD_SOURCE", (uintmax_t)B_MEDIA_BAD_SOURCE, 0 < B_MEDIA_BAD_SOURCE, sizeof(B_MEDIA_BAD_SOURCE), SIGNED_TYPE_VALUE(B_MEDIA_BAD_SOURCE) },
 #endif
 #ifdef B_MEDIA_BAD_DESTINATION
-  { "B_MEDIA_BAD_DESTINATION", (uintmax_t)B_MEDIA_BAD_DESTINATION, 0 < B_MEDIA_BAD_DESTINATION },
+  { "B_MEDIA_BAD_DESTINATION", (uintmax_t)B_MEDIA_BAD_DESTINATION, 0 < B_MEDIA_BAD_DESTINATION, sizeof(B_MEDIA_BAD_DESTINATION), SIGNED_TYPE_VALUE(B_MEDIA_BAD_DESTINATION) },
 #endif
 #ifdef B_MEDIA_ALREADY_CONNECTED
-  { "B_MEDIA_ALREADY_CONNECTED", (uintmax_t)B_MEDIA_ALREADY_CONNECTED, 0 < B_MEDIA_ALREADY_CONNECTED },
+  { "B_MEDIA_ALREADY_CONNECTED", (uintmax_t)B_MEDIA_ALREADY_CONNECTED, 0 < B_MEDIA_ALREADY_CONNECTED, sizeof(B_MEDIA_ALREADY_CONNECTED), SIGNED_TYPE_VALUE(B_MEDIA_ALREADY_CONNECTED) },
 #endif
 #ifdef B_MEDIA_NOT_CONNECTED
-  { "B_MEDIA_NOT_CONNECTED", (uintmax_t)B_MEDIA_NOT_CONNECTED, 0 < B_MEDIA_NOT_CONNECTED },
+  { "B_MEDIA_NOT_CONNECTED", (uintmax_t)B_MEDIA_NOT_CONNECTED, 0 < B_MEDIA_NOT_CONNECTED, sizeof(B_MEDIA_NOT_CONNECTED), SIGNED_TYPE_VALUE(B_MEDIA_NOT_CONNECTED) },
 #endif
 #ifdef B_MEDIA_BAD_CLIP_FORMAT
-  { "B_MEDIA_BAD_CLIP_FORMAT", (uintmax_t)B_MEDIA_BAD_CLIP_FORMAT, 0 < B_MEDIA_BAD_CLIP_FORMAT },
+  { "B_MEDIA_BAD_CLIP_FORMAT", (uintmax_t)B_MEDIA_BAD_CLIP_FORMAT, 0 < B_MEDIA_BAD_CLIP_FORMAT, sizeof(B_MEDIA_BAD_CLIP_FORMAT), SIGNED_TYPE_VALUE(B_MEDIA_BAD_CLIP_FORMAT) },
 #endif
 #ifdef B_MEDIA_ADDON_FAILED
-  { "B_MEDIA_ADDON_FAILED", (uintmax_t)B_MEDIA_ADDON_FAILED, 0 < B_MEDIA_ADDON_FAILED },
+  { "B_MEDIA_ADDON_FAILED", (uintmax_t)B_MEDIA_ADDON_FAILED, 0 < B_MEDIA_ADDON_FAILED, sizeof(B_MEDIA_ADDON_FAILED), SIGNED_TYPE_VALUE(B_MEDIA_ADDON_FAILED) },
 #endif
 #ifdef B_MEDIA_ADDON_DISABLED
-  { "B_MEDIA_ADDON_DISABLED", (uintmax_t)B_MEDIA_ADDON_DISABLED, 0 < B_MEDIA_ADDON_DISABLED },
+  { "B_MEDIA_ADDON_DISABLED", (uintmax_t)B_MEDIA_ADDON_DISABLED, 0 < B_MEDIA_ADDON_DISABLED, sizeof(B_MEDIA_ADDON_DISABLED), SIGNED_TYPE_VALUE(B_MEDIA_ADDON_DISABLED) },
 #endif
 #ifdef B_MEDIA_CHANGE_IN_PROGRESS
-  { "B_MEDIA_CHANGE_IN_PROGRESS", (uintmax_t)B_MEDIA_CHANGE_IN_PROGRESS, 0 < B_MEDIA_CHANGE_IN_PROGRESS },
+  { "B_MEDIA_CHANGE_IN_PROGRESS", (uintmax_t)B_MEDIA_CHANGE_IN_PROGRESS, 0 < B_MEDIA_CHANGE_IN_PROGRESS, sizeof(B_MEDIA_CHANGE_IN_PROGRESS), SIGNED_TYPE_VALUE(B_MEDIA_CHANGE_IN_PROGRESS) },
 #endif
 #ifdef B_MEDIA_STALE_CHANGE_COUNT
-  { "B_MEDIA_STALE_CHANGE_COUNT", (uintmax_t)B_MEDIA_STALE_CHANGE_COUNT, 0 < B_MEDIA_STALE_CHANGE_COUNT },
+  { "B_MEDIA_STALE_CHANGE_COUNT", (uintmax_t)B_MEDIA_STALE_CHANGE_COUNT, 0 < B_MEDIA_STALE_CHANGE_COUNT, sizeof(B_MEDIA_STALE_CHANGE_COUNT), SIGNED_TYPE_VALUE(B_MEDIA_STALE_CHANGE_COUNT) },
 #endif
 #ifdef B_MEDIA_ADDON_RESTRICTED
-  { "B_MEDIA_ADDON_RESTRICTED", (uintmax_t)B_MEDIA_ADDON_RESTRICTED, 0 < B_MEDIA_ADDON_RESTRICTED },
+  { "B_MEDIA_ADDON_RESTRICTED", (uintmax_t)B_MEDIA_ADDON_RESTRICTED, 0 < B_MEDIA_ADDON_RESTRICTED, sizeof(B_MEDIA_ADDON_RESTRICTED), SIGNED_TYPE_VALUE(B_MEDIA_ADDON_RESTRICTED) },
 #endif
 #ifdef B_MEDIA_NO_HANDLER
-  { "B_MEDIA_NO_HANDLER", (uintmax_t)B_MEDIA_NO_HANDLER, 0 < B_MEDIA_NO_HANDLER },
+  { "B_MEDIA_NO_HANDLER", (uintmax_t)B_MEDIA_NO_HANDLER, 0 < B_MEDIA_NO_HANDLER, sizeof(B_MEDIA_NO_HANDLER), SIGNED_TYPE_VALUE(B_MEDIA_NO_HANDLER) },
 #endif
 #ifdef B_MEDIA_DUPLICATE_FORMAT
-  { "B_MEDIA_DUPLICATE_FORMAT", (uintmax_t)B_MEDIA_DUPLICATE_FORMAT, 0 < B_MEDIA_DUPLICATE_FORMAT },
+  { "B_MEDIA_DUPLICATE_FORMAT", (uintmax_t)B_MEDIA_DUPLICATE_FORMAT, 0 < B_MEDIA_DUPLICATE_FORMAT, sizeof(B_MEDIA_DUPLICATE_FORMAT), SIGNED_TYPE_VALUE(B_MEDIA_DUPLICATE_FORMAT) },
 #endif
 #ifdef B_MEDIA_REALTIME_DISABLED
-  { "B_MEDIA_REALTIME_DISABLED", (uintmax_t)B_MEDIA_REALTIME_DISABLED, 0 < B_MEDIA_REALTIME_DISABLED },
+  { "B_MEDIA_REALTIME_DISABLED", (uintmax_t)B_MEDIA_REALTIME_DISABLED, 0 < B_MEDIA_REALTIME_DISABLED, sizeof(B_MEDIA_REALTIME_DISABLED), SIGNED_TYPE_VALUE(B_MEDIA_REALTIME_DISABLED) },
 #endif
 #ifdef B_MEDIA_REALTIME_UNAVAILABLE
-  { "B_MEDIA_REALTIME_UNAVAILABLE", (uintmax_t)B_MEDIA_REALTIME_UNAVAILABLE, 0 < B_MEDIA_REALTIME_UNAVAILABLE },
+  { "B_MEDIA_REALTIME_UNAVAILABLE", (uintmax_t)B_MEDIA_REALTIME_UNAVAILABLE, 0 < B_MEDIA_REALTIME_UNAVAILABLE, sizeof(B_MEDIA_REALTIME_UNAVAILABLE), SIGNED_TYPE_VALUE(B_MEDIA_REALTIME_UNAVAILABLE) },
 #endif
 #ifdef B_MAIL_NO_DAEMON
-  { "B_MAIL_NO_DAEMON", (uintmax_t)B_MAIL_NO_DAEMON, 0 < B_MAIL_NO_DAEMON },
+  { "B_MAIL_NO_DAEMON", (uintmax_t)B_MAIL_NO_DAEMON, 0 < B_MAIL_NO_DAEMON, sizeof(B_MAIL_NO_DAEMON), SIGNED_TYPE_VALUE(B_MAIL_NO_DAEMON) },
 #endif
 #ifdef B_MAIL_UNKNOWN_USER
-  { "B_MAIL_UNKNOWN_USER", (uintmax_t)B_MAIL_UNKNOWN_USER, 0 < B_MAIL_UNKNOWN_USER },
+  { "B_MAIL_UNKNOWN_USER", (uintmax_t)B_MAIL_UNKNOWN_USER, 0 < B_MAIL_UNKNOWN_USER, sizeof(B_MAIL_UNKNOWN_USER), SIGNED_TYPE_VALUE(B_MAIL_UNKNOWN_USER) },
 #endif
 #ifdef B_MAIL_WRONG_PASSWORD
-  { "B_MAIL_WRONG_PASSWORD", (uintmax_t)B_MAIL_WRONG_PASSWORD, 0 < B_MAIL_WRONG_PASSWORD },
+  { "B_MAIL_WRONG_PASSWORD", (uintmax_t)B_MAIL_WRONG_PASSWORD, 0 < B_MAIL_WRONG_PASSWORD, sizeof(B_MAIL_WRONG_PASSWORD), SIGNED_TYPE_VALUE(B_MAIL_WRONG_PASSWORD) },
 #endif
 #ifdef B_MAIL_UNKNOWN_HOST
-  { "B_MAIL_UNKNOWN_HOST", (uintmax_t)B_MAIL_UNKNOWN_HOST, 0 < B_MAIL_UNKNOWN_HOST },
+  { "B_MAIL_UNKNOWN_HOST", (uintmax_t)B_MAIL_UNKNOWN_HOST, 0 < B_MAIL_UNKNOWN_HOST, sizeof(B_MAIL_UNKNOWN_HOST), SIGNED_TYPE_VALUE(B_MAIL_UNKNOWN_HOST) },
 #endif
 #ifdef B_MAIL_ACCESS_ERROR
-  { "B_MAIL_ACCESS_ERROR", (uintmax_t)B_MAIL_ACCESS_ERROR, 0 < B_MAIL_ACCESS_ERROR },
+  { "B_MAIL_ACCESS_ERROR", (uintmax_t)B_MAIL_ACCESS_ERROR, 0 < B_MAIL_ACCESS_ERROR, sizeof(B_MAIL_ACCESS_ERROR), SIGNED_TYPE_VALUE(B_MAIL_ACCESS_ERROR) },
 #endif
 #ifdef B_MAIL_UNKNOWN_FIELD
-  { "B_MAIL_UNKNOWN_FIELD", (uintmax_t)B_MAIL_UNKNOWN_FIELD, 0 < B_MAIL_UNKNOWN_FIELD },
+  { "B_MAIL_UNKNOWN_FIELD", (uintmax_t)B_MAIL_UNKNOWN_FIELD, 0 < B_MAIL_UNKNOWN_FIELD, sizeof(B_MAIL_UNKNOWN_FIELD), SIGNED_TYPE_VALUE(B_MAIL_UNKNOWN_FIELD) },
 #endif
 #ifdef B_MAIL_NO_RECIPIENT
-  { "B_MAIL_NO_RECIPIENT", (uintmax_t)B_MAIL_NO_RECIPIENT, 0 < B_MAIL_NO_RECIPIENT },
+  { "B_MAIL_NO_RECIPIENT", (uintmax_t)B_MAIL_NO_RECIPIENT, 0 < B_MAIL_NO_RECIPIENT, sizeof(B_MAIL_NO_RECIPIENT), SIGNED_TYPE_VALUE(B_MAIL_NO_RECIPIENT) },
 #endif
 #ifdef B_MAIL_INVALID_MAIL
-  { "B_MAIL_INVALID_MAIL", (uintmax_t)B_MAIL_INVALID_MAIL, 0 < B_MAIL_INVALID_MAIL },
+  { "B_MAIL_INVALID_MAIL", (uintmax_t)B_MAIL_INVALID_MAIL, 0 < B_MAIL_INVALID_MAIL, sizeof(B_MAIL_INVALID_MAIL), SIGNED_TYPE_VALUE(B_MAIL_INVALID_MAIL) },
 #endif
 #ifdef B_NO_PRINT_SERVER
-  { "B_NO_PRINT_SERVER", (uintmax_t)B_NO_PRINT_SERVER, 0 < B_NO_PRINT_SERVER },
+  { "B_NO_PRINT_SERVER", (uintmax_t)B_NO_PRINT_SERVER, 0 < B_NO_PRINT_SERVER, sizeof(B_NO_PRINT_SERVER), SIGNED_TYPE_VALUE(B_NO_PRINT_SERVER) },
 #endif
 #ifdef B_DEV_INVALID_IOCTL
-  { "B_DEV_INVALID_IOCTL", (uintmax_t)B_DEV_INVALID_IOCTL, 0 < B_DEV_INVALID_IOCTL },
+  { "B_DEV_INVALID_IOCTL", (uintmax_t)B_DEV_INVALID_IOCTL, 0 < B_DEV_INVALID_IOCTL, sizeof(B_DEV_INVALID_IOCTL), SIGNED_TYPE_VALUE(B_DEV_INVALID_IOCTL) },
 #endif
 #ifdef B_DEV_NO_MEMORY
-  { "B_DEV_NO_MEMORY", (uintmax_t)B_DEV_NO_MEMORY, 0 < B_DEV_NO_MEMORY },
+  { "B_DEV_NO_MEMORY", (uintmax_t)B_DEV_NO_MEMORY, 0 < B_DEV_NO_MEMORY, sizeof(B_DEV_NO_MEMORY), SIGNED_TYPE_VALUE(B_DEV_NO_MEMORY) },
 #endif
 #ifdef B_DEV_BAD_DRIVE_NUM
-  { "B_DEV_BAD_DRIVE_NUM", (uintmax_t)B_DEV_BAD_DRIVE_NUM, 0 < B_DEV_BAD_DRIVE_NUM },
+  { "B_DEV_BAD_DRIVE_NUM", (uintmax_t)B_DEV_BAD_DRIVE_NUM, 0 < B_DEV_BAD_DRIVE_NUM, sizeof(B_DEV_BAD_DRIVE_NUM), SIGNED_TYPE_VALUE(B_DEV_BAD_DRIVE_NUM) },
 #endif
 #ifdef B_DEV_NO_MEDIA
-  { "B_DEV_NO_MEDIA", (uintmax_t)B_DEV_NO_MEDIA, 0 < B_DEV_NO_MEDIA },
+  { "B_DEV_NO_MEDIA", (uintmax_t)B_DEV_NO_MEDIA, 0 < B_DEV_NO_MEDIA, sizeof(B_DEV_NO_MEDIA), SIGNED_TYPE_VALUE(B_DEV_NO_MEDIA) },
 #endif
 #ifdef B_DEV_UNREADABLE
-  { "B_DEV_UNREADABLE", (uintmax_t)B_DEV_UNREADABLE, 0 < B_DEV_UNREADABLE },
+  { "B_DEV_UNREADABLE", (uintmax_t)B_DEV_UNREADABLE, 0 < B_DEV_UNREADABLE, sizeof(B_DEV_UNREADABLE), SIGNED_TYPE_VALUE(B_DEV_UNREADABLE) },
 #endif
 #ifdef B_DEV_FORMAT_ERROR
-  { "B_DEV_FORMAT_ERROR", (uintmax_t)B_DEV_FORMAT_ERROR, 0 < B_DEV_FORMAT_ERROR },
+  { "B_DEV_FORMAT_ERROR", (uintmax_t)B_DEV_FORMAT_ERROR, 0 < B_DEV_FORMAT_ERROR, sizeof(B_DEV_FORMAT_ERROR), SIGNED_TYPE_VALUE(B_DEV_FORMAT_ERROR) },
 #endif
 #ifdef B_DEV_TIMEOUT
-  { "B_DEV_TIMEOUT", (uintmax_t)B_DEV_TIMEOUT, 0 < B_DEV_TIMEOUT },
+  { "B_DEV_TIMEOUT", (uintmax_t)B_DEV_TIMEOUT, 0 < B_DEV_TIMEOUT, sizeof(B_DEV_TIMEOUT), SIGNED_TYPE_VALUE(B_DEV_TIMEOUT) },
 #endif
 #ifdef B_DEV_RECALIBRATE_ERROR
-  { "B_DEV_RECALIBRATE_ERROR", (uintmax_t)B_DEV_RECALIBRATE_ERROR, 0 < B_DEV_RECALIBRATE_ERROR },
+  { "B_DEV_RECALIBRATE_ERROR", (uintmax_t)B_DEV_RECALIBRATE_ERROR, 0 < B_DEV_RECALIBRATE_ERROR, sizeof(B_DEV_RECALIBRATE_ERROR), SIGNED_TYPE_VALUE(B_DEV_RECALIBRATE_ERROR) },
 #endif
 #ifdef B_DEV_SEEK_ERROR
-  { "B_DEV_SEEK_ERROR", (uintmax_t)B_DEV_SEEK_ERROR, 0 < B_DEV_SEEK_ERROR },
+  { "B_DEV_SEEK_ERROR", (uintmax_t)B_DEV_SEEK_ERROR, 0 < B_DEV_SEEK_ERROR, sizeof(B_DEV_SEEK_ERROR), SIGNED_TYPE_VALUE(B_DEV_SEEK_ERROR) },
 #endif
 #ifdef B_DEV_ID_ERROR
-  { "B_DEV_ID_ERROR", (uintmax_t)B_DEV_ID_ERROR, 0 < B_DEV_ID_ERROR },
+  { "B_DEV_ID_ERROR", (uintmax_t)B_DEV_ID_ERROR, 0 < B_DEV_ID_ERROR, sizeof(B_DEV_ID_ERROR), SIGNED_TYPE_VALUE(B_DEV_ID_ERROR) },
 #endif
 #ifdef B_DEV_READ_ERROR
-  { "B_DEV_READ_ERROR", (uintmax_t)B_DEV_READ_ERROR, 0 < B_DEV_READ_ERROR },
+  { "B_DEV_READ_ERROR", (uintmax_t)B_DEV_READ_ERROR, 0 < B_DEV_READ_ERROR, sizeof(B_DEV_READ_ERROR), SIGNED_TYPE_VALUE(B_DEV_READ_ERROR) },
 #endif
 #ifdef B_DEV_WRITE_ERROR
-  { "B_DEV_WRITE_ERROR", (uintmax_t)B_DEV_WRITE_ERROR, 0 < B_DEV_WRITE_ERROR },
+  { "B_DEV_WRITE_ERROR", (uintmax_t)B_DEV_WRITE_ERROR, 0 < B_DEV_WRITE_ERROR, sizeof(B_DEV_WRITE_ERROR), SIGNED_TYPE_VALUE(B_DEV_WRITE_ERROR) },
 #endif
 #ifdef B_DEV_NOT_READY
-  { "B_DEV_NOT_READY", (uintmax_t)B_DEV_NOT_READY, 0 < B_DEV_NOT_READY },
+  { "B_DEV_NOT_READY", (uintmax_t)B_DEV_NOT_READY, 0 < B_DEV_NOT_READY, sizeof(B_DEV_NOT_READY), SIGNED_TYPE_VALUE(B_DEV_NOT_READY) },
 #endif
 #ifdef B_DEV_MEDIA_CHANGED
-  { "B_DEV_MEDIA_CHANGED", (uintmax_t)B_DEV_MEDIA_CHANGED, 0 < B_DEV_MEDIA_CHANGED },
+  { "B_DEV_MEDIA_CHANGED", (uintmax_t)B_DEV_MEDIA_CHANGED, 0 < B_DEV_MEDIA_CHANGED, sizeof(B_DEV_MEDIA_CHANGED), SIGNED_TYPE_VALUE(B_DEV_MEDIA_CHANGED) },
 #endif
 #ifdef B_DEV_MEDIA_CHANGE_REQUESTED
-  { "B_DEV_MEDIA_CHANGE_REQUESTED", (uintmax_t)B_DEV_MEDIA_CHANGE_REQUESTED, 0 < B_DEV_MEDIA_CHANGE_REQUESTED },
+  { "B_DEV_MEDIA_CHANGE_REQUESTED", (uintmax_t)B_DEV_MEDIA_CHANGE_REQUESTED, 0 < B_DEV_MEDIA_CHANGE_REQUESTED, sizeof(B_DEV_MEDIA_CHANGE_REQUESTED), SIGNED_TYPE_VALUE(B_DEV_MEDIA_CHANGE_REQUESTED) },
 #endif
 #ifdef B_DEV_RESOURCE_CONFLICT
-  { "B_DEV_RESOURCE_CONFLICT", (uintmax_t)B_DEV_RESOURCE_CONFLICT, 0 < B_DEV_RESOURCE_CONFLICT },
+  { "B_DEV_RESOURCE_CONFLICT", (uintmax_t)B_DEV_RESOURCE_CONFLICT, 0 < B_DEV_RESOURCE_CONFLICT, sizeof(B_DEV_RESOURCE_CONFLICT), SIGNED_TYPE_VALUE(B_DEV_RESOURCE_CONFLICT) },
 #endif
 #ifdef B_DEV_CONFIGURATION_ERROR
-  { "B_DEV_CONFIGURATION_ERROR", (uintmax_t)B_DEV_CONFIGURATION_ERROR, 0 < B_DEV_CONFIGURATION_ERROR },
+  { "B_DEV_CONFIGURATION_ERROR", (uintmax_t)B_DEV_CONFIGURATION_ERROR, 0 < B_DEV_CONFIGURATION_ERROR, sizeof(B_DEV_CONFIGURATION_ERROR), SIGNED_TYPE_VALUE(B_DEV_CONFIGURATION_ERROR) },
 #endif
 #ifdef B_DEV_DISABLED_BY_USER
-  { "B_DEV_DISABLED_BY_USER", (uintmax_t)B_DEV_DISABLED_BY_USER, 0 < B_DEV_DISABLED_BY_USER },
+  { "B_DEV_DISABLED_BY_USER", (uintmax_t)B_DEV_DISABLED_BY_USER, 0 < B_DEV_DISABLED_BY_USER, sizeof(B_DEV_DISABLED_BY_USER), SIGNED_TYPE_VALUE(B_DEV_DISABLED_BY_USER) },
 #endif
 #ifdef B_DEV_DOOR_OPEN
-  { "B_DEV_DOOR_OPEN", (uintmax_t)B_DEV_DOOR_OPEN, 0 < B_DEV_DOOR_OPEN },
+  { "B_DEV_DOOR_OPEN", (uintmax_t)B_DEV_DOOR_OPEN, 0 < B_DEV_DOOR_OPEN, sizeof(B_DEV_DOOR_OPEN), SIGNED_TYPE_VALUE(B_DEV_DOOR_OPEN) },
 #endif
 #ifdef B_DEV_INVALID_PIPE
-  { "B_DEV_INVALID_PIPE", (uintmax_t)B_DEV_INVALID_PIPE, 0 < B_DEV_INVALID_PIPE },
+  { "B_DEV_INVALID_PIPE", (uintmax_t)B_DEV_INVALID_PIPE, 0 < B_DEV_INVALID_PIPE, sizeof(B_DEV_INVALID_PIPE), SIGNED_TYPE_VALUE(B_DEV_INVALID_PIPE) },
 #endif
 #ifdef B_DEV_CRC_ERROR
-  { "B_DEV_CRC_ERROR", (uintmax_t)B_DEV_CRC_ERROR, 0 < B_DEV_CRC_ERROR },
+  { "B_DEV_CRC_ERROR", (uintmax_t)B_DEV_CRC_ERROR, 0 < B_DEV_CRC_ERROR, sizeof(B_DEV_CRC_ERROR), SIGNED_TYPE_VALUE(B_DEV_CRC_ERROR) },
 #endif
 #ifdef B_DEV_STALLED
-  { "B_DEV_STALLED", (uintmax_t)B_DEV_STALLED, 0 < B_DEV_STALLED },
+  { "B_DEV_STALLED", (uintmax_t)B_DEV_STALLED, 0 < B_DEV_STALLED, sizeof(B_DEV_STALLED), SIGNED_TYPE_VALUE(B_DEV_STALLED) },
 #endif
 #ifdef B_DEV_BAD_PID
-  { "B_DEV_BAD_PID", (uintmax_t)B_DEV_BAD_PID, 0 < B_DEV_BAD_PID },
+  { "B_DEV_BAD_PID", (uintmax_t)B_DEV_BAD_PID, 0 < B_DEV_BAD_PID, sizeof(B_DEV_BAD_PID), SIGNED_TYPE_VALUE(B_DEV_BAD_PID) },
 #endif
 #ifdef B_DEV_UNEXPECTED_PID
-  { "B_DEV_UNEXPECTED_PID", (uintmax_t)B_DEV_UNEXPECTED_PID, 0 < B_DEV_UNEXPECTED_PID },
+  { "B_DEV_UNEXPECTED_PID", (uintmax_t)B_DEV_UNEXPECTED_PID, 0 < B_DEV_UNEXPECTED_PID, sizeof(B_DEV_UNEXPECTED_PID), SIGNED_TYPE_VALUE(B_DEV_UNEXPECTED_PID) },
 #endif
 #ifdef B_DEV_DATA_OVERRUN
-  { "B_DEV_DATA_OVERRUN", (uintmax_t)B_DEV_DATA_OVERRUN, 0 < B_DEV_DATA_OVERRUN },
+  { "B_DEV_DATA_OVERRUN", (uintmax_t)B_DEV_DATA_OVERRUN, 0 < B_DEV_DATA_OVERRUN, sizeof(B_DEV_DATA_OVERRUN), SIGNED_TYPE_VALUE(B_DEV_DATA_OVERRUN) },
 #endif
 #ifdef B_DEV_DATA_UNDERRUN
-  { "B_DEV_DATA_UNDERRUN", (uintmax_t)B_DEV_DATA_UNDERRUN, 0 < B_DEV_DATA_UNDERRUN },
+  { "B_DEV_DATA_UNDERRUN", (uintmax_t)B_DEV_DATA_UNDERRUN, 0 < B_DEV_DATA_UNDERRUN, sizeof(B_DEV_DATA_UNDERRUN), SIGNED_TYPE_VALUE(B_DEV_DATA_UNDERRUN) },
 #endif
 #ifdef B_DEV_FIFO_OVERRUN
-  { "B_DEV_FIFO_OVERRUN", (uintmax_t)B_DEV_FIFO_OVERRUN, 0 < B_DEV_FIFO_OVERRUN },
+  { "B_DEV_FIFO_OVERRUN", (uintmax_t)B_DEV_FIFO_OVERRUN, 0 < B_DEV_FIFO_OVERRUN, sizeof(B_DEV_FIFO_OVERRUN), SIGNED_TYPE_VALUE(B_DEV_FIFO_OVERRUN) },
 #endif
 #ifdef B_DEV_FIFO_UNDERRUN
-  { "B_DEV_FIFO_UNDERRUN", (uintmax_t)B_DEV_FIFO_UNDERRUN, 0 < B_DEV_FIFO_UNDERRUN },
+  { "B_DEV_FIFO_UNDERRUN", (uintmax_t)B_DEV_FIFO_UNDERRUN, 0 < B_DEV_FIFO_UNDERRUN, sizeof(B_DEV_FIFO_UNDERRUN), SIGNED_TYPE_VALUE(B_DEV_FIFO_UNDERRUN) },
 #endif
 #ifdef B_DEV_PENDING
-  { "B_DEV_PENDING", (uintmax_t)B_DEV_PENDING, 0 < B_DEV_PENDING },
+  { "B_DEV_PENDING", (uintmax_t)B_DEV_PENDING, 0 < B_DEV_PENDING, sizeof(B_DEV_PENDING), SIGNED_TYPE_VALUE(B_DEV_PENDING) },
 #endif
 #ifdef B_DEV_MULTIPLE_ERRORS
-  { "B_DEV_MULTIPLE_ERRORS", (uintmax_t)B_DEV_MULTIPLE_ERRORS, 0 < B_DEV_MULTIPLE_ERRORS },
+  { "B_DEV_MULTIPLE_ERRORS", (uintmax_t)B_DEV_MULTIPLE_ERRORS, 0 < B_DEV_MULTIPLE_ERRORS, sizeof(B_DEV_MULTIPLE_ERRORS), SIGNED_TYPE_VALUE(B_DEV_MULTIPLE_ERRORS) },
 #endif
 #ifdef B_DEV_TOO_LATE
-  { "B_DEV_TOO_LATE", (uintmax_t)B_DEV_TOO_LATE, 0 < B_DEV_TOO_LATE },
+  { "B_DEV_TOO_LATE", (uintmax_t)B_DEV_TOO_LATE, 0 < B_DEV_TOO_LATE, sizeof(B_DEV_TOO_LATE), SIGNED_TYPE_VALUE(B_DEV_TOO_LATE) },
 #endif
 #ifdef B_NO_TRANSLATOR
-  { "B_NO_TRANSLATOR", (uintmax_t)B_NO_TRANSLATOR, 0 < B_NO_TRANSLATOR },
+  { "B_NO_TRANSLATOR", (uintmax_t)B_NO_TRANSLATOR, 0 < B_NO_TRANSLATOR, sizeof(B_NO_TRANSLATOR), SIGNED_TYPE_VALUE(B_NO_TRANSLATOR) },
 #endif
 #ifdef B_ILLEGAL_DATA
-  { "B_ILLEGAL_DATA", (uintmax_t)B_ILLEGAL_DATA, 0 < B_ILLEGAL_DATA },
+  { "B_ILLEGAL_DATA", (uintmax_t)B_ILLEGAL_DATA, 0 < B_ILLEGAL_DATA, sizeof(B_ILLEGAL_DATA), SIGNED_TYPE_VALUE(B_ILLEGAL_DATA) },
 #endif
 #ifdef EFPOS
-  { "EFPOS", (uintmax_t)EFPOS, 0 < EFPOS },
+  { "EFPOS", (uintmax_t)EFPOS, 0 < EFPOS, sizeof(EFPOS), SIGNED_TYPE_VALUE(EFPOS) },
 #endif
 #ifdef ESIGPARM
-  { "ESIGPARM", (uintmax_t)ESIGPARM, 0 < ESIGPARM },
+  { "ESIGPARM", (uintmax_t)ESIGPARM, 0 < ESIGPARM, sizeof(ESIGPARM), SIGNED_TYPE_VALUE(ESIGPARM) },
 #endif
-  { NULL, 0, 0 }
+  { NULL, 0, 0, 0, 0 }
 };
 
 const int num_errno = sizeof(internal_errno_to_name) / sizeof(*internal_errno_to_name) - 1;
@@ -1060,120 +1060,120 @@ const int num_errno = sizeof(internal_errno_to_name) / sizeof(*internal_errno_to
 
 const integer_constant_t internal_constant_val_to_name[] = {
 #ifdef AF_INET
-  { "AF_INET", AF_INET, 0 <  AF_INET },
+  { "AF_INET", AF_INET, 0 <  AF_INET, sizeof(AF_INET), SIGNED_TYPE_VALUE(AF_INET) },
 #endif
 #ifdef AF_INET6
-  { "AF_INET6", AF_INET6, 0 <  AF_INET6 },
+  { "AF_INET6", AF_INET6, 0 <  AF_INET6, sizeof(AF_INET6), SIGNED_TYPE_VALUE(AF_INET6) },
 #endif
 #ifdef AF_UNIX
-  { "AF_UNIX", AF_UNIX, 0 <  AF_UNIX },
+  { "AF_UNIX", AF_UNIX, 0 <  AF_UNIX, sizeof(AF_UNIX), SIGNED_TYPE_VALUE(AF_UNIX) },
 #endif
 #ifdef AF_UNSPEC
-  { "AF_UNSPEC", AF_UNSPEC, 0 <  AF_UNSPEC },
+  { "AF_UNSPEC", AF_UNSPEC, 0 <  AF_UNSPEC, sizeof(AF_UNSPEC), SIGNED_TYPE_VALUE(AF_UNSPEC) },
 #endif
 #ifdef SOCK_DGRAM
-  { "SOCK_DGRAM", SOCK_DGRAM, 0 <  SOCK_DGRAM },
+  { "SOCK_DGRAM", SOCK_DGRAM, 0 <  SOCK_DGRAM, sizeof(SOCK_DGRAM), SIGNED_TYPE_VALUE(SOCK_DGRAM) },
 #endif
 #ifdef SOCK_RAW
-  { "SOCK_RAW", SOCK_RAW, 0 <  SOCK_RAW },
+  { "SOCK_RAW", SOCK_RAW, 0 <  SOCK_RAW, sizeof(SOCK_RAW), SIGNED_TYPE_VALUE(SOCK_RAW) },
 #endif
 #ifdef SOCK_SEQPACKET
-  { "SOCK_SEQPACKET", SOCK_SEQPACKET, 0 <  SOCK_SEQPACKET },
+  { "SOCK_SEQPACKET", SOCK_SEQPACKET, 0 <  SOCK_SEQPACKET, sizeof(SOCK_SEQPACKET), SIGNED_TYPE_VALUE(SOCK_SEQPACKET) },
 #endif
 #ifdef SOCK_STREAM
-  { "SOCK_STREAM", SOCK_STREAM, 0 <  SOCK_STREAM },
+  { "SOCK_STREAM", SOCK_STREAM, 0 <  SOCK_STREAM, sizeof(SOCK_STREAM), SIGNED_TYPE_VALUE(SOCK_STREAM) },
 #endif
 #ifdef SHUT_RD
-  { "SHUT_RD", SHUT_RD, 0 <  SHUT_RD },
+  { "SHUT_RD", SHUT_RD, 0 <  SHUT_RD, sizeof(SHUT_RD), SIGNED_TYPE_VALUE(SHUT_RD) },
 #endif
 #ifdef SHUT_RDWR
-  { "SHUT_RDWR", SHUT_RDWR, 0 <  SHUT_RDWR },
+  { "SHUT_RDWR", SHUT_RDWR, 0 <  SHUT_RDWR, sizeof(SHUT_RDWR), SIGNED_TYPE_VALUE(SHUT_RDWR) },
 #endif
 #ifdef SHUT_WR
-  { "SHUT_WR", SHUT_WR, 0 <  SHUT_WR },
+  { "SHUT_WR", SHUT_WR, 0 <  SHUT_WR, sizeof(SHUT_WR), SIGNED_TYPE_VALUE(SHUT_WR) },
 #endif
 #ifdef MSG_CTRUNC
-  { "MSG_CTRUNC", MSG_CTRUNC, 0 <  MSG_CTRUNC },
+  { "MSG_CTRUNC", MSG_CTRUNC, 0 <  MSG_CTRUNC, sizeof(MSG_CTRUNC), SIGNED_TYPE_VALUE(MSG_CTRUNC) },
 #endif
 #ifdef MSG_DONTROUTE
-  { "MSG_DONTROUTE", MSG_DONTROUTE, 0 <  MSG_DONTROUTE },
+  { "MSG_DONTROUTE", MSG_DONTROUTE, 0 <  MSG_DONTROUTE, sizeof(MSG_DONTROUTE), SIGNED_TYPE_VALUE(MSG_DONTROUTE) },
 #endif
 #ifdef MSG_EOR
-  { "MSG_EOR", MSG_EOR, 0 <  MSG_EOR },
+  { "MSG_EOR", MSG_EOR, 0 <  MSG_EOR, sizeof(MSG_EOR), SIGNED_TYPE_VALUE(MSG_EOR) },
 #endif
 #ifdef MSG_OOB
-  { "MSG_OOB", MSG_OOB, 0 <  MSG_OOB },
+  { "MSG_OOB", MSG_OOB, 0 <  MSG_OOB, sizeof(MSG_OOB), SIGNED_TYPE_VALUE(MSG_OOB) },
 #endif
 #ifdef MSG_NOSIGNAL
-  { "MSG_NOSIGNAL", MSG_NOSIGNAL, 0 <  MSG_NOSIGNAL },
+  { "MSG_NOSIGNAL", MSG_NOSIGNAL, 0 <  MSG_NOSIGNAL, sizeof(MSG_NOSIGNAL), SIGNED_TYPE_VALUE(MSG_NOSIGNAL) },
 #endif
 #ifdef MSG_PEEK
-  { "MSG_PEEK", MSG_PEEK, 0 <  MSG_PEEK },
+  { "MSG_PEEK", MSG_PEEK, 0 <  MSG_PEEK, sizeof(MSG_PEEK), SIGNED_TYPE_VALUE(MSG_PEEK) },
 #endif
 #ifdef MSG_TRUNC
-  { "MSG_TRUNC", MSG_TRUNC, 0 <  MSG_TRUNC },
+  { "MSG_TRUNC", MSG_TRUNC, 0 <  MSG_TRUNC, sizeof(MSG_TRUNC), SIGNED_TYPE_VALUE(MSG_TRUNC) },
 #endif
 #ifdef MSG_WAITALL
-  { "MSG_WAITALL", MSG_WAITALL, 0 <  MSG_WAITALL },
+  { "MSG_WAITALL", MSG_WAITALL, 0 <  MSG_WAITALL, sizeof(MSG_WAITALL), SIGNED_TYPE_VALUE(MSG_WAITALL) },
 #endif
 #ifdef SOL_SOCKET
-  { "SOL_SOCKET", SOL_SOCKET, 0 <  SOL_SOCKET },
+  { "SOL_SOCKET", SOL_SOCKET, 0 <  SOL_SOCKET, sizeof(SOL_SOCKET), SIGNED_TYPE_VALUE(SOL_SOCKET) },
 #endif
 #ifdef SO_ACCEPTCONN
-  { "SO_ACCEPTCONN", SO_ACCEPTCONN, 0 <  SO_ACCEPTCONN },
+  { "SO_ACCEPTCONN", SO_ACCEPTCONN, 0 <  SO_ACCEPTCONN, sizeof(SO_ACCEPTCONN), SIGNED_TYPE_VALUE(SO_ACCEPTCONN) },
 #endif
 #ifdef SO_BROADCAST
-  { "SO_BROADCAST", SO_BROADCAST, 0 <  SO_BROADCAST },
+  { "SO_BROADCAST", SO_BROADCAST, 0 <  SO_BROADCAST, sizeof(SO_BROADCAST), SIGNED_TYPE_VALUE(SO_BROADCAST) },
 #endif
 #ifdef SO_DEBUG
-  { "SO_DEBUG", SO_DEBUG, 0 <  SO_DEBUG },
+  { "SO_DEBUG", SO_DEBUG, 0 <  SO_DEBUG, sizeof(SO_DEBUG), SIGNED_TYPE_VALUE(SO_DEBUG) },
 #endif
 #ifdef SO_DONTROUTE
-  { "SO_DONTROUTE", SO_DONTROUTE, 0 <  SO_DONTROUTE },
+  { "SO_DONTROUTE", SO_DONTROUTE, 0 <  SO_DONTROUTE, sizeof(SO_DONTROUTE), SIGNED_TYPE_VALUE(SO_DONTROUTE) },
 #endif
 #ifdef SO_ERROR
-  { "SO_ERROR", SO_ERROR, 0 <  SO_ERROR },
+  { "SO_ERROR", SO_ERROR, 0 <  SO_ERROR, sizeof(SO_ERROR), SIGNED_TYPE_VALUE(SO_ERROR) },
 #endif
 #ifdef SO_KEEPALIVE
-  { "SO_KEEPALIVE", SO_KEEPALIVE, 0 <  SO_KEEPALIVE },
+  { "SO_KEEPALIVE", SO_KEEPALIVE, 0 <  SO_KEEPALIVE, sizeof(SO_KEEPALIVE), SIGNED_TYPE_VALUE(SO_KEEPALIVE) },
 #endif
 #ifdef SO_LINGER
-  { "SO_LINGER", SO_LINGER, 0 <  SO_LINGER },
+  { "SO_LINGER", SO_LINGER, 0 <  SO_LINGER, sizeof(SO_LINGER), SIGNED_TYPE_VALUE(SO_LINGER) },
 #endif
 #ifdef SO_OOBINLINE
-  { "SO_OOBINLINE", SO_OOBINLINE, 0 <  SO_OOBINLINE },
+  { "SO_OOBINLINE", SO_OOBINLINE, 0 <  SO_OOBINLINE, sizeof(SO_OOBINLINE), SIGNED_TYPE_VALUE(SO_OOBINLINE) },
 #endif
 #ifdef SO_RCVBUF
-  { "SO_RCVBUF", SO_RCVBUF, 0 <  SO_RCVBUF },
+  { "SO_RCVBUF", SO_RCVBUF, 0 <  SO_RCVBUF, sizeof(SO_RCVBUF), SIGNED_TYPE_VALUE(SO_RCVBUF) },
 #endif
 #ifdef SO_RCVLOWAT
-  { "SO_RCVLOWAT", SO_RCVLOWAT, 0 <  SO_RCVLOWAT },
+  { "SO_RCVLOWAT", SO_RCVLOWAT, 0 <  SO_RCVLOWAT, sizeof(SO_RCVLOWAT), SIGNED_TYPE_VALUE(SO_RCVLOWAT) },
 #endif
 #ifdef SO_RCVTIMEO
-  { "SO_RCVTIMEO", SO_RCVTIMEO, 0 <  SO_RCVTIMEO },
+  { "SO_RCVTIMEO", SO_RCVTIMEO, 0 <  SO_RCVTIMEO, sizeof(SO_RCVTIMEO), SIGNED_TYPE_VALUE(SO_RCVTIMEO) },
 #endif
 #ifdef SO_REUSEADDR
-  { "SO_REUSEADDR", SO_REUSEADDR, 0 <  SO_REUSEADDR },
+  { "SO_REUSEADDR", SO_REUSEADDR, 0 <  SO_REUSEADDR, sizeof(SO_REUSEADDR), SIGNED_TYPE_VALUE(SO_REUSEADDR) },
 #endif
 #ifdef SO_SNDBUF
-  { "SO_SNDBUF", SO_SNDBUF, 0 <  SO_SNDBUF },
+  { "SO_SNDBUF", SO_SNDBUF, 0 <  SO_SNDBUF, sizeof(SO_SNDBUF), SIGNED_TYPE_VALUE(SO_SNDBUF) },
 #endif
 #ifdef SO_SNDLOWAT
-  { "SO_SNDLOWAT", SO_SNDLOWAT, 0 <  SO_SNDLOWAT },
+  { "SO_SNDLOWAT", SO_SNDLOWAT, 0 <  SO_SNDLOWAT, sizeof(SO_SNDLOWAT), SIGNED_TYPE_VALUE(SO_SNDLOWAT) },
 #endif
 #ifdef SO_SNDTIMEO
-  { "SO_SNDTIMEO", SO_SNDTIMEO, 0 <  SO_SNDTIMEO },
+  { "SO_SNDTIMEO", SO_SNDTIMEO, 0 <  SO_SNDTIMEO, sizeof(SO_SNDTIMEO), SIGNED_TYPE_VALUE(SO_SNDTIMEO) },
 #endif
 #ifdef SO_TYPE
-  { "SO_TYPE", SO_TYPE, 0 <  SO_TYPE },
+  { "SO_TYPE", SO_TYPE, 0 <  SO_TYPE, sizeof(SO_TYPE), SIGNED_TYPE_VALUE(SO_TYPE) },
 #endif
 #ifdef SCM_RIGHTS
-  { "SCM_RIGHTS", SCM_RIGHTS, 0 <  SCM_RIGHTS },
+  { "SCM_RIGHTS", SCM_RIGHTS, 0 <  SCM_RIGHTS, sizeof(SCM_RIGHTS), SIGNED_TYPE_VALUE(SCM_RIGHTS) },
 #endif
 #ifdef SOMAXCONN
-  { "SOMAXCONN", SOMAXCONN, 0 <  SOMAXCONN },
+  { "SOMAXCONN", SOMAXCONN, 0 <  SOMAXCONN, sizeof(SOMAXCONN), SIGNED_TYPE_VALUE(SOMAXCONN) },
 #endif
-  { NULL, 0, 0 }
+  { NULL, 0, 0, 0, 0 }
 };
 
 const int num_constants = sizeof(internal_constant_val_to_name) / sizeof(*internal_constant_val_to_name) - 1;

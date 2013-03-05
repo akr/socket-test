@@ -48,6 +48,8 @@
 #define FIELD_SIZE(struct_name, field_name) sizeof(((struct_name *)0)->field_name)
 #define ALIGNOF(type) ((int)offsetof(struct { char f1; type f2; }, f2))
 
+#define SIGNED_TYPE_VALUE(value) ((((value) * 0) - 1) < 0)
+
 void *xmalloc(size_t size);
 void *xfalloc(size_t size, int ch);
 void *xrealloc(void *ptr, size_t size);
@@ -120,6 +122,8 @@ typedef struct {
   char *str;
   uintmax_t num;
   int positive_p;
+  int sizeof_type;
+  int signed_type;
 } integer_constant_t;
 
 extern const integer_constant_t internal_errno_to_name[];

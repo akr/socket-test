@@ -35,10 +35,10 @@
 const integer_constant_t internal_errno_to_name[] = {
 % errno_list.each {|sym|
 #ifdef <%= sym %>
-  { "<%= sym %>", (uintmax_t)<%= sym %>, 0 < <%= sym %> },
+  { "<%= sym %>", (uintmax_t)<%= sym %>, 0 < <%= sym %>, sizeof(<%= sym %>), SIGNED_TYPE_VALUE(<%= sym %>) },
 #endif
 % }
-  { NULL, 0, 0 }
+  { NULL, 0, 0, 0, 0 }
 };
 
 const int num_errno = sizeof(internal_errno_to_name) / sizeof(*internal_errno_to_name) - 1;
@@ -62,10 +62,10 @@ const int num_errno = sizeof(internal_errno_to_name) / sizeof(*internal_errno_to
 const integer_constant_t internal_constant_val_to_name[] = {
 % constants.each {|sym|
 #ifdef <%= sym %>
-  { "<%= sym %>", <%= sym %>, 0 <  <%= sym %> },
+  { "<%= sym %>", <%= sym %>, 0 <  <%= sym %>, sizeof(<%= sym %>), SIGNED_TYPE_VALUE(<%= sym %>) },
 #endif
 % }
-  { NULL, 0, 0 }
+  { NULL, 0, 0, 0, 0 }
 };
 
 const int num_constants = sizeof(internal_constant_val_to_name) / sizeof(*internal_constant_val_to_name) - 1;
