@@ -112,8 +112,6 @@ void perrsym(const char *s);
 char *errsym(int err);
 void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg);
 
-int uintmax2intmax(uintmax_t u, int positive_p, intmax_t *intmax_ret); /* success:0, failure:-1 */
-
 int constant_name2int(char *name, int *ret);
 void *constant_search_names(char *prefix, void *(*func)(char *name, int val, void *arg), void *arg);
 char *constant_int2name(char *prefix, int value);
@@ -125,6 +123,8 @@ typedef struct {
   int sizeof_type;
   int signed_type;
 } integer_constant_t;
+
+int constant2intmax(const integer_constant_t *c, intmax_t *intmax_ret); /* success:0, failure:-1 */
 
 extern const integer_constant_t internal_errno_to_name[];
 extern const int num_errno;

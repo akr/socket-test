@@ -804,11 +804,12 @@ void rmchtmpdir(char *tmpdir)
 }
 
 /* 0:success -1:failure */
-int uintmax2intmax(uintmax_t um, int positive_p, intmax_t *intmax_ret)
+int constant2intmax(const integer_constant_t *c, intmax_t *intmax_ret)
 {
+  uintmax_t um = c->num;
   intmax_t im;
 
-  if (positive_p) {
+  if (c->positive_p) {
     if (INTMAX_MAX < um)
       return -1;
     *intmax_ret = um;
@@ -908,7 +909,7 @@ int constant_name2int(char *name, int *ret)
   for (i = 0; i < num_constants; i++) {
     const integer_constant_t *pair = &internal_constant_val_to_name[i];
     intmax_t im;
-    if (uintmax2intmax(pair->num, pair->positive_p, &im) == 0 &&
+    if (constant2intmax(pair, &im) == 0 &&
         INT_MIN <= im && im <= INT_MAX &&
         strcmp(pair->str, name) == 0) {
       *ret = (int)im;
@@ -925,7 +926,7 @@ void *constant_search_names(char *prefix, void *(*func)(char *name, int val, voi
   for (i = 0; i < num_constants; i++) {
     const integer_constant_t *pair = &internal_constant_val_to_name[i];
     intmax_t im;
-    if (uintmax2intmax(pair->num, pair->positive_p, &im) == 0 &&
+    if (constant2intmax(pair, &im) == 0 &&
         INT_MIN <= im && im <= INT_MAX &&
         strncmp(pair->str, prefix, prefixlen) == 0) {
       void *ret = func(pair->str, (int)im, arg);
