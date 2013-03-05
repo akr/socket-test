@@ -25,208 +25,45 @@
 # OF SUCH DAMAGE.
 
 exec 2>&1
-set -v
 
+#set -v
+
+cat <<'End' | sh -sv
 ./unix-stream 'foo' 'foo' 'bar'
 ./unix-stream 'foo' './foo' 'bar'
 ./unix-stream 'foo'
 ./unix-stream 'foo' './foo'
+End
 
-./unix-stream '(44*"./")a'
-./unix-stream '(44*"./")ab'
-./unix-stream '(45*"./")a'
-./unix-stream '(45*"./")ab'
-./unix-stream '(46*"./")a'
-./unix-stream '(46*"./")ab'
-./unix-stream '(47*"./")a'
-./unix-stream '(47*"./")ab'
-./unix-stream '(48*"./")a'
-./unix-stream '(48*"./")ab'
-./unix-stream '(49*"./")a'
-./unix-stream '(49*"./")ab'
+for n in \
+  44 45 46 47 48 49 \
+  50 51 52 53 54 55 56 57 58 59 \
+  60 61 62 63 64 65 66 67 68 69 \
+  120 121 122 123 124 125 126 127 128 129 \
+  250 251 252 253 254 255 256 257 258 259 \
+  510 511 512 513 514 515 516 517 518 519
+do
+  cat <<End | sh -sv
+./unix-stream '($n*"./")a'
+./unix-stream '($n*"./")ab'
+End
+done
 
-./unix-stream '(50*"./")a'
-./unix-stream '(50*"./")ab'
-./unix-stream '(51*"./")a'
-./unix-stream '(51*"./")ab'
-./unix-stream '(52*"./")a'
-./unix-stream '(52*"./")ab'
-./unix-stream '(53*"./")a'
-./unix-stream '(53*"./")ab'
-./unix-stream '(54*"./")a'
-./unix-stream '(54*"./")ab'
-./unix-stream '(55*"./")a'
-./unix-stream '(55*"./")ab'
-./unix-stream '(56*"./")a'
-./unix-stream '(56*"./")ab'
-./unix-stream '(57*"./")a'
-./unix-stream '(57*"./")ab'
-./unix-stream '(58*"./")a'
-./unix-stream '(58*"./")ab'
-./unix-stream '(59*"./")a'
-./unix-stream '(59*"./")ab'
+for n in \
+  90 91 92 93 94 95 96 97 98 99 \
+  100 101 102 103 104 105 106 107 108 109 \
+  110 111 112 113 114 115 116 117 118 119 \
+  120 121 122 123 124 125 126 127 128 129 \
+  250 251 252 253 254 255 256 257 258 259 \
+  500 501 502 503 504 505 506 507 508 509 \
+  510 511 512 513 514 515 516 517 518 519
+do
+  cat <<End | sh -sv
+./unix-stream '($n*"c")'
+End
+done
 
-./unix-stream '(60*"./")a'
-./unix-stream '(60*"./")ab'
-./unix-stream '(61*"./")a'
-./unix-stream '(61*"./")ab'
-./unix-stream '(62*"./")a'
-./unix-stream '(62*"./")ab'
-./unix-stream '(63*"./")a'
-./unix-stream '(63*"./")ab'
-./unix-stream '(64*"./")a'
-./unix-stream '(64*"./")ab'
-./unix-stream '(65*"./")a'
-./unix-stream '(65*"./")ab'
-./unix-stream '(66*"./")a'
-./unix-stream '(66*"./")ab'
-./unix-stream '(67*"./")a'
-./unix-stream '(67*"./")ab'
-./unix-stream '(68*"./")a'
-./unix-stream '(68*"./")ab'
-./unix-stream '(69*"./")a'
-./unix-stream '(69*"./")ab'
-
-./unix-stream '(120*"./")a'
-./unix-stream '(120*"./")ab'
-./unix-stream '(121*"./")a'
-./unix-stream '(121*"./")ab'
-./unix-stream '(122*"./")a'
-./unix-stream '(122*"./")ab'
-./unix-stream '(123*"./")a'
-./unix-stream '(123*"./")ab'
-./unix-stream '(124*"./")a'
-./unix-stream '(124*"./")ab'
-./unix-stream '(125*"./")a'
-./unix-stream '(125*"./")ab'
-./unix-stream '(126*"./")a'
-./unix-stream '(126*"./")ab'
-./unix-stream '(127*"./")a'
-./unix-stream '(127*"./")ab'
-./unix-stream '(128*"./")a'
-./unix-stream '(128*"./")ab'
-./unix-stream '(129*"./")a'
-./unix-stream '(129*"./")ab'
-
-./unix-stream '(250*"./")a'
-./unix-stream '(250*"./")ab'
-./unix-stream '(251*"./")a'
-./unix-stream '(251*"./")ab'
-./unix-stream '(252*"./")a'
-./unix-stream '(252*"./")ab'
-./unix-stream '(253*"./")a'
-./unix-stream '(253*"./")ab'
-./unix-stream '(254*"./")a'
-./unix-stream '(254*"./")ab'
-./unix-stream '(255*"./")a'
-./unix-stream '(255*"./")ab'
-./unix-stream '(256*"./")a'
-./unix-stream '(256*"./")ab'
-./unix-stream '(257*"./")a'
-./unix-stream '(257*"./")ab'
-./unix-stream '(258*"./")a'
-./unix-stream '(258*"./")ab'
-./unix-stream '(259*"./")a'
-./unix-stream '(259*"./")ab'
-
-./unix-stream '(510*"./")a'
-./unix-stream '(510*"./")ab'
-./unix-stream '(511*"./")a'
-./unix-stream '(511*"./")ab'
-./unix-stream '(512*"./")a'
-./unix-stream '(512*"./")ab'
-./unix-stream '(513*"./")a'
-./unix-stream '(513*"./")ab'
-./unix-stream '(514*"./")a'
-./unix-stream '(514*"./")ab'
-./unix-stream '(515*"./")a'
-./unix-stream '(515*"./")ab'
-./unix-stream '(516*"./")a'
-./unix-stream '(516*"./")ab'
-./unix-stream '(517*"./")a'
-./unix-stream '(517*"./")ab'
-./unix-stream '(518*"./")a'
-./unix-stream '(518*"./")ab'
-./unix-stream '(519*"./")a'
-./unix-stream '(519*"./")ab'
-
-./unix-stream '(90*"c")'
-./unix-stream '(91*"c")'
-./unix-stream '(92*"c")'
-./unix-stream '(93*"c")'
-./unix-stream '(94*"c")'
-./unix-stream '(95*"c")'
-./unix-stream '(96*"c")'
-./unix-stream '(97*"c")'
-./unix-stream '(98*"c")'
-./unix-stream '(99*"c")'
-
-./unix-stream '(100*"c")'
-./unix-stream '(101*"c")'
-./unix-stream '(102*"c")'
-./unix-stream '(103*"c")'
-./unix-stream '(104*"c")'
-./unix-stream '(105*"c")'
-./unix-stream '(106*"c")'
-./unix-stream '(107*"c")'
-./unix-stream '(108*"c")'
-./unix-stream '(109*"c")'
-
-./unix-stream '(110*"c")'
-./unix-stream '(111*"c")'
-./unix-stream '(112*"c")'
-./unix-stream '(113*"c")'
-./unix-stream '(114*"c")'
-./unix-stream '(115*"c")'
-./unix-stream '(116*"c")'
-./unix-stream '(117*"c")'
-./unix-stream '(118*"c")'
-./unix-stream '(119*"c")'
-
-./unix-stream '(120*"c")'
-./unix-stream '(121*"c")'
-./unix-stream '(122*"c")'
-./unix-stream '(123*"c")'
-./unix-stream '(124*"c")'
-./unix-stream '(125*"c")'
-./unix-stream '(126*"c")'
-./unix-stream '(127*"c")'
-./unix-stream '(128*"c")'
-./unix-stream '(129*"c")'
-
-./unix-stream '(250*"c")'
-./unix-stream '(251*"c")'
-./unix-stream '(252*"c")'
-./unix-stream '(253*"c")'
-./unix-stream '(254*"c")'
-./unix-stream '(255*"c")'
-./unix-stream '(256*"c")'
-./unix-stream '(257*"c")'
-./unix-stream '(258*"c")'
-./unix-stream '(259*"c")'
-
-./unix-stream '(500*"c")'
-./unix-stream '(501*"c")'
-./unix-stream '(502*"c")'
-./unix-stream '(503*"c")'
-./unix-stream '(504*"c")'
-./unix-stream '(505*"c")'
-./unix-stream '(506*"c")'
-./unix-stream '(507*"c")'
-./unix-stream '(508*"c")'
-./unix-stream '(509*"c")'
-
-./unix-stream '(510*"c")'
-./unix-stream '(511*"c")'
-./unix-stream '(512*"c")'
-./unix-stream '(513*"c")'
-./unix-stream '(514*"c")'
-./unix-stream '(515*"c")'
-./unix-stream '(516*"c")'
-./unix-stream '(517*"c")'
-./unix-stream '(518*"c")'
-./unix-stream '(519*"c")'
-
+cat <<End | sh -sv
 ./unix-stream -p '012345678'
 ./unix-stream -p '0123456789'
 ./unix-stream -g2048 -p '01234567890'
@@ -247,3 +84,4 @@ set -v
 ./unix-stream -s '/etc'
 ./unix-stream -s 'foo'
 ./unix-stream -T -s 'README'
+End
