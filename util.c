@@ -803,11 +803,36 @@ void rmchtmpdir(char *tmpdir)
   }
 }
 
+/* 0:success -1:failure */
+int uintmax2intmax(uintmax_t um, int positive_p, intmax_t *intmax_ret)
+{
+  intmax_t im;
+
+  if (positive_p) {
+    if (INTMAX_MAX < um)
+      return -1;
+    *intmax_ret = um;
+    return 0;
+  }
+
+  if (um == 0) {
+    *intmax_ret = um;
+    return 0;
+  }
+
+  im = um & (UINTMAX_MAX>>1); /* um - (UINTMAX_MAX+1)/2 */
+  im -= (intmax_t)((UINTMAX_MAX & (UINTMAX_MAX>>1)) >> 1); /* im - (UINTMAX_MAX+1)/4 */
+  im -= (intmax_t)((UINTMAX_MAX & (UINTMAX_MAX>>1)) >> 1); /* im - (UINTMAX_MAX+1)/4 */
+
+  *intmax_ret = im;
+  return 0;
+}
+
 char *errsym(int err)
 {
   int i;
   for (i = 0; i < num_errno; i++) {
-    if (err == internal_errno_to_name[i].num)
+    if ((uintmax_t)err == internal_errno_to_name[i].num)
       return internal_errno_to_name[i].str;
   }
   return NULL;
@@ -882,10 +907,12 @@ int constant_name2int(char *name, int *ret)
   int i;
   for (i = 0; i < num_constants; i++) {
     const string_integer_pair_t *pair = &internal_constant_val_to_name[i];
-    if (INT_MIN <= pair->num && pair->num <= INT_MAX &&
+    intmax_t im;
+    if (uintmax2intmax(pair->num, pair->positive_p, &im) == 0 &&
+        INT_MIN <= im && im <= INT_MAX &&
         strcmp(pair->str, name) == 0) {
-      *ret = pair->num;
-    return 0;
+      *ret = (int)im;
+      return 0;
     }
   }
   return -1;
@@ -897,9 +924,11 @@ void *constant_search_names(char *prefix, void *(*func)(char *name, int val, voi
   int i;
   for (i = 0; i < num_constants; i++) {
     const string_integer_pair_t *pair = &internal_constant_val_to_name[i];
-    if (INT_MIN <= pair->num && pair->num <= INT_MAX &&
+    intmax_t im;
+    if (uintmax2intmax(pair->num, pair->positive_p, &im) == 0 &&
+        INT_MIN <= im && im <= INT_MAX &&
         strncmp(pair->str, prefix, prefixlen) == 0) {
-      void *ret = func(pair->str, pair->num, arg);
+      void *ret = func(pair->str, (int)im, arg);
       if (ret)
         return ret;
     }

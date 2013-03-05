@@ -110,20 +110,20 @@ void perrsym(const char *s);
 char *errsym(int err);
 void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg);
 
+int uintmax2intmax(uintmax_t u, int positive_p, intmax_t *intmax_ret); /* success:0, failure:-1 */
+
 int constant_name2int(char *name, int *ret);
 void *constant_search_names(char *prefix, void *(*func)(char *name, int val, void *arg), void *arg);
 char *constant_int2name(char *prefix, int value);
 
 typedef struct {
   char *str;
-  intmax_t num;
+  uintmax_t num;
+  int positive_p;
 } string_integer_pair_t;
 
 extern const string_integer_pair_t internal_errno_to_name[];
 extern const int num_errno;
-
-string_integer_pair_t *get_name_to_errno(void);
-string_integer_pair_t *get_errno_to_name(void);
 
 extern const string_integer_pair_t internal_constant_val_to_name[];
 extern const int num_constants;
