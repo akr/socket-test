@@ -877,12 +877,12 @@ void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg)
     errno_ary = xmalloc(sizeof(int) * num_errno);
     for (i = 0; i < num_errno; i++)
       errno_ary[i] = internal_errno_to_name[i].num;
-    qsort(errno_ary, sizeof(errno_ary)/sizeof(int), sizeof(int), intcmp);
+    qsort(errno_ary, num_errno, sizeof(int), intcmp);
   }
 
   first = 1;
   errcand = 0;
-  for (i = 0; i < (int)(sizeof(errno_ary)/sizeof(int)); i++) {
+  for (i = 0; i < num_errno; i++) {
     guess_lo = errno_ary[i] < INT_MIN+100 ? INT_MIN : errno_ary[i]-100;
     guess_hi = INT_MAX-100 < errno_ary[i] ? INT_MAX : errno_ary[i]+100;
 
