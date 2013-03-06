@@ -48,7 +48,14 @@ AC_PROG_CC
 # - OpenBSD 5.2 overrides _POSIX_C_SOURCE if _XOPEN_SOURCE is defined.
 # - PureDarwin 9.8.0 defines PF_UNIX using AF_LOCAL but AF_LOCAL is defined only if !defined(_POSIX_C_SOURCE) || defined(_DARWIN_C_SOURCE).
 #
-AC_DEFINE(_XOPEN_SOURCE, [600], [This program uses SUSv3 (2004) features.])
+AS_CASE([$host],
+[*-solaris*], [
+  AC_DEFINE(_XOPEN_SOURCE, [500], [This program uses SUSv2 (1997) features.])
+  AC_DEFINE(_POSIX_C_SOURCE, [200112L], [This program uses POSIX 2001 features.])
+],
+[*-minix*], [
+  AC_DEFINE(_XOPEN_SOURCE, [500], [This program uses SUSv2 (1997) features.])
+])
 
 # Determine a compiler mode.
 AC_USE_SYSTEM_EXTENSIONS

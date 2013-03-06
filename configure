@@ -3137,9 +3137,25 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 # - OpenBSD 5.2 overrides _POSIX_C_SOURCE if _XOPEN_SOURCE is defined.
 # - PureDarwin 9.8.0 defines PF_UNIX using AF_LOCAL but AF_LOCAL is defined only if !defined(_POSIX_C_SOURCE) || defined(_DARWIN_C_SOURCE).
 #
+case $host in #(
+  *-solaris*) :
 
-$as_echo "#define _XOPEN_SOURCE 600" >>confdefs.h
 
+$as_echo "#define _XOPEN_SOURCE 500" >>confdefs.h
+
+
+$as_echo "#define _POSIX_C_SOURCE 200112L" >>confdefs.h
+
+ ;; #(
+  *-minix*) :
+
+
+$as_echo "#define _XOPEN_SOURCE 500" >>confdefs.h
+
+ ;; #(
+  *) :
+     ;;
+esac
 
 # Determine a compiler mode.
 
