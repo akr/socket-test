@@ -27,6 +27,14 @@
 #include "config.h"
 #include "includes.h"
 
+/*
+ * PureDarwin 9.8.0 defines PF_UNIX using AF_LOCAL but AF_LOCAL is defined
+ * only if !defined(_POSIX_C_SOURCE) || defined(_DARWIN_C_SOURCE).
+ */
+#ifndef AF_LOCAL
+#  define AF_LOCAL AF_UNIX
+#endif
+
 #define FIELD_SIZE(struct_name, field_name) sizeof(((struct_name *)0)->field_name)
 #define ALIGNOF(type) ((int)offsetof(struct { char f1; type f2; }, f2))
 
