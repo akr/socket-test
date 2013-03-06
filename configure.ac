@@ -55,6 +55,7 @@ AS_CASE([$host],
 ],
 [*-minix*], [
   AC_DEFINE(_XOPEN_SOURCE, [500], [This program uses SUSv2 (1997) features.])
+  AC_DEFINE(_POSIX_C_SOURCE, [200112L], [This program uses POSIX 2001 features.])
 ])
 
 # Determine a compiler mode.
