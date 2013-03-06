@@ -25,24 +25,6 @@
  */
 
 #include "config.h"
-
-#ifdef __sun
-/* On SunOS, following definitions declares that
- * this program uses SUS (XPG4v2) with other non-conflicting features. 
- * They are required to use newer struct msghdr for sendmsg/recvmsg. */
-/* cf. standards(5). */
-#  define _XOPEN_SOURCE
-#  define _XOPEN_SOURCE_EXTENDED 1
-#endif
-
-#ifdef __minix
-/* Minix require feature test macro for several definitions.
- * - struct sockaddr_storage needs _XOPEN_SOURCE >= 500
- * - S_ISSOCK needs _POSIX_C_SOURCE >= 200112L || _XOPEN_SOURCE >= 600
- */
-#  define _XOPEN_SOURCE 600
-#endif
-
 #include "includes.h"
 
 #define FIELD_SIZE(struct_name, field_name) sizeof(((struct_name *)0)->field_name)

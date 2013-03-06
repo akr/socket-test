@@ -34,6 +34,18 @@ AC_CANONICAL_TARGET
 # Checks for programs.
 AC_PROG_CC
 
+# Features this program uses:
+#
+# - struct msghdr.msg_control
+#   SunOS defines it for XPG4v2 programs (_XOPEN_SOURCE and _XOPEN_SOURCE_EXTENDED).
+# - struct sockaddr_storage
+#   Minix defines it for SUS programs (_XOPEN_SOURCE >= 500).
+# - S_ISSOCK
+#   Minix defines it for POSIX2001 or SUSv3 programs (_POSIX_C_SOURCE >= 200112L || _XOPEN_SOURCE >= 600).
+#
+AC_DEFINE(_XOPEN_SOURCE, [500], [This program uses SUSv2 (1997) features.])
+AC_DEFINE(_POSIX_C_SOURCE, [200112L], [This program uses POSIX 2001 features.])
+
 # Determine a compiler mode.
 AC_USE_SYSTEM_EXTENSIONS
 AC_DEFINE(__USE_BSD, [1], [Declare sys_nerr by stdio.h in glibc.])

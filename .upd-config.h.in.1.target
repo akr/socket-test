@@ -64,7 +64,7 @@
 /* Define to 1 if you have the <string.h> header file. */
 #undef HAVE_STRING_H
 
-/* Define to 1 if `sa_len' is a member of `struct sockaddr'. */
+/* Define to 1 if `sa_len' is member of `struct sockaddr'. */
 #undef HAVE_STRUCT_SOCKADDR_SA_LEN
 
 /* Define to 1 if you have the "sys_nerr" variable. */
@@ -110,9 +110,6 @@
 /* Define to the one symbol short name of this package. */
 #undef PACKAGE_TARNAME
 
-/* Define to the home page for this package. */
-#undef PACKAGE_URL
-
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
 
@@ -148,8 +145,14 @@
    this defined. */
 #undef _POSIX_1_SOURCE
 
+/* This program uses POSIX 2001 features. */
+#undef _POSIX_C_SOURCE
+
 /* Define to 1 if you need to in order for `stat' and other things to work. */
 #undef _POSIX_SOURCE
+
+/* This program uses SUSv2 (1997) features. */
+#undef _XOPEN_SOURCE
 
 /* Declare sys_nerr by stdio.h in glibc. */
 #undef __USE_BSD
