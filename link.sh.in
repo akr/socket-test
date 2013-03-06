@@ -2,4 +2,4 @@
 #
 # @configure_input@
 
-@CC@ @LDFLAGS@ @LIBS@ "$@"
+@CC@ @LDFLAGS@ "$@" @LIBS@
