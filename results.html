@@ -123,6 +123,8 @@
   <li><a href="#unix-stream-s%2Ffoo%2Fbar0">./unix-stream -s &#39;/foo/bar\0&#39;</a></li>
   <li><a href="#unix-stream-s%2Fetc0">./unix-stream -s &#39;/etc\0&#39;</a></li>
   <li><a href="#unix-stream-T-sREADME0">./unix-stream -T -s &#39;README\0&#39;</a></li>
+  <li><a href="#unix-stream-sfoobar">./unix-stream -s &#39;foobar&#39;</a></li>
+  <li><a href="#unix-streamfoobar">./unix-stream &#39;foobar&#39;</a></li>
   <li><a href="#unix-streamfoofoobar">./unix-stream &#39;foo&#39; &#39;foo&#39; &#39;bar&#39;</a></li>
   <li><a href="#unix-streamfoo.%2Ffoobar">./unix-stream &#39;foo&#39; &#39;./foo&#39; &#39;bar&#39;</a></li>
   <li><a href="#unix-streamfoo">./unix-stream &#39;foo&#39;</a></li>
@@ -173,8 +175,6 @@
   <li><a href="#unix-stream-s%2Fetc">./unix-stream -s &#39;/etc&#39;</a></li>
   <li><a href="#unix-stream-sfoo">./unix-stream -s &#39;foo&#39;</a></li>
   <li><a href="#unix-stream-T-sREADME">./unix-stream -T -s &#39;README&#39;</a></li>
-  <li><a href="#unix-stream-sfoobar">./unix-stream -s &#39;foobar&#39;</a></li>
-  <li><a href="#unix-streamfoobar">./unix-stream &#39;foobar&#39;</a></li>
   <li><a href="#unix-stream-4sunlen1abc0">./unix-stream -4 &#39;(sun_len=1)abc\0&#39;</a></li>
   <li><a href="#unix-stream-4sunlen7abc0">./unix-stream -4 &#39;(sun_len=7)abc\0&#39;</a></li>
   <li><a href="#unix-stream-4sunlen1abc0sunlen7abc0">./unix-stream -4 &#39;(sun_len=1)abc\0&#39; &#39;(sun_len=7)abc\0&#39;</a></li>
@@ -250,6 +250,8 @@
   <li><a href="#unix-dgram-s%2Ffoo%2Fbar0">./unix-dgram -s &#39;/foo/bar\0&#39;</a></li>
   <li><a href="#unix-dgram-s%2Fetc0">./unix-dgram -s &#39;/etc\0&#39;</a></li>
   <li><a href="#unix-dgram-T-sREADME0">./unix-dgram -T -s &#39;README\0&#39;</a></li>
+  <li><a href="#unix-dgram-sfoobarfoobarbaz">./unix-dgram -s &#39;foobar&#39; &#39;foobar&#39; &#39;baz&#39;</a></li>
+  <li><a href="#unix-dgramfoobarfoobarbaz">./unix-dgram &#39;foobar&#39; &#39;foobar&#39; &#39;baz&#39;</a></li>
   <li><a href="#unix-dgramfoofoo0bar0">./unix-dgram &#39;foo&#39; &#39;foo\0&#39; &#39;bar\0&#39;</a></li>
   <li><a href="#unix-dgramfoo0foobar0">./unix-dgram &#39;foo\0&#39; &#39;foo&#39; &#39;bar\0&#39;</a></li>
   <li><a href="#unix-dgramfoo0foo0bar">./unix-dgram &#39;foo\0&#39; &#39;foo\0&#39; &#39;bar&#39;</a></li>
@@ -316,16 +318,14 @@
   <li><a href="#unix-dgram-s%2Ffoo%2Fbar">./unix-dgram -s &#39;/foo/bar&#39;</a></li>
   <li><a href="#unix-dgram-s%2Fetc">./unix-dgram -s &#39;/etc&#39;</a></li>
   <li><a href="#unix-dgram-T-sREADME">./unix-dgram -T -s &#39;README&#39;</a></li>
-  <li><a href="#unix-dgram-sfoobarfoobarbaz">./unix-dgram -s &#39;foobar&#39; &#39;foobar&#39; &#39;baz&#39;</a></li>
-  <li><a href="#unix-dgramfoobarfoobarbaz">./unix-dgram &#39;foobar&#39; &#39;foobar&#39; &#39;baz&#39;</a></li>
-  <li><a href="#unix-dgram-4sunlen1abc0sunlen1abc0bar0">./unix-dgram -4 &#39;(sun_len=1)abc\0&#39; &#39;(sun_len=1)abc\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-4sunlen7abc0sunlen7abc0bar0">./unix-dgram -4 &#39;(sun_len=7)abc\0&#39; &#39;(sun_len=7)abc\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-4sunlen1abc0sunlen7abc0bar0">./unix-dgram -4 &#39;(sun_len=1)abc\0&#39; &#39;(sun_len=7)abc\0&#39; &#39;bar\0&#39;</a></li>
-  <li><a href="#unix-dgram-4sunlen7abc0sunlen1abc0bar0">./unix-dgram -4 &#39;(sun_len=7)abc\0&#39; &#39;(sun_len=1)abc\0&#39; &#39;bar\0&#39;</a></li>
   <li><a href="#unix-dgram0abc0abcbar">./unix-dgram &#39;\0abc&#39; &#39;\0abc&#39; &#39;bar&#39;</a></li>
   <li><a href="#unix-dgram0abc0abc0bar">./unix-dgram &#39;\0abc&#39; &#39;\0abc\0&#39; &#39;bar&#39;</a></li>
   <li><a href="#unix-dgramnon-abstractnon-abstract0abstract">./unix-dgram &#39;non-abstract&#39; &#39;non-abstract&#39; &#39;\0abstract&#39;</a></li>
   <li><a href="#unix-dgram0abstract0abstractnon-abstract">./unix-dgram &#39;\0abstract&#39; &#39;\0abstract&#39; &#39;non-abstract&#39;</a></li>
+  <li><a href="#unix-dgram-4sunlen1abc0sunlen1abc0bar0">./unix-dgram -4 &#39;(sun_len=1)abc\0&#39; &#39;(sun_len=1)abc\0&#39; &#39;bar\0&#39;</a></li>
+  <li><a href="#unix-dgram-4sunlen7abc0sunlen7abc0bar0">./unix-dgram -4 &#39;(sun_len=7)abc\0&#39; &#39;(sun_len=7)abc\0&#39; &#39;bar\0&#39;</a></li>
+  <li><a href="#unix-dgram-4sunlen1abc0sunlen7abc0bar0">./unix-dgram -4 &#39;(sun_len=1)abc\0&#39; &#39;(sun_len=7)abc\0&#39; &#39;bar\0&#39;</a></li>
+  <li><a href="#unix-dgram-4sunlen7abc0sunlen1abc0bar0">./unix-dgram -4 &#39;(sun_len=7)abc\0&#39; &#39;(sun_len=1)abc\0&#39; &#39;bar\0&#39;</a></li>
   <li><a href="#size">./size</a></li>
   <li><a href="#const">./const</a></li>
   <li><a href="#errmsg">./errmsg</a></li>
@@ -12346,6 +12346,77 @@
   </tr>
   </tr>
 </table>
+<h2><a name="unix-stream-sfoobar">./unix-stream -s &#39;foobar&#39;</a></h2>
+<table border>
+  <tr>
+    <th align="right">OS</th>
+    <th>hurd</th>
+    <th>haiku</th>
+    <th>minix</th>
+    <th>cygwin</th>
+  </tr>
+  <tr>
+    <th align="left">bind(server) &lt;-</th>
+      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
+      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
+      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
+      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">bind(server) -&gt;</th>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">ENAMETOOLONG</td>
+  </tr>
+  <tr>
+    <th align="left">socket file (server) -&gt;</th>
+      <td class="socket-abnormal">exist</td>
+      <td class="socket-normal">not exist</td>
+      <td class="socket-normal">not exist</td>
+      <td class="socket-none"></td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(server) -&gt;</th>
+      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
+      <td class="socket-abnormal">&quot;foobar\xA8N\x01\xD1\xEF\xBC\0&quot; (13 bytes)</td>
+      <td class="socket-abnormal">&quot;/tmp/temp.N/foobar???????(98*&quot;\0&quot;)&quot; (127 bytes)</td>
+      <td class="socket-none"></td>
+  </tr>
+  </tr>
+</table>
+<h2><a name="unix-streamfoobar">./unix-stream &#39;foobar&#39;</a></h2>
+<table border>
+  <tr>
+    <th align="right">OS</th>
+    <th>hurd</th>
+  </tr>
+  <tr>
+    <th align="left">bind(server) &lt;-</th>
+      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">socket file (server) -&gt;</th>
+      <td class="socket-normal">exist</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(server) -&gt;</th>
+      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(client) -&gt;</th>
+      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">connect &lt;-</th>
+      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">connect -&gt;</th>
+      <td class="socket-normal">ENOENT</td>
+  </tr>
+  </tr>
+</table>
 <h2><a name="unix-streamfoofoobar">./unix-stream &#39;foo&#39; &#39;foo&#39; &#39;bar&#39;</a></h2>
 <table border>
   <tr>
@@ -19235,77 +19306,6 @@
       <td class="socket-normal">EADDRINUSE</td>
       <td class="socket-normal">EADDRINUSE</td>
       <td class="socket-normal">EADDRINUSE</td>
-  </tr>
-  </tr>
-</table>
-<h2><a name="unix-stream-sfoobar">./unix-stream -s &#39;foobar&#39;</a></h2>
-<table border>
-  <tr>
-    <th align="right">OS</th>
-    <th>hurd</th>
-    <th>haiku</th>
-    <th>minix</th>
-    <th>cygwin</th>
-  </tr>
-  <tr>
-    <th align="left">bind(server) &lt;-</th>
-      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
-      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
-      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
-      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">bind(server) -&gt;</th>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-normal">ENAMETOOLONG</td>
-  </tr>
-  <tr>
-    <th align="left">socket file (server) -&gt;</th>
-      <td class="socket-abnormal">exist</td>
-      <td class="socket-normal">not exist</td>
-      <td class="socket-normal">not exist</td>
-      <td class="socket-none"></td>
-  </tr>
-  <tr>
-    <th align="left">getsockname(server) -&gt;</th>
-      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;foobar\xA8N\x01\xD1\xEF\xBC\0&quot; (13 bytes)</td>
-      <td class="socket-abnormal">&quot;/tmp/temp.N/foobar???????(98*&quot;\0&quot;)&quot; (127 bytes)</td>
-      <td class="socket-none"></td>
-  </tr>
-  </tr>
-</table>
-<h2><a name="unix-streamfoobar">./unix-stream &#39;foobar&#39;</a></h2>
-<table border>
-  <tr>
-    <th align="right">OS</th>
-    <th>hurd</th>
-  </tr>
-  <tr>
-    <th align="left">bind(server) &lt;-</th>
-      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">socket file (server) -&gt;</th>
-      <td class="socket-normal">exist</td>
-  </tr>
-  <tr>
-    <th align="left">getsockname(server) -&gt;</th>
-      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">getsockname(client) -&gt;</th>
-      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">connect &lt;-</th>
-      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">connect -&gt;</th>
-      <td class="socket-normal">ENOENT</td>
   </tr>
   </tr>
 </table>
@@ -31525,6 +31525,92 @@
   </tr>
   </tr>
 </table>
+<h2><a name="unix-dgram-sfoobarfoobarbaz">./unix-dgram -s &#39;foobar&#39; &#39;foobar&#39; &#39;baz&#39;</a></h2>
+<table border>
+  <tr>
+    <th align="right">OS</th>
+    <th>hurd</th>
+    <th>haiku</th>
+    <th>minix</th>
+    <th>cygwin</th>
+  </tr>
+  <tr>
+    <th align="left">socket(server) -&gt;</th>
+      <td class="socket-none"></td>
+      <td class="socket-normal">EAFNOSUPPORT</td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+  </tr>
+  <tr>
+    <th align="left">bind(server) &lt;-</th>
+      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
+      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">bind(server) -&gt;</th>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">ENAMETOOLONG</td>
+  </tr>
+  <tr>
+    <th align="left">socket file (server) -&gt;</th>
+      <td class="socket-normal">exist</td>
+      <td class="socket-none"></td>
+      <td class="socket-abnormal">not exist</td>
+      <td class="socket-none"></td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(server) -&gt;</th>
+      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
+      <td class="socket-none"></td>
+      <td class="socket-abnormal">&quot;/tmp/temp.N/foobar???????(98*&quot;\0&quot;)&quot; (127 bytes)</td>
+      <td class="socket-none"></td>
+  </tr>
+  </tr>
+</table>
+<h2><a name="unix-dgramfoobarfoobarbaz">./unix-dgram &#39;foobar&#39; &#39;foobar&#39; &#39;baz&#39;</a></h2>
+<table border>
+  <tr>
+    <th align="right">OS</th>
+    <th>hurd</th>
+  </tr>
+  <tr>
+    <th align="left">bind(server) &lt;-</th>
+      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">socket file (server) -&gt;</th>
+      <td class="socket-normal">exist</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(server) -&gt;</th>
+      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">bind(client) &lt;-</th>
+      <td class="socket-normal">&quot;baz&quot; (3 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">socket file (client) -&gt;</th>
+      <td class="socket-normal">exist</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(client) -&gt;</th>
+      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">sendto(client) &lt;-</th>
+      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">sendto(client) -&gt;</th>
+      <td class="socket-normal">ENOENT</td>
+  </tr>
+  </tr>
+</table>
 <h2><a name="unix-dgramfoofoo0bar0">./unix-dgram &#39;foo&#39; &#39;foo\0&#39; &#39;bar\0&#39;</a></h2>
 <table border>
   <tr>
@@ -41257,89 +41343,229 @@
   </tr>
   </tr>
 </table>
-<h2><a name="unix-dgram-sfoobarfoobarbaz">./unix-dgram -s &#39;foobar&#39; &#39;foobar&#39; &#39;baz&#39;</a></h2>
+<h2><a name="unix-dgram0abc0abcbar">./unix-dgram &#39;\0abc&#39; &#39;\0abc&#39; &#39;bar&#39;</a></h2>
 <table border>
   <tr>
     <th align="right">OS</th>
-    <th>hurd</th>
-    <th>haiku</th>
-    <th>minix</th>
-    <th>cygwin</th>
-  </tr>
-  <tr>
-    <th align="left">socket(server) -&gt;</th>
-      <td class="socket-none"></td>
-      <td class="socket-normal">EAFNOSUPPORT</td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
+    <th>linux</th>
+    <th>linux-arm</th>
   </tr>
   <tr>
     <th align="left">bind(server) &lt;-</th>
-      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
-      <td class="socket-none"></td>
-      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
-      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">bind(server) -&gt;</th>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-normal">ENAMETOOLONG</td>
+      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
   </tr>
   <tr>
     <th align="left">socket file (server) -&gt;</th>
-      <td class="socket-normal">exist</td>
-      <td class="socket-none"></td>
-      <td class="socket-abnormal">not exist</td>
-      <td class="socket-none"></td>
+      <td class="socket-normal">not exist</td>
+      <td class="socket-normal">not exist</td>
   </tr>
   <tr>
     <th align="left">getsockname(server) -&gt;</th>
-      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-none"></td>
-      <td class="socket-abnormal">&quot;/tmp/temp.N/foobar???????(98*&quot;\0&quot;)&quot; (127 bytes)</td>
-      <td class="socket-none"></td>
-  </tr>
-  </tr>
-</table>
-<h2><a name="unix-dgramfoobarfoobarbaz">./unix-dgram &#39;foobar&#39; &#39;foobar&#39; &#39;baz&#39;</a></h2>
-<table border>
-  <tr>
-    <th align="right">OS</th>
-    <th>hurd</th>
-  </tr>
-  <tr>
-    <th align="left">bind(server) &lt;-</th>
-      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">socket file (server) -&gt;</th>
-      <td class="socket-normal">exist</td>
-  </tr>
-  <tr>
-    <th align="left">getsockname(server) -&gt;</th>
-      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
+      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
   </tr>
   <tr>
     <th align="left">bind(client) &lt;-</th>
-      <td class="socket-normal">&quot;baz&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;bar&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;bar&quot; (3 bytes)</td>
   </tr>
   <tr>
     <th align="left">socket file (client) -&gt;</th>
       <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
   </tr>
   <tr>
     <th align="left">getsockname(client) -&gt;</th>
-      <td class="socket-normal">&quot;\0&quot; (1 bytes)</td>
+      <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(client) &lt;-</th>
-      <td class="socket-normal">&quot;foobar&quot; (6 bytes)</td>
+      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">recvfrom(server) -&gt;</th>
+      <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">sendto(server) &lt;-</th>
+      <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">recvfrom(client) -&gt;</th>
+      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
+  </tr>
+  </tr>
+</table>
+<h2><a name="unix-dgram0abc0abc0bar">./unix-dgram &#39;\0abc&#39; &#39;\0abc\0&#39; &#39;bar&#39;</a></h2>
+<table border>
+  <tr>
+    <th align="right">OS</th>
+    <th>linux</th>
+    <th>linux-arm</th>
+  </tr>
+  <tr>
+    <th align="left">bind(server) &lt;-</th>
+      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">socket file (server) -&gt;</th>
+      <td class="socket-normal">not exist</td>
+      <td class="socket-normal">not exist</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(server) -&gt;</th>
+      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">bind(client) &lt;-</th>
+      <td class="socket-normal">&quot;bar&quot; (3 bytes)</td>
+      <td class="socket-normal">&quot;bar&quot; (3 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">socket file (client) -&gt;</th>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(client) -&gt;</th>
+      <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
+      <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">sendto(client) &lt;-</th>
+      <td class="socket-normal">&quot;\0abc\0&quot; (5 bytes)</td>
+      <td class="socket-normal">&quot;\0abc\0&quot; (5 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(client) -&gt;</th>
-      <td class="socket-normal">ENOENT</td>
+      <td class="socket-normal">ECONNREFUSED</td>
+      <td class="socket-normal">ECONNREFUSED</td>
+  </tr>
+  </tr>
+</table>
+<h2><a name="unix-dgramnon-abstractnon-abstract0abstract">./unix-dgram &#39;non-abstract&#39; &#39;non-abstract&#39; &#39;\0abstract&#39;</a></h2>
+<table border>
+  <tr>
+    <th align="right">OS</th>
+    <th>linux</th>
+    <th>linux-arm</th>
+  </tr>
+  <tr>
+    <th align="left">bind(server) &lt;-</th>
+      <td class="socket-normal">&quot;non-abstract&quot; (12 bytes)</td>
+      <td class="socket-normal">&quot;non-abstract&quot; (12 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">socket file (server) -&gt;</th>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(server) -&gt;</th>
+      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
+      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">bind(client) &lt;-</th>
+      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
+      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">socket file (client) -&gt;</th>
+      <td class="socket-normal">not exist</td>
+      <td class="socket-normal">not exist</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(client) -&gt;</th>
+      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
+      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">sendto(client) &lt;-</th>
+      <td class="socket-normal">&quot;non-abstract&quot; (12 bytes)</td>
+      <td class="socket-normal">&quot;non-abstract&quot; (12 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">recvfrom(server) -&gt;</th>
+      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
+      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">sendto(server) &lt;-</th>
+      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
+      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">recvfrom(client) -&gt;</th>
+      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
+      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
+  </tr>
+  </tr>
+</table>
+<h2><a name="unix-dgram0abstract0abstractnon-abstract">./unix-dgram &#39;\0abstract&#39; &#39;\0abstract&#39; &#39;non-abstract&#39;</a></h2>
+<table border>
+  <tr>
+    <th align="right">OS</th>
+    <th>linux</th>
+    <th>linux-arm</th>
+  </tr>
+  <tr>
+    <th align="left">bind(server) &lt;-</th>
+      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
+      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">socket file (server) -&gt;</th>
+      <td class="socket-normal">not exist</td>
+      <td class="socket-normal">not exist</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(server) -&gt;</th>
+      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
+      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">bind(client) &lt;-</th>
+      <td class="socket-normal">&quot;non-abstract&quot; (12 bytes)</td>
+      <td class="socket-normal">&quot;non-abstract&quot; (12 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">socket file (client) -&gt;</th>
+      <td class="socket-normal">exist</td>
+      <td class="socket-normal">exist</td>
+  </tr>
+  <tr>
+    <th align="left">getsockname(client) -&gt;</th>
+      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
+      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">sendto(client) &lt;-</th>
+      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
+      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">recvfrom(server) -&gt;</th>
+      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
+      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">sendto(server) &lt;-</th>
+      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
+      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
+  </tr>
+  <tr>
+    <th align="left">recvfrom(client) -&gt;</th>
+      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
+      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -42032,232 +42258,6 @@
       <td class="socket-normal">&quot;(sun_len=6)abc\0&quot; (4 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-  </tr>
-  </tr>
-</table>
-<h2><a name="unix-dgram0abc0abcbar">./unix-dgram &#39;\0abc&#39; &#39;\0abc&#39; &#39;bar&#39;</a></h2>
-<table border>
-  <tr>
-    <th align="right">OS</th>
-    <th>linux</th>
-    <th>linux-arm</th>
-  </tr>
-  <tr>
-    <th align="left">bind(server) &lt;-</th>
-      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">socket file (server) -&gt;</th>
-      <td class="socket-normal">not exist</td>
-      <td class="socket-normal">not exist</td>
-  </tr>
-  <tr>
-    <th align="left">getsockname(server) -&gt;</th>
-      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">bind(client) &lt;-</th>
-      <td class="socket-normal">&quot;bar&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;bar&quot; (3 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">socket file (client) -&gt;</th>
-      <td class="socket-normal">exist</td>
-      <td class="socket-normal">exist</td>
-  </tr>
-  <tr>
-    <th align="left">getsockname(client) -&gt;</th>
-      <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">sendto(client) &lt;-</th>
-      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">recvfrom(server) -&gt;</th>
-      <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">sendto(server) &lt;-</th>
-      <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">recvfrom(client) -&gt;</th>
-      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
-  </tr>
-  </tr>
-</table>
-<h2><a name="unix-dgram0abc0abc0bar">./unix-dgram &#39;\0abc&#39; &#39;\0abc\0&#39; &#39;bar&#39;</a></h2>
-<table border>
-  <tr>
-    <th align="right">OS</th>
-    <th>linux</th>
-    <th>linux-arm</th>
-  </tr>
-  <tr>
-    <th align="left">bind(server) &lt;-</th>
-      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">socket file (server) -&gt;</th>
-      <td class="socket-normal">not exist</td>
-      <td class="socket-normal">not exist</td>
-  </tr>
-  <tr>
-    <th align="left">getsockname(server) -&gt;</th>
-      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;\0abc&quot; (4 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">bind(client) &lt;-</th>
-      <td class="socket-normal">&quot;bar&quot; (3 bytes)</td>
-      <td class="socket-normal">&quot;bar&quot; (3 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">socket file (client) -&gt;</th>
-      <td class="socket-normal">exist</td>
-      <td class="socket-normal">exist</td>
-  </tr>
-  <tr>
-    <th align="left">getsockname(client) -&gt;</th>
-      <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">sendto(client) &lt;-</th>
-      <td class="socket-normal">&quot;\0abc\0&quot; (5 bytes)</td>
-      <td class="socket-normal">&quot;\0abc\0&quot; (5 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">sendto(client) -&gt;</th>
-      <td class="socket-normal">ECONNREFUSED</td>
-      <td class="socket-normal">ECONNREFUSED</td>
-  </tr>
-  </tr>
-</table>
-<h2><a name="unix-dgramnon-abstractnon-abstract0abstract">./unix-dgram &#39;non-abstract&#39; &#39;non-abstract&#39; &#39;\0abstract&#39;</a></h2>
-<table border>
-  <tr>
-    <th align="right">OS</th>
-    <th>linux</th>
-    <th>linux-arm</th>
-  </tr>
-  <tr>
-    <th align="left">bind(server) &lt;-</th>
-      <td class="socket-normal">&quot;non-abstract&quot; (12 bytes)</td>
-      <td class="socket-normal">&quot;non-abstract&quot; (12 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">socket file (server) -&gt;</th>
-      <td class="socket-normal">exist</td>
-      <td class="socket-normal">exist</td>
-  </tr>
-  <tr>
-    <th align="left">getsockname(server) -&gt;</th>
-      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
-      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">bind(client) &lt;-</th>
-      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
-      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">socket file (client) -&gt;</th>
-      <td class="socket-normal">not exist</td>
-      <td class="socket-normal">not exist</td>
-  </tr>
-  <tr>
-    <th align="left">getsockname(client) -&gt;</th>
-      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
-      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">sendto(client) &lt;-</th>
-      <td class="socket-normal">&quot;non-abstract&quot; (12 bytes)</td>
-      <td class="socket-normal">&quot;non-abstract&quot; (12 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">recvfrom(server) -&gt;</th>
-      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
-      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">sendto(server) &lt;-</th>
-      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
-      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">recvfrom(client) -&gt;</th>
-      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
-      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
-  </tr>
-  </tr>
-</table>
-<h2><a name="unix-dgram0abstract0abstractnon-abstract">./unix-dgram &#39;\0abstract&#39; &#39;\0abstract&#39; &#39;non-abstract&#39;</a></h2>
-<table border>
-  <tr>
-    <th align="right">OS</th>
-    <th>linux</th>
-    <th>linux-arm</th>
-  </tr>
-  <tr>
-    <th align="left">bind(server) &lt;-</th>
-      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
-      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">socket file (server) -&gt;</th>
-      <td class="socket-normal">not exist</td>
-      <td class="socket-normal">not exist</td>
-  </tr>
-  <tr>
-    <th align="left">getsockname(server) -&gt;</th>
-      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
-      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">bind(client) &lt;-</th>
-      <td class="socket-normal">&quot;non-abstract&quot; (12 bytes)</td>
-      <td class="socket-normal">&quot;non-abstract&quot; (12 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">socket file (client) -&gt;</th>
-      <td class="socket-normal">exist</td>
-      <td class="socket-normal">exist</td>
-  </tr>
-  <tr>
-    <th align="left">getsockname(client) -&gt;</th>
-      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
-      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">sendto(client) &lt;-</th>
-      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
-      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">recvfrom(server) -&gt;</th>
-      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
-      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">sendto(server) &lt;-</th>
-      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
-      <td class="socket-normal">&quot;non-abstract\0&quot; (13 bytes)</td>
-  </tr>
-  <tr>
-    <th align="left">recvfrom(client) -&gt;</th>
-      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
-      <td class="socket-normal">&quot;\0abstract&quot; (9 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -45656,6 +45656,24 @@
       <td class="socket-none"></td>
   </tr>
   <tr>
+    <th align="left">EBACKGROUND</th>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">Inappropriate operation for background process</td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+  </tr>
+  <tr>
     <th align="left">EBADARCH</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -45684,24 +45702,6 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-  </tr>
-  <tr>
-    <th align="left">EBACKGROUND</th>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-normal">Inappropriate operation for background process</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -46304,24 +46304,6 @@
       <td class="socket-normal">Destination address required</td>
   </tr>
   <tr>
-    <th align="left">EDEVERR</th>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-normal">Device error</td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-  </tr>
-  <tr>
     <th align="left">EDIED</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -46332,6 +46314,24 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-normal">Translator died</td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+  </tr>
+  <tr>
+    <th align="left">EDEVERR</th>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">Device error</td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -54624,6 +54624,24 @@
       <td class="socket-none"></td>
   </tr>
   <tr>
+    <th align="left">EBACKGROUND</th>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">1073741924</td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+  </tr>
+  <tr>
     <th align="left">EBADARCH</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -54652,24 +54670,6 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-  </tr>
-  <tr>
-    <th align="left">EBACKGROUND</th>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-normal">1073741924</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -55272,24 +55272,6 @@
       <td class="socket-abnormal">121</td>
   </tr>
   <tr>
-    <th align="left">EDEVERR</th>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-normal">83</td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-      <td class="socket-none"></td>
-  </tr>
-  <tr>
     <th align="left">EDIED</th>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -55300,6 +55282,24 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-normal">1073741925</td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+  </tr>
+  <tr>
+    <th align="left">EDEVERR</th>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-normal">83</td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
+      <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>

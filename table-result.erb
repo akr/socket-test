@@ -635,7 +635,7 @@ end
 % sorted_keyseps.each {|keysep|
 %   os_result = keysep_os_result[keysep]
 %   key, subid, sep = keysep
-%   action = "#{key} #{sep}"
+%   action = sep.empty? ? key : "#{key} #{sep}"
   <tr>
     <th align="left"><%=h action %></th>
 %   os_list.each {|os|
