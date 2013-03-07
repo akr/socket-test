@@ -67,10 +67,6 @@ size.c: size.erb
 const.c: const.erb
 	./update-files const.c -- const.erb -- sh -c 'erb const.erb > const.c'
 
-errmsg.c: errmsg.erb util.rb errno.txt
-	./update-files errmsg.c -- errmsg.erb util.rb errno.txt -- \
-	  sh -c 'erb -r ./util.rb errmsg.erb > errmsg.c'
-
 errnum.c: errnum.erb util.rb errno.txt
 	./update-files errnum.c -- errnum.erb util.rb errno.txt -- \
 	  sh -c 'erb -r ./util.rb errnum.erb > errnum.c'
