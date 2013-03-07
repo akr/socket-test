@@ -134,9 +134,6 @@ typedef struct {
 
 int constant2intmax(const integer_constant_t *c, intmax_t *intmax_ret); /* success:0, failure:-1 */
 
-extern const integer_constant_t internal_errno_to_name[];
-extern const int num_errno;
-
 extern const integer_constant_t internal_integer_constant[];
 extern const int num_integer_constants;
 

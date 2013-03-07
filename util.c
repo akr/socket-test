@@ -829,14 +829,28 @@ int constant2intmax(const integer_constant_t *c, intmax_t *intmax_ret)
   return 0;
 }
 
-char *errsym(int err)
+char *intconst_name(intconst_purpose_t purpose, int num)
 {
   int i;
-  for (i = 0; i < num_errno; i++) {
-    if ((uintmax_t)err == internal_errno_to_name[i].num)
-      return internal_errno_to_name[i].str;
+  for (i = 0; i < num_integer_constants; i++) {
+    intmax_t im;
+    const integer_constant_t *ic = &internal_integer_constant[i];
+
+    if (ic->purpose != purpose)
+      continue;
+    if (constant2intmax(ic, &im) == 0) {
+      if (im < INT_MIN || INT_MAX < im)
+        continue;
+      if (im == num)
+        return ic->str;
+    }
   }
   return NULL;
+}
+
+char *errsym(int err)
+{
+  return intconst_name(intconst_errno, err);
 }
 
 void perrsym(const char *s)
@@ -868,6 +882,7 @@ static int intcmp(const void *vp1, const void *vp2)
 void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg)
 {
   static int *errno_ary = NULL;
+  static int num_errno = 0;
 
   int guess_lo, guess_hi;
   int i;
@@ -875,9 +890,16 @@ void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg)
   int errcand;
 
   if (errno_ary == NULL) {
+    int j;
+    num_errno = 0;
+    for (i = 0; i < num_integer_constants; i++)
+      if (internal_integer_constant[i].purpose == intconst_errno)
+        num_errno++;
     errno_ary = xmalloc(sizeof(int) * num_errno);
-    for (i = 0; i < num_errno; i++)
-      errno_ary[i] = internal_errno_to_name[i].num;
+    j = 0;
+    for (i = 0; i < num_integer_constants; i++)
+      if (internal_integer_constant[i].purpose == intconst_errno)
+        errno_ary[j++] = internal_integer_constant[i].num;
     qsort(errno_ary, num_errno, sizeof(int), intcmp);
   }
 
