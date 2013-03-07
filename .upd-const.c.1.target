@@ -236,91 +236,91 @@ int main(int argc, char *argv[])
   if (sizeof(FLT_MAX) == sizeof(long double))
     printf("%s = %.*Lg (%d bytes)\n", "FLT_MAX", LDBL_DIG, (long double)FLT_MAX, (int)sizeof(FLT_MAX));
   else if (sizeof(FLT_MAX) == sizeof(double))
-    printf("%s = %.*g (%d bytes)\n", "FLT_MAX", DBL_DIG, (double)FLT_MAX, (int)sizeof(FLT_MAX));
+    printf("%s = %.*Lg (%d bytes)\n", "FLT_MAX", DBL_DIG, (long double)FLT_MAX, (int)sizeof(FLT_MAX));
   else if (sizeof(FLT_MAX) == sizeof(float))
-    printf("%s = %.*g (%d bytes)\n", "FLT_MAX", FLT_DIG, (double)FLT_MAX, (int)sizeof(FLT_MAX));
+    printf("%s = %.*Lg (%d bytes)\n", "FLT_MAX", FLT_DIG, (long double)FLT_MAX, (int)sizeof(FLT_MAX));
   else
-    printf("%s = %.*g (%d bytes)\n", "FLT_MAX", DBL_DIG, (double)FLT_MAX, (int)sizeof(FLT_MAX));
+    printf("%s = %.*Lg (%d bytes)\n", "FLT_MAX", DBL_DIG, (long double)FLT_MAX, (int)sizeof(FLT_MAX));
 #endif
 #ifdef DBL_MAX
   if (sizeof(DBL_MAX) == sizeof(long double))
     printf("%s = %.*Lg (%d bytes)\n", "DBL_MAX", LDBL_DIG, (long double)DBL_MAX, (int)sizeof(DBL_MAX));
   else if (sizeof(DBL_MAX) == sizeof(double))
-    printf("%s = %.*g (%d bytes)\n", "DBL_MAX", DBL_DIG, (double)DBL_MAX, (int)sizeof(DBL_MAX));
+    printf("%s = %.*Lg (%d bytes)\n", "DBL_MAX", DBL_DIG, (long double)DBL_MAX, (int)sizeof(DBL_MAX));
   else if (sizeof(DBL_MAX) == sizeof(float))
-    printf("%s = %.*g (%d bytes)\n", "DBL_MAX", FLT_DIG, (double)DBL_MAX, (int)sizeof(DBL_MAX));
+    printf("%s = %.*Lg (%d bytes)\n", "DBL_MAX", FLT_DIG, (long double)DBL_MAX, (int)sizeof(DBL_MAX));
   else
-    printf("%s = %.*g (%d bytes)\n", "DBL_MAX", DBL_DIG, (double)DBL_MAX, (int)sizeof(DBL_MAX));
+    printf("%s = %.*Lg (%d bytes)\n", "DBL_MAX", DBL_DIG, (long double)DBL_MAX, (int)sizeof(DBL_MAX));
 #endif
 #ifdef LDBL_MAX
   if (sizeof(LDBL_MAX) == sizeof(long double))
     printf("%s = %.*Lg (%d bytes)\n", "LDBL_MAX", LDBL_DIG, (long double)LDBL_MAX, (int)sizeof(LDBL_MAX));
   else if (sizeof(LDBL_MAX) == sizeof(double))
-    printf("%s = %.*g (%d bytes)\n", "LDBL_MAX", DBL_DIG, (double)LDBL_MAX, (int)sizeof(LDBL_MAX));
+    printf("%s = %.*Lg (%d bytes)\n", "LDBL_MAX", DBL_DIG, (long double)LDBL_MAX, (int)sizeof(LDBL_MAX));
   else if (sizeof(LDBL_MAX) == sizeof(float))
-    printf("%s = %.*g (%d bytes)\n", "LDBL_MAX", FLT_DIG, (double)LDBL_MAX, (int)sizeof(LDBL_MAX));
+    printf("%s = %.*Lg (%d bytes)\n", "LDBL_MAX", FLT_DIG, (long double)LDBL_MAX, (int)sizeof(LDBL_MAX));
   else
-    printf("%s = %.*g (%d bytes)\n", "LDBL_MAX", DBL_DIG, (double)LDBL_MAX, (int)sizeof(LDBL_MAX));
+    printf("%s = %.*Lg (%d bytes)\n", "LDBL_MAX", DBL_DIG, (long double)LDBL_MAX, (int)sizeof(LDBL_MAX));
 #endif
 #ifdef FLT_EPSILON
   if (sizeof(FLT_EPSILON) == sizeof(long double))
     printf("%s = %.*Lg (%d bytes)\n", "FLT_EPSILON", LDBL_DIG, (long double)FLT_EPSILON, (int)sizeof(FLT_EPSILON));
   else if (sizeof(FLT_EPSILON) == sizeof(double))
-    printf("%s = %.*g (%d bytes)\n", "FLT_EPSILON", DBL_DIG, (double)FLT_EPSILON, (int)sizeof(FLT_EPSILON));
+    printf("%s = %.*Lg (%d bytes)\n", "FLT_EPSILON", DBL_DIG, (long double)FLT_EPSILON, (int)sizeof(FLT_EPSILON));
   else if (sizeof(FLT_EPSILON) == sizeof(float))
-    printf("%s = %.*g (%d bytes)\n", "FLT_EPSILON", FLT_DIG, (double)FLT_EPSILON, (int)sizeof(FLT_EPSILON));
+    printf("%s = %.*Lg (%d bytes)\n", "FLT_EPSILON", FLT_DIG, (long double)FLT_EPSILON, (int)sizeof(FLT_EPSILON));
   else
-    printf("%s = %.*g (%d bytes)\n", "FLT_EPSILON", DBL_DIG, (double)FLT_EPSILON, (int)sizeof(FLT_EPSILON));
+    printf("%s = %.*Lg (%d bytes)\n", "FLT_EPSILON", DBL_DIG, (long double)FLT_EPSILON, (int)sizeof(FLT_EPSILON));
 #endif
 #ifdef DBL_EPSILON
   if (sizeof(DBL_EPSILON) == sizeof(long double))
     printf("%s = %.*Lg (%d bytes)\n", "DBL_EPSILON", LDBL_DIG, (long double)DBL_EPSILON, (int)sizeof(DBL_EPSILON));
   else if (sizeof(DBL_EPSILON) == sizeof(double))
-    printf("%s = %.*g (%d bytes)\n", "DBL_EPSILON", DBL_DIG, (double)DBL_EPSILON, (int)sizeof(DBL_EPSILON));
+    printf("%s = %.*Lg (%d bytes)\n", "DBL_EPSILON", DBL_DIG, (long double)DBL_EPSILON, (int)sizeof(DBL_EPSILON));
   else if (sizeof(DBL_EPSILON) == sizeof(float))
-    printf("%s = %.*g (%d bytes)\n", "DBL_EPSILON", FLT_DIG, (double)DBL_EPSILON, (int)sizeof(DBL_EPSILON));
+    printf("%s = %.*Lg (%d bytes)\n", "DBL_EPSILON", FLT_DIG, (long double)DBL_EPSILON, (int)sizeof(DBL_EPSILON));
   else
-    printf("%s = %.*g (%d bytes)\n", "DBL_EPSILON", DBL_DIG, (double)DBL_EPSILON, (int)sizeof(DBL_EPSILON));
+    printf("%s = %.*Lg (%d bytes)\n", "DBL_EPSILON", DBL_DIG, (long double)DBL_EPSILON, (int)sizeof(DBL_EPSILON));
 #endif
 #ifdef LDBL_EPSILON
   if (sizeof(LDBL_EPSILON) == sizeof(long double))
     printf("%s = %.*Lg (%d bytes)\n", "LDBL_EPSILON", LDBL_DIG, (long double)LDBL_EPSILON, (int)sizeof(LDBL_EPSILON));
   else if (sizeof(LDBL_EPSILON) == sizeof(double))
-    printf("%s = %.*g (%d bytes)\n", "LDBL_EPSILON", DBL_DIG, (double)LDBL_EPSILON, (int)sizeof(LDBL_EPSILON));
+    printf("%s = %.*Lg (%d bytes)\n", "LDBL_EPSILON", DBL_DIG, (long double)LDBL_EPSILON, (int)sizeof(LDBL_EPSILON));
   else if (sizeof(LDBL_EPSILON) == sizeof(float))
-    printf("%s = %.*g (%d bytes)\n", "LDBL_EPSILON", FLT_DIG, (double)LDBL_EPSILON, (int)sizeof(LDBL_EPSILON));
+    printf("%s = %.*Lg (%d bytes)\n", "LDBL_EPSILON", FLT_DIG, (long double)LDBL_EPSILON, (int)sizeof(LDBL_EPSILON));
   else
-    printf("%s = %.*g (%d bytes)\n", "LDBL_EPSILON", DBL_DIG, (double)LDBL_EPSILON, (int)sizeof(LDBL_EPSILON));
+    printf("%s = %.*Lg (%d bytes)\n", "LDBL_EPSILON", DBL_DIG, (long double)LDBL_EPSILON, (int)sizeof(LDBL_EPSILON));
 #endif
 #ifdef FLT_MIN
   if (sizeof(FLT_MIN) == sizeof(long double))
     printf("%s = %.*Lg (%d bytes)\n", "FLT_MIN", LDBL_DIG, (long double)FLT_MIN, (int)sizeof(FLT_MIN));
   else if (sizeof(FLT_MIN) == sizeof(double))
-    printf("%s = %.*g (%d bytes)\n", "FLT_MIN", DBL_DIG, (double)FLT_MIN, (int)sizeof(FLT_MIN));
+    printf("%s = %.*Lg (%d bytes)\n", "FLT_MIN", DBL_DIG, (long double)FLT_MIN, (int)sizeof(FLT_MIN));
   else if (sizeof(FLT_MIN) == sizeof(float))
-    printf("%s = %.*g (%d bytes)\n", "FLT_MIN", FLT_DIG, (double)FLT_MIN, (int)sizeof(FLT_MIN));
+    printf("%s = %.*Lg (%d bytes)\n", "FLT_MIN", FLT_DIG, (long double)FLT_MIN, (int)sizeof(FLT_MIN));
   else
-    printf("%s = %.*g (%d bytes)\n", "FLT_MIN", DBL_DIG, (double)FLT_MIN, (int)sizeof(FLT_MIN));
+    printf("%s = %.*Lg (%d bytes)\n", "FLT_MIN", DBL_DIG, (long double)FLT_MIN, (int)sizeof(FLT_MIN));
 #endif
 #ifdef DBL_MIN
   if (sizeof(DBL_MIN) == sizeof(long double))
     printf("%s = %.*Lg (%d bytes)\n", "DBL_MIN", LDBL_DIG, (long double)DBL_MIN, (int)sizeof(DBL_MIN));
   else if (sizeof(DBL_MIN) == sizeof(double))
-    printf("%s = %.*g (%d bytes)\n", "DBL_MIN", DBL_DIG, (double)DBL_MIN, (int)sizeof(DBL_MIN));
+    printf("%s = %.*Lg (%d bytes)\n", "DBL_MIN", DBL_DIG, (long double)DBL_MIN, (int)sizeof(DBL_MIN));
   else if (sizeof(DBL_MIN) == sizeof(float))
-    printf("%s = %.*g (%d bytes)\n", "DBL_MIN", FLT_DIG, (double)DBL_MIN, (int)sizeof(DBL_MIN));
+    printf("%s = %.*Lg (%d bytes)\n", "DBL_MIN", FLT_DIG, (long double)DBL_MIN, (int)sizeof(DBL_MIN));
   else
-    printf("%s = %.*g (%d bytes)\n", "DBL_MIN", DBL_DIG, (double)DBL_MIN, (int)sizeof(DBL_MIN));
+    printf("%s = %.*Lg (%d bytes)\n", "DBL_MIN", DBL_DIG, (long double)DBL_MIN, (int)sizeof(DBL_MIN));
 #endif
 #ifdef LDBL_MIN
   if (sizeof(LDBL_MIN) == sizeof(long double))
     printf("%s = %.*Lg (%d bytes)\n", "LDBL_MIN", LDBL_DIG, (long double)LDBL_MIN, (int)sizeof(LDBL_MIN));
   else if (sizeof(LDBL_MIN) == sizeof(double))
-    printf("%s = %.*g (%d bytes)\n", "LDBL_MIN", DBL_DIG, (double)LDBL_MIN, (int)sizeof(LDBL_MIN));
+    printf("%s = %.*Lg (%d bytes)\n", "LDBL_MIN", DBL_DIG, (long double)LDBL_MIN, (int)sizeof(LDBL_MIN));
   else if (sizeof(LDBL_MIN) == sizeof(float))
-    printf("%s = %.*g (%d bytes)\n", "LDBL_MIN", FLT_DIG, (double)LDBL_MIN, (int)sizeof(LDBL_MIN));
+    printf("%s = %.*Lg (%d bytes)\n", "LDBL_MIN", FLT_DIG, (long double)LDBL_MIN, (int)sizeof(LDBL_MIN));
   else
-    printf("%s = %.*g (%d bytes)\n", "LDBL_MIN", DBL_DIG, (double)LDBL_MIN, (int)sizeof(LDBL_MIN));
+    printf("%s = %.*Lg (%d bytes)\n", "LDBL_MIN", DBL_DIG, (long double)LDBL_MIN, (int)sizeof(LDBL_MIN));
 #endif
 
 #ifdef HAVE_SYS_NERR
