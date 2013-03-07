@@ -28,6 +28,26 @@ require 'pp'
 include ERB::Util # for ERB::Util#h and ERB::Util#u
 require 'tsort'
 
+STDOUT.sync = true
+
+os_list = %w[
+  freebsd
+  debian-kfreebsd
+  darwin
+  dragonfly
+  netbsd
+  openbsd51
+  openbsd52
+  miros
+  hurd
+  haiku
+  minix
+  linux
+  linux-arm
+  sunos
+  cygwin
+]
+
 def shared_prefix_length(str1, str2)
   (0..str1.length).find {|i| str1[i] != str2[i] } || str1.length
 end
@@ -67,6 +87,32 @@ class Graph
       @child_parents[child].each(&b)
     end
   end
+
+  # returns a hash which maps node to its number of ancestors, including itself.
+  # Note that the graph is not tree, shared ancestors are counted multiply.
+  def count_ancestors
+    count = Hash.new
+    tsort_each {|n|
+      num_ancestors = 1
+      @child_parents[n].uniq.each {|parent|
+        num_ancestors += count[parent]
+      }
+      count[n] = num_ancestors
+    }
+    count
+  end
+
+  def reverse
+    result = Graph.new
+    @child_parents.each {|child, parents|
+      result[child] ||= []
+      parents.each {|parent|
+        result[parent] ||= []
+        result[parent] << child
+      }
+    }
+    result
+  end
 end
 
 def merge_ordered(*arys)
@@ -88,19 +134,12 @@ def merge_ordered(*arys)
     }
     g[ary[0]] ||= []
   }
-  ancestors = {}
-  descendants = {}
-  arys.each {|ary|
-    ary.each_with_index {|n, i|
-      ancestors[n] ||= {}
-      descendants[n] ||= {}
-      ary[0, i].each {|a| ancestors[n][a] = true }
-      ary[(i+1)..-1].each {|d| descendants[n][d] = true }
-    }
-  }
+  ancestors = g.count_ancestors
+  descendants = g.reverse.count_ancestors
   node_order = ancestors.keys.sort_by {|n|
-    w = ancestors[n].length * 2
-    w += descendants[n].length
+    w = ancestors[n] * 2
+    w += descendants[n]
+    #puts "#{w} #{n}"
     w
   }
   g.init_node_order node_order
@@ -111,222 +150,240 @@ def merge_ordered(*arys)
   merged
 end
 
+class DB
+  include Enumerable
+
+  def initialize
+    @recs = []
+  end
+
+  def <<(rec)
+    @recs << rec
+  end
+
+  def concat(recs)
+    @recs.concat recs
+    self
+  end
+
+  def each(&b)
+    @recs.each(&b)
+    nil
+  end
+
+  def map(&b)
+    @recs.map(&b)
+  end
+
+  def mapdb(&b)
+    DB.new.concat map(&b)
+  end
+
+  def group_each(*keys)
+    h = {}
+    @recs.each {|rec|
+      k = rec.values_at(*keys)
+      h[k] ||= []
+      h[k] << rec
+    }
+    h.each {|k, recs|
+      yield(*k, recs)
+    }
+    nil
+  end
+
+  def group_map(*keys)
+    result = []
+    group_each(*keys) {|*vals, recs|
+      common = {}
+      keys.each_with_index {|k, i|
+        common[k] = vals[i]
+      }
+      result << yield(*vals, recs)
+    }
+    result
+  end
+
+  def group_mapdb(*keys, &b)
+    DB.new.concat group_map(*keys, &b)
+  end
+
+end
+
 files = {}
 Dir.glob('results/*.txt') {|filename|
   os = File.basename(filename, '.txt')
   files[os] = File.read(filename)
 }
 
-os_list = %w[
-  freebsd
-  debian-kfreebsd
-  darwin
-  dragonfly
-  netbsd
-  openbsd51
-  openbsd52
-  miros
-  hurd
-  haiku
-  minix
-  linux
-  linux-arm
-  sunos
-  cygwin
-]
+os_list.reject! {|os|
+  !files.has_key?(os)
+}
+
 os_order = {}
 os_list.each_with_index {|os, i|
   os_order[os] = i
 }
 
-files.keys.sort.each_with_index {|os, i|
-  os_order[os] ||= -i
-}
-
-commands_ary = []
-command_os_lines = {}
-files.keys.sort_by {|os| os_order[os] }.each {|os|
-  commands_ary << []
-  content = files[os]
-  content.lines.slice_before(/\A(uname|\.\/)/).each {|lines|
-    lines = lines.reject {|line| /\A\s*\z/ =~ line }
-    next if lines.empty?
-    command = lines.shift.chomp.rstrip
-    command_os_lines[command] ||= {}
-    command_os_lines[command][os] = lines
-    commands_ary.last << command
-  }
-}
-command_list = merge_ordered(*commands_ary)
-
-uname_results = command_os_lines.delete 'uname -mrsv'
-#pp uname_results
-#pp command_os_lines
-
-command_os_key_sep_result_pairs = {}
-command_os_lines.each {|command, os_lines|
-  os_lines.each {|os, lines|
-    action_subid = Hash.new(0)
-    key_sep_result_pairs_ary = []
-    lines.each {|line|
-      unless /:|=|->|<-/ =~ line
-        warn "unexpected line: #{line.inspect}"
-        next
-      end
-      action, sep, result = $`, $&, $'
-      action = action.strip
-      result = result.strip
-      #case sep
-      #when ':' then sep = '->'
-      #when '=' then sep = ''
-      #end
-      if !key_sep_result_pairs_ary.empty? &&
-        key_sep_result_pairs_ary.last.first.first == action
-        key_sep_result_pairs_ary.last.last << [sep, result]
-      else
-        subid = action_subid[action]
-        action_subid[action] += 1
-        key = [action, subid]
-        key_sep_result_pairs_ary << [key, [[sep, result]]]
-      end
-    }
-    key_sep_result_pairs = {}
-    key_sep_result_pairs_ary.each {|key, sep_result_pairs|
-      key_sep_result_pairs[key] = sep_result_pairs
-    }
-    command_os_key_sep_result_pairs[command] ||= {}
-    command_os_key_sep_result_pairs[command][os] = key_sep_result_pairs
-  }
-}
-#pp command_os_key_sep_result_pairs
-
-command_os_key_sep_result_pairs2 = {}
-command_os_key_sep_result_pairs.each {|command, os_key_sep_result_pairs|
-  has_multiple_seps = false
-  prev_sep = nil
-  catch {|search_multiple_seps|
-    os_key_sep_result_pairs.each {|os, key_sep_result_pairs|
-      key_sep_result_pairs.each {|key, sep_result_pairs|
-        sep_result_pairs.each {|sep, result|
-          if prev_sep == nil
-            prev_sep = sep
-          else
-            if prev_sep != sep
-              has_multiple_seps = true
-              throw search_multiple_seps
-            end
-          end
-        }
-      }
-    }
-  }
-  if has_multiple_seps
-    command_os_key_sep_result_pairs2[command] = os_key_sep_result_pairs
-  else
-    os_key_sep_result_pairs2 = {}
-    os_key_sep_result_pairs.each {|os, key_sep_result_pairs|
-      key_sep_result_pairs.each {|key, sep_result_pairs|
-        os_key_sep_result_pairs2[os] ||= {}
-        os_key_sep_result_pairs2[os][key] = sep_result_pairs.map {|sep, result| ['', result] }
-      }
-    }
-    command_os_key_sep_result_pairs2[command] = os_key_sep_result_pairs2
+files.keys.sort.reverse.each_with_index {|os, i|
+  unless os_order.has_key? os
+    os_order[os] = -i
+    os_list.unshift os
   end
 }
-command_os_key_sep_result_pairs = command_os_key_sep_result_pairs2
 
-command_os_key_sep_result_pairs2 = {}
-command_os_key_sep_result_pairs.each {|command, os_key_sep_result_pairs|
-  os_key_sep_result_pairs2 = {}
-  os_key_sep_result_pairs.each {|os, key_sep_result_pairs|
-    key_sep_result_pairs.each {|key, sep_result_pairs|
-      os_key_sep_result_pairs2[os] ||= {}
-      os_key_sep_result_pairs2[os][key] = sep_result_pairs.map {|sep, result|
-        sep = '->' if sep == ':'
-        [sep, result]
-      }
-    }
-  }
-  command_os_key_sep_result_pairs2[command] = os_key_sep_result_pairs2
-}
-command_os_key_sep_result_pairs = command_os_key_sep_result_pairs2
+os_command_numbered_lines = {}
 
-command_keys = {}
-command_key_order = {}
-command_os_key_sep_result_pairs.each {|command, os_key_sep_result_pairs|
-  keys_list = os_key_sep_result_pairs.map {|os, key_sep_result_pairs|
-    key_sep_result_pairs.map {|key, sep_result_pairs|
-      key
+files.each {|os, content|
+  current_linenum = 0
+  content.lines.slice_before(/\A(uname|\.\/)/).each {|lines|
+    numbered_lines = lines.map {|line|
+      current_linenum += 1
+      [current_linenum, line]
     }
-  }
-  command_key_order[command] = {}
-  merged_keys = merge_ordered(*keys_list)
-  command_keys[command] = merged_keys
-  merged_keys.each_with_index {|key, i|
-    command_key_order[command][key] = i
+    numbered_lines.reject! {|linenum, line| /\A\s*\z/ =~ line }
+    next if numbered_lines.empty?
+    command_linenum, command = numbered_lines.shift
+    command = command.chomp.rstrip
+    os_command_numbered_lines[os] ||= {}
+    os_command_numbered_lines[os][command] ||= numbered_lines # some test command is invoked multiple times.
   }
 }
 
-#pp command_key_order
+uname_db = DB.new
+command_db = DB.new
 
-command_key_seps = {}
-command_key_sep_order = {}
-command_os_key_sep_result_pairs.each {|command, os_key_sep_result_pairs|
-  command_key_order[command].each_key {|key|
-    seps_list = os_key_sep_result_pairs.map {|os, key_sep_result_pairs|
-      sep_result_pairs = key_sep_result_pairs[key]
-      if sep_result_pairs
-        sep_result_pairs.map {|sep, result|
-          sep
-        }
-      else
-        nil
-      end
-    }.compact
-    seps = merge_ordered(*seps_list)
-    command_key_seps[command] ||= {}
-    command_key_seps[command][key] = seps
-    command_key_sep_order[command] ||= {}
-    command_key_sep_order[command][key] = {}
+os_command_numbered_lines.each {|os, command_numbered_lines|
+  command_numbered_lines.each {|command, numbered_lines|
+    if /\Auname / =~ command
+      uname_db << { :os => os, :command => command, :numbered_lines => numbered_lines }
+    else
+      command_db << { :os => os, :command => command, :numbered_lines => numbered_lines }
+    end
+  }
+}
+
+os_commands = {}
+command_db.group_each(:os) {|os, recs|
+  commands = recs.map {|rec|
+    command = rec[:command]
+    numbered_lines = rec[:numbered_lines]
+    first_linenum, first_line = numbered_lines.first
+    [first_linenum, command]
+  }.sort.map {|linenum, command|
+    command
+  }
+  os_commands[os] = commands
+}
+#pp os_commands.values
+COMMAND_LIST = merge_ordered(*os_commands.values)
+#pp COMMAND_LIST
+
+command_db2 = DB.new
+command_db.each {|rec|
+  rec[:numbered_lines].each {|linenum, line|
+    rec2 = rec.merge({:linenum=>linenum, :line=>line})
+    rec2.delete :numbered_lines
+    command_db2 << rec2
+  }
+}
+#pp command_db2
+command_db = command_db2
+
+command_db2 = DB.new
+command_db.each {|rec|
+  line = rec[:line]
+  unless /:|=|->|<-/ =~ line
+    warn "unexpected line: #{line.inspect}"
+    next
+  end
+  action, sep, result = $`, $&, $'
+  action = action.strip
+  result = result.strip
+  command_db2 << rec.update({:action => action, :sep => sep, :result => result })
+}
+#pp command_db2
+command_db = command_db2
+
+command_db.group_each(:command) {|command, recs|
+  seps = recs.map {|rec| rec[:sep] }.uniq
+  if seps == [':'] || seps == ['=']
+    recs.each {|rec| rec[:sep] = '' }
+  end
+}
+#pp command_db
+
+command_db.each {|rec|
+  if rec[:sep] == ':'
+    #pp rec
+    rec[:sep] = '->'
+  end
+}
+
+command_actions = {}
+command_db.group_each(:command) {|command, recs|
+  os_linenum_action_pairs = {}
+  recs.each {|rec|
+    os = rec[:os]
+    linenum = rec[:linenum]
+    action = rec[:action]
+    os_linenum_action_pairs[os] ||= []
+    os_linenum_action_pairs[os] << [linenum, action]
+  }
+  os_actions = {}
+  os_linenum_action_pairs.each {|os, linenum_action_pairs|
+    os_actions[os] = linenum_action_pairs.sort.map {|linenum, action| action }.uniq
+  }
+  #pp os_actions.values
+  command_actions[command] = merge_ordered(*os_actions.values)
+}
+#pp command_actions
+
+command_action_order = {}
+command_actions.each {|command, actions|
+  command_action_order[command] ||= {}
+  actions.each_with_index {|action, i|
+    command_action_order[command][action] = i
+  }
+}
+#pp command_action_order
+
+command_action_seps = {}
+command_db.group_each(:command, :action) {|command, action, recs|
+  os_linenum_sep_pairs = {}
+  recs.map {|rec|
+    os = rec[:os]
+    linenum = rec[:linenum]
+    sep = rec[:sep]
+    os_linenum_sep_pairs[os] ||= []
+    os_linenum_sep_pairs[os] << [linenum, sep]
+  }
+  os_action_seps = {}
+  os_linenum_sep_pairs.each {|os, linenum_sep_pairs|
+    os_action_seps[os] = linenum_sep_pairs.sort.map {|linenum, sep| sep }.uniq
+  }
+  command_action_seps[command] ||= {}
+  command_action_seps[command][action] = merge_ordered(*os_action_seps.values)
+}
+#pp command_action_seps
+
+command_action_sep_order = {}
+command_action_seps.each {|command, actions_seps|
+  command_action_sep_order[command] ||= {}
+  actions_seps.each {|action, seps|
+    command_action_sep_order[command][action] ||= {}
     seps.each_with_index {|sep, i|
-      command_key_sep_order[command][key][sep] = i
+      command_action_sep_order[command][action][sep] = i
     }
   }
 }
-#pp command_key_seps
-
-command_keysep_os_result = {}
-command_os_key_sep_result_pairs.each {|command, os_key_sep_result_pairs|
-  keysep_os_result = {}
-  os_key_sep_result_pairs.each {|os, key_sep_result_pairs|
-    key_sep_result_pairs.each {|key, sep_result_pairs|
-      command_key_seps[command][key].each {|sep|
-        sep_result_pair = sep_result_pairs.assoc(sep)
-        if sep_result_pair
-          keysep = key + [sep]
-          keysep_os_result[keysep] ||= {}
-          keysep_os_result[keysep][os] = sep_result_pair.last
-        end
-      }
-    }
-  }
-  command_keysep_os_result[command] = keysep_os_result
-}
-#pp command_keysep_os_result
+#pp command_action_sep_order
 
 # substitute /temp.06477/ to /temp.N/
-command_keysep_os_result2 = {}
-command_keysep_os_result.each {|command, keysep_os_result|
-  command_keysep_os_result2[command] = {}
-  keysep_os_result.each {|keysep, os_result|
-    command_keysep_os_result2[command][keysep] = {}
-    os_result.each {|os, result|
-      result2 = result.gsub(%r{/temp.\d+/}, '/temp.N/')
-      command_keysep_os_result2[command][keysep][os] = result2
-    }
-  }
+command_db.each {|rec|
+  rec[:result].gsub!(%r{/temp.\d+/}, '/temp.N/')
 }
-command_keysep_os_result = command_keysep_os_result2
+#pp command_db
 
 # remove results people can interpolate.
 #
@@ -508,9 +565,25 @@ def interpolatable_result?(command1, keysep_os_result1, command2, keysep_os_resu
   true
 end
 
-def remove_interpolatable_commands(command_keysep_os_result)
+#def remove_interpolatable_commands(command_keysep_os_result)
+def remove_interpolatable_commands(command_db)
+  command_actionsep_os_result = {}
+  command_db.group_each(:os, :command, :action, :sep) {|os, command, action, sep, recs|
+    if recs.length != 1
+      raise "ambiguous (os,command,action,sep): (#{os.inspect}, #{command.inspect}, #{action.inspect}, #{sep.inspect})"
+    end
+    rec = recs[0]
+    result = rec[:result]
+    actionsep = [action, sep]
+    command_actionsep_os_result[command] ||= {}
+    command_actionsep_os_result[command][actionsep] ||= {}
+    command_actionsep_os_result[command][actionsep][os] = result
+  }
+
+  command_actionsep_os_result_ary = COMMAND_LIST.map {|command| [command, command_actionsep_os_result[command]] }
+
+  command_keysep_os_result_ary = command_actionsep_os_result_ary
   command_keysep_os_result2 = {}
-  command_keysep_os_result_ary = command_keysep_os_result.to_a
   command_keysep_os_result_ary.each_with_index {|(command, keysep_os_result), i|
     if i == 0 || i == command_keysep_os_result_ary.length - 1
       command_keysep_os_result2[command] = keysep_os_result
@@ -518,6 +591,7 @@ def remove_interpolatable_commands(command_keysep_os_result)
       above_command, above_keysep_os_result = command_keysep_os_result_ary[i-1]
       below_command, below_keysep_os_result = command_keysep_os_result_ary[i+1]
       #next if command != "./unix-dgram '(91*\"c\")\\0'  '(91*\"c\")\\0'  'bar\\0'" # for debug
+      #next if command != "./unix-dgram -4 '(sun_len=2)abc\\0' '(sun_len=2)abc\\0' 'bar\\0'" # for debug
       if !interpolatable_result?(above_command, above_keysep_os_result,
                                  command, keysep_os_result,
                                  below_command, below_keysep_os_result)
@@ -530,40 +604,43 @@ def remove_interpolatable_commands(command_keysep_os_result)
     end
   }
   command_keysep_os_result2
+
+  command_db2 = DB.new
+  command_keysep_os_result2.each {|command, actionsep_os_result|
+    actionsep_os_result.each {|(action, sep), os_result|
+      os_result.each {|os, result|
+        command_db2 << {:command => command, :action => action, :sep => sep, :os => os, :result => result }
+      }
+    }
+  }
+
+  command_db2
 end
 
-command_keysep_os_result = remove_interpolatable_commands(command_keysep_os_result)
+command_db = remove_interpolatable_commands(command_db)
+#pp command_db
 
-#pp command_keysep_os_result
-
-command_list.reject! {|command|
-  !command_keysep_os_result.has_key?(command)
+commands = {}
+command_db.group_each(:command) {|command, recs|
+  commands[command] = true
 }
+COMMAND_LIST.reject! {|command| !commands[command] }
+commands = nil
 
-command_keysep_os_style = {}
-command_keysep_os_result.each {|command, keysep_os_result|
-  os_list = keysep_os_result.values.map {|os_result| os_result.keys }.inject(&:|).sort_by {|os| os_order[os] }
-  command_keysep_os_style[command] ||= {}
-  keysep_os_result.each {|keysep, os_result|
-    command_keysep_os_style[command][keysep] ||= {}
-    count = Hash.new(0)
-    os_result.each_value {|result|
-      count[result] += 1
-    }
-    max = count.values.max
-    normal_result = count.to_a.rassoc(max)[0]
-    os_result.each {|os, result|
-      if result == normal_result
-        command_keysep_os_style[command][keysep][os] = "socket-normal"
-      else
-        command_keysep_os_style[command][keysep][os] = "socket-abnormal"
-      end
-    }
-    os_list.each {|os|
-      unless os_result.has_key? os
-        command_keysep_os_style[command][keysep][os] = "socket-none"
-      end
-    }
+command_db.group_each(:command, :action, :sep) {|command, action, sep, recs|
+  count = Hash.new(0)
+  recs.each {|rec|
+    count[rec[:result]] += 1
+  }
+  max = count.values.max
+  maxcounts = count.to_a.reject {|result, n| n != max }
+  normal_result = maxcounts.sort[0][0]
+  recs.each {|rec|
+    if rec[:result] == normal_result
+      rec[:style] = "socket-normal"
+    else
+      rec[:style] = "socket-abnormal"
+    end
   }
 }
 
@@ -593,13 +670,13 @@ end
 
 <h1>Unix domain socket behavior comparison</h1>
 
-% if uname_results
+% if uname_db
 <h2><a name="uname">uname</a></h2>
 <table border>
   <tr> <th align="left">OS</th> <th>uname</th> </tr>
-%   uname_results.keys.sort_by {|os| os_order[os] }.each {|os|
-%     uname = uname_results[os].join
-  <tr> <th align="left"><%=h os %></th> <td><%=h uname %></td> </tr>
+%   uname_db.to_a.sort_by {|rec| os_order[rec[:os]] }.each {|rec|
+%     uname = rec[:numbered_lines].map {|linenum, line| line }.join
+  <tr> <th align="left"><%=h rec[:os] %></th> <td><%=h uname %></td> </tr>
 %   }
 </table>
 % end
@@ -607,16 +684,31 @@ end
 <h2>contents</h2>
 
 <ul>
-% command_list.each {|command|
-%   keysep_os_result = command_keysep_os_result[command]
+% COMMAND_LIST.each {|command|
 %   frag = command2fragment(command)
   <li><a href="#<%= h(u(frag)) %>"><%=h command %></a></li>
 % }
 </ul>
 
-% command_list.each {|command|
-%   keysep_os_result = command_keysep_os_result[command]
-%   os_list = keysep_os_result.values.map {|os_result| os_result.keys }.inject(&:|).sort_by {|os| os_order[os] }
+% command_recs_hash = Hash[command_db.group_map(:command) {|command, recs| [command, recs] }]
+% COMMAND_LIST.each {|command|
+%   recs = command_recs_hash[command]
+%   os_list = recs.map {|rec|
+%     rec[:os]
+%   }.uniq.sort_by {|os|
+%     os_order[os]
+%   }
+%   action_sep_list = recs.map {|rec|
+%     [rec[:action], rec[:sep]]
+%   }.uniq.sort_by {|action, sep|
+%     [command_action_order[command][action],
+%      command_action_sep_order[command][action][sep]]
+%   }
+%   os_actionsep_result_style_pair = {}
+%   recs.each {|rec|
+%     os_actionsep_result_style_pair[rec[:os]] ||= {}
+%     os_actionsep_result_style_pair[rec[:os]][[rec[:action], rec[:sep]]] ||= [rec[:result], rec[:style]]
+%   }
 %   frag = command2fragment(command)
 <h2><a name="<%= h(u(frag)) %>"><%=h command %></a></h2>
 <table border>
@@ -626,20 +718,18 @@ end
     <th><%=h os %></th>
 % }
   </tr>
-% sorted_keyseps = keysep_os_result.keys.sort_by {|keysep|
-%   action, subid, sep = keysep
-%   key = [action, subid]
-%   [command_key_order[command][key],
-%    command_key_sep_order[command][key][sep]]
-% }
-% sorted_keyseps.each {|keysep|
-%   os_result = keysep_os_result[keysep]
-%   key, subid, sep = keysep
-%   action = sep.empty? ? key : "#{key} #{sep}"
+% action_sep_list.each {|action, sep|
   <tr>
-    <th align="left"><%=h action %></th>
+%   action_sep = sep.empty? ? action : "#{action} #{sep}"
+    <th align="left"><%=h action_sep %></th>
 %   os_list.each {|os|
-      <td class="<%=h command_keysep_os_style[command][keysep][os] %>"><%=h os_result[os] %></td>
+%     if os_actionsep_result_style_pair.has_key?(os) &&
+%        os_actionsep_result_style_pair[os].has_key?([action, sep])
+%     result, style = os_actionsep_result_style_pair[os][[action, sep]]
+      <td class="<%=h style %>"><%=h result %></td>
+%     else
+      <td class="socket-none"></td>
+%     end
 %   }
   </tr>
 % }
