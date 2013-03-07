@@ -171,6 +171,15 @@ int main(int argc, char *argv[])
 #ifdef ULLONG_MAX
   SHOW_INTEGER("ULLONG_MAX", ULLONG_MAX);
 #endif
+#ifdef INTMAX_MIN
+  SHOW_INTEGER("INTMAX_MIN", INTMAX_MIN);
+#endif
+#ifdef INTMAX_MAX
+  SHOW_INTEGER("INTMAX_MAX", INTMAX_MAX);
+#endif
+#ifdef UINTMAX_MAX
+  SHOW_INTEGER("UINTMAX_MAX", UINTMAX_MAX);
+#endif
 #ifdef FLT_RADIX
   SHOW_INTEGER("FLT_RADIX", FLT_RADIX);
 #endif
