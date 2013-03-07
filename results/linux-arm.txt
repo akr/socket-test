@@ -1856,7 +1856,7 @@ bind(client): EINVAL
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000054" (6 bytes)
+getsockname(server)   -> "\000058" (6 bytes)
 ./unix-stream -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -1883,7 +1883,7 @@ bind(server): EADDRINUSE
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000055" (6 bytes)
+getsockname(server)   -> "\000059" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
@@ -4283,7 +4283,7 @@ bind(client): EINVAL
 ./unix-dgram -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000056" (6 bytes)
+getsockname(server)   -> "\00005a" (6 bytes)
 ./unix-dgram -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -4306,7 +4306,7 @@ bind(server): EADDRINUSE
 ./unix-dgram -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000057" (6 bytes)
+getsockname(server)   -> "\00005b" (6 bytes)
 ./unix-dgram '\0abc' '\0abc' 'bar'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
@@ -4488,6 +4488,9 @@ ULONG_MAX = 4294967295
 LLONG_MIN = -9223372036854775808 (8 bytes)
 LLONG_MAX = 9223372036854775807 (8 bytes)
 ULLONG_MAX = 18446744073709551615 (8 bytes)
+INTMAX_MIN = -9223372036854775808 (8 bytes)
+INTMAX_MAX = 9223372036854775807 (8 bytes)
+UINTMAX_MAX = 18446744073709551615 (8 bytes)
 FLT_RADIX = 2
 FLT_MANT_DIG = 24
 DBL_MANT_DIG = 53
