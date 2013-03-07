@@ -4,5 +4,4 @@ config.h.in binary -merge
 genutil.c binary -merge
 size.c binary -merge
 const.c binary -merge
-errnum.c binary -merge
 results.html -merge

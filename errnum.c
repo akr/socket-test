@@ -1,5 +1,3 @@
-/* errnum.c is generated from errsym.erb. */
-
 /*
  * Copyright (C) 2013 Tanaka Akira  <akr@fsij.org>
  * 
