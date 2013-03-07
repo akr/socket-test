@@ -879,6 +879,16 @@ static int intcmp(const void *vp1, const void *vp2)
   return 0;
 }
 
+int intconst_count(intconst_purpose_t purpose)
+{
+  int i;
+  int num = 0;
+  for (i = 0; i < num_integer_constants; i++)
+    if (internal_integer_constant[i].purpose == purpose)
+      num++;
+  return num;
+}
+
 void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg)
 {
   static int *errno_ary = NULL;
@@ -891,10 +901,7 @@ void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg)
 
   if (errno_ary == NULL) {
     int j;
-    num_errno = 0;
-    for (i = 0; i < num_integer_constants; i++)
-      if (internal_integer_constant[i].purpose == intconst_errno)
-        num_errno++;
+    num_errno = intconst_count(intconst_errno);
     errno_ary = xmalloc(sizeof(int) * num_errno);
     j = 0;
     for (i = 0; i < num_integer_constants; i++)

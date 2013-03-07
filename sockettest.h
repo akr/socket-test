@@ -136,4 +136,5 @@ int constant2intmax(const integer_constant_t *c, intmax_t *intmax_ret); /* succe
 
 extern const integer_constant_t internal_integer_constant[];
 extern const int num_integer_constants;
+int intconst_count(intconst_purpose_t purpose);
 

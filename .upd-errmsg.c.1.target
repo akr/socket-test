@@ -30,54 +30,10 @@
 
 #include "sockettest.h"
 
-void func(int errcand, void *arg)
-{
-  char *sym = errsym(errcand);
-  char *msg;
-  if (sym)
-    return;
-  errno = 0;
-  msg = strerror(errcand);
-  if (msg && !errno) {
-    /*
-     * strerror() return value for unknown errors:
-     * - GNU/Linux: "Unknown error NNN"
-     * - NetBSD: "Unknown error: NNN"
-     * - Minix: "Undefined error: NNN"
-     * - SunOS: "Error NNN"
-     * - Haiku:
-     *   "Unknown General Error (-NNNNNNNNNN)"
-     *   "Unknown OS Error (-NNNNNNNNNN)"
-     *   "Unknown MIME type"
-     *   "Unknown Application Kit Error (-NNNNNNNNNN)"
-     *   "Unknown Interface Kit Error (-NNNNNNNNNN)"
-     *   "Unknown Media Kit Error (-NNNNNNNNNN)"
-     *   "Unknown Translation Kit Error (-NNNNNNNNNN)"
-     *   "Unknown Midi Kit Error (-NNNNNNNNNN)"
-     *   "Unknown Storage Kit Error (-NNNNNNNNNN)"
-     *   "Unknown POSIX Error (-NNNNNNNNNN)"
-     *   "No Error (NNN)"
-     */
-#define START_WITH(prefix) (strncmp(msg, (prefix), sizeof(prefix)-1) == 0)
-    if (START_WITH("Unknown ") ||
-        START_WITH("No Error (") ||
-        START_WITH("Error ") ||
-        START_WITH("Undefined "))
-      return;
-#undef START_WITH
-    printf("%d = %s\n", errcand, msg);
-  }
-}
-
-
-int main(int argc, char *argv[])
+void show_errsyms(void)
 {
   int err;
   char *str;
-
-  (void)argc;
-  (void)argv;
-
 #ifdef E2BIG
   err = E2BIG; str = "E2BIG";
   printf("%s = %s\n", str, strerror(err));
@@ -1438,13 +1394,64 @@ int main(int argc, char *argv[])
   err = B_WOULD_BLOCK; str = "B_WOULD_BLOCK";
   printf("%s = %s\n", str, strerror(err));
 #endif
+}
 
-  {
-    char *msg;
-    msg = strerror(0);
-    if (msg)
-      printf("0 = %s\n", msg);
+void show_zero(void)
+{
+  char *msg;
+  msg = strerror(0);
+  if (msg)
+    printf("0 = %s\n", msg);
+}
+
+void func(int errcand, void *arg)
+{
+  char *sym = errsym(errcand);
+  char *msg;
+  if (sym)
+    return;
+  errno = 0;
+  msg = strerror(errcand);
+  if (msg && !errno) {
+    /*
+     * strerror() return value for unknown errors:
+     * - GNU/Linux: "Unknown error NNN"
+     * - NetBSD: "Unknown error: NNN"
+     * - Minix: "Undefined error: NNN"
+     * - SunOS: "Error NNN"
+     * - Haiku:
+     *   "Unknown General Error (-NNNNNNNNNN)"
+     *   "Unknown OS Error (-NNNNNNNNNN)"
+     *   "Unknown MIME type"
+     *   "Unknown Application Kit Error (-NNNNNNNNNN)"
+     *   "Unknown Interface Kit Error (-NNNNNNNNNN)"
+     *   "Unknown Media Kit Error (-NNNNNNNNNN)"
+     *   "Unknown Translation Kit Error (-NNNNNNNNNN)"
+     *   "Unknown Midi Kit Error (-NNNNNNNNNN)"
+     *   "Unknown Storage Kit Error (-NNNNNNNNNN)"
+     *   "Unknown POSIX Error (-NNNNNNNNNN)"
+     *   "No Error (NNN)"
+     */
+#define START_WITH(prefix) (strncmp(msg, (prefix), sizeof(prefix)-1) == 0)
+    if (START_WITH("Unknown ") ||
+        START_WITH("No Error (") ||
+        START_WITH("Error ") ||
+        START_WITH("Undefined "))
+      return;
+#undef START_WITH
+    printf("%d = %s\n", errcand, msg);
   }
+}
+
+
+int main(int argc, char *argv[])
+{
+  (void)argc;
+  (void)argv;
+
+  show_errsyms();
+
+  show_zero();
 
   errno_candidate_each(func, NULL);
 

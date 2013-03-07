@@ -32,6 +32,26 @@
 
 #include "sockettest.h"
 
+void show_errsyms(void)
+{
+  int err;
+  char *str;
+% errno_list.each {|sym|
+#ifdef <%= sym %>
+  err = <%= sym %>; str = "<%= sym %>";
+  printf("%s = %s\n", str, strerror(err));
+#endif
+% }
+}
+
+void show_zero(void)
+{
+  char *msg;
+  msg = strerror(0);
+  if (msg)
+    printf("0 = %s\n", msg);
+}
+
 void func(int errcand, void *arg)
 {
   char *sym = errsym(errcand);
@@ -74,25 +94,12 @@ void func(int errcand, void *arg)
 
 int main(int argc, char *argv[])
 {
-  int err;
-  char *str;
-
   (void)argc;
   (void)argv;
 
-% errno_list.each {|sym|
-#ifdef <%= sym %>
-  err = <%= sym %>; str = "<%= sym %>";
-  printf("%s = %s\n", str, strerror(err));
-#endif
-% }
+  show_errsyms();
 
-  {
-    char *msg;
-    msg = strerror(0);
-    if (msg)
-      printf("0 = %s\n", msg);
-  }
+  show_zero();
 
   errno_candidate_each(func, NULL);
 
