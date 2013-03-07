@@ -107,34 +107,34 @@ void *constant_search_names(char *prefix, void *(*func)(char *name, int val, voi
 char *constant_int2name(char *prefix, int value);
 
 typedef enum {
-  intconst_unspecified,
-  intconst_misc,
-  intconst_errno,
-  intconst_af,
-  intconst_pf,
-  intconst_sock,
-  intconst_shut,
-  intconst_msg,
-  intconst_sol,
-  intconst_so,
-  intconst_scm,
-} intconst_purpose_t;
+  iconst_unspecified,
+  iconst_misc,
+  iconst_errno,
+  iconst_af,
+  iconst_pf,
+  iconst_sock,
+  iconst_shut,
+  iconst_msg,
+  iconst_sol,
+  iconst_so,
+  iconst_scm,
+} iconst_purpose_t;
 
 typedef struct {
-  intconst_purpose_t purpose;
+  iconst_purpose_t purpose;
   char *str;
   uintmax_t num;
   int positive_p;
   int sizeof_type;
   int signed_type;
-} integer_constant_t;
+} iconst_t;
 
 #define INTEGER_CONSTANT_INFO(purpose, name, val)  \
  { purpose, name, (uintmax_t)(val), 0 < (val), sizeof(val), SIGNED_TYPE_VALUE(val) }
 
-int constant2intmax(const integer_constant_t *c, intmax_t *intmax_ret); /* success:0, failure:-1 */
+int constant2intmax(const iconst_t *c, intmax_t *intmax_ret); /* success:0, failure:-1 */
 
-extern const integer_constant_t internal_integer_constant[];
-extern const int num_integer_constants;
-int intconst_count(intconst_purpose_t purpose);
+extern const iconst_t iconst_table[];
+extern const int iconst_numentries;
+int iconst_count(iconst_purpose_t purpose);
 

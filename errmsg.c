@@ -48,15 +48,15 @@ static int errno_cmp(const void *vp1, const void *vp2)
 
 void show_errsyms(void)
 {
-  int num_errno = intconst_count(intconst_errno);
+  int num_errno = iconst_count(iconst_errno);
   errno_info_t *errno_ary = xmalloc(sizeof(errno_info_t) * num_errno);
   int i, j;
 
   j = 0;
-  for (i = 0; i < num_integer_constants; i++)
-    if (internal_integer_constant[i].purpose == intconst_errno) {
-      errno_ary[j].name = internal_integer_constant[i].str;
-      errno_ary[j].num = internal_integer_constant[i].num;
+  for (i = 0; i < iconst_numentries; i++)
+    if (iconst_table[i].purpose == iconst_errno) {
+      errno_ary[j].name = iconst_table[i].str;
+      errno_ary[j].num = iconst_table[i].num;
       j++;
     }
   qsort(errno_ary, num_errno, sizeof(errno_info_t), errno_cmp);

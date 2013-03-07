@@ -804,7 +804,7 @@ void rmchtmpdir(char *tmpdir)
 }
 
 /* 0:success -1:failure */
-int constant2intmax(const integer_constant_t *c, intmax_t *intmax_ret)
+int constant2intmax(const iconst_t *c, intmax_t *intmax_ret)
 {
   uintmax_t um = c->num;
   intmax_t im;
@@ -829,12 +829,12 @@ int constant2intmax(const integer_constant_t *c, intmax_t *intmax_ret)
   return 0;
 }
 
-char *intconst_name(intconst_purpose_t purpose, int num)
+char *iconst_name(iconst_purpose_t purpose, int num)
 {
   int i;
-  for (i = 0; i < num_integer_constants; i++) {
+  for (i = 0; i < iconst_numentries; i++) {
     intmax_t im;
-    const integer_constant_t *ic = &internal_integer_constant[i];
+    const iconst_t *ic = &iconst_table[i];
 
     if (ic->purpose != purpose)
       continue;
@@ -850,7 +850,7 @@ char *intconst_name(intconst_purpose_t purpose, int num)
 
 char *errsym(int err)
 {
-  return intconst_name(intconst_errno, err);
+  return iconst_name(iconst_errno, err);
 }
 
 void perrsym(const char *s)
@@ -879,12 +879,12 @@ static int intcmp(const void *vp1, const void *vp2)
   return 0;
 }
 
-int intconst_count(intconst_purpose_t purpose)
+int iconst_count(iconst_purpose_t purpose)
 {
   int i;
   int num = 0;
-  for (i = 0; i < num_integer_constants; i++)
-    if (internal_integer_constant[i].purpose == purpose)
+  for (i = 0; i < iconst_numentries; i++)
+    if (iconst_table[i].purpose == purpose)
       num++;
   return num;
 }
@@ -901,12 +901,12 @@ void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg)
 
   if (errno_ary == NULL) {
     int j;
-    num_errno = intconst_count(intconst_errno);
+    num_errno = iconst_count(iconst_errno);
     errno_ary = xmalloc(sizeof(int) * num_errno);
     j = 0;
-    for (i = 0; i < num_integer_constants; i++)
-      if (internal_integer_constant[i].purpose == intconst_errno)
-        errno_ary[j++] = internal_integer_constant[i].num;
+    for (i = 0; i < iconst_numentries; i++)
+      if (iconst_table[i].purpose == iconst_errno)
+        errno_ary[j++] = iconst_table[i].num;
     qsort(errno_ary, num_errno, sizeof(int), intcmp);
   }
 
@@ -935,8 +935,8 @@ void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg)
 int constant_name2int(char *name, int *ret)
 {
   int i;
-  for (i = 0; i < num_integer_constants; i++) {
-    const integer_constant_t *pair = &internal_integer_constant[i];
+  for (i = 0; i < iconst_numentries; i++) {
+    const iconst_t *pair = &iconst_table[i];
     intmax_t im;
     if (constant2intmax(pair, &im) == 0 &&
         INT_MIN <= im && im <= INT_MAX &&
@@ -952,8 +952,8 @@ void *constant_search_names(char *prefix, void *(*func)(char *name, int val, voi
 {
   size_t prefixlen = strlen(prefix);
   int i;
-  for (i = 0; i < num_integer_constants; i++) {
-    const integer_constant_t *pair = &internal_integer_constant[i];
+  for (i = 0; i < iconst_numentries; i++) {
+    const iconst_t *pair = &iconst_table[i];
     intmax_t im;
     if (constant2intmax(pair, &im) == 0 &&
         INT_MIN <= im && im <= INT_MAX &&

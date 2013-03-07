@@ -47,17 +47,17 @@
   }
 %>
 
-const integer_constant_t internal_integer_constant[] = {
+const iconst_t iconst_table[] = {
 % constants.each {|purpose, syms|
 %   syms.each {|sym|
 #ifdef <%= sym %>
-  INTEGER_CONSTANT_INFO(intconst_<%= purpose %>, "<%= sym %>", <%= sym %>),
+  INTEGER_CONSTANT_INFO(iconst_<%= purpose %>, "<%= sym %>", <%= sym %>),
 #endif
 %   }
 % }
-  { intconst_unspecified, NULL, 0, 0, 0, 0 }
+  { iconst_unspecified, NULL, 0, 0, 0, 0 }
 };
 
-const int num_integer_constants =
-  sizeof(internal_integer_constant) / sizeof(*internal_integer_constant) - 1;
+const int iconst_numentries =
+  sizeof(iconst_table) / sizeof(*iconst_table) - 1;
 
