@@ -906,8 +906,8 @@ void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg)
 int constant_name2int(char *name, int *ret)
 {
   int i;
-  for (i = 0; i < num_constants; i++) {
-    const integer_constant_t *pair = &internal_constant_val_to_name[i];
+  for (i = 0; i < num_integer_constants; i++) {
+    const integer_constant_t *pair = &internal_integer_constant[i];
     intmax_t im;
     if (constant2intmax(pair, &im) == 0 &&
         INT_MIN <= im && im <= INT_MAX &&
@@ -923,8 +923,8 @@ void *constant_search_names(char *prefix, void *(*func)(char *name, int val, voi
 {
   size_t prefixlen = strlen(prefix);
   int i;
-  for (i = 0; i < num_constants; i++) {
-    const integer_constant_t *pair = &internal_constant_val_to_name[i];
+  for (i = 0; i < num_integer_constants; i++) {
+    const integer_constant_t *pair = &internal_integer_constant[i];
     intmax_t im;
     if (constant2intmax(pair, &im) == 0 &&
         INT_MIN <= im && im <= INT_MAX &&

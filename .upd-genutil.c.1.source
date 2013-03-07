@@ -35,38 +35,43 @@
 const integer_constant_t internal_errno_to_name[] = {
 % errno_list.each {|sym|
 #ifdef <%= sym %>
-  INTEGER_CONSTANT_INFO("<%= sym %>", <%= sym %>),
+  INTEGER_CONSTANT_INFO(intconst_errno, "<%= sym %>", <%= sym %>),
 #endif
 % }
-  { NULL, 0, 0, 0, 0 }
+  { intconst_unspecified, NULL, 0, 0, 0, 0 }
 };
 
 const int num_errno = sizeof(internal_errno_to_name) / sizeof(*internal_errno_to_name) - 1;
 
 <%
-  constants = %w[
-    AF_INET AF_INET6 AF_UNIX AF_UNSPEC
-    SOCK_DGRAM SOCK_RAW SOCK_SEQPACKET SOCK_STREAM
-    SHUT_RD SHUT_RDWR SHUT_WR
-    MSG_CTRUNC MSG_DONTROUTE MSG_EOR MSG_OOB
-    MSG_NOSIGNAL MSG_PEEK MSG_TRUNC MSG_WAITALL
-    SOL_SOCKET
-    SO_ACCEPTCONN SO_BROADCAST SO_DEBUG SO_DONTROUTE SO_ERROR SO_KEEPALIVE
-    SO_LINGER SO_OOBINLINE SO_RCVBUF SO_RCVLOWAT SO_RCVTIMEO SO_REUSEADDR
-    SO_SNDBUF SO_SNDLOWAT SO_SNDTIMEO SO_TYPE
-    SCM_RIGHTS
-    SOMAXCONN
-  ]
+  constants = {
+    "af" => %w[AF_INET AF_INET6 AF_UNIX AF_UNSPEC],
+    "sock" => %w[SOCK_DGRAM SOCK_RAW SOCK_SEQPACKET SOCK_STREAM],
+    "shut" => %w[SHUT_RD SHUT_RDWR SHUT_WR],
+    "msg" => %w[
+      MSG_CTRUNC MSG_DONTROUTE MSG_EOR MSG_OOB
+      MSG_NOSIGNAL MSG_PEEK MSG_TRUNC MSG_WAITALL],
+    "sol" => %w[SOL_SOCKET],
+    "so" => %w[
+      SO_ACCEPTCONN SO_BROADCAST SO_DEBUG SO_DONTROUTE SO_ERROR SO_KEEPALIVE
+      SO_LINGER SO_OOBINLINE SO_RCVBUF SO_RCVLOWAT SO_RCVTIMEO SO_REUSEADDR
+      SO_SNDBUF SO_SNDLOWAT SO_SNDTIMEO SO_TYPE],
+    "scm" => %w[SCM_RIGHTS],
+    "misc" => %w[SOMAXCONN],
+  }
+  constants["errno"] = errno_list
 %>
 
-const integer_constant_t internal_constant_val_to_name[] = {
-% constants.each {|sym|
+const integer_constant_t internal_integer_constant[] = {
+% constants.each {|purpose, syms|
+%   syms.each {|sym|
 #ifdef <%= sym %>
-  { "<%= sym %>", <%= sym %>, 0 <  <%= sym %>, sizeof(<%= sym %>), SIGNED_TYPE_VALUE(<%= sym %>) },
+  INTEGER_CONSTANT_INFO(intconst_<%= purpose %>, "<%= sym %>", <%= sym %>),
 #endif
+%   }
 % }
-  { NULL, 0, 0, 0, 0 }
+  { intconst_unspecified, NULL, 0, 0, 0, 0 }
 };
 
-const int num_constants = sizeof(internal_constant_val_to_name) / sizeof(*internal_constant_val_to_name) - 1;
+const int num_integer_constants = sizeof(internal_integer_constant) / sizeof(*internal_integer_constant) - 1;
 

@@ -106,7 +106,22 @@ int constant_name2int(char *name, int *ret);
 void *constant_search_names(char *prefix, void *(*func)(char *name, int val, void *arg), void *arg);
 char *constant_int2name(char *prefix, int value);
 
+typedef enum {
+  intconst_unspecified,
+  intconst_misc,
+  intconst_errno,
+  intconst_af,
+  intconst_pf,
+  intconst_sock,
+  intconst_shut,
+  intconst_msg,
+  intconst_sol,
+  intconst_so,
+  intconst_scm,
+} intconst_purpose_t;
+
 typedef struct {
+  intconst_purpose_t purpose;
   char *str;
   uintmax_t num;
   int positive_p;
@@ -114,14 +129,14 @@ typedef struct {
   int signed_type;
 } integer_constant_t;
 
-#define INTEGER_CONSTANT_INFO(name, val)  \
- { name, (uintmax_t)(val), 0 < (val), sizeof(val), SIGNED_TYPE_VALUE(val) }
+#define INTEGER_CONSTANT_INFO(purpose, name, val)  \
+ { purpose, name, (uintmax_t)(val), 0 < (val), sizeof(val), SIGNED_TYPE_VALUE(val) }
 
 int constant2intmax(const integer_constant_t *c, intmax_t *intmax_ret); /* success:0, failure:-1 */
 
 extern const integer_constant_t internal_errno_to_name[];
 extern const int num_errno;
 
-extern const integer_constant_t internal_constant_val_to_name[];
-extern const int num_constants;
+extern const integer_constant_t internal_integer_constant[];
+extern const int num_integer_constants;
 
