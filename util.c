@@ -870,8 +870,8 @@ void perrsym(const char *s)
 
 static int intcmp(const void *vp1, const void *vp2)
 {
-  const int *ip1 =vp1;
-  const int *ip2 =vp2;
+  const int *ip1 = vp1;
+  const int *ip2 = vp2;
   if (*ip1 < *ip2)
     return -1;
   if (*ip1 > *ip2)
