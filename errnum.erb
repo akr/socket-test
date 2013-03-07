@@ -26,25 +26,43 @@
  * OF SUCH DAMAGE.
  */
 
-<%
-  errno_list = read_errno_list.sort
-%>
-
 #include "sockettest.h"
+
+typedef struct {
+  const char *name;
+  int num;
+} errno_info_t;
+
+static int errno_cmp(const void *vp1, const void *vp2)
+{
+  const errno_info_t *ep1 = vp1;
+  const errno_info_t *ep2 = vp2;
+  return strcmp(ep1->name, ep2->name);
+}
 
 int main(int argc, char *argv[])
 {
-  int err;
-  char *str;
+  int num_errno = intconst_count(intconst_errno);
+  errno_info_t *errno_ary = xmalloc(sizeof(errno_info_t) * num_errno);
+  int i, j;
 
   (void)argc;
   (void)argv;
 
-% errno_list.each {|sym|
-#ifdef <%= sym %>
-  err = <%= sym %>; str = "<%= sym %>";
-  printf("%s = %d\n", str, err);
-#endif
-% }
+  j = 0;
+  for (i = 0; i < num_integer_constants; i++)
+    if (internal_integer_constant[i].purpose == intconst_errno) {
+      errno_ary[j].name = internal_integer_constant[i].str;
+      errno_ary[j].num = internal_integer_constant[i].num;
+      j++;
+    }
+  qsort(errno_ary, num_errno, sizeof(errno_info_t), errno_cmp);
+
+  for (i = 0; i < num_errno; i++) {
+    int err = errno_ary[i].num;
+    const char *str = errno_ary[i].name;
+    printf("%s = %d\n", str, err);
+  }
+
   return EXIT_SUCCESS;
 }

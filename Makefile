@@ -108,7 +108,7 @@ errmsg: errmsg.o $(UTILOBJS) link.sh
 	sh ./link.sh errmsg.o $(UTILOBJS) -o $@
 
 errnum: errnum.o link.sh
-	sh ./link.sh errnum.o -o $@
+	sh ./link.sh errnum.o $(UTILOBJS) -o $@
 
 errtest: errtest.o $(UTILOBJS) link.sh
 	sh ./link.sh errtest.o $(UTILOBJS) -o $@
