@@ -35,7 +35,7 @@
 const integer_constant_t internal_errno_to_name[] = {
 % errno_list.each {|sym|
 #ifdef <%= sym %>
-  { "<%= sym %>", (uintmax_t)<%= sym %>, 0 < <%= sym %>, sizeof(<%= sym %>), SIGNED_TYPE_VALUE(<%= sym %>) },
+  INTEGER_CONSTANT_INFO("<%= sym %>", <%= sym %>),
 #endif
 % }
   { NULL, 0, 0, 0, 0 }

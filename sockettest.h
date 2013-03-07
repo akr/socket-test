@@ -114,6 +114,9 @@ typedef struct {
   int signed_type;
 } integer_constant_t;
 
+#define INTEGER_CONSTANT_INFO(name, val)  \
+ { name, (uintmax_t)(val), 0 < (val), sizeof(val), SIGNED_TYPE_VALUE(val) }
+
 int constant2intmax(const integer_constant_t *c, intmax_t *intmax_ret); /* success:0, failure:-1 */
 
 extern const integer_constant_t internal_errno_to_name[];
