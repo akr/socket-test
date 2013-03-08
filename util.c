@@ -832,7 +832,7 @@ int constant2intmax(const iconst_t *c, intmax_t *intmax_ret)
 char *iconst_name(iconst_purpose_t purpose, int num)
 {
   int i;
-  for (i = 0; i < iconst_numentries; i++) {
+  for (i = 0; i < iconst_numents; i++) {
     intmax_t im;
     const iconst_t *ic = &iconst_table[i];
 
@@ -883,7 +883,7 @@ int iconst_count(iconst_purpose_t purpose)
 {
   int i;
   int num = 0;
-  for (i = 0; i < iconst_numentries; i++)
+  for (i = 0; i < iconst_numents; i++)
     if (iconst_table[i].purpose == purpose)
       num++;
   return num;
@@ -904,7 +904,7 @@ void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg)
     num_errno = iconst_count(iconst_errno);
     errno_ary = xmalloc(sizeof(int) * num_errno);
     j = 0;
-    for (i = 0; i < iconst_numentries; i++)
+    for (i = 0; i < iconst_numents; i++)
       if (iconst_table[i].purpose == iconst_errno)
         errno_ary[j++] = iconst_table[i].val;
     qsort(errno_ary, num_errno, sizeof(int), intcmp);
@@ -935,7 +935,7 @@ void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg)
 int constant_name2int(char *name, int *ret)
 {
   int i;
-  for (i = 0; i < iconst_numentries; i++) {
+  for (i = 0; i < iconst_numents; i++) {
     const iconst_t *pair = &iconst_table[i];
     intmax_t im;
     if (constant2intmax(pair, &im) == 0 &&
@@ -952,7 +952,7 @@ void *constant_search_names(char *prefix, void *(*func)(char *name, int val, voi
 {
   size_t prefixlen = strlen(prefix);
   int i;
-  for (i = 0; i < iconst_numentries; i++) {
+  for (i = 0; i < iconst_numents; i++) {
     const iconst_t *pair = &iconst_table[i];
     intmax_t im;
     if (constant2intmax(pair, &im) == 0 &&

@@ -135,6 +135,6 @@ typedef struct {
 int constant2intmax(const iconst_t *c, intmax_t *intmax_ret); /* success:0, failure:-1 */
 
 extern const iconst_t iconst_table[];
-extern const int iconst_numentries;
+extern const int iconst_numents;
 int iconst_count(iconst_purpose_t purpose);
 

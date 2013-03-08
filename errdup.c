@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
   (void)argv;
 
   j = 0;
-  for (i = 0; i < iconst_numentries; i++)
+  for (i = 0; i < iconst_numents; i++)
     if (iconst_table[i].purpose == iconst_errno) {
       errno_ary[j] = iconst_table[i];
       j++;
