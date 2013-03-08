@@ -822,8 +822,8 @@ int constant2intmax(const iconst_t *c, intmax_t *intmax_ret)
   }
 
   im = um & (UINTMAX_MAX>>1); /* um - (UINTMAX_MAX+1)/2 */
-  im -= (intmax_t)((UINTMAX_MAX & (UINTMAX_MAX>>1)) >> 1); /* im - (UINTMAX_MAX+1)/4 */
-  im -= (intmax_t)((UINTMAX_MAX & (UINTMAX_MAX>>1)) >> 1); /* im - (UINTMAX_MAX+1)/4 */
+  im -= (intmax_t)((UINTMAX_MAX & ~(UINTMAX_MAX>>1)) >> 1); /* im - (UINTMAX_MAX+1)/4 */
+  im -= (intmax_t)((UINTMAX_MAX & ~(UINTMAX_MAX>>1)) >> 1); /* im - (UINTMAX_MAX+1)/4 */
 
   *intmax_ret = im;
   return 0;
