@@ -31,3 +31,4 @@ set -v
 ./const
 ./errmsg
 ./errnum
+./errdup
