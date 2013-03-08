@@ -30,6 +30,7 @@ static int opt_U = 0;
 static int opt_T = 0;
 static int opt_c = 0;
 static int opt_m = 0;
+static int opt_M = 0;
 static int opt_4 = 0;
 
 static int opt_s = 0;
@@ -58,6 +59,7 @@ void usage(int status)
       "        -U : don't unlink sockets.\n"
       "        -T : don't chdir into a temporally directory.\n"
       "        -c : use connect&send instead of sendto.\n"
+      "        -M : use sendmsg instead of sendto.\n"
       "        -m : use recvmsg instead of recvfrom.\n"
       "        -4 : show 4.4BSD sun_len field\n"
 
@@ -133,7 +135,7 @@ static void parse_args(int argc, char *argv[])
   int opt;
   char *arg;
 
-  while ((opt = getopt(argc, argv, "hUTcmspg:4")) != -1) {
+  while ((opt = getopt(argc, argv, "hUTcMmspg:4")) != -1) {
     switch (opt) {
       case 'h':
         usage(EXIT_SUCCESS);
@@ -149,6 +151,10 @@ static void parse_args(int argc, char *argv[])
 
       case 'c':
         opt_c = 1;
+        break;
+
+      case 'M':
+        opt_M = 1;
         break;
 
       case 'm':
@@ -346,6 +352,27 @@ static void test_unix_dgram(void)
       fprintf(stderr,
           "send(client): try to send %ld bytes but only %ld bytes sent.\n",
           (long) REQUEST_LEN, (long)ss);
+    }
+  }
+  else if (opt_M) {
+    struct msghdr mhdr;
+    struct iovec iov;
+    sockaddr_put = before_sockaddr_put("sendmsg(client)", (struct sockaddr *)sendto_sockaddr_ptr, sendto_sockaddr_len, opt_4);
+    iov.iov_base = REQUEST_STR;
+    iov.iov_len = REQUEST_LEN;
+    mhdr.msg_name = sockaddr_put->addr;
+    mhdr.msg_namelen = sockaddr_put->len;
+    mhdr.msg_iov = &iov;
+    mhdr.msg_iovlen = 1;
+    mhdr.msg_control = NULL;
+    mhdr.msg_controllen = 0;
+    mhdr.msg_flags = 0;
+    ss = sendmsg(c, &mhdr, 0);
+    after_sockaddr_put(sockaddr_put, ss != -1, 1);
+    if (ss != REQUEST_LEN) {
+      fprintf(stderr,
+          "sendmsg(client): try to send %ld bytes but only %ld bytes sent.\n",
+          (long)REQUEST_LEN, (long)ss);
     }
   }
   else {
