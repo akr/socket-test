@@ -55,8 +55,8 @@ void show_errsyms(void)
   j = 0;
   for (i = 0; i < iconst_numentries; i++)
     if (iconst_table[i].purpose == iconst_errno) {
-      errno_ary[j].name = iconst_table[i].str;
-      errno_ary[j].num = iconst_table[i].num;
+      errno_ary[j].name = iconst_table[i].name;
+      errno_ary[j].num = iconst_table[i].val;
       j++;
     }
   qsort(errno_ary, num_errno, sizeof(errno_info_t), errno_cmp);

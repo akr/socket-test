@@ -122,8 +122,8 @@ typedef enum {
 
 typedef struct {
   iconst_purpose_t purpose;
-  char *str;
-  uintmax_t num;
+  char *name;
+  uintmax_t val;
   int positive_p;
   int sizeof_type;
   int signed_type;

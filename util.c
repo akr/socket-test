@@ -806,7 +806,7 @@ void rmchtmpdir(char *tmpdir)
 /* 0:success -1:failure */
 int constant2intmax(const iconst_t *c, intmax_t *intmax_ret)
 {
-  uintmax_t um = c->num;
+  uintmax_t um = c->val;
   intmax_t im;
 
   if (c->positive_p) {
@@ -842,7 +842,7 @@ char *iconst_name(iconst_purpose_t purpose, int num)
       if (im < INT_MIN || INT_MAX < im)
         continue;
       if (im == num)
-        return ic->str;
+        return ic->name;
     }
   }
   return NULL;
@@ -906,7 +906,7 @@ void errno_candidate_each(void (*func)(int errcand, void *arg), void *arg)
     j = 0;
     for (i = 0; i < iconst_numentries; i++)
       if (iconst_table[i].purpose == iconst_errno)
-        errno_ary[j++] = iconst_table[i].num;
+        errno_ary[j++] = iconst_table[i].val;
     qsort(errno_ary, num_errno, sizeof(int), intcmp);
   }
 
@@ -940,7 +940,7 @@ int constant_name2int(char *name, int *ret)
     intmax_t im;
     if (constant2intmax(pair, &im) == 0 &&
         INT_MIN <= im && im <= INT_MAX &&
-        strcmp(pair->str, name) == 0) {
+        strcmp(pair->name, name) == 0) {
       *ret = (int)im;
       return 0;
     }
@@ -957,8 +957,8 @@ void *constant_search_names(char *prefix, void *(*func)(char *name, int val, voi
     intmax_t im;
     if (constant2intmax(pair, &im) == 0 &&
         INT_MIN <= im && im <= INT_MAX &&
-        strncmp(pair->str, prefix, prefixlen) == 0) {
-      void *ret = func(pair->str, (int)im, arg);
+        strncmp(pair->name, prefix, prefixlen) == 0) {
+      void *ret = func(pair->name, (int)im, arg);
       if (ret)
         return ret;
     }

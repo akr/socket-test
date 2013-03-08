@@ -30,13 +30,13 @@ static int errno_cmp(const void *vp1, const void *vp2)
 {
   const iconst_t *ep1 = vp1;
   const iconst_t *ep2 = vp2;
-  if (ep1->num != ep2->num) {
-    if (ep1->num < ep2->num)
+  if (ep1->val != ep2->val) {
+    if (ep1->val < ep2->val)
       return -1;
     else
       return 1;
   }
-  return strcmp(ep1->str, ep2->str);
+  return strcmp(ep1->name, ep2->name);
 }
 
 int main(int argc, char *argv[])
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
           first = 0;
           printf("%d :", (int)err);
         }
-        printf(" %s", errno_ary[i].str);
+        printf(" %s", errno_ary[i].name);
         i++;
       }
       printf("\n");
