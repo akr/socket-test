@@ -26,22 +26,17 @@
 
 #include "sockettest.h"
 
-typedef struct {
-  const char *name;
-  int num;
-} errno_info_t;
-
 static int errno_cmp(const void *vp1, const void *vp2)
 {
-  const errno_info_t *ep1 = vp1;
-  const errno_info_t *ep2 = vp2;
-  return strcmp(ep1->name, ep2->name);
+  const iconst_t *ic1 = vp1;
+  const iconst_t *ic2 = vp2;
+  return strcmp(ic1->name, ic2->name);
 }
 
 int main(int argc, char *argv[])
 {
   int num_errno = iconst_count(iconst_errno);
-  errno_info_t *errno_ary = xmalloc(sizeof(errno_info_t) * num_errno);
+  iconst_t *errno_ary = xmalloc(sizeof(iconst_t) * num_errno);
   int i, j;
 
   (void)argc;
@@ -50,14 +45,13 @@ int main(int argc, char *argv[])
   j = 0;
   for (i = 0; i < iconst_numents; i++)
     if (iconst_table[i].purpose == iconst_errno) {
-      errno_ary[j].name = iconst_table[i].name;
-      errno_ary[j].num = iconst_table[i].val;
+      errno_ary[j] = iconst_table[i];
       j++;
     }
-  qsort(errno_ary, num_errno, sizeof(errno_info_t), errno_cmp);
+  qsort(errno_ary, num_errno, sizeof(iconst_t), errno_cmp);
 
   for (i = 0; i < num_errno; i++) {
-    int err = errno_ary[i].num;
+    int err = errno_ary[i].val;
     const char *str = errno_ary[i].name;
     printf("%s = %d\n", str, err);
   }

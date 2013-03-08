@@ -26,43 +26,37 @@
 
 #include "sockettest.h"
 
-typedef struct {
-  const char *name;
-  int num;
-} errno_info_t;
-
 static int errno_cmp(const void *vp1, const void *vp2)
 {
-  const errno_info_t *ep1 = vp1;
-  const errno_info_t *ep2 = vp2;
-  int ne1 = ep1->name[0] != 'E';
-  int ne2 = ep2->name[0] != 'E';
+  const iconst_t *ic1 = vp1;
+  const iconst_t *ic2 = vp2;
+  int ne1 = ic1->name[0] != 'E';
+  int ne2 = ic2->name[0] != 'E';
   if (ne1 != ne2) {
     if (ne1 < ne2)
       return -1;
     else
       return 1;
   }
-  return strcmp(ep1->name, ep2->name);
+  return strcmp(ic1->name, ic2->name);
 }
 
 void show_errsyms(void)
 {
   int num_errno = iconst_count(iconst_errno);
-  errno_info_t *errno_ary = xmalloc(sizeof(errno_info_t) * num_errno);
+  iconst_t *errno_ary = xmalloc(sizeof(iconst_t) * num_errno);
   int i, j;
 
   j = 0;
   for (i = 0; i < iconst_numents; i++)
     if (iconst_table[i].purpose == iconst_errno) {
-      errno_ary[j].name = iconst_table[i].name;
-      errno_ary[j].num = iconst_table[i].val;
+      errno_ary[j] = iconst_table[i];
       j++;
     }
-  qsort(errno_ary, num_errno, sizeof(errno_info_t), errno_cmp);
+  qsort(errno_ary, num_errno, sizeof(iconst_t), errno_cmp);
 
   for (i = 0; i < num_errno; i++) {
-    int err = errno_ary[i].num;
+    int err = errno_ary[i].val;
     const char *str = errno_ary[i].name;
     printf("%s = %s\n", str, strerror(err));
   }
@@ -122,9 +116,7 @@ int main(int argc, char *argv[])
   (void)argv;
 
   show_errsyms();
-
   show_zero();
-
   errno_candidate_each(func, NULL);
 
   return EXIT_SUCCESS;
