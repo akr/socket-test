@@ -66,11 +66,11 @@ int main(int argc, char *argv[])
     if (i < j-1) {
       int first = 1;
       while (i < j) {
-        if (first)
+        if (first) {
           first = 0;
-        else
-          printf(" ");
-        printf("%s", errno_ary[i].str);
+          printf("%d :", (int)err);
+        }
+        printf(" %s", errno_ary[i].str);
         i++;
       }
       printf("\n");
