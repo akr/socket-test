@@ -22,7 +22,7 @@
 # IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 # OF SUCH DAMAGE.
 
-TARGETS = size const errmsg errnum errtest unix-stream unix-dgram
+TARGETS = size const errmsg errnum errdup errtest unix-stream unix-dgram
 UTILOBJS = util.o genutil.o
 
 all: $(TARGETS)
@@ -85,6 +85,9 @@ errmsg.o: errmsg.c sockettest.h config.h includes.h compile.sh
 errnum.o: errnum.c sockettest.h config.h includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
+errdup.o: errdup.c sockettest.h config.h includes.h compile.sh
+	sh ./compile.sh $< -o $@
+
 errtest.o: errtest.c sockettest.h config.h includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
@@ -105,6 +108,9 @@ errmsg: errmsg.o $(UTILOBJS) link.sh
 
 errnum: errnum.o link.sh
 	sh ./link.sh errnum.o $(UTILOBJS) -o $@
+
+errdup: errdup.o link.sh
+	sh ./link.sh errdup.o $(UTILOBJS) -o $@
 
 errtest: errtest.o $(UTILOBJS) link.sh
 	sh ./link.sh errtest.o $(UTILOBJS) -o $@
