@@ -929,6 +929,17 @@ bind(server): EADDRINUSE
 ./unix-stream -T -s 'README\0'
 bind(server)          <- "README\0" (7 bytes)
 bind(server): EADDRINUSE
+
+./unix-stream '\0foo'
+bind(server)          <- "\0foo" (4 bytes)
+socket file (server)  : not exist
+getsockname(server)   -> "\0foo" (4 bytes)
+getsockname(client)   -> "" (0 bytes)
+connect               <- "\0foo" (4 bytes)
+getpeername(client)   -> "\0foo" (4 bytes)
+accept                -> "" (0 bytes)
+getsockname(accepted) -> "\0foo" (4 bytes)
+getpeername(accepted) -> "" (0 bytes)
 ./unix-stream 'foo' 'foo' 'bar'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
@@ -1856,7 +1867,7 @@ bind(client): EINVAL
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000078" (6 bytes)
+getsockname(server)   -> "\000080" (6 bytes)
 ./unix-stream -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -1883,7 +1894,7 @@ bind(server): EADDRINUSE
 ./unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000079" (6 bytes)
+getsockname(server)   -> "\000081" (6 bytes)
 ./unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
@@ -1948,6 +1959,41 @@ sendto(client)        <- "./foo\0" (6 bytes)
 recvfrom(server)      -> "bar\0" (4 bytes)
 sendto(server)        <- "bar\0" (4 bytes)
 recvfrom(client)      -> "foo\0" (4 bytes)
+
+./unix-dgram -c 'foo\0' 'foo\0' 'bar\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar\0" (4 bytes)
+connect               <- "foo\0" (4 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+recvfrom(server)      -> "bar\0" (4 bytes)
+sendto(server)        <- "bar\0" (4 bytes)
+recvfrom(client)      -> "foo\0" (4 bytes)
+./unix-dgram -M 'foo\0' 'foo\0' 'bar\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar\0" (4 bytes)
+sendmsg(client)       <- "foo\0" (4 bytes)
+recvfrom(server)      -> "bar\0" (4 bytes)
+sendto(server)        <- "bar\0" (4 bytes)
+recvfrom(client)      -> "foo\0" (4 bytes)
+./unix-dgram -m 'foo\0' 'foo\0' 'bar\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar\0" (4 bytes)
+sendto(client)        <- "foo\0" (4 bytes)
+recvmsg(server)       -> "bar\0" (4 bytes)
+sendto(server)        <- "bar\0" (4 bytes)
+recvmsg(client)       -> "foo\0" (4 bytes)
 
 ./unix-dgram 'foo\0hoge' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0hoge" (8 bytes)
@@ -4283,7 +4329,7 @@ bind(client): EINVAL
 ./unix-dgram -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\00007a" (6 bytes)
+getsockname(server)   -> "\000082" (6 bytes)
 ./unix-dgram -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -4306,7 +4352,7 @@ bind(server): EADDRINUSE
 ./unix-dgram -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\00007b" (6 bytes)
+getsockname(server)   -> "\000083" (6 bytes)
 ./unix-dgram '\0abc' '\0abc' 'bar'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
@@ -4789,3 +4835,7 @@ EUSERS = 87
 EWOULDBLOCK = 11
 EXDEV = 18
 EXFULL = 54
+./errdup
+11 : EAGAIN EWOULDBLOCK
+35 : EDEADLK EDEADLOCK
+95 : ENOTSUP EOPNOTSUPP

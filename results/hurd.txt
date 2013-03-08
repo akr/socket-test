@@ -1734,6 +1734,10 @@ bind(server): EACCES
 bind(server)          <- "README\0" (7 bytes)
 bind(server): EADDRINUSE
 
+./unix-stream '\0foo'
+bind(server)          <- "\0foo" (4 bytes)
+bind(server): ENOENT
+
 ./unix-stream -s 'foobar'
 bind(server)          <- "foobar" (6 bytes)
 socket file (server)  : exist
@@ -2443,3 +2447,5 @@ ETXTBSY = 1073741850
 EUSERS = 1073741892
 EWOULDBLOCK = 1073741859
 EXDEV = 1073741842
+./errdup
+1073741859 : EAGAIN EWOULDBLOCK

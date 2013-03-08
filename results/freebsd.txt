@@ -872,6 +872,10 @@ bind(server): EADDRINUSE
 ./unix-stream -T -s 'README\0'
 bind(server)          <- "README\0" (7 bytes)
 bind(server): EADDRINUSE
+
+./unix-stream '\0foo'
+bind(server)          <- "\0foo" (4 bytes)
+bind(server): ENOENT
 ./unix-stream 'foo' 'foo' 'bar'
 bind(server)          <- "foo" (3 bytes)
 socket file (server)  : exist
@@ -1929,6 +1933,41 @@ sendto(client)        <- "./foo\0" (6 bytes)
 recvfrom(server)      -> "bar\0" (4 bytes)
 sendto(server)        <- "bar\0" (4 bytes)
 recvfrom(client)      -> "foo\0" (4 bytes)
+
+./unix-dgram -c 'foo\0' 'foo\0' 'bar\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar\0" (4 bytes)
+connect               <- "foo\0" (4 bytes)
+getpeername(client)   -> "foo\0" (4 bytes)
+recvfrom(server)      -> "bar\0" (4 bytes)
+sendto(server)        <- "bar\0" (4 bytes)
+recvfrom(client)      -> "foo\0" (4 bytes)
+./unix-dgram -M 'foo\0' 'foo\0' 'bar\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar\0" (4 bytes)
+sendmsg(client)       <- "foo\0" (4 bytes)
+recvfrom(server)      -> "bar\0" (4 bytes)
+sendto(server)        <- "bar\0" (4 bytes)
+recvfrom(client)      -> "foo\0" (4 bytes)
+./unix-dgram -m 'foo\0' 'foo\0' 'bar\0'
+bind(server)          <- "foo\0" (4 bytes)
+socket file (server)  : exist
+getsockname(server)   -> "foo\0" (4 bytes)
+bind(client)          <- "bar\0" (4 bytes)
+socket file (client)  : exist
+getsockname(client)   -> "bar\0" (4 bytes)
+sendto(client)        <- "foo\0" (4 bytes)
+recvmsg(server)       -> "bar\0" (4 bytes)
+sendto(server)        <- "bar\0" (4 bytes)
+recvmsg(client)       -> "foo\0" (4 bytes)
 
 ./unix-dgram 'foo\0hoge' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0hoge" (8 bytes)
@@ -4688,3 +4727,7 @@ ETXTBSY = 26
 EUSERS = 68
 EWOULDBLOCK = 35
 EXDEV = 18
+./errdup
+35 : EAGAIN EWOULDBLOCK
+45 : ENOTSUP EOPNOTSUPP
+94 : ECAPMODE ELAST
