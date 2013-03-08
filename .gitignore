@@ -10,6 +10,7 @@ size
 const
 errmsg
 errnum
+errdup
 errtest
 unix-stream
 unix-dgram
