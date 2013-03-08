@@ -32,6 +32,10 @@ cat <<'End' | sh -sv
 ./unix-dgram 'foo\0' 'foo\0' 'bar\0'
 ./unix-dgram 'foo\0' './foo\0' 'bar\0'
 
+./unix-dgram -c 'foo\0' 'foo\0' 'bar\0'
+./unix-dgram -M 'foo\0' 'foo\0' 'bar\0'
+./unix-dgram -m 'foo\0' 'foo\0' 'bar\0'
+
 ./unix-dgram 'foo\0hoge' 'foo\0' 'bar\0'
 ./unix-dgram 'foo\0' 'foo\0fuga' 'bar\0'
 ./unix-dgram 'foo\0' 'foo\0' 'bar\0moga'
