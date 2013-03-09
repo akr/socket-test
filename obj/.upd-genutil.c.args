@@ -1,0 +1,1 @@
+obj/genutil.c -- src/genutil.erb util.rb errno.txt -- sh -c erb -r ./util.rb src/genutil.erb > obj/genutil.c

@@ -22,29 +22,30 @@
 # IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 # OF SUCH DAMAGE.
 
-TARGETS = size const errmsg errnum errdup errtest unix-stream unix-dgram
-UTILOBJS = util.o genutil.o
+TARGETS = obj/size obj/const obj/errmsg obj/errnum obj/errdup obj/errtest obj/unix-stream obj/unix-dgram
+UTILOBJS = obj/util.o obj/genutil.o
 
 all: $(TARGETS)
 
 complete-clean: maintainer-clean
-	rm -f configure config.h.in
+	rm -f configure obj/config.h.in
 
 maintainer-clean: clean
 	rm -f .upd-*.args .upd-*.source .upd-*.target
-	rm -f genutil.c const.c size.c
+	rm -f obj/.upd-*.args obj/.upd-*.source obj/.upd-*.target
+	rm -f obj/genutil.c obj/const.c obj/size.c
 	rm -rf autom4te.cache
 	rm -f config.status config.log
-	rm -f config.h compile.sh link.sh
+	rm -f obj/config.h compile.sh link.sh
 
 clean:
-	rm -f *.o $(TARGETS)
+	rm -f obj/*.o $(TARGETS)
 
 configure: configure.ac
 	./update-files configure -- configure.ac -- autoconf
 
-config.h.in: configure.ac
-	./update-files config.h.in -- configure.ac -- autoheader
+obj/config.h.in: configure.ac
+	./update-files obj/config.h.in -- configure.ac -- autoheader
 
 config.status: configure
 	if [ -f config.status ]; then \
@@ -53,73 +54,73 @@ config.status: configure
 	  ./configure --no-create; \
 	fi
 
-config.h includes.h compile.sh link.sh: config.status config.h.in includes.h.in compile.sh.in link.sh.in
+obj/config.h obj/includes.h compile.sh link.sh: config.status obj/config.h.in src/includes.h.in compile.sh.in link.sh.in
 	./config.status && \
-	  touch config.h
+	  touch obj/config.h
 
-genutil.c: genutil.erb util.rb errno.txt
-	./update-files genutil.c -- genutil.erb util.rb errno.txt -- \
-	  sh -c 'erb -r ./util.rb genutil.erb > genutil.c'
+obj/genutil.c: src/genutil.erb util.rb errno.txt
+	./update-files obj/genutil.c -- src/genutil.erb util.rb errno.txt -- \
+	  sh -c 'erb -r ./util.rb src/genutil.erb > obj/genutil.c'
 
-size.c: size.erb
-	./update-files size.c -- size.erb -- sh -c 'erb size.erb > size.c'
+obj/size.c: src/size.erb
+	./update-files obj/size.c -- src/size.erb -- sh -c 'erb src/size.erb > obj/size.c'
 
-const.c: const.erb
-	./update-files const.c -- const.erb -- sh -c 'erb const.erb > const.c'
+obj/const.c: src/const.erb
+	./update-files obj/const.c -- src/const.erb -- sh -c 'erb src/const.erb > obj/const.c'
 
-util.o: util.c sockettest.h config.h includes.h compile.sh
+obj/util.o: src/util.c src/sockettest.h obj/config.h obj/includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-genutil.o: genutil.c sockettest.h config.h includes.h compile.sh
+obj/genutil.o: obj/genutil.c src/sockettest.h obj/config.h obj/includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-size.o: size.c sockettest.h config.h includes.h compile.sh
+obj/size.o: obj/size.c src/sockettest.h obj/config.h obj/includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-const.o: const.c sockettest.h config.h includes.h compile.sh
+obj/const.o: obj/const.c src/sockettest.h obj/config.h obj/includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-errmsg.o: errmsg.c sockettest.h config.h includes.h compile.sh
+obj/errmsg.o: src/errmsg.c src/sockettest.h obj/config.h obj/includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-errnum.o: errnum.c sockettest.h config.h includes.h compile.sh
+obj/errnum.o: src/errnum.c src/sockettest.h obj/config.h obj/includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-errdup.o: errdup.c sockettest.h config.h includes.h compile.sh
+obj/errdup.o: src/errdup.c src/sockettest.h obj/config.h obj/includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-errtest.o: errtest.c sockettest.h config.h includes.h compile.sh
+obj/errtest.o: src/errtest.c src/sockettest.h obj/config.h obj/includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-unix-stream.o: unix-stream.c sockettest.h config.h includes.h compile.sh
+obj/unix-stream.o: src/unix-stream.c src/sockettest.h obj/config.h obj/includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-unix-dgram.o: unix-dgram.c sockettest.h config.h includes.h compile.sh
+obj/unix-dgram.o: src/unix-dgram.c src/sockettest.h obj/config.h obj/includes.h compile.sh
 	sh ./compile.sh $< -o $@
 
-size: size.o link.sh
-	sh ./link.sh size.o -o $@
+obj/size: obj/size.o link.sh
+	sh ./link.sh obj/size.o -o $@
 
-const: const.o link.sh
-	sh ./link.sh const.o -o $@
+obj/const: obj/const.o link.sh
+	sh ./link.sh obj/const.o -o $@
 
-errmsg: errmsg.o $(UTILOBJS) link.sh
-	sh ./link.sh errmsg.o $(UTILOBJS) -o $@
+obj/errmsg: obj/errmsg.o $(UTILOBJS) link.sh
+	sh ./link.sh obj/errmsg.o $(UTILOBJS) -o $@
 
-errnum: errnum.o link.sh
-	sh ./link.sh errnum.o $(UTILOBJS) -o $@
+obj/errnum: obj/errnum.o link.sh
+	sh ./link.sh obj/errnum.o $(UTILOBJS) -o $@
 
-errdup: errdup.o link.sh
-	sh ./link.sh errdup.o $(UTILOBJS) -o $@
+obj/errdup: obj/errdup.o link.sh
+	sh ./link.sh obj/errdup.o $(UTILOBJS) -o $@
 
-errtest: errtest.o $(UTILOBJS) link.sh
-	sh ./link.sh errtest.o $(UTILOBJS) -o $@
+obj/errtest: obj/errtest.o $(UTILOBJS) link.sh
+	sh ./link.sh obj/errtest.o $(UTILOBJS) -o $@
 
-unix-stream: unix-stream.o $(UTILOBJS) link.sh
-	sh ./link.sh unix-stream.o $(UTILOBJS) -o $@
+obj/unix-stream: obj/unix-stream.o $(UTILOBJS) link.sh
+	sh ./link.sh obj/unix-stream.o $(UTILOBJS) -o $@
 
-unix-dgram: unix-dgram.o $(UTILOBJS) link.sh
-	sh ./link.sh unix-dgram.o $(UTILOBJS) -o $@
+obj/unix-dgram: obj/unix-dgram.o $(UTILOBJS) link.sh
+	sh ./link.sh obj/unix-dgram.o $(UTILOBJS) -o $@
 
 results.html : table-result.erb \
   results/cygwin.txt \

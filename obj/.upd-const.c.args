@@ -1,0 +1,1 @@
+obj/const.c -- src/const.erb -- sh -c erb src/const.erb > obj/const.c

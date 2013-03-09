@@ -2,4 +2,4 @@
 #
 # @configure_input@
 
-@CC@ @CFLAGS@ @CPPFLAGS@ -c "$@"
+@CC@ -Iobj -Isrc @CFLAGS@ @CPPFLAGS@ -c "$@"

@@ -1,1 +1,0 @@
-size.c -- size.erb -- sh -c erb size.erb > size.c

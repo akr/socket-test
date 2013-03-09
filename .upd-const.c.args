@@ -1,1 +1,0 @@
-const.c -- const.erb -- sh -c erb const.erb > const.c
