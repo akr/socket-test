@@ -29,17 +29,17 @@ exec 2>&1
 UNAME="`uname -srvm`"
 
 cat <<'End' | sh -sv
-./unix-dgram 'foo\0' 'foo\0' 'bar\0'
-./unix-dgram 'foo\0' './foo\0' 'bar\0'
+./obj/unix-dgram 'foo\0' 'foo\0' 'bar\0'
+./obj/unix-dgram 'foo\0' './foo\0' 'bar\0'
 
-./unix-dgram -c 'foo\0' 'foo\0' 'bar\0'
-./unix-dgram -M 'foo\0' 'foo\0' 'bar\0'
-./unix-dgram -m 'foo\0' 'foo\0' 'bar\0'
+./obj/unix-dgram -c 'foo\0' 'foo\0' 'bar\0'
+./obj/unix-dgram -M 'foo\0' 'foo\0' 'bar\0'
+./obj/unix-dgram -m 'foo\0' 'foo\0' 'bar\0'
 
-./unix-dgram 'foo\0hoge' 'foo\0' 'bar\0'
-./unix-dgram 'foo\0' 'foo\0fuga' 'bar\0'
-./unix-dgram 'foo\0' 'foo\0' 'bar\0moga'
-./unix-dgram 'foo\0hoge' './foo\0fuga' 'bar\0moga'
+./obj/unix-dgram 'foo\0hoge' 'foo\0' 'bar\0'
+./obj/unix-dgram 'foo\0' 'foo\0fuga' 'bar\0'
+./obj/unix-dgram 'foo\0' 'foo\0' 'bar\0moga'
+./obj/unix-dgram 'foo\0hoge' './foo\0fuga' 'bar\0moga'
 End
 
 for n in \
@@ -51,8 +51,8 @@ for n in \
   510 511 512 513 514 515 516 517 518 519
 do
   cat <<End
-./unix-dgram '($n*"./")a\0'  '($n*"./")a\0'  'bar\0'
-./unix-dgram '($n*"./")ab\0' '($n*"./")ab\0' 'bar\0'
+./obj/unix-dgram '($n*"./")a\0'  '($n*"./")a\0'  'bar\0'
+./obj/unix-dgram '($n*"./")ab\0' '($n*"./")ab\0' 'bar\0'
 End
 done | sh -sv
 
@@ -64,23 +64,23 @@ for n in \
   250 251 252 253 254 255 256 257 258 259
 do
   cat <<End
-./unix-dgram '($n*"c")\0'  '($n*"c")\0'  'bar\0'
+./obj/unix-dgram '($n*"c")\0'  '($n*"c")\0'  'bar\0'
 End
 done | sh -sv
 
 cat <<'End' | sh -sv
-./unix-dgram -p '01234567\0'    '01234567\0'    'bar\0'
-./unix-dgram -p '012345678\0'   '012345678\0'   'bar\0'
-./unix-dgram -p '0123456789\0'  '0123456789\0'  'bar\0'
-./unix-dgram -p '01234567890\0' '01234567890\0' 'bar\0'
+./obj/unix-dgram -p '01234567\0'    '01234567\0'    'bar\0'
+./obj/unix-dgram -p '012345678\0'   '012345678\0'   'bar\0'
+./obj/unix-dgram -p '0123456789\0'  '0123456789\0'  'bar\0'
+./obj/unix-dgram -p '01234567890\0' '01234567890\0' 'bar\0'
 End
 
 case "$UNAME" in
 MirBSD*) : ;;
 *)
 cat <<'End' | sh -sv
-./unix-dgram -g2048 -p '01234567890\0' '01234567890\0' 'bar\0'
-./unix-dgram -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
+./obj/unix-dgram -g2048 -p '01234567890\0' '01234567890\0' 'bar\0'
+./obj/unix-dgram -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
 End
 ;;
 esac
@@ -95,36 +95,36 @@ for n in \
   510 511 512 513 514 515 516 517 518 519
 do
   cat <<End
-./unix-dgram -g255 '($n*"./")a\0' '($n*"./")a\0' 'bar\0'
-./unix-dgram -g255 '($n*"./")ab\0' '($n*"./")ab\0' 'bar\0'
+./obj/unix-dgram -g255 '($n*"./")a\0' '($n*"./")a\0' 'bar\0'
+./obj/unix-dgram -g255 '($n*"./")ab\0' '($n*"./")ab\0' 'bar\0'
 End
 done | sh -sv
 ;;
 esac
 
 cat <<'End' | sh -sv
-./unix-dgram 'foo\0' 'foo\0' '(125*"./")ab\0'
-./unix-dgram 'foo\0' 'foo\0' '(126*"./")a\0'
-./unix-dgram 'foo\0' 'foo\0' '(511*"./")a\0'
-./unix-dgram 'foo\0' 'foo\0' '(511*"./")ab\0'
+./obj/unix-dgram 'foo\0' 'foo\0' '(125*"./")ab\0'
+./obj/unix-dgram 'foo\0' 'foo\0' '(126*"./")a\0'
+./obj/unix-dgram 'foo\0' 'foo\0' '(511*"./")a\0'
+./obj/unix-dgram 'foo\0' 'foo\0' '(511*"./")ab\0'
 End
 
 case "$UNAME" in
 MirBSD*) : ;;
 *)
 cat <<'End' | sh -sv
-./unix-dgram -g255 'foo\0' 'foo\0' '(125*"./")ab\0'
-./unix-dgram -g1026 'foo\0' 'foo\0' '(511*"./")a\0'
+./obj/unix-dgram -g255 'foo\0' 'foo\0' '(125*"./")ab\0'
+./obj/unix-dgram -g1026 'foo\0' 'foo\0' '(511*"./")a\0'
 End
 ;;
 esac
 
 cat <<'End' | sh -sv
-./unix-dgram -s '\0'
-./unix-dgram -s '.\0'
-./unix-dgram -s '/\0'
-./unix-dgram -s '/foo\0'
-./unix-dgram -s '/foo/bar\0'
-./unix-dgram -s '/etc\0'
-./unix-dgram -T -s 'README\0'
+./obj/unix-dgram -s '\0'
+./obj/unix-dgram -s '.\0'
+./obj/unix-dgram -s '/\0'
+./obj/unix-dgram -s '/foo\0'
+./obj/unix-dgram -s '/foo/bar\0'
+./obj/unix-dgram -s '/etc\0'
+./obj/unix-dgram -T -s 'README\0'
 End

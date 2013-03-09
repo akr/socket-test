@@ -27,19 +27,19 @@
 exec 2>&1
 set -v
 
-./unix-dgram -4 '(sun_len=1)abc\0' '(sun_len=1)abc\0' 'bar\0'
-./unix-dgram -4 '(sun_len=2)abc\0' '(sun_len=2)abc\0' 'bar\0'
-./unix-dgram -4 '(sun_len=3)abc\0' '(sun_len=3)abc\0' 'bar\0'
-./unix-dgram -4 '(sun_len=4)abc\0' '(sun_len=4)abc\0' 'bar\0'
-./unix-dgram -4 '(sun_len=5)abc\0' '(sun_len=5)abc\0' 'bar\0'
-./unix-dgram -4 '(sun_len=6)abc\0' '(sun_len=6)abc\0' 'bar\0'
-./unix-dgram -4 '(sun_len=7)abc\0' '(sun_len=7)abc\0' 'bar\0'
+./obj/unix-dgram -4 '(sun_len=1)abc\0' '(sun_len=1)abc\0' 'bar\0'
+./obj/unix-dgram -4 '(sun_len=2)abc\0' '(sun_len=2)abc\0' 'bar\0'
+./obj/unix-dgram -4 '(sun_len=3)abc\0' '(sun_len=3)abc\0' 'bar\0'
+./obj/unix-dgram -4 '(sun_len=4)abc\0' '(sun_len=4)abc\0' 'bar\0'
+./obj/unix-dgram -4 '(sun_len=5)abc\0' '(sun_len=5)abc\0' 'bar\0'
+./obj/unix-dgram -4 '(sun_len=6)abc\0' '(sun_len=6)abc\0' 'bar\0'
+./obj/unix-dgram -4 '(sun_len=7)abc\0' '(sun_len=7)abc\0' 'bar\0'
 
-./unix-dgram -4 '(sun_len=1)abc\0' '(sun_len=7)abc\0' 'bar\0'
-./unix-dgram -4 '(sun_len=2)abc\0' '(sun_len=6)abc\0' 'bar\0'
-./unix-dgram -4 '(sun_len=3)abc\0' '(sun_len=5)abc\0' 'bar\0'
-./unix-dgram -4 '(sun_len=4)abc\0' '(sun_len=4)abc\0' 'bar\0'
-./unix-dgram -4 '(sun_len=5)abc\0' '(sun_len=3)abc\0' 'bar\0'
-./unix-dgram -4 '(sun_len=6)abc\0' '(sun_len=2)abc\0' 'bar\0'
-./unix-dgram -4 '(sun_len=7)abc\0' '(sun_len=1)abc\0' 'bar\0'
+./obj/unix-dgram -4 '(sun_len=1)abc\0' '(sun_len=7)abc\0' 'bar\0'
+./obj/unix-dgram -4 '(sun_len=2)abc\0' '(sun_len=6)abc\0' 'bar\0'
+./obj/unix-dgram -4 '(sun_len=3)abc\0' '(sun_len=5)abc\0' 'bar\0'
+./obj/unix-dgram -4 '(sun_len=4)abc\0' '(sun_len=4)abc\0' 'bar\0'
+./obj/unix-dgram -4 '(sun_len=5)abc\0' '(sun_len=3)abc\0' 'bar\0'
+./obj/unix-dgram -4 '(sun_len=6)abc\0' '(sun_len=2)abc\0' 'bar\0'
+./obj/unix-dgram -4 '(sun_len=7)abc\0' '(sun_len=1)abc\0' 'bar\0'
 

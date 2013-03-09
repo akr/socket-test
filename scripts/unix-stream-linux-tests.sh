@@ -27,9 +27,9 @@
 exec 2>&1
 set -v
 
-./unix-stream -s ''
-./unix-stream '\0abc'
-./unix-stream '\0abc' '\0abc\0'
-./unix-stream 'non-abstract' 'non-abstract' '\0abstract'
-./unix-stream '\0abstract' '\0abstract' 'non-abstract'
+./obj/unix-stream -s ''
+./obj/unix-stream '\0abc'
+./obj/unix-stream '\0abc' '\0abc\0'
+./obj/unix-stream 'non-abstract' 'non-abstract' '\0abstract'
+./obj/unix-stream '\0abstract' '\0abstract' 'non-abstract'
 

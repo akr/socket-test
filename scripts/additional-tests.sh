@@ -27,8 +27,8 @@
 exec 2>&1
 set -v
 
-./size
-./const
-./errmsg
-./errnum
-./errdup
+./obj/size
+./obj/const
+./obj/errmsg
+./obj/errnum
+./obj/errdup

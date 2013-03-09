@@ -27,9 +27,9 @@
 exec 2>&1
 set -v
 
-./unix-dgram -s ''
-./unix-dgram '\0abc' '\0abc' 'bar'
-./unix-dgram '\0abc' '\0abc\0' 'bar'
-./unix-dgram 'non-abstract' 'non-abstract' '\0abstract'
-./unix-dgram '\0abstract' '\0abstract' 'non-abstract'
+./obj/unix-dgram -s ''
+./obj/unix-dgram '\0abc' '\0abc' 'bar'
+./obj/unix-dgram '\0abc' '\0abc\0' 'bar'
+./obj/unix-dgram 'non-abstract' 'non-abstract' '\0abstract'
+./obj/unix-dgram '\0abstract' '\0abstract' 'non-abstract'
 
