@@ -1748,7 +1748,7 @@ socket file (server)  : exist
 getsockname(server)   -> "\0" (1 bytes)
 getsockname(client)   -> "\0" (1 bytes)
 connect               <- "foobar" (6 bytes)
-connect: ENOENT
+connect: ENAMETOOLONG
 
 ./unix-stream -4 '(sun_len=1)abc\0'
 bind(server)          <- "abc\0" (4 bytes)
@@ -1904,7 +1904,7 @@ bind(client)          <- "baz" (3 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "\0" (1 bytes)
 sendto(client)        <- "foobar" (6 bytes)
-sendto(client): ENOENT
+sendto(client): ENAMETOOLONG
 
 ./unix-dgram -4 '(sun_len=1)abc\0' '(sun_len=1)abc\0' 'bar\0'
 bind(server)          <- "abc\0" (4 bytes)
