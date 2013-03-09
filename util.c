@@ -565,21 +565,29 @@ static void report_sockaddr_to_kernel(char *key, struct sockaddr_un *sockaddr_pt
 
 static void canary_fill(char *ptr, size_t len)
 {
-  if (0 < len) {
-    memset(ptr, CANARY_CHAR, len-1);
-    ptr[len-1] = '\0';
+  size_t i;
+  for (i = 0; i < len; i++) {
+    if ((i & 1) == 0) {
+      ptr[i] = CANARY_CHAR;
+    }
+    else {
+      ptr[i] = '\0';
+    }
   }
 }
 
 static int canary_valid_p(char *ptr, size_t len)
 {
-  int i;
-  if (0 < len) {
-    for (i = 0; i < len-1; i++)
+  size_t i;
+  for (i = 0; i < len; i++) {
+    if ((i & 1) == 0) {
       if (ptr[i] != CANARY_CHAR)
-	return 0;
-    if (ptr[len-1] != '\0')
-      return 0;
+        return 0;
+    }
+    else {
+      if (ptr[i] != '\0')
+        return 0;
+    }
   }
   return 1;
 }
