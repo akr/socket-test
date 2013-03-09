@@ -244,7 +244,7 @@ files.each {|os, content|
     numbered_lines.reject! {|linenum, line| /\A\s*\z/ =~ line }
     next if numbered_lines.empty?
     command_linenum, command = numbered_lines.shift
-    command = command.chomp.rstrip.sub(%r{\A\./obj/}, '')
+    command = command.chomp.rstrip.sub(%r{\A\./build/}, '')
     os_command_numbered_lines[os] ||= {}
     os_command_numbered_lines[os][command] ||= numbered_lines # some test command is invoked multiple times.
   }
@@ -388,9 +388,9 @@ command_db.each {|rec|
 # remove results people can interpolate.
 #
 # ...
-# ./obj/unix-stream '(44*"./")a\0'
-# ./obj/unix-stream '(44*"./")ab\0'
-# ./obj/unix-stream '(45*"./")a\0'
+# ./build/unix-stream '(44*"./")a\0'
+# ./build/unix-stream '(44*"./")ab\0'
+# ./build/unix-stream '(45*"./")a\0'
 # ...
 
 def shell_split_commandline(commandline)

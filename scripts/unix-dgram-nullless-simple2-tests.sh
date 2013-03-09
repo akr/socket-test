@@ -27,5 +27,5 @@
 exec 2>&1
 set -v
 
-./obj/unix-dgram -s 'foobar' 'foobar' 'baz'
-./obj/unix-dgram 'foobar' 'foobar' 'baz'
+./build/unix-dgram -s 'foobar' 'foobar' 'baz'
+./build/unix-dgram 'foobar' 'foobar' 'baz'

@@ -29,15 +29,15 @@ exec 2>&1
 cat <<'End' | sh -sv
 uname -mrsv
 
-./obj/unix-stream 'foo\0' 'foo\0' 'bar\0'
-./obj/unix-stream 'foo\0' './foo\0' 'bar\0'
-./obj/unix-stream 'foo\0'
-./obj/unix-stream 'foo\0' './foo\0'
+./build/unix-stream 'foo\0' 'foo\0' 'bar\0'
+./build/unix-stream 'foo\0' './foo\0' 'bar\0'
+./build/unix-stream 'foo\0'
+./build/unix-stream 'foo\0' './foo\0'
 
-./obj/unix-stream 'foo\0hoge' 'foo\0' 'bar\0'
-./obj/unix-stream 'foo\0' 'foo\0fuga' 'bar\0'
-./obj/unix-stream 'foo\0' 'foo\0' 'bar\0moga'
-./obj/unix-stream 'foo\0hoge' './foo\0fuga' 'bar\0moga'
+./build/unix-stream 'foo\0hoge' 'foo\0' 'bar\0'
+./build/unix-stream 'foo\0' 'foo\0fuga' 'bar\0'
+./build/unix-stream 'foo\0' 'foo\0' 'bar\0moga'
+./build/unix-stream 'foo\0hoge' './foo\0fuga' 'bar\0moga'
 End
 
 for n in \
@@ -49,8 +49,8 @@ for n in \
   510 511 512 513 514 515 516 517 518 519
 do
   cat <<End
-./obj/unix-stream '($n*"./")a\0'
-./obj/unix-stream '($n*"./")ab\0'
+./build/unix-stream '($n*"./")a\0'
+./build/unix-stream '($n*"./")ab\0'
 End
 done | sh -sv
 
@@ -62,33 +62,33 @@ for n in \
   250 251 252 253 254 255 256 257 258 259
 do
   cat <<End
-./obj/unix-stream '($n*"c")\0'
+./build/unix-stream '($n*"c")\0'
 End
 done | sh -sv
 
 cat <<'End' | sh -sv
-./obj/unix-stream -p '01234567\0'
-./obj/unix-stream -p '012345678\0'
-./obj/unix-stream -p '0123456789\0'
-./obj/unix-stream -p '01234567890\0'
+./build/unix-stream -p '01234567\0'
+./build/unix-stream -p '012345678\0'
+./build/unix-stream -p '0123456789\0'
+./build/unix-stream -p '01234567890\0'
 
-./obj/unix-stream -g2048 -p '01234567890\0'
-./obj/unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
+./build/unix-stream -g2048 -p '01234567890\0'
+./build/unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
 
-./obj/unix-stream -g255 '(125*"./")ab\0' 
-./obj/unix-stream -g1026 '(511*"./")a\0'
-./obj/unix-stream 'foo\0' 'foo\0' '(125*"./")ab\0'
-./obj/unix-stream 'foo\0' 'foo\0' '(511*"./")a\0'
-./obj/unix-stream -g255 'foo\0' 'foo\0' '(125*"./")ab\0'
-./obj/unix-stream -g1026 'foo\0' 'foo\0' '(511*"./")a\0'
+./build/unix-stream -g255 '(125*"./")ab\0' 
+./build/unix-stream -g1026 '(511*"./")a\0'
+./build/unix-stream 'foo\0' 'foo\0' '(125*"./")ab\0'
+./build/unix-stream 'foo\0' 'foo\0' '(511*"./")a\0'
+./build/unix-stream -g255 'foo\0' 'foo\0' '(125*"./")ab\0'
+./build/unix-stream -g1026 'foo\0' 'foo\0' '(511*"./")a\0'
 
-./obj/unix-stream -s '\0'
-./obj/unix-stream -s '.\0'
-./obj/unix-stream -s '/\0'
-./obj/unix-stream -s '/foo\0'
-./obj/unix-stream -s '/foo/bar\0'
-./obj/unix-stream -s '/etc\0'
-./obj/unix-stream -T -s 'README\0'
+./build/unix-stream -s '\0'
+./build/unix-stream -s '.\0'
+./build/unix-stream -s '/\0'
+./build/unix-stream -s '/foo\0'
+./build/unix-stream -s '/foo/bar\0'
+./build/unix-stream -s '/etc\0'
+./build/unix-stream -T -s 'README\0'
 
-./obj/unix-stream '\0foo'
+./build/unix-stream '\0foo'
 End

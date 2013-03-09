@@ -25,7 +25,7 @@
 AC_PREREQ(2.61)
 AC_INIT(socket-test, 0.1)
 AC_CONFIG_SRCDIR([src/unix-stream.c])
-AC_CONFIG_HEADERS([obj/config.h])
+AC_CONFIG_HEADERS([build/config.h])
 
 AC_CANONICAL_BUILD
 AC_CANONICAL_HOST
@@ -132,6 +132,6 @@ AC_SUBST(SOCKETTEST_INCLUDES)
 
 AC_CONFIG_FILES([compile.sh], [chmod +x compile.sh])
 AC_CONFIG_FILES([link.sh], [chmod +x link.sh])
-AC_CONFIG_FILES([obj/includes.h:src/includes.h.in])
+AC_CONFIG_FILES([build/includes.h:src/includes.h.in])
 AC_OUTPUT
 

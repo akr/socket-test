@@ -2206,7 +2206,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
-ac_config_headers="$ac_config_headers obj/config.h"
+ac_config_headers="$ac_config_headers build/config.h"
 
 
 ac_aux_dir=
@@ -4091,7 +4091,7 @@ ac_config_files="$ac_config_files compile.sh"
 
 ac_config_files="$ac_config_files link.sh"
 
-ac_config_files="$ac_config_files obj/includes.h:src/includes.h.in"
+ac_config_files="$ac_config_files build/includes.h:src/includes.h.in"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -4782,10 +4782,10 @@ cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
 for ac_config_target in $ac_config_targets
 do
   case $ac_config_target in
-    "obj/config.h") CONFIG_HEADERS="$CONFIG_HEADERS obj/config.h" ;;
+    "build/config.h") CONFIG_HEADERS="$CONFIG_HEADERS build/config.h" ;;
     "compile.sh") CONFIG_FILES="$CONFIG_FILES compile.sh" ;;
     "link.sh") CONFIG_FILES="$CONFIG_FILES link.sh" ;;
-    "obj/includes.h") CONFIG_FILES="$CONFIG_FILES obj/includes.h:src/includes.h.in" ;;
+    "build/includes.h") CONFIG_FILES="$CONFIG_FILES build/includes.h:src/includes.h.in" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac

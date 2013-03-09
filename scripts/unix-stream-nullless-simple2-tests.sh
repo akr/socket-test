@@ -27,5 +27,5 @@
 exec 2>&1
 set -v
 
-./obj/unix-stream -s 'foobar'
-./obj/unix-stream 'foobar'
+./build/unix-stream -s 'foobar'
+./build/unix-stream 'foobar'

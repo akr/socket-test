@@ -29,10 +29,10 @@ exec 2>&1
 #set -v
 
 cat <<'End' | sh -sv
-./obj/unix-stream 'foo' 'foo' 'bar'
-./obj/unix-stream 'foo' './foo' 'bar'
-./obj/unix-stream 'foo'
-./obj/unix-stream 'foo' './foo'
+./build/unix-stream 'foo' 'foo' 'bar'
+./build/unix-stream 'foo' './foo' 'bar'
+./build/unix-stream 'foo'
+./build/unix-stream 'foo' './foo'
 End
 
 for n in \
@@ -44,8 +44,8 @@ for n in \
   510 511 512 513 514 515 516 517 518 519
 do
   cat <<End | sh -sv
-./obj/unix-stream '($n*"./")a'
-./obj/unix-stream '($n*"./")ab'
+./build/unix-stream '($n*"./")a'
+./build/unix-stream '($n*"./")ab'
 End
 done
 
@@ -59,29 +59,29 @@ for n in \
   510 511 512 513 514 515 516 517 518 519
 do
   cat <<End | sh -sv
-./obj/unix-stream '($n*"c")'
+./build/unix-stream '($n*"c")'
 End
 done
 
 cat <<End | sh -sv
-./obj/unix-stream -p '012345678'
-./obj/unix-stream -p '0123456789'
-./obj/unix-stream -g2048 -p '01234567890'
-./obj/unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890'
+./build/unix-stream -p '012345678'
+./build/unix-stream -p '0123456789'
+./build/unix-stream -g2048 -p '01234567890'
+./build/unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890'
 
-./obj/unix-stream -g255 '(126*"./")a'
-./obj/unix-stream -g1026 '(511*"./")a'
-./obj/unix-stream 'foo\0' 'foo\0' '(126*"./")a'
-./obj/unix-stream 'foo\0' 'foo\0' '(511*"./")a' 
-./obj/unix-stream -g255 'foo\0' 'foo\0' '(126*"./")a'
-./obj/unix-stream -g1026 'foo\0' 'foo\0' '(511*"./")a'
+./build/unix-stream -g255 '(126*"./")a'
+./build/unix-stream -g1026 '(511*"./")a'
+./build/unix-stream 'foo\0' 'foo\0' '(126*"./")a'
+./build/unix-stream 'foo\0' 'foo\0' '(511*"./")a' 
+./build/unix-stream -g255 'foo\0' 'foo\0' '(126*"./")a'
+./build/unix-stream -g1026 'foo\0' 'foo\0' '(511*"./")a'
 
-./obj/unix-stream -s ''
-./obj/unix-stream -s '.'
-./obj/unix-stream -s '/'
-./obj/unix-stream -s '/foo'
-./obj/unix-stream -s '/foo/bar'
-./obj/unix-stream -s '/etc'
-./obj/unix-stream -s 'foo'
-./obj/unix-stream -T -s 'README'
+./build/unix-stream -s ''
+./build/unix-stream -s '.'
+./build/unix-stream -s '/'
+./build/unix-stream -s '/foo'
+./build/unix-stream -s '/foo/bar'
+./build/unix-stream -s '/etc'
+./build/unix-stream -s 'foo'
+./build/unix-stream -T -s 'README'
 End
