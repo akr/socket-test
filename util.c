@@ -563,6 +563,27 @@ static void report_sockaddr_to_kernel(char *key, struct sockaddr_un *sockaddr_pt
 #define CANARY_CHAR '?'
 #define CANARY_LEN 256
 
+static void canary_fill(char *ptr, size_t len)
+{
+  if (0 < len) {
+    memset(ptr, CANARY_CHAR, len-1);
+    ptr[len-1] = '\0';
+  }
+}
+
+static int canary_valid_p(char *ptr, size_t len)
+{
+  int i;
+  if (0 < len) {
+    for (i = 0; i < len-1; i++)
+      if (ptr[i] != CANARY_CHAR)
+	return 0;
+    if (ptr[len-1] != '\0')
+      return 0;
+  }
+  return 1;
+}
+
 sockaddr_put_t *before_sockaddr_put(char *key, struct sockaddr *addr, socklen_t len, int opt_4)
 {
   sockaddr_put_t *sockaddr_put;
@@ -570,8 +591,7 @@ sockaddr_put_t *before_sockaddr_put(char *key, struct sockaddr *addr, socklen_t 
   sockaddr_put = xmalloc(sizeof(sockaddr_put_t));
   p = xmalloc(len+CANARY_LEN+len);
   memcpy(p, addr, len);
-  memset(p+len, CANARY_CHAR, CANARY_LEN-1);
-  (p+len)[CANARY_LEN-1] = '\0';
+  canary_fill(p+len, CANARY_LEN);
   memcpy(p+len+CANARY_LEN, addr, len);
   report_sockaddr_to_kernel(key, (struct sockaddr_un *)p, len, opt_4);
   sockaddr_put->key = key;
@@ -588,11 +608,7 @@ void after_sockaddr_put(sockaddr_put_t *sockaddr_put, int put_succeed, int fatal
   socklen_t len = sockaddr_put->len;
 
   if (put_succeed) {
-    int i;
-    for (i = 0; i < CANARY_LEN-1; i++)
-      if ((p+len)[i] != CANARY_CHAR)
-	break;
-    if (i != CANARY_LEN-1 || (p+len)[CANARY_LEN-1] != '\0') {
+    if (!canary_valid_p(p+len, CANARY_LEN)) {
       fprintf(stderr, "%s : canary modified.\n", key);
       goto ret;
     }
@@ -619,8 +635,8 @@ sockaddr_get_t *before_sockaddr_get(char *key, socklen_t buflen, int opt_4)
   char *p;
   p = xmalloc(buflen+CANARY_LEN);
 
-  memset(p, CANARY_CHAR, buflen+CANARY_LEN-1);
-  (p+buflen)[CANARY_LEN-1] = '\0';
+  memset(p, CANARY_CHAR, buflen);
+  canary_fill(p+buflen, CANARY_LEN);
 
   sockaddr_get = xmalloc(sizeof(sockaddr_get_t));
   sockaddr_get->key = key;
@@ -651,10 +667,7 @@ void after_sockaddr_get_report(sockaddr_get_t *sockaddr_get, int get_succeed, in
         break;
       }
 
-    for (i = 0; i < CANARY_LEN-1; i++)
-      if ((p+buflen)[i] != CANARY_CHAR)
-	break;
-    if (i != CANARY_LEN-1 || (p+buflen)[CANARY_LEN-1] != '\0') {
+    if (!canary_valid_p(p+buflen, CANARY_LEN)) {
       char *c2 = quote_string(NULL, p+buflen, CANARY_LEN);
       buffer_addf(buf, " canary:%s\n", c2);
       free(c2);
