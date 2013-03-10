@@ -1,7 +1,7 @@
 uname -mrsv
 CYGWIN_NT-5.1 1.7.18s(0.263/5/3) 20130301 15:56:19 i686
 
-./unix-stream 'foo\0' 'foo\0' 'bar\0'
+./build/unix-stream 'foo\0' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -14,7 +14,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream 'foo\0' './foo\0' 'bar\0'
+./build/unix-stream 'foo\0' './foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -27,7 +27,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream 'foo\0'
+./build/unix-stream 'foo\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -39,7 +39,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream 'foo\0' './foo\0'
+./build/unix-stream 'foo\0' './foo\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -52,7 +52,7 @@ getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
 
-./unix-stream 'foo\0hoge' 'foo\0' 'bar\0'
+./build/unix-stream 'foo\0hoge' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -65,7 +65,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream 'foo\0' 'foo\0fuga' 'bar\0'
+./build/unix-stream 'foo\0' 'foo\0fuga' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -78,7 +78,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream 'foo\0' 'foo\0' 'bar\0moga'
+./build/unix-stream 'foo\0' 'foo\0' 'bar\0moga'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -91,7 +91,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream 'foo\0hoge' './foo\0fuga' 'bar\0moga'
+./build/unix-stream 'foo\0hoge' './foo\0fuga' 'bar\0moga'
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -104,7 +104,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "foo\0" (4 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(44*"./")a\0'
+./build/unix-stream '(44*"./")a\0'
 bind(server)          <- "(44*"./")a\0" (90 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(44*"./")a\0" (90 bytes)
@@ -116,7 +116,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(44*"./")a\0" (90 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(44*"./")ab\0'
+./build/unix-stream '(44*"./")ab\0'
 bind(server)          <- "(44*"./")ab\0" (91 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(44*"./")ab\0" (91 bytes)
@@ -128,7 +128,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(44*"./")ab\0" (91 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(45*"./")a\0'
+./build/unix-stream '(45*"./")a\0'
 bind(server)          <- "(45*"./")a\0" (92 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(45*"./")a\0" (92 bytes)
@@ -140,7 +140,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(45*"./")a\0" (92 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(45*"./")ab\0'
+./build/unix-stream '(45*"./")ab\0'
 bind(server)          <- "(45*"./")ab\0" (93 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(45*"./")ab\0" (93 bytes)
@@ -152,7 +152,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(45*"./")ab\0" (93 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(46*"./")a\0'
+./build/unix-stream '(46*"./")a\0'
 bind(server)          <- "(46*"./")a\0" (94 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(46*"./")a\0" (94 bytes)
@@ -164,7 +164,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(46*"./")a\0" (94 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(46*"./")ab\0'
+./build/unix-stream '(46*"./")ab\0'
 bind(server)          <- "(46*"./")ab\0" (95 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(46*"./")ab\0" (95 bytes)
@@ -176,7 +176,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(46*"./")ab\0" (95 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(47*"./")a\0'
+./build/unix-stream '(47*"./")a\0'
 bind(server)          <- "(47*"./")a\0" (96 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(47*"./")a\0" (96 bytes)
@@ -188,7 +188,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(47*"./")a\0" (96 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(47*"./")ab\0'
+./build/unix-stream '(47*"./")ab\0'
 bind(server)          <- "(47*"./")ab\0" (97 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(47*"./")ab\0" (97 bytes)
@@ -200,7 +200,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(47*"./")ab\0" (97 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(48*"./")a\0'
+./build/unix-stream '(48*"./")a\0'
 bind(server)          <- "(48*"./")a\0" (98 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(48*"./")a\0" (98 bytes)
@@ -212,7 +212,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(48*"./")a\0" (98 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(48*"./")ab\0'
+./build/unix-stream '(48*"./")ab\0'
 bind(server)          <- "(48*"./")ab\0" (99 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(48*"./")ab\0" (99 bytes)
@@ -224,7 +224,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(48*"./")ab\0" (99 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(49*"./")a\0'
+./build/unix-stream '(49*"./")a\0'
 bind(server)          <- "(49*"./")a\0" (100 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")a\0" (100 bytes)
@@ -236,7 +236,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(49*"./")a\0" (100 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(49*"./")ab\0'
+./build/unix-stream '(49*"./")ab\0'
 bind(server)          <- "(49*"./")ab\0" (101 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")ab\0" (101 bytes)
@@ -248,7 +248,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(49*"./")ab\0" (101 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(50*"./")a\0'
+./build/unix-stream '(50*"./")a\0'
 bind(server)          <- "(50*"./")a\0" (102 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(50*"./")a\0" (102 bytes)
@@ -260,7 +260,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(50*"./")a\0" (102 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(50*"./")ab\0'
+./build/unix-stream '(50*"./")ab\0'
 bind(server)          <- "(50*"./")ab\0" (103 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(50*"./")ab\0" (103 bytes)
@@ -272,7 +272,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(50*"./")ab\0" (103 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(51*"./")a\0'
+./build/unix-stream '(51*"./")a\0'
 bind(server)          <- "(51*"./")a\0" (104 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(51*"./")a\0" (104 bytes)
@@ -284,7 +284,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(51*"./")a\0" (104 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(51*"./")ab\0'
+./build/unix-stream '(51*"./")ab\0'
 bind(server)          <- "(51*"./")ab\0" (105 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(51*"./")ab\0" (105 bytes)
@@ -296,7 +296,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(51*"./")ab\0" (105 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(52*"./")a\0'
+./build/unix-stream '(52*"./")a\0'
 bind(server)          <- "(52*"./")a\0" (106 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")a\0" (106 bytes)
@@ -308,7 +308,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(52*"./")a\0" (106 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(52*"./")ab\0'
+./build/unix-stream '(52*"./")ab\0'
 bind(server)          <- "(52*"./")ab\0" (107 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")ab\0" (107 bytes)
@@ -320,7 +320,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(52*"./")ab\0" (107 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(53*"./")a\0'
+./build/unix-stream '(53*"./")a\0'
 bind(server)          <- "(53*"./")a\0" (108 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(53*"./")a\0" (108 bytes)
@@ -332,286 +332,286 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(53*"./")a\0" (108 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(53*"./")ab\0'
+./build/unix-stream '(53*"./")ab\0'
 bind(server)          <- "(53*"./")ab\0" (109 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(54*"./")a\0'
+./build/unix-stream '(54*"./")a\0'
 bind(server)          <- "(54*"./")a\0" (110 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(54*"./")ab\0'
+./build/unix-stream '(54*"./")ab\0'
 bind(server)          <- "(54*"./")ab\0" (111 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(55*"./")a\0'
+./build/unix-stream '(55*"./")a\0'
 bind(server)          <- "(55*"./")a\0" (112 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(55*"./")ab\0'
+./build/unix-stream '(55*"./")ab\0'
 bind(server)          <- "(55*"./")ab\0" (113 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(56*"./")a\0'
+./build/unix-stream '(56*"./")a\0'
 bind(server)          <- "(56*"./")a\0" (114 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(56*"./")ab\0'
+./build/unix-stream '(56*"./")ab\0'
 bind(server)          <- "(56*"./")ab\0" (115 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(57*"./")a\0'
+./build/unix-stream '(57*"./")a\0'
 bind(server)          <- "(57*"./")a\0" (116 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(57*"./")ab\0'
+./build/unix-stream '(57*"./")ab\0'
 bind(server)          <- "(57*"./")ab\0" (117 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(58*"./")a\0'
+./build/unix-stream '(58*"./")a\0'
 bind(server)          <- "(58*"./")a\0" (118 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(58*"./")ab\0'
+./build/unix-stream '(58*"./")ab\0'
 bind(server)          <- "(58*"./")ab\0" (119 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(59*"./")a\0'
+./build/unix-stream '(59*"./")a\0'
 bind(server)          <- "(59*"./")a\0" (120 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(59*"./")ab\0'
+./build/unix-stream '(59*"./")ab\0'
 bind(server)          <- "(59*"./")ab\0" (121 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(60*"./")a\0'
+./build/unix-stream '(60*"./")a\0'
 bind(server)          <- "(60*"./")a\0" (122 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(60*"./")ab\0'
+./build/unix-stream '(60*"./")ab\0'
 bind(server)          <- "(60*"./")ab\0" (123 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(61*"./")a\0'
+./build/unix-stream '(61*"./")a\0'
 bind(server)          <- "(61*"./")a\0" (124 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(61*"./")ab\0'
+./build/unix-stream '(61*"./")ab\0'
 bind(server)          <- "(61*"./")ab\0" (125 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(62*"./")a\0'
+./build/unix-stream '(62*"./")a\0'
 bind(server)          <- "(62*"./")a\0" (126 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(62*"./")ab\0'
+./build/unix-stream '(62*"./")ab\0'
 bind(server)          <- "(62*"./")ab\0" (127 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(63*"./")a\0'
+./build/unix-stream '(63*"./")a\0'
 bind(server)          <- "(63*"./")a\0" (128 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(63*"./")ab\0'
+./build/unix-stream '(63*"./")ab\0'
 bind(server)          <- "(63*"./")ab\0" (129 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(64*"./")a\0'
+./build/unix-stream '(64*"./")a\0'
 bind(server)          <- "(64*"./")a\0" (130 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(64*"./")ab\0'
+./build/unix-stream '(64*"./")ab\0'
 bind(server)          <- "(64*"./")ab\0" (131 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(65*"./")a\0'
+./build/unix-stream '(65*"./")a\0'
 bind(server)          <- "(65*"./")a\0" (132 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(65*"./")ab\0'
+./build/unix-stream '(65*"./")ab\0'
 bind(server)          <- "(65*"./")ab\0" (133 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(66*"./")a\0'
+./build/unix-stream '(66*"./")a\0'
 bind(server)          <- "(66*"./")a\0" (134 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(66*"./")ab\0'
+./build/unix-stream '(66*"./")ab\0'
 bind(server)          <- "(66*"./")ab\0" (135 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(67*"./")a\0'
+./build/unix-stream '(67*"./")a\0'
 bind(server)          <- "(67*"./")a\0" (136 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(67*"./")ab\0'
+./build/unix-stream '(67*"./")ab\0'
 bind(server)          <- "(67*"./")ab\0" (137 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(68*"./")a\0'
+./build/unix-stream '(68*"./")a\0'
 bind(server)          <- "(68*"./")a\0" (138 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(68*"./")ab\0'
+./build/unix-stream '(68*"./")ab\0'
 bind(server)          <- "(68*"./")ab\0" (139 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(69*"./")a\0'
+./build/unix-stream '(69*"./")a\0'
 bind(server)          <- "(69*"./")a\0" (140 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(69*"./")ab\0'
+./build/unix-stream '(69*"./")ab\0'
 bind(server)          <- "(69*"./")ab\0" (141 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(120*"./")a\0'
+./build/unix-stream '(120*"./")a\0'
 bind(server)          <- "(120*"./")a\0" (242 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(120*"./")ab\0'
+./build/unix-stream '(120*"./")ab\0'
 bind(server)          <- "(120*"./")ab\0" (243 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(121*"./")a\0'
+./build/unix-stream '(121*"./")a\0'
 bind(server)          <- "(121*"./")a\0" (244 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(121*"./")ab\0'
+./build/unix-stream '(121*"./")ab\0'
 bind(server)          <- "(121*"./")ab\0" (245 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(122*"./")a\0'
+./build/unix-stream '(122*"./")a\0'
 bind(server)          <- "(122*"./")a\0" (246 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(122*"./")ab\0'
+./build/unix-stream '(122*"./")ab\0'
 bind(server)          <- "(122*"./")ab\0" (247 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(123*"./")a\0'
+./build/unix-stream '(123*"./")a\0'
 bind(server)          <- "(123*"./")a\0" (248 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(123*"./")ab\0'
+./build/unix-stream '(123*"./")ab\0'
 bind(server)          <- "(123*"./")ab\0" (249 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(124*"./")a\0'
+./build/unix-stream '(124*"./")a\0'
 bind(server)          <- "(124*"./")a\0" (250 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(124*"./")ab\0'
+./build/unix-stream '(124*"./")ab\0'
 bind(server)          <- "(124*"./")ab\0" (251 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(125*"./")a\0'
+./build/unix-stream '(125*"./")a\0'
 bind(server)          <- "(125*"./")a\0" (252 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(125*"./")ab\0'
+./build/unix-stream '(125*"./")ab\0'
 bind(server)          <- "(125*"./")ab\0" (253 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(126*"./")a\0'
+./build/unix-stream '(126*"./")a\0'
 bind(server)          <- "(126*"./")a\0" (254 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(126*"./")ab\0'
+./build/unix-stream '(126*"./")ab\0'
 bind(server)          <- "(126*"./")ab\0" (255 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(127*"./")a\0'
+./build/unix-stream '(127*"./")a\0'
 bind(server)          <- "(127*"./")a\0" (256 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(127*"./")ab\0'
+./build/unix-stream '(127*"./")ab\0'
 bind(server)          <- "(127*"./")ab\0" (257 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(128*"./")a\0'
+./build/unix-stream '(128*"./")a\0'
 bind(server)          <- "(128*"./")a\0" (258 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(128*"./")ab\0'
+./build/unix-stream '(128*"./")ab\0'
 bind(server)          <- "(128*"./")ab\0" (259 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(129*"./")a\0'
+./build/unix-stream '(129*"./")a\0'
 bind(server)          <- "(129*"./")a\0" (260 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(129*"./")ab\0'
+./build/unix-stream '(129*"./")ab\0'
 bind(server)          <- "(129*"./")ab\0" (261 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(250*"./")a\0'
+./build/unix-stream '(250*"./")a\0'
 bind(server)          <- "(250*"./")a\0" (502 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(250*"./")ab\0'
+./build/unix-stream '(250*"./")ab\0'
 bind(server)          <- "(250*"./")ab\0" (503 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(251*"./")a\0'
+./build/unix-stream '(251*"./")a\0'
 bind(server)          <- "(251*"./")a\0" (504 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(251*"./")ab\0'
+./build/unix-stream '(251*"./")ab\0'
 bind(server)          <- "(251*"./")ab\0" (505 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(252*"./")a\0'
+./build/unix-stream '(252*"./")a\0'
 bind(server)          <- "(252*"./")a\0" (506 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(252*"./")ab\0'
+./build/unix-stream '(252*"./")ab\0'
 bind(server)          <- "(252*"./")ab\0" (507 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(253*"./")a\0'
+./build/unix-stream '(253*"./")a\0'
 bind(server)          <- "(253*"./")a\0" (508 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(253*"./")ab\0'
+./build/unix-stream '(253*"./")ab\0'
 bind(server)          <- "(253*"./")ab\0" (509 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(254*"./")a\0'
+./build/unix-stream '(254*"./")a\0'
 bind(server)          <- "(254*"./")a\0" (510 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(254*"./")ab\0'
+./build/unix-stream '(254*"./")ab\0'
 bind(server)          <- "(254*"./")ab\0" (511 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(255*"./")a\0'
+./build/unix-stream '(255*"./")a\0'
 bind(server)          <- "(255*"./")a\0" (512 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(255*"./")ab\0'
+./build/unix-stream '(255*"./")ab\0'
 bind(server)          <- "(255*"./")ab\0" (513 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(256*"./")a\0'
+./build/unix-stream '(256*"./")a\0'
 bind(server)          <- "(256*"./")a\0" (514 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(256*"./")ab\0'
+./build/unix-stream '(256*"./")ab\0'
 bind(server)          <- "(256*"./")ab\0" (515 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(257*"./")a\0'
+./build/unix-stream '(257*"./")a\0'
 bind(server)          <- "(257*"./")a\0" (516 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(257*"./")ab\0'
+./build/unix-stream '(257*"./")ab\0'
 bind(server)          <- "(257*"./")ab\0" (517 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(258*"./")a\0'
+./build/unix-stream '(258*"./")a\0'
 bind(server)          <- "(258*"./")a\0" (518 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(258*"./")ab\0'
+./build/unix-stream '(258*"./")ab\0'
 bind(server)          <- "(258*"./")ab\0" (519 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(259*"./")a\0'
+./build/unix-stream '(259*"./")a\0'
 bind(server)          <- "(259*"./")a\0" (520 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(259*"./")ab\0'
+./build/unix-stream '(259*"./")ab\0'
 bind(server)          <- "(259*"./")ab\0" (521 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(510*"./")a\0'
+./build/unix-stream '(510*"./")a\0'
 bind(server)          <- "(510*"./")a\0" (1022 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(510*"./")ab\0'
+./build/unix-stream '(510*"./")ab\0'
 bind(server)          <- "(510*"./")ab\0" (1023 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(511*"./")a\0'
+./build/unix-stream '(511*"./")a\0'
 bind(server)          <- "(511*"./")a\0" (1024 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(511*"./")ab\0'
+./build/unix-stream '(511*"./")ab\0'
 bind(server)          <- "(511*"./")ab\0" (1025 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(512*"./")a\0'
+./build/unix-stream '(512*"./")a\0'
 bind(server)          <- "(512*"./")a\0" (1026 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(512*"./")ab\0'
+./build/unix-stream '(512*"./")ab\0'
 bind(server)          <- "(512*"./")ab\0" (1027 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(513*"./")a\0'
+./build/unix-stream '(513*"./")a\0'
 bind(server)          <- "(513*"./")a\0" (1028 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(513*"./")ab\0'
+./build/unix-stream '(513*"./")ab\0'
 bind(server)          <- "(513*"./")ab\0" (1029 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(514*"./")a\0'
+./build/unix-stream '(514*"./")a\0'
 bind(server)          <- "(514*"./")a\0" (1030 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(514*"./")ab\0'
+./build/unix-stream '(514*"./")ab\0'
 bind(server)          <- "(514*"./")ab\0" (1031 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(515*"./")a\0'
+./build/unix-stream '(515*"./")a\0'
 bind(server)          <- "(515*"./")a\0" (1032 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(515*"./")ab\0'
+./build/unix-stream '(515*"./")ab\0'
 bind(server)          <- "(515*"./")ab\0" (1033 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(516*"./")a\0'
+./build/unix-stream '(516*"./")a\0'
 bind(server)          <- "(516*"./")a\0" (1034 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(516*"./")ab\0'
+./build/unix-stream '(516*"./")ab\0'
 bind(server)          <- "(516*"./")ab\0" (1035 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(517*"./")a\0'
+./build/unix-stream '(517*"./")a\0'
 bind(server)          <- "(517*"./")a\0" (1036 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(517*"./")ab\0'
+./build/unix-stream '(517*"./")ab\0'
 bind(server)          <- "(517*"./")ab\0" (1037 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(518*"./")a\0'
+./build/unix-stream '(518*"./")a\0'
 bind(server)          <- "(518*"./")a\0" (1038 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(518*"./")ab\0'
+./build/unix-stream '(518*"./")ab\0'
 bind(server)          <- "(518*"./")ab\0" (1039 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(519*"./")a\0'
+./build/unix-stream '(519*"./")a\0'
 bind(server)          <- "(519*"./")a\0" (1040 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(519*"./")ab\0'
+./build/unix-stream '(519*"./")ab\0'
 bind(server)          <- "(519*"./")ab\0" (1041 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(90*"c")\0'
+./build/unix-stream '(90*"c")\0'
 bind(server)          <- "(90*"c")\0" (91 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(90*"c")\0" (91 bytes)
@@ -623,7 +623,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(90*"c")\0" (91 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(91*"c")\0'
+./build/unix-stream '(91*"c")\0'
 bind(server)          <- "(91*"c")\0" (92 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(91*"c")\0" (92 bytes)
@@ -635,7 +635,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(91*"c")\0" (92 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(92*"c")\0'
+./build/unix-stream '(92*"c")\0'
 bind(server)          <- "(92*"c")\0" (93 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(92*"c")\0" (93 bytes)
@@ -647,7 +647,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(92*"c")\0" (93 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(93*"c")\0'
+./build/unix-stream '(93*"c")\0'
 bind(server)          <- "(93*"c")\0" (94 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(93*"c")\0" (94 bytes)
@@ -659,7 +659,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(93*"c")\0" (94 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(94*"c")\0'
+./build/unix-stream '(94*"c")\0'
 bind(server)          <- "(94*"c")\0" (95 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(94*"c")\0" (95 bytes)
@@ -671,7 +671,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(94*"c")\0" (95 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(95*"c")\0'
+./build/unix-stream '(95*"c")\0'
 bind(server)          <- "(95*"c")\0" (96 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(95*"c")\0" (96 bytes)
@@ -683,7 +683,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(95*"c")\0" (96 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(96*"c")\0'
+./build/unix-stream '(96*"c")\0'
 bind(server)          <- "(96*"c")\0" (97 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(96*"c")\0" (97 bytes)
@@ -695,7 +695,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(96*"c")\0" (97 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(97*"c")\0'
+./build/unix-stream '(97*"c")\0'
 bind(server)          <- "(97*"c")\0" (98 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(97*"c")\0" (98 bytes)
@@ -707,7 +707,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(97*"c")\0" (98 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(98*"c")\0'
+./build/unix-stream '(98*"c")\0'
 bind(server)          <- "(98*"c")\0" (99 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(98*"c")\0" (99 bytes)
@@ -719,7 +719,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(98*"c")\0" (99 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(99*"c")\0'
+./build/unix-stream '(99*"c")\0'
 bind(server)          <- "(99*"c")\0" (100 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(99*"c")\0" (100 bytes)
@@ -731,7 +731,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(99*"c")\0" (100 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(100*"c")\0'
+./build/unix-stream '(100*"c")\0'
 bind(server)          <- "(100*"c")\0" (101 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(100*"c")\0" (101 bytes)
@@ -743,7 +743,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(100*"c")\0" (101 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(101*"c")\0'
+./build/unix-stream '(101*"c")\0'
 bind(server)          <- "(101*"c")\0" (102 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(101*"c")\0" (102 bytes)
@@ -755,7 +755,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(101*"c")\0" (102 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(102*"c")\0'
+./build/unix-stream '(102*"c")\0'
 bind(server)          <- "(102*"c")\0" (103 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(102*"c")\0" (103 bytes)
@@ -767,7 +767,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(102*"c")\0" (103 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(103*"c")\0'
+./build/unix-stream '(103*"c")\0'
 bind(server)          <- "(103*"c")\0" (104 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(103*"c")\0" (104 bytes)
@@ -779,7 +779,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(103*"c")\0" (104 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(104*"c")\0'
+./build/unix-stream '(104*"c")\0'
 bind(server)          <- "(104*"c")\0" (105 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")\0" (105 bytes)
@@ -791,7 +791,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(104*"c")\0" (105 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(105*"c")\0'
+./build/unix-stream '(105*"c")\0'
 bind(server)          <- "(105*"c")\0" (106 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(105*"c")\0" (106 bytes)
@@ -803,7 +803,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(105*"c")\0" (106 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(106*"c")\0'
+./build/unix-stream '(106*"c")\0'
 bind(server)          <- "(106*"c")\0" (107 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(106*"c")\0" (107 bytes)
@@ -815,7 +815,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(106*"c")\0" (107 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(107*"c")\0'
+./build/unix-stream '(107*"c")\0'
 bind(server)          <- "(107*"c")\0" (108 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(107*"c")\0" (108 bytes)
@@ -827,103 +827,103 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(107*"c")\0" (108 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream '(108*"c")\0'
+./build/unix-stream '(108*"c")\0'
 bind(server)          <- "(108*"c")\0" (109 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(109*"c")\0'
+./build/unix-stream '(109*"c")\0'
 bind(server)          <- "(109*"c")\0" (110 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(110*"c")\0'
+./build/unix-stream '(110*"c")\0'
 bind(server)          <- "(110*"c")\0" (111 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(111*"c")\0'
+./build/unix-stream '(111*"c")\0'
 bind(server)          <- "(111*"c")\0" (112 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(112*"c")\0'
+./build/unix-stream '(112*"c")\0'
 bind(server)          <- "(112*"c")\0" (113 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(113*"c")\0'
+./build/unix-stream '(113*"c")\0'
 bind(server)          <- "(113*"c")\0" (114 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(114*"c")\0'
+./build/unix-stream '(114*"c")\0'
 bind(server)          <- "(114*"c")\0" (115 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(115*"c")\0'
+./build/unix-stream '(115*"c")\0'
 bind(server)          <- "(115*"c")\0" (116 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(116*"c")\0'
+./build/unix-stream '(116*"c")\0'
 bind(server)          <- "(116*"c")\0" (117 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(117*"c")\0'
+./build/unix-stream '(117*"c")\0'
 bind(server)          <- "(117*"c")\0" (118 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(118*"c")\0'
+./build/unix-stream '(118*"c")\0'
 bind(server)          <- "(118*"c")\0" (119 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(119*"c")\0'
+./build/unix-stream '(119*"c")\0'
 bind(server)          <- "(119*"c")\0" (120 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(120*"c")\0'
+./build/unix-stream '(120*"c")\0'
 bind(server)          <- "(120*"c")\0" (121 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(121*"c")\0'
+./build/unix-stream '(121*"c")\0'
 bind(server)          <- "(121*"c")\0" (122 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(122*"c")\0'
+./build/unix-stream '(122*"c")\0'
 bind(server)          <- "(122*"c")\0" (123 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(123*"c")\0'
+./build/unix-stream '(123*"c")\0'
 bind(server)          <- "(123*"c")\0" (124 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(124*"c")\0'
+./build/unix-stream '(124*"c")\0'
 bind(server)          <- "(124*"c")\0" (125 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(125*"c")\0'
+./build/unix-stream '(125*"c")\0'
 bind(server)          <- "(125*"c")\0" (126 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(126*"c")\0'
+./build/unix-stream '(126*"c")\0'
 bind(server)          <- "(126*"c")\0" (127 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(127*"c")\0'
+./build/unix-stream '(127*"c")\0'
 bind(server)          <- "(127*"c")\0" (128 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(128*"c")\0'
+./build/unix-stream '(128*"c")\0'
 bind(server)          <- "(128*"c")\0" (129 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(129*"c")\0'
+./build/unix-stream '(129*"c")\0'
 bind(server)          <- "(129*"c")\0" (130 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(250*"c")\0'
+./build/unix-stream '(250*"c")\0'
 bind(server)          <- "(250*"c")\0" (251 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(251*"c")\0'
+./build/unix-stream '(251*"c")\0'
 bind(server)          <- "(251*"c")\0" (252 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(252*"c")\0'
+./build/unix-stream '(252*"c")\0'
 bind(server)          <- "(252*"c")\0" (253 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(253*"c")\0'
+./build/unix-stream '(253*"c")\0'
 bind(server)          <- "(253*"c")\0" (254 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(254*"c")\0'
+./build/unix-stream '(254*"c")\0'
 bind(server)          <- "(254*"c")\0" (255 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(255*"c")\0'
+./build/unix-stream '(255*"c")\0'
 bind(server)          <- "(255*"c")\0" (256 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(256*"c")\0'
+./build/unix-stream '(256*"c")\0'
 bind(server)          <- "(256*"c")\0" (257 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(257*"c")\0'
+./build/unix-stream '(257*"c")\0'
 bind(server)          <- "(257*"c")\0" (258 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(258*"c")\0'
+./build/unix-stream '(258*"c")\0'
 bind(server)          <- "(258*"c")\0" (259 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream '(259*"c")\0'
+./build/unix-stream '(259*"c")\0'
 bind(server)          <- "(259*"c")\0" (260 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream -p '01234567\0'
+./build/unix-stream -p '01234567\0'
 bind(server)          <- "(49*"./")01234567\0" (107 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")01234567\0" (107 bytes)
@@ -935,7 +935,7 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(49*"./")01234567\0" (107 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream -p '012345678\0'
+./build/unix-stream -p '012345678\0'
 bind(server)          <- "(49*"./")012345678\0" (108 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")012345678\0" (108 bytes)
@@ -947,85 +947,85 @@ accept                -> "" (0 bytes)
 getsockname(accepted) -> "(49*"./")012345678\0" (108 bytes)
 getpeername(accepted) -> "" (0 bytes) rest:"\0"
 
-./unix-stream -p '0123456789\0'
+./build/unix-stream -p '0123456789\0'
 bind(server)          <- "(49*"./")0123456789\0" (109 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream -p '01234567890\0'
+./build/unix-stream -p '01234567890\0'
 bind(server)          <- "(49*"./")01234567890\0" (110 bytes)
 bind(server): ENAMETOOLONG
 
-./unix-stream -g2048 -p '01234567890\0'
+./build/unix-stream -g2048 -p '01234567890\0'
 bind(server)          <- "(49*"./")01234567890\0" (110 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
+./build/unix-stream -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
 bind(server)          <- "(49*"./")foo\0" (102 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")foo\0" (102 bytes)
 bind(client)          <- "(49*"./")01234567890\0" (110 bytes)
 bind(client): ENAMETOOLONG
 
-./unix-stream -g255 '(125*"./")ab\0' 
+./build/unix-stream -g255 '(125*"./")ab\0' 
 bind(server)          <- "(125*"./")ab\0" (253 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream -g1026 '(511*"./")a\0'
+./build/unix-stream -g1026 '(511*"./")a\0'
 bind(server)          <- "(511*"./")a\0" (1024 bytes)
 bind(server): ENAMETOOLONG
-./unix-stream 'foo\0' 'foo\0' '(125*"./")ab\0'
+./build/unix-stream 'foo\0' 'foo\0' '(125*"./")ab\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(125*"./")ab\0" (253 bytes)
 bind(client): ENAMETOOLONG
-./unix-stream 'foo\0' 'foo\0' '(511*"./")a\0'
+./build/unix-stream 'foo\0' 'foo\0' '(511*"./")a\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(511*"./")a\0" (1024 bytes)
 bind(client): ENAMETOOLONG
-./unix-stream -g255 'foo\0' 'foo\0' '(125*"./")ab\0'
+./build/unix-stream -g255 'foo\0' 'foo\0' '(125*"./")ab\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(125*"./")ab\0" (253 bytes)
 bind(client): ENAMETOOLONG
-./unix-stream -g1026 'foo\0' 'foo\0' '(511*"./")a\0'
+./build/unix-stream -g1026 'foo\0' 'foo\0' '(511*"./")a\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(511*"./")a\0" (1024 bytes)
 bind(client): ENAMETOOLONG
 
-./unix-stream -s '\0'
+./build/unix-stream -s '\0'
 bind(server)          <- "\0" (1 bytes)
 bind(server): ENOENT
-./unix-stream -s '.\0'
+./build/unix-stream -s '.\0'
 bind(server)          <- ".\0" (2 bytes)
 bind(server): EADDRINUSE
-./unix-stream -s '/\0'
+./build/unix-stream -s '/\0'
 bind(server)          <- "/\0" (2 bytes)
 bind(server): EADDRINUSE
-./unix-stream -s '/foo\0'
+./build/unix-stream -s '/foo\0'
 bind(server)          <- "/foo\0" (5 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "/foo\0" (5 bytes)
-./unix-stream -s '/foo/bar\0'
+./build/unix-stream -s '/foo/bar\0'
 bind(server)          <- "/foo/bar\0" (9 bytes)
 bind(server): ENOENT
-./unix-stream -s '/etc\0'
+./build/unix-stream -s '/etc\0'
 bind(server)          <- "/etc\0" (5 bytes)
 bind(server): EADDRINUSE
-./unix-stream -T -s 'README\0'
+./build/unix-stream -T -s 'README\0'
 bind(server)          <- "README\0" (7 bytes)
 bind(server): EADDRINUSE
 
-./unix-stream '\0foo'
+./build/unix-stream '\0foo'
 bind(server)          <- "\0foo" (4 bytes)
 bind(server): ENOENT
 
-./unix-stream -s 'foobar'
+./build/unix-stream -s 'foobar'
 bind(server)          <- "foobar" (6 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram 'foo\0' 'foo\0' 'bar\0'
+./build/unix-dgram 'foo\0' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -1033,10 +1033,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "foo\0" (4 bytes)
-recvfrom(server)      -> 127.0.0.1:3304 (16 bytes)
-sendto(server)        <- 127.0.0.1:3304 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3303 (16 bytes)
-./unix-dgram 'foo\0' './foo\0' 'bar\0'
+recvfrom(server)      -> 127.0.0.1:3771 (16 bytes)
+sendto(server)        <- 127.0.0.1:3771 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3770 (16 bytes)
+./build/unix-dgram 'foo\0' './foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -1044,11 +1044,11 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "./foo\0" (6 bytes)
-recvfrom(server)      -> 127.0.0.1:3306 (16 bytes)
-sendto(server)        <- 127.0.0.1:3306 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3305 (16 bytes)
+recvfrom(server)      -> 127.0.0.1:3773 (16 bytes)
+sendto(server)        <- 127.0.0.1:3773 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3772 (16 bytes)
 
-./unix-dgram -c 'foo\0' 'foo\0' 'bar\0'
+./build/unix-dgram -c 'foo\0' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -1057,10 +1057,10 @@ socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 connect               <- "foo\0" (4 bytes)
 getpeername(client)   -> "foo\0" (4 bytes)
-recvfrom(server)      -> 127.0.0.1:3308 (16 bytes)
-sendto(server)        <- 127.0.0.1:3308 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3307 (16 bytes)
-./unix-dgram -M 'foo\0' 'foo\0' 'bar\0'
+recvfrom(server)      -> 127.0.0.1:3775 (16 bytes)
+sendto(server)        <- 127.0.0.1:3775 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3774 (16 bytes)
+./build/unix-dgram -M 'foo\0' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -1068,10 +1068,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendmsg(client)       <- "foo\0" (4 bytes)
-recvfrom(server)      -> 127.0.0.1:3310 (16 bytes)
-sendto(server)        <- 127.0.0.1:3310 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3309 (16 bytes)
-./unix-dgram -m 'foo\0' 'foo\0' 'bar\0'
+recvfrom(server)      -> 127.0.0.1:3777 (16 bytes)
+sendto(server)        <- 127.0.0.1:3777 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3776 (16 bytes)
+./build/unix-dgram -m 'foo\0' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -1079,11 +1079,11 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "foo\0" (4 bytes)
-recvmsg(server)       -> 127.0.0.1:3312 (16 bytes)
-sendto(server)        <- 127.0.0.1:3312 (16 bytes)
-recvmsg(client)       -> 127.0.0.1:3311 (16 bytes)
+recvmsg(server)       -> 127.0.0.1:3779 (16 bytes)
+sendto(server)        <- 127.0.0.1:3779 (16 bytes)
+recvmsg(client)       -> 127.0.0.1:3778 (16 bytes)
 
-./unix-dgram 'foo\0hoge' 'foo\0' 'bar\0'
+./build/unix-dgram 'foo\0hoge' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -1091,10 +1091,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "foo\0" (4 bytes)
-recvfrom(server)      -> 127.0.0.1:3314 (16 bytes)
-sendto(server)        <- 127.0.0.1:3314 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3313 (16 bytes)
-./unix-dgram 'foo\0' 'foo\0fuga' 'bar\0'
+recvfrom(server)      -> 127.0.0.1:3781 (16 bytes)
+sendto(server)        <- 127.0.0.1:3781 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3780 (16 bytes)
+./build/unix-dgram 'foo\0' 'foo\0fuga' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -1102,10 +1102,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "foo\0fuga" (8 bytes)
-recvfrom(server)      -> 127.0.0.1:3316 (16 bytes)
-sendto(server)        <- 127.0.0.1:3316 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3315 (16 bytes)
-./unix-dgram 'foo\0' 'foo\0' 'bar\0moga'
+recvfrom(server)      -> 127.0.0.1:3783 (16 bytes)
+sendto(server)        <- 127.0.0.1:3783 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3782 (16 bytes)
+./build/unix-dgram 'foo\0' 'foo\0' 'bar\0moga'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -1113,10 +1113,10 @@ bind(client)          <- "bar\0moga" (8 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "foo\0" (4 bytes)
-recvfrom(server)      -> 127.0.0.1:3318 (16 bytes)
-sendto(server)        <- 127.0.0.1:3318 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3317 (16 bytes)
-./unix-dgram 'foo\0hoge' './foo\0fuga' 'bar\0moga'
+recvfrom(server)      -> 127.0.0.1:3785 (16 bytes)
+sendto(server)        <- 127.0.0.1:3785 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3784 (16 bytes)
+./build/unix-dgram 'foo\0hoge' './foo\0fuga' 'bar\0moga'
 bind(server)          <- "foo\0hoge" (8 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
@@ -1124,10 +1124,10 @@ bind(client)          <- "bar\0moga" (8 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "./foo\0fuga" (10 bytes)
-recvfrom(server)      -> 127.0.0.1:3320 (16 bytes)
-sendto(server)        <- 127.0.0.1:3320 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3319 (16 bytes)
-./unix-dgram '(44*"./")a\0'  '(44*"./")a\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3787 (16 bytes)
+sendto(server)        <- 127.0.0.1:3787 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3786 (16 bytes)
+./build/unix-dgram '(44*"./")a\0'  '(44*"./")a\0'  'bar\0'
 bind(server)          <- "(44*"./")a\0" (90 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(44*"./")a\0" (90 bytes)
@@ -1135,10 +1135,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(44*"./")a\0" (90 bytes)
-recvfrom(server)      -> 127.0.0.1:3322 (16 bytes)
-sendto(server)        <- 127.0.0.1:3322 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3321 (16 bytes)
-./unix-dgram '(44*"./")ab\0' '(44*"./")ab\0' 'bar\0'
+recvfrom(server)      -> 127.0.0.1:3789 (16 bytes)
+sendto(server)        <- 127.0.0.1:3789 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3788 (16 bytes)
+./build/unix-dgram '(44*"./")ab\0' '(44*"./")ab\0' 'bar\0'
 bind(server)          <- "(44*"./")ab\0" (91 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(44*"./")ab\0" (91 bytes)
@@ -1146,10 +1146,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(44*"./")ab\0" (91 bytes)
-recvfrom(server)      -> 127.0.0.1:3324 (16 bytes)
-sendto(server)        <- 127.0.0.1:3324 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3323 (16 bytes)
-./unix-dgram '(45*"./")a\0'  '(45*"./")a\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3791 (16 bytes)
+sendto(server)        <- 127.0.0.1:3791 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3790 (16 bytes)
+./build/unix-dgram '(45*"./")a\0'  '(45*"./")a\0'  'bar\0'
 bind(server)          <- "(45*"./")a\0" (92 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(45*"./")a\0" (92 bytes)
@@ -1157,10 +1157,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(45*"./")a\0" (92 bytes)
-recvfrom(server)      -> 127.0.0.1:3326 (16 bytes)
-sendto(server)        <- 127.0.0.1:3326 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3325 (16 bytes)
-./unix-dgram '(45*"./")ab\0' '(45*"./")ab\0' 'bar\0'
+recvfrom(server)      -> 127.0.0.1:3793 (16 bytes)
+sendto(server)        <- 127.0.0.1:3793 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3792 (16 bytes)
+./build/unix-dgram '(45*"./")ab\0' '(45*"./")ab\0' 'bar\0'
 bind(server)          <- "(45*"./")ab\0" (93 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(45*"./")ab\0" (93 bytes)
@@ -1168,10 +1168,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(45*"./")ab\0" (93 bytes)
-recvfrom(server)      -> 127.0.0.1:3328 (16 bytes)
-sendto(server)        <- 127.0.0.1:3328 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3327 (16 bytes)
-./unix-dgram '(46*"./")a\0'  '(46*"./")a\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3795 (16 bytes)
+sendto(server)        <- 127.0.0.1:3795 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3794 (16 bytes)
+./build/unix-dgram '(46*"./")a\0'  '(46*"./")a\0'  'bar\0'
 bind(server)          <- "(46*"./")a\0" (94 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(46*"./")a\0" (94 bytes)
@@ -1179,10 +1179,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(46*"./")a\0" (94 bytes)
-recvfrom(server)      -> 127.0.0.1:3330 (16 bytes)
-sendto(server)        <- 127.0.0.1:3330 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3329 (16 bytes)
-./unix-dgram '(46*"./")ab\0' '(46*"./")ab\0' 'bar\0'
+recvfrom(server)      -> 127.0.0.1:3797 (16 bytes)
+sendto(server)        <- 127.0.0.1:3797 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3796 (16 bytes)
+./build/unix-dgram '(46*"./")ab\0' '(46*"./")ab\0' 'bar\0'
 bind(server)          <- "(46*"./")ab\0" (95 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(46*"./")ab\0" (95 bytes)
@@ -1190,10 +1190,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(46*"./")ab\0" (95 bytes)
-recvfrom(server)      -> 127.0.0.1:3332 (16 bytes)
-sendto(server)        <- 127.0.0.1:3332 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3331 (16 bytes)
-./unix-dgram '(47*"./")a\0'  '(47*"./")a\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3799 (16 bytes)
+sendto(server)        <- 127.0.0.1:3799 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3798 (16 bytes)
+./build/unix-dgram '(47*"./")a\0'  '(47*"./")a\0'  'bar\0'
 bind(server)          <- "(47*"./")a\0" (96 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(47*"./")a\0" (96 bytes)
@@ -1201,10 +1201,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(47*"./")a\0" (96 bytes)
-recvfrom(server)      -> 127.0.0.1:3334 (16 bytes)
-sendto(server)        <- 127.0.0.1:3334 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3333 (16 bytes)
-./unix-dgram '(47*"./")ab\0' '(47*"./")ab\0' 'bar\0'
+recvfrom(server)      -> 127.0.0.1:3801 (16 bytes)
+sendto(server)        <- 127.0.0.1:3801 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3800 (16 bytes)
+./build/unix-dgram '(47*"./")ab\0' '(47*"./")ab\0' 'bar\0'
 bind(server)          <- "(47*"./")ab\0" (97 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(47*"./")ab\0" (97 bytes)
@@ -1212,10 +1212,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(47*"./")ab\0" (97 bytes)
-recvfrom(server)      -> 127.0.0.1:3336 (16 bytes)
-sendto(server)        <- 127.0.0.1:3336 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3335 (16 bytes)
-./unix-dgram '(48*"./")a\0'  '(48*"./")a\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3803 (16 bytes)
+sendto(server)        <- 127.0.0.1:3803 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3802 (16 bytes)
+./build/unix-dgram '(48*"./")a\0'  '(48*"./")a\0'  'bar\0'
 bind(server)          <- "(48*"./")a\0" (98 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(48*"./")a\0" (98 bytes)
@@ -1223,10 +1223,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(48*"./")a\0" (98 bytes)
-recvfrom(server)      -> 127.0.0.1:3338 (16 bytes)
-sendto(server)        <- 127.0.0.1:3338 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3337 (16 bytes)
-./unix-dgram '(48*"./")ab\0' '(48*"./")ab\0' 'bar\0'
+recvfrom(server)      -> 127.0.0.1:3805 (16 bytes)
+sendto(server)        <- 127.0.0.1:3805 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3804 (16 bytes)
+./build/unix-dgram '(48*"./")ab\0' '(48*"./")ab\0' 'bar\0'
 bind(server)          <- "(48*"./")ab\0" (99 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(48*"./")ab\0" (99 bytes)
@@ -1234,10 +1234,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(48*"./")ab\0" (99 bytes)
-recvfrom(server)      -> 127.0.0.1:3340 (16 bytes)
-sendto(server)        <- 127.0.0.1:3340 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3339 (16 bytes)
-./unix-dgram '(49*"./")a\0'  '(49*"./")a\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3807 (16 bytes)
+sendto(server)        <- 127.0.0.1:3807 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3806 (16 bytes)
+./build/unix-dgram '(49*"./")a\0'  '(49*"./")a\0'  'bar\0'
 bind(server)          <- "(49*"./")a\0" (100 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")a\0" (100 bytes)
@@ -1245,10 +1245,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(49*"./")a\0" (100 bytes)
-recvfrom(server)      -> 127.0.0.1:3342 (16 bytes)
-sendto(server)        <- 127.0.0.1:3342 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3341 (16 bytes)
-./unix-dgram '(49*"./")ab\0' '(49*"./")ab\0' 'bar\0'
+recvfrom(server)      -> 127.0.0.1:3809 (16 bytes)
+sendto(server)        <- 127.0.0.1:3809 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3808 (16 bytes)
+./build/unix-dgram '(49*"./")ab\0' '(49*"./")ab\0' 'bar\0'
 bind(server)          <- "(49*"./")ab\0" (101 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")ab\0" (101 bytes)
@@ -1256,10 +1256,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(49*"./")ab\0" (101 bytes)
-recvfrom(server)      -> 127.0.0.1:3344 (16 bytes)
-sendto(server)        <- 127.0.0.1:3344 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3343 (16 bytes)
-./unix-dgram '(50*"./")a\0'  '(50*"./")a\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3811 (16 bytes)
+sendto(server)        <- 127.0.0.1:3811 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3810 (16 bytes)
+./build/unix-dgram '(50*"./")a\0'  '(50*"./")a\0'  'bar\0'
 bind(server)          <- "(50*"./")a\0" (102 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(50*"./")a\0" (102 bytes)
@@ -1267,10 +1267,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(50*"./")a\0" (102 bytes)
-recvfrom(server)      -> 127.0.0.1:3346 (16 bytes)
-sendto(server)        <- 127.0.0.1:3346 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3345 (16 bytes)
-./unix-dgram '(50*"./")ab\0' '(50*"./")ab\0' 'bar\0'
+recvfrom(server)      -> 127.0.0.1:3813 (16 bytes)
+sendto(server)        <- 127.0.0.1:3813 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3812 (16 bytes)
+./build/unix-dgram '(50*"./")ab\0' '(50*"./")ab\0' 'bar\0'
 bind(server)          <- "(50*"./")ab\0" (103 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(50*"./")ab\0" (103 bytes)
@@ -1278,10 +1278,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(50*"./")ab\0" (103 bytes)
-recvfrom(server)      -> 127.0.0.1:3348 (16 bytes)
-sendto(server)        <- 127.0.0.1:3348 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3347 (16 bytes)
-./unix-dgram '(51*"./")a\0'  '(51*"./")a\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3815 (16 bytes)
+sendto(server)        <- 127.0.0.1:3815 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3814 (16 bytes)
+./build/unix-dgram '(51*"./")a\0'  '(51*"./")a\0'  'bar\0'
 bind(server)          <- "(51*"./")a\0" (104 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(51*"./")a\0" (104 bytes)
@@ -1289,10 +1289,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(51*"./")a\0" (104 bytes)
-recvfrom(server)      -> 127.0.0.1:3350 (16 bytes)
-sendto(server)        <- 127.0.0.1:3350 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3349 (16 bytes)
-./unix-dgram '(51*"./")ab\0' '(51*"./")ab\0' 'bar\0'
+recvfrom(server)      -> 127.0.0.1:3817 (16 bytes)
+sendto(server)        <- 127.0.0.1:3817 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3816 (16 bytes)
+./build/unix-dgram '(51*"./")ab\0' '(51*"./")ab\0' 'bar\0'
 bind(server)          <- "(51*"./")ab\0" (105 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(51*"./")ab\0" (105 bytes)
@@ -1300,10 +1300,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(51*"./")ab\0" (105 bytes)
-recvfrom(server)      -> 127.0.0.1:3352 (16 bytes)
-sendto(server)        <- 127.0.0.1:3352 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3351 (16 bytes)
-./unix-dgram '(52*"./")a\0'  '(52*"./")a\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3819 (16 bytes)
+sendto(server)        <- 127.0.0.1:3819 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3818 (16 bytes)
+./build/unix-dgram '(52*"./")a\0'  '(52*"./")a\0'  'bar\0'
 bind(server)          <- "(52*"./")a\0" (106 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")a\0" (106 bytes)
@@ -1311,10 +1311,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(52*"./")a\0" (106 bytes)
-recvfrom(server)      -> 127.0.0.1:3354 (16 bytes)
-sendto(server)        <- 127.0.0.1:3354 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3353 (16 bytes)
-./unix-dgram '(52*"./")ab\0' '(52*"./")ab\0' 'bar\0'
+recvfrom(server)      -> 127.0.0.1:3821 (16 bytes)
+sendto(server)        <- 127.0.0.1:3821 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3820 (16 bytes)
+./build/unix-dgram '(52*"./")ab\0' '(52*"./")ab\0' 'bar\0'
 bind(server)          <- "(52*"./")ab\0" (107 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(52*"./")ab\0" (107 bytes)
@@ -1322,10 +1322,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(52*"./")ab\0" (107 bytes)
-recvfrom(server)      -> 127.0.0.1:3356 (16 bytes)
-sendto(server)        <- 127.0.0.1:3356 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3355 (16 bytes)
-./unix-dgram '(53*"./")a\0'  '(53*"./")a\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3823 (16 bytes)
+sendto(server)        <- 127.0.0.1:3823 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3822 (16 bytes)
+./build/unix-dgram '(53*"./")a\0'  '(53*"./")a\0'  'bar\0'
 bind(server)          <- "(53*"./")a\0" (108 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(53*"./")a\0" (108 bytes)
@@ -1333,289 +1333,289 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(53*"./")a\0" (108 bytes)
-recvfrom(server)      -> 127.0.0.1:3358 (16 bytes)
-sendto(server)        <- 127.0.0.1:3358 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3357 (16 bytes)
-./unix-dgram '(53*"./")ab\0' '(53*"./")ab\0' 'bar\0'
+recvfrom(server)      -> 127.0.0.1:3825 (16 bytes)
+sendto(server)        <- 127.0.0.1:3825 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3824 (16 bytes)
+./build/unix-dgram '(53*"./")ab\0' '(53*"./")ab\0' 'bar\0'
 bind(server)          <- "(53*"./")ab\0" (109 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(54*"./")a\0'  '(54*"./")a\0'  'bar\0'
+./build/unix-dgram '(54*"./")a\0'  '(54*"./")a\0'  'bar\0'
 bind(server)          <- "(54*"./")a\0" (110 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(54*"./")ab\0' '(54*"./")ab\0' 'bar\0'
+./build/unix-dgram '(54*"./")ab\0' '(54*"./")ab\0' 'bar\0'
 bind(server)          <- "(54*"./")ab\0" (111 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(55*"./")a\0'  '(55*"./")a\0'  'bar\0'
+./build/unix-dgram '(55*"./")a\0'  '(55*"./")a\0'  'bar\0'
 bind(server)          <- "(55*"./")a\0" (112 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(55*"./")ab\0' '(55*"./")ab\0' 'bar\0'
+./build/unix-dgram '(55*"./")ab\0' '(55*"./")ab\0' 'bar\0'
 bind(server)          <- "(55*"./")ab\0" (113 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(56*"./")a\0'  '(56*"./")a\0'  'bar\0'
+./build/unix-dgram '(56*"./")a\0'  '(56*"./")a\0'  'bar\0'
 bind(server)          <- "(56*"./")a\0" (114 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(56*"./")ab\0' '(56*"./")ab\0' 'bar\0'
+./build/unix-dgram '(56*"./")ab\0' '(56*"./")ab\0' 'bar\0'
 bind(server)          <- "(56*"./")ab\0" (115 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(57*"./")a\0'  '(57*"./")a\0'  'bar\0'
+./build/unix-dgram '(57*"./")a\0'  '(57*"./")a\0'  'bar\0'
 bind(server)          <- "(57*"./")a\0" (116 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(57*"./")ab\0' '(57*"./")ab\0' 'bar\0'
+./build/unix-dgram '(57*"./")ab\0' '(57*"./")ab\0' 'bar\0'
 bind(server)          <- "(57*"./")ab\0" (117 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(58*"./")a\0'  '(58*"./")a\0'  'bar\0'
+./build/unix-dgram '(58*"./")a\0'  '(58*"./")a\0'  'bar\0'
 bind(server)          <- "(58*"./")a\0" (118 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(58*"./")ab\0' '(58*"./")ab\0' 'bar\0'
+./build/unix-dgram '(58*"./")ab\0' '(58*"./")ab\0' 'bar\0'
 bind(server)          <- "(58*"./")ab\0" (119 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(59*"./")a\0'  '(59*"./")a\0'  'bar\0'
+./build/unix-dgram '(59*"./")a\0'  '(59*"./")a\0'  'bar\0'
 bind(server)          <- "(59*"./")a\0" (120 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(59*"./")ab\0' '(59*"./")ab\0' 'bar\0'
+./build/unix-dgram '(59*"./")ab\0' '(59*"./")ab\0' 'bar\0'
 bind(server)          <- "(59*"./")ab\0" (121 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(60*"./")a\0'  '(60*"./")a\0'  'bar\0'
+./build/unix-dgram '(60*"./")a\0'  '(60*"./")a\0'  'bar\0'
 bind(server)          <- "(60*"./")a\0" (122 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(60*"./")ab\0' '(60*"./")ab\0' 'bar\0'
+./build/unix-dgram '(60*"./")ab\0' '(60*"./")ab\0' 'bar\0'
 bind(server)          <- "(60*"./")ab\0" (123 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(61*"./")a\0'  '(61*"./")a\0'  'bar\0'
+./build/unix-dgram '(61*"./")a\0'  '(61*"./")a\0'  'bar\0'
 bind(server)          <- "(61*"./")a\0" (124 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(61*"./")ab\0' '(61*"./")ab\0' 'bar\0'
+./build/unix-dgram '(61*"./")ab\0' '(61*"./")ab\0' 'bar\0'
 bind(server)          <- "(61*"./")ab\0" (125 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(62*"./")a\0'  '(62*"./")a\0'  'bar\0'
+./build/unix-dgram '(62*"./")a\0'  '(62*"./")a\0'  'bar\0'
 bind(server)          <- "(62*"./")a\0" (126 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(62*"./")ab\0' '(62*"./")ab\0' 'bar\0'
+./build/unix-dgram '(62*"./")ab\0' '(62*"./")ab\0' 'bar\0'
 bind(server)          <- "(62*"./")ab\0" (127 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(63*"./")a\0'  '(63*"./")a\0'  'bar\0'
+./build/unix-dgram '(63*"./")a\0'  '(63*"./")a\0'  'bar\0'
 bind(server)          <- "(63*"./")a\0" (128 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(63*"./")ab\0' '(63*"./")ab\0' 'bar\0'
+./build/unix-dgram '(63*"./")ab\0' '(63*"./")ab\0' 'bar\0'
 bind(server)          <- "(63*"./")ab\0" (129 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(64*"./")a\0'  '(64*"./")a\0'  'bar\0'
+./build/unix-dgram '(64*"./")a\0'  '(64*"./")a\0'  'bar\0'
 bind(server)          <- "(64*"./")a\0" (130 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(64*"./")ab\0' '(64*"./")ab\0' 'bar\0'
+./build/unix-dgram '(64*"./")ab\0' '(64*"./")ab\0' 'bar\0'
 bind(server)          <- "(64*"./")ab\0" (131 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(65*"./")a\0'  '(65*"./")a\0'  'bar\0'
+./build/unix-dgram '(65*"./")a\0'  '(65*"./")a\0'  'bar\0'
 bind(server)          <- "(65*"./")a\0" (132 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(65*"./")ab\0' '(65*"./")ab\0' 'bar\0'
+./build/unix-dgram '(65*"./")ab\0' '(65*"./")ab\0' 'bar\0'
 bind(server)          <- "(65*"./")ab\0" (133 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(66*"./")a\0'  '(66*"./")a\0'  'bar\0'
+./build/unix-dgram '(66*"./")a\0'  '(66*"./")a\0'  'bar\0'
 bind(server)          <- "(66*"./")a\0" (134 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(66*"./")ab\0' '(66*"./")ab\0' 'bar\0'
+./build/unix-dgram '(66*"./")ab\0' '(66*"./")ab\0' 'bar\0'
 bind(server)          <- "(66*"./")ab\0" (135 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(67*"./")a\0'  '(67*"./")a\0'  'bar\0'
+./build/unix-dgram '(67*"./")a\0'  '(67*"./")a\0'  'bar\0'
 bind(server)          <- "(67*"./")a\0" (136 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(67*"./")ab\0' '(67*"./")ab\0' 'bar\0'
+./build/unix-dgram '(67*"./")ab\0' '(67*"./")ab\0' 'bar\0'
 bind(server)          <- "(67*"./")ab\0" (137 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(68*"./")a\0'  '(68*"./")a\0'  'bar\0'
+./build/unix-dgram '(68*"./")a\0'  '(68*"./")a\0'  'bar\0'
 bind(server)          <- "(68*"./")a\0" (138 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(68*"./")ab\0' '(68*"./")ab\0' 'bar\0'
+./build/unix-dgram '(68*"./")ab\0' '(68*"./")ab\0' 'bar\0'
 bind(server)          <- "(68*"./")ab\0" (139 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(69*"./")a\0'  '(69*"./")a\0'  'bar\0'
+./build/unix-dgram '(69*"./")a\0'  '(69*"./")a\0'  'bar\0'
 bind(server)          <- "(69*"./")a\0" (140 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(69*"./")ab\0' '(69*"./")ab\0' 'bar\0'
+./build/unix-dgram '(69*"./")ab\0' '(69*"./")ab\0' 'bar\0'
 bind(server)          <- "(69*"./")ab\0" (141 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(120*"./")a\0'  '(120*"./")a\0'  'bar\0'
+./build/unix-dgram '(120*"./")a\0'  '(120*"./")a\0'  'bar\0'
 bind(server)          <- "(120*"./")a\0" (242 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(120*"./")ab\0' '(120*"./")ab\0' 'bar\0'
+./build/unix-dgram '(120*"./")ab\0' '(120*"./")ab\0' 'bar\0'
 bind(server)          <- "(120*"./")ab\0" (243 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(121*"./")a\0'  '(121*"./")a\0'  'bar\0'
+./build/unix-dgram '(121*"./")a\0'  '(121*"./")a\0'  'bar\0'
 bind(server)          <- "(121*"./")a\0" (244 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(121*"./")ab\0' '(121*"./")ab\0' 'bar\0'
+./build/unix-dgram '(121*"./")ab\0' '(121*"./")ab\0' 'bar\0'
 bind(server)          <- "(121*"./")ab\0" (245 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(122*"./")a\0'  '(122*"./")a\0'  'bar\0'
+./build/unix-dgram '(122*"./")a\0'  '(122*"./")a\0'  'bar\0'
 bind(server)          <- "(122*"./")a\0" (246 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(122*"./")ab\0' '(122*"./")ab\0' 'bar\0'
+./build/unix-dgram '(122*"./")ab\0' '(122*"./")ab\0' 'bar\0'
 bind(server)          <- "(122*"./")ab\0" (247 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(123*"./")a\0'  '(123*"./")a\0'  'bar\0'
+./build/unix-dgram '(123*"./")a\0'  '(123*"./")a\0'  'bar\0'
 bind(server)          <- "(123*"./")a\0" (248 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(123*"./")ab\0' '(123*"./")ab\0' 'bar\0'
+./build/unix-dgram '(123*"./")ab\0' '(123*"./")ab\0' 'bar\0'
 bind(server)          <- "(123*"./")ab\0" (249 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(124*"./")a\0'  '(124*"./")a\0'  'bar\0'
+./build/unix-dgram '(124*"./")a\0'  '(124*"./")a\0'  'bar\0'
 bind(server)          <- "(124*"./")a\0" (250 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(124*"./")ab\0' '(124*"./")ab\0' 'bar\0'
+./build/unix-dgram '(124*"./")ab\0' '(124*"./")ab\0' 'bar\0'
 bind(server)          <- "(124*"./")ab\0" (251 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(125*"./")a\0'  '(125*"./")a\0'  'bar\0'
+./build/unix-dgram '(125*"./")a\0'  '(125*"./")a\0'  'bar\0'
 bind(server)          <- "(125*"./")a\0" (252 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(125*"./")ab\0' '(125*"./")ab\0' 'bar\0'
+./build/unix-dgram '(125*"./")ab\0' '(125*"./")ab\0' 'bar\0'
 bind(server)          <- "(125*"./")ab\0" (253 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(126*"./")a\0'  '(126*"./")a\0'  'bar\0'
+./build/unix-dgram '(126*"./")a\0'  '(126*"./")a\0'  'bar\0'
 bind(server)          <- "(126*"./")a\0" (254 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(126*"./")ab\0' '(126*"./")ab\0' 'bar\0'
+./build/unix-dgram '(126*"./")ab\0' '(126*"./")ab\0' 'bar\0'
 bind(server)          <- "(126*"./")ab\0" (255 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(127*"./")a\0'  '(127*"./")a\0'  'bar\0'
+./build/unix-dgram '(127*"./")a\0'  '(127*"./")a\0'  'bar\0'
 bind(server)          <- "(127*"./")a\0" (256 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(127*"./")ab\0' '(127*"./")ab\0' 'bar\0'
+./build/unix-dgram '(127*"./")ab\0' '(127*"./")ab\0' 'bar\0'
 bind(server)          <- "(127*"./")ab\0" (257 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(128*"./")a\0'  '(128*"./")a\0'  'bar\0'
+./build/unix-dgram '(128*"./")a\0'  '(128*"./")a\0'  'bar\0'
 bind(server)          <- "(128*"./")a\0" (258 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(128*"./")ab\0' '(128*"./")ab\0' 'bar\0'
+./build/unix-dgram '(128*"./")ab\0' '(128*"./")ab\0' 'bar\0'
 bind(server)          <- "(128*"./")ab\0" (259 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(129*"./")a\0'  '(129*"./")a\0'  'bar\0'
+./build/unix-dgram '(129*"./")a\0'  '(129*"./")a\0'  'bar\0'
 bind(server)          <- "(129*"./")a\0" (260 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(129*"./")ab\0' '(129*"./")ab\0' 'bar\0'
+./build/unix-dgram '(129*"./")ab\0' '(129*"./")ab\0' 'bar\0'
 bind(server)          <- "(129*"./")ab\0" (261 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(250*"./")a\0'  '(250*"./")a\0'  'bar\0'
+./build/unix-dgram '(250*"./")a\0'  '(250*"./")a\0'  'bar\0'
 bind(server)          <- "(250*"./")a\0" (502 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(250*"./")ab\0' '(250*"./")ab\0' 'bar\0'
+./build/unix-dgram '(250*"./")ab\0' '(250*"./")ab\0' 'bar\0'
 bind(server)          <- "(250*"./")ab\0" (503 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(251*"./")a\0'  '(251*"./")a\0'  'bar\0'
+./build/unix-dgram '(251*"./")a\0'  '(251*"./")a\0'  'bar\0'
 bind(server)          <- "(251*"./")a\0" (504 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(251*"./")ab\0' '(251*"./")ab\0' 'bar\0'
+./build/unix-dgram '(251*"./")ab\0' '(251*"./")ab\0' 'bar\0'
 bind(server)          <- "(251*"./")ab\0" (505 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(252*"./")a\0'  '(252*"./")a\0'  'bar\0'
+./build/unix-dgram '(252*"./")a\0'  '(252*"./")a\0'  'bar\0'
 bind(server)          <- "(252*"./")a\0" (506 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(252*"./")ab\0' '(252*"./")ab\0' 'bar\0'
+./build/unix-dgram '(252*"./")ab\0' '(252*"./")ab\0' 'bar\0'
 bind(server)          <- "(252*"./")ab\0" (507 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(253*"./")a\0'  '(253*"./")a\0'  'bar\0'
+./build/unix-dgram '(253*"./")a\0'  '(253*"./")a\0'  'bar\0'
 bind(server)          <- "(253*"./")a\0" (508 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(253*"./")ab\0' '(253*"./")ab\0' 'bar\0'
+./build/unix-dgram '(253*"./")ab\0' '(253*"./")ab\0' 'bar\0'
 bind(server)          <- "(253*"./")ab\0" (509 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(254*"./")a\0'  '(254*"./")a\0'  'bar\0'
+./build/unix-dgram '(254*"./")a\0'  '(254*"./")a\0'  'bar\0'
 bind(server)          <- "(254*"./")a\0" (510 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(254*"./")ab\0' '(254*"./")ab\0' 'bar\0'
+./build/unix-dgram '(254*"./")ab\0' '(254*"./")ab\0' 'bar\0'
 bind(server)          <- "(254*"./")ab\0" (511 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(255*"./")a\0'  '(255*"./")a\0'  'bar\0'
+./build/unix-dgram '(255*"./")a\0'  '(255*"./")a\0'  'bar\0'
 bind(server)          <- "(255*"./")a\0" (512 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(255*"./")ab\0' '(255*"./")ab\0' 'bar\0'
+./build/unix-dgram '(255*"./")ab\0' '(255*"./")ab\0' 'bar\0'
 bind(server)          <- "(255*"./")ab\0" (513 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(256*"./")a\0'  '(256*"./")a\0'  'bar\0'
+./build/unix-dgram '(256*"./")a\0'  '(256*"./")a\0'  'bar\0'
 bind(server)          <- "(256*"./")a\0" (514 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(256*"./")ab\0' '(256*"./")ab\0' 'bar\0'
+./build/unix-dgram '(256*"./")ab\0' '(256*"./")ab\0' 'bar\0'
 bind(server)          <- "(256*"./")ab\0" (515 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(257*"./")a\0'  '(257*"./")a\0'  'bar\0'
+./build/unix-dgram '(257*"./")a\0'  '(257*"./")a\0'  'bar\0'
 bind(server)          <- "(257*"./")a\0" (516 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(257*"./")ab\0' '(257*"./")ab\0' 'bar\0'
+./build/unix-dgram '(257*"./")ab\0' '(257*"./")ab\0' 'bar\0'
 bind(server)          <- "(257*"./")ab\0" (517 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(258*"./")a\0'  '(258*"./")a\0'  'bar\0'
+./build/unix-dgram '(258*"./")a\0'  '(258*"./")a\0'  'bar\0'
 bind(server)          <- "(258*"./")a\0" (518 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(258*"./")ab\0' '(258*"./")ab\0' 'bar\0'
+./build/unix-dgram '(258*"./")ab\0' '(258*"./")ab\0' 'bar\0'
 bind(server)          <- "(258*"./")ab\0" (519 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(259*"./")a\0'  '(259*"./")a\0'  'bar\0'
+./build/unix-dgram '(259*"./")a\0'  '(259*"./")a\0'  'bar\0'
 bind(server)          <- "(259*"./")a\0" (520 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(259*"./")ab\0' '(259*"./")ab\0' 'bar\0'
+./build/unix-dgram '(259*"./")ab\0' '(259*"./")ab\0' 'bar\0'
 bind(server)          <- "(259*"./")ab\0" (521 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(510*"./")a\0'  '(510*"./")a\0'  'bar\0'
+./build/unix-dgram '(510*"./")a\0'  '(510*"./")a\0'  'bar\0'
 bind(server)          <- "(510*"./")a\0" (1022 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(510*"./")ab\0' '(510*"./")ab\0' 'bar\0'
+./build/unix-dgram '(510*"./")ab\0' '(510*"./")ab\0' 'bar\0'
 bind(server)          <- "(510*"./")ab\0" (1023 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(511*"./")a\0'  '(511*"./")a\0'  'bar\0'
+./build/unix-dgram '(511*"./")a\0'  '(511*"./")a\0'  'bar\0'
 bind(server)          <- "(511*"./")a\0" (1024 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(511*"./")ab\0' '(511*"./")ab\0' 'bar\0'
+./build/unix-dgram '(511*"./")ab\0' '(511*"./")ab\0' 'bar\0'
 bind(server)          <- "(511*"./")ab\0" (1025 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(512*"./")a\0'  '(512*"./")a\0'  'bar\0'
+./build/unix-dgram '(512*"./")a\0'  '(512*"./")a\0'  'bar\0'
 bind(server)          <- "(512*"./")a\0" (1026 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(512*"./")ab\0' '(512*"./")ab\0' 'bar\0'
+./build/unix-dgram '(512*"./")ab\0' '(512*"./")ab\0' 'bar\0'
 bind(server)          <- "(512*"./")ab\0" (1027 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(513*"./")a\0'  '(513*"./")a\0'  'bar\0'
+./build/unix-dgram '(513*"./")a\0'  '(513*"./")a\0'  'bar\0'
 bind(server)          <- "(513*"./")a\0" (1028 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(513*"./")ab\0' '(513*"./")ab\0' 'bar\0'
+./build/unix-dgram '(513*"./")ab\0' '(513*"./")ab\0' 'bar\0'
 bind(server)          <- "(513*"./")ab\0" (1029 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(514*"./")a\0'  '(514*"./")a\0'  'bar\0'
+./build/unix-dgram '(514*"./")a\0'  '(514*"./")a\0'  'bar\0'
 bind(server)          <- "(514*"./")a\0" (1030 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(514*"./")ab\0' '(514*"./")ab\0' 'bar\0'
+./build/unix-dgram '(514*"./")ab\0' '(514*"./")ab\0' 'bar\0'
 bind(server)          <- "(514*"./")ab\0" (1031 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(515*"./")a\0'  '(515*"./")a\0'  'bar\0'
+./build/unix-dgram '(515*"./")a\0'  '(515*"./")a\0'  'bar\0'
 bind(server)          <- "(515*"./")a\0" (1032 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(515*"./")ab\0' '(515*"./")ab\0' 'bar\0'
+./build/unix-dgram '(515*"./")ab\0' '(515*"./")ab\0' 'bar\0'
 bind(server)          <- "(515*"./")ab\0" (1033 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(516*"./")a\0'  '(516*"./")a\0'  'bar\0'
+./build/unix-dgram '(516*"./")a\0'  '(516*"./")a\0'  'bar\0'
 bind(server)          <- "(516*"./")a\0" (1034 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(516*"./")ab\0' '(516*"./")ab\0' 'bar\0'
+./build/unix-dgram '(516*"./")ab\0' '(516*"./")ab\0' 'bar\0'
 bind(server)          <- "(516*"./")ab\0" (1035 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(517*"./")a\0'  '(517*"./")a\0'  'bar\0'
+./build/unix-dgram '(517*"./")a\0'  '(517*"./")a\0'  'bar\0'
 bind(server)          <- "(517*"./")a\0" (1036 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(517*"./")ab\0' '(517*"./")ab\0' 'bar\0'
+./build/unix-dgram '(517*"./")ab\0' '(517*"./")ab\0' 'bar\0'
 bind(server)          <- "(517*"./")ab\0" (1037 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(518*"./")a\0'  '(518*"./")a\0'  'bar\0'
+./build/unix-dgram '(518*"./")a\0'  '(518*"./")a\0'  'bar\0'
 bind(server)          <- "(518*"./")a\0" (1038 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(518*"./")ab\0' '(518*"./")ab\0' 'bar\0'
+./build/unix-dgram '(518*"./")ab\0' '(518*"./")ab\0' 'bar\0'
 bind(server)          <- "(518*"./")ab\0" (1039 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(519*"./")a\0'  '(519*"./")a\0'  'bar\0'
+./build/unix-dgram '(519*"./")a\0'  '(519*"./")a\0'  'bar\0'
 bind(server)          <- "(519*"./")a\0" (1040 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(519*"./")ab\0' '(519*"./")ab\0' 'bar\0'
+./build/unix-dgram '(519*"./")ab\0' '(519*"./")ab\0' 'bar\0'
 bind(server)          <- "(519*"./")ab\0" (1041 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(90*"c")\0'  '(90*"c")\0'  'bar\0'
+./build/unix-dgram '(90*"c")\0'  '(90*"c")\0'  'bar\0'
 bind(server)          <- "(90*"c")\0" (91 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(90*"c")\0" (91 bytes)
@@ -1623,10 +1623,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(90*"c")\0" (91 bytes)
-recvfrom(server)      -> 127.0.0.1:3360 (16 bytes)
-sendto(server)        <- 127.0.0.1:3360 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3359 (16 bytes)
-./unix-dgram '(91*"c")\0'  '(91*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3827 (16 bytes)
+sendto(server)        <- 127.0.0.1:3827 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3826 (16 bytes)
+./build/unix-dgram '(91*"c")\0'  '(91*"c")\0'  'bar\0'
 bind(server)          <- "(91*"c")\0" (92 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(91*"c")\0" (92 bytes)
@@ -1634,10 +1634,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(91*"c")\0" (92 bytes)
-recvfrom(server)      -> 127.0.0.1:3362 (16 bytes)
-sendto(server)        <- 127.0.0.1:3362 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3361 (16 bytes)
-./unix-dgram '(92*"c")\0'  '(92*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3829 (16 bytes)
+sendto(server)        <- 127.0.0.1:3829 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3828 (16 bytes)
+./build/unix-dgram '(92*"c")\0'  '(92*"c")\0'  'bar\0'
 bind(server)          <- "(92*"c")\0" (93 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(92*"c")\0" (93 bytes)
@@ -1645,10 +1645,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(92*"c")\0" (93 bytes)
-recvfrom(server)      -> 127.0.0.1:3364 (16 bytes)
-sendto(server)        <- 127.0.0.1:3364 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3363 (16 bytes)
-./unix-dgram '(93*"c")\0'  '(93*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3831 (16 bytes)
+sendto(server)        <- 127.0.0.1:3831 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3830 (16 bytes)
+./build/unix-dgram '(93*"c")\0'  '(93*"c")\0'  'bar\0'
 bind(server)          <- "(93*"c")\0" (94 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(93*"c")\0" (94 bytes)
@@ -1656,10 +1656,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(93*"c")\0" (94 bytes)
-recvfrom(server)      -> 127.0.0.1:3366 (16 bytes)
-sendto(server)        <- 127.0.0.1:3366 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3365 (16 bytes)
-./unix-dgram '(94*"c")\0'  '(94*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3833 (16 bytes)
+sendto(server)        <- 127.0.0.1:3833 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3832 (16 bytes)
+./build/unix-dgram '(94*"c")\0'  '(94*"c")\0'  'bar\0'
 bind(server)          <- "(94*"c")\0" (95 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(94*"c")\0" (95 bytes)
@@ -1667,10 +1667,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(94*"c")\0" (95 bytes)
-recvfrom(server)      -> 127.0.0.1:3368 (16 bytes)
-sendto(server)        <- 127.0.0.1:3368 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3367 (16 bytes)
-./unix-dgram '(95*"c")\0'  '(95*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3835 (16 bytes)
+sendto(server)        <- 127.0.0.1:3835 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3834 (16 bytes)
+./build/unix-dgram '(95*"c")\0'  '(95*"c")\0'  'bar\0'
 bind(server)          <- "(95*"c")\0" (96 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(95*"c")\0" (96 bytes)
@@ -1678,10 +1678,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(95*"c")\0" (96 bytes)
-recvfrom(server)      -> 127.0.0.1:3370 (16 bytes)
-sendto(server)        <- 127.0.0.1:3370 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3369 (16 bytes)
-./unix-dgram '(96*"c")\0'  '(96*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3837 (16 bytes)
+sendto(server)        <- 127.0.0.1:3837 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3836 (16 bytes)
+./build/unix-dgram '(96*"c")\0'  '(96*"c")\0'  'bar\0'
 bind(server)          <- "(96*"c")\0" (97 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(96*"c")\0" (97 bytes)
@@ -1689,10 +1689,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(96*"c")\0" (97 bytes)
-recvfrom(server)      -> 127.0.0.1:3372 (16 bytes)
-sendto(server)        <- 127.0.0.1:3372 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3371 (16 bytes)
-./unix-dgram '(97*"c")\0'  '(97*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3839 (16 bytes)
+sendto(server)        <- 127.0.0.1:3839 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3838 (16 bytes)
+./build/unix-dgram '(97*"c")\0'  '(97*"c")\0'  'bar\0'
 bind(server)          <- "(97*"c")\0" (98 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(97*"c")\0" (98 bytes)
@@ -1700,10 +1700,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(97*"c")\0" (98 bytes)
-recvfrom(server)      -> 127.0.0.1:3374 (16 bytes)
-sendto(server)        <- 127.0.0.1:3374 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3373 (16 bytes)
-./unix-dgram '(98*"c")\0'  '(98*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3841 (16 bytes)
+sendto(server)        <- 127.0.0.1:3841 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3840 (16 bytes)
+./build/unix-dgram '(98*"c")\0'  '(98*"c")\0'  'bar\0'
 bind(server)          <- "(98*"c")\0" (99 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(98*"c")\0" (99 bytes)
@@ -1711,10 +1711,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(98*"c")\0" (99 bytes)
-recvfrom(server)      -> 127.0.0.1:3376 (16 bytes)
-sendto(server)        <- 127.0.0.1:3376 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3375 (16 bytes)
-./unix-dgram '(99*"c")\0'  '(99*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3843 (16 bytes)
+sendto(server)        <- 127.0.0.1:3843 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3842 (16 bytes)
+./build/unix-dgram '(99*"c")\0'  '(99*"c")\0'  'bar\0'
 bind(server)          <- "(99*"c")\0" (100 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(99*"c")\0" (100 bytes)
@@ -1722,10 +1722,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(99*"c")\0" (100 bytes)
-recvfrom(server)      -> 127.0.0.1:3378 (16 bytes)
-sendto(server)        <- 127.0.0.1:3378 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3377 (16 bytes)
-./unix-dgram '(100*"c")\0'  '(100*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3845 (16 bytes)
+sendto(server)        <- 127.0.0.1:3845 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3844 (16 bytes)
+./build/unix-dgram '(100*"c")\0'  '(100*"c")\0'  'bar\0'
 bind(server)          <- "(100*"c")\0" (101 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(100*"c")\0" (101 bytes)
@@ -1733,10 +1733,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(100*"c")\0" (101 bytes)
-recvfrom(server)      -> 127.0.0.1:3380 (16 bytes)
-sendto(server)        <- 127.0.0.1:3380 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3379 (16 bytes)
-./unix-dgram '(101*"c")\0'  '(101*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3847 (16 bytes)
+sendto(server)        <- 127.0.0.1:3847 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3846 (16 bytes)
+./build/unix-dgram '(101*"c")\0'  '(101*"c")\0'  'bar\0'
 bind(server)          <- "(101*"c")\0" (102 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(101*"c")\0" (102 bytes)
@@ -1744,10 +1744,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(101*"c")\0" (102 bytes)
-recvfrom(server)      -> 127.0.0.1:3382 (16 bytes)
-sendto(server)        <- 127.0.0.1:3382 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3381 (16 bytes)
-./unix-dgram '(102*"c")\0'  '(102*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3849 (16 bytes)
+sendto(server)        <- 127.0.0.1:3849 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3848 (16 bytes)
+./build/unix-dgram '(102*"c")\0'  '(102*"c")\0'  'bar\0'
 bind(server)          <- "(102*"c")\0" (103 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(102*"c")\0" (103 bytes)
@@ -1755,10 +1755,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(102*"c")\0" (103 bytes)
-recvfrom(server)      -> 127.0.0.1:3384 (16 bytes)
-sendto(server)        <- 127.0.0.1:3384 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3383 (16 bytes)
-./unix-dgram '(103*"c")\0'  '(103*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3851 (16 bytes)
+sendto(server)        <- 127.0.0.1:3851 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3850 (16 bytes)
+./build/unix-dgram '(103*"c")\0'  '(103*"c")\0'  'bar\0'
 bind(server)          <- "(103*"c")\0" (104 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(103*"c")\0" (104 bytes)
@@ -1766,10 +1766,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(103*"c")\0" (104 bytes)
-recvfrom(server)      -> 127.0.0.1:3386 (16 bytes)
-sendto(server)        <- 127.0.0.1:3386 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3385 (16 bytes)
-./unix-dgram '(104*"c")\0'  '(104*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3853 (16 bytes)
+sendto(server)        <- 127.0.0.1:3853 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3852 (16 bytes)
+./build/unix-dgram '(104*"c")\0'  '(104*"c")\0'  'bar\0'
 bind(server)          <- "(104*"c")\0" (105 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(104*"c")\0" (105 bytes)
@@ -1777,10 +1777,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(104*"c")\0" (105 bytes)
-recvfrom(server)      -> 127.0.0.1:3388 (16 bytes)
-sendto(server)        <- 127.0.0.1:3388 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3387 (16 bytes)
-./unix-dgram '(105*"c")\0'  '(105*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3855 (16 bytes)
+sendto(server)        <- 127.0.0.1:3855 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3854 (16 bytes)
+./build/unix-dgram '(105*"c")\0'  '(105*"c")\0'  'bar\0'
 bind(server)          <- "(105*"c")\0" (106 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(105*"c")\0" (106 bytes)
@@ -1788,10 +1788,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(105*"c")\0" (106 bytes)
-recvfrom(server)      -> 127.0.0.1:3390 (16 bytes)
-sendto(server)        <- 127.0.0.1:3390 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3389 (16 bytes)
-./unix-dgram '(106*"c")\0'  '(106*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3857 (16 bytes)
+sendto(server)        <- 127.0.0.1:3857 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3856 (16 bytes)
+./build/unix-dgram '(106*"c")\0'  '(106*"c")\0'  'bar\0'
 bind(server)          <- "(106*"c")\0" (107 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(106*"c")\0" (107 bytes)
@@ -1799,10 +1799,10 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(106*"c")\0" (107 bytes)
-recvfrom(server)      -> 127.0.0.1:3392 (16 bytes)
-sendto(server)        <- 127.0.0.1:3392 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3391 (16 bytes)
-./unix-dgram '(107*"c")\0'  '(107*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3859 (16 bytes)
+sendto(server)        <- 127.0.0.1:3859 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3858 (16 bytes)
+./build/unix-dgram '(107*"c")\0'  '(107*"c")\0'  'bar\0'
 bind(server)          <- "(107*"c")\0" (108 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(107*"c")\0" (108 bytes)
@@ -1810,106 +1810,106 @@ bind(client)          <- "bar\0" (4 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendto(client)        <- "(107*"c")\0" (108 bytes)
-recvfrom(server)      -> 127.0.0.1:3394 (16 bytes)
-sendto(server)        <- 127.0.0.1:3394 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3393 (16 bytes)
-./unix-dgram '(108*"c")\0'  '(108*"c")\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3861 (16 bytes)
+sendto(server)        <- 127.0.0.1:3861 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3860 (16 bytes)
+./build/unix-dgram '(108*"c")\0'  '(108*"c")\0'  'bar\0'
 bind(server)          <- "(108*"c")\0" (109 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(109*"c")\0'  '(109*"c")\0'  'bar\0'
+./build/unix-dgram '(109*"c")\0'  '(109*"c")\0'  'bar\0'
 bind(server)          <- "(109*"c")\0" (110 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(110*"c")\0'  '(110*"c")\0'  'bar\0'
+./build/unix-dgram '(110*"c")\0'  '(110*"c")\0'  'bar\0'
 bind(server)          <- "(110*"c")\0" (111 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(111*"c")\0'  '(111*"c")\0'  'bar\0'
+./build/unix-dgram '(111*"c")\0'  '(111*"c")\0'  'bar\0'
 bind(server)          <- "(111*"c")\0" (112 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(112*"c")\0'  '(112*"c")\0'  'bar\0'
+./build/unix-dgram '(112*"c")\0'  '(112*"c")\0'  'bar\0'
 bind(server)          <- "(112*"c")\0" (113 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(113*"c")\0'  '(113*"c")\0'  'bar\0'
+./build/unix-dgram '(113*"c")\0'  '(113*"c")\0'  'bar\0'
 bind(server)          <- "(113*"c")\0" (114 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(114*"c")\0'  '(114*"c")\0'  'bar\0'
+./build/unix-dgram '(114*"c")\0'  '(114*"c")\0'  'bar\0'
 bind(server)          <- "(114*"c")\0" (115 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(115*"c")\0'  '(115*"c")\0'  'bar\0'
+./build/unix-dgram '(115*"c")\0'  '(115*"c")\0'  'bar\0'
 bind(server)          <- "(115*"c")\0" (116 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(116*"c")\0'  '(116*"c")\0'  'bar\0'
+./build/unix-dgram '(116*"c")\0'  '(116*"c")\0'  'bar\0'
 bind(server)          <- "(116*"c")\0" (117 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(117*"c")\0'  '(117*"c")\0'  'bar\0'
+./build/unix-dgram '(117*"c")\0'  '(117*"c")\0'  'bar\0'
 bind(server)          <- "(117*"c")\0" (118 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(118*"c")\0'  '(118*"c")\0'  'bar\0'
+./build/unix-dgram '(118*"c")\0'  '(118*"c")\0'  'bar\0'
 bind(server)          <- "(118*"c")\0" (119 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(119*"c")\0'  '(119*"c")\0'  'bar\0'
+./build/unix-dgram '(119*"c")\0'  '(119*"c")\0'  'bar\0'
 bind(server)          <- "(119*"c")\0" (120 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(120*"c")\0'  '(120*"c")\0'  'bar\0'
+./build/unix-dgram '(120*"c")\0'  '(120*"c")\0'  'bar\0'
 bind(server)          <- "(120*"c")\0" (121 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(121*"c")\0'  '(121*"c")\0'  'bar\0'
+./build/unix-dgram '(121*"c")\0'  '(121*"c")\0'  'bar\0'
 bind(server)          <- "(121*"c")\0" (122 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(122*"c")\0'  '(122*"c")\0'  'bar\0'
+./build/unix-dgram '(122*"c")\0'  '(122*"c")\0'  'bar\0'
 bind(server)          <- "(122*"c")\0" (123 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(123*"c")\0'  '(123*"c")\0'  'bar\0'
+./build/unix-dgram '(123*"c")\0'  '(123*"c")\0'  'bar\0'
 bind(server)          <- "(123*"c")\0" (124 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(124*"c")\0'  '(124*"c")\0'  'bar\0'
+./build/unix-dgram '(124*"c")\0'  '(124*"c")\0'  'bar\0'
 bind(server)          <- "(124*"c")\0" (125 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(125*"c")\0'  '(125*"c")\0'  'bar\0'
+./build/unix-dgram '(125*"c")\0'  '(125*"c")\0'  'bar\0'
 bind(server)          <- "(125*"c")\0" (126 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(126*"c")\0'  '(126*"c")\0'  'bar\0'
+./build/unix-dgram '(126*"c")\0'  '(126*"c")\0'  'bar\0'
 bind(server)          <- "(126*"c")\0" (127 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(127*"c")\0'  '(127*"c")\0'  'bar\0'
+./build/unix-dgram '(127*"c")\0'  '(127*"c")\0'  'bar\0'
 bind(server)          <- "(127*"c")\0" (128 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(128*"c")\0'  '(128*"c")\0'  'bar\0'
+./build/unix-dgram '(128*"c")\0'  '(128*"c")\0'  'bar\0'
 bind(server)          <- "(128*"c")\0" (129 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(129*"c")\0'  '(129*"c")\0'  'bar\0'
+./build/unix-dgram '(129*"c")\0'  '(129*"c")\0'  'bar\0'
 bind(server)          <- "(129*"c")\0" (130 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(250*"c")\0'  '(250*"c")\0'  'bar\0'
+./build/unix-dgram '(250*"c")\0'  '(250*"c")\0'  'bar\0'
 bind(server)          <- "(250*"c")\0" (251 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(251*"c")\0'  '(251*"c")\0'  'bar\0'
+./build/unix-dgram '(251*"c")\0'  '(251*"c")\0'  'bar\0'
 bind(server)          <- "(251*"c")\0" (252 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(252*"c")\0'  '(252*"c")\0'  'bar\0'
+./build/unix-dgram '(252*"c")\0'  '(252*"c")\0'  'bar\0'
 bind(server)          <- "(252*"c")\0" (253 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(253*"c")\0'  '(253*"c")\0'  'bar\0'
+./build/unix-dgram '(253*"c")\0'  '(253*"c")\0'  'bar\0'
 bind(server)          <- "(253*"c")\0" (254 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(254*"c")\0'  '(254*"c")\0'  'bar\0'
+./build/unix-dgram '(254*"c")\0'  '(254*"c")\0'  'bar\0'
 bind(server)          <- "(254*"c")\0" (255 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(255*"c")\0'  '(255*"c")\0'  'bar\0'
+./build/unix-dgram '(255*"c")\0'  '(255*"c")\0'  'bar\0'
 bind(server)          <- "(255*"c")\0" (256 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(256*"c")\0'  '(256*"c")\0'  'bar\0'
+./build/unix-dgram '(256*"c")\0'  '(256*"c")\0'  'bar\0'
 bind(server)          <- "(256*"c")\0" (257 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(257*"c")\0'  '(257*"c")\0'  'bar\0'
+./build/unix-dgram '(257*"c")\0'  '(257*"c")\0'  'bar\0'
 bind(server)          <- "(257*"c")\0" (258 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(258*"c")\0'  '(258*"c")\0'  'bar\0'
+./build/unix-dgram '(258*"c")\0'  '(258*"c")\0'  'bar\0'
 bind(server)          <- "(258*"c")\0" (259 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram '(259*"c")\0'  '(259*"c")\0'  'bar\0'
+./build/unix-dgram '(259*"c")\0'  '(259*"c")\0'  'bar\0'
 bind(server)          <- "(259*"c")\0" (260 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -p '01234567\0'    '01234567\0'    'bar\0'
+./build/unix-dgram -p '01234567\0'    '01234567\0'    'bar\0'
 bind(server)          <- "(49*"./")01234567\0" (107 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")01234567\0" (107 bytes)
@@ -1917,10 +1917,10 @@ bind(client)          <- "(49*"./")bar\0" (102 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "(49*"./")bar\0" (102 bytes)
 sendto(client)        <- "(49*"./")01234567\0" (107 bytes)
-recvfrom(server)      -> 127.0.0.1:3396 (16 bytes)
-sendto(server)        <- 127.0.0.1:3396 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3395 (16 bytes)
-./unix-dgram -p '012345678\0'   '012345678\0'   'bar\0'
+recvfrom(server)      -> 127.0.0.1:3863 (16 bytes)
+sendto(server)        <- 127.0.0.1:3863 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3862 (16 bytes)
+./build/unix-dgram -p '012345678\0'   '012345678\0'   'bar\0'
 bind(server)          <- "(49*"./")012345678\0" (108 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")012345678\0" (108 bytes)
@@ -1928,298 +1928,298 @@ bind(client)          <- "(49*"./")bar\0" (102 bytes)
 socket file (client)  : exist
 getsockname(client)   -> "(49*"./")bar\0" (102 bytes)
 sendto(client)        <- "(49*"./")012345678\0" (108 bytes)
-recvfrom(server)      -> 127.0.0.1:3398 (16 bytes)
-sendto(server)        <- 127.0.0.1:3398 (16 bytes)
-recvfrom(client)      -> 127.0.0.1:3397 (16 bytes)
-./unix-dgram -p '0123456789\0'  '0123456789\0'  'bar\0'
+recvfrom(server)      -> 127.0.0.1:3865 (16 bytes)
+sendto(server)        <- 127.0.0.1:3865 (16 bytes)
+recvfrom(client)      -> 127.0.0.1:3864 (16 bytes)
+./build/unix-dgram -p '0123456789\0'  '0123456789\0'  'bar\0'
 bind(server)          <- "(49*"./")0123456789\0" (109 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -p '01234567890\0' '01234567890\0' 'bar\0'
+./build/unix-dgram -p '01234567890\0' '01234567890\0' 'bar\0'
 bind(server)          <- "(49*"./")01234567890\0" (110 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g2048 -p '01234567890\0' '01234567890\0' 'bar\0'
+./build/unix-dgram -g2048 -p '01234567890\0' '01234567890\0' 'bar\0'
 bind(server)          <- "(49*"./")01234567890\0" (110 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
+./build/unix-dgram -g2048 -p 'foo\0' 'foo\0' '01234567890\0'
 bind(server)          <- "(49*"./")foo\0" (102 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "(49*"./")foo\0" (102 bytes)
 bind(client)          <- "(49*"./")01234567890\0" (110 bytes)
 bind(client): ENAMETOOLONG
-./unix-dgram -g255 '(115*"./")a\0' '(115*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(115*"./")a\0' '(115*"./")a\0' 'bar\0'
 bind(server)          <- "(115*"./")a\0" (232 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(115*"./")ab\0' '(115*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(115*"./")ab\0' '(115*"./")ab\0' 'bar\0'
 bind(server)          <- "(115*"./")ab\0" (233 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(116*"./")a\0' '(116*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(116*"./")a\0' '(116*"./")a\0' 'bar\0'
 bind(server)          <- "(116*"./")a\0" (234 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(116*"./")ab\0' '(116*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(116*"./")ab\0' '(116*"./")ab\0' 'bar\0'
 bind(server)          <- "(116*"./")ab\0" (235 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(117*"./")a\0' '(117*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(117*"./")a\0' '(117*"./")a\0' 'bar\0'
 bind(server)          <- "(117*"./")a\0" (236 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(117*"./")ab\0' '(117*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(117*"./")ab\0' '(117*"./")ab\0' 'bar\0'
 bind(server)          <- "(117*"./")ab\0" (237 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(118*"./")a\0' '(118*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(118*"./")a\0' '(118*"./")a\0' 'bar\0'
 bind(server)          <- "(118*"./")a\0" (238 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(118*"./")ab\0' '(118*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(118*"./")ab\0' '(118*"./")ab\0' 'bar\0'
 bind(server)          <- "(118*"./")ab\0" (239 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(119*"./")a\0' '(119*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(119*"./")a\0' '(119*"./")a\0' 'bar\0'
 bind(server)          <- "(119*"./")a\0" (240 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(119*"./")ab\0' '(119*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(119*"./")ab\0' '(119*"./")ab\0' 'bar\0'
 bind(server)          <- "(119*"./")ab\0" (241 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(120*"./")a\0' '(120*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(120*"./")a\0' '(120*"./")a\0' 'bar\0'
 bind(server)          <- "(120*"./")a\0" (242 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(120*"./")ab\0' '(120*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(120*"./")ab\0' '(120*"./")ab\0' 'bar\0'
 bind(server)          <- "(120*"./")ab\0" (243 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(121*"./")a\0' '(121*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(121*"./")a\0' '(121*"./")a\0' 'bar\0'
 bind(server)          <- "(121*"./")a\0" (244 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(121*"./")ab\0' '(121*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(121*"./")ab\0' '(121*"./")ab\0' 'bar\0'
 bind(server)          <- "(121*"./")ab\0" (245 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(122*"./")a\0' '(122*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(122*"./")a\0' '(122*"./")a\0' 'bar\0'
 bind(server)          <- "(122*"./")a\0" (246 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(122*"./")ab\0' '(122*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(122*"./")ab\0' '(122*"./")ab\0' 'bar\0'
 bind(server)          <- "(122*"./")ab\0" (247 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(123*"./")a\0' '(123*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(123*"./")a\0' '(123*"./")a\0' 'bar\0'
 bind(server)          <- "(123*"./")a\0" (248 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(123*"./")ab\0' '(123*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(123*"./")ab\0' '(123*"./")ab\0' 'bar\0'
 bind(server)          <- "(123*"./")ab\0" (249 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(124*"./")a\0' '(124*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(124*"./")a\0' '(124*"./")a\0' 'bar\0'
 bind(server)          <- "(124*"./")a\0" (250 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(124*"./")ab\0' '(124*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(124*"./")ab\0' '(124*"./")ab\0' 'bar\0'
 bind(server)          <- "(124*"./")ab\0" (251 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(125*"./")a\0' '(125*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(125*"./")a\0' '(125*"./")a\0' 'bar\0'
 bind(server)          <- "(125*"./")a\0" (252 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(125*"./")ab\0' '(125*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(125*"./")ab\0' '(125*"./")ab\0' 'bar\0'
 bind(server)          <- "(125*"./")ab\0" (253 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(126*"./")a\0' '(126*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(126*"./")a\0' '(126*"./")a\0' 'bar\0'
 bind(server)          <- "(126*"./")a\0" (254 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(126*"./")ab\0' '(126*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(126*"./")ab\0' '(126*"./")ab\0' 'bar\0'
 bind(server)          <- "(126*"./")ab\0" (255 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(127*"./")a\0' '(127*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(127*"./")a\0' '(127*"./")a\0' 'bar\0'
 bind(server)          <- "(127*"./")a\0" (256 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(127*"./")ab\0' '(127*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(127*"./")ab\0' '(127*"./")ab\0' 'bar\0'
 bind(server)          <- "(127*"./")ab\0" (257 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(128*"./")a\0' '(128*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(128*"./")a\0' '(128*"./")a\0' 'bar\0'
 bind(server)          <- "(128*"./")a\0" (258 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(128*"./")ab\0' '(128*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(128*"./")ab\0' '(128*"./")ab\0' 'bar\0'
 bind(server)          <- "(128*"./")ab\0" (259 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(129*"./")a\0' '(129*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(129*"./")a\0' '(129*"./")a\0' 'bar\0'
 bind(server)          <- "(129*"./")a\0" (260 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(129*"./")ab\0' '(129*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(129*"./")ab\0' '(129*"./")ab\0' 'bar\0'
 bind(server)          <- "(129*"./")ab\0" (261 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(250*"./")a\0' '(250*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(250*"./")a\0' '(250*"./")a\0' 'bar\0'
 bind(server)          <- "(250*"./")a\0" (502 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(250*"./")ab\0' '(250*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(250*"./")ab\0' '(250*"./")ab\0' 'bar\0'
 bind(server)          <- "(250*"./")ab\0" (503 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(251*"./")a\0' '(251*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(251*"./")a\0' '(251*"./")a\0' 'bar\0'
 bind(server)          <- "(251*"./")a\0" (504 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(251*"./")ab\0' '(251*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(251*"./")ab\0' '(251*"./")ab\0' 'bar\0'
 bind(server)          <- "(251*"./")ab\0" (505 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(252*"./")a\0' '(252*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(252*"./")a\0' '(252*"./")a\0' 'bar\0'
 bind(server)          <- "(252*"./")a\0" (506 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(252*"./")ab\0' '(252*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(252*"./")ab\0' '(252*"./")ab\0' 'bar\0'
 bind(server)          <- "(252*"./")ab\0" (507 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(253*"./")a\0' '(253*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(253*"./")a\0' '(253*"./")a\0' 'bar\0'
 bind(server)          <- "(253*"./")a\0" (508 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(253*"./")ab\0' '(253*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(253*"./")ab\0' '(253*"./")ab\0' 'bar\0'
 bind(server)          <- "(253*"./")ab\0" (509 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(254*"./")a\0' '(254*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(254*"./")a\0' '(254*"./")a\0' 'bar\0'
 bind(server)          <- "(254*"./")a\0" (510 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(254*"./")ab\0' '(254*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(254*"./")ab\0' '(254*"./")ab\0' 'bar\0'
 bind(server)          <- "(254*"./")ab\0" (511 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(255*"./")a\0' '(255*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(255*"./")a\0' '(255*"./")a\0' 'bar\0'
 bind(server)          <- "(255*"./")a\0" (512 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(255*"./")ab\0' '(255*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(255*"./")ab\0' '(255*"./")ab\0' 'bar\0'
 bind(server)          <- "(255*"./")ab\0" (513 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(256*"./")a\0' '(256*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(256*"./")a\0' '(256*"./")a\0' 'bar\0'
 bind(server)          <- "(256*"./")a\0" (514 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(256*"./")ab\0' '(256*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(256*"./")ab\0' '(256*"./")ab\0' 'bar\0'
 bind(server)          <- "(256*"./")ab\0" (515 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(257*"./")a\0' '(257*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(257*"./")a\0' '(257*"./")a\0' 'bar\0'
 bind(server)          <- "(257*"./")a\0" (516 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(257*"./")ab\0' '(257*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(257*"./")ab\0' '(257*"./")ab\0' 'bar\0'
 bind(server)          <- "(257*"./")ab\0" (517 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(258*"./")a\0' '(258*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(258*"./")a\0' '(258*"./")a\0' 'bar\0'
 bind(server)          <- "(258*"./")a\0" (518 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(258*"./")ab\0' '(258*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(258*"./")ab\0' '(258*"./")ab\0' 'bar\0'
 bind(server)          <- "(258*"./")ab\0" (519 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(259*"./")a\0' '(259*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(259*"./")a\0' '(259*"./")a\0' 'bar\0'
 bind(server)          <- "(259*"./")a\0" (520 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(259*"./")ab\0' '(259*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(259*"./")ab\0' '(259*"./")ab\0' 'bar\0'
 bind(server)          <- "(259*"./")ab\0" (521 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(510*"./")a\0' '(510*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(510*"./")a\0' '(510*"./")a\0' 'bar\0'
 bind(server)          <- "(510*"./")a\0" (1022 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(510*"./")ab\0' '(510*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(510*"./")ab\0' '(510*"./")ab\0' 'bar\0'
 bind(server)          <- "(510*"./")ab\0" (1023 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(511*"./")a\0' '(511*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(511*"./")a\0' '(511*"./")a\0' 'bar\0'
 bind(server)          <- "(511*"./")a\0" (1024 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(511*"./")ab\0' '(511*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(511*"./")ab\0' '(511*"./")ab\0' 'bar\0'
 bind(server)          <- "(511*"./")ab\0" (1025 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(512*"./")a\0' '(512*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(512*"./")a\0' '(512*"./")a\0' 'bar\0'
 bind(server)          <- "(512*"./")a\0" (1026 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(512*"./")ab\0' '(512*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(512*"./")ab\0' '(512*"./")ab\0' 'bar\0'
 bind(server)          <- "(512*"./")ab\0" (1027 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(513*"./")a\0' '(513*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(513*"./")a\0' '(513*"./")a\0' 'bar\0'
 bind(server)          <- "(513*"./")a\0" (1028 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(513*"./")ab\0' '(513*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(513*"./")ab\0' '(513*"./")ab\0' 'bar\0'
 bind(server)          <- "(513*"./")ab\0" (1029 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(514*"./")a\0' '(514*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(514*"./")a\0' '(514*"./")a\0' 'bar\0'
 bind(server)          <- "(514*"./")a\0" (1030 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(514*"./")ab\0' '(514*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(514*"./")ab\0' '(514*"./")ab\0' 'bar\0'
 bind(server)          <- "(514*"./")ab\0" (1031 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(515*"./")a\0' '(515*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(515*"./")a\0' '(515*"./")a\0' 'bar\0'
 bind(server)          <- "(515*"./")a\0" (1032 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(515*"./")ab\0' '(515*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(515*"./")ab\0' '(515*"./")ab\0' 'bar\0'
 bind(server)          <- "(515*"./")ab\0" (1033 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(516*"./")a\0' '(516*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(516*"./")a\0' '(516*"./")a\0' 'bar\0'
 bind(server)          <- "(516*"./")a\0" (1034 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(516*"./")ab\0' '(516*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(516*"./")ab\0' '(516*"./")ab\0' 'bar\0'
 bind(server)          <- "(516*"./")ab\0" (1035 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(517*"./")a\0' '(517*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(517*"./")a\0' '(517*"./")a\0' 'bar\0'
 bind(server)          <- "(517*"./")a\0" (1036 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(517*"./")ab\0' '(517*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(517*"./")ab\0' '(517*"./")ab\0' 'bar\0'
 bind(server)          <- "(517*"./")ab\0" (1037 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(518*"./")a\0' '(518*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(518*"./")a\0' '(518*"./")a\0' 'bar\0'
 bind(server)          <- "(518*"./")a\0" (1038 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(518*"./")ab\0' '(518*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(518*"./")ab\0' '(518*"./")ab\0' 'bar\0'
 bind(server)          <- "(518*"./")ab\0" (1039 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(519*"./")a\0' '(519*"./")a\0' 'bar\0'
+./build/unix-dgram -g255 '(519*"./")a\0' '(519*"./")a\0' 'bar\0'
 bind(server)          <- "(519*"./")a\0" (1040 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram -g255 '(519*"./")ab\0' '(519*"./")ab\0' 'bar\0'
+./build/unix-dgram -g255 '(519*"./")ab\0' '(519*"./")ab\0' 'bar\0'
 bind(server)          <- "(519*"./")ab\0" (1041 bytes)
 bind(server): ENAMETOOLONG
-./unix-dgram 'foo\0' 'foo\0' '(125*"./")ab\0'
+./build/unix-dgram 'foo\0' 'foo\0' '(125*"./")ab\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(125*"./")ab\0" (253 bytes)
 bind(client): ENAMETOOLONG
-./unix-dgram 'foo\0' 'foo\0' '(126*"./")a\0'
+./build/unix-dgram 'foo\0' 'foo\0' '(126*"./")a\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(126*"./")a\0" (254 bytes)
 bind(client): ENAMETOOLONG
-./unix-dgram 'foo\0' 'foo\0' '(511*"./")a\0'
+./build/unix-dgram 'foo\0' 'foo\0' '(511*"./")a\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(511*"./")a\0" (1024 bytes)
 bind(client): ENAMETOOLONG
-./unix-dgram 'foo\0' 'foo\0' '(511*"./")ab\0'
+./build/unix-dgram 'foo\0' 'foo\0' '(511*"./")ab\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(511*"./")ab\0" (1025 bytes)
 bind(client): ENAMETOOLONG
-./unix-dgram -g255 'foo\0' 'foo\0' '(125*"./")ab\0'
+./build/unix-dgram -g255 'foo\0' 'foo\0' '(125*"./")ab\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(125*"./")ab\0" (253 bytes)
 bind(client): ENAMETOOLONG
-./unix-dgram -g1026 'foo\0' 'foo\0' '(511*"./")a\0'
+./build/unix-dgram -g1026 'foo\0' 'foo\0' '(511*"./")a\0'
 bind(server)          <- "foo\0" (4 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "foo\0" (4 bytes)
 bind(client)          <- "(511*"./")a\0" (1024 bytes)
 bind(client): ENAMETOOLONG
-./unix-dgram -s '\0'
+./build/unix-dgram -s '\0'
 bind(server)          <- "\0" (1 bytes)
 bind(server): ENOENT
-./unix-dgram -s '.\0'
+./build/unix-dgram -s '.\0'
 bind(server)          <- ".\0" (2 bytes)
 bind(server): EADDRINUSE
-./unix-dgram -s '/\0'
+./build/unix-dgram -s '/\0'
 bind(server)          <- "/\0" (2 bytes)
 bind(server): EADDRINUSE
-./unix-dgram -s '/foo\0'
+./build/unix-dgram -s '/foo\0'
 bind(server)          <- "/foo\0" (5 bytes)
 socket file (server)  : exist
 getsockname(server)   -> "/foo\0" (5 bytes)
-./unix-dgram -s '/foo/bar\0'
+./build/unix-dgram -s '/foo/bar\0'
 bind(server)          <- "/foo/bar\0" (9 bytes)
 bind(server): ENOENT
-./unix-dgram -s '/etc\0'
+./build/unix-dgram -s '/etc\0'
 bind(server)          <- "/etc\0" (5 bytes)
 bind(server): EADDRINUSE
-./unix-dgram -T -s 'README\0'
+./build/unix-dgram -T -s 'README\0'
 bind(server)          <- "README\0" (7 bytes)
 bind(server): EADDRINUSE
 
-./unix-dgram -s 'foobar' 'foobar' 'baz'
+./build/unix-dgram -s 'foobar' 'foobar' 'baz'
 bind(server)          <- "foobar" (6 bytes)
 bind(server): ENAMETOOLONG
 
-./size
+./build/size
 sockaddr.size =                            16
 sockaddr.sa_family.size =                  2
 sockaddr.sa_data.size =                    14
@@ -2320,7 +2320,7 @@ char*.size =                               4
 char*.align =                              4
 int*.size =                                4
 int*.align =                               4
-./const
+./build/const
 AF_UNSPEC = 0
 PF_UNSPEC = 0
 AF_UNIX = 1
@@ -2389,7 +2389,7 @@ FLT_MIN = 1.17549e-38 (4 bytes)
 DBL_MIN = 2.2250738585072e-308 (8 bytes)
 LDBL_MIN = 3.36210314311209351e-4932 (12 bytes)
 sys_nerr = 144
-./errmsg
+./build/errmsg
 E2BIG = Argument list too long
 EACCES = Permission denied
 EADDRINUSE = Address already in use
@@ -2518,7 +2518,7 @@ EWOULDBLOCK = Resource temporarily unavailable
 EXDEV = Invalid cross-device link
 EXFULL = Exchange full
 0 = No error
-./errnum
+./build/errnum
 E2BIG = 7
 EACCES = 13
 EADDRINUSE = 112
@@ -2646,5 +2646,5 @@ EUSERS = 131
 EWOULDBLOCK = 11
 EXDEV = 18
 EXFULL = 52
-./errdup
+./build/errdup
 11 : EAGAIN EWOULDBLOCK
