@@ -41,6 +41,10 @@ maintainer-clean: clean
 clean:
 	rm -f build/*.o $(TARGETS)
 
+clean-old:
+	rm -rf obj
+	rm -f compile.sh config.h includes.h link.sh
+
 configure: configure.ac
 	./update-files configure -- configure.ac -- autoconf
 
