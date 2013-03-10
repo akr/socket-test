@@ -4087,9 +4087,9 @@ fi
 
 
 
-ac_config_files="$ac_config_files compile.sh"
+ac_config_files="$ac_config_files build/compile.sh:src/compile.sh.in"
 
-ac_config_files="$ac_config_files link.sh"
+ac_config_files="$ac_config_files build/link.sh:src/link.sh.in"
 
 ac_config_files="$ac_config_files build/includes.h:src/includes.h.in"
 
@@ -4783,8 +4783,8 @@ for ac_config_target in $ac_config_targets
 do
   case $ac_config_target in
     "build/config.h") CONFIG_HEADERS="$CONFIG_HEADERS build/config.h" ;;
-    "compile.sh") CONFIG_FILES="$CONFIG_FILES compile.sh" ;;
-    "link.sh") CONFIG_FILES="$CONFIG_FILES link.sh" ;;
+    "build/compile.sh") CONFIG_FILES="$CONFIG_FILES build/compile.sh:src/compile.sh.in" ;;
+    "build/link.sh") CONFIG_FILES="$CONFIG_FILES build/link.sh:src/link.sh.in" ;;
     "build/includes.h") CONFIG_FILES="$CONFIG_FILES build/includes.h:src/includes.h.in" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
@@ -5333,8 +5333,8 @@ $as_echo "$as_me: $ac_file is unchanged" >&6;}
 
 
   case $ac_file$ac_mode in
-    "compile.sh":F) chmod +x compile.sh ;;
-    "link.sh":F) chmod +x link.sh ;;
+    "build/compile.sh":F) chmod +x compile.sh ;;
+    "build/link.sh":F) chmod +x link.sh ;;
 
   esac
 done # for ac_tag

@@ -36,7 +36,7 @@ maintainer-clean: clean
 	rm -f build/genutil.c build/const.c build/size.c
 	rm -rf autom4te.cache
 	rm -f config.status config.log
-	rm -f build/config.h compile.sh link.sh
+	rm -f build/config.h build/compile.sh build/link.sh
 
 clean:
 	rm -f build/*.o $(TARGETS)
@@ -54,7 +54,7 @@ config.status: configure
 	  ./configure --no-create; \
 	fi
 
-build/config.h build/includes.h compile.sh link.sh: config.status build/config.h.in src/includes.h.in compile.sh.in link.sh.in
+build/config.h build/includes.h build/compile.sh build/link.sh: config.status build/config.h.in src/includes.h.in src/compile.sh.in src/link.sh.in
 	./config.status && \
 	  touch build/config.h
 
@@ -68,59 +68,59 @@ build/size.c: src/size.erb
 build/const.c: src/const.erb
 	./update-files build/const.c -- src/const.erb -- sh -c 'erb src/const.erb > build/const.c'
 
-build/util.o: src/util.c src/sockettest.h build/config.h build/includes.h compile.sh
-	sh ./compile.sh src/util.c -o $@
+build/util.o: src/util.c src/sockettest.h build/config.h build/includes.h build/compile.sh
+	sh build/compile.sh src/util.c -o $@
 
-build/genutil.o: build/genutil.c src/sockettest.h build/config.h build/includes.h compile.sh
-	sh ./compile.sh $< -o $@
+build/genutil.o: build/genutil.c src/sockettest.h build/config.h build/includes.h build/compile.sh
+	sh build/compile.sh $< -o $@
 
-build/size.o: build/size.c src/sockettest.h build/config.h build/includes.h compile.sh
-	sh ./compile.sh $< -o $@
+build/size.o: build/size.c src/sockettest.h build/config.h build/includes.h build/compile.sh
+	sh build/compile.sh $< -o $@
 
-build/const.o: build/const.c src/sockettest.h build/config.h build/includes.h compile.sh
-	sh ./compile.sh $< -o $@
+build/const.o: build/const.c src/sockettest.h build/config.h build/includes.h build/compile.sh
+	sh build/compile.sh $< -o $@
 
-build/errmsg.o: src/errmsg.c src/sockettest.h build/config.h build/includes.h compile.sh
-	sh ./compile.sh src/errmsg.c -o $@
+build/errmsg.o: src/errmsg.c src/sockettest.h build/config.h build/includes.h build/compile.sh
+	sh build/compile.sh src/errmsg.c -o $@
 
-build/errnum.o: src/errnum.c src/sockettest.h build/config.h build/includes.h compile.sh
-	sh ./compile.sh src/errnum.c -o $@
+build/errnum.o: src/errnum.c src/sockettest.h build/config.h build/includes.h build/compile.sh
+	sh build/compile.sh src/errnum.c -o $@
 
-build/errdup.o: src/errdup.c src/sockettest.h build/config.h build/includes.h compile.sh
-	sh ./compile.sh src/errdup.c -o $@
+build/errdup.o: src/errdup.c src/sockettest.h build/config.h build/includes.h build/compile.sh
+	sh build/compile.sh src/errdup.c -o $@
 
-build/errtest.o: src/errtest.c src/sockettest.h build/config.h build/includes.h compile.sh
-	sh ./compile.sh src/errtest.c -o $@
+build/errtest.o: src/errtest.c src/sockettest.h build/config.h build/includes.h build/compile.sh
+	sh build/compile.sh src/errtest.c -o $@
 
-build/unix-stream.o: src/unix-stream.c src/sockettest.h build/config.h build/includes.h compile.sh
-	sh ./compile.sh src/unix-stream.c -o $@
+build/unix-stream.o: src/unix-stream.c src/sockettest.h build/config.h build/includes.h build/compile.sh
+	sh build/compile.sh src/unix-stream.c -o $@
 
-build/unix-dgram.o: src/unix-dgram.c src/sockettest.h build/config.h build/includes.h compile.sh
-	sh ./compile.sh src/unix-dgram.c -o $@
+build/unix-dgram.o: src/unix-dgram.c src/sockettest.h build/config.h build/includes.h build/compile.sh
+	sh build/compile.sh src/unix-dgram.c -o $@
 
-build/size: build/size.o link.sh
-	sh ./link.sh build/size.o -o $@
+build/size: build/size.o build/link.sh
+	sh build/link.sh build/size.o -o $@
 
-build/const: build/const.o link.sh
-	sh ./link.sh build/const.o -o $@
+build/const: build/const.o build/link.sh
+	sh build/link.sh build/const.o -o $@
 
-build/errmsg: build/errmsg.o $(UTILOBJS) link.sh
-	sh ./link.sh build/errmsg.o $(UTILOBJS) -o $@
+build/errmsg: build/errmsg.o $(UTILOBJS) build/link.sh
+	sh build/link.sh build/errmsg.o $(UTILOBJS) -o $@
 
-build/errnum: build/errnum.o link.sh
-	sh ./link.sh build/errnum.o $(UTILOBJS) -o $@
+build/errnum: build/errnum.o build/link.sh
+	sh build/link.sh build/errnum.o $(UTILOBJS) -o $@
 
-build/errdup: build/errdup.o link.sh
-	sh ./link.sh build/errdup.o $(UTILOBJS) -o $@
+build/errdup: build/errdup.o build/link.sh
+	sh build/link.sh build/errdup.o $(UTILOBJS) -o $@
 
-build/errtest: build/errtest.o $(UTILOBJS) link.sh
-	sh ./link.sh build/errtest.o $(UTILOBJS) -o $@
+build/errtest: build/errtest.o $(UTILOBJS) build/link.sh
+	sh build/link.sh build/errtest.o $(UTILOBJS) -o $@
 
-build/unix-stream: build/unix-stream.o $(UTILOBJS) link.sh
-	sh ./link.sh build/unix-stream.o $(UTILOBJS) -o $@
+build/unix-stream: build/unix-stream.o $(UTILOBJS) build/link.sh
+	sh build/link.sh build/unix-stream.o $(UTILOBJS) -o $@
 
-build/unix-dgram: build/unix-dgram.o $(UTILOBJS) link.sh
-	sh ./link.sh build/unix-dgram.o $(UTILOBJS) -o $@
+build/unix-dgram: build/unix-dgram.o $(UTILOBJS) build/link.sh
+	sh build/link.sh build/unix-dgram.o $(UTILOBJS) -o $@
 
 results.html : table-result.erb \
   results/cygwin.txt \
