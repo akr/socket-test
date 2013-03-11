@@ -429,10 +429,28 @@ static void test_unix_dgram(void)
 
 #define REPLY_STR "reply"
 #define REPLY_LEN 5
-  sockaddr_put = before_sockaddr_put("sendto(server)", client_sockaddr_ptr_in_server, client_sockaddr_len_in_server, opt_4);
-  ss = sendto(s, REPLY_STR, REPLY_LEN, 0, sockaddr_put->addr, sockaddr_put->len);
-  after_sockaddr_put(sockaddr_put, ss != -1, 1);
-  if (ss != REPLY_LEN) { fprintf(stderr, "sendto(server): try to send %ld bytes but only %ld bytes sent.\n", (long)REPLY_LEN, (long)ss); }
+  if (opt_M) {
+    struct msghdr mhdr;
+    struct iovec iov;
+    sockaddr_put = before_sockaddr_put("sendmsg(server)", (struct sockaddr *)client_sockaddr_ptr_in_server, client_sockaddr_len_in_server, opt_4);
+    iov.iov_base = REPLY_STR;
+    iov.iov_len = REPLY_LEN;
+    mhdr.msg_name = sockaddr_put->addr;
+    mhdr.msg_namelen = sockaddr_put->len;
+    mhdr.msg_iov = &iov;
+    mhdr.msg_iovlen = 1;
+    mhdr.msg_control = NULL;
+    mhdr.msg_controllen = 0;
+    mhdr.msg_flags = 0;
+    ss = sendmsg(s, &mhdr, 0);
+    if (ss != REPLY_LEN) { fprintf(stderr, "sendmsg(server): try to send %ld bytes but only %ld bytes sent.\n", (long)REPLY_LEN, (long)ss); }
+  }
+  else {
+    sockaddr_put = before_sockaddr_put("sendto(server)", client_sockaddr_ptr_in_server, client_sockaddr_len_in_server, opt_4);
+    ss = sendto(s, REPLY_STR, REPLY_LEN, 0, sockaddr_put->addr, sockaddr_put->len);
+    after_sockaddr_put(sockaddr_put, ss != -1, 1);
+    if (ss != REPLY_LEN) { fprintf(stderr, "sendto(server): try to send %ld bytes but only %ld bytes sent.\n", (long)REPLY_LEN, (long)ss); }
+  }
 
   if (opt_m) {
     struct msghdr mhdr;
