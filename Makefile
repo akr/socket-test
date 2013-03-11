@@ -64,7 +64,7 @@ build/config.h build/includes.h build/compile.sh build/link.sh: config.status bu
 
 build/genutil.c: src/genutil.erb src/util.rb src/errno.txt
 	./tool/update-files build/genutil.c -- src/genutil.erb src/util.rb src/errno.txt -- \
-	  sh -c 'erb -r src/util.rb src/genutil.erb > build/genutil.c'
+	  sh -c 'erb -r ./src/util.rb src/genutil.erb > build/genutil.c'
 
 build/size.c: src/size.erb
 	./tool/update-files build/size.c -- src/size.erb -- sh -c 'erb src/size.erb > build/size.c'

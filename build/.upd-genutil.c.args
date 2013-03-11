@@ -1,1 +1,1 @@
-build/genutil.c -- src/genutil.erb util.rb src/errno.txt -- sh -c erb -r ./util.rb src/genutil.erb > build/genutil.c
+build/genutil.c -- src/genutil.erb src/util.rb src/errno.txt -- sh -c erb -r ./src/util.rb src/genutil.erb > build/genutil.c
