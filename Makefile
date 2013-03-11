@@ -46,7 +46,7 @@ clean-old:
 	rm -f compile.sh config.h includes.h link.sh
 
 configure: configure.ac
-	./update-files configure -- configure.ac -- autoconf
+	./update-files -b build/.upd configure -- configure.ac -- autoconf
 
 build/config.h.in: configure.ac
 	./update-files build/config.h.in -- configure.ac -- autoheader
