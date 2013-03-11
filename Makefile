@@ -46,10 +46,10 @@ clean-old:
 	rm -f compile.sh config.h includes.h link.sh
 
 configure: configure.ac
-	./update-files -b build/.upd configure -- configure.ac -- autoconf
+	./tool/update-files -b build/.upd configure -- configure.ac -- autoconf
 
 build/config.h.in: configure.ac
-	./update-files build/config.h.in -- configure.ac -- autoheader
+	./tool/update-files build/config.h.in -- configure.ac -- autoheader
 
 config.status: configure
 	if [ -f config.status ]; then \
@@ -63,14 +63,14 @@ build/config.h build/includes.h build/compile.sh build/link.sh: config.status bu
 	  touch build/config.h
 
 build/genutil.c: src/genutil.erb src/util.rb src/errno.txt
-	./update-files build/genutil.c -- src/genutil.erb src/util.rb src/errno.txt -- \
+	./tool/update-files build/genutil.c -- src/genutil.erb src/util.rb src/errno.txt -- \
 	  sh -c 'erb -r src/util.rb src/genutil.erb > build/genutil.c'
 
 build/size.c: src/size.erb
-	./update-files build/size.c -- src/size.erb -- sh -c 'erb src/size.erb > build/size.c'
+	./tool/update-files build/size.c -- src/size.erb -- sh -c 'erb src/size.erb > build/size.c'
 
 build/const.c: src/const.erb
-	./update-files build/const.c -- src/const.erb -- sh -c 'erb src/const.erb > build/const.c'
+	./tool/update-files build/const.c -- src/const.erb -- sh -c 'erb src/const.erb > build/const.c'
 
 build/util.o: src/util.c src/sockettest.h build/config.h build/includes.h build/compile.sh
 	sh build/compile.sh src/util.c -o $@
