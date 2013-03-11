@@ -58,9 +58,9 @@ build/config.h build/includes.h build/compile.sh build/link.sh: config.status bu
 	./config.status && \
 	  touch build/config.h
 
-build/genutil.c: src/genutil.erb util.rb errno.txt
-	./update-files build/genutil.c -- src/genutil.erb util.rb errno.txt -- \
-	  sh -c 'erb -r ./util.rb src/genutil.erb > build/genutil.c'
+build/genutil.c: src/genutil.erb src/util.rb src/errno.txt
+	./update-files build/genutil.c -- src/genutil.erb src/util.rb src/errno.txt -- \
+	  sh -c 'erb -r src/util.rb src/genutil.erb > build/genutil.c'
 
 build/size.c: src/size.erb
 	./update-files build/size.c -- src/size.erb -- sh -c 'erb src/size.erb > build/size.c'
@@ -122,7 +122,7 @@ build/unix-stream: build/unix-stream.o $(UTILOBJS) build/link.sh
 build/unix-dgram: build/unix-dgram.o $(UTILOBJS) build/link.sh
 	sh build/link.sh build/unix-dgram.o $(UTILOBJS) -o $@
 
-results.html : table-result.erb \
+results/index.html : src/table-result.erb \
   results/cygwin.txt \
   results/darwin.txt \
   results/debian-kfreebsd.txt \
@@ -138,4 +138,4 @@ results.html : table-result.erb \
   results/openbsd51.txt \
   results/openbsd52.txt \
   results/sunos.txt
-	erb table-result.erb > results.html
+	erb src/table-result.erb > results/index.html

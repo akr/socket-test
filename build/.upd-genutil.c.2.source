@@ -1,6 +1,6 @@
 def read_errno_list
   list = []
-  File.foreach("errno.txt") {|line|
+  File.foreach("src/errno.txt") {|line|
     line.sub!(/#.*/, '')
     line.strip!
     next if line.empty?

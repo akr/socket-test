@@ -25,7 +25,7 @@
 AC_PREREQ(2.61)
 AC_INIT(socket-test, 0.1)
 AC_CONFIG_SRCDIR([src/unix-stream.c])
-AC_CONFIG_AUX_DIR([build-aux])
+AC_CONFIG_AUX_DIR([tool])
 AC_CONFIG_HEADERS([build/config.h])
 
 AC_CANONICAL_BUILD
