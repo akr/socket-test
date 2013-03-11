@@ -1934,7 +1934,7 @@ socket file (client)  : exist
 getsockname(client)   -> "bar\0" (4 bytes)
 sendmsg(client)       <- "foo\0" (4 bytes)
 recvfrom(server)      -> "bar\0" (4 bytes)
-sendto(server)        <- "bar\0" (4 bytes)
+sendmsg(server)       <- "bar\0" (4 bytes)
 recvfrom(client)      -> "foo\0" (4 bytes)
 ./build/unix-dgram -m 'foo\0' 'foo\0' 'bar\0'
 bind(server)          <- "foo\0" (4 bytes)
