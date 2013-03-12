@@ -5333,8 +5333,8 @@ $as_echo "$as_me: $ac_file is unchanged" >&6;}
 
 
   case $ac_file$ac_mode in
-    "build/compile.sh":F) chmod +x compile.sh ;;
-    "build/link.sh":F) chmod +x link.sh ;;
+    "build/compile.sh":F) chmod +x build/compile.sh ;;
+    "build/link.sh":F) chmod +x build/link.sh ;;
 
   esac
 done # for ac_tag

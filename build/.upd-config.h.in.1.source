@@ -131,8 +131,8 @@ SOCKTEST_CHECK_SYS_NERR
 
 AC_SUBST(SOCKETTEST_INCLUDES)
 
-AC_CONFIG_FILES([build/compile.sh:src/compile.sh.in], [chmod +x compile.sh])
-AC_CONFIG_FILES([build/link.sh:src/link.sh.in], [chmod +x link.sh])
+AC_CONFIG_FILES([build/compile.sh:src/compile.sh.in], [chmod +x build/compile.sh])
+AC_CONFIG_FILES([build/link.sh:src/link.sh.in], [chmod +x build/link.sh])
 AC_CONFIG_FILES([build/includes.h:src/includes.h.in])
 AC_OUTPUT
 
