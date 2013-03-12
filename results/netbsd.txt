@@ -7204,7 +7204,7 @@ recvfrom(client)      -> "(sun_len=6)abc\0" (4 bytes)
 
 
 ./build/unix-accept-after-close
-accept                -> "socket-file(20*"\0")\xC8]?\x80\xFE\xFF\xFF(66*"\0")" (104 bytes)
+accept                -> "socket-file(20*"\0")\xA2\xDB*\x80\xFE\xFF\xFF(66*"\0")" (104 bytes)
 
 ./build/size
 sockaddr.size =                            16
