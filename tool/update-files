@@ -61,7 +61,7 @@
 #
 
 hidden_basename_prefix='.upd'
-if [ "$1" = '-b' ]; then
+if [ x"$1" = x'-b' ]; then
   shift
   hidden_basename_prefix="$1"
   shift
@@ -85,7 +85,7 @@ fi
 # Record the target filenames in temporally files.
 # Test recorded target files availability.
 i=1
-while [ "$1" != "--" ]; do
+while [ x"$1" != x"--" ]; do
   target="$1"
   shift
   echo "$target" > "$memo_prefix.$i.target.filename.tmp"
@@ -97,7 +97,7 @@ while [ "$1" != "--" ]; do
 done
 
 # Check the first separator "--".
-if [ "$1" != "--" ]; then
+if [ x"$1" != x"--" ]; then
   echo 'update-files: first "--" not found' >&2
   exit 1
 fi
@@ -106,7 +106,7 @@ shift
 # Record the source filenames in temporally files.
 # Test recorded source files availability and validity.
 i=1
-while [ "$1" != "--" ]; do
+while [ x"$1" != x"--" ]; do
   source="$1"
   shift
   echo "$source" > "$memo_prefix.$i.source.filename.tmp"
@@ -118,7 +118,7 @@ while [ "$1" != "--" ]; do
 done
 
 # Check the second separator "--".
-if [ "$1" != "--" ]; then
+if [ x"$1" != x"--" ]; then
   echo 'update-files: second "--" not found' >&2
   exit 1
 fi
