@@ -57,6 +57,8 @@ clean:
 clean-old:
 	rm -rf obj
 	rm -f compile.sh config.h includes.h link.sh
+	rm -f *.o
+	rm -f const errmsg errnum errdup errtest size unix-dgram unix-stream
 
 configure: configure.ac
 	./tool/update-files -b build/.upd configure -- configure.ac -- autoconf
