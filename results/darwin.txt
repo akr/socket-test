@@ -7193,6 +7193,9 @@ sendto(server)        <- "(sun_len=6)bar\0" (4 bytes)
 recvfrom(client)      -> "(sun_len=6)abc\0" (4 bytes)
 
 
+./build/unix-accept-after-close
+accept                -> "(14*"\0")" (14 bytes)
+
 ./build/size
 sockaddr.size =                            16
 sockaddr.sa_len.size =                     1

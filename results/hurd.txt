@@ -2063,6 +2063,9 @@ sendto(server)        <- "(sun_len=3)\0" (1 bytes)
 sendto(server): ENOENT
 
 
+./build/unix-accept-after-close
+accept                -> "\0" (1 bytes)
+
 ./build/size
 sockaddr.size =                            16
 sockaddr.sa_len.size =                     1

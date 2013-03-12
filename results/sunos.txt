@@ -8450,6 +8450,8 @@ bind(server): EADDRINUSE
 ./build/unix-dgram -T -s 'README'
 bind(server)          <- "README" (6 bytes)
 bind(server): EADDRINUSE
+./build/unix-accept-after-close
+accept                -> "(14*"\0")" (14 bytes)
 ./build/size
 sockaddr.size =                            16
 sockaddr.sa_family.size =                  2

@@ -330,6 +330,7 @@
   <li><a href="#unix-dgram-4sunlen7abc0sunlen7abc0bar0">unix-dgram -4 &#39;(sun_len=7)abc\0&#39; &#39;(sun_len=7)abc\0&#39; &#39;bar\0&#39;</a></li>
   <li><a href="#unix-dgram-4sunlen1abc0sunlen7abc0bar0">unix-dgram -4 &#39;(sun_len=1)abc\0&#39; &#39;(sun_len=7)abc\0&#39; &#39;bar\0&#39;</a></li>
   <li><a href="#unix-dgram-4sunlen7abc0sunlen1abc0bar0">unix-dgram -4 &#39;(sun_len=7)abc\0&#39; &#39;(sun_len=1)abc\0&#39; &#39;bar\0&#39;</a></li>
+  <li><a href="#unix-accept-after-close">unix-accept-after-close</a></li>
   <li><a href="#size">size</a></li>
   <li><a href="#const">const</a></li>
   <li><a href="#errmsg">errmsg</a></li>
@@ -916,7 +917,7 @@
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\0004ef&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000552&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/foo(108*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -952,7 +953,7 @@
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\0004ef&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000552&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/foo(108*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -1100,7 +1101,7 @@
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\0004f0&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000553&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/foo(108*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -1136,7 +1137,7 @@
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\0004f0&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000553&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/foo(108*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -2164,7 +2165,7 @@
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\0004f1&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000554&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/a(110*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -2200,7 +2201,7 @@
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\0004f1&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000554&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/a(110*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -2348,7 +2349,7 @@
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\0004ff&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000562&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/a(110*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -2384,7 +2385,7 @@
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\0004ff&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000562&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/a(110*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -2550,7 +2551,7 @@
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\000500&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000563&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/ab(109*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -2586,7 +2587,7 @@
       <td class="socket-none"></td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\000500&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000563&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/ab(109*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -2752,7 +2753,7 @@
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\000501&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000564&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/a(110*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -2788,7 +2789,7 @@
       <td class="socket-none"></td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\000501&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000564&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/a(110*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -2954,7 +2955,7 @@
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\000503&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000566&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/a(110*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -2990,7 +2991,7 @@
       <td class="socket-none"></td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\000503&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000566&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/a(110*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -3156,7 +3157,7 @@
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\000504&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000567&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/ab(109*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -3192,7 +3193,7 @@
       <td class="socket-none"></td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\000504&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000567&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/ab(109*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -3358,7 +3359,7 @@
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\000505&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000568&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/a(110*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -3394,7 +3395,7 @@
       <td class="socket-none"></td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\000505&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000568&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/a(110*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -3560,7 +3561,7 @@
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\000515&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000578&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/a(110*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -3596,7 +3597,7 @@
       <td class="socket-none"></td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\000515&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000578&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/a(110*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -5974,7 +5975,7 @@
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\000516&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000579&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/(90*&quot;c&quot;)(21*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -6010,7 +6011,7 @@
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\000516&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000579&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/(90*&quot;c&quot;)(21*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -6158,7 +6159,7 @@
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\000523&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000586&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/(103*&quot;c&quot;)\0\0\0\0\0\0\0\0&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -6194,7 +6195,7 @@
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\000523&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000586&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/(103*&quot;c&quot;)\0\0\0\0\0\0\0\0&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -6360,7 +6361,7 @@
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\000524&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000587&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/(104*&quot;c&quot;)\0\0\0\0\0\0\0&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -6396,7 +6397,7 @@
       <td class="socket-none"></td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\000524&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000587&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/(104*&quot;c&quot;)\0\0\0\0\0\0\0&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -6562,7 +6563,7 @@
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\000525&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000588&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/(105*&quot;c&quot;)\0\0\0\0\0\0&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -6598,7 +6599,7 @@
       <td class="socket-none"></td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\000525&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\000588&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/(105*&quot;c&quot;)\0\0\0\0\0\0&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -6764,7 +6765,7 @@
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\000527&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\00058a&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/(107*&quot;c&quot;)\0\0\0\0&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -6800,7 +6801,7 @@
       <td class="socket-none"></td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\000527&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\00058a&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/(107*&quot;c&quot;)\0\0\0\0&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -6966,7 +6967,7 @@
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\000528&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\00058b&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/(108*&quot;c&quot;)\0\0\0&quot; (127 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -7002,7 +7003,7 @@
       <td class="socket-none"></td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\000528&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\00058b&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/(108*&quot;c&quot;)\0\0\0&quot; (127 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -7168,7 +7169,7 @@
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\00052a&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\00058d&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/(110*&quot;c&quot;)\0&quot; (127 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -7204,7 +7205,7 @@
       <td class="socket-none"></td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\00052a&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\00058d&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/(110*&quot;c&quot;)\0&quot; (127 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -7370,7 +7371,7 @@
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\00052b&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\00058e&quot; (6 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -7406,7 +7407,7 @@
       <td class="socket-none"></td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\00052b&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\00058e&quot; (6 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -7572,7 +7573,7 @@
       <td class="socket-none"></td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\000539&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\00059c&quot; (6 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -7608,7 +7609,7 @@
       <td class="socket-none"></td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\000539&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\00059c&quot; (6 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
@@ -9372,7 +9373,7 @@
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\00053a&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\00059d&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/Z01234567(102*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -9408,7 +9409,7 @@
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\00053a&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\00059d&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/Z01234567(102*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -9556,7 +9557,7 @@
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;\00053b&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\00059e&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/Z012345678(101*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -9592,7 +9593,7 @@
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;\00053b&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\00059e&quot; (6 bytes)</td>
       <td class="socket-abnormal">&quot;/tmp/temp.N/Z012345678(101*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
       <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
@@ -12586,7 +12587,7 @@
   <tr>
     <th align="left">getsockname(server) -&gt;</th>
       <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;foobar@\0&quot; (8 bytes)</td>
+      <td class="socket-abnormal">&quot;foobar\xB8\x94\x86\xCD\xC0\xC1\0&quot; (13 bytes)</td>
       <td class="socket-normal">&quot;/tmp/temp.N/foobar?(104*&quot;\0&quot;)&quot; (127 bytes)</td>
       <td class="socket-none"></td>
   </tr>
@@ -19174,8 +19175,8 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-abnormal">&quot;\0000ad&quot; (6 bytes)</td>
-      <td class="socket-normal">&quot;\000088&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\0000b5&quot; (6 bytes)</td>
+      <td class="socket-normal">&quot;\000090&quot; (6 bytes)</td>
       <td class="socket-none"></td>
   </tr>
   </tr>
@@ -19841,7 +19842,7 @@
       <td class="socket-normal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-normal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;(sun_len=3)\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=8)\00053c&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;(sun_len=8)\00059f&quot; (6 bytes)</td>
   </tr>
   <tr>
     <th align="left">getsockname(accepted) -&gt;</th>
@@ -19867,7 +19868,7 @@
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;(sun_len=8)\00053c&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;(sun_len=8)\00059f&quot; (6 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -19975,7 +19976,7 @@
       <td class="socket-normal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-normal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;(sun_len=3)\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=8)\000542&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;(sun_len=8)\0005a5&quot; (6 bytes)</td>
   </tr>
   <tr>
     <th align="left">getsockname(accepted) -&gt;</th>
@@ -20001,7 +20002,7 @@
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;(sun_len=8)\000542&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;(sun_len=8)\0005a5&quot; (6 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -20109,7 +20110,7 @@
       <td class="socket-normal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-normal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;(sun_len=3)\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=8)\000543&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;(sun_len=8)\0005a6&quot; (6 bytes)</td>
   </tr>
   <tr>
     <th align="left">getsockname(accepted) -&gt;</th>
@@ -20135,7 +20136,7 @@
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;(sun_len=8)\000543&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;(sun_len=8)\0005a6&quot; (6 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -20243,7 +20244,7 @@
       <td class="socket-normal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-normal">&quot;(sun_len=16)(14*&quot;\0&quot;)&quot; (14 bytes)</td>
       <td class="socket-abnormal">&quot;(sun_len=3)\0&quot; (1 bytes)</td>
-      <td class="socket-abnormal">&quot;(sun_len=8)\000549&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;(sun_len=8)\0005ac&quot; (6 bytes)</td>
   </tr>
   <tr>
     <th align="left">getsockname(accepted) -&gt;</th>
@@ -20269,7 +20270,7 @@
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">empty sockaddr</td>
       <td class="socket-abnormal">EOPNOTSUPP</td>
-      <td class="socket-abnormal">&quot;(sun_len=8)\000549&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;(sun_len=8)\0005ac&quot; (6 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -20417,7 +20418,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4608 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4957 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -20433,7 +20434,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4608 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4957 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -20449,7 +20450,7 @@
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4607 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4956 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -20597,7 +20598,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4610 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4959 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -20613,7 +20614,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4610 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4959 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -20629,7 +20630,7 @@
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4609 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4958 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -20809,7 +20810,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4612 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4961 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -20825,7 +20826,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4612 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4961 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -20841,7 +20842,7 @@
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4611 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4960 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -20989,7 +20990,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4614 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4963 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendmsg(server) &lt;-</th>
@@ -21005,7 +21006,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4614 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4963 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -21021,7 +21022,7 @@
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4613 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4962 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -21169,7 +21170,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4616 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4965 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -21185,7 +21186,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4616 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4965 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvmsg(client) -&gt;</th>
@@ -21201,7 +21202,7 @@
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4615 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4964 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -21349,7 +21350,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4618 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4967 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -21365,7 +21366,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4618 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4967 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -21381,7 +21382,7 @@
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4617 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4966 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -21529,7 +21530,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4620 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4969 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -21545,7 +21546,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4620 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4969 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -21561,7 +21562,7 @@
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4619 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4968 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -21709,7 +21710,7 @@
       <td class="socket-abnormal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-abnormal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4622 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4971 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -21725,7 +21726,7 @@
       <td class="socket-abnormal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-abnormal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4622 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4971 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -21741,7 +21742,7 @@
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;foo\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4621 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4970 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -21889,7 +21890,7 @@
       <td class="socket-abnormal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-abnormal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4624 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4973 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -21905,7 +21906,7 @@
       <td class="socket-abnormal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-abnormal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0moga&quot; (8 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4624 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4973 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -21921,7 +21922,7 @@
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-abnormal">&quot;foo\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;foo\0hoge&quot; (8 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4623 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4972 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -22069,7 +22070,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4626 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4975 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -22085,7 +22086,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4626 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4975 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -22101,7 +22102,7 @@
       <td class="socket-normal">&quot;(44*&quot;./&quot;)a\0&quot; (90 bytes)</td>
       <td class="socket-normal">&quot;(44*&quot;./&quot;)a\0&quot; (90 bytes)</td>
       <td class="socket-normal">&quot;(44*&quot;./&quot;)a\0&quot; (90 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4625 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:4974 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -22249,7 +22250,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4654 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1027 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -22265,7 +22266,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4654 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1027 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -22281,7 +22282,7 @@
       <td class="socket-normal">&quot;(51*&quot;./&quot;)a\0&quot; (104 bytes)</td>
       <td class="socket-normal">&quot;(51*&quot;./&quot;)a\0&quot; (104 bytes)</td>
       <td class="socket-normal">&quot;(51*&quot;./&quot;)a\0&quot; (104 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4653 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1026 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -22445,7 +22446,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4656 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1029 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -22461,7 +22462,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4656 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1029 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -22477,7 +22478,7 @@
       <td class="socket-abnormal">&quot;(51*&quot;./&quot;)ab\0&quot; (105 bytes)</td>
       <td class="socket-abnormal">&quot;(51*&quot;./&quot;)ab\0&quot; (105 bytes)</td>
       <td class="socket-abnormal">&quot;(51*&quot;./&quot;)ab\0&quot; (105 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4655 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1028 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -22641,7 +22642,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4658 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1031 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -22657,7 +22658,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4658 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1031 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -22673,7 +22674,7 @@
       <td class="socket-abnormal">&quot;(52*&quot;./&quot;)a\0&quot; (106 bytes)</td>
       <td class="socket-abnormal">&quot;(52*&quot;./&quot;)a\0&quot; (106 bytes)</td>
       <td class="socket-abnormal">&quot;(52*&quot;./&quot;)a\0&quot; (106 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4657 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1030 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -22837,7 +22838,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4662 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1035 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -22853,7 +22854,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4662 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1035 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -22869,7 +22870,7 @@
       <td class="socket-abnormal">&quot;(53*&quot;./&quot;)a\0&quot; (108 bytes)</td>
       <td class="socket-abnormal">&quot;(53*&quot;./&quot;)a\0&quot; (108 bytes)</td>
       <td class="socket-abnormal">&quot;(53*&quot;./&quot;)a\0&quot; (108 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4661 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1034 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -25113,7 +25114,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4664 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1037 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -25129,7 +25130,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4664 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1037 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -25145,7 +25146,7 @@
       <td class="socket-normal">&quot;(90*&quot;c&quot;)\0&quot; (91 bytes)</td>
       <td class="socket-normal">&quot;(90*&quot;c&quot;)\0&quot; (91 bytes)</td>
       <td class="socket-normal">&quot;(90*&quot;c&quot;)\0&quot; (91 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4663 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1036 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -25293,7 +25294,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4690 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1064 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -25309,7 +25310,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4690 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1064 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -25325,7 +25326,7 @@
       <td class="socket-normal">&quot;(103*&quot;c&quot;)\0&quot; (104 bytes)</td>
       <td class="socket-normal">&quot;(103*&quot;c&quot;)\0&quot; (104 bytes)</td>
       <td class="socket-normal">&quot;(103*&quot;c&quot;)\0&quot; (104 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4689 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1063 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -25489,7 +25490,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4692 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1066 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -25505,7 +25506,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4692 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1066 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -25521,7 +25522,7 @@
       <td class="socket-abnormal">&quot;(104*&quot;c&quot;)\0&quot; (105 bytes)</td>
       <td class="socket-abnormal">&quot;(104*&quot;c&quot;)\0&quot; (105 bytes)</td>
       <td class="socket-abnormal">&quot;(104*&quot;c&quot;)\0&quot; (105 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4691 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1065 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -25685,7 +25686,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4694 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1068 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -25701,7 +25702,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4694 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1068 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -25717,7 +25718,7 @@
       <td class="socket-abnormal">&quot;(105*&quot;c&quot;)\0&quot; (106 bytes)</td>
       <td class="socket-abnormal">&quot;(105*&quot;c&quot;)\0&quot; (106 bytes)</td>
       <td class="socket-abnormal">&quot;(105*&quot;c&quot;)\0&quot; (106 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4693 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1067 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -25881,7 +25882,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4698 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1072 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -25897,7 +25898,7 @@
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
       <td class="socket-normal">&quot;bar\0&quot; (4 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4698 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1072 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -25913,7 +25914,7 @@
       <td class="socket-abnormal">&quot;(107*&quot;c&quot;)\0&quot; (108 bytes)</td>
       <td class="socket-abnormal">&quot;(107*&quot;c&quot;)\0&quot; (108 bytes)</td>
       <td class="socket-abnormal">&quot;(107*&quot;c&quot;)\0&quot; (108 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4697 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1071 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -28053,7 +28054,7 @@
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)bar\0&quot; (102 bytes)</td>
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)bar\0&quot; (102 bytes)</td>
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)bar\0&quot; (102 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4700 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1074 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -28069,7 +28070,7 @@
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)bar\0&quot; (102 bytes)</td>
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)bar\0&quot; (102 bytes)</td>
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)bar\0&quot; (102 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4700 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1074 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -28085,7 +28086,7 @@
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)01234567\0&quot; (107 bytes)</td>
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)01234567\0&quot; (107 bytes)</td>
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)01234567\0&quot; (107 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4699 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1073 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -28233,7 +28234,7 @@
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)bar\0&quot; (102 bytes)</td>
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)bar\0&quot; (102 bytes)</td>
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)bar\0&quot; (102 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4702 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1076 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">sendto(server) &lt;-</th>
@@ -28249,7 +28250,7 @@
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)bar\0&quot; (102 bytes)</td>
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)bar\0&quot; (102 bytes)</td>
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)bar\0&quot; (102 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4702 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1076 (16 bytes)</td>
   </tr>
   <tr>
     <th align="left">recvfrom(client) -&gt;</th>
@@ -28265,7 +28266,7 @@
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)012345678\0&quot; (108 bytes)</td>
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)012345678\0&quot; (108 bytes)</td>
       <td class="socket-abnormal">&quot;(49*&quot;./&quot;)012345678\0&quot; (108 bytes)</td>
-      <td class="socket-abnormal">127.0.0.1:4701 (16 bytes)</td>
+      <td class="socket-abnormal">127.0.0.1:1075 (16 bytes)</td>
   </tr>
   </tr>
 </table>
@@ -41840,8 +41841,8 @@
       <td class="socket-none"></td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
-      <td class="socket-abnormal">&quot;\0000af&quot; (6 bytes)</td>
-      <td class="socket-normal">&quot;\00008a&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;\0000b7&quot; (6 bytes)</td>
+      <td class="socket-normal">&quot;\000092&quot; (6 bytes)</td>
       <td class="socket-none"></td>
   </tr>
   </tr>
@@ -43037,6 +43038,42 @@
       <td class="socket-normal">&quot;(sun_len=6)abc\0&quot; (4 bytes)</td>
       <td class="socket-none"></td>
       <td class="socket-none"></td>
+  </tr>
+  </tr>
+</table>
+<h2><a name="unix-accept-after-close">unix-accept-after-close</a></h2>
+<table border>
+  <tr>
+    <th align="right">OS</th>
+    <th>freebsd</th>
+    <th>debian-kfreebsd</th>
+    <th>darwin</th>
+    <th>dragonfly</th>
+    <th>netbsd</th>
+    <th>openbsd51</th>
+    <th>openbsd52</th>
+    <th>miros</th>
+    <th>hurd</th>
+    <th>haiku</th>
+    <th>linux</th>
+    <th>linux-arm</th>
+    <th>sunos</th>
+  </tr>
+  <tr>
+    <th align="left">accept -&gt;</th>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-abnormal">&quot;socket-file(20*&quot;\0&quot;)\xC8]?\x80\xFE\xFF\xFF(66*&quot;\0&quot;)&quot; (104 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
+      <td class="socket-abnormal">&quot;\0&quot; (1 bytes)</td>
+      <td class="socket-abnormal">&quot;\0005ad&quot; (6 bytes)</td>
+      <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
+      <td class="socket-abnormal">&quot;&quot; (0 bytes)</td>
+      <td class="socket-normal">&quot;(14*&quot;\0&quot;)&quot; (14 bytes)</td>
   </tr>
   </tr>
 </table>
