@@ -45,10 +45,11 @@ int main(int argc, char *argv[])
   int serv, clnt, acpt;
   struct sockaddr_un serv_addr;
   struct sockaddr_un acpt_addr;
-  socklen_t acept_addrlen;
   int ret;
-  int i;
   sockaddr_get_t *sockaddr_get;
+
+  (void)argc;
+  (void)argv;
 
   /* alarm() avoids hang on Minix and Cygwin. */
   alarm(2);
