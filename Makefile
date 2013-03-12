@@ -74,9 +74,10 @@ config.status: configure
 	  ./configure --no-create; \
 	fi
 
-build/config.h build/includes.h build/compile.sh build/link.sh: config.status build/config.h.in src/includes.h.in src/compile.sh.in src/link.sh.in
-	./config.status && \
-	  touch build/config.h
+build/config.h build/includes.h build/compile.sh build/link.sh: build/stamp-h
+build/stamp-h: config.status build/config.h.in src/includes.h.in src/compile.sh.in src/link.sh.in
+	./config.status
+	echo > build/stamp-h
 
 build/genutil.c: src/genutil.erb src/util.rb src/errno.txt
 	./tool/update-files build/genutil.c -- src/genutil.erb src/util.rb src/errno.txt -- \
