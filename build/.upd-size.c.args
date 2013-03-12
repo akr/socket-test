@@ -1,1 +1,1 @@
-obj/size.c -- src/size.erb -- sh -c erb src/size.erb > obj/size.c
+build/size.c -- src/size.erb -- sh -c erb src/size.erb > build/size.c
