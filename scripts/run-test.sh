@@ -31,4 +31,9 @@ Linux*) sh scripts/unix-dgram-linux-tests.sh ;;
 NetBSD*|FreeBSD*|OpenBSD*|DragonFly*|MirBSD*|GNU/kFreeBSD*|*Hurd*|Darwin*|Haiku*) sh scripts/unix-dgram-44bsd-tests.sh ;;
 esac
 
+case "$UNAME" in
+CYGWIN*|Minix*) : ;;
+*) sh ./scripts/unix-accept-after-close.sh ;;
+esac
+
 sh scripts/additional-tests.sh

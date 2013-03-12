@@ -29,7 +29,8 @@ TARGETS = build/size \
 	  build/errdup \
 	  build/errtest \
 	  build/unix-stream \
-	  build/unix-dgram
+	  build/unix-dgram \
+	  build/unix-accept-after-close
 
 UTILOBJS = build/util.o \
 	   build/genutil.o
@@ -117,6 +118,9 @@ build/unix-stream.o: src/unix-stream.c src/sockettest.h build/config.h build/inc
 build/unix-dgram.o: src/unix-dgram.c src/sockettest.h build/config.h build/includes.h build/compile.sh
 	sh build/compile.sh src/unix-dgram.c -o $@
 
+build/unix-accept-after-close.o: src/unix-accept-after-close.c build/config.h build/includes.h build/compile.sh
+	sh build/compile.sh src/unix-accept-after-close.c -o $@
+
 build/size: build/size.o build/link.sh
 	sh build/link.sh build/size.o -o $@
 
@@ -140,6 +144,9 @@ build/unix-stream: build/unix-stream.o $(UTILOBJS) build/link.sh
 
 build/unix-dgram: build/unix-dgram.o $(UTILOBJS) build/link.sh
 	sh build/link.sh build/unix-dgram.o $(UTILOBJS) -o $@
+
+build/unix-accept-after-close: build/unix-accept-after-close.o $(UTILOBJS) build/link.sh
+	sh build/link.sh build/unix-accept-after-close.o $(UTILOBJS) -o $@
 
 results/index.html : src/table-result.erb \
   results/cygwin.txt \
