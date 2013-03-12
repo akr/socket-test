@@ -22,21 +22,34 @@
 # IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 # OF SUCH DAMAGE.
 
-TARGETS = build/size build/const build/errmsg build/errnum build/errdup build/errtest build/unix-stream build/unix-dgram
-UTILOBJS = build/util.o build/genutil.o
+TARGETS = build/size \
+	  build/const \
+	  build/errmsg \
+	  build/errnum \
+	  build/errdup \
+	  build/errtest \
+	  build/unix-stream \
+	  build/unix-dgram
+
+UTILOBJS = build/util.o \
+	   build/genutil.o
 
 all: $(TARGETS)
 
-complete-clean: maintainer-clean
-	rm -f configure build/config.h.in
+complete-clean:
+	rm -f build/* build/.upd-*
+	rm -f configure config.log config.status
+	rm -rf autom4te.cache
 
-maintainer-clean: clean
-	rm -f .upd-*.args .upd-*.source .upd-*.target
+maintainer-clean: distclean
 	rm -f build/.upd-*.args build/.upd-*.source build/.upd-*.target
 	rm -f build/genutil.c build/const.c build/size.c
 	rm -rf autom4te.cache
-	rm -f config.status config.log
-	rm -f build/config.h build/compile.sh build/link.sh
+
+distclean: clean
+	rm -f config.log config.status
+	rm -f build/config.h build/includes.h
+	rm -f build/compile.sh build/link.sh
 
 clean:
 	rm -f build/*.o $(TARGETS)
