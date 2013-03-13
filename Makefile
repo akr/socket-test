@@ -89,38 +89,17 @@ build/size.c: src/size.erb
 build/const.c: src/const.erb
 	./tool/update-files build/const.c -- src/const.erb -- sh -c 'erb src/const.erb > build/const.c'
 
-build/util.o: src/util.c src/sockettest.h build/config.h build/includes.h build/compile.sh
-	sh build/compile.sh src/util.c -o $@
-
-build/genutil.o: build/genutil.c src/sockettest.h build/config.h build/includes.h build/compile.sh
-	sh build/compile.sh $< -o $@
-
-build/size.o: build/size.c src/sockettest.h build/config.h build/includes.h build/compile.sh
-	sh build/compile.sh $< -o $@
-
-build/const.o: build/const.c src/sockettest.h build/config.h build/includes.h build/compile.sh
-	sh build/compile.sh $< -o $@
-
-build/errmsg.o: src/errmsg.c src/sockettest.h build/config.h build/includes.h build/compile.sh
-	sh build/compile.sh src/errmsg.c -o $@
-
-build/errnum.o: src/errnum.c src/sockettest.h build/config.h build/includes.h build/compile.sh
-	sh build/compile.sh src/errnum.c -o $@
-
-build/errdup.o: src/errdup.c src/sockettest.h build/config.h build/includes.h build/compile.sh
-	sh build/compile.sh src/errdup.c -o $@
-
-build/errtest.o: src/errtest.c src/sockettest.h build/config.h build/includes.h build/compile.sh
-	sh build/compile.sh src/errtest.c -o $@
-
-build/unix-stream.o: src/unix-stream.c src/sockettest.h build/config.h build/includes.h build/compile.sh
-	sh build/compile.sh src/unix-stream.c -o $@
-
-build/unix-dgram.o: src/unix-dgram.c src/sockettest.h build/config.h build/includes.h build/compile.sh
-	sh build/compile.sh src/unix-dgram.c -o $@
-
-build/unix-accept-after-close.o: src/unix-accept-after-close.c build/config.h build/includes.h build/compile.sh
-	sh build/compile.sh src/unix-accept-after-close.c -o $@
+build/util.o: build/compile.sh; sh build/compile.sh src/util.c -o $@
+build/genutil.o: build/compile.sh; sh build/compile.sh build/genutil.c -o $@
+build/size.o: build/compile.sh; sh build/compile.sh build/size.c -o $@
+build/const.o: build/compile.sh; sh build/compile.sh build/const.c -o $@
+build/errmsg.o: build/compile.sh; sh build/compile.sh src/errmsg.c -o $@
+build/errnum.o: build/compile.sh; sh build/compile.sh src/errnum.c -o $@
+build/errdup.o: build/compile.sh; sh build/compile.sh src/errdup.c -o $@
+build/errtest.o: build/compile.sh; sh build/compile.sh src/errtest.c -o $@
+build/unix-stream.o: build/compile.sh; sh build/compile.sh src/unix-stream.c -o $@
+build/unix-dgram.o: build/compile.sh; sh build/compile.sh src/unix-dgram.c -o $@
+build/unix-accept-after-close.o: build/compile.sh; sh build/compile.sh src/unix-accept-after-close.c -o $@
 
 build/size: build/size.o build/link.sh
 	sh build/link.sh build/size.o -o $@
@@ -166,3 +145,20 @@ results/index.html : src/table-result.erb \
   results/openbsd52.txt \
   results/sunos.txt
 	erb src/table-result.erb > results/index.html
+
+# gcc -MM -Ibuild -Isrc src/*.c build/*.c | sed 's/^[^ ]/build\/&/' 
+build/errdup.o: src/errdup.c src/sockettest.h build/config.h build/includes.h
+build/errmsg.o: src/errmsg.c src/sockettest.h build/config.h build/includes.h
+build/errnum.o: src/errnum.c src/sockettest.h build/config.h build/includes.h
+build/errtest.o: src/errtest.c src/sockettest.h build/config.h build/includes.h
+build/unix-accept-after-close.o: src/unix-accept-after-close.c src/sockettest.h \
+ build/config.h build/includes.h
+build/unix-dgram.o: src/unix-dgram.c src/sockettest.h build/config.h \
+ build/includes.h
+build/unix-stream.o: src/unix-stream.c src/sockettest.h build/config.h \
+ build/includes.h
+build/util.o: src/util.c src/sockettest.h build/config.h build/includes.h
+build/const.o: build/const.c src/sockettest.h build/config.h build/includes.h
+build/genutil.o: build/genutil.c src/sockettest.h build/config.h \
+ build/includes.h
+build/size.o: build/size.c src/sockettest.h build/config.h build/includes.h
