@@ -8,7 +8,7 @@
 
   % git clone git://github.com/akr/socket-test.git
   % cd socket-test
-  % ./configure CFLAGS='-g -Wall'     # [optional] -Wall assumes gcc.
+  % ./configure CFLAGS='-g -O0 -Wall'     # [optional] -Wall assumes gcc.
   % make
 
 == Usage
