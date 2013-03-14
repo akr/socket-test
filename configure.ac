@@ -83,10 +83,12 @@ AH_TEMPLATE([HAVE_SYS_UIO_H], [Define to 1 if you have the <sys/uio.h> header fi
 AH_TEMPLATE([HAVE_SYS_SOCKET_H], [Define to 1 if you have the <sys/socket.h> header file.])
 AH_TEMPLATE([HAVE_SYS_UN_H], [Define to 1 if you have the <sys/un.h> header file.])
 AH_TEMPLATE([HAVE_NETINET_IN_H], [Define to 1 if you have the <netinet/in.h> header file.])
+AH_TEMPLATE([HAVE_ARPA_INET_H], [Define to 1 if you have the <arpa/inet.h> header file.])
 # Minix 3.2.0: limits.h is required for sys/socket.h.
 for h in \
   stdarg.h limits.h errno.h ctype.h float.h time.h signal.h \
-  sys/wait.h sys/uio.h sys/socket.h sys/un.h netinet/in.h
+  sys/wait.h sys/uio.h sys/socket.h sys/un.h netinet/in.h \
+  arpa/inet.h
 do
   AC_CHECK_HEADERS([$h], [], [], [$SOCKETTEST_INCLUDES])
   SOCKETTEST_INCLUDES="$SOCKETTEST_INCLUDES

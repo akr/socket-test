@@ -28,6 +28,7 @@ TARGETS = build/size \
 	  build/errnum \
 	  build/errdup \
 	  build/errtest \
+	  build/ipv4-stream \
 	  build/unix-stream \
 	  build/unix-dgram \
 	  build/unix-accept-after-close
@@ -59,7 +60,7 @@ clean-old:
 	rm -rf obj
 	rm -f compile.sh config.h includes.h link.sh
 	rm -f *.o
-	rm -f const errmsg errnum errdup errtest size unix-dgram unix-stream
+	rm -f const errmsg errnum errdup errtest size ipv4-stream unix-dgram unix-stream
 
 configure: configure.ac
 	./tool/update-files -b build/.upd configure -- configure.ac -- autoconf
@@ -97,6 +98,7 @@ build/errmsg.o: build/compile.sh; sh build/compile.sh src/errmsg.c -o $@
 build/errnum.o: build/compile.sh; sh build/compile.sh src/errnum.c -o $@
 build/errdup.o: build/compile.sh; sh build/compile.sh src/errdup.c -o $@
 build/errtest.o: build/compile.sh; sh build/compile.sh src/errtest.c -o $@
+build/ipv4-stream.o: build/compile.sh; sh build/compile.sh src/ipv4-stream.c -o $@
 build/unix-stream.o: build/compile.sh; sh build/compile.sh src/unix-stream.c -o $@
 build/unix-dgram.o: build/compile.sh; sh build/compile.sh src/unix-dgram.c -o $@
 build/unix-accept-after-close.o: build/compile.sh; sh build/compile.sh src/unix-accept-after-close.c -o $@
@@ -118,6 +120,9 @@ build/errdup: build/errdup.o build/link.sh
 
 build/errtest: build/errtest.o $(UTILOBJS) build/link.sh
 	sh build/link.sh build/errtest.o $(UTILOBJS) -o $@
+
+build/ipv4-stream: build/ipv4-stream.o $(UTILOBJS) build/link.sh
+	sh build/link.sh build/ipv4-stream.o $(UTILOBJS) -o $@
 
 build/unix-stream: build/unix-stream.o $(UTILOBJS) build/link.sh
 	sh build/link.sh build/unix-stream.o $(UTILOBJS) -o $@
@@ -151,6 +156,8 @@ build/errdup.o: src/errdup.c src/sockettest.h build/config.h build/includes.h
 build/errmsg.o: src/errmsg.c src/sockettest.h build/config.h build/includes.h
 build/errnum.o: src/errnum.c src/sockettest.h build/config.h build/includes.h
 build/errtest.o: src/errtest.c src/sockettest.h build/config.h build/includes.h
+build/ipv4-stream.o: src/ipv4-stream.c src/sockettest.h build/config.h \
+ build/includes.h
 build/unix-accept-after-close.o: src/unix-accept-after-close.c src/sockettest.h \
  build/config.h build/includes.h
 build/unix-dgram.o: src/unix-dgram.c src/sockettest.h build/config.h \

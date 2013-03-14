@@ -13,6 +13,7 @@ errmsg
 errnum
 errdup
 errtest
+ipv4-stream
 unix-stream
 unix-dgram
 unix-accept-after-close
