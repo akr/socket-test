@@ -36,4 +36,6 @@ CYGWIN*|Minix*) : ;;
 *) sh ./scripts/unix-accept-after-close.sh ;;
 esac
 
+sh scripts/ipv4-stream-basic-tests.sh
+
 sh scripts/additional-tests.sh

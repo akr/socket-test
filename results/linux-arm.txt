@@ -1867,7 +1867,7 @@ bind(client): EINVAL
 ./build/unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000094" (6 bytes)
+getsockname(server)   -> "\0000a8" (6 bytes)
 ./build/unix-stream -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -1894,7 +1894,7 @@ bind(server): EADDRINUSE
 ./build/unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000095" (6 bytes)
+getsockname(server)   -> "\0000a9" (6 bytes)
 ./build/unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
@@ -4329,7 +4329,7 @@ bind(client): EINVAL
 ./build/unix-dgram -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000096" (6 bytes)
+getsockname(server)   -> "\0000aa" (6 bytes)
 ./build/unix-dgram -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -4352,7 +4352,7 @@ bind(server): EADDRINUSE
 ./build/unix-dgram -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\000097" (6 bytes)
+getsockname(server)   -> "\0000ab" (6 bytes)
 ./build/unix-dgram '\0abc' '\0abc' 'bar'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
@@ -4399,6 +4399,13 @@ recvfrom(client)      -> "\0abstract" (9 bytes)
 
 ./build/unix-accept-after-close
 accept                -> "" (0 bytes)
+./build/ipv4-stream
+bind(server)          <- 0.0.0.0:0 (16 bytes)
+getsockname(server)   -> 0.0.0.0:54775 (16 bytes)
+getsockname(client) before connect -> 0.0.0.0:54775 (16 bytes)
+connect               <- 127.0.0.1:54775 (16 bytes)
+getsockname(client) after connect -> 0.0.0.0:54775 (16 bytes)
+accept                -> 127.0.0.1:60396 (16 bytes)
 
 ./build/size
 sockaddr.size =                            16

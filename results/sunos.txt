@@ -8452,6 +8452,13 @@ bind(server)          <- "README" (6 bytes)
 bind(server): EADDRINUSE
 ./build/unix-accept-after-close
 accept                -> "(14*"\0")" (14 bytes)
+./build/ipv4-stream
+bind(server)          <- 0.0.0.0:0 (16 bytes)
+getsockname(server)   -> 0.0.0.0:55121 (16 bytes)
+getsockname(client) before connect -> 0.0.0.0:55121 (16 bytes)
+connect               <- 127.0.0.1:55121 (16 bytes)
+getsockname(client) after connect -> 0.0.0.0:55121 (16 bytes)
+accept                -> 127.0.0.1:46005 (16 bytes)
 ./build/size
 sockaddr.size =                            16
 sockaddr.sa_family.size =                  2

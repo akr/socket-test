@@ -2065,6 +2065,13 @@ sendto(server): ENOENT
 
 ./build/unix-accept-after-close
 accept                -> "\0" (1 bytes)
+./build/ipv4-stream
+bind(server)          <- 0.0.0.0:0 (16 bytes)
+getsockname(server)   -> 0.0.0.0:32797 (16 bytes)
+getsockname(client) before connect -> 0.0.0.0:32797 (16 bytes)
+connect               <- 127.0.0.1:32797 (16 bytes)
+getsockname(client) after connect -> 0.0.0.0:32797 (16 bytes)
+accept                -> 127.0.0.1:32798 (16 bytes)
 
 ./build/size
 sockaddr.size =                            16
