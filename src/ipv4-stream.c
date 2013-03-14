@@ -155,7 +155,7 @@ static void test_ipv4_stream(void)
     after_sockaddr_put(sockaddr_put, ret != -1, 1);
   }
 
-  sockaddr_get = before_sockaddr_get("getsockname(client)(1)", get_sockaddr_len, opt_4);
+  sockaddr_get = before_sockaddr_get("getsockname(client) before connect", get_sockaddr_len, opt_4);
   ret = getsockname(serv, sockaddr_get->addr, &sockaddr_get->len);
   after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
@@ -163,7 +163,7 @@ static void test_ipv4_stream(void)
   ret = connect(c, sockaddr_put->addr, sockaddr_put->len);
   after_sockaddr_put(sockaddr_put, ret != -1, 1);
 
-  sockaddr_get = before_sockaddr_get("getsockname(client)(2)", get_sockaddr_len, opt_4);
+  sockaddr_get = before_sockaddr_get("getsockname(client) after connect", get_sockaddr_len, opt_4);
   ret = getsockname(serv, sockaddr_get->addr, &sockaddr_get->len);
   after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
