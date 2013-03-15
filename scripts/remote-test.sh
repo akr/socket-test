@@ -48,13 +48,15 @@ do
      cmp -s "$REMOTE_DIRECTORY/$fn" "$D2/$fn"; then
     :
   else
+    echo update $fn
     mkdir -p `dirname "$REMOTE_DIRECTORY/$fn"`
     cp "$D2/$fn" "$REMOTE_DIRECTORY/$fn"
   fi
-done
+done 1>&2
 cd $REMOTE_DIRECTORY
 ( make clean-old all ) | tee z.log 1>&2 &&
-sh scripts/run-test.sh 2>&1
+sh scripts/run-test.sh 2>&1 > $D2/result.txt
+cat $D2/result.txt
 End2
 ) | tee z.remote.sh | ssh "$host" sh -s > results/$name.txt
 done 2>&1 | tee z.run.log
