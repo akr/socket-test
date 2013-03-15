@@ -240,19 +240,21 @@ def filter_command_lines(lines)
   lines2 = []
   lines.each {|line|
     lines2 << line.gsub(/(\d+\.\d+\.\d+\.\d+):(\d+)/) {
-      if $1 == '0.0.0.0' || $1 == '127.0.0.1'
-        ip = $1
-      elsif addr_hash.has_key?($1)
-        ip = addr_hash[$1]
-      else
-        ip = addr_hash[$1] = "IPv4Addr#{addr_hash.size+1}"
+      ip = $1
+      port = $2
+      if ip != '0.0.0.0' && /\A127\./ !~ ip
+        if addr_hash.has_key?(ip)
+          ip = addr_hash[ip]
+        else
+          ip = addr_hash[ip] = "IPv4Addr#{addr_hash.size+1}"
+        end
       end
-      if $2 == '0'
-        port = '0'
-      elsif port_hash.has_key?($2)
-        port = port_hash[$2]
-      else
-        port = port_hash[$2] = "Port#{port_hash.size+1}"
+      if port != '0'
+        if port_hash.has_key?(port)
+          port = port_hash[port]
+        else
+          port = port_hash[port] = "Port#{port_hash.size+1}"
+        end
       end
       "#{ip}:#{port}"
     }
