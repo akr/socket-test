@@ -651,7 +651,9 @@ static void buffer_add_sockaddr(buffer_t *buf, struct sockaddr *sockaddr_ptr, si
       port_hi = ((unsigned char *)&addr_in->sin_port)[0];
       port_lo = ((unsigned char *)&addr_in->sin_port)[1];
       port = (port_hi << 8) | port_lo;
-      buffer_addf(buf, "%d.%d.%d.%d:%d (%d bytes)", a, b, c, d, port, sockaddr_len);
+      buffer_addf(buf, "%d.%d.%d.%d:%d", a, b, c, d, port);
+      if (sockaddr_len != sizeof(struct sockaddr_in))
+        buffer_addf(buf, " (%d bytes)", sockaddr_len);
     }
     break;
 
