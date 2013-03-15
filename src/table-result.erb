@@ -234,9 +234,36 @@ files.keys.sort.reverse.each_with_index {|os, i|
 
 os_command_numbered_lines = {}
 
+def filter_command_lines(lines)
+  addr_hash = {}
+  port_hash = {}
+  lines2 = []
+  lines.each {|line|
+    lines2 << line.gsub(/(\d+\.\d+\.\d+\.\d+):(\d+)/) {
+      if $1 == '0.0.0.0' || $1 == '127.0.0.1'
+        ip = $1
+      elsif addr_hash.has_key?($1)
+        ip = addr_hash[$1]
+      else
+        ip = addr_hash[$1] = "IPv4Addr#{addr_hash.size+1}"
+      end
+      if $2 == '0'
+        port = '0'
+      elsif port_hash.has_key?($2)
+        port = port_hash[$2]
+      else
+        port = port_hash[$2] = "Port#{port_hash.size+1}"
+      end
+      "#{ip}:#{port}"
+    }
+  }
+  lines2
+end
+
 files.each {|os, content|
   current_linenum = 0
   content.lines.slice_before(/\A(uname|\.\/)/).each {|lines|
+    lines = filter_command_lines(lines)
     numbered_lines = lines.map {|line|
       current_linenum += 1
       [current_linenum, line]
