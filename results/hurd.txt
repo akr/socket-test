@@ -2066,14 +2066,14 @@ sendto(server): ENOENT
 ./build/unix-accept-after-close
 accept                -> "\0" (1 bytes)
 ./build/ipv4-stream
-bind(server)          <- 0.0.0.0:0 (16 bytes)
-getsockname(server)   -> 0.0.0.0:32879 (16 bytes) pad:"\0\0\0\0\x91q\x03\x01"
-getsockname(client) before connect -> 0.0.0.0:32879 (16 bytes) pad:"\xD1v\x03\x01\x91q\x03\x01"
-connect               <- 127.0.0.1:32879 (16 bytes) pad:"\0\0\0\0\x91q\x03\x01"
-getsockname(client) after connect -> 0.0.0.0:32879 (16 bytes) pad:"\0\0\0\0\x91q\x03\x01"
-accept                -> 127.0.0.1:32880 (16 bytes) pad:"\xD1v\x03\x01\xD8G\n\b"
-getsockname(accepted) -> 127.0.0.1:32879 (16 bytes) pad:"\0\0\0\0\x91q\x03\x01"
-getpeername(accepted) -> 127.0.0.1:32880 (16 bytes) pad:"\0\0\0\0\x91q\x03\x01"
+bind(server)          <- 0.0.0.0:0
+getsockname(server)   -> 0.0.0.0:32881 pad:"\0\0\0\0\x91q\x03\x01"
+getsockname(client) before connect -> 0.0.0.0:32881 pad:"\xD1v\x03\x01\x91q\x03\x01"
+connect               <- 127.0.0.1:32881 pad:"\0\0\0\0\x91q\x03\x01"
+getsockname(client) after connect -> 0.0.0.0:32881 pad:"\0\0\0\0\x91q\x03\x01"
+accept                -> 127.0.0.1:32882 pad:"\xD1v\x03\x01\xD8G\n\b"
+getsockname(accepted) -> 127.0.0.1:32881 pad:"\0\0\0\0\x91q\x03\x01"
+getpeername(accepted) -> 127.0.0.1:32882 pad:"\0\0\0\0\x91q\x03\x01"
 
 ./build/size
 sockaddr.size =                            16
