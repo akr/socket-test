@@ -460,6 +460,138 @@ char *unescape_string(size_t *unescaped_len_ret, char *escaped_ptr, size_t escap
   return buffer_unwrap(buf);
 }
 
+typedef struct {
+  char *name;
+  size_t offset;
+  size_t size;
+} field_location_t;
+#define FIELD_LOCATION(type, name) { #name, offsetof(type, name), FIELD_SIZE(type, name) }
+
+static field_location_t sockaddr_in_fields[] = {
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+  FIELD_LOCATION(struct sockaddr_in, sin_len),
+#endif
+  FIELD_LOCATION(struct sockaddr_in, sin_family),
+  FIELD_LOCATION(struct sockaddr_in, sin_port),
+  FIELD_LOCATION(struct sockaddr_in, sin_addr),
+};
+
+static field_location_t sockaddr_in6_fields[] = {
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+  FIELD_LOCATION(struct sockaddr_in6, sin6_len),
+#endif
+  FIELD_LOCATION(struct sockaddr_in6, sin6_family),
+  FIELD_LOCATION(struct sockaddr_in6, sin6_port),
+  FIELD_LOCATION(struct sockaddr_in6, sin6_flowinfo),
+  FIELD_LOCATION(struct sockaddr_in6, sin6_addr),
+  FIELD_LOCATION(struct sockaddr_in6, sin6_scope_id),
+};
+
+static field_location_t sockaddr_un_fields[] = {
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+  FIELD_LOCATION(struct sockaddr_un, sun_len),
+#endif
+  FIELD_LOCATION(struct sockaddr_un, sun_family),
+  FIELD_LOCATION(struct sockaddr_un, sun_path),
+};
+
+typedef struct {
+  int family;
+  size_t type_size;
+  field_location_t *fields;
+  int num_fields;
+  int sorted;
+} fields_def_t;
+
+static fields_def_t fields_defs[] = {
+  { AF_INET, sizeof(struct sockaddr_in), sockaddr_in_fields, (int)(sizeof(sockaddr_in_fields)/sizeof(*sockaddr_in_fields)), 0 },
+  { AF_INET6, sizeof(struct sockaddr_in6), sockaddr_in6_fields, (int)(sizeof(sockaddr_in6_fields)/sizeof(*sockaddr_in6_fields)), 0 },
+  { AF_UNIX, sizeof(struct sockaddr_un), sockaddr_un_fields, (int)(sizeof(sockaddr_un_fields)/sizeof(*sockaddr_un_fields)), 0 },
+};
+
+static int field_location_cmp(const void *vp1, const void *vp2)
+{
+  const field_location_t *f1 = vp1;
+  const field_location_t *f2 = vp2;
+
+  if (f1->offset != f2->offset) {
+    /* Earlier fields should be smaller. */
+    if (f1->offset < f2->offset)
+      return -1;
+    else
+      return 1;
+  }
+  if (f1->size != f2->size) {
+    /* Longer fields should be smaller. */
+    if (f1->size < f2->size)
+      return 1;
+    else
+      return -1;
+  }
+  return 0;
+}
+
+static void buffer_add_sockaddr_padding(buffer_t *buf, struct sockaddr *sockaddr_ptr, size_t sockaddr_len, size_t buf_len)
+{
+  int family = sockaddr_ptr->sa_family;
+  int i;
+  fields_def_t *fdef;
+  size_t s;
+  int first;
+  int nonzero_padding;
+
+  if (buf_len < sockaddr_len)
+    sockaddr_len = buf_len;
+
+  for (i = 0; i < (int)(sizeof(fields_defs)/sizeof(*fields_defs)); i++) {
+    if (family == fields_defs[i].family)
+      break;
+  }
+  if (i == (int)(sizeof(fields_defs)/sizeof(*fields_defs)))
+    return; /* no field definitions for given family. */
+
+  fdef = &fields_defs[i];
+  if (!fdef->sorted) {
+    qsort(fdef->fields, fdef->num_fields, sizeof(field_location_t), field_location_cmp);
+    fdef->sorted = 1;
+  }
+
+  nonzero_padding = 0;
+  i = 0;
+  for (s = 0; s < sockaddr_len && s < fdef->type_size; s++) {
+    while (i < fdef->num_fields && fdef->fields[i].offset + fdef->fields[i].size <= s)
+      i++;
+    if (i < fdef->num_fields &&
+        fdef->fields[i].offset <= s &&
+        s < fdef->fields[i].offset + fdef->fields[i].size)
+      continue;
+    /* A padding byte found: ((char *)sockaddr_ptr)[s]. */
+    if (((char *)sockaddr_ptr)[s])
+      nonzero_padding = 1;
+  }
+
+  if (nonzero_padding) {
+    first = 1;
+    i = 0;
+    for (s = 0; s < sockaddr_len && s < fdef->type_size; s++) {
+      while (i < fdef->num_fields && fdef->fields[i].offset + fdef->fields[i].size <= s)
+        i++;
+      if (i < fdef->num_fields &&
+          fdef->fields[i].offset <= s &&
+          s < fdef->fields[i].offset + fdef->fields[i].size)
+        continue;
+      /* A padding byte found: ((char *)sockaddr_ptr)[s]. */
+      if (first) {
+        first = 0;
+        buffer_add_str(buf, " pad:\"");
+      }
+      buffer_add_escaped_mem(buf, &((char *)sockaddr_ptr)[s], 1);
+    }
+    if (!first)
+      buffer_add_byte(buf, '"');
+  }
+}
+
 static void buffer_add_sockaddr(buffer_t *buf, struct sockaddr *sockaddr_ptr, size_t sockaddr_len, size_t buf_len, int opt_4)
 {
   int truncated;
@@ -544,6 +676,8 @@ static void buffer_add_sockaddr(buffer_t *buf, struct sockaddr *sockaddr_ptr, si
     }
     break;
   }
+
+  buffer_add_sockaddr_padding(buf, sockaddr_ptr, sockaddr_len, buf_len);
 
   return;
 }
