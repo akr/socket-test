@@ -171,6 +171,14 @@ static void test_ipv4_stream(void)
   s = accept(serv, sockaddr_get->addr, &sockaddr_get->len);
   after_sockaddr_get(sockaddr_get, s != -1, 1);
 
+  sockaddr_get = before_sockaddr_get("getsockname(accepted)", get_sockaddr_len, opt_4);
+  ret = getsockname(s, sockaddr_get->addr, &sockaddr_get->len);
+  after_sockaddr_get(sockaddr_get, ret != -1, 0);
+
+  sockaddr_get = before_sockaddr_get("getpeername(accepted)", get_sockaddr_len, opt_4);
+  ret = getpeername(s, sockaddr_get->addr, &sockaddr_get->len);
+  after_sockaddr_get(sockaddr_get, ret != -1, 0);
+
   close(c);
   close(s);
   close(serv);
