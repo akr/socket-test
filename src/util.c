@@ -800,7 +800,6 @@ void after_sockaddr_get_report(sockaddr_get_t *sockaddr_get, int get_succeed, in
   char *p = (char *)addr;
   char *q;
   if (get_succeed) {
-    int i;
     buffer_t *buf = buffer_new(30);
     buffer_addf(buf, "%-21s -> ", key);
     buffer_add_sockaddr(buf, (struct sockaddr *)addr, len, buflen, sockaddr_get->opt_4);
