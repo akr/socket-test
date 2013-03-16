@@ -48,6 +48,50 @@ void usage(int status)
 
 void parse_as_sockaddr_in(char *arg, struct sockaddr_in **addrp, socklen_t *lenp)
 {
+  char *ip_str, *colonp, *port_str;
+  in_addr_t ip = 0;
+  in_port_t port = 0;
+  struct sockaddr_in *a;
+
+  colonp = strchr(arg, ':');
+  if (colonp) {
+    *colonp = '\0';
+    ip_str = arg;
+    port_str = colonp+1;
+  }
+  else {
+    if (strchr(arg, '.')) {
+      ip_str = arg;
+      port_str = NULL;
+    }
+    else {
+      ip_str = NULL;
+      port_str = arg;
+    }
+  }
+
+  if (ip_str) {
+    ip = inet_addr(ip_str);
+    if (ip == (in_addr_t)(-1)) {
+      fprintf(stderr, "inet_addr failure: %s\n", ip_str);
+      exit(EXIT_FAILURE);
+    }
+  }
+
+  if (port_str)
+    port = htons(atoi(port_str));
+
+  a = (struct sockaddr_in *)xmalloc(sizeof(struct sockaddr_in));
+  memset(a, '\0', sizeof(struct sockaddr_in));
+#ifdef HAVE_STRUCT_SOCKADDR_SA_LEN
+  a->sin_len = sizeof(struct sockaddr_in);
+#endif
+  a->sin_family = AF_INET;
+  a->sin_port = port;
+  a->sin_addr.s_addr = ip;
+
+  *addrp = a;
+  *lenp = sizeof(struct sockaddr_in);
 }
 
 static void parse_args(int argc, char *argv[])
@@ -131,6 +175,10 @@ static void test_ipv4_stream(void)
   serv = socket(AF_INET, SOCK_STREAM, 0);
   if (serv == -1) { perrsym("socket(server)"); exit(EXIT_FAILURE); }
 
+  sockaddr_get = before_sockaddr_get("getsockname(server)", get_sockaddr_len, opt_4);
+  ret = getsockname(serv, sockaddr_get->addr, &sockaddr_get->len);
+  after_sockaddr_get(sockaddr_get, ret != -1, 0);
+
   sockaddr_put = before_sockaddr_put("bind(server)", (struct sockaddr *)server_addr_ptr, server_addr_len, opt_4);
   ret = bind(serv, sockaddr_put->addr, sockaddr_put->len);
   after_sockaddr_put(sockaddr_put, ret != -1, 1);
@@ -138,9 +186,13 @@ static void test_ipv4_stream(void)
   sockaddr_get = before_sockaddr_get("getsockname(server)", get_sockaddr_len, opt_4);
   ret = getsockname(serv, sockaddr_get->addr, &sockaddr_get->len);
   after_sockaddr_get_report(sockaddr_get, ret != -1, 0);
+
   if (!connect_addr_ptr) {
     setup_connect_addr(sockaddr_get->addr, sockaddr_get->len);
   }
+  if (connect_addr_ptr->sin_port == 0)
+    connect_addr_ptr->sin_port = ((struct sockaddr_in *)(sockaddr_get->addr))->sin_port;
+
   after_sockaddr_get_finish(sockaddr_get);
 
   ret = listen(serv, SOMAXCONN);
@@ -150,21 +202,25 @@ static void test_ipv4_stream(void)
   if (c == -1) { perrsym("socket(client)"); exit(EXIT_FAILURE); }
 
   if (client_addr_ptr) {
+    sockaddr_get = before_sockaddr_get("getsockname(client) before bind", get_sockaddr_len, opt_4);
+    ret = getsockname(c, sockaddr_get->addr, &sockaddr_get->len);
+    after_sockaddr_get(sockaddr_get, ret != -1, 0);
+
     sockaddr_put = before_sockaddr_put("bind(client)", (struct sockaddr *)client_addr_ptr, client_addr_len, opt_4);
-    ret = bind(serv, sockaddr_put->addr, sockaddr_put->len);
+    ret = bind(c, sockaddr_put->addr, sockaddr_put->len);
     after_sockaddr_put(sockaddr_put, ret != -1, 1);
   }
 
-  sockaddr_get = before_sockaddr_get("getsockname(client) before connect", get_sockaddr_len, opt_4);
-  ret = getsockname(serv, sockaddr_get->addr, &sockaddr_get->len);
+  sockaddr_get = before_sockaddr_get("getsockname(client)", get_sockaddr_len, opt_4);
+  ret = getsockname(c, sockaddr_get->addr, &sockaddr_get->len);
   after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
   sockaddr_put = before_sockaddr_put("connect", (struct sockaddr *)connect_addr_ptr, connect_addr_len, opt_4);
   ret = connect(c, sockaddr_put->addr, sockaddr_put->len);
   after_sockaddr_put(sockaddr_put, ret != -1, 1);
 
-  sockaddr_get = before_sockaddr_get("getsockname(client) after connect", get_sockaddr_len, opt_4);
-  ret = getsockname(serv, sockaddr_get->addr, &sockaddr_get->len);
+  sockaddr_get = before_sockaddr_get("getsockname(client)", get_sockaddr_len, opt_4);
+  ret = getsockname(c, sockaddr_get->addr, &sockaddr_get->len);
   after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
   sockaddr_get = before_sockaddr_get("accept", get_sockaddr_len, opt_4);
