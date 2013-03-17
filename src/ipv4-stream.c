@@ -175,7 +175,7 @@ static void test_ipv4_stream(void)
   serv = socket(AF_INET, SOCK_STREAM, 0);
   if (serv == -1) { perrsym("socket(server)"); exit(EXIT_FAILURE); }
 
-  sockaddr_get = before_sockaddr_get("getsockname(server)", get_sockaddr_len, opt_4);
+  sockaddr_get = before_sockaddr_get("getsockname(server)(1)", get_sockaddr_len, opt_4);
   ret = getsockname(serv, sockaddr_get->addr, &sockaddr_get->len);
   after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
@@ -183,7 +183,7 @@ static void test_ipv4_stream(void)
   ret = bind(serv, sockaddr_put->addr, sockaddr_put->len);
   after_sockaddr_put(sockaddr_put, ret != -1, 1);
 
-  sockaddr_get = before_sockaddr_get("getsockname(server)", get_sockaddr_len, opt_4);
+  sockaddr_get = before_sockaddr_get("getsockname(server)(2)", get_sockaddr_len, opt_4);
   ret = getsockname(serv, sockaddr_get->addr, &sockaddr_get->len);
   after_sockaddr_get_report(sockaddr_get, ret != -1, 0);
 
@@ -202,7 +202,7 @@ static void test_ipv4_stream(void)
   if (c == -1) { perrsym("socket(client)"); exit(EXIT_FAILURE); }
 
   if (client_addr_ptr) {
-    sockaddr_get = before_sockaddr_get("getsockname(client) before bind", get_sockaddr_len, opt_4);
+    sockaddr_get = before_sockaddr_get("getsockname(client)(0)", get_sockaddr_len, opt_4);
     ret = getsockname(c, sockaddr_get->addr, &sockaddr_get->len);
     after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
@@ -211,7 +211,7 @@ static void test_ipv4_stream(void)
     after_sockaddr_put(sockaddr_put, ret != -1, 1);
   }
 
-  sockaddr_get = before_sockaddr_get("getsockname(client)", get_sockaddr_len, opt_4);
+  sockaddr_get = before_sockaddr_get("getsockname(client)(1)", get_sockaddr_len, opt_4);
   ret = getsockname(c, sockaddr_get->addr, &sockaddr_get->len);
   after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
@@ -219,7 +219,7 @@ static void test_ipv4_stream(void)
   ret = connect(c, sockaddr_put->addr, sockaddr_put->len);
   after_sockaddr_put(sockaddr_put, ret != -1, 1);
 
-  sockaddr_get = before_sockaddr_get("getsockname(client)", get_sockaddr_len, opt_4);
+  sockaddr_get = before_sockaddr_get("getsockname(client)(2)", get_sockaddr_len, opt_4);
   ret = getsockname(c, sockaddr_get->addr, &sockaddr_get->len);
   after_sockaddr_get(sockaddr_get, ret != -1, 0);
 
