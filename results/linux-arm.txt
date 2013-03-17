@@ -1867,7 +1867,7 @@ bind(client): EINVAL
 ./build/unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\0000bc" (6 bytes)
+getsockname(server)   -> "\0000c4" (6 bytes)
 ./build/unix-stream -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -1894,7 +1894,7 @@ bind(server): EADDRINUSE
 ./build/unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\0000bd" (6 bytes)
+getsockname(server)   -> "\0000c5" (6 bytes)
 ./build/unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
@@ -4329,7 +4329,7 @@ bind(client): EINVAL
 ./build/unix-dgram -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\0000be" (6 bytes)
+getsockname(server)   -> "\0000c6" (6 bytes)
 ./build/unix-dgram -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -4352,7 +4352,7 @@ bind(server): EADDRINUSE
 ./build/unix-dgram -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\0000bf" (6 bytes)
+getsockname(server)   -> "\0000c7" (6 bytes)
 ./build/unix-dgram '\0abc' '\0abc' 'bar'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
@@ -4400,14 +4400,15 @@ recvfrom(client)      -> "\0abstract" (9 bytes)
 ./build/unix-accept-after-close
 accept                -> "" (0 bytes)
 ./build/ipv4-stream
+getsockname(server)(1) -> 0.0.0.0:0
 bind(server)          <- 0.0.0.0:0
-getsockname(server)   -> 0.0.0.0:37273
-getsockname(client) before connect -> 0.0.0.0:37273
-connect               <- 127.0.0.1:37273
-getsockname(client) after connect -> 0.0.0.0:37273
-accept                -> 127.0.0.1:44974
-getsockname(accepted) -> 127.0.0.1:37273
-getpeername(accepted) -> 127.0.0.1:44974
+getsockname(server)(2) -> 0.0.0.0:47626
+getsockname(client)(1) -> 0.0.0.0:0
+connect               <- 127.0.0.1:47626
+getsockname(client)(2) -> 127.0.0.1:59594
+accept                -> 127.0.0.1:59594
+getsockname(accepted) -> 127.0.0.1:47626
+getpeername(accepted) -> 127.0.0.1:59594
 
 ./build/size
 sockaddr.size =                            16

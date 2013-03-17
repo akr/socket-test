@@ -4308,14 +4308,15 @@ recvfrom(client)      -> "(sun_len=106)abc(101*"\0")" (104 bytes)
 ./build/unix-accept-after-close
 accept                -> "(14*"\0")" (14 bytes)
 ./build/ipv4-stream
+getsockname(server)(1) -> 0.0.0.0:0
 bind(server)          <- 0.0.0.0:0
-getsockname(server)   -> 0.0.0.0:22164
-getsockname(client) before connect -> 0.0.0.0:22164
-connect               <- 127.0.0.1:22164
-getsockname(client) after connect -> 0.0.0.0:22164
-accept                -> 127.0.0.1:36001
-getsockname(accepted) -> 127.0.0.1:22164
-getpeername(accepted) -> 127.0.0.1:36001
+getsockname(server)(2) -> 0.0.0.0:15582
+getsockname(client)(1) -> 0.0.0.0:0
+connect               <- 127.0.0.1:15582
+getsockname(client)(2) -> 127.0.0.1:12914
+accept                -> 127.0.0.1:12914
+getsockname(accepted) -> 127.0.0.1:15582
+getpeername(accepted) -> 127.0.0.1:12914
 
 ./build/size
 sockaddr.size =                            16

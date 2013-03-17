@@ -8453,14 +8453,15 @@ bind(server): EADDRINUSE
 ./build/unix-accept-after-close
 accept                -> "(14*"\0")" (14 bytes)
 ./build/ipv4-stream
+getsockname(server)(1) -> 0.0.0.0:0
 bind(server)          <- 0.0.0.0:0
-getsockname(server)   -> 0.0.0.0:39651
-getsockname(client) before connect -> 0.0.0.0:39651
-connect               <- 127.0.0.1:39651
-getsockname(client) after connect -> 0.0.0.0:39651
-accept                -> 127.0.0.1:54267
-getsockname(accepted) -> 127.0.0.1:39651
-getpeername(accepted) -> 127.0.0.1:54267
+getsockname(server)(2) -> 0.0.0.0:41390
+getsockname(client)(1) -> 0.0.0.0:0
+connect               <- 127.0.0.1:41390
+getsockname(client)(2) -> 127.0.0.1:38455
+accept                -> 127.0.0.1:38455
+getsockname(accepted) -> 127.0.0.1:41390
+getpeername(accepted) -> 127.0.0.1:38455
 ./build/size
 sockaddr.size =                            16
 sockaddr.sa_family.size =                  2
