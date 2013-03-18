@@ -36,6 +36,8 @@ static struct sockaddr_in *server_addr_ptr, *connect_addr_ptr, *client_addr_ptr;
 static socklen_t server_addr_len, connect_addr_len, client_addr_len;
 static socklen_t get_sockaddr_len = (socklen_t)sizeof(struct sockaddr_in);
 
+static int connect_addr_ip_given, connect_addr_port_given;
+
 void usage(int status)
 {
   fputs(
@@ -46,7 +48,7 @@ void usage(int status)
   exit(status);
 }
 
-void parse_as_sockaddr_in(char *arg, struct sockaddr_in **addrp, socklen_t *lenp)
+void parse_as_sockaddr_in(char *arg, struct sockaddr_in **addrp, socklen_t *lenp, int *ip_given, int *port_given)
 {
   char *ip_str, *colonp, *port_str;
   in_addr_t ip = 0;
@@ -58,15 +60,21 @@ void parse_as_sockaddr_in(char *arg, struct sockaddr_in **addrp, socklen_t *lenp
     *colonp = '\0';
     ip_str = arg;
     port_str = colonp+1;
+    if (ip_given) *ip_given = 1;
+    if (port_given) *port_given = 1;
   }
   else {
     if (strchr(arg, '.')) {
       ip_str = arg;
       port_str = NULL;
+      if (ip_given) *ip_given = 1;
+      if (port_given) *port_given = 0;
     }
     else {
       ip_str = NULL;
       port_str = arg;
+      if (ip_given) *ip_given = 0;
+      if (port_given) *port_given = 1;
     }
   }
 
@@ -117,19 +125,19 @@ static void parse_args(int argc, char *argv[])
     return;
 
   arg = argv[optind++];
-  parse_as_sockaddr_in(arg, &server_addr_ptr, &server_addr_len);
+  parse_as_sockaddr_in(arg, &server_addr_ptr, &server_addr_len, NULL, NULL);
 
   if (argc <= optind)
     return;
 
   arg = argv[optind++];
-  parse_as_sockaddr_in(arg, &connect_addr_ptr, &connect_addr_len);
+  parse_as_sockaddr_in(arg, &connect_addr_ptr, &connect_addr_len, &connect_addr_ip_given, &connect_addr_port_given);
 
   if (argc <= optind)
     return;
 
   arg = argv[optind++];
-  parse_as_sockaddr_in(arg, &client_addr_ptr, &client_addr_len);
+  parse_as_sockaddr_in(arg, &client_addr_ptr, &client_addr_len, NULL, NULL);
 
   if (optind != argc) {
     fprintf(stderr, "too many arguments\n");
@@ -157,11 +165,17 @@ void setup_connect_addr(struct sockaddr *actual_server_address, socklen_t len)
     connect_addr_len = len;
     connect_addr_ptr = xmalloc(connect_addr_len);
     memcpy(connect_addr_ptr, actual_server_address, connect_addr_len);
+  }
+
+  if (!connect_addr_ip_given) {
+    connect_addr_ptr->sin_addr = ((struct sockaddr_in *)actual_server_address)->sin_addr;
     if (connect_addr_ptr->sin_family == AF_INET &&
         connect_addr_ptr->sin_addr.s_addr == htonl(0)) {
       connect_addr_ptr->sin_addr.s_addr = htonl(0x7f000001);
     }
   }
+  if (!connect_addr_port_given)
+    connect_addr_ptr->sin_port = ((struct sockaddr_in *)actual_server_address)->sin_port;
 }
 
 
@@ -187,9 +201,7 @@ static void test_ipv4_stream(void)
   ret = getsockname(serv, sockaddr_get->addr, &sockaddr_get->len);
   after_sockaddr_get_report(sockaddr_get, ret != -1, 0);
 
-  if (!connect_addr_ptr) {
-    setup_connect_addr(sockaddr_get->addr, sockaddr_get->len);
-  }
+  setup_connect_addr(sockaddr_get->addr, sockaddr_get->len);
   if (connect_addr_ptr->sin_port == 0)
     connect_addr_ptr->sin_port = ((struct sockaddr_in *)(sockaddr_get->addr))->sin_port;
 
