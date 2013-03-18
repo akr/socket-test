@@ -7204,17 +7204,17 @@ recvfrom(client)      -> "(sun_len=6)abc\0" (4 bytes)
 
 
 ./build/unix-accept-after-close
-accept                -> "socket-file(20*"\0")\xC4A?\x80\xFE\xFF\xFF(66*"\0")" (104 bytes)
+accept                -> "socket-file(20*"\0")@\xE5=\x80\xFE\xFF\xFF(66*"\0")" (104 bytes)
 ./build/ipv4-stream
 getsockname(server)(1) -> 0.0.0.0:0
 bind(server)          <- 0.0.0.0:0
-getsockname(server)(2) -> 0.0.0.0:65437
+getsockname(server)(2) -> 0.0.0.0:65434
 getsockname(client)(1) -> 0.0.0.0:0
-connect               <- 127.0.0.1:65437
-getsockname(client)(2) -> 127.0.0.1:65436
-accept                -> 127.0.0.1:65436
-getsockname(accepted) -> 127.0.0.1:65437
-getpeername(accepted) -> 127.0.0.1:65436
+connect               <- 127.0.0.1:65434
+getsockname(client)(2) -> 127.0.0.1:65433
+accept                -> 127.0.0.1:65433
+getsockname(accepted) -> 127.0.0.1:65434
+getpeername(accepted) -> 127.0.0.1:65433
 
 ./build/size
 sockaddr.size =                            16

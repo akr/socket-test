@@ -4310,13 +4310,13 @@ accept                -> "(14*"\0")" (14 bytes)
 ./build/ipv4-stream
 getsockname(server)(1) -> 0.0.0.0:0
 bind(server)          <- 0.0.0.0:0
-getsockname(server)(2) -> 0.0.0.0:15582
+getsockname(server)(2) -> 0.0.0.0:42371
 getsockname(client)(1) -> 0.0.0.0:0
-connect               <- 127.0.0.1:15582
-getsockname(client)(2) -> 127.0.0.1:12914
-accept                -> 127.0.0.1:12914
-getsockname(accepted) -> 127.0.0.1:15582
-getpeername(accepted) -> 127.0.0.1:12914
+connect               <- 127.0.0.1:42371
+getsockname(client)(2) -> 127.0.0.1:14164
+accept                -> 127.0.0.1:14164
+getsockname(accepted) -> 127.0.0.1:42371
+getpeername(accepted) -> 127.0.0.1:14164
 
 ./build/size
 sockaddr.size =                            16

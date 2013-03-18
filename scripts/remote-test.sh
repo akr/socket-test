@@ -7,7 +7,7 @@ REMOTE_DIRECTORY=test.socket-test
 
 D=/tmp/tst.$$
 mkdir $D || exit 1
-trap "rm -rf $D" EXIT
+trap "rm -rf $D" EXIT INT TERM
 
 git ls-files |
 grep -v '^results/' |
@@ -34,7 +34,7 @@ LC_ALL=C
 export LC_ALL
 D2=/tmp/tst.$$
 mkdir $D2 || exit 1
-trap "rm -rf $D2" EXIT
+trap "rm -rf $D2" EXIT INT TERM
 cat <<"EndOfUU" | (cd $D2; uudecode)
 End1
     uuencode tst.tar.gz < $D/tst.tar.gz

@@ -1867,7 +1867,7 @@ bind(client): EINVAL
 ./build/unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\0000ed" (6 bytes)
+getsockname(server)   -> "\0000f1" (6 bytes)
 ./build/unix-stream -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -1894,7 +1894,7 @@ bind(server): EADDRINUSE
 ./build/unix-stream -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\0000ee" (6 bytes)
+getsockname(server)   -> "\0000f2" (6 bytes)
 ./build/unix-stream '\0abc'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
@@ -4329,7 +4329,7 @@ bind(client): EINVAL
 ./build/unix-dgram -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\0000ef" (6 bytes)
+getsockname(server)   -> "\0000f3" (6 bytes)
 ./build/unix-dgram -s '.'
 bind(server)          <- "." (1 bytes)
 bind(server): EADDRINUSE
@@ -4352,7 +4352,7 @@ bind(server): EADDRINUSE
 ./build/unix-dgram -s ''
 bind(server)          <- "" (0 bytes)
 socket file (server)  : not exist
-getsockname(server)   -> "\0000f0" (6 bytes)
+getsockname(server)   -> "\0000f4" (6 bytes)
 ./build/unix-dgram '\0abc' '\0abc' 'bar'
 bind(server)          <- "\0abc" (4 bytes)
 socket file (server)  : not exist
@@ -4402,13 +4402,13 @@ accept                -> "" (0 bytes)
 ./build/ipv4-stream
 getsockname(server)(1) -> 0.0.0.0:0
 bind(server)          <- 0.0.0.0:0
-getsockname(server)(2) -> 0.0.0.0:34600
+getsockname(server)(2) -> 0.0.0.0:39228
 getsockname(client)(1) -> 0.0.0.0:0
-connect               <- 127.0.0.1:34600
-getsockname(client)(2) -> 127.0.0.1:59705
-accept                -> 127.0.0.1:59705
-getsockname(accepted) -> 127.0.0.1:34600
-getpeername(accepted) -> 127.0.0.1:59705
+connect               <- 127.0.0.1:39228
+getsockname(client)(2) -> 127.0.0.1:52842
+accept                -> 127.0.0.1:52842
+getsockname(accepted) -> 127.0.0.1:39228
+getpeername(accepted) -> 127.0.0.1:52842
 
 ./build/size
 sockaddr.size =                            16

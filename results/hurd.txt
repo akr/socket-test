@@ -2068,13 +2068,13 @@ accept                -> "\0" (1 bytes)
 ./build/ipv4-stream
 getsockname(server)(1) -> 0.0.0.0:0 pad:"\xD1v\x03\x01\x91q\x03\x01"
 bind(server)          <- 0.0.0.0:0
-getsockname(server)(2) -> 0.0.0.0:32887 pad:"\0\0\0\0\x91q\x03\x01"
+getsockname(server)(2) -> 0.0.0.0:32890 pad:"\0\0\0\0\x91q\x03\x01"
 getsockname(client)(1) -> 0.0.0.0:0 pad:"\xD1v\x03\x01\x91q\x03\x01"
-connect               <- 127.0.0.1:32887 pad:"\0\0\0\0\x91q\x03\x01"
-getsockname(client)(2) -> 127.0.0.1:32888 pad:"\0\0\0\0\x91q\x03\x01"
-accept                -> 127.0.0.1:32888 pad:"\xD1v\x03\x01\xD8G\n\b"
-getsockname(accepted) -> 127.0.0.1:32887 pad:"\0\0\0\0\x91q\x03\x01"
-getpeername(accepted) -> 127.0.0.1:32888 pad:"\0\0\0\0\x91q\x03\x01"
+connect               <- 127.0.0.1:32890 pad:"\0\0\0\0\x91q\x03\x01"
+getsockname(client)(2) -> 127.0.0.1:32891 pad:"\0\0\0\0\x91q\x03\x01"
+accept                -> 127.0.0.1:32891 pad:"\xD1v\x03\x01\xD8G\n\b"
+getsockname(accepted) -> 127.0.0.1:32890 pad:"\0\0\0\0\x91q\x03\x01"
+getpeername(accepted) -> 127.0.0.1:32891 pad:"\0\0\0\0\x91q\x03\x01"
 
 ./build/size
 sockaddr.size =                            16
